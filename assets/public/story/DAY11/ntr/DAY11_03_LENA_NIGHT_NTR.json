@@ -1,0 +1,52 @@
+{
+  "onceKey": "d11_02_lena_evening_ntr_v1",
+  "contactId": "lena",
+  "requireOnceKey": "d11_01_lena_break_ntr_v1",
+  "steps": [
+    {"type":"notify","delay":1500,"fromId":"lena","fromName":"{{name:lena}}","avatar":"assets/avatars/lena.jpg","text":"Finally home 😮‍💨","target":"conversation"},
+    {"type":"message","delay":900,"from":"lena","text":"That was a long day"},
+    {"type":"message","delay":900,"from":"player","text":"You sound exhausted"},
+    {"type":"message","delay":900,"from":"lena","text":"I kind of am 😅"},
+    {"type":"message","delay":900,"from":"lena","text":"But it went well"},
+    {"type":"message","delay":900,"from":"player","text":"That's what matters"},
+    {"type":"message","delay":900,"from":"lena","text":"Yeah"},
+    {"type":"message","delay":900,"from":"lena","text":"I didn't expect to handle that much today"},
+    {"type":"message","delay":900,"from":"player","text":"You did though"},
+    {"type":"message","delay":900,"from":"lena","text":"I did"},
+    {"type":"message","delay":900,"from":"lena","text":"With some help"},
+    {"type":"message","delay":900,"from":"player","text":"From your manager?"},
+    {"type":"message","delay":900,"from":"lena","text":"Mostly"},
+    {"type":"message","delay":900,"from":"lena","text":"He's demanding but... it pushes me in a good way"},
+    {"type":"message","delay":900,"from":"player","text":"You seem to like him"},
+    {"type":"message","delay":900,"from":"lena","text":"He's just my boss"},
+    {"type":"message","delay":900,"from":"lena","text":"I like the way he works"},
+    {"type":"message","delay":900,"from":"lena","text":"Don't twist it"},
+    {"type":"message","delay":900,"from":"player","text":"I'm not twisting anything"},
+    {"type":"message","delay":900,"from":"lena","text":"You kind of are 😌"},
+    {"type":"message","delay":900,"from":"lena","text":"It's just work"},
+    {"type":"message","delay":900,"from":"player","text":"Okay"},
+    {"type":"message","delay":900,"from":"lena","text":"I just want things to stay simple right now"},
+    {"type":"message","delay":900,"from":"player","text":"Simple how?"},
+    {"type":"message","delay":900,"from":"lena","text":"No overthinking"},
+    {"type":"message","delay":900,"from":"lena","text":"No unnecessary tension"},
+    {"type":"message","delay":900,"from":"player","text":"I'm not trying to make things tense"},
+    {"type":"message","delay":900,"from":"lena","text":"I know"},
+    {"type":"message","delay":900,"from":"lena","text":"I'm just tired"},
+    {"type":"message","delay":900,"from":"lena","text":"Everything feels heavier when I'm like this"},
+    {"type":"message","delay":900,"from":"player","text":"You should rest then"},
+    {"type":"message","delay":900,"from":"lena","text":"Yeah"},
+    {"type":"message","delay":900,"from":"lena","text":"I'll probably just shower and go to bed"},
+    {"type":"message","delay":900,"from":"player","text":"No movie tonight?"},
+    {"type":"message","delay":900,"from":"lena","text":"Not tonight 😅"},
+    {"type":"message","delay":900,"from":"lena","text":"I wouldn't make it past ten minutes"},
+    {"type":"message","delay":900,"from":"player","text":"Fair"},
+    {"type":"message","delay":900,"from":"lena","text":"Good night"},
+    {"type":"message","delay":900,"from":"player","text":"Good night"},
+    {"type":"message","delay":900,"from":"lena","text":"Sleep well 😌"},
+    {"type":"if","condition":"active_character:mason","then":[
+      {"type":"time_card","text":"DAY 12","goHome":true,"startStory":"story/DAY12/ntr/DAY12_00_MASON_MORNING_NTR.json","startDelayMs":200}
+    ],"else":[
+      {"type":"time_card","text":"DAY 12","goHome":true,"startStory":"story/DAY12/DAY12_00_AIDEN_SHARED.json","startDelayMs":200}
+    ],"__masonNextDayPatched":true}
+  ]
+}

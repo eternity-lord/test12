@@ -1,0 +1,22 @@
+{
+  "id": "d20_01_lena_afternoon_love",
+  "onceKey": "d20_01_lena_afternoon_love_v1",
+  "day": 20,
+  "slot": "afternoon",
+  "route": "love",
+  "routeLock": "route_lena_locked_v1:love",
+  "contactId": "lena",
+  "requireOnceKey": "d20_00_lena_morning_love_v1",
+  "requireCondition": "all:active_character:lena,route_lena_locked_v1:love",
+  "onCompleteStartStory": "story/DAY20/love/DAY20_02_LENA_LATE_AFTERNOON_LOVE.json",
+  "steps": [
+    {"type":"notify","delay":1300,"fromId":"lena","fromName":"{{name:lena}}","avatar":"assets/avatars/lena.jpg","text":"Finished class. Going home for my bag, then I'm coming to you ❤️","target":"conversation"},
+    {"type":"message","delay":900,"from":"player","text":"How was your morning?"},
+    {"type":"message","delay":900,"from":"lena","text":"Longer than necessary, but I survived"},
+    {"type":"message","delay":900,"from":"lena","text":"Have you eaten?"},
+    {"type":"message","delay":900,"from":"player","text":"Yeah. I've got something for us to snack on later too"},
+    {"type":"message","delay":900,"from":"lena","text":"You've thought of everything"},
+    {"type":"message","delay":900,"from":"player","text":"Only the important things ❤️"},
+    {"type":"message","delay":900,"from":"lena","text":"Then I'll see you at five"}
+  ]
+}

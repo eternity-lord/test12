@@ -1,0 +1,43 @@
+{
+  "onceKey": "d14_01_lena_noon_love_v1",
+  "contactId": "lena",
+  "requireOnceKey": "d14_00_lena_morning_love_v1",
+  "steps": [
+    {"type":"notify","delay":1300,"fromId":"lena","fromName":"{{name:lena}}","avatar":"assets/avatars/lena.jpg","text":"Lunch break 🍴","target":"conversation"},
+    {"type":"message","delay":900,"from":"lena","text":"Morning survived"},
+    {"type":"message","delay":900,"from":"player","text":"How was it ?"},
+    {"type":"message","delay":900,"from":"lena","text":"Just long and a little boring"},
+    {"type":"message","delay":900,"from":"lena","text":"So basically a classic university morning 😌"},
+    {"type":"message","delay":900,"from":"player","text":"Sounds thrilling"},
+    {"type":"message","delay":900,"from":"lena","text":"Exactly"},
+    {"type":"message","delay":900,"from":"lena","text":"I'm eating with my friends right now"},
+    {"type":"message","delay":900,"from":"lena","text":"And {{name:aiden}} apparently found another group of girls to annoy"},
+    {"type":"message","delay":900,"from":"player","text":"He's staying true to himself"},
+    {"type":"message","delay":900,"from":"lena","text":"Very sadly yes 😭"},
+    {"type":"message","delay":900,"from":"lena","text":"He's impossible"},
+    {"type":"message","delay":900,"from":"player","text":"You say that like you don't enjoy watching the chaos"},
+    {"type":"message","delay":900,"from":"lena","text":"Maybe a little 😌"},
+    {"type":"message","delay":900,"from":"lena","text":"From a safe distance"},
+    {"type":"message","delay":900,"from":"player","text":"Smart"},
+    {"type":"message","delay":900,"from":"lena","text":"Always"},
+    {"type":"message","delay":900,"from":"lena","text":"I just hope I don't finish too late tonight"},
+    {"type":"message","delay":900,"from":"player","text":"Long day again?"},
+    {"type":"message","delay":900,"from":"lena","text":"Probably"},
+    {"type":"message","delay":900,"from":"lena","text":"But I really want to talk whith you tonight ❤️"},
+    {"type":"message","delay":900,"from":"player","text":"Then as soon as you get home we will talk"},
+    {"type":"message","delay":900,"from":"lena","text":"Good"},
+    {"type":"message","delay":900,"from":"lena","text":"That gives me something nice to look forward to"},
+    {"type":"message","delay":900,"from":"player","text":"Now that's cute"},
+    {"type":"message","delay":900,"from":"lena","text":"I know 😌"},
+    {"type":"message","delay":900,"from":"lena","text":"Okay, I should get back before lunch break disappears"},
+    {"type":"message","delay":900,"from":"player","text":"Good luck for the rest of the day"},
+    {"type":"message","delay":900,"from":"lena","text":"Thank you, handsome 🤍"},
+    {"type":"message","delay":900,"from":"lena","text":"Don't forget to move your body and don't play to much game"},
+    {"type":"message","delay":900,"from":"player","text":"Yes madame"},
+    {"type":"if","condition":"active_character:hailey","then":[
+      {"type":"start_story","goHome":true,"startStory":"story/DAY14/DAY14_HAILEY_AFTERNOON.json"}
+    ],"else":[
+      {"type":"start_story","goHome":true,"startStory":"story/DAY14/love/DAY14_02_LENA_EVENING_LOVE.json"}
+    ]}
+  ]
+}

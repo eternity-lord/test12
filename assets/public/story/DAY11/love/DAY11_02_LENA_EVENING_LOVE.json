@@ -1,0 +1,45 @@
+{
+  "onceKey": "d11_01_lena_evening_love_v1",
+  "contactId": "lena",
+  "requireOnceKey": "d11_00_lena_morning_love_v1",
+  "steps": [
+    {"type":"notify","delay":1300,"fromId":"lena","fromName":"{{name:lena}}","avatar":"assets/avatars/lena.jpg","text":"Break time 😮‍💨","target":"conversation"},
+    {"type":"message","delay":900,"from":"lena","text":"I'm alive 😮‍💨"},
+    {"type":"message","delay":900,"from":"player","text":"That bad?"},
+    {"type":"message","delay":900,"from":"lena","text":"Not awful"},
+    {"type":"message","delay":900,"from":"lena","text":"Just long"},
+    {"type":"message","delay":900,"from":"player","text":"How was this morning?"},
+    {"type":"message","delay":900,"from":"lena","text":"A little boring"},
+    {"type":"message","delay":900,"from":"lena","text":"But nothing terrible"},
+    {"type":"message","delay":900,"from":"lena","text":"So I guess that's a win 😌"},
+    {"type":"message","delay":900,"from":"lena","text":"What about you?"},
+    {"type":"message","delay":900,"from":"lena","text":"What did you do?"},
+    {"type":"message","delay":900,"from":"player","text":"Nothing exciting"},
+    {"type":"message","delay":900,"from":"player","text":"I moved around the house a bit again"},
+    {"type":"message","delay":900,"from":"player","text":"And then I played for a while"},
+    {"type":"message","delay":900,"from":"player","text":"And the doctor came to see me later"},
+    {"type":"message","delay":900,"from":"lena","text":"Really? 👀"},
+    {"type":"message","delay":900,"from":"lena","text":"Good news, I hope?"},
+    {"type":"message","delay":900,"from":"player","text":"Yeah, hopefully"},
+    {"type":"message","delay":900,"from":"player","text":"If everything looks good, I should be able to get the cast off soon"},
+    {"type":"message","delay":900,"from":"lena","text":"Yeeeeeees 😭❤️"},
+    {"type":"message","delay":900,"from":"lena","text":"That's such good news"},
+    {"type":"image","delay":900,"from":"lena","image":"assets/pictures/Conversation/lena_day11_break_happy.jpg"},
+    {"type":"message","delay":900,"from":"lena","text":"Okay wait I'm actually so happy right now 😭"},
+    {"type":"message","delay":900,"from":"player","text":"You're cute"},
+    {"type":"message","delay":900,"from":"lena","text":"No, I'm serious"},
+    {"type":"message","delay":900,"from":"lena","text":"That makes me really happy for you"},
+    {"type":"message","delay":900,"from":"lena","text":"You'll have to tell me exactly how it goes"},
+    {"type":"message","delay":900,"from":"player","text":"I will"},
+    {"type":"message","delay":900,"from":"lena","text":"Okay, I have to go soon or I'm going to be late for work 😭"},
+    {"type":"message","delay":900,"from":"player","text":"Then go"},
+    {"type":"message","delay":900,"from":"player","text":"And good luck for the rest of the day"},
+    {"type":"message","delay":900,"from":"lena","text":"Thank you, handsome ❤️"},
+    {"type":"message","delay":900,"from":"lena","text":"I'll text you tonight"},
+    {"type":"if","condition":"active_character:hailey","then":[
+      {"type":"start_story","goHome":true,"startStory":"story/DAY11/DAY11_HAILEY_EVENING.json"}
+    ],"else":[
+      {"type":"start_story","goHome":true,"startStory":"story/DAY11/love/DAY11_03_LENA_NIGHT_LOVE.json"}
+    ]}
+  ]
+}

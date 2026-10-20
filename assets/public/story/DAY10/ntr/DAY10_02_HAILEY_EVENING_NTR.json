@@ -1,0 +1,40 @@
+{
+  "onceKey": "d10_02_hailey_evening_ntr_v1",
+  "contactId": "hailey",
+  "requireOnceKey": "d10_02_lena_evening_ntr_v1|d10_01_hailey_afternoon_ntr_v1",
+  "steps": [
+    {"type":"notify","delay":1200,"fromId":"hailey","fromName":"{{name:hailey}}","avatar":"assets/avatars/hailey.jpg","text":"i'm back","target":"conversation"},
+    {"type":"message","delay":850,"from":"hailey","text":"Movie was cute"},
+    {"type":"message","delay":850,"from":"hailey","text":"Stupid ending"},
+    {"type":"message","delay":850,"from":"hailey","text":"But cute stupid"},
+    {"type":"message","delay":900,"from":"player","text":"Good break?"},
+    {"type":"message","delay":850,"from":"hailey","text":"Yeah"},
+    {"type":"message","delay":850,"from":"hailey","text":"And before you ask"},
+    {"type":"message","delay":850,"from":"hailey","text":"I did two homework questions on the bus😭"},
+    {"type":"message","delay":900,"from":"player","text":"Without being threatened?"},
+    {"type":"message","delay":850,"from":"hailey","text":"Do not sound so shocked"},
+    {"type":"message","delay":850,"from":"hailey","text":"I am a scholar now"},
+    {"type":"message","delay":850,"from":"hailey","text":"A tired visionary"},
+    {"type":"message","delay":850,"from":"hailey","text":"Also my professor checked the first one already"},
+    {"type":"message","delay":900,"from":"player","text":"Already?"},
+    {"type":"message","delay":850,"from":"hailey","text":"He said I could send it if I got stuck"},
+    {"type":"message","delay":850,"from":"hailey","text":"I got stuck"},
+    {"type":"message","delay":850,"from":"hailey","text":"Do not judge me 😭"},
+    {"type":"message","delay":900,"from":"player","text":"I am not judging"},
+    {"type":"message","delay":850,"from":"hailey","text":"Good"},
+    {"type":"message","delay":850,"from":"hailey","text":"Because he explained it in a voice note and now it makes sense"},
+    {"type":"message","delay":850,"from":"hailey","text":"Which is deeply inconvenient"},
+    {"type":"hak_overlay","title":"HAK//NOTICE","messages":["Observed off-hours academic exchange","Voice-note response logged outside classroom schedule","Pattern remains explainable as test preparation","Continue passive monitoring",{"kind":"thought","speaker":"player","text":"A voice note isn't proof of anything, but I'm noticing how often he's part of her day."}]},
+    {"type":"message","delay":850,"from":"hailey","text":"I am sleeping before my brain tries to learn one more thing"},
+    {"type":"message","delay":850,"from":"hailey","text":"Good night menace 🤍"},
+    {"type":"if","condition":"active_character:mason","then":[
+      {"type":"time_card","text":"DAY 11","goHome":true,"startStory":"story/DAY11/ntr/DAY11_00_MASON_MORNING_NTR.json","startDelayMs":200}
+    ],"else":[
+      {"type":"if","condition":"active_character:lena","then":[
+        {"type":"time_card","text":"DAY 11","goHome":true,"startStory":"story/DAY11/DAY11_00_AIDEN_SHARED.json","startDelayMs":200}
+      ],"else":[
+        {"type":"time_card","text":"DAY 11","goHome":true,"startStory":"story/DAY11/ntr/DAY11_00_HAILEY_MORNING_NTR.json","startDelayMs":200}
+      ]}
+    ],"__masonNextDayPatched":true}
+  ]
+}

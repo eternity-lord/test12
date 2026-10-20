@@ -1,0 +1,15 @@
+{
+  "onceKey": "d8_00_lena_to_work_v1",
+  "contactId": "lena",
+  "onCompleteStartStory": "story/DAY8/DAY8_08_EVELYN_16H_GOING_TO_WORK_IF_NTR.json",
+  "steps": [
+    {"type":"notify","delay":1200,"fromId":"lena","fromName":"{{name:lena}}","avatar":"assets/avatars/lena.jpg","text":"Heading to work 😮‍💨","target":"conversation"},
+    {"type":"message","delay":900,"from":"lena","text":"No break for me today"},
+    {"type":"message","delay":900,"from":"player","text":"That's rough"},
+    {"type":"message","delay":900,"from":"player","text":"Text me if anything feels off"},
+    {"type":"message","delay":900,"from":"lena","text":"I will"},
+    {"type":"message","delay":900,"from":"lena","text":"Love you ❤️"},
+    {"type":"message","delay":900,"from":"player","text":"Love you too ❤️"},
+    {"type":"note","text":"3 HOURS LATER"}
+  ]
+}

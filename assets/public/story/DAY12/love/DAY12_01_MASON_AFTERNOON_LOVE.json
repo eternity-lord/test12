@@ -1,0 +1,26 @@
+{
+  "onceKey": "d12_04_mason_afternoon_love_v1",
+  "contactId": "mason",
+  "requireOnceKey": "d12_03_mason_morning_love_v1",
+  "onCompleteStartStory": "story/DAY12/love/DAY12_02_MASON_EVENING_LOVE.json",
+  "route": "love",
+  "routeLock": "route_mason_locked_v1:love",
+  "steps": [
+    {"type":"notify","delay":1200,"fromId":"mason","fromName":"{{name:mason}}","avatar":"assets/avatars/male_mason.jpg","text":"I'm leaving for work","target":"conversation"},
+    {"type":"message","delay":850,"from":"player","text":"And why would that interest me?"},
+    {"type":"message","delay":850,"from":"mason","text":"Because your day is clearly empty without my updates"},
+    {"type":"message","delay":850,"from":"player","text":"Bold of you to assume that"},
+    {"type":"image","from":"mason","image":"assets/pictures/Conversation/male_mason/mason_middle_finger_work.jpg"},
+    {"type":"message","delay":850,"from":"player","text":"Very mature"},
+    {"type":"message","delay":850,"from":"mason","text":"I try to match the audience"},
+    {"type":"message","delay":850,"from":"player","text":"That was weak"},
+    {"type":"message","delay":850,"from":"mason","text":"And yet you replied"},
+    {"type":"message","delay":850,"from":"mason","text":"If I don't get home too late tonight"},
+    {"type":"message","delay":850,"from":"mason","text":"I'll destroy you on that game"},
+    {"type":"message","delay":850,"from":"player","text":"I see you still have hope"},
+    {"type":"message","delay":850,"from":"mason","text":"Asshole"},
+    {"type":"message","delay":850,"from":"player","text":"Go to work before you embarrass yourself more"},
+    {"type":"message","delay":850,"from":"mason","text":"Enjoy the silence while it lasts"},
+    {"type":"start_story","goHome":true,"startStory":"story/DAY12/love/DAY12_02_MASON_EVENING_LOVE.json","startDelayMs":200}
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "onceKey": "d9_00_lena_late_morning_ntr_v1",
+  "contactId": "lena",
+  "requireOnceKey": "d9_00_aiden_morning_checkin_v1|d9_00_mason_morning_ntr_v1|d9_00_evelyn_morning_love_v1|d9_00_evelyn_morning_ntr_v1|d9_00_evelyn_morning_nts_v1",
+  "steps": [
+    {"type":"notify","delay":1400,"fromId":"lena","fromName":"{{name:lena}}","avatar":"assets/avatars/lena.jpg","text":"I just woke up 😴","target":"conversation"},
+    {"type":"message","delay":900,"from":"player","text":"Finally"},
+    {"type":"message","delay":900,"from":"lena","text":"Don't start"},
+    {"type":"message","delay":900,"from":"lena","text":"I really needed that sleep"},
+    {"type":"message","delay":900,"from":"player","text":"How do you feel?"},
+    {"type":"message","delay":900,"from":"lena","text":"Better"},
+    {"type":"message","delay":900,"from":"lena","text":"Still tired though"},
+    {"type":"message","delay":900,"from":"lena","text":"And... thank you for being honest last night"},
+    {"type":"message","delay":900,"from":"player","text":"Of course"},
+    {"type":"message","delay":900,"from":"lena","text":"It wasn't easy to hear"},
+    {"type":"message","delay":900,"from":"lena","text":"But I guess I needed the truth"},
+    {"type":"message","delay":900,"from":"player","text":"You sound a little cold"},
+    {"type":"message","delay":900,"from":"lena","text":"I'm just thinking"},
+    {"type":"message","delay":900,"from":"player","text":"Is it really okay?"},
+    {"type":"message","delay":900,"from":"lena","text":"I said I understand"},
+    {"type":"message","delay":900,"from":"lena","text":"That doesn't mean it felt good"},
+    {"type":"message","delay":900,"from":"lena","text":"Knowing that you don't want me"},
+    {"type":"message","delay":900,"from":"player","text":"It's not that I don't want you"},
+    {"type":"message","delay":900,"from":"player","text":"It's just that right now I'm not ready for that"},
+    {"type":"message","delay":900,"from":"lena","text":"I understand"},
+    {"type":"message","delay":900,"from":"lena","text":"I just need a little time"},
+    {"type":"message","delay":900,"from":"player","text":"Okay"},
+    {"type":"message","delay":900,"from":"player","text":"I really didn't want to hurt you"},
+    {"type":"message","delay":900,"from":"lena","text":"I know"},
+    {"type":"message","delay":900,"from":"lena","text":"That's why I'm still here"},
+    {"type":"message","delay":900,"from":"lena","text":"I'm going to clean a bit and work from home for a while"},
+    {"type":"message","delay":900,"from":"lena","text":"I need to keep my mind busy"},
+    {"type":"message","delay":900,"from":"player","text":"Text me later?"},
+    {"type":"message","delay":900,"from":"lena","text":"Yeah"},
+    {"type":"message","delay":900,"from":"lena","text":"I'll text you later"},
+    {"type":"if","condition":"active_character:hailey","then":[
+      {"type":"start_story","goHome":true,"startStory":"story/DAY9/DAY9_HAILEY_AFTERNOON.json"}
+    ],"else":[
+      {"type":"start_story","goHome":true,"startStory":"story/DAY9/ntr/DAY9_05_LENA_AFTERNOON_NTR.json"}
+    ]}
+  ]
+}

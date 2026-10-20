@@ -1,0 +1,43 @@
+{
+  "onceKey": "d15_00_lena_morning_love_v1",
+  "contactId": "lena",
+  "requireOnceKey": "d14_03_lena_night_love_v1",
+  "steps": [
+    {"type":"notify","delay":1300,"fromId":"lena","fromName":"{{name:lena}}","avatar":"assets/avatars/lena.jpg","text":"Good morning ☀️","target":"conversation"},
+    {"type":"message","delay":900,"from":"lena","text":"Morning, handsome ❤️"},
+    {"type":"message","delay":900,"from":"player","text":"Good morning, pretty girl"},
+    {"type":"message","delay":900,"from":"player","text":"I need to thank you again for last night"},
+    {"type":"message","delay":900,"from":"lena","text":"Oh?"},
+    {"type":"message","delay":900,"from":"player","text":"For the pictures"},
+    {"type":"message","delay":900,"from":"player","text":"And for spoiling me that much"},
+    {"type":"message","delay":900,"from":"lena","text":"Mhm 😌"},
+    {"type":"message","delay":900,"from":"lena","text":"You spoil me too, you know"},
+    {"type":"message","delay":900,"from":"player","text":"That's exactly how it should be"},
+    {"type":"message","delay":900,"from":"lena","text":"Agreed 🤍"},
+    {"type":"message","delay":900,"from":"player","text":"So what are you doing today?"},
+    {"type":"message","delay":900,"from":"lena","text":"University this morning"},
+    {"type":"message","delay":900,"from":"lena","text":"But my afternoon is free"},
+    {"type":"message","delay":900,"from":"lena","text":"And I want to use that time to go shopping for our date tomorrow 😌"},
+    {"type":"message","delay":900,"from":"player","text":"Okay now I'm interested"},
+    {"type":"message","delay":900,"from":"lena","text":"As you should be"},
+    {"type":"message","delay":900,"from":"player","text":"You better keep me updated"},
+    {"type":"message","delay":900,"from":"lena","text":"I will"},
+    {"type":"message","delay":900,"from":"lena","text":"I'll send you the outfits so you can tell me which one you like most ❤️"},
+    {"type":"message","delay":900,"from":"player","text":"That's a lot of responsibility"},
+    {"type":"message","delay":900,"from":"lena","text":"You'll survive"},
+    {"type":"message","delay":900,"from":"player","text":"I don't know"},
+    {"type":"message","delay":900,"from":"player","text":"You in different outfits sounds dangerous already"},
+    {"type":"message","delay":900,"from":"lena","text":"Poor baby 😌"},
+    {"type":"message","delay":900,"from":"lena","text":"Then I'll make sure to send you the hardest choices"},
+    {"type":"message","delay":900,"from":"player","text":"Cruel woman"},
+    {"type":"message","delay":900,"from":"lena","text":"Only a little"},
+    {"type":"message","delay":900,"from":"player","text":"Good luck this morning then"},
+    {"type":"message","delay":900,"from":"lena","text":"Thank you, handsome 🤍"},
+    {"type":"message","delay":900,"from":"lena","text":"Talk to you later"},
+    {"type":"if","condition":"active_character:hailey","then":[
+      {"type":"start_story","goHome":true,"startStory":"story/DAY15/DAY15_HAILEY_MORNING.json"}
+    ],"else":[
+      {"type":"start_story","goHome":true,"startStory":"story/DAY15/love/DAY15_02_LENA_EVENING_LOVE.json"}
+    ]}
+  ]
+}

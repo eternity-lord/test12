@@ -1,0 +1,26 @@
+{
+  "onceKey": "d7_08_mason_coach_followup_v1",
+  "contactId": "mason",
+  "requireOnceKey": "d7_02_mason_hailey_package_v1",
+  "onCompleteStartStory": "story/DAY7/DAY7_11_PLAYER_SUGGESTS_AIDEN_TO_MASON.json",
+  "steps": [
+    {"type":"notify","delay":1200,"fromId":"mason","fromName":"{{name:mason}}","avatar":"assets/avatars/male_mason.jpg","text":"Yo dickhead","target":"conversation"},
+    {"type":"message","delay":900,"from":"mason","text":"Any lead on the coach thing?"},
+    {"type":"message","delay":900,"from":"mason","text":"Did you find someone legit or not?"},
+    {"type":"message","delay":900,"from":"player","text":"Maybe"},
+    {"type":"message","delay":900,"from":"player","text":"I need to check a few things first"},
+    {"type":"message","delay":900,"from":"mason","text":"Finally"},
+    {"type":"message","delay":900,"from":"mason","text":"How am I not gaining muscle when I work out this much? 😒"},
+    {"type":"image","image":"assets/pictures/Conversation/male_mason/mason_progress_photo.jpg"},
+    {"type":"message","delay":900,"from":"player","text":"Are you showing your back or your ass ??"},
+    {"type":"message","delay":900,"from":"mason","text":"My ass ??"},
+    {"type":"message","delay":900,"from":"mason","text":"Why would I show you my ass ??"},
+    {"type":"message","delay":900,"from":"mason","text":"It was my back and arm !"},
+    {"type":"message","delay":900,"from":"player","text":"Alright alright my bad"},
+    {"type":"message","delay":900,"from":"mason","text":"Fucker"},
+    {"type":"message","delay":900,"from":"player","text":"I'll keep you updated 👍"},
+    {"type":"message","delay":900,"from":"player","text":"You're not in a rush for just a few days, are you?"},
+    {"type":"message","delay":900,"from":"mason","text":"Yes I am"},
+    {"type":"message","delay":900,"from":"player","text":"Asshole 🙄"}
+  ]
+}

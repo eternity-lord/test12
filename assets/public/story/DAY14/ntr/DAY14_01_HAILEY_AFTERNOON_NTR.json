@@ -1,0 +1,33 @@
+{
+  "onceKey": "d14_01_hailey_afternoon_ntr_v1",
+  "contactId": "hailey",
+  "requireOnceKey": "d14_01_lena_noon_ntr_v1|d14_00_hailey_morning_ntr_v1",
+  "onCompleteStartStory": "story/DAY14/DAY14_LENA_EVENING.json",
+  "steps": [
+    {"type":"notify","delay":1200,"fromId":"hailey","fromName":"{{name:hailey}}","avatar":"assets/avatars/hailey.jpg","text":"Between battles 😭","target":"conversation"},
+    {"type":"message","delay":850,"from":"hailey","text":"I wrote things"},
+    {"type":"message","delay":850,"from":"hailey","text":"Some of them may even be correct"},
+    {"type":"message","delay":900,"from":"player","text":"That's good!"},
+    {"type":"message","delay":850,"from":"hailey","text":"Professor caught me outside the room"},
+    {"type":"message","delay":850,"from":"hailey","text":"He asked how it went"},
+    {"type":"message","delay":850,"from":"hailey","text":"I said I did not cry on the paper"},
+    {"type":"message","delay":850,"from":"hailey","text":"He laughed 😭"},
+    {"type":"message","delay":900,"from":"player","text":"Sounds like full support from him"},
+    {"type":"message","delay":850,"from":"hailey","text":"Yeah 😌"},
+    {"type":"message","delay":850,"from":"hailey","text":"He fixed my shirt because it was folded weird"},
+    {"type":"message","delay":850,"from":"hailey","text":"Before you say anything, I did not notice"},
+    {"type":"message","delay":900,"from":"player","text":"That is pretty personal"},
+    {"type":"message","delay":850,"from":"hailey","text":"It was two seconds"},
+    {"type":"message","delay":850,"from":"hailey","text":"And I had exam brain"},
+    {"type":"message","delay":850,"from":"hailey","text":"My soul left my body three hours ago 😭"},
+    {"type":"message","delay":850,"from":"hailey","text":"Anyway I still have one more test later"},
+    {"type":"message","delay":850,"from":"hailey","text":"If I survive this week I deserve financial compensation 😌"},
+    {"type":"message","delay":900,"from":"player","text":"You mean shopping again"},
+    {"type":"message","delay":850,"from":"hailey","text":"Exactly 💅"},
+    {"type":"message","delay":850,"from":"hailey","text":"I am going back to the front"},
+    {"type":"message","delay":850,"from":"hailey","text":"If I fall, avenge me with tomorrow's shopping money 😌"},
+    {"type":"note","text":"47 MINUTES LATER"},
+    {"type":"hak_overlay","title":"HAK//EVIDENCE","messages":["Supplementary visual capture archived","Detected elevated comfort level during private interaction","Behavioral tension exceeds expected teacher-student revision baseline","Confidence level increased",{"kind":"thought","speaker":"player","text":"She's getting comfortable around him. I'm not sure how I feel about that."}]},
+    {"type":"hak_add_evidence","kind":"ntr","route":"ntr","profileId":"hailey","profile":{"name":"{{name:hailey}}","avatar":"assets/avatars/hailey.jpg","kind":"ntr","route":"ntr"},"evidences":[{"id":"hailey_ntr_d14_evidence_1","kind":"ntr","route":"ntr","src":"assets/pictures/evidence/hailey_professor_hallway.mp4","url":"assets/pictures/evidence/hailey_professor_hallway.mp4","thumb":"assets/pictures/evidence/hailey_professor_hallway.mp4","title":"Unexpected Familiarity","text":"HAK detected prolonged eye contact, reduced personal distance, and elevated emotional responsiveness during an academic interaction between {{name:hailey}} and her professor","time":"4:51 PM"}]}
+  ]
+}

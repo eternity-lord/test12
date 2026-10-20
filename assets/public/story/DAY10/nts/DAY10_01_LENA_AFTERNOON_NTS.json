@@ -1,0 +1,51 @@
+{
+  "onceKey": "d10_01_lena_afternoon_nts_v1",
+  "contactId": "lena",
+  "requireOnceKey": "d10_00_lena_morning_nts_v1",
+  "steps": [
+    {"type":"notify","delay":1400,"fromId":"lena","fromName":"{{name:lena}}","avatar":"assets/avatars/lena.jpg","text":"Couch mode activated 🛋️","target":"conversation"},
+    {"type":"message","delay":900,"from":"lena","text":"I did absolutely nothing productive"},
+    {"type":"message","delay":900,"from":"player","text":"Sounds like success"},
+    {"type":"message","delay":900,"from":"lena","text":"Exactly"},
+    {"type":"message","delay":900,"from":"lena","text":"I cleaned a little"},
+    {"type":"message","delay":900,"from":"lena","text":"Then I sat down and never really got back up"},
+    {"type":"message","delay":900,"from":"player","text":"Perfect balance"},
+    {"type":"message","delay":900,"from":"lena","text":"I'm very proud of myself 😌"},
+    {"type":"message","delay":900,"from":"player","text":"As you should be"},
+    {"type":"message","delay":900,"from":"lena","text":"What about you?"},
+    {"type":"message","delay":900,"from":"player","text":"I did the walk"},
+    {"type":"message","delay":900,"from":"player","text":"A little longer than yesterday"},
+    {"type":"message","delay":900,"from":"lena","text":"Really?"},
+    {"type":"message","delay":900,"from":"lena","text":"I'm proud of you ❤️"},
+    {"type":"message","delay":900,"from":"player","text":"You asked for progress"},
+    {"type":"message","delay":900,"from":"lena","text":"And you delivered"},
+    {"type":"message","delay":900,"from":"lena","text":"See, I can trust you sometimes"},
+    {"type":"message","delay":900,"from":"player","text":"Sometimes?"},
+    {"type":"message","delay":900,"from":"lena","text":"Don't push it 😇"},
+    {"type":"message","delay":900,"from":"player","text":"Fair"},
+    {"type":"message","delay":900,"from":"lena","text":"Wait"},
+    {"type":"message","delay":900,"from":"lena","text":"You actually deserve proof appreciation"},
+    {"type":"message","delay":900,"from":"player","text":"Oh?"},
+    {"type":"message","delay":900,"from":"lena","text":"Give me a second"},
+    {"type":"image","delay":1200,"from":"lena","image":"assets/pictures/Conversation/lena_home_relaxed_day10_nts.jpg"},
+    {"type":"message","delay":900,"from":"lena","text":"Lazy reward 😌"},
+    {"type":"message","delay":900,"from":"player","text":"That's a good reward"},
+    {"type":"message","delay":900,"from":"lena","text":"I look like I haven't moved for hours"},
+    {"type":"message","delay":900,"from":"player","text":"You look comfortable"},
+    {"type":"message","delay":900,"from":"lena","text":"That's the goal"},
+    {"type":"message","delay":900,"from":"lena","text":"No effort, just peace"},
+    {"type":"message","delay":900,"from":"player","text":"I like this version of you"},
+    {"type":"message","delay":900,"from":"lena","text":"Good ❤️"},
+    {"type":"message","delay":900,"from":"lena","text":"Because this is exactly how I plan to stay for a few more hours"},
+    {"type":"message","delay":900,"from":"player","text":"No objections"},
+    {"type":"message","delay":900,"from":"lena","text":"Perfect"},
+    {"type":"message","delay":900,"from":"lena","text":"I'll text you after my movie ?"},
+    {"type":"message","delay":900,"from":"player","text":"Yes my lady"},
+    {"type":"message","delay":900,"from":"lena","text":"See you handsome ❤️"},
+    {"type":"if","condition":"active_character:lena","then":[
+      {"type":"start_story","goHome":true,"startStory":"story/DAY10/DAY10_HAILEY_AFTERNOON.json"}
+    ],"else":[
+      {"type":"start_story","goHome":true,"startStory":"story/DAY10/DAY10_HAILEY_AFTERNOON.json"}
+    ]}
+  ]
+}

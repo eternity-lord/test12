@@ -1,0 +1,27 @@
+{
+  "onceKey": "d9_06_mason_afternoon_ntr_v1",
+  "contactId": "mason",
+  "requireOnceKey": "d9_00_mason_morning_ntr_v1",
+  "onCompleteStartStory": "story/DAY9/ntr/DAY9_09_MASON_EVENING_NTR.json",
+  "route": "ntr",
+  "routeLock": "route_mason_locked_v1:ntr",
+  "steps": [
+    {"type":"notify","delay":1200,"fromId":"mason","fromName":"{{name:mason}}","avatar":"assets/avatars/male_mason.jpg","text":"Hey","target":"conversation"},
+    {"type":"message","delay":850,"from":"mason","text":"I'm about to leave for the gym"},
+    {"type":"message","delay":850,"from":"player","text":"Already?"},
+    {"type":"message","delay":850,"from":"mason","text":"The sooner I go, the sooner it's over"},
+    {"type":"message","delay":850,"from":"player","text":"I'm still sorry I can't really help"},
+    {"type":"message","delay":850,"from":"mason","text":"It's okay"},
+    {"type":"message","delay":850,"from":"mason","text":"I'll deal with it"},
+    {"type":"message","delay":850,"from":"player","text":"Just tell me if anything happens"},
+    {"type":"message","delay":850,"from":"mason","text":"And then what?"},
+    {"type":"message","delay":850,"from":"mason","text":"You'll run over there on one leg?"},
+    {"type":"message","delay":850,"from":"player","text":"I'd still come"},
+    {"type":"message","delay":850,"from":"mason","text":"Yeah"},
+    {"type":"message","delay":850,"from":"mason","text":"Then you'd probably break the other one too 😒"},
+    {"type":"message","delay":850,"from":"mason","text":"Don't worry"},
+    {"type":"message","delay":850,"from":"mason","text":"I'll text you later"},
+    {"type":"message","delay":850,"from":"player","text":"Alright alright"},
+    {"type":"start_story","goHome":true,"startStory":"story/DAY9/ntr/DAY9_09_MASON_EVENING_NTR.json","startDelayMs":200}
+  ]
+}

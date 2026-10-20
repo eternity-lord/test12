@@ -1,0 +1,37 @@
+{
+  "onceKey": "d11_00_evelyn_morning_ntr_v1",
+  "contactId": "evelyn",
+  "requireOnceKey": "d10_02_evelyn_evening_ntr_v1",
+  "onCompleteStartStory": "story/DAY11/ntr/DAY11_01_EVELYN_AFTERNOON_NTR.json",
+  "steps": [
+    {"type":"notify","delay":1200,"fromId":"evelyn","fromName":"{{name:evelyn}}","avatar":"assets/avatars/evelyn.jpg","text":"Good morning 😊","target":"conversation"},
+    {"type":"message","delay":850,"from":"player","text":"Good morning 😊"},
+    {"type":"message","delay":850,"from":"evelyn","text":"Did you sleep well?"},
+    {"type":"message","delay":850,"from":"player","text":"Yeah, pretty well"},
+    {"type":"message","delay":850,"from":"player","text":"What about you?"},
+    {"type":"message","delay":850,"from":"evelyn","text":"I slept well too"},
+    {"type":"message","delay":850,"from":"evelyn","text":"A quiet morning feels good"},
+    {"type":"message","delay":850,"from":"player","text":"I was thinking of trying to go outside this morning"},
+    {"type":"message","delay":850,"from":"player","text":"Would you like to come with me?"},
+    {"type":"message","delay":850,"from":"evelyn","text":"Really?"},
+    {"type":"message","delay":850,"from":"evelyn","text":"I'd love that"},
+    {"type":"message","delay":850,"from":"evelyn","text":"It makes me happy that you want to get some fresh air"},
+    {"type":"message","delay":850,"from":"evelyn","text":"But are you sure your not going to hurt yourself?"},
+    {"type":"message","delay":850,"from":"player","text":"I think I can handle it"},
+    {"type":"message","delay":850,"from":"player","text":"I just need to get out of the house for a little while"},
+    {"type":"message","delay":850,"from":"evelyn","text":"If it's too much, we can always take a break"},
+    {"type":"message","delay":850,"from":"player","text":"Exactly"},
+    {"type":"message","delay":850,"from":"player","text":"I'll get changed"},
+    {"type":"message","delay":850,"from":"player","text":"I should be ready in about fifteen minutes"},
+    {"type":"message","delay":850,"from":"evelyn","text":"Okay, I'll get ready too"},
+    {"type":"note","delay":1200,"text":"20 MINUTES LATER"},
+    {"type":"image","delay":1200,"image":"assets/pictures/Conversation/evelyn_ready_outside.jpg"},
+    {"type":"message","delay":850,"from":"evelyn","text":"I'm ready 😊"},
+    {"type":"message","delay":850,"from":"evelyn","text":"I'm waiting for you outside"},
+    {"type":"message","delay":850,"from":"player","text":"I'm coming"},
+    {"type":"start_story","goHome":true,"startStory":"story/DAY11/ntr/DAY11_01_EVELYN_AFTERNOON_NTR.json"}
+  ],
+  "route": "ntr",
+  "routeLock": "route_evelyn_locked_v1:ntr"
+}
+ 

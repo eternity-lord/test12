@@ -1,0 +1,32 @@
+{
+  "onceKey": "d12_04_mason_afternoon_ntr_v1",
+  "contactId": "mason",
+  "requireOnceKey": "d12_03_mason_morning_ntr_v1",
+  "onCompleteStartStory": "story/DAY12/ntr/DAY12_02_MASON_EVENING_NTR.json",
+  "route": "ntr",
+  "routeLock": "route_mason_locked_v1:ntr",
+  "steps": [
+    {"type":"message","delay":850,"from":"player","text":"Milk"},
+    {"type":"message","delay":850,"from":"player","text":"Eggs"},
+    {"type":"message","delay":850,"from":"player","text":"Pasta"},
+    {"type":"message","delay":850,"from":"player","text":"Cereal"},
+    {"type":"message","delay":850,"from":"player","text":"And don't forget bread 😌"},
+    {"type":"note","text":"1 H 30 LATER"},
+    {"type":"message","delay":850,"from":"mason","text":"Seriously?"},
+    {"type":"message","delay":850,"from":"mason","text":"Just because I'm outside doesn't mean I'm your personal delivery service"},
+    {"type":"message","delay":850,"from":"player","text":"Come on"},
+    {"type":"message","delay":850,"from":"player","text":"Can't you help a poor injured man? 😔"},
+    {"type":"message","delay":850,"from":"mason","text":"You're using that leg as an excuse for everything now"},
+    {"type":"message","delay":850,"from":"player","text":"It's called working smarter"},
+    {"type":"message","delay":850,"from":"mason","text":"It's called being lazy"},
+    {"type":"message","delay":850,"from":"player","text":"No"},
+    {"type":"message","delay":850,"from":"player","text":"It's called delegation"},
+    {"type":"message","delay":850,"from":"mason","text":"You really should stop watching business videos"},
+    {"type":"message","delay":850,"from":"player","text":"So... are you bringing the groceries?"},
+    {"type":"message","delay":850,"from":"mason","text":"Yeah, yeah"},
+    {"type":"message","delay":850,"from":"mason","text":"But only because I don't trust you to shop alone"},
+    {"type":"message","delay":850,"from":"player","text":"See? Deep down you're nice"},
+    {"type":"message","delay":850,"from":"mason","text":"Keep telling yourself that"},
+    {"type":"start_story","goHome":true,"startStory":"story/DAY12/ntr/DAY12_02_MASON_EVENING_NTR.json","startDelayMs":200}
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "onceKey": "d13_03_hak_heartspike_love_v1",
+  "contactId": "lena",
+  "requireOnceKey": "d13_02_lena_after_visit_love_v1",
+  "steps": [
+    {"type":"hak_overlay","title":"HAK//NOTICE","messages":["Repeated cardiac anomalies detected during today's private interactions","Running emotional trace reconstruction...","Signal spikes isolated","Relevant moments have been archived into HAK Evidence",{"kind":"thought","speaker":"player","text":"The little moments with {{name:lena}} are staying with me more than I expected."}]},
+    {"type":"hak_add_evidence","kind":"love","route":"love","profileId":"lena","profile":{"name":"Lena","avatar":"assets/avatars/lena.jpg","kind":"love","route":"love"},"evidences":[{"id":"lena_evidence_1","kind":"love","route":"love","src":"assets/pictures/evidence/lena_1.jpg","url":"assets/pictures/evidence/lena_1.jpg","type":"image","characterId":"lena","contactId":"lena","label":"Heartspike evidence 1","title":"Heartspike evidence 1"},{"id":"lena_evidence_2","kind":"love","route":"love","src":"assets/pictures/evidence/lena_2.jpg","url":"assets/pictures/evidence/lena_2.jpg","type":"image","characterId":"lena","contactId":"lena","label":"Heartspike evidence 2","title":"Heartspike evidence 2"},{"id":"lena_evidence_3","kind":"love","route":"love","src":"assets/pictures/evidence/lena_3.mp4","url":"assets/pictures/evidence/lena_3.mp4","type":"video","characterId":"lena","contactId":"lena","label":"Heartspike evidence 3","title":"Heartspike evidence 3"}],"notifyTitle":"HAK","notifyText":"3 new evidences received","target":"hak"},
+    {"type":"if","condition":"active_character:mason","then":[
+      {"type":"time_card","text":"DAY 14","goHome":true,"startStory":"story/DAY14/love/DAY14_00_MASON_MORNING_LOVE.json","startDelayMs":200}
+    ],"else":[
+      {"type":"time_card","text":"DAY 14","goHome":true,"startStory":"story/DAY14/DAY14_00_AIDEN_SHARED.json","startDelayMs":200}
+    ],"__masonNextDayPatched":true}
+  ]
+}

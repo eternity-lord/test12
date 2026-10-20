@@ -1,0 +1,102 @@
+{
+  "id": "day20_01_hailey_afternoon_nts",
+  "onceKey": "d20_01_hailey_afternoon_nts_v1",
+  "day": 20,
+  "slot": "afternoon",
+  "route": "nts",
+  "routeLock": "route_hailey_locked_v1:nts",
+  "contactId": "hailey",
+  "requireOnceKey": "d20_00_hailey_morning_nts_v1",
+  "requireCondition": "all:active_character:hailey,route_hailey_locked_v1:nts",
+  "steps": [
+    {"type":"if","condition":"all:active_character:lena,route_lena_locked_v1:love","then":[
+      {"type":"note","text":"EARLY AFTERNOON — You have arranged your plans with {{name:hailey}} early enough to be home before {{name:lena}} arrives at five."}
+    ]},
+    {"type":"message","delay":900,"from":"player","text":"Hey"},
+    {"type":"message","delay":900,"from":"player","text":"What are you doing?"},
+    {"type":"if","condition":"hailey_nts_post15_path:ethan","then":[
+      {"type":"message","delay":900,"from":"hailey","text":"{{name:ethan}} already came to pick me up"},
+      {"type":"message","delay":900,"from":"hailey","text":"We’re going to revise"},
+      {"type":"if","condition":"all:active_character:lena,route_lena_locked_v1:love","then":[
+        {"type":"message","delay":900,"from":"player","text":"{{name:lena}} is staying over tonight. I'll leave you a plate for when you get back."},
+        {"type":"message","delay":900,"from":"hailey","text":"Thanks. Save me some dessert too."}
+      ],"else":[
+        {"type":"message","delay":900,"from":"player","text":"Do you want me to wait for you for dinner?"},
+        {"type":"message","delay":900,"from":"hailey","text":"Yes"},
+        {"type":"message","delay":900,"from":"hailey","text":"At least I won’t have to eat alone with {{name:mason}} like last time"},
+        {"type":"message","delay":900,"from":"player","text":"Traumatized?"},
+        {"type":"message","delay":900,"from":"hailey","text":"A little 😭"},
+        {"type":"message","delay":900,"from":"player","text":"Alright, I’ll wait"}
+      ]},
+      {"type":"message","delay":900,"from":"hailey","text":"Thanks"},
+      {"type":"message","delay":900,"from":"player","text":"Don’t take too long"},
+      {"type":"message","delay":900,"from":"hailey","text":"No promises 😌"}
+    ],"else":[
+      {"type":"message","delay":900,"from":"hailey","text":"I’m getting ready"},
+      {"type":"message","delay":900,"from":"player","text":"You better not pull out another crazy outfit"},
+      {"type":"message","delay":900,"from":"hailey","text":"Surprise 😌"},
+      {"type":"message","delay":900,"from":"player","text":"I’m telling {{name:aiden}} not to look at you"},
+      {"type":"message","delay":900,"from":"hailey","text":"Useless"},
+      {"type":"message","delay":900,"from":"hailey","text":"He’ll look anyway"},
+      {"type":"note","text":"30 MINUTES LATER"},
+      {"type":"hak_transcript","delay":900,"from":"aiden","text":"Man I was really looking forward to playing again 🔥"},
+      {"type":"hak_transcript","delay":900,"from":"player","text":"Same"},
+      {"type":"hak_transcript","delay":900,"from":"aiden","text":"Is {{name:hailey}} coming too?"},
+      {"type":"hak_transcript","delay":900,"from":"player","text":"She should be here soon"},
+      {"type":"hak_transcript","delay":900,"from":"player","text":"Just don’t react to her nonsense"},
+      {"type":"hak_transcript","delay":900,"from":"aiden","text":"Of course"},
+      {"type":"note","text":"10 MINUTES LATER"},
+      {"type":"note","text":"{{name:hailey}} arrives and jumps into {{name:aiden}}’s arms"},
+      {"type":"hak_overlay","title":"HAK//NOTICE","messages":["Physical contact initiated","Subject jumped into {{name:aiden}}’s arms","Clear intentional proximity",{"kind":"thought","speaker":"player","text":"They make this look easy, while I'm still trying to name the knot in my stomach."}]},
+      {"type":"hak_add_evidence","kind":"nts","route":"nts","profileId":"hailey","profile":{"name":"{{name:hailey}}","avatar":"assets/avatars/hailey.jpg","kind":"nts","route":"nts"},"evidences":[{"id":"hailey_nts_d20_jump","kind":"nts","route":"nts","src":"assets/pictures/evidence/hailey_aiden_jump_d20.jpg","url":"assets/pictures/evidence/hailey_aiden_jump_d20.jpg","thumb":"assets/pictures/evidence/hailey_aiden_jump_d20.jpg","title":"Greeting","text":"{{name:hailey}} jumped into {{name:aiden}}’s arms upon arrival","time":"AFTERNOON"}]},
+      {"type":"hak_transcript","delay":900,"from":"player","text":"Come on, at least put on an underwear"},
+      {"type":"hak_transcript","delay":900,"from":"aiden","text":"Oh really?"},
+      {"type":"note","text":"{{name:aiden}}’s hand slides while holding her"},
+      {"type":"hak_overlay","title":"HAK//NOTICE","messages":["Hand contact detected","Subject not resisting"]},
+      {"type":"hak_add_evidence","kind":"nts","route":"nts","profileId":"hailey","profile":{"name":"{{name:hailey}}","avatar":"assets/avatars/hailey.jpg","kind":"nts","route":"nts"},"evidences":[{"id":"hailey_nts_d20_hand","kind":"nts","route":"nts","src":"assets/pictures/evidence/hailey_aiden_hand_d20.jpg","url":"assets/pictures/evidence/hailey_aiden_hand_d20.jpg","thumb":"assets/pictures/evidence/hailey_aiden_hand_d20.jpg","title":"Touch","text":"{{name:aiden}} touched {{name:hailey}} while holding her","time":"AFTERNOON"}]},
+      {"type":"hak_transcript","delay":900,"from":"hailey","text":"It’s the reward for the best coach 😌"},
+      {"type":"hak_transcript","delay":900,"from":"aiden","text":"Very good reward"},
+      {"type":"hak_transcript","delay":900,"from":"hailey","text":"Alright, let’s play before he nags at us"},
+      {"type":"hak_transcript","delay":900,"from":"player","text":"Yeah"},
+      {"type":"hak_transcript","delay":900,"from":"aiden","text":"Let’s go"},
+      {"type":"note","text":"{{name:hailey}} sits on {{name:aiden}}’s lap again"},
+      {"type":"note","text":"AFTER TWO GAMES"},
+      {"type":"hak_transcript","delay":900,"from":"player","text":"You’re really bad today"},
+      {"type":"hak_transcript","delay":900,"from":"aiden","text":"I can’t help it 😭"},
+      {"type":"hak_transcript","delay":900,"from":"aiden","text":"She keeps moving"},
+      {"type":"hak_transcript","delay":900,"from":"aiden","text":"It’s impossible to concentrate"},
+      {"type":"hak_transcript","delay":900,"from":"hailey","text":"That's not true 😭"},
+      {"type":"hak_transcript","delay":900,"from":"aiden","text":"Let's see if you can stay focused too"},
+      {"type":"hak_overlay","title":"HAK//NOTICE","messages":["Distraction confirmed","Subject intentionally moving on {{name:aiden}}’s lap"]},
+      {"type":"hak_add_evidence","kind":"nts","route":"nts","profileId":"hailey","profile":{"name":"{{name:hailey}}","avatar":"assets/avatars/hailey.jpg","kind":"nts","route":"nts"},"evidences":[{"id":"hailey_nts_d20_moving","kind":"nts","route":"nts","src":"assets/pictures/evidence/hailey_aiden_moving_d20.jpg","url":"assets/pictures/evidence/hailey_aiden_moving_d20.jpg","thumb":"assets/pictures/evidence/hailey_aiden_moving_d20.jpg","title":"Distraction","text":"{{name:hailey}} kept moving on {{name:aiden}}’s lap during the games","time":"AFTERNOON"}]},
+      {"type":"note","text":"LAST GAME – FIRST TO FINISH WINS EVERYTHING"},
+      {"type":"hak_transcript","delay":900,"from":"hailey","text":"{{name:aiden}} finished first"},
+      {"type":"hak_transcript","delay":900,"from":"player","text":"No he didn’t"},
+      {"type":"hak_transcript","delay":900,"from":"hailey","text":"Yes he did 😌"},
+      {"type":"hak_overlay","title":"HAK//NOTICE","messages":["Suspicious timing","Subject claiming victory under unusual circumstances"]},
+      {"type":"hak_add_evidence","kind":"nts","route":"nts","profileId":"hailey","profile":{"name":"{{name:hailey}}","avatar":"assets/avatars/hailey.jpg","kind":"nts","route":"nts"},"evidences":[{"id":"hailey_nts_d20_finish","kind":"nts","route":"nts","src":"assets/pictures/evidence/hailey_aiden_finish_d20.jpg","url":"assets/pictures/evidence/hailey_aiden_finish_d20.jpg","thumb":"assets/pictures/evidence/hailey_aiden_finish_d20.jpg","title":"Victory Claim","text":"{{name:hailey}} claimed {{name:aiden}} finished first during the last game","time":"AFTERNOON"}]},
+      {"type":"hak_transcript","delay":900,"from":"player","text":"Wow… gross"},
+      {"type":"hak_transcript","delay":900,"from":"player","text":"You could’ve stayed serious"},
+      {"type":"hak_transcript","delay":900,"from":"aiden","text":"Haha 😭"},
+      {"type":"hak_transcript","delay":900,"from":"hailey","text":"What? 😇"},
+      {"type":"hak_transcript","delay":900,"from":"aiden","text":"I should head home"},
+      {"type":"hak_transcript","delay":900,"from":"aiden","text":"These are honestly the best game afternoons"},
+      {"type":"hak_transcript","delay":900,"from":"aiden","text":"Looking forward to the next one"},
+      {"type":"hak_transcript","delay":900,"from":"hailey","text":"Same 😌"},
+      {"type":"note","text":"{{name:hailey}} kisses {{name:aiden}} goodbye"},
+      {"type":"hak_overlay","title":"HAK//NOTICE","messages":["Goodbye kiss recorded","Subject initiated the kiss",{"kind":"thought","speaker":"player","text":"I'm glad she isn't hiding what she wants, but I need to be honest about my feelings too."}]},
+      {"type":"hak_add_evidence","kind":"nts","route":"nts","profileId":"hailey","profile":{"name":"{{name:hailey}}","avatar":"assets/avatars/hailey.jpg","kind":"nts","route":"nts"},"evidences":[{"id":"hailey_nts_d20_kiss_bye","kind":"nts","route":"nts","src":"assets/pictures/evidence/hailey_aiden_kiss_bye_d20.jpg","url":"assets/pictures/evidence/hailey_aiden_kiss_bye_d20.jpg","thumb":"assets/pictures/evidence/hailey_aiden_kiss_bye_d20.jpg","title":"Goodbye Kiss","text":"{{name:hailey}} kissed {{name:aiden}} goodbye","time":"AFTERNOON"}]},
+      {"type":"hak_transcript","delay":900,"from":"player","text":"Get a room"},
+      {"type":"hak_transcript","delay":900,"from":"hailey","text":"We’ll take yours 😌"},
+      {"type":"hak_transcript","delay":900,"from":"player","text":"You wish"},
+      {"type":"hak_transcript","delay":900,"from":"aiden","text":"Haha later guys"},
+      {"type":"hak_transcript","delay":900,"from":"player","text":"Later cheater"},
+      {"type":"hak_transcript","delay":900,"from":"hailey","text":"Bye 😌"}
+    ]},
+    {"type":"if","condition":"hailey_nts_post15_path:ethan","then":[
+      {"type":"start_story","goHome":true,"startStory":"story/DAY20/nts/DAY20_02_HAILEY_EVENING_NTS.json","contactId":"hailey"}
+    ],"else":[
+      {"type":"start_story","goHome":true,"startStory":"story/DAY20/nts/DAY20_03_HAILEY_NIGHT_NTS.json","contactId":"hailey"}
+    ]}
+  ]
+}

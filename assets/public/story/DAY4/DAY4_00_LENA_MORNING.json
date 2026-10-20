@@ -1,0 +1,20 @@
+{
+  "onceKey": "d4_00_lena_morning_v1",
+  "contactId": "lena",
+  "onCompleteStartStory": "story/DAY4/DAY4_01_EVELYN_MORNING_BAR_SHIFT.json",
+  "steps": [
+    {"type":"notify","delay":1200,"fromId":"lena","fromName":"{{name:lena}}","avatar":"assets/avatars/lena.jpg","text":"Up already? ☀️","target":"conversation"},
+    {"type":"message","delay":900,"from":"player","text":"Barely"},
+    {"type":"message","delay":900,"from":"player","text":"And you?"},
+    {"type":"message","delay":900,"from":"lena","text":"I'm getting ready for uni"},
+    {"type":"message","delay":900,"from":"lena","text":"I look half alive"},
+    {"type":"message","delay":900,"from":"player","text":"Send proof"},
+    {"type":"message","delay":900,"from":"lena","text":"Nooo not this time 😭"},
+    {"type":"message","delay":900,"from":"lena","text":"Not before coffee"},
+    {"type":"message","delay":900,"from":"player","text":"Alright fair"},
+    {"type":"message","delay":900,"from":"player","text":"Good luck at uni ❤️"},
+    {"type":"message","delay":900,"from":"lena","text":"Thank you 🥺"},
+    {"type":"message","delay":900,"from":"lena","text":"Have a good morning okay?"},
+    {"type":"message","delay":900,"from":"lena","text":"Talk to you later 💕"}
+  ]
+}

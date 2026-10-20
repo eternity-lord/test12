@@ -1,0 +1,26 @@
+{
+  "onceKey": "d13_04_mason_morning_love_v1",
+  "contactId": "mason",
+  "requireOnceKey": "d12_05_mason_evening_love_v1",
+  "onCompleteStartStory": "story/DAY13/love/DAY13_01_MASON_AFTERNOON_LOVE.json",
+  "route": "love",
+  "routeLock": "route_mason_locked_v1:love",
+  "steps": [
+    {"type":"notify","delay":1200,"fromId":"mason","fromName":"{{name:mason}}","avatar":"assets/avatars/male_mason.jpg","text":"Yo dickhead","target":"conversation"},
+    {"type":"image","from":"mason","image":"assets/pictures/Conversation/male_mason/mason_outside_morning_sport.jpg"},
+    {"type":"message","delay":850,"from":"mason","text":"Let's train outside today"},
+    {"type":"message","delay":850,"from":"mason","text":"The weather's too good to waste"},
+    {"type":"message","delay":850,"from":"player","text":"Gladly"},
+    {"type":"message","delay":850,"from":"player","text":"I'm on my way"},
+    {"type":"message","delay":850,"from":"player","text":"Today you'll do some cardio"},
+    {"type":"message","delay":850,"from":"player","text":"Jump rope, jogging..."},
+    {"type":"message","delay":850,"from":"player","text":"I'll stick to bodyweight exercises"},
+    {"type":"message","delay":850,"from":"mason","text":"Sounds good"},
+    {"type":"message","delay":850,"from":"mason","text":"I'll do the jump rope then"},
+    {"type":"message","delay":850,"from":"mason","text":"Shame you can't join me"},
+    {"type":"message","delay":850,"from":"player","text":"Keep talking"},
+    {"type":"message","delay":850,"from":"mason","text":"I'd race you too"},
+    {"type":"message","delay":850,"from":"mason","text":"But I don't think that cast would appreciate it 😏"},
+    {"type":"start_story","goHome":true,"startStory":"story/DAY13/love/DAY13_01_MASON_AFTERNOON_LOVE.json","startDelayMs":200}
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "id": "d18_02_hailey_evening_ntr",
+  "onceKey": "d18_02_hailey_evening_ntr_v1",
+  "day": 18,
+  "slot": "evening",
+  "route": "ntr",
+  "routeLock": "route_hailey_locked_v1:ntr",
+  "contactId": "hailey",
+  "requireOnceKey": "d18_00_hailey_morning_ntr_v1",
+  "requireCondition": "all:active_character:hailey,route_hailey_locked_v1:ntr",
+  "onCompleteStartStory": "story/DAY19/ntr/DAY19_01_HAILEY_AFTERNOON_NTR.json",
+  "steps": [
+    {"type":"message","delay":1200,"from":"player","text":"What are you doing?"},
+    {"type":"message","delay":900,"from":"hailey","text":"None of your business"},
+    {"type":"message","delay":850,"from":"player","text":"Rude"},
+    {"type":"message","delay":800,"from":"hailey","text":"Sorry little baby"},
+    {"type":"message","delay":900,"from":"player","text":"You're in a great mood tonight"},
+    {"type":"message","delay":850,"from":"hailey","text":"What do you want?"},
+    {"type":"message","delay":900,"from":"player","text":"Just wanted to annoy you a little"},
+    {"type":"message","delay":850,"from":"hailey","text":"Well congratulations"},
+    {"type":"message","delay":800,"from":"hailey","text":"Mission successful"},
+    {"type":"message","delay":900,"from":"player","text":"Soo"},
+    {"type":"message","delay":850,"from":"player","text":"What are you planning to do once the exams are finally over?"},
+    {"type":"message","delay":900,"from":"hailey","text":"I haven't really thought that far ahead yet"},
+    {"type":"message","delay":850,"from":"hailey","text":"But the first thing will probably be sleeping until my body forces me to get up"},
+    {"type":"message","delay":800,"from":"hailey","text":"Then enjoy the holidays"},
+    {"type":"message","delay":900,"from":"player","text":"That would be a nice change"},
+    {"type":"message","delay":850,"from":"hailey","text":"I know"},
+    {"type":"message","delay":800,"from":"hailey","text":"I have spent so much time stressed that I almost forgot what free time is supposed to feel like"},
+    {"type":"message","delay":900,"from":"player","text":"You'll remember pretty quickly once it's over"},
+    {"type":"message","delay":850,"from":"hailey","text":"I hope so"},
+    {"type":"message","delay":800,"from":"hailey","text":"I'm kind of looking forward to being completely useless for a while"},
+    {"type":"message","delay":900,"from":"player","text":"Youre already are ?"},
+    {"type":"message","delay":850,"from":"hailey","text":"Fuck you"},
+    {"type":"message","delay":900,"from":"hailey","text":"Anyway"},
+    {"type":"message","delay":850,"from":"hailey","text":"{{name:evelyn}} cooked something that actually smells decent"},
+    {"type":"if","condition":"active_character:lena","then":[
+      {"type":"if","condition":"any:route_lena_locked_v1:love,route_lena_locked_v1:ntr","then":[
+        {"type":"message","delay":900,"from":"hailey","text":"We are sitting down for dinner with {{name:evelyn}}. Are you joining us?"},
+        {"type":"message","delay":900,"from":"player","text":"I've already eaten with {{name:lena}}. She's gone home now, so I'll come say hello."}
+      ],"else":[
+        {"type":"message","delay":800,"from":"hailey","text":"Come eat before she starts giving me that look"},
+        {"type":"message","delay":900,"from":"player","text":"I'm coming"}
+      ]}
+    ],"else":[
+      {"type":"message","delay":800,"from":"hailey","text":"Come eat before she starts giving me that look"},
+      {"type":"message","delay":900,"from":"player","text":"I'm coming"}
+    ]},
+    {"type":"message","delay":850,"from":"hailey","text":"Don't take too long"}
+  ]
+}

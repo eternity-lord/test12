@@ -1,0 +1,1886 @@
+<!-- scenes/settings.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Settings</title>
+
+  <style>
+    :root{
+      --fg:#f0f5ff;
+      --muted:rgba(240,245,255,0.68);
+
+      --btn-bg: rgba(6,7,10,0.46);
+      --btn-bg-hover: rgba(8,10,14,0.60);
+
+      --edge: rgba(245,248,255,0.20);
+      --edge-strong: rgba(245,248,255,0.44);
+
+      --glow-soft: rgba(112,220,255,0.12);
+      --glow-strong: rgba(112,220,255,0.18);
+
+      --accent-a: rgba(112,220,255,0.55);
+      --accent-b: rgba(255,166,92,0.45);
+
+      --status-h:var(--phone-statusbar-h, 24px);
+    }
+
+    *{ box-sizing:border-box; }
+
+    html,body{
+      height:100%;
+      margin:0;
+      background:#030515;
+      color:var(--fg);
+      font-family:var(--ui-font);
+      scrollbar-width:none;
+      -ms-overflow-style:none;
+    }
+    html::-webkit-scrollbar,
+    body::-webkit-scrollbar{
+      width:0;
+      height:0;
+    }
+
+    .settings{
+      height:100%;
+      padding:16px;
+      padding-top:var(--status-h);
+      overflow:auto;
+      scrollbar-width:none;
+      -ms-overflow-style:none;
+      position:relative;
+      z-index:0;
+      background:
+        radial-gradient(circle at top, rgba(18,26,46,0.92), rgba(4,6,18,0.98));
+    }
+    .settings::-webkit-scrollbar{
+      width:0;
+      height:0;
+    }
+
+    .settings::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      z-index:-1;
+      background:
+        linear-gradient(to bottom, rgba(6,9,22,0.72), rgba(3,5,16,0.92)),
+        var(--phone-wallpaper-image) center/cover no-repeat;
+      opacity:0.62;
+      filter:saturate(0.85) brightness(0.92) contrast(1.05);
+      pointer-events:none;
+    }
+
+    .st-header{
+      position:relative;
+      top:0;
+      z-index:3;
+      margin:0 -16px;
+      padding:8px 16px 10px;
+
+      background: rgba(6,7,10,0.44);
+      border-bottom:1px solid rgba(245,248,255,0.16);
+      box-shadow:0 10px 24px rgba(0,0,0,0.55);
+
+      text-align:center;
+      font-weight:750;
+      letter-spacing:.18em;
+      font-size:13px;
+      text-transform:uppercase;
+
+      overflow:hidden;
+    }
+    .st-header::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      pointer-events:none;
+      opacity:.48;
+      background:
+        repeating-linear-gradient(
+          to bottom,
+          rgba(255,255,255,0.00) 0px,
+          rgba(255,255,255,0.00) 3px,
+          rgba(255,255,255,0.045) 4px
+        );
+      mix-blend-mode:screen;
+    }
+
+    .st-header + .group{ margin-top:18px; }
+
+    .group{
+      margin-bottom:20px;
+      padding:16px 14px;
+      border-radius:16px;
+
+      background: rgba(6,7,10,0.34);
+      border:1px solid rgba(245,248,255,0.12);
+
+      box-shadow:0 16px 40px rgba(0,0,0,0.55);
+
+      position:relative;
+      overflow:hidden;
+    }
+    .group::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      pointer-events:none;
+      opacity:.62;
+      background:
+        repeating-linear-gradient(
+          to bottom,
+          rgba(255,255,255,0.00) 0px,
+          rgba(255,255,255,0.00) 3px,
+          rgba(255,255,255,0.045) 4px
+        ),
+        repeating-linear-gradient(
+          135deg,
+          rgba(255,255,255,0.038) 0px,
+          rgba(255,255,255,0.00) 2px,
+          rgba(255,255,255,0.028) 4px
+        ),
+        radial-gradient(circle at 20% 0%,
+          rgba(112,220,255,0.08),
+          rgba(0,0,0,0.00) 55%
+        );
+    }
+
+    .group-title{
+      font-size:12px;
+      text-transform:uppercase;
+      letter-spacing:.16em;
+      color:var(--muted);
+      margin-bottom:10px;
+      position:relative;
+      z-index:1;
+    }
+
+    .speed-row{
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+      position:relative;
+      z-index:1;
+    }
+
+    .speed-label{
+      font-size:14px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:8px;
+      color:rgba(240,245,255,0.90);
+    }
+
+    .speed-options{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+
+    @keyframes borderPulse {
+      0%   { opacity:0.18; filter:blur(5px); }
+      50%  { opacity:0.44; filter:blur(7px); }
+      100% { opacity:0.22; filter:blur(5px); }
+    }
+
+    @keyframes microGlitchY {
+      0%   { transform: translateY(0); }
+      20%  { transform: translateY(-1px); }
+      45%  { transform: translateY(1px); }
+      70%  { transform: translateY(-0.5px); }
+      100% { transform: translateY(0); }
+    }
+
+    .ui-pill{
+      padding:8px 14px;
+      border-radius:999px;
+      border:1px solid var(--edge);
+      background: var(--btn-bg);
+      color:#fff;
+      font-size:13px;
+      letter-spacing:0.04em;
+      cursor:pointer;
+      user-select:none;
+
+      box-shadow: 0 10px 22px rgba(0,0,0,0.42);
+
+      text-shadow:
+        0 0 10px rgba(112,220,255,0.10),
+        0 0 12px rgba(255,166,92,0.08);
+
+      transition:
+        background .18s ease,
+        border-color .18s ease,
+        box-shadow .20s ease,
+        filter .20s ease;
+
+      position:relative;
+      overflow:hidden;
+    }
+
+    .ui-pill::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      border-radius:inherit;
+      pointer-events:none;
+      opacity:0.74;
+      background:
+        repeating-linear-gradient(
+          to bottom,
+          rgba(255,255,255,0.00) 0px,
+          rgba(255,255,255,0.00) 3px,
+          rgba(255,255,255,0.045) 4px
+        ),
+        repeating-linear-gradient(
+          135deg,
+          rgba(255,255,255,0.038) 0px,
+          rgba(255,255,255,0.00) 2px,
+          rgba(255,255,255,0.028) 4px
+        ),
+        linear-gradient(
+          to bottom,
+          rgba(112,220,255,0.06),
+          rgba(255,166,92,0.03) 55%,
+          rgba(0,0,0,0.00) 75%
+        );
+    }
+
+    .ui-pill::after{
+      content:"";
+      position:absolute;
+      inset:-2px;
+      border-radius:inherit;
+      padding:2px;
+      background: rgba(112,220,255,0.55);
+      opacity:0;
+      filter: blur(7px);
+
+      -webkit-mask:
+        linear-gradient(#000 0 0) content-box,
+        linear-gradient(#000 0 0);
+      -webkit-mask-composite: xor;
+              mask-composite: exclude;
+
+      pointer-events:none;
+    }
+
+    .ui-pill:hover{
+      background: var(--btn-bg-hover);
+      border-color: var(--edge-strong);
+
+      box-shadow:
+        0 12px 26px rgba(0,0,0,0.56),
+        0 0 0 1px rgba(245,248,255,0.07),
+        0 0 14px rgba(112,220,255,0.12),
+        0 0 32px rgba(255,166,92,0.08);
+
+      filter: brightness(1.06);
+      animation: microGlitchY 0.28s linear 1;
+    }
+
+    .ui-pill:hover::after{
+      opacity:1;
+      animation: borderPulse 1.7s ease-in-out infinite;
+    }
+
+    .ui-pill:active{
+      transform: scale(0.985);
+      border-color: rgba(245,248,255,0.74);
+      box-shadow:
+        0 8px 20px rgba(0,0,0,0.72),
+        0 0 0 1px rgba(245,248,255,0.10),
+        0 0 20px rgba(112,220,255,0.16);
+      filter: brightness(1.10);
+    }
+
+    .ui-pill:focus-visible{
+      outline:2px solid rgba(245,248,255,0.52);
+      outline-offset:4px;
+    }
+
+    .speed-option,.return-home-option{ min-width:78px; text-align:center; }
+    .speed-option.is-active,.return-home-option.is-active{
+      border-color: rgba(245,248,255,0.60);
+      background: rgba(8,10,14,0.70);
+      box-shadow:
+        0 12px 26px rgba(0,0,0,0.60),
+        0 0 0 1px rgba(245,248,255,0.08),
+        0 0 16px rgba(112,220,255,0.14);
+      font-weight:800;
+    }
+
+    .textsize-wrap{
+      display:flex;
+      flex-direction:column;
+      gap:8px;
+      margin-top:10px;
+      position:relative;
+      z-index:1;
+    }
+
+    .textsize-range{
+      width:100%;
+      cursor:pointer;
+      background:transparent;
+      accent-color: rgba(112,220,255,0.65);
+    }
+
+    .textsize-legend{
+      display:flex;
+      justify-content:space-between;
+      font-size:11px;
+      color:var(--muted);
+      opacity:.9;
+      padding:0 2px;
+    }
+
+    .language-select{
+      width:100%;
+      padding:10px 12px;
+      border-radius:12px;
+      border:1px solid rgba(245,248,255,0.16);
+      background:rgba(8,10,14,0.64);
+      color:var(--fg);
+      font:inherit;
+      font-size:14px;
+      outline:none;
+      box-shadow:inset 0 0 0 1px rgba(0,0,0,0.24);
+    }
+    .language-select:focus{
+      border-color:rgba(245,248,255,0.40);
+      box-shadow:
+        inset 0 0 0 1px rgba(0,0,0,0.24),
+        0 0 0 3px rgba(112,220,255,0.12);
+    }
+
+    /* ===== Audio ===== */
+    .audio-wrap{
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+      position:relative;
+      z-index:1;
+    }
+
+    .audio-row{
+      display:flex;
+      flex-direction:column;
+      gap:8px;
+      padding:10px 10px;
+      border-radius:12px;
+      border:1px solid rgba(245,248,255,0.10);
+      background: rgba(6,7,10,0.28);
+    }
+
+    .audio-head{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:8px;
+      flex-wrap:wrap;
+    }
+
+    .audio-label{
+      font-size:13px;
+      color:rgba(240,245,255,0.92);
+    }
+
+    .audio-value{
+      font-size:12px;
+      color:var(--muted);
+      min-width:44px;
+      text-align:right;
+    }
+
+    .audio-actions{
+      display:flex;
+      gap:8px;
+      flex-wrap:wrap;
+    }
+
+    .audio-btn{
+      padding:7px 10px;
+      font-size:12px;
+      min-width:92px;
+      text-align:center;
+    }
+
+    .audio-btn.is-active{
+      border-color: rgba(245,248,255,0.58);
+      background: rgba(8,10,14,0.72);
+      box-shadow:
+        0 10px 22px rgba(0,0,0,0.52),
+        0 0 0 1px rgba(245,248,255,0.08),
+        0 0 12px rgba(112,220,255,0.14);
+      font-weight:800;
+    }
+
+    .audio-range{
+      width:100%;
+      cursor:pointer;
+      background:transparent;
+      accent-color: rgba(112,220,255,0.65);
+    }
+    .wallpaper-settings{display:grid; grid-template-columns:minmax(112px, 180px) 1fr; gap:16px; align-items:center}
+    .wallpaper-preview{aspect-ratio:9/16; width:100%; max-height:230px; border-radius:18px; border:1px solid rgba(245,248,255,.2); background:#080a10 center/cover no-repeat; box-shadow:0 16px 38px rgba(0,0,0,.38)}
+    .wallpaper-details{display:flex; flex-direction:column; gap:12px; min-width:0}
+    .wallpaper-details > [data-i18n="wallpaper.current"]{font-size:14px; line-height:1.4; overflow-wrap:anywhere}
+    .wallpaper-current{font-size:12px; color:rgba(240,245,255,.72); overflow-wrap:anywhere}
+    @media(max-width:520px){.wallpaper-settings{grid-template-columns:112px 1fr; gap:12px}.wallpaper-preview{max-height:200px}}
+
+    /* ===== Contacts editor ===== */
+    .contacts-wrap{
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+      position:relative;
+      z-index:1;
+    }
+
+    .contact-row{
+      display:flex;
+      gap:10px;
+      align-items:center;
+      padding:10px 10px;
+      border-radius:14px;
+      border:1px solid rgba(245,248,255,0.10);
+      background: rgba(6,7,10,0.30);
+      box-shadow: 0 10px 22px rgba(0,0,0,0.35);
+      overflow:hidden;
+    }
+
+    .contact-avatar{
+      width:44px;
+      height:44px;
+      border-radius:999px;
+      flex:0 0 auto;
+      border:1px solid rgba(245,248,255,0.22);
+      background:
+        radial-gradient(circle at 30% 20%, rgba(112,220,255,0.10), rgba(0,0,0,0.00) 60%),
+        rgba(8,10,14,0.70);
+      object-fit:cover;
+    }
+
+    .contact-mid{
+      flex:1 1 auto;
+      min-width:0;
+      display:flex;
+      flex-direction:column;
+      gap:6px;
+    }
+
+    .contact-key{
+      font-size:11px;
+      letter-spacing:.14em;
+      text-transform:uppercase;
+      color:rgba(240,245,255,0.65);
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+    }
+
+    /* Canonical status/relationship label -- read-only, separate from the
+       editable name input below it. See scripts/contact-status.js. */
+    .contact-status{
+      font-size:11px;
+      letter-spacing:.10em;
+      text-transform:uppercase;
+      color:rgba(112,220,255,0.72);
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+    }
+
+    .contact-input{
+      width:100%;
+      padding:9px 10px;
+      border-radius:12px;
+      border:1px solid rgba(245,248,255,0.14);
+      background: rgba(8,10,14,0.58);
+      color:var(--fg);
+      outline:none;
+      font-size:14px;
+      box-shadow: inset 0 0 0 1px rgba(0,0,0,0.25);
+    }
+    .contact-input:focus{
+      border-color: rgba(245,248,255,0.36);
+      box-shadow:
+        inset 0 0 0 1px rgba(0,0,0,0.25),
+        0 0 0 3px rgba(112,220,255,0.12);
+    }
+
+    .contact-actions{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      flex:0 0 auto;
+    }
+    @media(max-width:520px){
+      .contact-row{display:grid; grid-template-columns:44px minmax(0,1fr); align-items:start}
+      .contact-avatar{grid-row:1 / span 2}
+      .contact-mid,.contact-actions{grid-column:2}
+      .contact-actions{justify-content:flex-end}
+    }
+
+    .btn-mini{
+      padding:7px 10px;
+      border-radius:999px;
+      font-size:12px;
+      text-align:center;
+      min-width:88px;
+    }
+
+    .contacts-empty{
+      font-size:12px;
+      color:var(--muted);
+      line-height:1.4;
+      padding:6px 2px;
+    }
+
+    .btn-reset{
+      width:100%;
+      text-align:center;
+      padding:10px 12px;
+      margin-top:6px;
+      border-radius:14px;
+    }
+    .btn-reset.is-locked{
+      opacity:0.45;
+      filter:grayscale(0.3);
+      border-color:rgba(245,248,255,0.22);
+    }
+    .btn-reset.is-locked:hover,
+    .btn-reset.is-locked:active{
+      background:var(--btn-bg);
+      border-color:rgba(245,248,255,0.22);
+      box-shadow:0 10px 22px rgba(0,0,0,0.42);
+      filter:grayscale(0.3);
+      transform:none;
+      animation:none;
+    }
+    .btn-reset.is-locked:hover::after{
+      opacity:0;
+      animation:none;
+    }
+
+    .btn-blue{
+      background: rgba(102,180,255,0.20);
+      border-color: rgba(102,180,255,0.58);
+      color:#f5f9ff;
+      font-weight:900;
+      text-transform:uppercase;
+      letter-spacing:.09em;
+    }
+    .btn-blue::before{
+      background:
+        repeating-linear-gradient(
+          to bottom,
+          rgba(255,255,255,0.00) 0px,
+          rgba(255,255,255,0.00) 3px,
+          rgba(255,255,255,0.045) 4px
+        ),
+        repeating-linear-gradient(
+          135deg,
+          rgba(112,220,255,0.12) 0px,
+          rgba(0,0,0,0.00) 2px,
+          rgba(112,220,255,0.08) 4px
+        ),
+        linear-gradient(
+          to bottom,
+          rgba(112,220,255,0.10),
+          rgba(0,0,0,0.00) 62%
+        );
+      opacity:0.74;
+    }
+    .btn-blue:hover{
+      background: rgba(102,180,255,0.20);
+      border-color: rgba(102,180,255,0.58);
+      box-shadow:
+        0 12px 26px rgba(0,0,0,0.56),
+        0 0 0 1px rgba(245,248,255,0.07),
+        0 0 14px rgba(112,220,255,0.20),
+        0 0 30px rgba(112,220,255,0.12);
+      filter: brightness(1.06);
+    }
+    .btn-blue:active{
+      border-color: rgba(102,180,255,0.74);
+      box-shadow:
+        0 8px 20px rgba(0,0,0,0.72),
+        0 0 0 1px rgba(245,248,255,0.10),
+        0 0 20px rgba(112,220,255,0.22);
+      filter: brightness(1.10);
+    }
+    .btn-blue:focus-visible{
+      outline:2px solid rgba(112,220,255,0.52);
+      outline-offset:4px;
+    }
+
+    .reset-note{
+      margin-top:6px;
+      font-size:11px;
+      color:var(--muted);
+      line-height:1.4;
+      position:relative;
+      z-index:1;
+    }
+
+    .confirm-overlay[hidden]{ display:none!important; }
+    .confirm-overlay{
+      position:fixed;
+      inset:0;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      background: radial-gradient(circle at top, rgba(4,6,18,0.70), rgba(3,5,16,0.92));
+      z-index:40;
+    }
+
+    .confirm-card{
+      min-width:260px;
+      max-width:320px;
+      padding:16px 14px 12px;
+      border-radius:18px;
+
+      background: rgba(8,10,14,0.62);
+      border:1px solid rgba(245,248,255,0.16);
+      box-shadow:0 24px 60px rgba(0,0,0,0.85);
+
+      position:relative;
+      overflow:hidden;
+    }
+    .confirm-card::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      pointer-events:none;
+      opacity:0.66;
+      background:
+        repeating-linear-gradient(
+          to bottom,
+          rgba(255,255,255,0.00) 0px,
+          rgba(255,255,255,0.00) 3px,
+          rgba(255,255,255,0.045) 4px
+        ),
+        repeating-linear-gradient(
+          135deg,
+          rgba(255,255,255,0.038) 0px,
+          rgba(255,255,255,0.00) 2px,
+          rgba(255,255,255,0.028) 4px
+        );
+    }
+
+    .confirm-title{
+      font-size:15px;
+      font-weight:800;
+      margin-bottom:6px;
+      position:relative;
+      z-index:1;
+    }
+
+    .confirm-text{
+      font-size:13px;
+      color:var(--muted);
+      margin-bottom:12px;
+      line-height:1.4;
+      position:relative;
+      z-index:1;
+    }
+
+    .confirm-actions{
+      display:flex;
+      justify-content:flex-end;
+      gap:10px;
+      position:relative;
+      z-index:1;
+    }
+
+    .confirm-btn{
+      padding:7px 12px;
+      border-radius:999px;
+      font-size:13px;
+    }
+
+  </style>
+  <link rel="stylesheet" href="assets/styles/theme.css">
+</head>
+
+<body>
+  <div class="settings" data-scene="settings">
+    <div class="st-header" data-i18n="settings.title">Settings</div>
+
+    <section class="group">
+      <div class="group-title" data-i18n="settings.conversation">Conversation</div>
+
+      <div class="speed-row">
+        <div class="speed-label" data-i18n="settings.conversation_speed">Conversation speed</div>
+        <div class="speed-options">
+          <div class="speed-option ui-pill" data-speed="slow" role="button" tabindex="0" data-i18n="settings.slow">Slow</div>
+          <div class="speed-option ui-pill" data-speed="medium" role="button" tabindex="0" data-i18n="settings.medium">Medium</div>
+          <div class="speed-option ui-pill" data-speed="fast" role="button" tabindex="0" data-i18n="settings.fast">Fast</div>
+        </div>
+      </div>
+
+      <div class="speed-row" style="margin-top:14px;">
+        <div class="speed-label" id="return-home-label" data-i18n="settings.return_home_after_chat">Return to home after each chat</div>
+        <div class="speed-options" role="group" aria-labelledby="return-home-label">
+          <button type="button" class="return-home-option ui-pill" data-return-home="0" aria-pressed="true" data-i18n="settings.disabled">Off</button>
+          <button type="button" class="return-home-option ui-pill" data-return-home="1" aria-pressed="false" data-i18n="settings.enabled">On</button>
+        </div>
+        <div class="reset-note" style="margin:0;" data-i18n="settings.return_home_after_chat_hint">Return to the phone home screen when a conversation ends.</div>
+      </div>
+
+      <div class="speed-row" style="margin-top:14px;">
+        <div class="speed-label">
+          <span data-i18n="settings.text_size">Text size</span>
+          <strong id="textsize-value">18px</strong>
+        </div>
+
+        <div class="textsize-wrap">
+          <input
+            id="textsize-slider"
+            class="textsize-range"
+            type="range"
+            min="16"
+            max="20"
+            step="1"
+            value="18"
+            aria-label="Text size"
+          />
+          <div class="textsize-legend">
+            <span>16px</span>
+            <span>18px</span>
+            <span>20px</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="speed-row" style="margin-top:14px;">
+        <label class="speed-label" for="settings-language" data-i18n="settings.language">Language</label>
+        <select id="settings-language" class="language-select" aria-label="Language" data-i18n-aria-label="settings.language">
+          <option value="en">English</option>
+          <option value="fr">Fran&ccedil;ais</option>
+          <option value="es">Espa&ntilde;ol</option>
+          <option value="pt">Portugu&ecirc;s</option>
+          <option value="de">Deutsch</option>
+          <option value="it">Italiano</option>
+          <option value="ru">&#1056;&#1091;&#1089;&#1089;&#1082;&#1080;&#1081;</option>
+          <option value="zh-CN">&#31616;&#20307;&#20013;&#25991;</option>
+          <option value="ja">&#26085;&#26412;&#35486;</option>
+          <option value="ko">&#54620;&#44397;&#50612;</option>
+          <option value="hi">&#2361;&#2367;&#2344;&#2381;&#2342;&#2368;</option>
+          <option value="ar">&#1575;&#1604;&#1593;&#1585;&#1576;&#1610;&#1577;</option>
+        </select>
+      </div>
+    </section>
+
+    <section class="group" id="wallpaper-settings">
+      <div class="group-title" data-i18n="wallpaper.title">Wallpaper</div>
+      <div class="wallpaper-settings">
+        <div class="wallpaper-preview" id="wallpaper-preview" role="img" aria-label="Current Wallpaper" data-i18n-aria-label="wallpaper.current"></div>
+        <div class="wallpaper-details">
+          <div data-i18n="wallpaper.current">Current Wallpaper</div>
+          <div class="wallpaper-current" id="wallpaper-current"></div>
+          <button type="button" class="ui-pill btn-reset btn-blue" id="wallpaper-restore" data-i18n="wallpaper.restore_default_wallpaper">Restore Default Wallpaper</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="group" id="audio-settings">
+      <div class="group-title" data-i18n="settings.audio">Audio</div>
+
+      <div class="audio-wrap">
+        <div class="audio-actions">
+          <button type="button" id="audio-mute-all" class="ui-pill audio-btn" data-i18n="settings.mute_all">Mute All</button>
+        </div>
+
+        <div class="audio-row">
+          <div class="audio-head">
+            <div class="audio-label" data-i18n="settings.master_volume">Master volume</div>
+            <div class="audio-value" id="audio-master-value">50%</div>
+          </div>
+          <div class="audio-actions">
+            <button type="button" class="ui-pill audio-btn" data-audio-test="master" data-no-sfx="1" data-i18n="settings.test">Test</button>
+            <button type="button" class="ui-pill audio-btn" id="audio-master-mute" data-i18n="settings.mute">Mute</button>
+          </div>
+          <input id="audio-master" class="audio-range" type="range" min="0" max="100" step="1" value="50" aria-label="Master volume" data-sfx="ui_slider" />
+        </div>
+
+        <div class="audio-row">
+          <div class="audio-head">
+            <div class="audio-label" data-i18n="settings.sfx_volume">SFX volume</div>
+            <div class="audio-value" id="audio-sfx-value">50%</div>
+          </div>
+          <div class="audio-actions">
+            <button type="button" class="ui-pill audio-btn" data-audio-test="sfx" data-no-sfx="1" data-i18n="settings.test">Test</button>
+            <button type="button" class="ui-pill audio-btn" id="audio-sfx-mute" data-i18n="settings.mute">Mute</button>
+          </div>
+          <input id="audio-sfx" class="audio-range" type="range" min="0" max="100" step="1" value="50" aria-label="SFX volume" data-sfx="ui_slider" />
+        </div>
+
+        <div class="audio-row">
+          <div class="audio-head">
+            <div class="audio-label" data-i18n="settings.music_volume">Music volume</div>
+            <div class="audio-value" id="audio-music-value">50%</div>
+          </div>
+          <div class="audio-actions">
+            <button type="button" class="ui-pill audio-btn" data-audio-test="music" data-no-sfx="1" data-i18n="settings.test_music">Test Music</button>
+            <button type="button" class="ui-pill audio-btn" id="audio-music-mute" data-i18n="settings.mute">Mute</button>
+          </div>
+          <input id="audio-music" class="audio-range" type="range" min="0" max="100" step="1" value="50" aria-label="Music volume" data-sfx="ui_slider" />
+        </div>
+
+        <div class="audio-row">
+          <div class="audio-head">
+            <div class="audio-label" data-i18n="settings.notifications_volume">Notifications volume</div>
+            <div class="audio-value" id="audio-notif-value">50%</div>
+          </div>
+          <div class="audio-actions">
+            <button type="button" class="ui-pill audio-btn" data-audio-test="notif" data-no-sfx="1" data-i18n="settings.test">Test</button>
+            <button type="button" class="ui-pill audio-btn" id="audio-notif-mute" data-i18n="settings.mute">Mute</button>
+          </div>
+          <input id="audio-notif" class="audio-range" type="range" min="0" max="100" step="1" value="50" aria-label="Notifications volume" data-sfx="ui_slider" />
+        </div>
+      </div>
+    </section>
+
+    <section class="group">
+      <div class="group-title" data-i18n="settings.contacts">Contacts</div>
+
+      <div class="contacts-wrap">
+        <div class="contacts-empty" id="contacts-empty" hidden>
+          No renamed contacts yet.<br/>
+          Contacts will appear here after you name them in a conversation.
+        </div>
+
+        <div id="contacts-list"></div>
+
+        <p class="reset-note">
+          This edits the saved contact names used everywhere via <strong>{{name:key}}</strong>.
+        </p>
+      </div>
+    </section>
+
+    <section class="group">
+      <div class="group-title" data-i18n="settings.progression">Progression</div>
+
+      <div id="patreon-code-entry" class="btn-reset btn-blue ui-pill" role="button" tabindex="0">
+        <span data-i18n="settings.patreon_code">Patreon code</span>
+      </div>
+      <p class="reset-note">
+        Opens the Patreon code prompt to unlock premium content on this device.
+      </p>
+
+      <div id="rechoose-hak-characters" class="btn-reset btn-blue ui-pill" role="button" tabindex="0">
+        <span data-i18n="settings.rechoose_hak">Rechoose HAK characters</span>
+      </div>
+      <p class="reset-note">
+        Clears only HAK character selection and IF branch cache, then reopens character selection.
+      </p>
+
+      <div id="reset-keep-gallery" class="btn-reset btn-blue ui-pill" role="button" tabindex="0">
+        <span data-i18n="settings.reset_keep_gallery">Reset game (keep gallery)</span>
+      </div>
+      <p class="reset-note">
+        Clears story, messages and settings, but keeps all photos saved in the gallery.
+      </p>
+
+      <div id="reset-all" class="btn-reset btn-danger ui-pill" role="button" tabindex="0">
+        <span data-i18n="settings.reset_all">Reset game (everything)</span>
+      </div>
+      <p class="reset-note">
+        Full wipe. The game will restart like the very first launch. Gallery will also be cleared.
+      </p>
+    </section>
+
+    <div id="settings-confirm" class="confirm-overlay" hidden>
+      <div class="confirm-card">
+        <div class="confirm-title" id="confirm-title" data-i18n="settings.confirm_reset">Confirm reset</div>
+        <div class="confirm-text" id="confirm-text" data-i18n="settings.confirm_reset_text">Are you sure you want to reset?</div>
+        <div class="confirm-actions">
+          <button type="button" class="confirm-btn ui-pill confirm-cancel" data-i18n="common.cancel">Cancel</button>
+          <button type="button" class="confirm-btn btn-danger ui-pill confirm-ok" data-i18n="settings.yes_reset">Yes, reset</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+  (function () {
+    function q(sel, root=document){ return root.querySelector(sel); }
+    function qa(sel, root=document){ return Array.from(root.querySelectorAll(sel)); }
+    function safeGetLS(k){ try { return localStorage.getItem(k); } catch { return null; } }
+    const wallpaperPreview = q("#wallpaper-preview");
+    const wallpaperCurrent = q("#wallpaper-current");
+    const wallpaperRestore = q("#wallpaper-restore");
+    let wallpaperRenderEpoch = 0;
+    async function renderWallpaperSettings(){
+      const epoch = ++wallpaperRenderEpoch;
+      const service = window.Game?.wallpaper;
+      const logicalSrc = service?.currentSrc?.() || service?.DEFAULT_SRC || "";
+      let runtimeSrc = logicalSrc;
+      try { runtimeSrc = await service?.resolveRuntimeAsset?.(logicalSrc) || logicalSrc; } catch {}
+      if (epoch !== wallpaperRenderEpoch) return;
+      if (wallpaperPreview) {
+        wallpaperPreview.style.backgroundImage = `url(${JSON.stringify(runtimeSrc)})`;
+        wallpaperPreview.dataset.wallpaperSrc = logicalSrc;
+        wallpaperPreview.dataset.wallpaperResolvedSrc = runtimeSrc;
+      }
+      if (wallpaperCurrent) wallpaperCurrent.textContent = service?.get?.()?.src || (window.Game?.i18n?.ui?.("wallpaper.default", "Default wallpaper") || "Default wallpaper");
+    }
+    wallpaperRestore?.addEventListener("click", () => {
+      window.Game?.wallpaper?.restoreDefault?.({ source: "settings" });
+      void renderWallpaperSettings();
+      const message = window.Game?.i18n?.ui?.("wallpaper.updated", "Wallpaper updated") || "Wallpaper updated";
+      try { window.showToast?.(message); } catch {}
+    });
+    window.addEventListener("wallpaper:changed", () => { void renderWallpaperSettings(); });
+    void renderWallpaperSettings();
+    function safeSetLS(k,v){ try { localStorage.setItem(k, String(v)); } catch {} }
+    function safeJsonParse(raw, fallback){ try { return JSON.parse(raw); } catch { return fallback; } }
+    function safeJsonStringify(v, fallback="{}"){ try { return JSON.stringify(v); } catch { return fallback; } }
+    function tr(key, source){ try { return window.Game?.i18n?.ui?.(key, source) || source; } catch { return source; } }
+    function isManualSaveSlot(slot){
+      if (!slot || typeof slot !== "object") return false;
+      const type = String(slot.type || "").trim().toLowerCase();
+      return type === "manual" || !type;
+    }
+    function extractManualSavesPayload(raw){
+      const parsed = safeJsonParse(raw, null);
+      if (!parsed) return null;
+      if (Array.isArray(parsed)) {
+        const manualSlots = parsed.filter(isManualSaveSlot);
+        return manualSlots.length ? safeJsonStringify(manualSlots, "[]") : null;
+      }
+      if (typeof parsed === "object" && Array.isArray(parsed.slots)) {
+        const manualSlots = parsed.slots.filter(isManualSaveSlot);
+        if (!manualSlots.length) return null;
+        return safeJsonStringify({ ...parsed, slots: manualSlots }, "{}");
+      }
+      return null;
+    }
+    const HAK_CHARACTERS_CHOSEN_KEY = "hak_characters_chosen_v1";
+    const ACHIEVEMENTS_KEYS_TO_KEEP = ["achievements_v1", "achievement_meta_v1"];
+    const ACHIEVEMENT_RUN_KEY = "achievement_run_v1";
+    const SAVE_KEYS = ["saves_v2", "saves_v1"];
+    const HAK_SELECTION_DONE_ALIASES = Object.freeze([
+      "hak_character_selection_done_v1",
+      "hak_characters_selected_v1",
+      "hak_characters_selected",
+      "hak_selection_done",
+      "hak_selection_done_v1",
+      "hak_onboarding_done",
+      "hak_pick_done"
+    ]);
+
+    function normalizeKey(k){
+      return String(k ?? "").trim().toLowerCase().replace(/\s+/g, "_");
+    }
+
+    function speedToMultiplier(speed){
+      if (speed === "slow") return 0.65;
+      if (speed === "fast") return 1.7;
+      return 1;
+    }
+
+    const speedEls = qa(".speed-option");
+    function applyActiveSpeed(speed){
+      speedEls.forEach(el => el.classList.toggle("is-active", el.dataset.speed === speed));
+    }
+
+    function setSpeed(speed){
+      const v = (speed === "slow" || speed === "medium" || speed === "fast") ? speed : "medium";
+      safeSetLS("settings_textSpeed", v);
+      safeSetLS("MessageSpeed", String(speedToMultiplier(v)));
+      applyActiveSpeed(v);
+
+      try{
+        window.dispatchEvent(new CustomEvent("settings:textSpeedChanged", { detail:{ value:v } }));
+        window.dispatchEvent(new CustomEvent("settings:changed", { detail:{ textSpeed:v } }));
+      }catch{}
+    }
+
+    function handlePillKeyActivate(el, fn){
+      el.addEventListener("keydown", (e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          e.stopPropagation();
+          if (typeof el.click === "function") el.click();
+          else fn();
+        }
+      });
+      el.addEventListener("click", fn);
+      el.dataset.activationBound = "1";
+    }
+
+    speedEls.forEach(el => handlePillKeyActivate(el, () => setSpeed(el.dataset.speed)));
+    applyActiveSpeed(safeGetLS("settings_textSpeed") || "medium");
+
+    const returnHomeOptions = qa(".return-home-option");
+    function applyReturnHomeAfterChat(){
+      const enabled = safeGetLS("settings_returnHomeAfterChat") === "1";
+      returnHomeOptions.forEach(el => {
+        const selected = (el.dataset.returnHome === "1") === enabled;
+        el.classList.toggle("is-active", selected);
+        el.setAttribute("aria-pressed", String(selected));
+      });
+    }
+    returnHomeOptions.forEach(el => el.addEventListener("click", () => {
+      const enabled = el.dataset.returnHome === "1";
+      safeSetLS("settings_returnHomeAfterChat", enabled ? "1" : "0");
+      applyReturnHomeAfterChat();
+      try { window.dispatchEvent(new CustomEvent("settings:changed", { detail:{ returnHomeAfterChat:enabled } })); } catch {}
+    }));
+    applyReturnHomeAfterChat();
+
+    const slider = q("#textsize-slider");
+    const label  = q("#textsize-value");
+
+    function setTextSize(px){
+      const n = Math.max(16, Math.min(20, Number(px)||18));
+      slider.value = String(n);
+      label.textContent = n + "px";
+      safeSetLS("settings_textSizePx", String(n));
+      try{ window.dispatchEvent(new CustomEvent("settings:changed", { detail:{ textSizePx:n } })); }catch{}
+    }
+
+    setTextSize(Number(safeGetLS("settings_textSizePx") || 18));
+    slider.addEventListener("input", () => setTextSize(slider.value));
+
+    const languageSelect = q("#settings-language");
+    function normalizeLanguage(raw){
+      const value = String(raw || "").trim();
+      return window.Game?.i18n?.normalizeLanguage
+        ? window.Game.i18n.normalizeLanguage(value)
+        : (value || "en");
+    }
+    function applyLanguage(){
+      if (!languageSelect) return;
+      const lang = normalizeLanguage(safeGetLS("settings_language") || "en");
+      languageSelect.value = lang;
+      try { window.Game?.i18n?.applyDirection?.(document.querySelector(".settings")); } catch {}
+    }
+    if (languageSelect) {
+      applyLanguage();
+      languageSelect.addEventListener("change", () => {
+        const lang = normalizeLanguage(languageSelect.value);
+        safeSetLS("settings_language", lang);
+        const load = window.Game?.i18n?.setLanguage
+          ? window.Game.i18n.setLanguage(lang)
+          : Promise.resolve();
+        Promise.resolve(load).finally(() => {
+          applyLanguage();
+          try {
+            window.dispatchEvent(new CustomEvent("settings:changed", { detail:{ language:lang } }));
+            window.dispatchEvent(new CustomEvent("i18n:language-changed", { detail:{ language:lang } }));
+          } catch {}
+        });
+      });
+    }
+
+    // =========================================================
+    // Audio settings
+    // =========================================================
+    function clamp01(v){
+      const n = Number(v);
+      if (!Number.isFinite(n)) return 0;
+      if (n < 0) return 0;
+      if (n > 1) return 1;
+      return n;
+    }
+
+    function readBoolLS(key, fallback){
+      const raw = safeGetLS(key);
+      if (raw === "1" || raw === "true") return true;
+      if (raw === "0" || raw === "false") return false;
+      return !!fallback;
+    }
+
+    function readNumLS(key, fallback){
+      const raw = safeGetLS(key);
+      if (raw == null || raw === "") return clamp01(fallback);
+      const n = Number(raw);
+      return Number.isFinite(n) ? clamp01(n) : clamp01(fallback);
+    }
+
+    function readAudioState(){
+      const fromManager = window.Game?.audio?.getState?.();
+      if (fromManager && typeof fromManager === "object") return fromManager;
+
+      const mutedMaster = readBoolLS("audio_muted_master", false);
+      const enabled = readBoolLS("audio_enabled", !mutedMaster);
+      return {
+        enabled,
+        vol: {
+          master: readNumLS("audio_master", 0.5),
+          sfx: readNumLS("audio_sfx", 0.5),
+          music: readNumLS("audio_music", 0.5),
+          notif: readNumLS("audio_notif", 0.5)
+        },
+        muted: {
+          master: mutedMaster || !enabled,
+          sfx: readBoolLS("audio_muted_sfx", false),
+          music: readBoolLS("audio_muted_music", false),
+          notif: readBoolLS("audio_muted_notif", false)
+        }
+      };
+    }
+
+    function writeAudioFallback(nextState){
+      if (!nextState || typeof nextState !== "object") return;
+      safeSetLS("audio_enabled", nextState.enabled ? "1" : "0");
+      safeSetLS("audio_master", clamp01(nextState.vol?.master ?? 0.5));
+      safeSetLS("audio_sfx", clamp01(nextState.vol?.sfx ?? 0.5));
+      safeSetLS("audio_music", clamp01(nextState.vol?.music ?? 0.5));
+      safeSetLS("audio_notif", clamp01(nextState.vol?.notif ?? 0.5));
+      safeSetLS("audio_muted_master", !!nextState.muted?.master ? "1" : "0");
+      safeSetLS("audio_muted_sfx", !!nextState.muted?.sfx ? "1" : "0");
+      safeSetLS("audio_muted_music", !!nextState.muted?.music ? "1" : "0");
+      safeSetLS("audio_muted_notif", !!nextState.muted?.notif ? "1" : "0");
+    }
+
+    function emitAudioSettingsChanged(source){
+      const audioState = readAudioState();
+      try{
+        window.dispatchEvent(new CustomEvent("settings:changed", {
+          detail: { source: String(source || "audio"), audio: audioState }
+        }));
+      }catch{}
+    }
+
+    const audioRoot = q("#audio-settings");
+    if (audioRoot) {
+      const audioSliders = {
+        master: q("#audio-master", audioRoot),
+        sfx: q("#audio-sfx", audioRoot),
+        music: q("#audio-music", audioRoot),
+        notif: q("#audio-notif", audioRoot)
+      };
+      const audioValues = {
+        master: q("#audio-master-value", audioRoot),
+        sfx: q("#audio-sfx-value", audioRoot),
+        music: q("#audio-music-value", audioRoot),
+        notif: q("#audio-notif-value", audioRoot)
+      };
+      const audioMuteBtns = {
+        master: q("#audio-master-mute", audioRoot),
+        sfx: q("#audio-sfx-mute", audioRoot),
+        music: q("#audio-music-mute", audioRoot),
+        notif: q("#audio-notif-mute", audioRoot)
+      };
+      const muteAllBtn = q("#audio-mute-all", audioRoot);
+
+      function setMuteButtonLabel(btn, muted){
+        if (!btn) return;
+        const isMuted = !!muted;
+        btn.textContent = isMuted ? tr("settings.unmute", "Unmute") : tr("settings.mute", "Mute");
+        btn.classList.toggle("is-active", isMuted);
+      }
+
+      function setMuteAllLabel(muted){
+        if (!muteAllBtn) return;
+        const isMuted = !!muted;
+        muteAllBtn.textContent = isMuted ? tr("settings.unmute_all", "Unmute All") : tr("settings.mute_all", "Mute All");
+        muteAllBtn.classList.toggle("is-active", isMuted);
+      }
+
+      function applyAudioUi(st){
+        const s = st || readAudioState();
+        ["master", "sfx", "music", "notif"].forEach((cat) => {
+          const pct = Math.round(clamp01(s?.vol?.[cat] ?? 1) * 100);
+          if (audioSliders[cat]) audioSliders[cat].value = String(pct);
+          if (audioValues[cat]) audioValues[cat].textContent = `${pct}%`;
+          setMuteButtonLabel(audioMuteBtns[cat], !!s?.muted?.[cat]);
+        });
+        const muteAll = !s?.enabled || !!s?.muted?.master;
+        setMuteAllLabel(muteAll);
+      }
+
+      function setAudioVolume(cat, rawValue){
+        const key = String(cat || "").trim().toLowerCase();
+        const value = clamp01((Number(rawValue) || 0) / 100);
+        if (window.Game?.audio?.setVolume) {
+          window.Game.audio.setVolume(key, value);
+        } else {
+          const fallbackState = readAudioState();
+          fallbackState.vol[key] = value;
+          writeAudioFallback(fallbackState);
+        }
+        emitAudioSettingsChanged(`audio_volume_${key}`);
+        applyAudioUi();
+      }
+
+      function setAudioMuted(cat, muted){
+        const key = String(cat || "").trim().toLowerCase();
+        const nextMuted = !!muted;
+        if (window.Game?.audio?.setMuted) {
+          window.Game.audio.setMuted(key, nextMuted);
+        } else {
+          const fallbackState = readAudioState();
+          fallbackState.muted[key] = nextMuted;
+          if (key === "master") {
+            fallbackState.enabled = !nextMuted;
+            fallbackState.muted.master = nextMuted;
+          }
+          writeAudioFallback(fallbackState);
+        }
+        emitAudioSettingsChanged(`audio_mute_${key}`);
+        applyAudioUi();
+      }
+
+      function runAudioTest(kind){
+        const audio = window.Game?.audio;
+        if (!audio) return;
+        const k = String(kind || "").toLowerCase();
+        if (k === "master") {
+          audio.play("ui_confirm", { category: "sfx", cooldownMs: 0 });
+          return;
+        }
+        if (k === "sfx") {
+          audio.play("ui_tap", { category: "sfx", cooldownMs: 0 });
+          return;
+        }
+        if (k === "notif") {
+          audio.play("notif_message", { category: "notif", cooldownMs: 0 });
+          return;
+        }
+        if (k === "music") {
+          if (audio.ensureMusic) audio.ensureMusic({ fadeMs: 260 });
+          if (audio.playMusic) audio.playMusic("bgm_main", { fadeMs: 260, restart: true });
+        }
+      }
+
+      Object.entries(audioSliders).forEach(([cat, el]) => {
+        if (!el) return;
+        el.addEventListener("input", () => setAudioVolume(cat, el.value));
+      });
+
+      Object.entries(audioMuteBtns).forEach(([cat, btn]) => {
+        if (!btn) return;
+        btn.addEventListener("click", () => {
+          const s = readAudioState();
+          const nowMuted = !!s?.muted?.[cat];
+          setAudioMuted(cat, !nowMuted);
+        });
+      });
+
+      if (muteAllBtn) {
+        muteAllBtn.addEventListener("click", () => {
+          const s = readAudioState();
+          const nowMuted = (!s?.enabled || !!s?.muted?.master);
+          setAudioMuted("master", !nowMuted);
+        });
+      }
+
+      qa("[data-audio-test]", audioRoot).forEach((btn) => {
+        btn.addEventListener("click", () => runAudioTest(btn.getAttribute("data-audio-test")));
+      });
+
+      window.addEventListener("audio:changed", () => applyAudioUi());
+      applyAudioUi();
+    }
+
+    // =========================================================
+    // Contacts (rename editor) — uses player_identity_v1
+    // + ALSO patches localStorage["conversations"] to refresh the list
+    // =========================================================
+    const IDENTITY_KEY = "player_identity_v1";
+    const LEGACY_ALIAS_KEY = "contact_aliases_v1";
+function sanitizeLegacyAliasRegistry(){
+  // contact_aliases_v1 MUST be: aliasToken -> stableId
+  // but old versions wrote: stableId -> displayName (WRONG)
+  try{
+    const raw = safeGetLS(LEGACY_ALIAS_KEY);
+    const obj = safeJsonParse(raw, null);
+    if (!obj || typeof obj !== "object" || Array.isArray(obj)) return;
+
+    let changed = false;
+
+    // remove entries where key looks like a stable id but value looks like a display name
+    // heuristic: if value contains spaces OR parentheses, it's likely a name, not an id
+    for (const [k,v] of Object.entries(obj)){
+      const keyTok = normalizeKey(k);
+      const val = String(v ?? "").trim();
+      if (!keyTok) continue;
+
+      // If value does not normalize to a simple token close to an id (and looks like a name), drop it.
+      const valTok = normalizeKey(val);
+      const looksLikeName = /[ ()]/.test(val) || (val && valTok !== val.toLowerCase());
+      const looksLikeBadMapping = looksLikeName && keyTok === normalizeKey(k);
+
+      if (looksLikeBadMapping){
+        delete obj[k];
+        changed = true;
+      }
+    }
+
+    if (changed){
+      safeSetLS(LEGACY_ALIAS_KEY, safeJsonStringify(obj, "{}"));
+    }
+  }catch{}
+}
+
+sanitizeLegacyAliasRegistry();
+
+    function readIdentityState(){
+      const raw = safeGetLS(IDENTITY_KEY);
+      const obj = safeJsonParse(raw, null);
+
+      if (!obj || typeof obj !== "object"){
+        return { root: { contacts:{} }, mode:"contactsField", contacts:{} };
+      }
+      if (obj.contacts && typeof obj.contacts === "object"){
+        if (window.PlayerIdentity) obj.contacts.player = window.PlayerIdentity.getName();
+        return { root: obj, mode:"contactsField", contacts: obj.contacts };
+      }
+      return { root: obj, mode:"rootMap", contacts: obj };
+    }
+
+    function identityValueToName(v){
+      if (typeof v === "string") return v.trim();
+      if (v && typeof v === "object") {
+        return String(v.name || v.displayName || v.alias || "").trim();
+      }
+      return "";
+    }
+
+    function sanitizeIdentityMap(map){
+      const out = {};
+      if (!map || typeof map !== "object") return out;
+      Object.entries(map).forEach(([key, val]) => {
+        const k = normalizeKey(key);
+        if (!k || k.startsWith("__")) return;
+        const nm = identityValueToName(val);
+        if (nm) out[k] = nm;
+      });
+      return out;
+    }
+
+    function writeIdentityState(state){
+      const out = state.root && typeof state.root === "object" ? state.root : { contacts:{} };
+      if (state.mode === "contactsField") {
+        out.contacts = sanitizeIdentityMap(out.contacts);
+      } else {
+        const cleaned = sanitizeIdentityMap(out);
+        Object.keys(out).forEach((k) => {
+          if (String(k).startsWith("__")) cleaned[k] = out[k];
+        });
+        Object.keys(out).forEach((k) => { delete out[k]; });
+        Object.assign(out, cleaned);
+      }
+      safeSetLS(IDENTITY_KEY, safeJsonStringify(out, '{"contacts":{}}'));
+    }
+
+    function getContactEntry(contactsMap, key){
+      const v = contactsMap[key];
+      if (v == null) return null;
+      if (typeof v === "string") return { name:v, avatar:"" };
+      if (typeof v === "object") return {
+        name: String(v.name || v.displayName || v.alias || "").trim(),
+        avatar: String(v.avatar || v.image || v.photo || "").trim()
+      };
+      return null;
+    }
+
+    // Group 6 (protected-write elimination): scripts/notify-adapter.js is the
+    // declared single source of truth for this store, backed by
+    // progression.conversationsCache in the canonical engine.
+    function patchConversationsName(contactKey, newName){
+      const k = normalizeKey(contactKey);
+      if (!k) return;
+
+      const store = window.Game.readConversationStore();
+      if (!store) return;
+
+      let changed = false;
+
+      // Case A: object map { id -> convoObj }
+      if (store && typeof store === "object" && !Array.isArray(store)){
+        const c = store[k];
+        if (c && typeof c === "object"){
+          if ("displayName" in c){ c.displayName = newName; changed = true; }
+          if ("name" in c){ c.name = newName; changed = true; }
+          if (!("displayName" in c) && !("name" in c)){
+            c.displayName = newName; changed = true;
+          }
+        }
+      }
+
+      // Case B: array format
+      if (Array.isArray(store)){
+        store.forEach(c => {
+          if (!c || typeof c !== "object") return;
+          const id = normalizeKey(c.id || c.key || c.with || c.contactId);
+          if (id !== k) return;
+          if ("displayName" in c){ c.displayName = newName; changed = true; }
+          if ("name" in c){ c.name = newName; changed = true; }
+          if (!("displayName" in c) && !("name" in c)){
+            c.displayName = newName; changed = true;
+          }
+        });
+      }
+
+      if (changed){
+        window.Game.writeConversationStoreRaw(store);
+        try{ window.dispatchEvent(new CustomEvent("conversations:updated", { detail:{ id:k } })); }catch{}
+        try{ window.dispatchEvent(new Event("game:conversations-updated")); }catch{}
+      }
+    }
+// =========================================================
+// Avatar resolution (Settings)
+// - Prefer identity avatar (if present)
+// - Fallback to conversations store avatar for the same id
+// =========================================================
+function getAvatarFromConversations(contactKey){
+  const k = normalizeKey(contactKey);
+  if (!k) return "";
+
+  const store = window.Game.readConversationStore();
+  if (!store) return "";
+
+  function pickAvatar(obj){
+    if (!obj || typeof obj !== "object") return "";
+    const cand =
+      obj.avatar ||
+      obj.fromAvatar ||
+      obj.photo ||
+      obj.image ||
+      obj.icon ||
+      obj.picture ||
+      obj.pfp ||
+      obj.profilePic ||
+      obj.profilePicture;
+    return String(cand || "").trim();
+  }
+
+  // Case A: object map { id -> convoObj }
+  if (store && typeof store === "object" && !Array.isArray(store)){
+    const c = store[k];
+    const a = pickAvatar(c);
+    if (a) return a;
+  }
+
+  // Case B: array format
+  if (Array.isArray(store)){
+    for (const c of store){
+      if (!c || typeof c !== "object") continue;
+      const id = normalizeKey(c.id || c.key || c.with || c.contactId);
+      if (id !== k) continue;
+      const a = pickAvatar(c);
+      if (a) return a;
+    }
+  }
+
+  return "";
+}
+
+function resolveContactAvatar(key, identityEntry){
+  // 1) identity avatar if it exists (future-proof)
+  const direct = String(identityEntry?.avatar || "").trim();
+  if (direct) return direct;
+
+  // 2) fallback to conversations store
+  const fromConvos = getAvatarFromConversations(key);
+  if (fromConvos) return fromConvos;
+
+  // 3) default
+  return "";
+}
+
+function setContactEntry(state, key, patch){
+  const k = normalizeKey(key);
+  if (!k) return;
+  if (k === "player" && window.PlayerIdentity) {
+    // A player called Aiden must never become a routing alias for Aiden's
+    // conversation. Player identity is profile data, not a contact alias.
+    const result = window.PlayerIdentity.confirm(patch.name);
+    if (!result.ok) window.showToast?.(window.Game?.i18n?.ui?.("player.name_setup_error", "Your name could not be saved. Please try again.") || "Your name could not be saved. Please try again.");
+    return result.ok;
+  }
+
+  const contactsMap = state.contacts || {};
+  const cur = getContactEntry(contactsMap, k) || { name:"", avatar:"" };
+
+  const next = { ...cur, ...patch };
+  next.name = String(next.name || "").trim();
+  next.avatar = String(next.avatar || "").trim();
+
+  if (state.mode === "contactsField"){
+    state.root.contacts ||= {};
+    state.root.contacts[k] = next.name;
+  } else {
+    state.root[k] = next.name;
+  }
+
+  // ✅ legacy alias registry: aliasToken -> stableId
+  // NEVER write stableId -> displayName (that breaks runtime contactId resolution)
+  try{
+    const legacy = safeJsonParse(safeGetLS(LEGACY_ALIAS_KEY), {});
+    if (legacy && typeof legacy === "object" && !Array.isArray(legacy)){
+      // remove any old wrong mapping like legacy[k] = "Mason (Roommate)"
+      if (typeof legacy[k] === "string") {
+        const maybeName = String(legacy[k] || "").trim();
+        if (maybeName) delete legacy[k];
+      }
+
+      // add mapping from NEW DISPLAY NAME -> stable id
+      const aliasTok = normalizeKey(next.name);
+      if (aliasTok) legacy[aliasTok] = k;
+
+      safeSetLS(LEGACY_ALIAS_KEY, safeJsonStringify(legacy, "{}"));
+    }
+  }catch{}
+
+  writeIdentityState(state);
+
+  // IMPORTANT: refresh conversations list name instantly
+  if (next.name) patchConversationsName(k, next.name);
+
+  try{
+    window.dispatchEvent(new CustomEvent("identity:changed", { detail:{ key:k, name: next.name, avatar: next.avatar } }));
+    window.dispatchEvent(new CustomEvent("settings:changed", { detail:{ identityKey:k, identityName: next.name } }));
+    window.dispatchEvent(new Event("game:conversations-updated"));
+  }catch{}
+}
+
+	   function deleteContactEntry(){
+	  // Contacts reset is intentionally disabled:
+	  // names remain editable indefinitely via SAVE.
+	  return false;
+	}
+
+
+    function buildContactKeys(state){
+      const map = state.contacts || {};
+      const keys = Object.keys(map)
+        .map(normalizeKey)
+        .filter(Boolean)
+        .filter(k => !k.startsWith("__"));
+
+      const cleaned = keys.filter(k => {
+        const e = getContactEntry(map, k);
+        if (!e) return false;
+        return !!(String(e.name||"").trim() || String(e.avatar||"").trim());
+      });
+
+      cleaned.sort((a,b)=> a.localeCompare(b));
+      return cleaned;
+    }
+
+    const contactsListEl = q("#contacts-list");
+    const contactsEmptyEl = q("#contacts-empty");
+
+    function renderContacts(){
+      const state = readIdentityState();
+      const keys = buildContactKeys(state);
+
+      contactsListEl.innerHTML = "";
+      contactsEmptyEl.hidden = keys.length !== 0;
+
+      keys.forEach(key => {
+        const entry = getContactEntry(state.contacts, key) || { name:"", avatar:"" };
+
+        const row = document.createElement("div");
+        row.className = "contact-row";
+
+        const img = document.createElement("img");
+        img.className = "contact-avatar";
+        img.alt = key;
+      const resolvedAvatar = resolveContactAvatar(key, entry);
+
+img.src = resolvedAvatar || "assets/avatars/default.jpg";
+img.onerror = () => { img.src = "assets/avatars/default.jpg"; };
+
+        const mid = document.createElement("div");
+        mid.className = "contact-mid";
+
+        const keyEl = document.createElement("div");
+        keyEl.className = "contact-key";
+        keyEl.textContent = key;
+
+        // Canonical, read-only status/relationship label -- a SEPARATE field
+        // from the editable name below. Never player-editable, never folded
+        // into the saved name. Single source of truth: scripts/contact-status.js.
+        const statusLabel = window.ContactStatus?.getStatusLabel?.(key) || "";
+        const statusEl = document.createElement("div");
+        statusEl.className = "contact-status";
+        statusEl.textContent = statusLabel;
+        statusEl.hidden = !statusLabel;
+
+        const input = document.createElement("input");
+        input.className = "contact-input";
+        input.value = entry.name || "";
+        input.placeholder = "Enter name…";
+
+        mid.appendChild(keyEl);
+        if (statusLabel) mid.appendChild(statusEl);
+        mid.appendChild(input);
+
+        const actions = document.createElement("div");
+        actions.className = "contact-actions";
+
+        const saveBtn = document.createElement("div");
+        saveBtn.className = "ui-pill btn-mini btn-success";
+        saveBtn.setAttribute("role","button");
+        saveBtn.setAttribute("tabindex","0");
+        saveBtn.setAttribute("data-sfx", "ui_confirm");
+        saveBtn.textContent = "Save";
+
+        function doSave(opts){
+          if (opts && opts.playSfx) {
+            try { window.Game?.audio?.play?.("ui_confirm", { category: "sfx" }); } catch {}
+          }
+          const state2 = readIdentityState();
+          const newName = String(input.value || "").trim();
+          setContactEntry(state2, key, { name:newName });
+          renderContacts();
+        }
+
+        handlePillKeyActivate(saveBtn, doSave);
+
+        input.addEventListener("keydown", (e) => {
+          if (e.key === "Enter"){
+            e.preventDefault();
+            doSave({ playSfx: true });
+          }
+        });
+
+        actions.appendChild(saveBtn);
+
+        row.appendChild(img);
+        row.appendChild(mid);
+        row.appendChild(actions);
+
+        contactsListEl.appendChild(row);
+      });
+    }
+
+    renderContacts();
+
+    // =========================================================
+    // Reset confirmation
+    // =========================================================
+    const overlay = q("#settings-confirm");
+    const titleEl = q("#confirm-title");
+    const textEl  = q("#confirm-text");
+    const btnCancel = q(".confirm-cancel");
+    const btnOk = q(".confirm-ok");
+    const patreonCodeEntry = q("#patreon-code-entry");
+    const rechooseHak = q("#rechoose-hak-characters");
+    const resetKeep = q("#reset-keep-gallery");
+    const resetAll  = q("#reset-all");
+
+    let pendingMode = null;
+
+    function hasChosenHakCharacters(){
+      if (safeGetLS(HAK_CHARACTERS_CHOSEN_KEY) === "1") return true;
+      for (const key of HAK_SELECTION_DONE_ALIASES){
+        if (safeGetLS(key) === "1") {
+          safeSetLS(HAK_CHARACTERS_CHOSEN_KEY, "1");
+          return true;
+        }
+      }
+      return false;
+    }
+
+    function applyHakRechooseLockState(){
+      const unlocked = hasChosenHakCharacters();
+      rechooseHak.classList.toggle("is-locked", !unlocked);
+      rechooseHak.setAttribute("aria-disabled", unlocked ? "false" : "true");
+      return unlocked;
+    }
+
+    function openConfirm(mode){
+      pendingMode = mode;
+      titleEl.textContent = tr("settings.confirm_reset", "Confirm reset");
+      if (mode === "hak_rechoose") {
+        titleEl.textContent = tr("settings.rechoose_hak", "Rechoose HAK characters");
+        textEl.textContent = tr("settings.rechoose_hak_confirm", "This will clear HAK character selection and IF branch cache only. Continue?");
+        btnOk.textContent = tr("settings.yes_rechoose", "Yes, rechoose");
+      } else if (mode === "keep"){
+        textEl.textContent = tr("settings.reset_keep_gallery_confirm", "This will clear story, messages and settings, but keep the gallery. Continue?");
+        btnOk.textContent = tr("settings.yes_reset", "Yes, reset");
+      } else {
+        textEl.textContent = tr("settings.reset_all_confirm", "This will wipe everything (including the gallery). Continue?");
+        btnOk.textContent = tr("settings.yes_wipe", "Yes, wipe");
+      }
+      overlay.hidden = false;
+    }
+
+    function closeConfirm(){
+      overlay.hidden = true;
+      pendingMode = null;
+    }
+
+    handlePillKeyActivate(btnCancel, closeConfirm);
+
+    overlay.addEventListener("click", (e) => {
+      if (e.target === overlay) closeConfirm();
+    });
+
+    async function doReset(mode){
+      if (mode === "hak_rechoose") {
+        try {
+          if (typeof window.Game?.resetHakCharacterSelection === "function") {
+            window.Game.resetHakCharacterSelection({ scope: "selection_only" });
+          }
+        } catch {}
+
+        try { window.navigateToScene?.("hak", { from: "settings_rechoose_hak" }); } catch {}
+
+        const openPicker = window.Game?.openHakCharacterSelection;
+        if (typeof openPicker === "function") {
+          setTimeout(() => {
+            Promise.resolve(openPicker({ source: "settings_rechoose_hak", forceDefault: true })).catch(() => {});
+          }, 180);
+        }
+
+        try { window.showToast?.("HAK character selection reset."); } catch {}
+        return;
+      }
+
+      const keepGallery = (mode === "keep");
+      if (keepGallery) {
+        try { window.GalleryStore?.migrateStorage?.({ includeLegacy: true }); } catch {}
+      }
+      // Explicit durable-collection/entitlement contract. Do not broaden this
+      // with prefix matching: story, routes, gender, tutorials, HAK and
+      // OnlyFun must still reset.
+      const KEEP_GALLERY_KEYS = [
+        "gallery_photos", "savedPhotos", "achievements_v1", "achievement_meta_v1",
+        "card_vault_state_v1", "card_vault_state_backup_v1",
+        "card_vault_support_tier_rank_v1", "entitlement_redemption_ledger_v1",
+        "entitlement_redemption_ledger_backup_v1",
+        "patreon_release_unlock_v1", "patreon_master_unlock_v1",
+        "patreon_mason_day9_15_unlock_v1", "patreon_evelyn_day9_15_unlock_v1",
+        "gallery_full_unlock_v1", "dev_timeline_unlock_v1"
+      ];
+      const durableState = {};
+      if (keepGallery) KEEP_GALLERY_KEYS.forEach((key) => {
+        const value = safeGetLS(key);
+        if (value != null) durableState[key] = value;
+      });
+      const manualSaves = keepGallery
+        ? SAVE_KEYS.reduce((acc, key) => {
+            const payload = extractManualSavesPayload(safeGetLS(key));
+            if (payload != null) acc[key] = payload;
+            return acc;
+          }, {})
+        : null;
+
+      const engine = window.GameStateEngine;
+      if (!engine || typeof engine.dispatch !== "function") {
+        throw new Error("canonical engine unavailable during reset");
+      }
+      const beforeReset = engine.getState();
+      const resetAt = Date.now();
+      const resetResult = engine.dispatch({
+        type: "RESET_PLAYTHROUGH",
+        commandId: `reset-playthrough:${resetAt}`,
+        expectedRevision: beforeReset.revision,
+        payload: { resetAt, mode }
+      });
+      if (!resetResult?.ok) {
+        throw new Error(`canonical reset rejected: ${resetResult?.status || "unknown"}`);
+      }
+
+      // The compatibility stores still need clearing, but the just-committed
+      // canonical generation must survive that cleanup and be the only state
+      // eligible for hydration on the next boot.
+      const canonicalState = {};
+      [
+        "intercepted_engine_state_v4",
+        "intercepted_engine_stable_revision_v4",
+        "intercepted_engine_journal_v4"
+      ].forEach((key) => {
+        const value = safeGetLS(key);
+        if (value != null) canonicalState[key] = value;
+      });
+      // A segmented engine head references immutable transcript segments;
+      // keep every one so the committed head can never lose its history
+      // (unreferenced ones are collected by the engine on its next commit).
+      try {
+        for (let i = 0; i < localStorage.length; i++) {
+          const key = String(localStorage.key(i) || "");
+          if (key.startsWith("intercepted_engine_events_v1:")) canonicalState[key] = safeGetLS(key);
+        }
+      } catch {}
+
+      try { localStorage.removeItem(HAK_CHARACTERS_CHOSEN_KEY); } catch {}
+      try{ localStorage.clear(); }catch{}
+
+      Object.entries(canonicalState).forEach(([key, value]) => safeSetLS(key, value));
+
+      if (keepGallery){
+        Object.entries(durableState).forEach(([key, value]) => safeSetLS(key, value));
+        if (manualSaves && typeof manualSaves === "object") {
+          Object.entries(manualSaves).forEach(([key, payload]) => {
+            if (payload != null) safeSetLS(key, payload);
+          });
+        }
+        safeSetLS(ACHIEVEMENT_RUN_KEY, JSON.stringify({
+          startedAt: Date.now(),
+          resetSource: "settings_keep_reset",
+          seededAt: Date.now(),
+          updatedAt: Date.now()
+        }));
+        try {
+          window.dispatchEvent(new CustomEvent("game:story-restarted", {
+            detail: { source: "settings_keep_reset" }
+          }));
+        } catch {}
+      }
+
+      location.reload();
+    }
+
+    btnOk.addEventListener("click", async () => {
+      const mode = pendingMode || "keep";
+      closeConfirm();
+      await doReset(mode);
+    });
+
+    function onRechooseHakRequest(){
+      if (!applyHakRechooseLockState()) {
+        try { window.showToast?.("OPTION LOCKED"); } catch {}
+        return;
+      }
+      openConfirm("hak_rechoose");
+    }
+
+    function onPatreonCodeRequest(){
+      try {
+        const opened = window.Game?.openPatreonCodeModal?.({
+          source: "settings_all_codes",
+          context: "all",
+          title: "Access Code",
+          subtitle: "Enter a Patreon or gallery code to unlock content on this device."
+        });
+        if (opened === false) {
+          window.showToast?.("Access code unavailable.");
+        }
+      } catch {
+        try { window.showToast?.("Access code unavailable."); } catch {}
+      }
+    }
+
+    // Manual test checklist:
+    // - Fresh launch: Rechoose HAK characters is dimmed and clicking shows "OPTION LOCKED".
+    // - After first HAK selection confirm: button enables and rechoose flow still works.
+    // - Save/load: enabled state persists from localStorage snapshot.
+    // - Reset keep gallery / reset all: button returns to locked state.
+    applyHakRechooseLockState();
+    window.addEventListener("hak:characters-chosen", applyHakRechooseLockState);
+
+    handlePillKeyActivate(patreonCodeEntry, onPatreonCodeRequest);
+    handlePillKeyActivate(rechooseHak, onRechooseHakRequest);
+    handlePillKeyActivate(resetKeep, () => openConfirm("keep"));
+    handlePillKeyActivate(resetAll,  () => openConfirm("all"));
+  })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,54 @@
+{
+  "onceKey": "d12_02_hailey_evening_ntr_v1",
+  "contactId": "hailey",
+  "requireOnceKey": "d12_01_lena_late_night_ntr_v1|d12_01_hailey_afternoon_ntr_v1",
+  "steps": [
+    {"type":"notify","delay":1200,"fromId":"hailey","fromName":"{{name:hailey}}","avatar":"assets/avatars/hailey.jpg","text":"Home finally 😭","target":"conversation"},
+    {"type":"message","delay":900,"from":"player","text":"Everything went well with your professor?"},
+    {"type":"message","delay":850,"from":"hailey","text":"Yeah, it was fine 😌"},
+    {"type":"message","delay":850,"from":"hailey","text":"He's actually very nice when he doesn't talk about homework"},
+    {"type":"message","delay":850,"from":"hailey","text":"He said I can come back tomorrow if I want to revise somewhere quiet"},
+    {"type":"message","delay":900,"from":"player","text":"A little weird that he offered that, but good that he did"},
+    {"type":"message","delay":850,"from":"hailey","text":"Yeah, but I don't know if I will go"},
+    {"type":"message","delay":850,"from":"hailey","text":"Too much work 😭"},
+    {"type":"message","delay":850,"from":"hailey","text":"I'm not built for academic suffering"},
+    {"type":"message","delay":850,"from":"hailey","text":"I am just a tiny little victim 😔"},
+    {"type":"message","delay":900,"from":"player","text":"A dramatic one"},
+    {"type":"message","delay":850,"from":"hailey","text":"Exactly 😌"},
+    {"type":"message","delay":900,"from":"player","text":"I can understand that, but you also don't want to fall into the trap of avoiding work because it's hard"},
+    {"type":"message","delay":850,"from":"hailey","text":"Yes mister spreadsheet 😌"},
+    {"type":"note","text":"LATER, AFTER {{name:hailey}} BROUGHT FOOD TO YOUR ROOM"},
+    {"type":"message","delay":850,"from":"hailey","text":"Food delivery completed 🍟"},
+    {"type":"message","delay":850,"from":"hailey","text":"Room cleaning attempted"},
+    {"type":"message","delay":850,"from":"hailey","text":"Emotional damage included for free"},
+    {"type":"message","delay":900,"from":"player","text":"You unplugged my charger"},
+    {"type":"message","delay":850,"from":"hailey","text":"Allegedly 😇"},
+    {"type":"message","delay":900,"from":"player","text":"I watched you do it"},
+    {"type":"message","delay":850,"from":"hailey","text":"Witness intimidation"},
+    {"type":"message","delay":850,"from":"hailey","text":"Also professor messaged"},
+    {"type":"message","delay":850,"from":"hailey","text":"He said my answer from earlier was closer than he expected"},
+    {"type":"message","delay":900,"from":"player","text":"That is good"},
+    {"type":"message","delay":850,"from":"hailey","text":"Yeah"},
+    {"type":"message","delay":850,"from":"hailey","text":"It made me weirdly relieved"},
+    {"type":"message","delay":850,"from":"hailey","text":"Like someone finally understands where I get lost"},
+    {"type":"message","delay":900,"from":"player","text":"Don't rely on him too much"},
+    {"type":"message","delay":850,"from":"hailey","text":"I know, I know 😭"},
+    {"type":"message","delay":850,"from":"hailey","text":"But he already knows all the exam stuff"},
+    {"type":"message","delay":850,"from":"hailey","text":"And he explains things in a way that actually makes sense"},
+    {"type":"message","delay":850,"from":"hailey","text":"He said I can come back tomorrow if I need the quiet"},
+    {"type":"message","delay":900,"from":"player","text":"What a privilege"},
+    {"type":"message","delay":850,"from":"hailey","text":"I know right 😌"},
+    {"type":"message","delay":850,"from":"hailey","text":"Anyway I am going to sleep before you start thinking too loudly"},
+    {"type":"message","delay":900,"from":"player","text":"Goodnight troublemaker"},
+    {"type":"message","delay":850,"from":"hailey","text":"Goodnight 😇"},
+    {"type":"if","condition":"active_character:mason","then":[
+      {"type":"time_card","text":"DAY 13","goHome":true,"startStory":"story/DAY13/ntr/DAY13_00_MASON_MORNING_NTR.json","startDelayMs":200}
+    ],"else":[
+      {"type":"if","condition":"active_character:lena","then":[
+        {"type":"time_card","text":"DAY 13","goHome":true,"startStory":"story/DAY13/DAY13_00_AIDEN_SHARED.json","startDelayMs":200}
+      ],"else":[
+        {"type":"time_card","text":"DAY 13","goHome":true,"startStory":"story/DAY13/ntr/DAY13_00_HAILEY_MORNING_NTR.json","startDelayMs":200}
+      ]}
+    ],"__masonNextDayPatched":true}
+  ]
+}

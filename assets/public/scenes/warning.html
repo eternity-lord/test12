@@ -1,0 +1,965 @@
+<!-- scenes/warning.html -->
+<style>
+  :root {
+    --fg:#e8ecf8;
+    --bg:#000;
+    --muted:#b9c1db;
+
+    /* 🔁 Warning now matches intro theme */
+    --warn-line: rgba(255,255,255,0.28);
+    --warn-glow: rgba(255,255,255,0.45);
+    --warn-bg: rgba(8,12,18,0.62);
+
+    --btn-bg: rgba(8,12,18,0.55);
+    --btn-hover: rgba(14,18,28,0.78);
+    --btn-text: #ffffff;
+    --btn-border: rgba(255,255,255,0.32);
+
+    /* intro title */
+    --intro-title:#ffffff;
+    --intro-glow: rgba(255,255,255,0.75);
+  }
+
+  html, body {
+    background:#000 !important;
+    margin:0;
+    padding:0;
+    height:100%;
+  }
+
+  /* ===========================
+     INTRO TEXT "iNTeRcepted"
+  ============================ */
+  .intro-screen{
+    position:fixed;
+    inset:0;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:#000 !important;
+    z-index:9999;
+    opacity:0;
+    transform: translateY(-32px);
+  }
+
+  .intro-text{
+    font-size:clamp(30px, 11vw, 48px) !important;
+    white-space:nowrap;
+    color:var(--intro-title);
+    font-family:'Segoe UI', sans-serif;
+    letter-spacing:0.12em;
+    text-shadow:
+      0 0 12px var(--intro-glow),
+      0 0 28px rgba(255,255,255,0.45),
+      0 0 56px rgba(255,255,255,0.22);
+    opacity:0;
+    transform:scale(0.85);
+    display:inline-block;
+    user-select:none;
+  }
+
+  .intro-text .ch{
+    display:inline-block;
+    font-size:inherit !important;
+    opacity:0;
+    transform: translateY(10px) scale(0.98);
+    filter: blur(6px);
+    transition:
+      opacity 140ms ease,
+      transform 220ms ease,
+      filter 260ms ease;
+    will-change: opacity, transform, filter;
+  }
+  .intro-text .ch.on{
+    opacity:1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+    animation: glitchIn 420ms steps(2, end) 1;
+  }
+
+  @keyframes glitchIn{
+    0%{
+      text-shadow:
+        2px 0 rgba(255,255,255,0.45),
+        -2px 0 rgba(255,255,255,0.28),
+        0 0 18px rgba(255,255,255,0.55);
+      transform: translateY(0) scale(1);
+    }
+    35%{
+      transform: translateY(-1px) scale(1.01);
+      text-shadow:
+        3px 0 rgba(255,255,255,0.55),
+        -3px 0 rgba(255,255,255,0.30),
+        0 0 22px rgba(255,255,255,0.60);
+    }
+    65%{
+      transform: translateY(1px) scale(0.995);
+      text-shadow:
+        -4px 0 rgba(255,255,255,0.48),
+        4px 0 rgba(255,255,255,0.26),
+        0 0 20px rgba(255,255,255,0.45);
+    }
+    100%{
+      transform: translateY(0) scale(1);
+      text-shadow:
+        0 0 12px var(--intro-glow),
+        0 0 28px rgba(255,255,255,0.45),
+        0 0 56px rgba(255,255,255,0.22);
+    }
+  }
+
+  @keyframes introFadeIn {
+    0%   { opacity:0; transform:scale(0.85); }
+    100% { opacity:1; transform:scale(1);    }
+  }
+  @keyframes introFadeOut {
+    0%   { opacity:1; transform:scale(1); }
+    100% { opacity:0; transform:scale(1.1); }
+  }
+
+  /* ===========================
+          WARNING
+  ============================ */
+  .warning-screen {
+    height:100%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:24px;
+    text-align:center;
+    background:#000 !important;
+    color:var(--fg);
+    opacity:0;
+    transform: translateY(-32px);
+  }
+
+  @keyframes warningFadeIn { from { opacity:0; } to { opacity:1; } }
+  @keyframes warningFadeOut { from { opacity:1; } to { opacity:0; } }
+
+  /* ✅ new accept animation: subtle glitch + fade */
+  @keyframes acceptPulse {
+    0%   { transform: translateY(0) scale(1); filter: brightness(1); }
+    25%  { transform: translateY(-1px) scale(1.01); filter: brightness(1.12); }
+    55%  { transform: translateY(1px) scale(0.995); filter: brightness(1.06); }
+    100% { transform: translateY(0) scale(1); filter: brightness(1); }
+  }
+
+  /* small horizontal "glitch shake" */
+  @keyframes acceptGlitch {
+    0%   { transform: translateX(0); }
+    18%  { transform: translateX(-2px); }
+    36%  { transform: translateX(3px); }
+    52%  { transform: translateX(-1px); }
+    68%  { transform: translateX(2px); }
+    100% { transform: translateX(0); }
+  }
+
+  .warning-card{
+    max-width:720px;
+    width:100%;
+    background: var(--warn-bg);
+    border: 1px solid var(--warn-line);
+    border-radius:18px;
+    padding:28px 22px 22px;
+    box-shadow:
+      0 0 14px rgba(255,255,255,0.12),
+      0 0 38px rgba(255,255,255,0.10);
+    backdrop-filter: blur(10px);
+    position:relative;
+    overflow:hidden;
+    transform: translateZ(0);
+    will-change: transform, filter, opacity;
+  }
+
+  /* white soft highlight layer for the card (subtle) */
+  .warning-card::before{
+    content:"";
+    position:absolute;
+    inset:-1px;
+    background: radial-gradient(60% 60% at 50% 0%,
+      rgba(255,255,255,0.10),
+      rgba(255,255,255,0.00) 65%);
+    pointer-events:none;
+  }
+
+  /* flash overlay used on accept */
+  .warning-card::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    background: radial-gradient(45% 45% at 50% 45%,
+      rgba(255,255,255,0.18),
+      rgba(255,255,255,0.00) 70%);
+    opacity:0;
+    pointer-events:none;
+    transition: opacity 260ms ease;
+  }
+
+  .warning-card h2{
+    margin:0 0 10px;
+    font-size:20px;
+    color:#fff;
+    text-shadow:
+      0 0 10px rgba(255,255,255,0.25),
+      0 0 20px rgba(255,255,255,0.12);
+  }
+
+  .warning-card p{
+    margin:0 0 18px;
+    font-size:14.5px;
+    line-height:1.55;
+    color:rgba(232,236,248,0.92);
+  }
+
+  .warning-card .sub{
+    color:rgba(255,255,255,0.55);
+    font-size:12.5px;
+    margin-top:10px;
+  }
+
+  .confirm-btn{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    height:44px;
+    min-width:180px;
+    padding:0 18px;
+    border-radius:999px;
+    border:1px solid var(--btn-border);
+    background:var(--btn-bg);
+    color:var(--btn-text);
+    font-weight:750;
+    letter-spacing:0.04em;
+    cursor:pointer;
+    transition:transform .12s ease, background .12s ease, box-shadow .2s ease, filter .2s ease;
+    box-shadow:
+      0 0 10px rgba(255,255,255,0.10),
+      0 0 26px rgba(255,255,255,0.10);
+    text-shadow: 0 0 10px rgba(255,255,255,0.18);
+  }
+
+  .confirm-btn:hover{
+    background:var(--btn-hover);
+    transform:translateY(-1px);
+    box-shadow:
+      0 0 14px rgba(255,255,255,0.16),
+      0 0 36px rgba(255,255,255,0.12);
+  }
+
+  .confirm-btn:active{
+    transform:translateY(0) scale(0.98);
+    filter:brightness(1.06);
+  }
+
+  /* accept state */
+  .warning-card.accepting{
+    animation: acceptPulse 520ms ease, acceptGlitch 260ms linear;
+  }
+  .warning-card.accepting::after{
+    opacity:1;
+  }
+
+  .confirm-btn.accepting{
+    filter:brightness(1.18);
+    box-shadow:
+      0 0 18px rgba(255,255,255,0.22),
+      0 0 48px rgba(255,255,255,0.14);
+  }
+
+  /* ===========================
+        PATREON THANK YOU
+  ============================ */
+  .thanks-screen{
+    position:fixed;
+    inset:0;
+    display:flex;
+    align-items:flex-start;
+    justify-content:center;
+    padding:24px;
+    text-align:center;
+    background:#000 !important;
+    color:var(--fg);
+    opacity:0;
+    pointer-events:none;
+    z-index:9998;
+    overflow-y:auto;
+    overflow-x:hidden;
+    scrollbar-width:none;
+    -ms-overflow-style:none;
+    -webkit-overflow-scrolling:touch;
+  }
+  .thanks-screen::-webkit-scrollbar{ width:0; height:0; }
+
+  @keyframes thanksFadeIn { from { opacity:0; } to { opacity:1; } }
+  @keyframes thanksFadeOut { from { opacity:1; } to { opacity:0; } }
+
+  .thanks-card{
+    max-width:720px;
+    width:100%;
+    margin:0 auto;
+    background: rgba(8,12,18,0.52);
+    border: 1px solid rgba(255,255,255,0.22);
+    border-radius:18px;
+    padding:20px 18px 18px;
+    box-shadow:
+      0 0 14px rgba(255,255,255,0.10),
+      0 0 38px rgba(255,255,255,0.08);
+    backdrop-filter: blur(10px);
+  }
+
+  .thanks-title{
+    margin:0 0 7px;
+    font-size:18px;
+    line-height:1.1;
+    color:#fff;
+    text-shadow:
+      0 0 10px rgba(255,255,255,0.22),
+      0 0 20px rgba(255,255,255,0.10);
+    letter-spacing:0.08em;
+  }
+
+  .thanks-text{
+    margin:0 auto;
+    max-width:560px;
+    font-size:13px;
+    line-height:1.35;
+    color:rgba(232,236,248,0.92);
+  }
+
+  .thanks-special{
+    margin:10px auto 0;
+    max-width:620px;
+  }
+
+  .thanks-section-title{
+    margin:0 0 5px;
+    font-size:12px;
+    line-height:1.2;
+    color:rgba(232,236,248,0.78);
+    letter-spacing:0.035em;
+  }
+
+  .thanks-tier-grid{
+    display:grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap:2px 12px;
+    margin:0 auto;
+    max-width:620px;
+  }
+
+  .thanks-name-gray,
+  .thanks-name-violet,
+  .thanks-name-orange{
+    display:block;
+    min-width:0;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+    line-height:1.18;
+    letter-spacing:0.01em;
+  }
+
+  .thanks-name-gray{
+    color:rgba(205,211,224,0.72);
+    font-size:13px;
+    text-shadow:0 0 8px rgba(255,255,255,0.06);
+  }
+
+  .thanks-name-violet{
+    color:#b891ff;
+    font-size:14.2px;
+    font-weight:750;
+    text-shadow:
+      0 0 10px rgba(184,145,255,0.32),
+      0 0 22px rgba(184,145,255,0.12);
+  }
+
+  .thanks-big-grid{
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap:3px 14px;
+    max-width:500px;
+  }
+
+  .thanks-ntr-special{
+    max-width:560px;
+    margin-top:11px;
+    padding:9px 12px;
+    border:1px solid rgba(255,138,31,0.36);
+    border-radius:16px;
+    background:
+      radial-gradient(70% 90% at 50% 0%, rgba(255,138,31,0.13), rgba(255,138,31,0.00) 72%),
+      rgba(8,12,18,0.32);
+    box-shadow:
+      0 0 18px rgba(255,138,31,0.13),
+      inset 0 0 18px rgba(255,255,255,0.03);
+  }
+
+  .thanks-ntr-special .thanks-section-title{
+    color:rgba(255,206,160,0.92);
+    font-weight:800;
+    letter-spacing:0.08em;
+  }
+
+  .thanks-ntr-grid{
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap:3px 16px;
+    max-width:500px;
+  }
+
+  .thanks-name-orange{
+    color:#ff8a1f;
+    font-size:15.5px;
+    font-weight:900;
+    text-shadow:
+      0 0 10px rgba(255,138,31,0.58),
+      0 0 26px rgba(255,138,31,0.24);
+  }
+
+  .thanks-sub{
+    margin-top:8px;
+    font-size:12px;
+    color:rgba(255,255,255,0.55);
+  }
+
+  .thanks-abyssal{
+    position:relative;
+    isolation:isolate;
+    overflow:hidden;
+    box-sizing:border-box;
+    width:100%;
+    max-width:580px;
+    margin:14px auto 16px;
+    padding:17px 16px;
+    border:1px solid rgba(255,216,127,0.62);
+    border-radius:18px;
+    background:
+      radial-gradient(ellipse at 50% 0%, rgba(255,214,117,0.17), transparent 68%),
+      linear-gradient(135deg, rgba(43,28,62,0.70), rgba(9,17,28,0.92));
+    box-shadow:0 0 24px rgba(255,211,117,0.12), inset 0 0 22px rgba(255,232,184,0.035);
+  }
+  .thanks-abyssal::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    z-index:-1;
+    pointer-events:none;
+    background:
+      radial-gradient(circle at 13% 23%, rgba(255,232,180,0.88) 0 1px, transparent 2px),
+      radial-gradient(circle at 87% 28%, rgba(187,221,255,0.75) 0 1px, transparent 2px),
+      radial-gradient(circle at 22% 76%, rgba(201,177,255,0.70) 0 1px, transparent 2px),
+      radial-gradient(circle at 79% 81%, rgba(255,221,153,0.75) 0 1px, transparent 2px);
+  }
+  .thanks-abyssal-title{
+    margin:0;
+    color:#fff0c6;
+    font-size:11px;
+    font-weight:800;
+    line-height:1.35;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+  }
+  .thanks-abyssal-name{
+    margin:8px 0 7px;
+    color:#ffe7a2;
+    font-size:clamp(22px, 5.4vw, 30px);
+    font-weight:900;
+    line-height:1.15;
+    letter-spacing:0.015em;
+    overflow-wrap:anywhere;
+    text-shadow:0 0 18px rgba(255,211,117,0.24);
+  }
+  .thanks-abyssal-tier{
+    display:inline-block;
+    max-width:100%;
+    margin:0 0 10px;
+    padding:4px 10px;
+    box-sizing:border-box;
+    border:1px solid rgba(255,216,127,0.24);
+    border-radius:999px;
+    color:#ecd29a;
+    font-size:11px;
+    font-weight:750;
+    line-height:1.4;
+    overflow-wrap:anywhere;
+  }
+  .thanks-abyssal-message{
+    max-width:440px;
+    margin:0 auto;
+    color:rgba(248,241,222,0.94);
+    font-size:13px;
+    line-height:1.5;
+    overflow-wrap:anywhere;
+  }
+  @media (max-width:520px){
+    .thanks-abyssal{ margin:10px auto 12px; padding:14px 12px; border-radius:14px; }
+  }
+
+  @media (max-width:520px){
+    .thanks-card{
+      padding:15px 13px 14px;
+    }
+
+    .thanks-tier-grid,
+    .thanks-big-grid,
+    .thanks-ntr-grid{
+      grid-template-columns:1fr;
+      gap:3px;
+    }
+
+    .thanks-name-gray,
+    .thanks-name-violet,
+    .thanks-name-orange{
+      white-space:normal;
+    }
+
+    .thanks-name-orange{
+      font-size:15px;
+    }
+
+    .thanks-text{
+      font-size:12.8px;
+    }
+  }
+
+  @media (orientation:portrait) and (max-width:720px){
+    .thanks-screen{
+      align-items:flex-start;
+      justify-content:center;
+      overflow-y:auto;
+      overflow-x:hidden;
+      scrollbar-width:none;
+      -ms-overflow-style:none;
+      -webkit-overflow-scrolling:touch;
+      padding:
+        max(8px, env(safe-area-inset-top))
+        max(8px, env(safe-area-inset-right))
+        max(10px, env(safe-area-inset-bottom))
+        max(8px, env(safe-area-inset-left));
+      text-align:center;
+    }
+    .thanks-screen::-webkit-scrollbar{ width:0; height:0; }
+
+    .thanks-card{
+      width:min(100%, 520px);
+      max-width:520px;
+      margin:0 0 14px;
+      padding:13px 11px 12px;
+      border-radius:14px;
+      box-sizing:border-box;
+    }
+
+    .thanks-title{
+      font-size:18px;
+      line-height:1.08;
+      margin-bottom:6px;
+    }
+
+    .thanks-text{
+      max-width:100%;
+      font-size:12.8px;
+      line-height:1.26;
+    }
+
+    .thanks-special{
+      width:100%;
+      max-width:100%;
+      margin-top:8px;
+    }
+
+    .thanks-section-title{
+      font-size:12px;
+      line-height:1.15;
+      margin-bottom:4px;
+    }
+
+    .thanks-tier-grid{
+      grid-template-columns:repeat(2, minmax(0, 1fr));
+      gap:1px 8px;
+      max-width:100%;
+    }
+
+    .thanks-big-grid,
+    .thanks-ntr-grid{
+      grid-template-columns:repeat(2, minmax(0, 1fr));
+      gap:2px 8px;
+    }
+
+    .thanks-name-gray,
+    .thanks-name-violet,
+    .thanks-name-orange{
+      white-space:normal;
+      overflow-wrap:anywhere;
+      word-break:normal;
+      line-height:1.14;
+    }
+
+    .thanks-name-gray{ font-size:13px; }
+    .thanks-name-violet{ font-size:14px; }
+    .thanks-name-orange{ font-size:14.6px; }
+
+    .thanks-ntr-special{
+      max-width:100%;
+      padding:8px 9px;
+      box-sizing:border-box;
+    }
+
+  }
+
+  @media (orientation:portrait) and (max-width:340px){
+    .thanks-tier-grid{
+      grid-template-columns:1fr;
+      gap:1px;
+    }
+
+    .thanks-card{
+      padding:11px 9px 10px;
+    }
+
+    .thanks-title{ font-size:18px; }
+    .thanks-text{ font-size:12.6px; }
+  }
+</style>
+<link rel="stylesheet" href="assets/styles/theme.css">
+
+<div class="intro-screen" id="intro">
+  <div class="intro-text" id="introText" aria-label="iNTeRcepted"></div>
+</div>
+
+<div class="warning-screen" id="warningScreen">
+  <div class="warning-card" id="warningCard">
+    <h2>⚠️ Age Restriction & Fiction Notice</h2>
+    <p>
+      This game is intended for players aged 18 and older.<br><br>
+      All characters depicted are fictional creations and are at least 18 years old within the game's story.
+      Any resemblance to real individuals is purely coincidental.<br><br>
+      By continuing, you confirm you are legally an adult.
+    </p>
+
+    <button class="confirm-btn" id="confirmWarning">I Understand / Continue</button>
+    <div class="sub">You must confirm to proceed.</div>
+  </div>
+</div>
+
+<!-- ✅ Patreon thank you screen --> 
+<div class="thanks-screen" id="thanksScreen" aria-hidden="true">
+  <div class="thanks-card">
+    <div class="thanks-title" data-i18n="thanks.title">THANK YOU</div>
+    <p class="thanks-text" data-i18n="thanks.intro">A huge thank you to all Patreon supporters. Your support makes this game possible.</p>
+
+    <section class="thanks-abyssal" aria-labelledby="thanksAbyssalName">
+      <h2 class="thanks-abyssal-title"><span aria-hidden="true">✦ </span><span data-i18n="thanks.special_title">Special Thanks</span><span aria-hidden="true"> ✦</span></h2>
+      <p translate="no" class="thanks-abyssal-name" id="thanksAbyssalName">AbyssalEros</p>
+      <p class="thanks-abyssal-tier" data-i18n="thanks.ultimate_tier">Ultimate Supporter</p>
+      <p class="thanks-abyssal-message" data-i18n="thanks.abyssal_message">A huge thank you to AbyssalEros for your incredible generosity and support. You help bring iNTeRcepted to life.</p>
+    </section>
+
+    <div class="thanks-special">
+      <p class="thanks-section-title" id="thanksVoyeurTitle"><span aria-hidden="true">👀 </span><span data-i18n="thanks.voyeur_tier">VOYEUR</span></p>
+      <div class="thanks-tier-grid" aria-labelledby="thanksVoyeurTitle">
+        <span translate="no" class="thanks-name-gray">Reptiloid125</span>
+        <span translate="no" class="thanks-name-gray">chonk</span>
+        <span translate="no" class="thanks-name-gray">neotzu</span>
+        <span translate="no" class="thanks-name-gray">Cpt Yesterday</span>
+        <span translate="no" class="thanks-name-gray">jin</span>
+        <span translate="no" class="thanks-name-gray">Ezio</span>
+        <span translate="no" class="thanks-name-gray">Deathskull</span>
+        <span translate="no" class="thanks-name-gray">Jaeo</span>
+        <span translate="no" class="thanks-name-gray">Eledged</span>
+        <span translate="no" class="thanks-name-gray">TheRoyalBeast21</span>
+        <span translate="no" class="thanks-name-gray">foxfire_wavewind</span>
+        <span translate="no" class="thanks-name-gray">Jess</span>
+        <span translate="no" class="thanks-name-gray">BBDrick</span>
+        <span translate="no" class="thanks-name-gray">QueenyLoo</span>
+        <span translate="no" class="thanks-name-gray">QtrCavTrooper</span>
+        <span translate="no" class="thanks-name-gray">TRDTYukiTV</span>
+        <span translate="no" class="thanks-name-gray">daishikan</span>
+        <span translate="no" class="thanks-name-gray">llamaman3.0</span>
+        <span translate="no" class="thanks-name-gray">GREENx</span>
+        <span translate="no" class="thanks-name-gray">Honk</span>
+        <span translate="no" class="thanks-name-gray">deadchild</span>
+        <span translate="no" class="thanks-name-gray">Trixy</span>
+        <span translate="no" class="thanks-name-gray">Lefty</span>
+        <span translate="no" class="thanks-name-gray">TerrySoScary</span>
+        <span translate="no" class="thanks-name-gray">Dylpickle</span>
+        <span translate="no" class="thanks-name-gray">DenGi_HG</span>
+        <span translate="no" class="thanks-name-gray">xenith</span>
+        <span translate="no" class="thanks-name-gray">Berethain</span>
+        <span translate="no" class="thanks-name-gray">B</span>
+        <span translate="no" class="thanks-name-gray">Greg</span>
+        <span translate="no" class="thanks-name-gray">Victoriouself</span>
+        <span translate="no" class="thanks-name-gray">Valoutre</span>
+        <span translate="no" class="thanks-name-gray">johnnyscissorfingers</span>
+        <span translate="no" class="thanks-name-gray">Mercurio</span>
+        <span translate="no" class="thanks-name-gray">MMMMMMMMMMM</span>
+        <span translate="no" class="thanks-name-gray">Danteshell</span>
+        <span translate="no" class="thanks-name-gray">Amnisia0</span>
+        <span translate="no" class="thanks-name-gray">Proud China</span>
+        <span translate="no" class="thanks-name-gray">quidem</span>
+        <span translate="no" class="thanks-name-gray">Fay</span>
+        <span translate="no" class="thanks-name-gray">anawil.aj</span>
+        <span translate="no" class="thanks-name-gray">jmanhov</span>
+        <span translate="no" class="thanks-name-gray">jumbo</span>
+        <span translate="no" class="thanks-name-gray">SHAGGY</span>
+        <span translate="no" class="thanks-name-gray">naomik^2</span>
+        <span translate="no" class="thanks-name-gray">blacky09</span>
+        <span translate="no" class="thanks-name-gray">winter_11.</span>
+        <span translate="no" class="thanks-name-gray">jowall</span>
+        <span translate="no" class="thanks-name-gray">Zynicus</span>
+        <span translate="no" class="thanks-name-gray">RavenS034</span>
+        <span translate="no" class="thanks-name-gray">Cimik</span>
+        <span translate="no" class="thanks-name-gray">Blind Monk</span>
+        <span translate="no" class="thanks-name-gray">Blessed B3AST</span>
+        <span translate="no" class="thanks-name-gray">BigMac (200806218)</span>
+        <span translate="no" class="thanks-name-gray">ed3503</span>
+        <span translate="no" class="thanks-name-gray">sharkfan10265641</span>
+      </div>
+    </div>
+
+    <div class="thanks-special">
+      <p class="thanks-section-title" id="thanksBigLoverTitle"><span aria-hidden="true">💜 </span><span data-i18n="thanks.big_lover_tier">BIG LOVER</span></p>
+      <div class="thanks-tier-grid thanks-big-grid" aria-labelledby="thanksBigLoverTitle">
+        <span translate="no" class="thanks-name-violet">De Kale Hasilanier</span>
+        <span translate="no" class="thanks-name-violet">Cannon</span>
+        <span translate="no" class="thanks-name-violet">VPPPP</span>
+        <span translate="no" class="thanks-name-violet">Rain</span>
+        <span translate="no" class="thanks-name-violet">tapschan2010</span>
+        <span translate="no" class="thanks-name-violet">Nauthiz</span>
+        <span translate="no" class="thanks-name-violet">Sasquatch</span>
+        <span translate="no" class="thanks-name-violet">Drakonis</span>
+        <span translate="no" class="thanks-name-violet">christosicre</span>
+      </div>
+    </div>
+
+    <div class="thanks-special thanks-ntr-special">
+      <p class="thanks-section-title" id="thanksNtrOverlordTitle"><span aria-hidden="true">🔥 </span><span data-i18n="thanks.ntr_overlord_tier">NTR OVERLORD</span></p>
+      <div class="thanks-tier-grid thanks-ntr-grid" aria-labelledby="thanksNtrOverlordTitle">
+        <span translate="no" class="thanks-name-orange">Spike</span>
+        <span translate="no" class="thanks-name-orange">Эскатон</span>
+        <span translate="no" class="thanks-name-orange">browneagle12</span>
+        <span translate="no" class="thanks-name-orange">jack0001k</span>
+        <span translate="no" class="thanks-name-orange">Seng</span>
+        <span translate="no" class="thanks-name-orange">Techn1KaL</span>
+        <span translate="no" class="thanks-name-orange">An3rion</span>
+        <span translate="no" class="thanks-name-orange">Izari</span>
+        <span translate="no" class="thanks-name-orange">Xurharian</span>
+        <span translate="no" class="thanks-name-orange">kuro</span>
+        <span translate="no" class="thanks-name-orange">Arms</span>
+        <span translate="no" class="thanks-name-orange">NS</span>
+        <span translate="no" class="thanks-name-orange">Kodi9876</span>
+      </div>
+    </div>
+
+    <div class="thanks-sub" data-i18n="thanks.signoff">— sincerely, thank you.</div>
+  </div>
+</div>
+
+<script>
+(function(){
+  const intro     = document.getElementById('intro');
+  const introText = document.getElementById('introText');
+  const warning   = document.getElementById('warningScreen');
+  const card      = document.getElementById('warningCard');
+  const btn       = document.getElementById('confirmWarning');
+
+  // ✅ new
+  const thanks    = document.getElementById('thanksScreen');
+  const instantMode =
+    document.documentElement.classList.contains("android-webview") ||
+    document.documentElement.classList.contains("lite-effects") ||
+    document.body.classList.contains("android-webview") ||
+    document.body.classList.contains("lite-effects");
+
+  // Build spans
+  const text = "iNTeRcepted";
+  introText.innerHTML = "";
+  const spans = [];
+  for (let i = 0; i < text.length; i++) {
+    const s = document.createElement("span");
+    s.className = "ch";
+    s.textContent = text[i];
+    introText.appendChild(s);
+    spans.push(s);
+  }
+
+  // Indices: 0 i, 1 N, 2 T, 3 e, 4 R, 5 c, 6 e, 7 p, 8 t, 9 e, 10 d
+  const NTR  = [1, 2, 4];
+  const REST = [0, 3, 5, 6, 7, 8, 9, 10];
+
+  // Advance the intro only while it can be painted. Wall-clock timers used
+  // to consume the remaining letters while Windows hid/minimized the game.
+  const introTasks = [];
+  let introTime = 0;
+  let introFrame = 0;
+  let previousIntroFrame = null;
+  function syncIntroVisibility() {
+    previousIntroFrame = null;
+    const playState = document.visibilityState === "visible" ? "running" : "paused";
+    introText.style.animationPlayState = playState;
+    spans.forEach(span => { span.style.animationPlayState = playState; });
+  }
+  function stopIntroClock() {
+    cancelAnimationFrame(introFrame);
+    introFrame = 0;
+    introTasks.length = 0;
+    document.removeEventListener("visibilitychange", syncIntroVisibility);
+    window.removeEventListener("scene:mounted", retireIntroClock);
+  }
+  function retireIntroClock() {
+    if (!intro.isConnected) stopIntroClock();
+  }
+  function tickIntro(now) {
+    if (!intro.isConnected) { stopIntroClock(); return; }
+    if (document.visibilityState === "visible") {
+      // A blocked renderer has not presented the elapsed time to the player.
+      // Do not let a large save load make every remaining letter expire at once.
+      if (previousIntroFrame !== null) introTime += Math.min(now - previousIntroFrame, 100);
+      previousIntroFrame = now;
+      const due = introTasks.filter(task => task.at <= introTime);
+      for (const task of due) introTasks.splice(introTasks.indexOf(task), 1);
+      for (const task of due) task.callback();
+    } else {
+      previousIntroFrame = null;
+    }
+    introFrame = introTasks.length ? requestAnimationFrame(tickIntro) : 0;
+  }
+  function scheduleIntro(callback, delay) {
+    introTasks.push({ at: introTime + delay, callback });
+    if (!introFrame) introFrame = requestAnimationFrame(tickIntro);
+  }
+
+  function revealSpan(idx, flicker){
+    const sp = spans[idx];
+    if (!sp) return;
+    sp.classList.add("on");
+    if (flicker) {
+      sp.style.opacity = "0.25";
+      scheduleIntro(() => { sp.style.opacity = ""; }, 110);
+    }
+  }
+
+  // ===== Timing controls =====
+  const INTRO_START_DELAY = 100;
+
+  const NTR_START_AT = 220;
+  const NTR_STEP = 560;
+  const PAUSE_AFTER_R = 1400;
+  const REST_STEP = 170;
+  const HOLD_AFTER_FULL = 1100;
+
+// ✅ new thanks timing (longer hold)
+const THANKS_FADE_IN_MS  = 900;
+const THANKS_HOLD_MS     = 6000; // automatic thanks display duration
+const THANKS_FADE_OUT_MS = 900;
+
+  function startLetters() {
+    let t = NTR_START_AT;
+
+    NTR.forEach((idx) => {
+      t += NTR_STEP;
+      scheduleIntro(() => revealSpan(idx, true), t);
+    });
+
+    t += PAUSE_AFTER_R;
+
+    REST.forEach((idx) => {
+      t += REST_STEP;
+      scheduleIntro(() => revealSpan(idx, false), t);
+    });
+
+    return t;
+  }
+
+  if (instantMode) {
+    intro.style.display = "none";
+    intro.style.opacity = "0";
+    warning.style.opacity = "1";
+    warning.style.transform = "none";
+  } else {
+    document.addEventListener("visibilitychange", syncIntroVisibility);
+    window.addEventListener("scene:mounted", retireIntroClock);
+    syncIntroVisibility();
+    // 1) Fade-in intro + letters
+    scheduleIntro(() => {
+      intro.style.opacity = 1;
+      introText.style.animation = "introFadeIn 1.6s forwards";
+
+      const lastLetterAt = startLetters();
+      const fadeOutAt = INTRO_START_DELAY + lastLetterAt + HOLD_AFTER_FULL;
+
+      // 2) Fade-out intro
+      scheduleIntro(() => {
+        introText.style.animation = "introFadeOut 1.4s forwards";
+      }, fadeOutAt);
+
+      // 3) Show warning after fade-out
+      const warningAt = fadeOutAt + 1400;
+      scheduleIntro(() => {
+        stopIntroClock();
+        intro.style.display = "none";
+        warning.style.animation = "warningFadeIn 1.6s forwards";
+      }, warningAt);
+
+    }, INTRO_START_DELAY);
+  }
+
+  /* ========= WARNING BUTTON (with accept animation) ========= */
+  btn.addEventListener("click", () => {
+    // prevent double click spam
+    if (btn.dataset.locked === "1") return;
+    btn.dataset.locked = "1";
+
+    // ✅ accept animation (visual only)
+    if (!instantMode) {
+      card.classList.add("accepting");
+      btn.classList.add("accepting");
+    }
+
+    if (instantMode) {
+      warning.style.opacity = "0";
+      warning.style.display = "none";
+      thanks.setAttribute("aria-hidden", "false");
+      thanks.style.opacity = "1";
+      thanks.style.pointerEvents = "auto";
+      try { thanks.scrollTop = 0; } catch {}
+      setTimeout(() => {
+        thanks.style.opacity = "0";
+        thanks.style.pointerEvents = "none";
+        window.navigateToScene('splash');
+      }, Math.max(1200, THANKS_HOLD_MS));
+      return;
+    }
+
+    // Let the accept animation play a bit, then fade-out
+    setTimeout(() => {
+      warning.style.animation = "warningFadeOut 2.2s forwards";
+    }, 420);
+
+    // ✅ after warning fades out -> show thanks -> then go splash
+    const afterWarningMs = 420 + 2200;
+
+    setTimeout(() => {
+      // hide warning from interaction/visibility
+      warning.style.display = "none";
+
+      // show thanks screen
+      thanks.setAttribute("aria-hidden", "false");
+      thanks.style.pointerEvents = "auto";
+      try { thanks.scrollTop = 0; } catch {}
+      thanks.style.animation = `thanksFadeIn ${THANKS_FADE_IN_MS}ms forwards`;
+
+      // hold then fade out
+      setTimeout(() => {
+        thanks.style.animation = `thanksFadeOut ${THANKS_FADE_OUT_MS}ms forwards`;
+      }, THANKS_FADE_IN_MS + THANKS_HOLD_MS);
+
+      // then navigate
+      setTimeout(() => {
+        thanks.style.pointerEvents = "none";
+        window.navigateToScene('splash');
+      }, THANKS_FADE_IN_MS + THANKS_HOLD_MS + THANKS_FADE_OUT_MS);
+
+    }, afterWarningMs);
+  });
+  btn.dataset.handlerReady = "1";
+})();
+</script>

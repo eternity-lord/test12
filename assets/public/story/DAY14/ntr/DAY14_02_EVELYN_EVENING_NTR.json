@@ -1,0 +1,51 @@
+{
+  "onceKey": "d14_02_evelyn_evening_ntr_v1",
+  "contactId": "evelyn",
+  "requireOnceKey": "d14_01_evelyn_afternoon_ntr_v1",
+  "steps": [
+    {"type":"message","delay":1200,"from":"player","text":"Thanks for coming with me today 😊"},
+    {"type":"message","delay":850,"from":"evelyn","text":"Honestly, I should be thanking you"},
+    {"type":"message","delay":850,"from":"evelyn","text":"These walks help me clear my mind"},
+    {"type":"message","delay":850,"from":"evelyn","text":"They do me a lot of good"},
+    {"type":"message","delay":850,"from":"player","text":"Is something bothering you?"},
+    {"type":"message","delay":850,"from":"evelyn","text":"No, not really"},
+    {"type":"message","delay":850,"from":"evelyn","text":"Everything is fine"},
+    {"type":"message","delay":850,"from":"player","text":"Are you sure?"},
+    {"type":"message","delay":850,"from":"evelyn","text":"Yes"},
+    {"type":"message","delay":850,"from":"evelyn","text":"I'm more worried about your recovery. Don't forget the doctor is coming tomorrow to check your leg"},
+    {"type":"message","delay":850,"from":"evelyn","text":"Anyway, I need to leave for work"},
+    {"type":"message","delay":850,"from":"evelyn","text":"We'll talk during my break if you're still awake"},
+    {"type":"note","delay":1200,"text":"3 HOURS LATER"},
+    {"type":"message","delay":850,"from":"evelyn","text":"Hey, I'm on my break"},
+    {"type":"message","delay":850,"from":"player","text":"How are you doing?"},
+    {"type":"message","delay":850,"from":"evelyn","text":"I'm tired"},
+    {"type":"message","delay":850,"from":"player","text":"Is everything okay?"},
+    {"type":"message","delay":850,"from":"evelyn","text":"Yeah"},
+    {"type":"message","delay":850,"from":"evelyn","text":"Just one of those days"},
+    {"type":"message","delay":850,"from":"player","text":"You're almost done"},
+    {"type":"message","delay":850,"from":"player","text":"Try to stay positive"},
+    {"type":"message","delay":850,"from":"player","text":"Did your manager give you a hard time again?"},
+    {"type":"message","delay":850,"from":"evelyn","text":"Not exactly"},
+    {"type":"message","delay":850,"from":"evelyn","text":"It's nothing important"},
+    {"type":"message","delay":850,"from":"evelyn","text":"I should get back to work"},
+    {"type":"message","delay":850,"from":"evelyn","text":"I'll see you tomorrow"},
+    {"type":"message","delay":850,"from":"evelyn","text":"And I'll try to wake up earlier this time 😅"},
+    {"type":"message","delay":850,"from":"player","text":"I'll believe it when I see it"},
+    {"type":"message","delay":850,"from":"player","text":"See you tomorrow"},
+    {"type":"note","delay":1200,"text":"4H30 LATER"},
+    {"type":"hak_overlay","title":"HAK//NOTICE","messages":["Event intensity increased","Communication patterns show increased emotional reliance","Workplace influence markers continue to rise","Additional evidence archived for review",{"kind":"thought","speaker":"player","text":"HAK keeps finding more signs of closeness, and I can't pretend that doesn't bother me."}]},
+    {"type":"hak_add_evidence","kind":"ntr","route":"ntr","profileId":"evelyn","profile":{"name":"{{name:evelyn}}","avatar":"assets/avatars/evelyn.jpg","kind":"ntr","route":"ntr"},"evidences":[{"id":"evelyn_ntr_d14_evidence_1","kind":"ntr","route":"ntr","src":"assets/pictures/evidence/evelyn_work_evening.jpg","url":"assets/pictures/evidence/evelyn_work_evening.jpg","thumb":"assets/pictures/evidence/evelyn_work_evening.jpg","title":"Late Shift","text":"HAK archived activity from a late shift showing increased workplace familiarity and comfort","time":"EVENING"}]},
+    {"type":"onlyfun_post","onceKey":"of_evelyn_d14_comment_v1","creatorId":"static_muse","image":"assets/pictures/OnlyFun/posts/evelyn_d14_comment.jpg","text":"Can't wait to ride that ass","likes":1328,"requiresSub":true,"notify":true},
+    {"type":"if","condition":"active_character:lena","then":[
+      {"type":"start_story","goHome":true,"startStory":"story/DAY14/DAY14_LENA_NIGHT.json","startDelayMs":200}
+    ],"else":[
+      {"type":"if","condition":"active_character:mason","then":[
+        {"type":"time_card","text":"DAY 15","goHome":true,"startStory":"story/DAY15/ntr/DAY15_00_MASON_MORNING_NTR.json","startDelayMs":200}
+      ],"else":[
+        {"type":"time_card","text":"DAY 15","goHome":true,"startStory":"story/DAY15/ntr/DAY15_00_EVELYN_MORNING_NTR.json","startDelayMs":200}
+      ]}
+    ],"__masonNextDayPatched":true}
+  ],
+  "route": "ntr",
+  "routeLock": "route_evelyn_locked_v1:ntr"
+}

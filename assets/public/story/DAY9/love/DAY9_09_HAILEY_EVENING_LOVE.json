@@ -1,0 +1,68 @@
+{
+  "onceKey": "d9_05_hailey_evening_love_v1",
+  "contactId": "hailey",
+  "requireOnceKey": "d9_01_lena_evening_love_v1|d9_04_hailey_afternoon_love_v1",
+  "steps": [
+    {"type":"notify","delay":1200,"fromId":"hailey","fromName":"{{name:hailey}}","avatar":"assets/avatars/hailey.jpg","text":"Final outfit evidence 😌","target":"conversation"},
+    {"type":"message","delay":850,"from":"hailey","text":"Okay"},
+    {"type":"message","delay":850,"from":"hailey","text":"Official party version incoming"},
+    {"type":"if","condition":"choice:d8_05_hailey_outfit_choice:cute","then":[
+      {"type":"image","delay":900,"from":"hailey","image":"assets/pictures/Conversation/hailey_cute_outfit.jpg"},
+      {"type":"message","delay":850,"from":"hailey","text":"Cute and safe, exactly like you ordered"},
+      {"type":"message","delay":850,"from":"hailey","text":"Tell me how cute i am 😌"}
+    ],"else":[
+      {"type":"if","condition":"choice:d8_05_hailey_outfit_choice:bold","then":[
+        {"type":"image","delay":900,"from":"hailey","image":"assets/pictures/Conversation/hailey_bold_outfit.jpg"},
+        {"type":"message","delay":850,"from":"hailey","text":"The bold one"},
+        {"type":"message","delay":850,"from":"hailey","text":"Your taste is dangerous"},
+        {"type":"message","delay":850,"from":"hailey","text":"I respect it 💅"}
+      ],"else":[
+        {"type":"image","delay":900,"from":"hailey","image":"assets/pictures/Conversation/hailey_dramatic_outfit.jpg"},
+        {"type":"message","delay":850,"from":"hailey","text":"The dramatic one"},
+        {"type":"message","delay":850,"from":"hailey","text":"You did this"},
+        {"type":"message","delay":850,"from":"hailey","text":"You'll have to take responsibility 😇"}
+      ]}
+    ]},
+    {"type":"message","delay":900,"from":"player","text":"You look really great"},
+    {"type":"message","delay":850,"from":"hailey","text":"I know"},
+    {"type":"message","delay":850,"from":"hailey","text":"Say it again though"},
+    {"type":"message","delay":900,"from":"player","text":"Don't push it little demon"},
+    {"type":"message","delay":850,"from":"hailey","text":"Bad answer 😌"},
+    {"type":"message","delay":850,"from":"hailey","text":"Going with the girls now"},
+    {"type":"message","delay":850,"from":"hailey","text":"Not staying too late"},
+    {"type":"message","delay":850,"from":"hailey","text":"Do not start pacing like an old man"},
+    {"type":"note","text":"LATER THAT NIGHT"},
+    {"type":"message","delay":850,"from":"hailey","text":"Update"},
+    {"type":"message","delay":850,"from":"hailey","text":"Music loud"},
+    {"type":"message","delay":850,"from":"hailey","text":"Snacks suspicious"},
+    {"type":"message","delay":850,"from":"hailey","text":"And I look amazing"},
+    {"type":"message","delay":850,"from":"hailey","text":"People noticed"},
+    {"type":"message","delay":850,"from":"hailey","text":"Do not be proud"},
+    {"type":"message","delay":900,"from":"player","text":"Too late"},
+    {"type":"message","delay":850,"from":"hailey","text":"Menace 😇"},
+    {"type":"message","delay":850,"from":"hailey","text":"Also"},
+    {"type":"message","delay":850,"from":"hailey","text":"I remembered the study thing"},
+    {"type":"message","delay":850,"from":"hailey","text":"Start with what changes, then why it matters"},
+    {"type":"message","delay":900,"from":"player","text":"At a party?"},
+    {"type":"message","delay":850,"from":"hailey","text":"My brain is multitasking"},
+    {"type":"message","delay":850,"from":"hailey","text":"Hot and educated 💅"},
+    {"type":"note","text":"LATE EVENING"},
+    {"type":"message","delay":850,"from":"hailey","text":"Home"},
+    {"type":"message","delay":850,"from":"player","text":"Before midnight?"},
+    {"type":"message","delay":850,"from":"hailey","text":"Responsible queen behavior"},
+    {"type":"message","delay":900,"from":"player","text":"Everything okay?"},
+    {"type":"message","delay":850,"from":"hailey","text":"Yeah"},
+    {"type":"message","delay":850,"from":"hailey","text":"It was actually really good"},
+    {"type":"message","delay":850,"from":"hailey","text":"And you did a good job picking the outfit"},
+    {"type":"message","delay":850,"from":"hailey","text":"Proud of you too 😌"},
+    {"type":"message","delay":850,"from":"hailey","text":"Do not make it a thing"},
+    {"type":"message","delay":850,"from":"hailey","text":"Okay maybe a small thing 🤍"},
+    {"type":"message","delay":900,"from":"player","text":"Go sleep"},
+    {"type":"message","delay":850,"from":"hailey","text":"Goodnight😇"},
+    {"type":"if","condition":"active_character:mason","then":[
+      {"type":"start_story","goHome":true,"startStory":"story/DAY9/DAY9_MASON_EVENING.json","startDelayMs":200}
+    ],"else":[
+      {"type":"time_card","text":"DAY 10","goHome":true,"startStory":"story/DAY10/DAY10_00_AIDEN_SHARED.json","startDelayMs":200}
+    ]}
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "onceKey": "d2_09_aiden_arrived_v1",
+  "contactId": "aiden",
+  "onCompleteStartStory": "story/DAY2/DAY2_10_MASON_REPLY.json",
+  "steps": [
+    {"type":"notify","delay":1200,"fromId":"aiden","fromName":"{{name:aiden}}","avatar":"assets/avatars/aiden.jpg","text":"Update","target":"conversation"},
+    {"type":"message","delay":900,"from":"aiden","fromName":"{{name:aiden}}","text":"We made it on time"},
+    {"type":"message","delay":900,"from":"aiden","text":"Barely"},
+    {"type":"message","delay":900,"from":"aiden","text":"{{name:hailey}} almost killed us in the car 😂"},
+    {"type":"message","delay":900,"from":"aiden","text":"She wasn’t even the driver 😭"},
+    {"type":"image","image":"assets/pictures/Conversation/aiden_hailey_arrived_day2.jpg"},
+    {"type":"message","delay":900,"from":"player","fromName":"Player","text":"Thank you"},
+    {"type":"message","delay":900,"from":"player","text":"Seriously"},
+    {"type":"message","delay":900,"from":"aiden","text":"No problem"},
+    {"type":"message","delay":900,"from":"aiden","text":"Why didn’t {{name:mason}} answer you"},
+    {"type":"message","delay":900,"from":"player","text":"I still don’t know"},
+    {"type":"message","delay":900,"from":"player","text":"Oh by the way"},
+    {"type":"message","delay":900,"from":"player","text":"If it doesn’t annoy you"},
+    {"type":"message","delay":900,"from":"player","text":"You’ll have to bring {{name:hailey}} back too"},
+    {"type":"message","delay":900,"from":"aiden","text":"Yeah that’s fine"},
+    {"type":"message","delay":900,"from":"aiden","text":"I’m here anyway"},
+    {"type":"message","delay":900,"from":"aiden","text":"I’m gonna see some friends while she trains"},
+    {"type":"message","delay":900,"from":"aiden","text":"Then I’ll bring her back"},
+    {"type":"message","delay":900,"from":"aiden","text":"You want us to grab something from the store on the way back ?"},
+    {"type":"message","delay":900,"from":"player","text":"Why not"},
+    {"type":"message","delay":900,"from":"aiden","text":"Alright"},
+    {"type":"message","delay":900,"from":"aiden","text":"Talk later "},
+    {"type":"message","delay":900,"from":"player","text":"Later, and thanks again"},
+    {"type":"note","text":"20 minutes later"}
+  ]
+}

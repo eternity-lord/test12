@@ -1,0 +1,47 @@
+{
+  "onceKey": "d11_02_evelyn_evening_love_v1",
+  "contactId": "evelyn",
+  "requireOnceKey": "d11_01_evelyn_afternoon_love_v1",
+  "steps": [
+    {"type":"notify","delay":1200,"fromId":"evelyn","fromName":"{{name:evelyn}}","avatar":"assets/avatars/evelyn.jpg","text":"Hey 😊","target":"conversation"},
+    {"type":"message","delay":850,"from":"evelyn","text":"How are you doing?"},
+    {"type":"message","delay":850,"from":"player","text":"Good"},
+    {"type":"message","delay":850,"from":"player","text":"I finished work for today"},
+    {"type":"message","delay":850,"from":"evelyn","text":"How did it go?"},
+    {"type":"message","delay":850,"from":"player","text":"Pretty well"},
+    {"type":"message","delay":850,"from":"player","text":"It's a little difficult staying focused for hours and paying attention to everything"},
+    {"type":"message","delay":850,"from":"player","text":"But it's still better than working in a supermarket or doing something physical right now"},
+    {"type":"message","delay":850,"from":"evelyn","text":"That makes sense"},
+    {"type":"message","delay":850,"from":"evelyn","text":"Your leg probably agrees with that too 😌"},
+    {"type":"message","delay":850,"from":"player","text":"Definitely"},
+    {"type":"message","delay":850,"from":"player","text":"What about you?"},
+    {"type":"message","delay":850,"from":"player","text":"Did you actually take some time for yourself today?"},
+    {"type":"message","delay":850,"from":"evelyn","text":"Maybe a little"},
+    {"type":"image","delay":850,"from":"evelyn","image":"assets/pictures/Conversation/evelyn_on_couch.jpg"},
+    {"type":"message","delay":850,"from":"evelyn","text":"I was resting on the couch while waiting for you to finish work"},
+    {"type":"message","delay":850,"from":"player","text":"Good"},
+    {"type":"message","delay":850,"from":"player","text":"I'm glad you finally slowed down for a bit"},
+    {"type":"message","delay":850,"from":"evelyn","text":"Don't get used to it 😄"},
+    {"type":"message","delay":850,"from":"evelyn","text":"Actually, do you want to come downstairs and watch something with me?"},
+    {"type":"message","delay":850,"from":"player","text":"Yeah, I'd love to"},
+    {"type":"message","delay":850,"from":"player","text":"I just need to take a shower first"},
+    {"type":"message","delay":850,"from":"player","text":"Then I'll come down"},
+    {"type":"message","delay":850,"from":"evelyn","text":"Sounds good"},
+    {"type":"message","delay":850,"from":"evelyn","text":"Do you need help getting into the shower?"},
+    {"type":"message","delay":850,"from":"player","text":"I think I'll be okay"},
+    {"type":"message","delay":850,"from":"player","text":"But if I need help, I'll call you"},
+    {"type":"message","delay":850,"from":"evelyn","text":"Alright 😌"},
+    {"type":"message","delay":850,"from":"evelyn","text":"See you in a bit"},
+    {"type":"if","condition":"active_character:lena","then":[
+      {"type":"start_story","goHome":true,"startStory":"story/DAY11/DAY11_LENA_EVENING.json","startDelayMs":200}
+    ],"else":[
+      {"type":"if","condition":"active_character:hailey","then":[
+        {"type":"start_story","goHome":true,"startStory":"story/DAY11/DAY11_HAILEY_EVENING.json","startDelayMs":200}
+      ],"else":[
+        {"type":"time_card","text":"DAY 12","goHome":true,"startStory":"story/DAY12/love/DAY12_00_MASON_MORNING_LOVE.json","startDelayMs":200}
+      ]}
+    ]}
+  ],
+  "route": "love",
+  "routeLock": "route_evelyn_locked_v1:love"
+}

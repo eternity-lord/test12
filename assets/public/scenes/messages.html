@@ -1,0 +1,1237 @@
+<!-- scenes/messages.html -->
+<style>
+:root{
+  /* ===== Same theme as HOME ===== */
+  --fg:#f0f5ff;
+  --muted:rgba(240,245,255,0.68);
+
+  --btn-bg: rgba(6,7,10,0.46);
+  --btn-bg-hover: rgba(8,10,14,0.60);
+
+  --edge: rgba(245,248,255,0.20);
+  --edge-strong: rgba(245,248,255,0.44);
+
+  --glow-soft: rgba(112,220,255,0.12);
+  --glow-strong: rgba(112,220,255,0.18);
+
+  --accent-a: rgba(112,220,255,0.55); /* soft cyan */
+  --accent-b: rgba(255,166,92,0.45);  /* soft orange */
+
+  --line: rgba(245,248,255,0.14);
+
+  --card2: rgba(6,7,10,0.46);
+
+  /* ✅ avatar crop focus (top) */
+  --avatar-focus-y: 20%;
+}
+
+/* (kept, but we won't use them on cards anymore) */
+@keyframes borderPulse {
+  0%   { opacity:0.18; filter:blur(6px); }
+  50%  { opacity:0.46; filter:blur(8px); }
+  100% { opacity:0.22; filter:blur(6px); }
+}
+@keyframes microGlitchY {
+  0%   { transform: translateY(0); }
+  20%  { transform: translateY(-1px); }
+  45%  { transform: translateY(1px); }
+  70%  { transform: translateY(-0.5px); }
+  100% { transform: translateY(0); }
+}
+
+/* ===== Layout ===== */
+.wrap{
+  height:100%;
+  padding:24px 16px 16px;
+  position:relative;
+  z-index:0;
+
+  color:var(--fg);
+  font-family:var(--ui-font);
+
+  overflow-y:auto;
+  overflow-x:hidden;
+
+  /* ✅ hide scrollbars (white bars) */
+  scrollbar-width:none;
+  -ms-overflow-style:none;
+}
+.wrap::-webkit-scrollbar{ width:0; height:0; }
+
+/* ✅ wallpaper attenuated + blurred */
+.wrap::after{
+  content:"";
+  position:fixed;               /* ✅ follows when scrolling */
+  top:-18px; left:-18px; right:-18px; bottom:-18px;
+  z-index:-3;
+  pointer-events:none;
+
+  background: var(--phone-wallpaper-image) center/cover no-repeat;
+  filter: blur(12px) saturate(0.55) brightness(0.62) contrast(1.06);
+  transform: scale(1.10);
+  opacity:1;
+}
+
+/* ✅ matte wash */
+.wrap::before{
+  content:"";
+  position:fixed;               /* ✅ follows when scrolling */
+  inset:0;
+  z-index:-2;
+  pointer-events:none;
+
+  background:
+    radial-gradient(circle at top, rgba(18,26,46,0.18), rgba(3,5,16,0.42)),
+    linear-gradient(180deg,
+      rgba(6,9,22,0.12) 0%,
+      rgba(6,9,22,0.22) 45%,
+      rgba(6,9,22,0.32) 100%
+    ),
+    repeating-linear-gradient(
+      to bottom,
+      rgba(255,255,255,0.00) 0px,
+      rgba(255,255,255,0.00) 3px,
+      rgba(255,255,255,0.035) 4px
+    ),
+    repeating-linear-gradient(
+      135deg,
+      rgba(255,255,255,0.024) 0px,
+      rgba(255,255,255,0.00) 2px,
+      rgba(255,255,255,0.018) 4px
+    );
+  opacity:.95;
+}
+
+/* ===== Title ===== */
+h2{
+  margin:8px 0 14px;
+  text-align:center;
+  font-size:22px;
+  font-weight:900;
+  letter-spacing:0.16em;
+  text-transform:uppercase;
+  color:rgba(240,245,255,0.92);
+  text-shadow:0 2px 12px rgba(0,0,0,0.65);
+  position:relative;
+}
+h2::after{
+  content:"";
+  display:block;
+  width:120px;
+  height:1px;
+  margin:12px auto 0;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(245,248,255,0.35),
+    transparent
+  );
+}
+
+/* ===== Messages surface ===== */
+#conv-list{
+  position:relative;
+  padding:12px;
+  border-radius:18px;
+
+  background: rgba(6,7,10,0.62);
+  border:1px solid rgba(245,248,255,0.14);
+
+  box-shadow:
+    inset 0 0 0 1px rgba(245,248,255,0.06),
+    0 18px 46px rgba(0,0,0,0.65);
+}
+
+/* ===== Conversation card ===== */
+.conv{
+  -webkit-appearance:none; appearance:none;
+  width:100%;
+  display:flex;
+  align-items:center;
+  gap:12px;
+
+  padding:16px 14px;
+  cursor:pointer;
+  text-align:left;
+
+  background: var(--btn-bg);
+  border:1px solid rgba(245,248,255,0.18);
+  border-radius:16px;
+
+  box-shadow: 0 16px 40px rgba(0,0,0,0.62);
+  overflow:hidden;
+
+  /* ✅ no movement / no glitch */
+  transform:none;
+
+  transition:
+    filter .18s ease,
+    box-shadow .18s ease,
+    border-color .18s ease,
+    background .18s ease;
+
+  position:relative;
+}
+
+/* scanlines/tint */
+.conv::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  opacity:.70;
+  background:
+    repeating-linear-gradient(
+      to bottom,
+      rgba(255,255,255,0.00) 0px,
+      rgba(255,255,255,0.00) 3px,
+      rgba(255,255,255,0.045) 4px
+    ),
+    repeating-linear-gradient(
+      135deg,
+      rgba(255,255,255,0.038) 0px,
+      rgba(255,255,255,0.00) 2px,
+      rgba(255,255,255,0.028) 4px
+    ),
+    radial-gradient(circle at 20% 0%,
+      rgba(112,220,255,0.10),
+      rgba(0,0,0,0.00) 62%
+    ),
+    radial-gradient(circle at 90% 95%,
+      rgba(255,166,92,0.06),
+      rgba(0,0,0,0.00) 62%
+    );
+}
+
+/* ✅ border bloom: OFF base, ON hover only (WHITE) */
+.conv::after{
+  content:"";
+  position:absolute;
+  inset:-2px;
+  border-radius:inherit;
+  padding:2px;
+
+  background: rgba(245,248,255,0.26);
+  opacity:0;                 /* ✅ OFF base */
+  filter: blur(11px);
+
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite:xor;
+          mask-composite:exclude;
+
+  pointer-events:none;
+  transition: opacity .18s ease, filter .18s ease;
+}
+
+.conv + .conv{ margin-top:14px; }
+
+/* ✅ Hover = illuminate only (no translate / no scale / no microGlitch) */
+.conv:hover,
+.conv:focus-visible{
+  filter:brightness(1.06);
+  border-color: rgba(245,248,255,0.44);
+  background: var(--btn-bg-hover);
+  box-shadow:
+    0 22px 54px rgba(0,0,0,0.72),
+    0 0 18px rgba(245,248,255,0.10),
+    0 0 16px rgba(112,220,255,0.08),
+    0 0 22px rgba(255,166,92,0.05);
+}
+.conv:hover::after,
+.conv:focus-visible::after{
+  opacity:1;
+  filter: blur(12px);
+}
+
+/* Active = small press light */
+.conv:active{
+  filter:brightness(1.10);
+  border-color: rgba(245,248,255,0.70);
+}
+
+/* ===== Avatar ===== */
+.conv img{
+  width:56px;
+  height:56px;
+  max-width:56px;
+  max-height:56px;
+  aspect-ratio:1/1;
+  border-radius:50%;
+  background:#020617;
+  flex-shrink:0;
+  object-fit:cover;
+  object-position:50% var(--avatar-focus-y);
+  display:block;
+
+  border:2px solid rgba(245,248,255,0.22);
+  box-shadow: 0 10px 22px rgba(0,0,0,0.55);
+  position:relative;
+  z-index:1;
+}
+
+/* ===== Meta (right text) ===== */
+.conv .meta{
+  flex:1;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  min-width:0;
+  padding-right:34px;
+  color:var(--fg);
+  text-align:left;
+  position:relative;
+  z-index:1;
+}
+.conv .meta b{
+  font-size:18px;
+  font-weight:900;
+  letter-spacing:.02em;
+  color:rgba(240,245,255,0.96);
+  line-height:1.28;
+  text-shadow:0 2px 12px rgba(0,0,0,0.55);
+}
+.conv .meta .status-row{
+  display:flex;
+  align-items:center;
+  gap:6px;
+  min-height:14px;
+  margin-top:5px;
+}
+.conv .meta .unfinished-dot{
+  width:8px;
+  height:8px;
+  border-radius:999px;
+  background:rgba(82,240,160,0.96);
+  box-shadow:
+    0 0 0 1px rgba(24,60,42,0.65),
+    0 0 8px rgba(82,240,160,0.5);
+}
+.conv .meta .unfinished-label{
+  display:inline-flex;
+  align-items:center;
+  height:16px;
+  padding:0 6px;
+  border-radius:999px;
+  border:1px solid rgba(82,240,160,0.72);
+  background:rgba(12,40,28,0.55);
+  color:rgba(170,255,212,0.98);
+  font-size:10px;
+  font-weight:900;
+  letter-spacing:.11em;
+  line-height:1;
+}
+.conv .meta .last{
+  font-size:14px;
+  color:rgba(240,245,255,0.68);
+  margin-top:5px;
+  line-height:1.45 !important;
+  overflow-wrap:anywhere;
+}
+
+/* ===== Right side (badge) ===== */
+.conv .right{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  margin-left:8px;
+  flex:0 0 auto;
+  position:relative;
+  z-index:1;
+}
+
+/* ===== Unread badge ===== */
+@keyframes badgePulse{
+  0%{
+    transform:scale(1);
+    box-shadow:
+      0 0 6px rgba(255,60,60,0.22),
+      0 0 14px rgba(255,60,60,0.10);
+  }
+  50%{
+    transform:scale(1.08);
+    box-shadow:
+      0 0 10px rgba(255,60,60,0.34),
+      0 0 22px rgba(255,60,60,0.16);
+  }
+  100%{
+    transform:scale(1);
+    box-shadow:
+      0 0 6px rgba(255,60,60,0.22),
+      0 0 14px rgba(255,60,60,0.10);
+  }
+}
+.badge{
+  min-width:20px;
+  height:20px;
+  padding:0 6px;
+  border-radius:999px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+
+  font-size:13px;
+  font-weight:600;
+  letter-spacing:.02em;
+  line-height:1;
+
+  background: linear-gradient(
+    180deg,
+    rgba(255, 70, 70, 0.95),
+    rgba(190, 20, 20, 0.95)
+  );
+  color:#fff;
+  border:1px solid rgba(245,248,255,0.20);
+  transform-origin:center;
+  animation: badgePulse 1.6s ease-in-out infinite;
+
+  box-shadow:
+    0 0 6px rgba(255, 60, 60, 0.35),
+    0 0 12px rgba(255, 40, 40, 0.15);
+}
+.badge[hidden]{ display:none !important; }
+@media (prefers-reduced-motion: reduce){
+  .badge{ animation:none !important; }
+}
+
+/* ===== Empty state ===== */
+.empty{
+  margin-top:26px;
+  text-align:center;
+  font-size:16px;
+  color:rgba(240,245,255,0.68);
+  text-shadow:0 2px 12px rgba(0,0,0,0.55);
+}
+
+.conv .todo-dot-contact{
+  position:absolute;
+  right:14px;
+  top:14px;
+  pointer-events:none;
+  z-index:2;
+}
+
+/* ===== Focus ===== */
+.conv:focus-visible{
+  outline:2px solid rgba(245,248,255,0.44);
+  outline-offset:4px;
+}
+
+@media (prefers-reduced-motion:reduce){
+  .conv{ transition:none; }
+}
+</style>
+<link rel="stylesheet" href="assets/styles/theme.css">
+
+
+<div class="wrap" data-scene>
+  <h2 data-i18n="messages.title">Conversations</h2>
+  <div id="conv-list"></div>
+</div>
+
+<script>
+(function () {
+  // ---------------------------------------------------------
+  // Idempotent + cleanup (évite d’empiler des listeners)
+  // ---------------------------------------------------------
+  if (window.__messages_cleanup) {
+    try { window.__messages_cleanup(); } catch {}
+  }
+  window.__messages_cleanup = null;
+
+  const BADGE_KEY = "app_badges_v1";
+  const ALIAS_KEY = "contact_aliases_v1";
+  const PENDING_OUTBOUND_KEY = "pending_outbound_v1";
+  const listEl = document.getElementById("conv-list");
+
+  const canonicalId = (rawId) =>
+    String(rawId || "").trim().toLowerCase().replace(/\s+/g, "_");
+
+  function safeGetLS(k){ try { return localStorage.getItem(k); } catch { return null; } }
+  function safeSetLS(k,v){ try { localStorage.setItem(k,v); } catch {} }
+
+  function safeParse(raw, fallback){
+    try { return JSON.parse(raw); } catch { return fallback; }
+  }
+  // =========================================================
+  // ✅ Templating for {{name:key}} in Messages list
+  // - Prefer Game.tpl() if available (single source of truth)
+  // - Fallback: contact_names_v1 then player_identity_v1
+  // =========================================================
+  const CONTACT_NAMES_KEY = "contact_names_v1";
+  const IDENTITY_KEY = "player_identity_v1";
+
+  function readContactNamesV1(){
+    try{
+      const o = JSON.parse(safeGetLS(CONTACT_NAMES_KEY) || "null");
+      return (o && typeof o === "object") ? o : {};
+    }catch{ return {}; }
+  }
+
+  function readIdentityContacts(){
+    try{
+      const o = JSON.parse(safeGetLS(IDENTITY_KEY) || "null");
+      if (!o || typeof o !== "object") return {};
+      // supports both: {contacts:{...}} or direct map
+      const map = (o.contacts && typeof o.contacts === "object") ? o.contacts : o;
+      return (map && typeof map === "object") ? map : {};
+    }catch{ return {}; }
+  }
+
+  function identityValueToName(v){
+    if (typeof v === "string") return v.trim();
+    if (v && typeof v === "object") return String(v.name || v.displayName || v.alias || "").trim();
+    return "";
+  }
+
+  function getSavedNameFor(key){
+    const k = canonicalId(key);
+    if (!k) return "";
+
+    // 1) contact_names_v1 (if you ever store there)
+    const cn = readContactNamesV1();
+    const a = identityValueToName(cn[k]);
+    if (a) return a;
+
+    // 2) player_identity_v1
+    const id = readIdentityContacts();
+    const b = identityValueToName(id[k]);
+    if (b) return b;
+
+    return "";
+  }
+
+  function tplText(raw){
+    let text = String(raw ?? "");
+    // Resolve known identities globally, then fill any still-unresolved names.
+    // Side characters such as Ethan need not have a saved identity yet.
+    try{
+      if (typeof window.Game?.tpl === "function") text = window.Game.tpl(text);
+    }catch{}
+
+    // 2) fallback replace {{name:key}} / {{status:key}}
+    // {{status:key}} is the canonical, non-editable status/relationship
+    // label (scripts/contact-status.js) -- a SEPARATE tag from {{name:key}},
+    // which must keep returning only the player's customName.
+    const s = String(text ?? "").replace(/\{\{\s*status\s*:\s*([^}]+)\s*\}\}/gi, (m, key) => {
+      try { return window.ContactStatus?.getStatusLabel?.(key) || m; } catch { return m; }
+    });
+    return s.replace(/\{\{\s*name\s*:\s*([^}]+)\s*\}\}/gi, (_, key) => {
+      const nm = getSavedNameFor(key);
+      return nm || String(key || "").trim().split(/[_\s]+/).filter(Boolean)
+        .map(part => part[0].toUpperCase() + part.slice(1)).join(" ");
+    });
+  }
+
+  // ✅ Alias resolver (must match notify-adapter behavior)
+  function readAliases(){
+    const raw = safeGetLS(ALIAS_KEY);
+    const obj = raw ? safeParse(raw, {}) : {};
+    return obj && typeof obj === "object" ? obj : {};
+  }
+  function resolveContactId(rawId){
+    const base = canonicalId(rawId);
+    if (!base) return "";
+    const aliases = readAliases();
+    const mapped = canonicalId(aliases[base] || "");
+    if (mapped && !["player","you","me","system","messages","__global_story__"].includes(mapped)) return mapped;
+    return base;
+  }
+
+  function defaultAvatarForContact(rawId) {
+    const id = resolveContactId(rawId || "");
+    if (!id) return "assets/avatars/default.jpg";
+    if (id === "mason") {
+      try {
+        return localStorage.getItem("character_variant_mason") === "female"
+          ? "assets/avatars/female_mason.jpg"
+          : "assets/avatars/male_mason.jpg";
+      } catch {
+        return "assets/avatars/male_mason.jpg";
+      }
+    }
+    return `assets/avatars/${id}.jpg`;
+  }
+
+  function isDefaultAvatarPath(avatar) {
+    const raw = String(avatar || "").trim().replace(/\\/g, "/").toLowerCase();
+    return !raw || raw.includes("/default.") || /(^|\/)default\.(?:png|jpe?g|webp)(?:[?#].*)?$/.test(raw);
+  }
+
+  function isWrongOfficialAvatar(rawId, avatar) {
+    const id = resolveContactId(rawId || "");
+    const raw = String(avatar || "").trim().replace(/\\/g, "/").toLowerCase();
+    if (!id || !raw || !raw.includes("assets/avatars/")) return false;
+    const expected = defaultAvatarForContact(id).toLowerCase();
+    if (id === "mason") return raw.endsWith("/assets/avatars/male_mason.jpg") || raw.endsWith("/assets/avatars/female_mason.jpg") || raw.endsWith("assets/avatars/male_mason.jpg") || raw.endsWith("assets/avatars/female_mason.jpg") ? raw !== expected : false;
+    return !raw.endsWith("/assets/avatars/" + id + ".jpg") && !raw.endsWith("assets/avatars/" + id + ".jpg");
+  }
+
+  function resolveAvatarForContact(rawId, avatar) {
+    const id = resolveContactId(rawId || "");
+    const raw = String(avatar || "").trim();
+    try {
+      if (typeof window.ProtectedMediaResolver?.avatarPath === "function") {
+        return window.ProtectedMediaResolver.avatarPath(id, raw);
+      }
+    } catch {}
+    try {
+      if (typeof window.Game?.resolveCharacterVariantAvatar === "function") {
+        const resolved = String(window.Game.resolveCharacterVariantAvatar(id, raw) || "").trim();
+        if (resolved && !isDefaultAvatarPath(resolved) && !isWrongOfficialAvatar(id, resolved)) return resolved;
+      }
+    } catch {}
+    if (isDefaultAvatarPath(raw) || isWrongOfficialAvatar(id, raw)) return defaultAvatarForContact(id);
+    return raw || defaultAvatarForContact(id);
+  }
+
+  function isCharacterStorageTruthy(rawValue) {
+    const v = canonicalId(rawValue);
+    return v === "1" || v === "true" || v === "on" || v === "yes" || v === "active";
+  }
+
+  function isCharacterActiveLocal(rawId) {
+    const cid = canonicalId(rawId);
+    if (!cid) return false;
+    if (cid === "aiden") return true;
+    try {
+      const raw = localStorage.getItem("active_character:" + cid);
+      if (raw == null) return true;
+      return isCharacterStorageTruthy(raw);
+    } catch {
+      return true;
+    }
+  }
+
+  function readPendingStoryForMessages() {
+    const raw = safeGetLS("pending_story_v1");
+    const parsed = raw ? safeParse(raw, null) : null;
+    return (parsed && typeof parsed === "object") ? parsed : null;
+  }
+
+  function pendingStoryBelongsToContact(rawId) {
+    const cid = resolveContactId(rawId || "");
+    if (!cid) return false;
+    const pending = readPendingStoryForMessages();
+    if (!pending) return false;
+    const pendingContact = resolveContactId(
+      pending.contactId || pending?.opts?.contactId || pending?.opts?.conversationId || pending?.opts?.__chainTargetContactId || ""
+    );
+    const pendingPath = String(pending.path || pending.storyPath || "").trim();
+    return pendingContact === cid && !!pendingPath;
+  }
+
+  function shouldHideCharacterFromUI(rawId) {
+    const cid = resolveContactId(rawId || "");
+    if (!cid) return false;
+    if (["player","you","me","__global_story__"].includes(cid)) return true;
+    if (pendingStoryBelongsToContact(cid)) return false;
+    try {
+      if (typeof window.Game?.shouldHideCharacterFromUI === "function") {
+        return window.Game.shouldHideCharacterFromUI(cid) === true;
+      }
+    } catch {}
+    return !isCharacterActiveLocal(cid);
+  }
+
+  function ensurePendingStoryConversation(store) {
+    const pending = readPendingStoryForMessages();
+    if (!pending) return store;
+    // A dispatch `id` is a transaction identity (`pd_...`), never a contact.
+    // Continuation callers may carry their owner inside opts, so consume those
+    // explicit owner fields while defensively refusing to manufacture a chat
+    // row from the dispatch identifier.
+    const cid = resolveContactId(
+      pending.contactId || pending?.opts?.contactId || pending?.opts?.conversationId || pending?.opts?.__chainTargetContactId || ""
+    );
+    const storyPath = String(pending.path || pending.storyPath || "").trim().replace(/\\/g, "/");
+    if (!cid || !storyPath) return store;
+
+    const next = (store && typeof store === "object") ? store : {};
+    const existing = (next[cid] && typeof next[cid] === "object") ? next[cid] : {};
+    const canonicalState = window.GameStateEngine?.getState?.() || window.GameStateEngine?.getGameplayState?.();
+    // A pending dispatch/player turn is navigation state, never preview
+    // authority. In particular, playerDraft/messageText/previewText may name
+    // a future authored player line which has not been durably committed.
+    const preview = window.Game?.getLatestDurableConversationPreview?.(cid, canonicalState) || null;
+
+    next[cid] = {
+      ...existing,
+      id: cid,
+      contactId: cid,
+      name: existing.name || resolveDisplayName(existing, cid),
+      avatar: resolveAvatarForContact(cid, existing.avatar),
+      last: preview ? { text: preview.text, at: preview.at || Date.now(), eventId: preview.eventId, kind: preview.kind } : null,
+      unread: Math.max(0, Number(window.GameStateEngine?.getGameplayState?.()?.conversations?.unreadByContact?.[cid] ?? existing.unread ?? 0) || 0),
+      messages: Array.isArray(existing.messages) ? existing.messages : []
+    };
+    safeSetLS("conv_story_" + cid, storyPath);
+    if (!safeGetLS("conv_episode_" + cid)) safeSetLS("conv_episode_" + cid, storyPath);
+    if (!safeGetLS("conv_episode_start_" + cid)) safeSetLS("conv_episode_start_" + cid, storyPath);
+    writeStore(next);
+    return next;
+  }
+
+  function pruneHiddenConversationStore(store, shouldWrite = true) {
+    const src = (store && typeof store === "object") ? store : {};
+    let changed = false;
+    const next = {};
+    for (const key of Object.keys(src)) {
+      const cid = resolveContactId(key);
+      if (!cid) { changed = true; continue; }
+      if (shouldHideCharacterFromUI(cid)) { changed = true; continue; }
+      next[cid] = src[key];
+      if (cid !== key) changed = true;
+    }
+    if (changed && shouldWrite) {
+      writeStore(next);
+      try {
+        const openId = resolveContactId(safeGetLS("openConversationId") || "");
+        const activeId = resolveContactId(safeGetLS("activeConversationId") || "");
+        if (openId && shouldHideCharacterFromUI(openId)) safeSetLS("openConversationId", "");
+        if (activeId && shouldHideCharacterFromUI(activeId)) safeSetLS("activeConversationId", "");
+      } catch {}
+    }
+    return next;
+  }
+
+  /* 🔒 BLOQUE les clics pour le système de dialogue global */
+  const rootSceneEl = document.querySelector(".wrap[data-scene]");
+  function stopClickBubbling(ev){ ev.stopPropagation(); }
+  if (rootSceneEl) rootSceneEl.addEventListener("click", stopClickBubbling);
+
+  /* 🔒 BLOQUE les touches (space/enter/ctrl) uniquement sur Messages */
+  function blockAdvanceKeys(ev) {
+    const scene = (window.Game?.currentScene || "").toLowerCase();
+    if (scene !== "messages") return;
+
+    const code = ev.code;
+    const key = ev.key;
+
+    const isAdvanceKey =
+      code === "Space" ||
+      key === " " ||
+      code === "Enter" ||
+      key === "Enter" ||
+      code === "ControlLeft" ||
+      code === "ControlRight" ||
+      key === "Control";
+
+    if (!isAdvanceKey) return;
+
+    ev.stopImmediatePropagation();
+  }
+  window.addEventListener("keydown", blockAdvanceKeys, true);
+
+  function normalizeLast(obj, now){
+    const last = obj?.last;
+
+    if (last && typeof last === "object") {
+      return {
+        text: String(last.text || obj.lastMessage || ""),
+        at: Number(last.at || obj.updatedAt || now),
+        eventId: String(last.eventId || ""),
+        kind: String(last.kind || "")
+      };
+    }
+
+    if (typeof last === "string") {
+      return {
+        text: String(last || obj.lastMessage || ""),
+        at: Number(obj.updatedAt || now)
+      };
+    }
+
+    return {
+      text: String(obj?.lastMessage || ""),
+      at: Number(obj?.updatedAt || now)
+    };
+  }
+
+  // Pretty fallback: "intro_girlfriend" -> "Intro Girlfriend"
+  function prettyNameFromId(id){
+    const s = String(id || "").trim();
+    if (!s) return "Unknown";
+    return s
+      .replace(/[_\-]+/g, " ")
+      .replace(/\s+/g, " ")
+      .split(" ")
+      .map(w => w ? (w[0].toUpperCase() + w.slice(1)) : "")
+      .join(" ")
+      .trim() || "Unknown";
+  }
+
+  // ✅ IMPORTANT: ne jamais afficher "You" comme nom de conversation
+  function isBadThreadName(name){
+    const n = String(name || "").trim().toLowerCase();
+    return !n || n === "you" || n === "player" || n === "me";
+  }
+
+  // Choisit le meilleur nom "contact"
+  function resolveDisplayName(conv, id){
+    const candidates = [
+      conv?.contactName,
+      conv?.displayName,
+      conv?.title,
+      conv?.name,
+      conv?.fromName
+    ];
+
+    for (const c of candidates) {
+      if (!c) continue;
+      if (!isBadThreadName(c)) return String(c);
+    }
+
+    return prettyNameFromId(id);
+  }
+
+  // ✅ readStore = NORMALISE SANS DÉTRUIRE
+  // Group 6 (protected-write elimination): scripts/notify-adapter.js is the
+  // declared single source of truth for this store, itself backed by
+  // progression.conversationsCache in the canonical engine (see its own
+  // persistConversationsCache). Reading via window.Game.readConversationStore
+  // instead of a second, independent raw-localStorage parse -- this scene's own
+  // normalize-and-write-back logic below is unchanged, only the source of
+  // `parsed` moved off raw localStorage.
+  function readStore() {
+    try {
+      const parsed = window.Game.readConversationStore();
+      const now = Date.now();
+      if (!parsed || typeof parsed !== "object") return {};
+
+      const normalized = {};
+
+      if (Array.isArray(parsed)) {
+        for (const c of parsed) {
+          if (!c) continue;
+          const id = resolveContactId(c.id || c.name);
+          if (!id) continue;
+
+          const fallbackAvatar = `assets/avatars/${id}.jpg`;
+          const safeName = resolveDisplayName(c, id);
+
+          normalized[id] = {
+            ...c,
+            id,
+            name: safeName,
+            avatar: resolveAvatarForContact(id, c.avatar || c.avatarUrl || c.photo || fallbackAvatar),
+            last: normalizeLast(c, now),
+            unread: Number(c.unread || 0)
+          };
+        }
+
+        const pruned = pruneHiddenConversationStore(normalized, false);
+        window.Game.writeConversationStoreRaw(pruned);
+        return pruned;
+      }
+
+      if (parsed && typeof parsed === "object") {
+        for (const k of Object.keys(parsed)) {
+          const c = parsed[k] || {};
+          const id = resolveContactId(c.id || k);
+          if (!id) continue;
+
+          const fallbackAvatar = `assets/avatars/${id}.jpg`;
+          const safeName = resolveDisplayName(c, id);
+
+          normalized[id] = {
+            ...c,
+            id,
+            name: safeName,
+            avatar: resolveAvatarForContact(id, c.avatar || c.avatarUrl || c.photo || fallbackAvatar),
+            last: normalizeLast(c, now),
+            unread: Number(c.unread || 0)
+          };
+        }
+
+        const pruned = pruneHiddenConversationStore(normalized, false);
+        window.Game.writeConversationStoreRaw(pruned);
+        return pruned;
+      }
+
+      return {};
+    } catch (e) {
+      console.warn("[messages] parse/normalize error", e);
+      return {};
+    }
+  }
+
+  function writeStore(obj) {
+    try { window.Game.writeConversationStoreRaw(obj || {}); }
+    catch (e) { console.warn("[messages] write error", e); }
+  }
+
+  function escapeHtml(str) {
+    if (!str && str !== 0) return "";
+    return String(str)
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#39;");
+  }
+
+  function normalizeUnfinishedState(rawValue) {
+    const raw = (rawValue && typeof rawValue === "object") ? rawValue : null;
+    if (!raw) return null;
+    const active = raw.active === true || Number(raw.active || 0) === 1;
+    if (!active) return null;
+    return {
+      active: 1,
+      reason: String(raw.reason || "unfinished_exit").trim() || "unfinished_exit",
+      at: Number(raw.at || Date.now()) || Date.now()
+    };
+  }
+
+  function readOpenMessageTodos() {
+    const items = (typeof window.Game?.getTodos === "function")
+      ? window.Game.getTodos()
+      : [];
+    if (!Array.isArray(items)) return [];
+
+    return items.filter((item) => {
+      if (!item || typeof item !== "object") return false;
+      const status = String(item.status || "").toLowerCase();
+      const app = String(item.app || "").toLowerCase();
+      const type = String(item.type || "").toLowerCase();
+      return status === "open" && app === "messages" && type === "text";
+    });
+  }
+
+  function getTodoDotClass(todo) {
+    if (typeof window.Game?.getTodoDotClass === "function") {
+      return String(window.Game.getTodoDotClass(todo?.color || "rainbow") || "todo-dot--rainbow");
+    }
+    return "todo-dot--rainbow";
+  }
+
+  function readPendingOutbound() {
+    try {
+      if (typeof window.Game?.getPendingOutbound === "function") {
+        const fromGame = window.Game.getPendingOutbound();
+        if (fromGame && typeof fromGame === "object") return fromGame;
+      }
+    } catch {}
+    const raw = safeGetLS(PENDING_OUTBOUND_KEY);
+    const parsed = raw ? safeParse(raw, null) : null;
+    return (parsed && typeof parsed === "object") ? parsed : null;
+  }
+
+  function getPendingOutboundForContact(contactId) {
+    const cid = resolveContactId(contactId || "");
+    if (!cid) return null;
+    try {
+      if (typeof window.Game?.getPendingOutboundForContact === "function") {
+        const fromGame = window.Game.getPendingOutboundForContact(cid);
+        if (fromGame && typeof fromGame === "object") return fromGame;
+      }
+    } catch {}
+    const pending = readPendingOutbound();
+    if (!pending || resolveContactId(pending.contactId || "") !== cid) return null;
+    return pending;
+  }
+
+  let staleContinuationPruneInFlight = false;
+  let staleContinuationPruneSignature = "";
+
+  function continuationPruneSignature() {
+    const store = readStore();
+    const rows = [];
+    Object.keys(store || {}).sort().forEach((id) => {
+      const cid = resolveContactId(id);
+      if (!cid) return;
+      rows.push([
+        cid,
+        Number(store[id]?.unread || 0) || 0,
+        String(store[id]?.last?.text || ""),
+        String(safeGetLS("conv_story_" + cid) || ""),
+        String(safeGetLS("conv_episode_" + cid) || "")
+      ].join("|"));
+    });
+    rows.push("pending=" + String(safeGetLS("pending_story_v1") || ""));
+    return rows.join("||");
+  }
+
+  function scheduleStaleContinuationPrune(source = "messages_render") {
+    if (staleContinuationPruneInFlight) return;
+    const pruner = window.Game && window.Game.pruneStaleMessageContinuations;
+    if (typeof pruner !== "function") return;
+    const signature = continuationPruneSignature();
+    if (signature && signature === staleContinuationPruneSignature) return;
+    staleContinuationPruneSignature = signature;
+    staleContinuationPruneInFlight = true;
+    Promise.resolve()
+      .then(() => pruner({ source }))
+      .then((result) => {
+        staleContinuationPruneInFlight = false;
+        if (result && result.changed) {
+          staleContinuationPruneSignature = "";
+          renderList();
+        }
+      })
+      .catch((err) => {
+        staleContinuationPruneInFlight = false;
+        try { console.warn("[messages] stale continuation prune failed", err); } catch {}
+      });
+  }
+
+  // -------------------------
+  // Badge Messages = somme réelle des unread
+  // -------------------------
+  function computeUnreadTotal(store) {
+    let total = 0;
+    for (const id of Object.keys(store || {})) {
+      if (shouldHideCharacterFromUI(id)) continue;
+      total += Number(store[id]?.unread || 0);
+    }
+    return total;
+  }
+
+  function setMessagesBadge(totalUnread) {
+    try {
+      const raw = safeGetLS(BADGE_KEY);
+      const data = raw ? safeParse(raw, {}) : {};
+      if (!data || typeof data !== "object") return;
+
+      const cur = Number(data.messages || 0);
+      const next = Number(totalUnread || 0);
+
+      if (cur !== next) {
+        data.messages = next;
+        safeSetLS(BADGE_KEY, JSON.stringify(data));
+        window.dispatchEvent(
+          new CustomEvent("app:badge-changed", { detail: { app: "messages", value: next } })
+        );
+      }
+    } catch (e) {
+      console.warn("[messages] badge set error", e);
+    }
+  }
+
+  function markRead(id, store) {
+    const cid = resolveContactId(id);
+    if (!cid) return;
+
+    try {
+      const engine = window.GameStateEngine;
+      const state = engine?.getGameplayState?.();
+      if (engine?.dispatch && Number(state?.conversations?.unreadByContact?.[cid] || 0) !== 0) {
+        engine.dispatch({ type:"OPEN_CONTACT", commandId:`messages-open:${cid}:${Number(state.revision)||0}`, expectedRevision:Number(state.revision)||0, payload:{ contactId:cid } });
+      }
+    } catch (err) {
+      try { console.error("[messages] canonical mark-read failed", err); } catch {}
+    }
+
+    const s = (store && typeof store === "object") ? store : readStore();
+    if (s[cid]) {
+      const prev = Number(s[cid].unread || 0);
+      if (prev !== 0) {
+        s[cid].unread = 0;
+        writeStore(s);
+        setMessagesBadge(computeUnreadTotal(s));
+      }
+    }
+  }
+
+  function renderList() {
+    scheduleStaleContinuationPrune("messages_render");
+    const store = window.__QA_FORCE_EMPTY_MESSAGES_PROJECTION ? {} : pruneHiddenConversationStore(ensurePendingStoryConversation(readStore()));
+    const ids = Object.keys(store || {}).filter((id) => !shouldHideCharacterFromUI(id));
+
+    if (!listEl) return;
+    listEl.innerHTML = "";
+
+    setMessagesBadge(computeUnreadTotal(store));
+
+    const todoByContact = new Map();
+    const downloadByContact = new Map();
+    for (const cue of window.GameStateEngine?.getPendingConversationDownloads?.() || []) {
+      if (!downloadByContact.has(cue.contactId)) downloadByContact.set(cue.contactId, cue);
+    }
+    const restoredCue = window.Game?.getRestoredConversationCue?.() || null;
+    const openTodos = readOpenMessageTodos();
+    openTodos.forEach((todo) => {
+      const cid = resolveContactId(todo?.contactId || "");
+      if (shouldHideCharacterFromUI(cid)) return;
+      if (!cid || todoByContact.has(cid)) return;
+      todoByContact.set(cid, todo);
+    });
+
+    if (!ids.length) {
+      try {
+        const canonical = window.GameStateEngine?.getGameplayState?.()?.conversations?.eventsByContact || {};
+        const canonicalContactIds = Object.keys(canonical).filter((id) => Array.isArray(canonical[id]) && canonical[id].some((event) => event?.visible !== false));
+        if (canonicalContactIds.length && !window.__conversationListMismatchReported) { window.__conversationListMismatchReported=true; const diagnostic={ canonicalCount:canonicalContactIds.length, canonicalContactIds, projectedCount:0, activeScene:String(window.Game?.currentScene || ""), revision:Number(window.GameStateEngine?.getGameplayState?.()?.revision || 0), activeStory:String(window.GameStateEngine?.getExecutionState?.()?.activeStoryId || ""), activeContact:String(window.GameStateEngine?.getExecutionState?.()?.activeContactId || ""), cacheState:"empty" }; window.crashLog?.report?.("CONVERSATION_LIST_PROJECTION_MISMATCH",diagnostic); window.__qaDiagnosticSink?.("CONVERSATION_LIST_PROJECTION_MISMATCH",diagnostic); }
+      } catch {}
+      const p = document.createElement("p");
+      p.className = "empty";
+      p.textContent = "No conversations yet.";
+      listEl.appendChild(p);
+      return;
+    }
+
+    window.__conversationListMismatchReported = false;
+
+    ids.sort((a,b)=>{
+      const A = store[a] || {};
+      const B = store[b] || {};
+      const au = Number(A.unread||0), bu = Number(B.unread||0);
+      if (au !== bu) return bu - au;
+      const at = Number(A.last?.at||0), bt = Number(B.last?.at||0);
+      return bt - at;
+    });
+
+    ids.forEach((id) => {
+      const conv = store[id] || {};
+      const rid = resolveContactId(id);
+      const name = tplText(resolveDisplayName(conv, rid));
+
+      const lastTextRaw = (conv.last && typeof conv.last === "object" && conv.last.text)
+        ? conv.last.text
+        : "(No message yet)";
+
+      const lastText = tplText(lastTextRaw);
+
+      const unread = Number(conv.unread || 0);
+      const badgeText = unread > 99 ? "99+" : unread > 0 ? String(unread) : "";
+      const unfinished = normalizeUnfinishedState(conv.unfinished);
+      const download = downloadByContact.get(rid) || null;
+      const downloadLabel = download
+        ? `${window.Game?.i18n?.ui?.("conversation.download", "Download") || "Download"} ${download.appName}`
+        : "";
+      const statusHtml = download
+        ? `<div class="status-row"><span class="unfinished-label download-label">${escapeHtml(downloadLabel)}</span></div>`
+        : unfinished
+        ? `<div class="status-row"><span class="unfinished-dot" aria-hidden="true"></span><span class="unfinished-label">CONTINUE</span></div>`
+        : "";
+
+      const contactTodo = todoByContact.get(rid) || null;
+      const pendingOutbound = getPendingOutboundForContact(rid);
+      const cueSource = pendingOutbound || contactTodo || download || (restoredCue?.contactId === rid ? restoredCue : null);
+      const todoDotClass = cueSource ? getTodoDotClass(cueSource) : "";
+      const todoHtml = cueSource
+        ? `<span class="todo-dot todo-dot-contact ${escapeHtml(todoDotClass)}" title="${escapeHtml(downloadLabel || 'Action required')}"></span>`
+        : "";
+
+      const btn = document.createElement("button");
+      btn.className = "conv";
+      btn.dataset.id = rid;
+      btn.dataset.previewEventId = String(conv.last?.eventId || "");
+
+      btn.innerHTML = `
+        <img alt="avatar" />
+        <div class="meta">
+          <b>${escapeHtml(name)}</b>
+          ${statusHtml}
+          <div class="last">${escapeHtml(lastText)}</div>
+        </div>
+        <div class="right">
+          <span class="badge" ${unread > 0 ? "" : "hidden"}>${badgeText}</span>
+        </div>
+        ${todoHtml}
+      `;
+
+      const imgEl = btn.querySelector("img");
+      if (imgEl) {
+        const logicalAvatar = resolveAvatarForContact(rid, conv.avatar);
+        if (window.ProtectedMediaResolver?.applyImage) {
+          window.ProtectedMediaResolver.applyImage(imgEl, logicalAvatar, { assetType: "avatar", surface: "messages" }).catch(() => {
+            imgEl.src = defaultAvatarForContact(rid);
+          });
+        } else imgEl.src = logicalAvatar;
+        imgEl.onerror = () => {
+          imgEl.onerror = null;
+          imgEl.src = defaultAvatarForContact(rid);
+        };
+      }
+
+      btn.addEventListener("click", () => {
+        if (shouldHideCharacterFromUI(rid)) return;
+        try { window.__conversationMountTrace?.begin?.({ source: "messages-row-click", targetContactId: rid, clickedAt: performance.now() }); } catch {}
+        safeSetLS("openConversationId", rid);
+        safeSetLS("activeConversationId", rid);
+        const storyPath = String(safeGetLS("conv_story_" + rid) || "").trim().replace(/\\/g, "/");
+        const episodePath = String(safeGetLS("conv_episode_" + rid) || "").trim().replace(/\\/g, "/");
+        const openStoryPath = storyPath || episodePath;
+
+        markRead(rid, store);
+
+        if (typeof window.navigateToScene === "function") {
+          window.navigateToScene("conversation", {
+            id: rid,
+            contactId: rid,
+            storyPath: openStoryPath,
+            from: "messages"
+          });
+        }
+
+        // if we are still on Messages (fast click), rerender immediately
+        try { renderList(); } catch {}
+      });
+
+      listEl.appendChild(btn);
+    });
+  }
+  window.__qaRenderMessagesList = renderList;
+
+  function onSceneMounted(e) {
+    if ((e?.detail?.name || "").toLowerCase() !== "messages") return;
+    renderList();
+  }
+
+  function onConversationsUpdated() {
+    const scene = (window.Game?.currentScene || "").toLowerCase();
+    if (scene !== "messages") return;
+    renderList();
+  }
+
+  function onConversationsChanged() {
+    const scene = (window.Game?.currentScene || "").toLowerCase();
+    if (scene !== "messages") return;
+    renderList();
+  }
+
+  function onTodosChanged() {
+    const scene = (window.Game?.currentScene || "").toLowerCase();
+    if (scene !== "messages") return;
+    renderList();
+  }
+
+  function onGuidedCuesChanged() {
+    const scene = (window.Game?.currentScene || "").toLowerCase();
+    if (scene !== "messages") return;
+    renderList();
+  }
+
+  function onCharacterVisibilityChanged() {
+    const scene = (window.Game?.currentScene || "").toLowerCase();
+    if (scene !== "messages") return;
+    renderList();
+  }
+
+  window.addEventListener("scene:mounted", onSceneMounted);
+  window.addEventListener("game:conversations-updated", onConversationsUpdated);
+  window.addEventListener("conversations:changed", onConversationsChanged);
+  window.addEventListener("todos:changed", onTodosChanged);
+  window.addEventListener("guided:cues-changed", onGuidedCuesChanged);
+  window.addEventListener("hak:watchlistChanged", onCharacterVisibilityChanged);
+  try { window.StoryBus?.on?.("todos:changed", onTodosChanged); } catch {}
+  try { window.StoryBus?.on?.("hak:watchlistChanged", onCharacterVisibilityChanged); } catch {}
+
+  renderList();
+
+  window.__messages_cleanup = function () {
+    try { if (rootSceneEl) rootSceneEl.removeEventListener("click", stopClickBubbling); } catch {}
+    try { window.removeEventListener("keydown", blockAdvanceKeys, true); } catch {}
+    try { window.removeEventListener("scene:mounted", onSceneMounted); } catch {}
+    try { window.removeEventListener("game:conversations-updated", onConversationsUpdated); } catch {}
+    try { window.removeEventListener("conversations:changed", onConversationsChanged); } catch {}
+    try { window.removeEventListener("todos:changed", onTodosChanged); } catch {}
+    try { window.removeEventListener("guided:cues-changed", onGuidedCuesChanged); } catch {}
+    try { window.removeEventListener("hak:watchlistChanged", onCharacterVisibilityChanged); } catch {}
+    try { window.StoryBus?.off?.("todos:changed", onTodosChanged); } catch {}
+    try { window.StoryBus?.off?.("hak:watchlistChanged", onCharacterVisibilityChanged); } catch {}
+  };
+})();
+</script>

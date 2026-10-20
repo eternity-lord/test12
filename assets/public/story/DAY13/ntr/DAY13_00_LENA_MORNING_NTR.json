@@ -1,0 +1,50 @@
+{
+  "onceKey": "d13_00_lena_morning_ntr_v1",
+  "contactId": "lena",
+  "requireOnceKey": "d12_01_lena_late_night_ntr_v1",
+  "steps": [
+    {"type":"notify","delay":1300,"fromId":"lena","fromName":"{{name:lena}}","avatar":"assets/avatars/lena.jpg","text":"Morning 🙂","target":"conversation"},
+    {"type":"message","delay":900,"from":"lena","text":"Did you sleep okay?"},
+    {"type":"message","delay":900,"from":"player","text":"Yeah"},
+    {"type":"message","delay":900,"from":"player","text":"What about you?"},
+    {"type":"message","delay":900,"from":"lena","text":"Pretty well"},
+    {"type":"message","delay":900,"from":"lena","text":"I fell asleep fast after yesterday 😅"},
+    {"type":"message","delay":900,"from":"player","text":"You were really tired"},
+    {"type":"message","delay":900,"from":"lena","text":"I was"},
+    {"type":"message","delay":900,"from":"lena","text":"But I'm better now"},
+    {"type":"message","delay":900,"from":"player","text":"Still working today?"},
+    {"type":"message","delay":900,"from":"lena","text":"Yeah"},
+    {"type":"message","delay":900,"from":"lena","text":"University first, then work again"},
+    {"type":"message","delay":900,"from":"player","text":"Another long day"},
+    {"type":"message","delay":900,"from":"lena","text":"Probably"},
+    {"type":"message","delay":900,"from":"lena","text":"But I think it'll be fine 🙂"},
+    {"type":"message","delay":900,"from":"player","text":"You sure?"},
+    {"type":"message","delay":900,"from":"lena","text":"Yes"},
+    {"type":"message","delay":900,"from":"lena","text":"Don't start worrying already"},
+    {"type":"message","delay":900,"from":"player","text":"Hard not to after yesterday"},
+    {"type":"message","delay":900,"from":"lena","text":"I know"},
+    {"type":"message","delay":900,"from":"lena","text":"But yesterday was just messy"},
+    {"type":"message","delay":900,"from":"lena","text":"Nothing more than that"},
+    {"type":"message","delay":900,"from":"player","text":"Okay"},
+    {"type":"message","delay":900,"from":"lena","text":"Hey"},
+    {"type":"message","delay":900,"from":"lena","text":"We're okay"},
+    {"type":"message","delay":900,"from":"player","text":"Are we?"},
+    {"type":"message","delay":900,"from":"lena","text":"Yes 🙂"},
+    {"type":"message","delay":900,"from":"lena","text":"I don't want every morning to feel like an interrogation"},
+    {"type":"message","delay":900,"from":"player","text":"Sorry"},
+    {"type":"message","delay":900,"from":"player","text":"I just care about you"},
+    {"type":"message","delay":900,"from":"lena","text":"I know"},
+    {"type":"message","delay":900,"from":"lena","text":"And I care about you too"},
+    {"type":"message","delay":900,"from":"lena","text":"I just need you to trust me a little"},
+    {"type":"message","delay":900,"from":"player","text":"I'll try"},
+    {"type":"message","delay":900,"from":"lena","text":"Thank you"},
+    {"type":"message","delay":900,"from":"lena","text":"I have to get ready now"},
+    {"type":"message","delay":900,"from":"player","text":"Have a good day"},
+    {"type":"message","delay":900,"from":"lena","text":"You too 🙂"},
+    {"type":"if","condition":"active_character:hailey","then":[
+      {"type":"start_story","goHome":true,"startStory":"story/DAY13/DAY13_HAILEY_MORNING.json"}
+    ],"else":[
+      {"type":"start_story","goHome":true,"startStory":"story/DAY13/ntr/DAY13_01_LENA_AFTERNOON_NTR.json"}
+    ]}
+  ]
+}

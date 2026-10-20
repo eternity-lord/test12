@@ -1,0 +1,1275 @@
+<!-- scenes/snapgram.html -->
+<style>
+  :root{
+    /* ===== Same theme as HOME ===== */
+    --fg:#f0f5ff;
+    --muted:rgba(240,245,255,0.68);
+
+    --btn-bg: rgba(6,7,10,0.46);
+    --btn-bg-hover: rgba(8,10,14,0.60);
+
+    --edge: rgba(245,248,255,0.20);
+    --edge-strong: rgba(245,248,255,0.44);
+
+    --glow-soft: rgba(112,220,255,0.12);
+    --glow-strong: rgba(112,220,255,0.18);
+
+    --accent-a: rgba(112,220,255,0.55);
+    --accent-b: rgba(255,166,92,0.45);
+
+    --line: rgba(245,248,255,0.14);
+
+    --status-h:32px;
+    --ig-head-h:44px;
+    --stories-offset:46px;
+
+    /* ✅ default “phone frame” width */
+    --snapgram-maxw: 520px;
+
+    /* ✅ desktop/fullscreen post height target */
+    --post-media-h: clamp(520px, calc(100vh - 300px), 980px);
+  }
+
+  html, body{
+    height:100%;
+    margin:0;
+    background: transparent;
+  }
+
+  /* =====================================================
+     ✅ GLOBAL BACKGROUND (MATCH PICTURES LOOK)
+     ===================================================== */
+  body::after{
+    content:"";
+    position:fixed;
+    top:-24px; left:-24px; right:-24px; bottom:-24px;
+    z-index:-5;
+    pointer-events:none;
+
+    background: var(--phone-wallpaper-image) center/cover no-repeat;
+    /* ✅ closer to Pictures: warmer + deeper blur + cleaner contrast */
+    filter: blur(22px) saturate(0.85) brightness(0.52) contrast(1.10);
+    transform: scale(1.12);
+    opacity:1;
+  }
+
+  body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    z-index:-4;
+    pointer-events:none;
+
+    background:
+      radial-gradient(circle at 50% 10%, rgba(18,26,46,0.20), rgba(3,5,16,0.50)),
+      radial-gradient(circle at 50% 90%, rgba(0,0,0,0.35), rgba(0,0,0,0.70)),
+      repeating-linear-gradient(
+        to bottom,
+        rgba(255,255,255,0.00) 0px,
+        rgba(255,255,255,0.00) 3px,
+        rgba(255,255,255,0.038) 4px
+      ),
+      repeating-linear-gradient(
+        135deg,
+        rgba(255,255,255,0.020) 0px,
+        rgba(255,255,255,0.00) 2px,
+        rgba(255,255,255,0.016) 4px
+      );
+    opacity:.95;
+  }
+
+  /* =====================================================
+     ✅ CONTENT WRAP (REMOVE DARK PANEL -> LIKE PICTURES)
+     ===================================================== */
+  .insta{
+    height:100%;
+    display:grid;
+    grid-template-rows:auto auto 1fr;
+    color:var(--fg);
+    position:relative;
+    z-index:0;
+
+    max-width: var(--snapgram-maxw);
+    margin: 0 auto;
+    width:100%;
+
+    /* ✅ IMPORTANT: no opaque panel (Pictures vibe) */
+    background: transparent;
+    box-shadow: none;
+    backdrop-filter: none;
+  }
+
+  .insta::before,
+  .insta::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    z-index:-3;
+    pointer-events:none;
+    opacity:0;
+  }
+
+  /* HEADER */
+  .ig-header{
+    position:sticky; top:var(--status-h);
+    z-index:3;
+    display:flex; align-items:center; justify-content:space-between;
+    height:var(--ig-head-h);
+    padding:0 18px;
+
+    background: rgba(6,7,10,0.62);
+    border-bottom:1px solid rgba(245,248,255,0.14);
+    box-shadow:
+      inset 0 0 0 1px rgba(245,248,255,0.06),
+      0 14px 30px rgba(0,0,0,0.65);
+
+    overflow:hidden;
+  }
+  .ig-header::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    pointer-events:none;
+    opacity:.60;
+    background:
+      repeating-linear-gradient(
+        to bottom,
+        rgba(255,255,255,0.00) 0px,
+        rgba(255,255,255,0.00) 3px,
+        rgba(255,255,255,0.040) 4px
+      ),
+      repeating-linear-gradient(
+        135deg,
+        rgba(255,255,255,0.022) 0px,
+        rgba(255,255,255,0.00) 2px,
+        rgba(255,255,255,0.016) 4px
+      );
+  }
+  .ig-header .left,
+  .ig-header .right{
+    display:flex;
+    align-items:center;
+    gap:10px
+  }
+
+  .ig-title{
+    position:relative;
+    flex-shrink:0;
+    font-weight:900;
+    font-size:16px;
+    letter-spacing:.20em;
+    text-transform:uppercase;
+    color:rgba(240,245,255,0.92);
+    text-shadow:0 2px 12px rgba(0,0,0,0.65);
+    z-index:1;
+  }
+  #snapgram-nametag-edit{ position:relative; z-index:1; margin-left:12px; }
+
+  .ig-icon{
+    width:20px;height:20px;
+    display:inline-block;
+    opacity:.85;
+    cursor:pointer;
+
+    transition: filter .18s ease, opacity .18s ease;
+    filter: drop-shadow(0 0 6px rgba(0,0,0,.55));
+    position:relative;
+    z-index:1;
+  }
+  .ig-icon:hover{
+    opacity:1;
+    filter:
+      drop-shadow(0 0 10px rgba(245,248,255,0.16))
+      drop-shadow(0 0 14px rgba(112,220,255,0.10));
+  }
+
+  /* ==========================
+     ✅ UNSEEN PULSE (KEEP)
+     ========================== */
+  @keyframes igPulseRing {
+    0%   { transform:translateY(0) scale(1); filter:saturate(1); }
+    50%  { transform:translateY(-1px) scale(1.03); filter:saturate(1.2); }
+    100% { transform:translateY(0) scale(1); filter:saturate(1); }
+  }
+  @keyframes igPulseGlow {
+    0%   { box-shadow: 0 0 8px rgba(56,189,248,.35); }
+    50%  { box-shadow: 0 0 18px rgba(64,217,255,.75), 0 0 26px rgba(249,115,22,.35); }
+    100% { box-shadow: 0 0 8px rgba(56,189,248,.35); }
+  }
+  @keyframes igPulseBadge {
+    0%   { transform:scale(1); opacity:.9; }
+    50%  { transform:scale(1.07); opacity:1; }
+    100% { transform:scale(1); opacity:.9; }
+  }
+
+  .story.unseen .ring{
+    animation: igPulseRing 1.05s ease-in-out infinite, igPulseGlow 1.05s ease-in-out infinite;
+  }
+  .post.unseen{
+    animation: igPulseGlow 1.05s ease-in-out infinite;
+    border-color: rgba(245,248,255,0.44);
+  }
+  .post.unseen .post-head{ position:relative; }
+  .post-new{
+    margin-left:auto;
+    font-size:10px;
+    font-weight:900;
+    letter-spacing:.18em;
+    padding:4px 8px;
+    border-radius:999px;
+    color:#071021;
+    background: linear-gradient(90deg, #38bdf8, #22d3ee, #f97316);
+    box-shadow: 0 0 12px rgba(64,217,255,.6);
+    animation: igPulseBadge 1.05s ease-in-out infinite;
+    text-transform:uppercase;
+  }
+
+  /* STORIES */
+  .stories{
+    z-index:1;
+    padding:var(--stories-offset) 16px 14px;
+    display:flex; gap:14px;
+
+    overflow-x:auto; overflow-y:hidden;
+    scroll-snap-type:x proximity;
+
+    background: rgba(6,7,10,0.52);
+    border-bottom:1px solid rgba(245,248,255,0.14);
+    min-height:94px;
+
+    scrollbar-width:none;
+  }
+  .stories::-webkit-scrollbar{display:none;}
+
+  .story{
+    flex:0 0 auto;
+    width:70px;
+    text-align:center;
+    scroll-snap-align:start;
+    cursor:pointer;
+  }
+  .story .ring{
+    width:62px; height:62px;
+    margin:0 auto 6px;
+    border-radius:18px;
+    padding:2px;
+    background:
+      radial-gradient(closest-side, rgba(6,7,10,0.85) 80%, transparent 81% 100%),
+      conic-gradient(#38bdf8,#f97316,#22d3ee,#f97316,#38bdf8);
+    box-shadow:0 0 8px rgba(56,189,248,.35);
+    border:1px solid rgba(245,248,255,0.14);
+  }
+  .story img{
+    width:100%; height:100%;
+    border-radius:16px;
+    display:block; object-fit:cover;
+  }
+  .story .name{
+    font-size:11px;
+    color:var(--muted);
+    white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+  }
+
+  /* FEED */
+  .feed{
+    height:100%;
+    overflow-y:auto;
+    overflow-x:hidden;
+
+    padding:16px 14px 18px;
+    scrollbar-width:none;
+    -ms-overflow-style:none;
+  }
+  .feed::-webkit-scrollbar{ width:0; height:0; }
+
+  .post{
+    background: rgba(6,7,10,0.58);
+    border:1px solid rgba(245,248,255,0.18);
+    border-radius:14px;
+    overflow:hidden;
+
+    margin-bottom:18px;
+    box-shadow: 0 16px 40px rgba(0,0,0,0.62);
+    transition: filter .18s ease, border-color .18s ease, box-shadow .18s ease, background .18s ease;
+    position:relative;
+  }
+  .post:hover{
+    background: rgba(8,10,14,0.60);
+    filter:brightness(1.08);
+    border-color: rgba(245,248,255,0.44);
+    box-shadow:
+      0 22px 54px rgba(0,0,0,0.72),
+      0 0 14px rgba(245,248,255,0.10);
+  }
+
+  .post-head{
+    display:flex; align-items:center; gap:10px;
+    padding:10px 12px;
+    background: rgba(6,7,10,0.52);
+    border-bottom:1px solid rgba(245,248,255,0.14);
+  }
+  .post-head img{
+    width:34px; height:34px;
+    border-radius:50%; object-fit:cover;
+    background:#020617;
+    border:1px solid rgba(245,248,255,0.18);
+    box-shadow:0 10px 18px rgba(0,0,0,.50);
+  }
+  .post-username{ font-weight:800; font-size:14px; }
+  .post-dots{ margin-left:auto; opacity:.8 }
+
+  .post-media{
+    position:relative;
+    width:100%;
+    background:#020617;
+  }
+
+  /* ✅ default (phone-like): square */
+  .post-media::before{ content:""; display:block; padding-top:100% }
+
+  .post-media>img,
+  .post-media>video{
+    position:absolute; inset:0;
+    width:100%; height:100%;
+    object-fit:cover;
+  }
+
+  .post-actions{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:10px 10px 0;
+  }
+  .left-actions{
+    display:flex;
+    gap:12px;
+    align-items:center;
+  }
+  .post-actions .ig-icon{ width:20px; height:20px; }
+
+  .post-likes{
+    padding:6px 12px 0;
+    font-weight:800;
+    font-size:13px;
+  }
+  .post-caption{
+    padding:3px 12px 10px;
+    font-size:13px;
+    line-height:1.35;
+  }
+  .post-caption .u{ font-weight:900; margin-right:6px; }
+  .post-time{
+    padding:0 12px 12px;
+    font-size:11px;
+    color:var(--muted);
+    letter-spacing:.3px;
+  }
+
+  .empty{
+    color:var(--muted);
+    opacity:.85;
+    font-size:12px;
+  }
+  .empty.stories{
+    display:flex;
+    align-items:center;
+    gap:8px;
+  }
+  .empty.feed{
+    border:1px dashed rgba(245,248,255,0.18);
+    border-radius:12px;
+    padding:14px 12px;
+    text-align:center;
+    background: rgba(6,7,10,0.58);
+    box-shadow: 0 16px 40px rgba(0,0,0,0.62);
+  }
+
+  /* =====================================================
+     ✅ FULLSCREEN/DESKTOP: BIGGER FEED + ONE POST ~ FULL HEIGHT
+     ===================================================== */
+  @media (min-width: 900px) and (min-height: 650px){
+    :root{
+      --snapgram-maxw: 760px;         /* ✅ bigger like you want */
+      --post-media-h: clamp(620px, calc(100vh - 280px), 1080px);
+    }
+
+    .feed{
+      padding:20px 18px 26px;
+    }
+
+    /* ✅ make each post image go “top to bottom” feeling */
+    .post-media::before{ display:none; }
+    .post-media{
+      height: var(--post-media-h);
+    }
+    .post-media>img,
+    .post-media>video{
+      position:absolute; inset:0;
+      width:100%; height:100%;
+      object-fit:cover;
+    }
+  }
+
+  /* Viewer plein écran (unchanged) */
+  .ig-viewer{
+    position:fixed;
+    inset:0;
+    z-index:999;
+    background:rgba(0,0,0,.92);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:calc(var(--status-h) + 12px) 0 12px;
+    flex-direction:column;
+    box-sizing:border-box;
+    backdrop-filter:blur(10px);
+    opacity:0;
+    pointer-events:none;
+    transition:opacity .18s ease-out;
+  }
+  .ig-viewer.show{
+    opacity:1;
+    pointer-events:auto;
+  }
+  .ig-viewer img{
+    flex:1;
+    min-height:0;
+    height:0;
+    width:100%;
+    object-fit:contain;
+    border-radius:0;
+    box-shadow:none;
+  }
+  #igViewerSocial{width:min(100%,720px);max-height:45vh;overflow:auto;flex:none;box-sizing:border-box;background:#10131a;color:#f5f8ff}
+  .ig-viewer-close{
+    position:absolute;
+    top:calc(var(--status-h) + 8px);
+    right:16px;
+    font-size:24px;
+    cursor:pointer;
+    color:var(--fg);
+    text-shadow:0 0 12px rgba(0,0,0,.8);
+    z-index:2;
+    min-width:44px;min-height:44px;background:#10131a;border:1px solid #647084;border-radius:50%;
+  }
+
+  /* ✅ Phone portrait mode: full width */
+  @media (max-aspect-ratio: 10/16){
+    .insta{
+      max-width:none;
+      margin:0;
+    }
+  }
+
+  @media (prefers-reduced-motion:reduce){
+    .post, .ig-icon{ transition:none; }
+    .story.unseen .ring,
+    .post.unseen,
+    .post-new{ animation:none; }
+  }
+</style>
+<link rel="stylesheet" href="assets/styles/theme.css">
+
+<div class="insta" data-scene="snapgram">
+  <div class="ig-header">
+    <div class="ig-title">SNAPGRAM</div>
+    <button id="snapgram-nametag-edit" class="social-nametag-button" type="button"></button>
+  </div>
+
+  <div class="stories" id="igStories"></div>
+
+  <div class="feed" id="igFeed">
+    <div class="empty feed" id="igEmptyFeed">No posts yet.</div>
+  </div>
+
+  <div class="ig-viewer" id="igViewer" hidden>
+    <button type="button" class="ig-viewer-close" id="igViewerClose" aria-label="Close">&times;</button>
+    <img id="igViewerImg" alt="">
+    <div id="igViewerSocial"></div>
+  </div>
+</div>
+
+<!-- ✅ PATCH (scenes/snapgram.html) : ferme le viewer si on reclique sur l'image -->
+
+<script>
+(function(){
+  const SCENE_NAME = "snapgram";
+  const FEED_KEY   = "igFeed_v1";
+  const STORY_KEY  = "igStories_v1";
+  const GALLERY_KEY = "gallery_photos";
+  const DEFAULT_AVATAR = "assets/avatars/default.jpg";
+
+  if (window.__snapgram_cleanup) {
+    try { window.__snapgram_cleanup(); } catch {}
+  }
+
+  const STATE = {
+    busHandlers: [],
+    winHandlers: [],
+    mountedHandler: null,
+    viewerHandlers: [],
+    dedup: new Map()
+  };
+  let viewerHideTimer = null;
+  const unbindNametag = window.PlayerIdentity?.bindNametagButton?.(document.querySelector('.insta[data-scene="snapgram"] #snapgram-nametag-edit'));
+
+  window.__snapgram_cleanup = function(){
+    unbindNametag?.();
+    try{
+      if (window.StoryBus && STATE.busHandlers.length){
+        for (const { type, fn } of STATE.busHandlers){
+          try { StoryBus.off(type, fn); } catch {}
+        }
+      }
+    }catch{}
+    try{
+      for (const { type, fn } of STATE.winHandlers){
+        try { window.removeEventListener(type, fn); } catch {}
+      }
+    }catch{}
+    try{
+      if (STATE.mountedHandler) window.removeEventListener("scene:mounted", STATE.mountedHandler);
+    }catch{}
+    try{
+      for (const { el, type, fn } of STATE.viewerHandlers){
+        try { el.removeEventListener(type, fn); } catch {}
+      }
+    }catch{}
+
+    STATE.busHandlers = [];
+    STATE.winHandlers = [];
+    STATE.viewerHandlers = [];
+    STATE.mountedHandler = null;
+    STATE.dedup.clear();
+    if (viewerHideTimer) {
+      try { clearTimeout(viewerHideTimer); } catch {}
+      viewerHideTimer = null;
+    }
+    try {
+      const img = document.getElementById("igViewerImg");
+      if (img) {
+        img.removeAttribute("src");
+      }
+    } catch {}
+  };
+
+  function safeJsonParse(raw, fallback){
+    try { return JSON.parse(raw); } catch { return fallback; }
+  }
+  function safeGetLS(k){ try { return localStorage.getItem(k); } catch { return null; } }
+  function safeSetLS(k,v){ try { localStorage.setItem(k, v); } catch {} }
+  function safeRemLS(k){ try { localStorage.removeItem(k); } catch {} }
+
+  const canonicalId = (raw) =>
+    String(raw || "").trim().toLowerCase().replace(/\s+/g, "_");
+
+  function resolveSnapgramVisibleText(raw){
+    const source = String(raw == null ? "" : raw);
+    let translated = source;
+    try { translated = window.Game?.i18n?.sourceText?.(source) || source; } catch {}
+    try {
+      const resolved = window.Game?.tpl?.(translated);
+      if (resolved != null) translated = String(resolved);
+    } catch {}
+    return translated.replace(/\{\{\s*name:([^}]+)\s*\}\}/gi, (_match, keyRaw) => {
+      const id = canonicalId(keyRaw);
+      return resolveUserName(id, id ? id.charAt(0).toUpperCase() + id.slice(1) : "Unknown");
+    });
+  }
+
+  function formatSnapgramPostTime(post) {
+    const stamp = window.GameTimeService?.resolveStamp?.(post, { kind: "snapgram", id: post?.id, onceKey: post?.onceKey, storyPath: post?.storyPath }) || null;
+    const legacyTime = String(post?.time || "").trim();
+    if (stamp) return window.GameTimeService.formatStamp(stamp, (key, source) => window.Game?.i18n?.ui?.(key, source) || source);
+    if (legacyTime && !/^(just now|now|\d+\s*[mhd]\s+ago)$/i.test(legacyTime)) return resolveSnapgramVisibleText(legacyTime);
+    return window.Game?.i18n?.ui?.("game_time.unknown", "Time unknown") || "Time unknown";
+  }
+
+  const read = (k, fallback = []) => {
+    try{
+      const raw = localStorage.getItem(k);
+      if(!raw) return fallback;
+
+      const v = safeJsonParse(raw, null);
+      if (Array.isArray(v)) return v;
+
+      if (v && typeof v === "object") {
+        if (Array.isArray(v.posts)) return v.posts;
+        if (Array.isArray(v.stories)) return v.stories;
+        if (Array.isArray(v.items)) return v.items;
+        if (Array.isArray(v.data)) return v.data;
+      }
+      return fallback;
+    }catch{ return fallback; }
+  };
+
+  function stripInlineMediaForStorage(value){
+    if (Array.isArray(value)) return value.map(stripInlineMediaForStorage);
+    if (!value || typeof value !== "object") {
+      const text = String(value || "");
+      return /^(data:|blob:)/i.test(text) && text.length > 1024 ? "" : value;
+    }
+    const out = {};
+    Object.entries(value).forEach(([key, val]) => {
+      if (typeof val === "string" && /^(data:|blob:)/i.test(val) && val.length > 1024) out[key] = "";
+      else out[key] = stripInlineMediaForStorage(val);
+    });
+    return out;
+  }
+
+  const write = (k,v)=> {
+    try { localStorage.setItem(k, JSON.stringify(stripInlineMediaForStorage(v))); } catch {}
+  };
+
+  function isSnapgramActive(){
+    const scene = (window.Game?.currentScene || "").toLowerCase();
+    if (scene === "snapgram") return true;
+    return !!document.querySelector('.insta[data-scene="snapgram"]');
+  }
+
+  function dedupHit(kind, detail){
+    const now = Date.now();
+    const ttl = 1500;
+
+    const id = String(detail?.id || detail?.onceKey || "");
+    const ok = String(detail?.onceKey || "");
+    const img = String(detail?.image || detail?.url || detail?.photo || "");
+    const who = String(detail?.authorId || detail?.user || detail?.authorName || "");
+    const key = kind + "|" + id + "|" + ok + "|" + img + "|" + who;
+
+    for (const [k, t] of STATE.dedup){
+      if (now - t > ttl) STATE.dedup.delete(k);
+    }
+    if (STATE.dedup.has(key)) return true;
+    STATE.dedup.set(key, now);
+    return false;
+  }
+
+  function readConversationsStore(){
+    try{
+      const raw = localStorage.getItem("conversations");
+      if(!raw) return {};
+      const obj = safeJsonParse(raw, {});
+      return (obj && typeof obj === "object") ? obj : {};
+    }catch{
+      return {};
+    }
+  }
+
+  function resolveVariantAvatar(authorId, providedAvatar){
+    const id = canonicalId(authorId);
+    const raw = String(providedAvatar || "").trim();
+    try {
+      if (window.Game && typeof window.Game.resolveCharacterVariantAvatar === "function") {
+        const resolved = String(window.Game.resolveCharacterVariantAvatar(id, raw) || "").trim();
+        if (resolved) return resolved;
+      }
+    } catch {}
+    if (id === "mason" || /(?:^|\/)assets\/avatars\/mason(?:_female)?\.jpg(?:[?#].*)?$/i.test(raw)) {
+      const variant = String(safeGetLS("character_variant_mason") || "").trim().toLowerCase();
+      return variant === "female" ? "assets/avatars/female_mason.jpg" : "assets/avatars/male_mason.jpg";
+    }
+    return raw || DEFAULT_AVATAR;
+  }
+
+  function resolveVariantImage(image, authorId){
+    const raw = String(image || "").trim();
+    if (!raw) return "";
+    try {
+      if (window.Game && typeof window.Game.resolveCharacterVariantImage === "function") {
+        const resolved = String(window.Game.resolveCharacterVariantImage(raw, authorId) || "").trim();
+        if (resolved) return resolved;
+      }
+    } catch {}
+    return raw;
+  }
+
+  function resolveAvatar(authorId, providedAvatar){
+    const a = String(providedAvatar || "").trim();
+    if (a) return resolveVariantAvatar(authorId, a);
+
+    const id = canonicalId(authorId);
+    if (!id) return resolveVariantAvatar(id, DEFAULT_AVATAR);
+
+    try{
+      const store = readConversationsStore();
+      const av = String(store?.[id]?.avatar || "").trim();
+      if (av) return resolveVariantAvatar(id, av);
+    }catch{}
+
+    return resolveVariantAvatar(id, DEFAULT_AVATAR);
+  }
+
+  function resolveUserName(authorId, providedName){
+    const n = String(providedName || "").trim();
+    if (n) return n;
+
+    const id = canonicalId(authorId);
+    if (!id) return "Unknown";
+
+    try{
+      const store = readConversationsStore();
+      const cn = String(store?.[id]?.name || "").trim();
+      if (cn) return cn;
+    }catch{}
+
+    return "Unknown";
+  }
+
+  function resolveAuthorId(raw){
+    const id = canonicalId(raw);
+    return id || "unknown";
+  }
+
+  const GALLERY_GENERIC_OWNER_IDS = new Set(["", "unknown", "snapgram", "story", "post", "ig", "msg", "player"]);
+
+  function inferOwnerIdFromGallerySource(raw){
+    const source = String(raw || "").trim().toLowerCase();
+    if (!source) return "";
+    if (source.startsWith("msg:")) {
+      const id = resolveAuthorId(source.slice(4));
+      return GALLERY_GENERIC_OWNER_IDS.has(id) ? "" : id;
+    }
+    if (source.startsWith("snapgram:")) {
+      const id = resolveAuthorId(source.slice(9));
+      return GALLERY_GENERIC_OWNER_IDS.has(id) ? "" : id;
+    }
+    const plain = resolveAuthorId(source);
+    return GALLERY_GENERIC_OWNER_IDS.has(plain) ? "" : plain;
+  }
+
+  function saveToGallery(url, meta = {}) {
+    if(!url) return;
+    if (/^(data:|blob:)/i.test(String(url || "")) && String(url || "").length > 1024) {
+      console.warn("[snapgram] skipped inline media for gallery quota");
+      return;
+    }
+    try{
+      const stableId = String(meta.id || "").trim();
+      const ownerId = (() => {
+        const explicit = resolveAuthorId(meta.ownerId || meta.authorId || meta.contactId || "");
+        if (explicit && !GALLERY_GENERIC_OWNER_IDS.has(explicit)) return explicit;
+        return inferOwnerIdFromGallerySource(meta.src || "");
+      })();
+      const ownerName = ownerId
+        ? resolveUserName(ownerId, meta.ownerName || meta.authorName || meta.user || "")
+        : "";
+      const source = String(meta.src || "").trim() || (ownerId ? ("snapgram:" + ownerId) : "snapgram");
+      const photoUrl = resolveVariantImage(url, ownerId);
+      if (!photoUrl) return;
+      const findPhotoIndex = (arr) => (Array.isArray(arr) ? arr : []).findIndex((p) => {
+        const pid = String(p?.id || "").trim();
+        const purl = String(p?.url || p?.src || "").trim();
+        return (stableId && pid === stableId) || purl === photoUrl;
+      });
+      const mergeOwnerMeta = (existing, incoming) => {
+        const prev = (existing && typeof existing === "object") ? { ...existing } : {};
+        const next = (incoming && typeof incoming === "object") ? incoming : {};
+        const prevOwnerId = resolveAuthorId(prev.ownerId || prev.owner || "");
+        const incomingOwnerId = resolveAuthorId(next.ownerId || next.owner || "");
+        if ((!prevOwnerId || GALLERY_GENERIC_OWNER_IDS.has(prevOwnerId)) && incomingOwnerId && !GALLERY_GENERIC_OWNER_IDS.has(incomingOwnerId)) {
+          prev.ownerId = incomingOwnerId;
+        }
+        const prevOwnerName = String(prev.ownerName || "").trim();
+        if (!prevOwnerName) {
+          const nextOwnerName = String(next.ownerName || "").trim();
+          if (nextOwnerName) prev.ownerName = nextOwnerName;
+        }
+        if (!String(prev.src || "").trim() && String(next.src || "").trim()) {
+          prev.src = String(next.src || "").trim();
+        }
+        return prev;
+      };
+
+      let list = read(GALLERY_KEY, []);
+
+      const photo = {
+        id: stableId || ("p_" + Date.now()),
+        url: photoUrl,
+        w: meta.w || 0,
+        h: meta.h || 0,
+        at: meta.at || Date.now(),
+        src: source,
+        ownerId,
+        ownerName
+      };
+
+      if (window.GalleryStore && typeof window.GalleryStore.upsert === "function") {
+        window.GalleryStore.upsert(photo, { emit: false });
+        return;
+      }
+
+      if (window.Gallery && typeof window.Gallery.addPhoto === "function") {
+        try { window.Gallery.addPhoto(photo); } catch {}
+      }
+
+      list = read(GALLERY_KEY, []);
+      const existingIdx = findPhotoIndex(list);
+      if (existingIdx >= 0) {
+        const merged = mergeOwnerMeta(list[existingIdx], photo);
+        const changed = JSON.stringify(list[existingIdx] || {}) !== JSON.stringify(merged || {});
+        if (changed) {
+          list[existingIdx] = merged;
+          write(GALLERY_KEY, list);
+        }
+      } else {
+        list.unshift(photo);
+        write(GALLERY_KEY, list);
+      }
+    }catch(e){
+      console.warn("[snapgram] saveToGallery failed", e);
+    }
+  }
+
+  function isIgSeen(onceKey){
+    const k = String(onceKey || "").trim();
+    if (!k) return false;
+    return safeGetLS("ig_seen_" + k) === "1";
+  }
+
+  function markIgSeen(onceKey){
+    const k = String(onceKey || "").trim();
+    if (!k) return;
+    safeSetLS("ig_seen_" + k, "1");
+  }
+
+  function checkIgGate(){
+    const gate = safeJsonParse(safeGetLS("ig_gate_v1"), null);
+    if (!gate || !gate.startStory) return;
+
+    const req = Array.isArray(gate.required) ? gate.required : [];
+    if (!req.length) return;
+
+    const ok = req.every(k => safeGetLS("ig_seen_" + String(k)) === "1");
+    if (!ok) return;
+
+    safeRemLS("ig_gate_v1");
+
+    if (window.Game && typeof window.Game.startStory === "function") {
+      window.Game.startStory(String(gate.startStory));
+    }
+  }
+
+  // ==========================
+  // Viewer
+  // ==========================
+  const viewerEl    = document.getElementById('igViewer');
+  const viewerImg   = document.getElementById('igViewerImg');
+  const viewerClose = document.getElementById('igViewerClose');
+
+  function applySnapgramImage(img, logicalPath, meta = {}){
+    if (!img) return Promise.resolve({ status:"missing" });
+    const resolver = window.ProtectedMediaResolver;
+    if (resolver?.applyImage) {
+      return resolver.applyImage(img, logicalPath, meta).catch(() => {
+        img.src = DEFAULT_AVATAR;
+        return { status:"fallback", logicalPath };
+      });
+    }
+    img.src = logicalPath;
+    return Promise.resolve({ status:"raw", logicalPath, finalUrl:logicalPath });
+  }
+
+  function openViewer(src, meta = {}){
+    if(!viewerEl || !viewerImg || !src) return;
+    if (viewerHideTimer) {
+      clearTimeout(viewerHideTimer);
+      viewerHideTimer = null;
+    }
+    viewerImg.decoding = "async";
+    void applySnapgramImage(viewerImg, src, { assetType:"snapgram_media", surface:"snapgram_viewer", ...meta });
+    const socialHost = document.getElementById("igViewerSocial");
+    if (socialHost) { socialHost.replaceChildren(); window.SocialInteractions?.mount(socialHost, "snapgram", String(meta.postId || "")); }
+    viewerEl.hidden = false;
+    requestAnimationFrame(()=> viewerEl.classList.add('show'));
+  }
+
+  function closeViewer(){
+    if(!viewerEl || !viewerImg) return;
+    viewerEl.classList.remove('show');
+    document.getElementById('igViewerSocial')?.replaceChildren();
+    viewerImg.removeAttribute("src");
+    if (viewerHideTimer) clearTimeout(viewerHideTimer);
+    viewerHideTimer = setTimeout(()=>{
+      viewerHideTimer = null;
+      viewerEl.hidden = true;
+    },180);
+  }
+
+  if(viewerClose){
+    viewerClose.setAttribute("aria-label", window.Game?.i18n?.ui?.("common.close", "Close") || "Close");
+    const fn = closeViewer;
+    viewerClose.addEventListener('click', fn);
+    STATE.viewerHandlers.push({ el: viewerClose, type: "click", fn });
+  }
+
+  if(viewerEl){
+    const fn = (e)=>{ if(e.target === viewerEl) closeViewer(); };
+    viewerEl.addEventListener('click', fn);
+    STATE.viewerHandlers.push({ el: viewerEl, type: "click", fn });
+  }
+
+  /* ✅ NEW: click on the image itself closes the viewer */
+  if(viewerImg){
+    const fn = (e)=>{ e.preventDefault(); e.stopPropagation(); closeViewer(); };
+    viewerImg.addEventListener('click', fn);
+    STATE.viewerHandlers.push({ el: viewerImg, type: "click", fn });
+  }
+
+  // ==========================
+  // Seen markers (visual)
+  // ==========================
+  function markPostSeenByIdOrOnceKey(postId, onceKey){
+    const posts = read(FEED_KEY, []);
+    let changed = false;
+    const pid = String(postId || "").trim();
+    const ok = String(onceKey || "").trim();
+
+    for (const p of posts){
+      if ((pid && p.id === pid) || (ok && p.onceKey === ok)){
+        if (!p.seen) { p.seen = true; changed = true; }
+      }
+    }
+    if (changed) write(FEED_KEY, posts);
+  }
+
+  // ==========================
+  // IG API
+  // ==========================
+  if(!window.IG) window.IG = {};
+
+  window.IG.addPost = function(postRaw){
+    const active = isSnapgramActive();
+
+    const authorIdRaw =
+      postRaw?.authorId || postRaw?.fromId || postRaw?.user || postRaw?.authorName || "unknown";
+    const authorId = resolveAuthorId(authorIdRaw);
+
+    const userName = resolveUserName(authorId, (postRaw?.authorName || postRaw?.user));
+    const avatarUrl = resolveAvatar(authorId, postRaw?.avatar);
+
+    const onceKey = String(postRaw?.onceKey || postRaw?.id || "").trim();
+
+    const post = {
+      id:      String(postRaw.id || onceKey || (authorId + "-" + Date.now())),
+      onceKey: onceKey,
+      authorId: authorId,
+      user:    userName,
+      avatar:  avatarUrl,
+      image:   resolveVariantImage(postRaw.image || postRaw.photo || postRaw.url || "", authorId) || null,
+      video:   postRaw.video || null,
+      caption: resolveSnapgramVisibleText(postRaw.caption || postRaw.text || ""),
+      likes:   (postRaw.likes ?? 0),
+      time:    postRaw.time || "",
+      gameTime: window.GameTimeService?.resolveStamp?.(postRaw, { kind: "snapgram", id: postRaw.id, onceKey, storyPath: postRaw.storyPath }) || null,
+      seen:    active ? true : !!postRaw.seen
+    };
+
+    const arr = read(FEED_KEY, []);
+    const i = arr.findIndex(x =>
+      (x.onceKey && post.onceKey && x.onceKey === post.onceKey) ||
+      (x.id && x.id === post.id) ||
+      (x.image === post.image && x.user === post.user)
+    );
+    if(i >= 0) arr[i] = { ...arr[i], ...post, gameTime: window.GameTimeService?.normalizeStamp?.(arr[i].gameTime) || post.gameTime };
+    else arr.unshift(post);
+
+    write(FEED_KEY, arr);
+
+    if(post.image){
+      saveToGallery(post.image, {
+        url: post.image,
+        id: post.id,
+        src: "snapgram:" + authorId,
+        ownerId: authorId,
+        ownerName: userName
+      });
+      if(window.StoryBus){
+        StoryBus.emit("gallery:add", { url: post.image, id: post.id, src: "snapgram:" + authorId, ownerId: authorId, ownerName: userName, at: Date.now() });
+        StoryBus.emit("photo:new",  { url: post.image, id: post.id, src: "snapgram:" + authorId, ownerId: authorId, ownerName: userName, at: Date.now() });
+      }
+    }
+
+    renderFeed();
+  };
+
+  window.IG.addStory = function(storyRaw){
+    const active = isSnapgramActive();
+
+    const authorIdRaw =
+      storyRaw?.authorId || storyRaw?.fromId || storyRaw?.user || storyRaw?.authorName || "unknown";
+    const authorId = resolveAuthorId(authorIdRaw);
+
+    const userName = resolveUserName(authorId, (storyRaw?.authorName || storyRaw?.user));
+    const avatarUrl = resolveAvatar(authorId, storyRaw?.avatar);
+
+    const onceKey = String(storyRaw?.onceKey || storyRaw?.id || "").trim();
+
+    const story = {
+      id:      String(storyRaw.id || onceKey || (authorId + "-" + Date.now())),
+      onceKey: onceKey,
+      authorId: authorId,
+      user:    userName,
+      avatar:  avatarUrl,
+      image:   resolveVariantImage(storyRaw.image || storyRaw.url || "", authorId) || null,
+      seen:    active ? true : !!storyRaw.seen,
+      triggerStart: storyRaw.onSeenStartStory || null,
+      gameTime: window.GameTimeService?.resolveStamp?.(storyRaw, { kind: "snapgram", id: storyRaw.id, onceKey, storyPath: storyRaw.storyPath }) || null
+    };
+
+    const arr = read(STORY_KEY, []);
+
+    const i = arr.findIndex(x => String(x.authorId||"") === String(story.authorId||""));
+    if(i >= 0){
+      const prev = arr[i];
+      arr[i] = { ...prev, ...story, gameTime: (prev.id === story.id && window.GameTimeService?.normalizeStamp?.(prev.gameTime)) || story.gameTime, triggerStart: story.triggerStart || prev.triggerStart || null };
+    }else{
+      arr.unshift(story);
+    }
+
+    write(STORY_KEY, arr);
+
+    if(story.image){
+      saveToGallery(story.image, {
+        url: story.image,
+        id: story.id,
+        src: "snapgram:" + authorId,
+        ownerId: authorId,
+        ownerName: userName
+      });
+      if(window.StoryBus){
+        StoryBus.emit("gallery:add", { url: story.image, id: story.id, src: "snapgram:" + authorId, ownerId: authorId, ownerName: userName, at: Date.now() });
+        StoryBus.emit("photo:new",  { url: story.image, id: story.id, src: "snapgram:" + authorId, ownerId: authorId, ownerName: userName, at: Date.now() });
+      }
+    }
+
+    renderStories();
+  };
+
+  window.IG.markStorySeen = function(id, onceKey){
+    const arr = read(STORY_KEY, []);
+    const idKey = String(id || "").trim();
+    const onceKeyWanted = String(onceKey || "").trim();
+    let changed = false;
+    let startPath = "";
+
+    for (const s of arr) {
+      const sid = String(s?.id || "").trim();
+      const sok = String(s?.onceKey || "").trim();
+      if ((idKey && sid === idKey) || (onceKeyWanted && sok === onceKeyWanted)) {
+        if (!s.seen) {
+          s.seen = true;
+          changed = true;
+        }
+        if (sok) markIgSeen(sok);
+        if (!startPath && s.triggerStart) {
+          startPath = String(s.triggerStart || "").trim();
+          s.triggerStart = null;
+          changed = true;
+        }
+      }
+    }
+
+    if (onceKeyWanted) markIgSeen(onceKeyWanted);
+    if (changed) write(STORY_KEY, arr);
+    renderStories();
+
+    if (startPath && window.Game && typeof window.Game.startStory === "function") {
+      window.Game.startStory(startPath);
+    }
+  };
+
+  function renderStories(){
+    const host = document.getElementById('igStories');
+    if(!host) return;
+
+    const stories = read(STORY_KEY, []);
+    host.innerHTML = "";
+    if(stories.length === 0){
+      const hint = document.createElement('div');
+      hint.className = 'empty stories';
+      hint.innerHTML = '<span>—</span><span>No stories yet.</span>';
+      host.appendChild(hint);
+      return;
+    }
+
+    for(const s of stories){
+      const story = document.createElement('div');
+
+      const unseen = s.onceKey ? !isIgSeen(s.onceKey) : !s.seen;
+      story.dataset.postId = String(s.id || s.onceKey || "");
+      story.className = unseen ? 'story unseen' : 'story';
+
+      const ringStyle = (!unseen)
+        ? 'background:radial-gradient(closest-side,#050816 80%,transparent 81% 100%),linear-gradient(#1f2937,#1f2937);box-shadow:none;border-radius:18px;'
+        : '';
+
+      const authorId = resolveAuthorId(s.authorId || s.id || s.user || "");
+      const av = resolveVariantAvatar(authorId, s.avatar || DEFAULT_AVATAR);
+      const image = resolveVariantImage(s.image || "", authorId);
+
+      story.innerHTML = `
+        <div class="ring" style="${ringStyle}">
+          <img alt="" loading="lazy" decoding="async">
+        </div>
+        <div class="name">${resolveSnapgramVisibleText(s.user||"")}</div>
+      `;
+      void applySnapgramImage(story.querySelector('.ring img'), av, {
+        assetType:"avatar", surface:"snapgram_story_avatar", profileId:authorId, postId:String(s.id || s.onceKey || "")
+      });
+
+      story.addEventListener('click', ()=>{
+        window.IG.markStorySeen(s.id, s.onceKey);
+
+        if(image){
+          openViewer(image, { profileId:authorId, postId:String(s.id || s.onceKey || "") });
+        }else if(window.StoryBus){
+          StoryBus.emit('ig:story:open', { id:s.id });
+        }
+
+        checkIgGate();
+      });
+
+      host.appendChild(story);
+    }
+  }
+
+  function renderFeed(){
+    const feedEl = document.getElementById('igFeed');
+    if(!feedEl) return;
+
+    const posts = read(FEED_KEY, []);
+    const empty = document.getElementById('igEmptyFeed');
+
+    feedEl.querySelectorAll('article.post').forEach(n=>n.remove());
+
+    if(posts.length === 0){
+      if(empty) empty.style.display = 'block';
+      return;
+    }
+    if(empty) empty.style.display = 'none';
+
+    for(const p of posts){
+      const unseen = p.onceKey ? !isIgSeen(p.onceKey) : !p.seen;
+
+      const el = document.createElement('article');
+      el.dataset.postId = String(p.id || p.onceKey || "");
+      el.className = unseen ? 'post unseen' : 'post';
+      const authorId = resolveAuthorId(p.authorId || p.id || p.user || "");
+      const av = resolveVariantAvatar(authorId, p.avatar || DEFAULT_AVATAR);
+      const image = resolveVariantImage(p.image || "", authorId);
+
+      const visibleUser = resolveSnapgramVisibleText(p.user || "");
+      const visibleCaption = resolveSnapgramVisibleText(p.caption || "");
+      const visibleTime = formatSnapgramPostTime(p);
+      el.innerHTML = `
+        <header class="post-head">
+          <img alt="" loading="lazy" decoding="async">
+          <div class="post-username"></div>
+
+          ${unseen ? `<div class="post-new">NEW</div>` : `
+            <svg class="ig-icon post-dots" viewBox="0 0 24 24" fill="currentColor">
+              <circle cx="5" cy="12" r="1.6"/><circle cx="12" cy="12" r="1.6"/><circle cx="19" cy="12" r="1.6"/>
+            </svg>
+          `}
+        </header>
+
+        <div class="post-media">
+          ${p.video ? `<video autoplay muted loop playsinline></video>` : (image ? `<img alt="" loading="lazy" decoding="async">` : '')}
+        </div>
+
+        <div class="post-caption"><span class="u"></span></div>
+        <div class="post-time"></div>
+      `;
+
+      el.querySelector('.post-username').textContent = visibleUser;
+      el.querySelector('.post-caption .u').textContent = visibleUser;
+      el.querySelector('.post-caption').appendChild(document.createTextNode(visibleCaption));
+      el.querySelector('.post-time').textContent = visibleTime;
+
+      void applySnapgramImage(el.querySelector('.post-head img'), av, {
+        assetType:"avatar", surface:"snapgram_feed_avatar", profileId:authorId, postId:String(p.id || p.onceKey || "")
+      });
+      if (image) {
+        void applySnapgramImage(el.querySelector('.post-media img'), image, {
+          assetType:"snapgram_media", surface:"snapgram_feed_image", profileId:authorId, postId:String(p.id || p.onceKey || "")
+        });
+      }
+      if (p.video) {
+        const video = el.querySelector('.post-media video');
+        const logicalVideo = String(p.video || "").trim();
+        if (video && logicalVideo) {
+          const resolver = window.ProtectedMediaResolver;
+          if (resolver?.resolve) void resolver.resolve(logicalVideo).then((resolved) => { if (resolved) video.src = resolved; });
+          else video.src = logicalVideo;
+        }
+      }
+
+      const media = el.querySelector('.post-media');
+      if(media && image){
+        media.style.cursor = 'pointer';
+        media.addEventListener('click', ()=>{
+          if (p.onceKey) markIgSeen(p.onceKey);
+          markPostSeenByIdOrOnceKey(p.id, p.onceKey);
+
+          openViewer(image, { profileId:authorId, postId:String(p.id || p.onceKey || "") });
+          checkIgGate();
+
+          renderFeed();
+          renderStories();
+        });
+      }
+
+      window.SocialInteractions?.mount(el, "snapgram", String(p.id || p.onceKey || ""));
+      feedEl.appendChild(el);
+    }
+  }
+
+  function ingestPost(detail){
+    if (dedupHit("post", detail)) return;
+    window.IG.addPost(detail || {});
+  }
+  function ingestStory(detail){
+    if (dedupHit("story", detail)) return;
+    window.IG.addStory(detail || {});
+  }
+
+  if(window.StoryBus){
+    const onPost = (e) => ingestPost(e?.detail || {});
+    const onStory = (e) => ingestStory(e?.detail || {});
+    StoryBus.on('ig:post', onPost);
+    StoryBus.on('ig:story', onStory);
+    STATE.busHandlers.push({ type: "ig:post", fn: onPost });
+    STATE.busHandlers.push({ type: "ig:story", fn: onStory });
+  }
+
+  const winPost = (e) => ingestPost(e?.detail || {});
+  const winStory = (e) => ingestStory(e?.detail || {});
+  window.addEventListener("ig:post", winPost);
+  window.addEventListener("ig:story", winStory);
+  STATE.winHandlers.push({ type: "ig:post", fn: winPost });
+  STATE.winHandlers.push({ type: "ig:story", fn: winStory });
+
+  renderStories();
+  renderFeed();
+  const languageReady = () => { renderStories(); renderFeed(); viewerClose?.setAttribute("aria-label", window.Game?.i18n?.ui?.("common.close", "Close") || "Close"); };
+  window.addEventListener("i18n:language-ready", languageReady);
+  STATE.winHandlers.push({ type: "i18n:language-ready", fn: languageReady });
+
+  STATE.mountedHandler = (e)=>{
+    const name = ((e?.detail?.name)||"").toLowerCase();
+    if(name !== SCENE_NAME) return;
+
+    try{
+      if(window.Game && typeof window.Game.clearAppBadge === "function"){
+        window.Game.clearAppBadge("snapgram");
+      }
+    }catch{}
+
+    renderStories();
+    renderFeed();
+  };
+
+  window.addEventListener('scene:mounted', STATE.mountedHandler);
+})();
+</script>

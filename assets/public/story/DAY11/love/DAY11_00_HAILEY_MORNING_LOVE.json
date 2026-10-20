@@ -1,0 +1,44 @@
+{
+  "onceKey": "d11_00_hailey_morning_love_v1",
+  "contactId": "hailey",
+  "requireOnceKey": "d11_00_lena_morning_love_v1|d10_02_hailey_evening_love_v1",
+  "steps": [
+    {"type":"notify","delay":1200,"fromId":"hailey","fromName":"{{name:hailey}}","avatar":"assets/avatars/hailey.jpg","text":"Help 😭","target":"conversation"},
+    {"type":"message","delay":850,"from":"hailey","text":"I am outside class"},
+    {"type":"message","delay":850,"from":"hailey","text":"Pretending to be a girl who understands chapters"},
+    {"type":"image","delay":900,"from":"hailey","image":"assets/pictures/Conversation/hailey_before_class.jpg"},
+    {"type":"message","delay":850,"from":"hailey","text":"Very glamorous"},
+    {"type":"message","delay":850,"from":"hailey","text":"Very fake"},
+    {"type":"message","delay":900,"from":"player","text":"You revised yesterday"},
+    {"type":"message","delay":850,"from":"hailey","text":"Because you bullied me with quizzes"},
+    {"type":"message","delay":850,"from":"hailey","text":"A good technique"},
+    {"type":"message","delay":900,"from":"player","text":"Breathe"},
+    {"type":"message","delay":900,"from":"player","text":"Read the question twice before answering"},
+    {"type":"message","delay":850,"from":"hailey","text":"Bossy"},
+    {"type":"message","delay":850,"from":"hailey","text":"Say I am smart 😌"},
+    {"type":"message","delay":900,"from":"player","text":"You are smart, I think"},
+    {"type":"message","delay":850,"from":"hailey","text":"Hey!"},
+    {"type":"message","delay":900,"from":"player","text":"You are smart"},
+    {"type":"message","delay":850,"from":"hailey","text":"Okay"},
+    {"type":"message","delay":850,"from":"hailey","text":"Going in"},
+    {"type":"message","delay":850,"from":"hailey","text":"If I die, delete my search history"},
+    {"type":"message","delay":850,"from":"hailey","text":"And tell my friends I was not that stupid 😭"},
+    {"type":"if","condition":"active_character:evelyn","then":[
+      {"type":"if","condition":"route_evelyn_locked_v1:love","then":[
+        {"type":"start_story","goHome":true,"startStory":"story/DAY11/DAY11_EVELYN_MORNING.json"}
+      ],"else":[
+        {"type":"if","condition":"route_evelyn_locked_v1:nts","then":[
+          {"type":"start_story","goHome":true,"startStory":"story/DAY11/DAY11_EVELYN_MORNING.json"}
+        ],"else":[
+          {"type":"if","condition":"route_evelyn_locked_v1:ntr","then":[
+            {"type":"start_story","goHome":true,"startStory":"story/DAY11/DAY11_EVELYN_MORNING.json"}
+          ],"else":[
+            {"type":"start_story","goHome":true,"startStory":"story/DAY11/DAY11_EVELYN_MORNING.json"}
+          ]}
+        ]}
+      ]}
+    ],"else":[
+      {"type":"start_story","goHome":true,"startStory":"story/DAY11/love/DAY11_01_HAILEY_AFTERNOON_LOVE.json"}
+    ]}
+  ]
+}

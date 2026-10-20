@@ -1,0 +1,26 @@
+{
+  "onceKey": "d11_03_mason_morning_ntr_v1",
+  "contactId": "mason",
+  "requireOnceKey": "d10_05_mason_evening_ntr_v1",
+  "onCompleteStartStory": "story/DAY11/ntr/DAY11_01_MASON_AFTERNOON_NTR.json",
+  "route": "ntr",
+  "routeLock": "route_mason_locked_v1:ntr",
+  "steps": [
+    {"type":"notify","delay":1200,"fromId":"mason","fromName":"{{name:mason}}","avatar":"assets/avatars/male_mason.jpg","text":"How's the old man doing?","target":"conversation"},
+    {"type":"message","delay":850,"from":"mason","text":"Did the doctor finally put you out of your misery?"},
+    {"type":"message","delay":850,"from":"player","text":"Very funny"},
+    {"type":"message","delay":850,"from":"player","text":"It's actually going well"},
+    {"type":"message","delay":850,"from":"player","text":"I should be able to walk again soon"},
+    {"type":"message","delay":850,"from":"mason","text":"About time"},
+    {"type":"message","delay":850,"from":"mason","text":"I was getting tired of waiting for you every time we went somewhere"},
+    {"type":"message","delay":850,"from":"player","text":"You make it sound like I'm slowing you down on purpose"},
+    {"type":"message","delay":850,"from":"mason","text":"You kind of are"},
+    {"type":"message","delay":850,"from":"player","text":"Careful"},
+    {"type":"message","delay":850,"from":"player","text":"You might be the next one whith a cast"},
+    {"type":"message","delay":850,"from":"mason","text":"We'll see about that"},
+    {"type":"message","delay":850,"from":"mason","text":"Don't trip on your first day back"},
+    {"type":"message","delay":850,"from":"player","text":"I'll try not to embarrass you"},
+    {"type":"message","delay":850,"from":"mason","text":"You manage that without even trying"},
+    {"type":"start_story","goHome":true,"startStory":"story/DAY11/ntr/DAY11_01_MASON_AFTERNOON_NTR.json","startDelayMs":200}
+  ]
+}

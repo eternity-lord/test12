@@ -1,0 +1,58 @@
+{
+  "onceKey": "d15_02_hailey_evening_nts_v1",
+  "contactId": "hailey",
+  "requireOnceKey": "d15_01_lena_afternoon_nts_v1|d15_01_hailey_afternoon_nts_v1",
+  "steps": [
+    {"type":"notify","delay":800,"fromId":"hailey","fromName":"{{name:hailey}}","avatar":"assets/avatars/hailey.jpg","text":"I'm back 😌","target":"conversation"},
+    {"type":"message","delay":900,"from":"player","text":"How did the debrief go?"},
+    {"type":"message","delay":900,"from":"hailey","text":"Really well actually 😊"},
+    {"type":"message","delay":900,"from":"hailey","text":"We talked about the exam for a while"},
+    {"type":"message","delay":900,"from":"hailey","text":"Ethan thinks I did better than I think I did"},
+    {"type":"message","delay":900,"from":"player","text":"That's a good sign"},
+    {"type":"message","delay":900,"from":"hailey","text":"I hope so 🤞"},
+    {"type":"message","delay":900,"from":"hailey","text":"I'm still overthinking a few questions"},
+    {"type":"message","delay":900,"from":"player","text":"Everyone does that after an exam"},
+    {"type":"message","delay":900,"from":"hailey","text":"True 😌"},
+    {"type":"message","delay":900,"from":"hailey","text":"But honestly I'm mostly relieved that it's over"},
+    {"type":"message","delay":900,"from":"player","text":"You earned that feeling"},
+    {"type":"message","delay":900,"from":"hailey","text":"For once I actually feel proud of myself 😊"},
+    {"type":"message","delay":900,"from":"player","text":"You should"},
+    {"type":"message","delay":900,"from":"hailey","text":"All those hours of studying finally paid off 😌"},
+    {"type":"message","delay":900,"from":"hailey","text":"Even if I complained the whole time "},
+    {"type":"message","delay":900,"from":"player","text":"Only the whole time?"},
+    {"type":"message","delay":900,"from":"hailey","text":"Okay 😭"},
+    {"type":"message","delay":900,"from":"hailey","text":"Almost the whole time "},
+    {"type":"message","delay":900,"from":"player","text":"That's more believable"},
+    {"type":"message","delay":900,"from":"hailey","text":"Except when we were kissing 😌"},
+    {"type":"message","delay":900,"from":"player","text":"Sorry what ??"},
+    {"type":"image","delay":900,"from":"hailey","image":"assets/pictures/Conversation/hailey_kissing tutor.jpg"},
+    {"type":"hak_overlay","title":"HAK//NOTICE","messages":["Post-session interaction logged","{{name:hailey}} rewarded Ethan with a kiss","No signs of hesitation detected during the exchange","Relationship confidence estimate increased",{"kind":"thought","speaker":"player","text":"A kiss makes this feel different from helping her study, and I'm not as detached as I sound."}]},
+    {"type":"hak_add_evidence","kind":"nts","route":"nts","profileId":"hailey","profile":{"name":"{{name:hailey}}","avatar":"assets/avatars/hailey.jpg","kind":"nts","route":"nts"},"evidences":[{"id":"hailey_nts_d15_evidence_1","kind":"nts","route":"nts","src":"assets/pictures/evidence/hailey_ethan_kiss.mp4","url":"assets/pictures/evidence/hailey_ethan_kiss.mp4","thumb":"assets/pictures/evidence/hailey_ethan_kiss.mp4","title":"Observed Reward Behavior","text":"HAK archived visual evidence of {{name:hailey}} rewarding Ethan with a kiss following a successful tutoring session","time":"AFTERNOON"}]},
+    {"type":"message","delay":900,"from":"hailey","text":"I needed that reward! 😌"},
+    {"type":"message","delay":900,"from":"player","text":"Wow you're really sending me that ??"},
+    {"type":"message","delay":900,"from":"hailey","text":"Well it's a reward for you too 😌"},
+    {"type":"message","delay":900,"from":"player","text":"How is that a reward?"},
+    {"type":"message","delay":900,"from":"hailey","text":"You don't like it?"},
+    {"type":"message","delay":900,"from":"hailey","text":"Then I'll delete it"},
+    {"type":"message","delay":900,"from":"player","text":"No, I like it!"},
+    {"type":"message","delay":900,"from":"hailey","text":"I knew it!"},
+    {"type":"message","delay":900,"from":"hailey","text":"Pervert"},
+    {"type":"message","delay":900,"from":"player","text":"You don't let any opportunity slip by!"},
+    {"type":"message","delay":900,"from":"hailey","text":"Always "},
+    {"type":"message","delay":900,"from":"hailey","text":"Anyway 😊"},
+    {"type":"message","delay":900,"from":"hailey","text":"Now I just have to wait for the results 😩"},
+    {"type":"message","delay":900,"from":"player","text":"The hardest part"},
+    {"type":"message","delay":900,"from":"hailey","text":"Exactly 😭"},
+    {"type":"message","delay":900,"from":"hailey","text":"But maybe it won't be that bad, if I fail at least I will get punished 😌"},
+    {"type":"message","delay":900,"from":"player","text":"It's supposed to be a bad thing!"},
+    {"type":"if","condition":"all:!d15_cast_removal_summary_seen_v1,!active_character:evelyn","then":[
+      {"type":"note","delay":1200,"text":"DAY 15 — After examining your leg, the doctor removed your cast. You can move more freely now, but your leg still needs rest."},
+      {"type":"set_flag","key":"d15_cast_removal_summary_seen_v1","value":true}
+    ]},
+    {"type":"if","condition":"active_character:evelyn","then":[
+      {"type":"start_story","goHome":true,"startStory":"story/DAY15/DAY15_02_EVELYN_EVENING.json"}
+    ],"else":[
+      {"type":"time_card","text":"DAY 16","day":16,"goHome":true,"startStory":"story/DAY16/nts/DAY16_00_HAILEY_MORNING_NTS.json","contactId":"hailey","startDelayMs":200}
+    ]}
+  ]
+}

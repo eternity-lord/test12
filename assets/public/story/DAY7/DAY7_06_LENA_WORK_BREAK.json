@@ -1,0 +1,31 @@
+{
+  "onceKey": "d7_00_lena_work_break_v1",
+  "contactId": "lena",
+  "onCompleteStartStory": "story/DAY7/DAY7_07_EVELYN_16H_SUPPORT.json",
+  "steps": [
+    {"type":"notify","delay":1200,"fromId":"lena","fromName":"{{name:lena}}","avatar":"assets/avatars/lena.jpg","text":"Break 😮‍💨","target":"conversation"},
+    {"type":"message","delay":900,"from":"lena","text":"I finally got a minute"},
+    {"type":"message","delay":900,"from":"player","text":"Everything okay?"},
+    {"type":"message","delay":900,"from":"lena","text":"Yeah"},
+    {"type":"message","delay":900,"from":"lena","text":"Just a heavy day"},
+    {"type":"message","delay":900,"from":"lena","text":"I feel wrung out"},
+    {"type":"message","delay":900,"from":"player","text":"Did something happen?"},
+    {"type":"message","delay":900,"from":"lena","text":"Not really"},
+    {"type":"message","delay":900,"from":"lena","text":"Just too many people, too much noise, too many things at once"},
+    {"type":"message","delay":900,"from":"player","text":"And the weird guy?"},
+    {"type":"message","delay":900,"from":"lena","text":"He didn't do anything"},
+    {"type":"message","delay":900,"from":"lena","text":"But I still don't like the vibe around him"},
+    {"type":"message","delay":900,"from":"player","text":"Then trust your gut"},
+    {"type":"message","delay":900,"from":"lena","text":"I do"},
+    {"type":"message","delay":900,"from":"lena","text":"Don't worry, I'm keeping my distance"},
+    {"type":"message","delay":900,"from":"player","text":"Good"},
+    {"type":"message","delay":900,"from":"player","text":"I miss you"},
+    {"type":"message","delay":900,"from":"lena","text":"Me too 🥺"},
+    {"type":"message","delay":900,"from":"lena","text":"I wish I had more than ten quiet minutes with you today"},
+    {"type":"message","delay":900,"from":"player","text":"We'll get them later"},
+    {"type":"message","delay":900,"from":"player","text":"How long until you're done?"},
+    {"type":"message","delay":900,"from":"lena","text":"Still a while"},
+    {"type":"message","delay":900,"from":"lena","text":"I'll text you again when I can ❤️"},
+    {"type":"message","delay":900,"from":"player","text":"Good luck, love you ❤️"}
+  ]
+}

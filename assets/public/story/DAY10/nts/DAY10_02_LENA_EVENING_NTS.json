@@ -1,0 +1,39 @@
+{
+  "onceKey": "d10_02_lena_evening_nts_v1",
+  "contactId": "lena",
+  "requireOnceKey": "d10_01_lena_afternoon_nts_v1",
+  "steps": [
+    {"type":"notify","delay":1500,"fromId":"lena","fromName":"{{name:lena}}","avatar":"assets/avatars/lena.jpg","text":"Still awake 😌","target":"conversation"},
+    {"type":"message","delay":900,"from":"lena","text":"I promised myself an early night"},
+    {"type":"message","delay":900,"from":"player","text":"And yet here you are"},
+    {"type":"message","delay":900,"from":"lena","text":"Exactly"},
+    {"type":"message","delay":900,"from":"lena","text":"Zero discipline"},
+    {"type":"message","delay":900,"from":"player","text":"At least you're honest"},
+    {"type":"message","delay":900,"from":"lena","text":"Always with you ❤️"},
+    {"type":"message","delay":900,"from":"player","text":"How was the rest of your day?"},
+    {"type":"message","delay":900,"from":"lena","text":"Really calm"},
+    {"type":"message","delay":900,"from":"lena","text":"I cooked something simple"},
+    {"type":"message","delay":900,"from":"lena","text":"Watched half a movie again"},
+    {"type":"message","delay":900,"from":"lena","text":"Then got too comfortable to finish it"},
+    {"type":"message","delay":900,"from":"player","text":"Sounds like a successful rest day"},
+    {"type":"message","delay":900,"from":"lena","text":"It was"},
+    {"type":"message","delay":900,"from":"lena","text":"I think I needed a day like this"},
+    {"type":"message","delay":900,"from":"player","text":"You seem lighter"},
+    {"type":"message","delay":900,"from":"lena","text":"Maybe I am 😌"},
+    {"type":"message","delay":900,"from":"lena","text":"A little sleepy, but lighter"},
+    {"type":"message","delay":900,"from":"player","text":"That's good"},
+    {"type":"message","delay":900,"from":"lena","text":"I should really sleep now"},
+    {"type":"message","delay":900,"from":"player","text":"You should"},
+    {"type":"message","delay":900,"from":"lena","text":"Good night then"},
+    {"type":"message","delay":900,"from":"lena","text":"Sleep well, handsome ❤️"},
+    {"type":"message","delay":900,"from":"player","text":"Good night, pretty girl"},
+    {"type":"message","delay":900,"from":"lena","text":"You're going to make me smile at my phone again"},
+    {"type":"message","delay":900,"from":"player","text":"Good"},
+    {"type":"message","delay":900,"from":"lena","text":"Good night for real 😌"},
+    {"type":"if","condition":"active_character:hailey","then":[
+      {"type":"time_card","text":"DAY 11","goHome":true,"startStory":"story/DAY10/nts/DAY10_02_HAILEY_EVENING_NTS.json","startDelayMs":200}
+    ],"else":[
+      {"type":"time_card","text":"DAY 11","goHome":true,"startStory":"story/DAY11/DAY11_00_AIDEN_SHARED.json","startDelayMs":200}
+    ]}
+  ]
+}

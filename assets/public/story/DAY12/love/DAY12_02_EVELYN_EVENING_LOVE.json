@@ -1,0 +1,47 @@
+{
+  "onceKey": "d12_02_evelyn_evening_love_v1",
+  "contactId": "evelyn",
+  "requireOnceKey": "d12_01_evelyn_afternoon_love_v1",
+  "steps": [
+    {"type":"notify","delay":1200,"fromId":"evelyn","fromName":"{{name:evelyn}}","avatar":"assets/avatars/evelyn.jpg","text":"Hey, I'm home 😊","target":"conversation"},
+    {"type":"message","delay":850,"from":"evelyn","text":"How was your second day of work?"},
+    {"type":"message","delay":850,"from":"player","text":"Pretty good"},
+    {"type":"message","delay":850,"from":"player","text":"I'm getting used to it"},
+    {"type":"message","delay":850,"from":"player","text":"It was calmer than yesterday too"},
+    {"type":"message","delay":850,"from":"player","text":"How were the groceries?"},
+    {"type":"message","delay":850,"from":"evelyn","text":"I managed to buy everything we needed"},
+    {"type":"message","delay":850,"from":"evelyn","text":"But there is one problem"},
+    {"type":"message","delay":850,"from":"player","text":"What problem?"},
+    {"type":"message","delay":850,"from":"evelyn","text":"We are almost out of money"},
+    {"type":"message","delay":850,"from":"player","text":"That is not a problem"},
+    {"type":"message","delay":850,"from":"player","text":"I can already transfer you 300 dollars"},
+    {"type":"message","delay":850,"from":"evelyn","text":"How is that possible?"},
+    {"type":"message","delay":850,"from":"player","text":"They pay me daily"},
+    {"type":"message","delay":850,"from":"player","text":"So I already received money for the work I did"},
+    {"type":"message","delay":850,"from":"evelyn","text":"I do not even know how to thank you for doing all this"},
+    {"type":"message","delay":850,"from":"player","text":"Your smile is enough"},
+    {"type":"message","delay":850,"from":"evelyn","text":"You are a flatterer"},
+    {"type":"image","delay":900,"from":"evelyn","image":"assets/pictures/Conversation/evelyn_sending_kiss.jpg"},
+    {"type":"message","delay":850,"from":"evelyn","text":"There"},
+    {"type":"message","delay":850,"from":"evelyn","text":"A smile and a kiss, then"},
+    {"type":"message","delay":850,"from":"player","text":"You look beautiful"},
+    {"type":"message","delay":850,"from":"player","text":"That is a wonderful reward"},
+    {"type":"message","delay":850,"from":"evelyn","text":"Then I may have to send you more of them"},
+    {"type":"message","delay":850,"from":"player","text":"I would not complain 😄"},
+    {"type":"message","delay":850,"from":"evelyn","text":"Come eat before dinner gets cold"},
+    {"type":"message","delay":850,"from":"evelyn","text":"And do not go to bed too late tonight"},
+    {"type":"message","delay":850,"from":"player","text":"Yes, ma'am"},
+    {"type":"message","delay":850,"from":"evelyn","text":"Good 😊"},
+    {"type":"if","condition":"active_character:lena","then":[
+      {"type":"start_story","goHome":true,"startStory":"story/DAY12/DAY12_LENA_EVENING.json","startDelayMs":200}
+    ],"else":[
+      {"type":"if","condition":"active_character:hailey","then":[
+        {"type":"start_story","goHome":true,"startStory":"story/DAY12/DAY12_HAILEY_EVENING.json","startDelayMs":200}
+      ],"else":[
+        {"type":"time_card","text":"DAY 13","goHome":true,"startStory":"story/DAY13/love/DAY13_00_MASON_MORNING_LOVE.json","startDelayMs":200}
+      ]}
+    ]}
+  ],
+  "route": "love",
+  "routeLock": "route_evelyn_locked_v1:love"
+}

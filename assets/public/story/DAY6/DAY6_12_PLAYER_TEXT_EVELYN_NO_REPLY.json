@@ -1,0 +1,15 @@
+{
+  "contactId": "evelyn",
+  "onceKey": "d6_00_player_text_evelyn_no_reply_v1",
+  "requireOnceKey": "d6_08_mason_coach_question_v1",
+  "onCompleteStartStory": "story/DAY7/DAY7_00_LENA_MORNING_NO_CLASS.json",
+  "steps": [
+    {"type":"message","delay":900,"from":"player","text":"Everything alright?"},
+    {"type":"message","delay":900,"from":"player","text":"You haven't answered in a while"},
+    {"type":"message","delay":900,"from":"player","text":"Text me when you can"},
+    {"type":"if","condition":"onlyfun_seen:of_evelyn_seen_d6_v1","then":[
+      {"type":"note","presentation":"player_thought","speaker":"player","text":"That was {{name:evelyn}} in Sexminator's photo... I recognize the outfit I helped her choose. Why hasn't she answered?"}
+    ]},
+    {"type":"time_card","text":"DAY 7","goHome":true,"startStory":"story/DAY7/DAY7_00_LENA_MORNING_NO_CLASS.json","startDelayMs":200}
+  ]
+}

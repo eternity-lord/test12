@@ -1,0 +1,73 @@
+{
+  "onceKey": "d12_02_hailey_evening_love_v1",
+  "contactId": "hailey",
+  "requireOnceKey": "d12_01_lena_evening_love_v1|d12_01_hailey_afternoon_love_v1",
+  "steps": [
+    {"type":"notify","delay":1200,"fromId":"hailey","fromName":"{{name:hailey}}","avatar":"assets/avatars/hailey.jpg","text":"Safe at home 😇","target":"conversation"},
+    {"type":"message","delay":850,"from":"hailey","text":"I got home early"},
+    {"type":"message","delay":850,"from":"hailey","text":"Miracle of the century"},
+    {"type":"message","delay":850,"from":"hailey","text":"Thanks for asking {{name:mason}} to pick me up"},
+    {"type":"message","delay":850,"from":"hailey","text":"{{mason:grumbled_obviously}}"},
+    {"type":"message","delay":850,"from":"hailey","text":"{{mason:still_came}}"},
+    {"type":"message","delay":900,"from":"player","text":"So you are home safe?"},
+    {"type":"message","delay":850,"from":"hailey","text":"Yes professor"},
+    {"type":"message","delay":850,"from":"hailey","text":"Alive, safe, and only mildly dramatic"},
+    {"type":"message","delay":900,"from":"player","text":"Good"},
+    {"type":"message","delay":850,"from":"hailey","text":"Also..."},
+    {"type":"message","delay":850,"from":"hailey","text":"I have decided to be useful tonight"},
+    {"type":"message","delay":900,"from":"player","text":"That sounds dangerous"},
+    {"type":"message","delay":850,"from":"hailey","text":"Rude 😭"},
+    {"type":"message","delay":850,"from":"hailey","text":"You helped me revise"},
+    {"type":"message","delay":850,"from":"hailey","text":"So I am repaying my debt"},
+    {"type":"message","delay":850,"from":"hailey","text":"Food delivery"},
+    {"type":"message","delay":850,"from":"hailey","text":"Room cleaning"},
+    {"type":"message","delay":850,"from":"hailey","text":"Emotional damage included for free 💅"},
+    {"type":"message","delay":900,"from":"player","text":"I should be worried"},
+    {"type":"message","delay":850,"from":"hailey","text":"You should be grateful"},
+    {"type":"note","text":"{{name:hailey}} comes into your room to bring you food and clean your room"},
+    {"type":"note","text":"25 min later"},
+    {"type":"message","delay":900,"from":"player","text":"The food was good 😌"},
+    {"type":"message","delay":850,"from":"hailey","text":"Obviously"},
+    {"type":"message","delay":850,"from":"hailey","text":"I am a generous little angel 😇"},
+    {"type":"message","delay":900,"from":"player","text":"But you unplugged my whole PC while cleaning"},
+    {"type":"message","delay":850,"from":"hailey","text":"No I did not"},
+    {"type":"message","delay":900,"from":"player","text":"Yes you did"},
+    {"type":"message","delay":850,"from":"hailey","text":"Impossible"},
+    {"type":"message","delay":850,"from":"hailey","text":"I cleaned with elegance"},
+    {"type":"message","delay":900,"from":"player","text":"You pulled the cables"},
+    {"type":"message","delay":850,"from":"hailey","text":"Fake news"},
+    {"type":"message","delay":900,"from":"player","text":"I have evidence"},
+    {"type":"image","delay":900,"from":"player","galleryOwnerId":"hailey","image":"assets/pictures/Conversation/hailey_pc_evidence.jpg"},
+    {"type":"message","delay":850,"from":"hailey","text":"EXCUSE ME?"},
+    {"type":"message","delay":850,"from":"hailey","text":"How dare you take a picture of me?"},
+    {"type":"message","delay":850,"from":"hailey","text":"I am calling the police 😭"},
+    {"type":"message","delay":900,"from":"player","text":"It clearly shows you touching the cables"},
+    {"type":"message","delay":850,"from":"hailey","text":"No it does not"},
+    {"type":"message","delay":850,"from":"hailey","text":"It shows a hardworking innocent girl being framed"},
+    {"type":"message","delay":850,"from":"hailey","text":"That is not enough proof 💅"},
+    {"type":"message","delay":900,"from":"player","text":"You are literally holding the cable"},
+    {"type":"message","delay":850,"from":"hailey","text":"Maybe the cable attacked me first"},
+    {"type":"message","delay":850,"from":"hailey","text":"You do not know the full story"},
+    {"type":"message","delay":900,"from":"player","text":"You are impossible"},
+    {"type":"message","delay":850,"from":"hailey","text":"And you are taking secret pictures of me"},
+    {"type":"message","delay":850,"from":"hailey","text":"Pervert 😭"},
+    {"type":"message","delay":900,"from":"player","text":"Go revise before you destroy more electronics"},
+    {"type":"message","delay":850,"from":"hailey","text":"Fine"},
+    {"type":"message","delay":850,"from":"hailey","text":"But if the PC dies, it was already weak"},
+    {"type":"hak_overlay","title":"HAK//NOTICE","messages":["Elevated heart rate spike detected during recent private interaction","Cross-referencing visual and emotional markers...","Cause identified","Relevant emotional capture archived into HAK Evidence",{"kind":"thought","speaker":"player","text":"Being close to {{name:hailey}} stayed with me, and I want more moments like that."}]},
+    {"type":"hak_add_evidence","kind":"love","route":"love","profileId":"hailey","profile":{"name":"{{name:hailey}}","avatar":"assets/avatars/hailey.jpg","kind":"love","route":"love"},"evidences":[{"id":"hailey_love_d12_evidence_1","kind":"love","route":"love","src":"assets/pictures/evidence/hailey_pc_evidence.mp4","url":"assets/pictures/evidence/hailey_pc_evidence.mp4","type":"video","characterId":"hailey","contactId":"hailey","label":"Elevated heartbeat capture","title":"Private interaction emotional spike"}],"notifyTitle":"HAK","notifyText":"1 new evidence received","target":"hak"},
+    {"type":"if","condition":"active_character:mason","then":[
+      {"type":"time_card","text":"DAY 13","goHome":true,"startStory":"story/DAY13/love/DAY13_00_MASON_MORNING_LOVE.json","startDelayMs":200}
+    ],"else":[
+      {"type":"if","condition":"active_character:evelyn","then":[
+        {"type":"start_story","goHome":true,"startStory":"story/DAY12/DAY12_EVELYN_EVENING.json","startDelayMs":200}
+      ],"else":[
+        {"type":"if","condition":"active_character:lena","then":[
+          {"type":"time_card","text":"DAY 13","goHome":true,"startStory":"story/DAY13/DAY13_00_AIDEN_SHARED.json","startDelayMs":200}
+        ],"else":[
+          {"type":"time_card","text":"DAY 13","goHome":true,"startStory":"story/DAY13/love/DAY13_00_HAILEY_MORNING_LOVE.json","startDelayMs":200}
+        ]}
+      ]}
+    ],"__masonNextDayPatched":true}
+  ]
+}

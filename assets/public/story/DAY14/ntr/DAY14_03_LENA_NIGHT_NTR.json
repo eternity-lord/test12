@@ -1,0 +1,14 @@
+{
+  "onceKey": "d14_03_lena_night_ntr_v1",
+  "contactId": "lena",
+  "requireOnceKey": "d14_02_lena_evening_ntr_v1",
+  "steps": [
+    {"type":"hak_overlay","title":"HAK//NOTICE","messages":["AlphaMana activity separated from the active conversation window","Running delayed visual confidence analysis...","Pattern match updated","Relevant capture has been archived into HAK Evidence"]},
+    {"type":"hak_add_evidence","kind":"ntr","route":"ntr","profileId":"lena","profile":{"name":"{{name:lena}}","avatar":"assets/avatars/lena.jpg","kind":"ntr","route":"ntr"},"evidences":[{"id":"lena_ntr_d14_evidence_1","kind":"ntr","route":"ntr","src":"assets/pictures/evidence/lena_boss_office_2.jpg","url":"assets/pictures/evidence/lena_boss_office_2.jpg","type":"image","characterId":"lena","contactId":"lena","label":"AlphaMana visual match","title":"AlphaMana visual match"}],"notifyTitle":"HAK","notifyText":"1 new evidence received","target":"hak"},
+    {"type":"if","condition":"active_character:mason","then":[
+      {"type":"time_card","text":"DAY 15","goHome":true,"startStory":"story/DAY15/ntr/DAY15_00_MASON_MORNING_NTR.json","startDelayMs":200}
+    ],"else":[
+      {"type":"time_card","text":"DAY 15","goHome":true,"startStory":"story/DAY15/DAY15_00_AIDEN_SHARED.json","startDelayMs":200}
+    ],"__masonNextDayPatched":true}
+  ]
+}

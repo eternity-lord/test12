@@ -1,0 +1,36 @@
+{
+  "onceKey": "d11_05_mason_evening_nts_v1",
+  "contactId": "mason",
+  "requireOnceKey": "d11_04_mason_afternoon_nts_v1",
+  "route": "nts",
+  "routeLock": "route_mason_locked_v1:nts",
+  "steps": [
+    {"type":"notify","delay":1200,"fromId":"mason","fromName":"{{name:mason}}","avatar":"assets/avatars/male_mason.jpg","text":"Hey, what did you do with my controller?","target":"conversation"},
+    {"type":"message","delay":850,"from":"player","text":"Check inside your ass"},
+    {"type":"message","delay":850,"from":"mason","text":"Go fuck yourself"},
+    {"type":"message","delay":850,"from":"mason","text":"You better find it or I'm considering it stolen"},
+    {"type":"message","delay":850,"from":"player","text":"What would I even do with it?"},
+    {"type":"message","delay":850,"from":"player","text":"You think I hid it inside my cast or something?"},
+    {"type":"message","delay":850,"from":"mason","text":"With how desperate you are to finally beat me, I wouldn't put it past you"},
+    {"type":"message","delay":850,"from":"player","text":"Keep talking"},
+    {"type":"message","delay":850,"from":"player","text":"I booked another coaching session for you tomorrow morning"},
+    {"type":"message","delay":850,"from":"player","text":"Maybe it'll teach you something about life"},
+    {"type":"message","delay":850,"from":"mason","text":"What time?"},
+    {"type":"message","delay":850,"from":"player","text":"8 AM"},
+    {"type":"message","delay":850,"from":"mason","text":"You fucking asshole"},
+    {"type":"message","delay":850,"from":"mason","text":"You're going to pay for that"},
+    {"type":"if","condition":"active_character:lena","then":[
+      {"type":"start_story","goHome":true,"startStory":"story/DAY11/DAY11_LENA_MORNING.json","startDelayMs":200}
+    ],"else":[
+      {"type":"if","condition":"active_character:hailey","then":[
+        {"type":"start_story","goHome":true,"startStory":"story/DAY11/DAY11_HAILEY_MORNING.json","startDelayMs":200}
+      ],"else":[
+        {"type":"if","condition":"active_character:evelyn","then":[
+          {"type":"start_story","goHome":true,"startStory":"story/DAY11/DAY11_EVELYN_MORNING.json","startDelayMs":200}
+        ],"else":[
+          {"type":"time_card","text":"DAY 12","goHome":true,"startStory":"story/DAY12/nts/DAY12_00_MASON_MORNING_NTS.json","startDelayMs":200}
+        ]}
+      ]}
+    ]}
+  ]
+}

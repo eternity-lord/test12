@@ -1,0 +1,29 @@
+{
+  "onceKey": "d7_05_hailey_uni_extra_class_v1",
+  "contactId": "hailey",
+  "onCompleteStartStory": "story/DAY7/DAY7_06_LENA_WORK_BREAK.json",
+  "steps": [
+    {"type":"notify","delay":1200,"fromId":"hailey","fromName":"{{name:hailey}}","avatar":"assets/avatars/hailey.jpg","text":"Uni suffering 😭","target":"conversation"},
+    {"type":"message","delay":900,"from":"hailey","text":"I'm on my break and I already want to escape 😭"},
+    {"type":"message","delay":900,"from":"player","text":"That bad?"},
+    {"type":"message","delay":900,"from":"hailey","text":"Worse 😒"},
+    {"type":"message","delay":900,"from":"hailey","text":"I have an extra class tonight with my main teacher because I messed up my exams"},
+    {"type":"message","delay":900,"from":"hailey","text":"Apparently natural charm is not accepted as an academic strategy 😒"},
+    {"type":"message","delay":900,"from":"hailey","text":"Too bad because I'm sure I could convince the teacher to give me good grades 😇"},
+    {"type":"message","delay":900,"from":"player","text":"Or he could make you do extra classes all summer"},
+    {"type":"message","delay":900,"from":"hailey","text":"He can't"},
+    {"type":"message","delay":900,"from":"hailey","text":"Right? 😭"},
+    {"type":"message","delay":900,"from":"player","text":"He can"},
+    {"type":"message","delay":900,"from":"hailey","text":"Noooooo 😭"},
+    {"type":"message","delay":900,"from":"hailey","text":"Please support me in this difficult time"},
+    {"type":"message","delay":900,"from":"player","text":"You want encouragement or snacks?"},
+    {"type":"message","delay":900,"from":"hailey","text":"Both 😌"},
+    {"type":"message","delay":900,"from":"hailey","text":"Mostly snacks"},
+    {"type":"message","delay":900,"from":"player","text":"Too bad I can't move to buy them"},
+    {"type":"message","delay":900,"from":"player","text":"But if you do well in your extra class I'll ask {{name:mason}} to get some for you 😌"},
+    {"type":"message","delay":900,"from":"hailey","text":"What am I, a dog? 😒"},
+    {"type":"message","delay":900,"from":"player","text":"A frog 😌"},
+    {"type":"message","delay":900,"from":"hailey","text":"I hate you as much as I hate extra classes 😭"},
+    {"type":"message","delay":900,"from":"player","text":"I take that as a compliment 😌"}
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "onceKey": "d10_02_evelyn_evening_ntr_v1",
+  "contactId": "evelyn",
+  "requireOnceKey": "d10_01_evelyn_afternoon_ntr_v1",
+  "steps": [
+    {"type":"message","delay":1200,"from":"player","text":"Hey 😊"},
+    {"type":"message","delay":850,"from":"evelyn","text":"Hey 😊"},
+    {"type":"message","delay":850,"fromId":"player","text":"I have a question?"},
+    {"type":"message","delay":850,"fromId":"player","text":"Did you manage to rest this weekend?"},
+    {"type":"message","delay":850,"from":"evelyn","text":"I did 😊"},
+    {"type":"message","delay":850,"from":"evelyn","text":"Spending time at home with you and {{name:mason}} was relaxing"},
+    {"type":"message","delay":850,"from":"evelyn","text":"I'm actually really happy with how my weekend went"},
+    {"type":"message","delay":850,"from":"evelyn","text":"Even if I don't feel like going back to work tomorrow"},
+    {"type":"message","delay":850,"from":"player","text":"I can't blame you for that"},
+    {"type":"message","delay":850,"from":"player","text":"Weekends are always too short"},
+    {"type":"onlyfun_account_unlock","creatorId":"static_muse","creatorDisplayName":"Sexminator","avatar":"assets/pictures/OnlyFun/avatars/Sexminator.jpg","tagline":"Private creator feed.","subscribe":true},
+    {"type":"onlyfun_post","onceKey":"of_random_seen_d10_v1","creatorId":"static_muse","image":"assets/pictures/OnlyFun/posts/random_day10.jpg","text":"Still the best. For now","likes":742,"requiresSub":true,"notify":true},
+    {"type":"message","delay":850,"from":"evelyn","text":"Anyway, I'm going to finish making dinner"},
+    {"type":"message","delay":850,"from":"evelyn","text":"Then I'll probably watch a few episodes of my series"},
+    {"type":"message","delay":850,"from":"evelyn","text":"Do you want to join me?"},
+    {"type":"message","delay":850,"from":"player","text":"I can't tonight"},
+    {"type":"message","delay":850,"from":"player","text":"I still have a few things to do"},
+    {"type":"message","delay":850,"from":"player","text":"But another time, sure"},
+    {"type":"message","delay":850,"from":"evelyn","text":"Okay 😊"},
+    {"type":"message","delay":850,"from":"evelyn","text":"Just don't stay up too late"},
+    {"type":"message","delay":850,"from":"player","text":"You too"},
+    {"type":"message","delay":850,"from":"evelyn","text":"I'll try 😄"},
+    {"type":"if","condition":"active_character:mason","then":[
+      {"type":"time_card","text":"DAY 11","goHome":true,"startStory":"story/DAY11/ntr/DAY11_00_MASON_MORNING_NTR.json","startDelayMs":200}
+    ],"else":[
+      {"type":"time_card","text":"DAY 11","goHome":true,"startStory":"story/DAY11/ntr/DAY11_00_EVELYN_MORNING_NTR.json","startDelayMs":200}
+    ],"__masonNextDayPatched":true}
+  ],
+  "route": "ntr",
+  "routeLock": "route_evelyn_locked_v1:ntr"
+}

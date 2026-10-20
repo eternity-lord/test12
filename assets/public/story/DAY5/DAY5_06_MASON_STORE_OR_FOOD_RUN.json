@@ -1,0 +1,24 @@
+{
+  "onceKey": "d5_04_mason_store_food_run_v1",
+  "contactId": "mason",
+  "requireOnceKey": "d4_06_mason_gym_late_return_v1",
+  "onCompleteStartStory": "story/DAY5/DAY5_07_HAILEY_PARTY_HAIR_HELP.json",
+  "steps": [
+    {"type":"notify","delay":1200,"fromId":"mason","fromName":"{{name:mason}}","avatar":"assets/avatars/male_mason.jpg","text":"Hey","target":"conversation"},
+    {"type":"message","delay":900,"from":"mason","text":"I'm at the store"},
+    {"type":"image","image":"assets/pictures/Conversation/male_mason/mason_store.jpg"},
+    {"type":"message","delay":900,"from":"mason","text":"Might grab food too if the line doesn't piss me off"},
+    {"type":"message","delay":900,"from":"mason","text":"You want something or not"},
+    {"type":"message","delay":900,"from":"player","text":"A drink and whatever is easiest 🙂"},
+    {"type":"message","delay":900,"from":"mason","text":"Very specific"},
+    {"type":"message","delay":900,"from":"player","text":"You asked a guy with one busted leg"},
+    {"type":"message","delay":900,"from":"mason","text":"Your leg's hurt, you're not sick, asshole"},
+    {"type":"message","delay":900,"from":"player","text":"True"},
+    {"type":"message","delay":900,"from":"player","text":"Then soda and a few biscuits 😌"},
+    {"type":"message","delay":900,"from":"mason","text":"Yeah, what else, princess"},
+    {"type":"message","delay":900,"from":"mason","text":"Want me to change your clothes and brush your teeth too"},
+    {"type":"message","delay":900,"from":"player","text":"Now that you mention it"},
+    {"type":"message","delay":900,"from":"mason","text":"Fuck you"},
+    {"type":"message","delay":900,"from":"player","text":"Thank you"}
+  ]
+}

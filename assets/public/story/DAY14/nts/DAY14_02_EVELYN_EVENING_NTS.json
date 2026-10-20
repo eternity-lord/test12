@@ -1,0 +1,59 @@
+{
+  "onceKey": "d14_02_evelyn_evening_nts_v1",
+  "contactId": "evelyn",
+  "requireOnceKey": "d14_01_evelyn_afternoon_nts_v1",
+  "steps": [
+    {"type":"notify","delay":1200,"fromId":"evelyn","fromName":"{{name:evelyn}}","avatar":"assets/avatars/evelyn.jpg","text":"I'm home, and honestly it went really well 😊","target":"conversation"},
+    {"type":"message","delay":850,"from":"player","text":"I guessed it went well"},
+    {"type":"message","delay":850,"from":"player","text":"The client left a tip 😊"},
+    {"type":"message","delay":850,"from":"evelyn","text":"He did?"},
+    {"type":"message","delay":850,"from":"evelyn","text":"Then yes, it went rather wonderfully"},
+    {"type":"message","delay":850,"from":"evelyn","text":"He even bought me clothes"},
+    {"type":"image","delay":1200,"from":"evelyn","image":"assets/pictures/Conversation/evelyn_first_outfit.jpg"},
+    {"type":"image","delay":1200,"from":"evelyn","image":"assets/pictures/Conversation/evelyn_second_outfit.jpg"},
+    {"type":"message","delay":850,"from":"player","text":"Wow that's great!"},
+    {"type":"message","delay":850,"from":"player","text":"You look amazing"},
+    {"type":"message","delay":850,"from":"player","text":"Was there anything else?"},
+    {"type":"message","delay":850,"from":"evelyn","text":"Yes..."},
+    {"type":"message","delay":850,"from":"evelyn","text":"We kissed several times"},
+    {"type":"message","delay":850,"from":"evelyn","text":"And he touched me a little too"},
+    {"type":"message","delay":850,"from":"player","text":"Were you okay with it?"},
+    {"type":"message","delay":850,"from":"player","text":"You agreed to it?"},
+    {"type":"message","delay":850,"from":"evelyn","text":"Yes"},
+    {"type":"message","delay":850,"from":"evelyn","text":"He was very polite and kind"},
+    {"type":"message","delay":850,"from":"evelyn","text":"He asked before doing anything"},
+    {"type":"message","delay":850,"from":"evelyn","text":"So I accepted"},
+    {"type":"message","delay":850,"from":"player","text":"Then that is what matters"},
+    {"type":"message","delay":850,"from":"player","text":"Did you enjoy your day?"},
+    {"type":"message","delay":850,"from":"evelyn","text":"Yes, I really did ! 😊"},
+    {"type":"message","delay":850,"from":"evelyn","text":"I feel like I am getting younger again"},
+    {"type":"message","delay":850,"from":"evelyn","text":"And honestly, it feels good"},
+    {"type":"message","delay":850,"from":"player","text":"I'm happy for you"},
+    {"type":"message","delay":850,"from":"evelyn","text":"It's mostly thanks to you"},
+    {"type":"message","delay":850,"from":"player","text":"You deserve to feel that way"},
+    {"type":"message","delay":850,"from":"evelyn","text":"Thank you ❤️"},
+    {"type":"if","condition":"all:active_character:hailey|route_hailey_locked_v1:nts|!once:d14_03_lena_night_nts_v1","then":[
+      {"type":"start_story","goHome":true,"startStory":"story/DAY14/nts/DAY14_00_TUTOR_DIRECT_TALK_NTS.json"}
+    ],"else":[
+      {"type":"if","condition":"active_character:lena","then":[
+        {"type":"if","condition":"route_lena_locked_v1:ntr","then":[
+          {"type":"start_story","goHome":true,"startStory":"story/DAY14/DAY14_LENA_BREAK.json"}
+        ],"else":[
+          {"type":"if","condition":"route_lena_locked_v1:nts","then":[
+            {"type":"start_story","goHome":true,"startStory":"story/DAY14/DAY14_LENA_BREAK.json"}
+          ],"else":[
+            {"type":"start_story","goHome":true,"startStory":"story/DAY14/DAY14_LENA_BREAK.json"}
+          ]}
+        ]}
+      ],"else":[
+        {"type":"if","condition":"active_character:mason","then":[
+          {"type":"time_card","text":"DAY 15","goHome":true,"startStory":"story/DAY15/love/DAY15_00_MASON_MORNING_LOVE.json","startDelayMs":200}
+        ],"else":[
+          {"type":"time_card","text":"DAY 15","goHome":true,"startStory":"story/DAY15/nts/DAY15_00_EVELYN_MORNING_NTS.json","startDelayMs":200}
+        ],"__masonNextDayPatched":true}
+      ]}
+    ]}
+  ],
+  "route": "nts",
+  "routeLock": "route_evelyn_locked_v1:nts"
+}

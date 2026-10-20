@@ -1,0 +1,27 @@
+{
+  "onceKey": "d3_00_evelyn_laundry_v1",
+  "contactId": "evelyn",
+  "onCompleteStartStory": "story/DAY3/DAY3_08_LENA_EVENING_HOME.json",
+  "steps": [
+    {"type":"notify","delay":1200,"fromId":"evelyn","fromName":"{{name:evelyn}}","avatar":"assets/avatars/evelyn.jpg","text":"Quick update","target":"conversation"},
+    {"type":"message","delay":900,"from":"evelyn","text":"I did your laundry"},
+    {"type":"image","image":"assets/pictures/Conversation/laundry.jpg"},
+    {"type":"message","delay":900,"from":"evelyn","text":"Everything is folded. I’ll give it to you when {{name:lena}} is gone"},
+    {"type":"message","delay":900,"from":"player","text":"Thank you. A lot ❤️"},
+    {"type":"message","delay":900,"from":"evelyn","text":"You’re welcome, sweetheart"},
+    {"type":"message","delay":900,"from":"evelyn","text":"Also, don’t forget. I start work again tomorrow"},
+    {"type":"message","delay":900,"from":"evelyn","text":"So in the afternoon I won’t be here to help you"},
+    {"type":"message","delay":900,"from":"player","text":"Yeah, I know"},
+    {"type":"message","delay":900,"from":"player","text":"But {{name:hailey}} and {{name:mason}} will be here to help me"},
+    {"type":"message","delay":900,"from":"player","text":"And I can move a little by myself already"},
+    {"type":"message","delay":900,"from":"player","text":"It just takes more time"},
+    {"type":"message","delay":900,"from":"evelyn","text":"I know"},
+    {"type":"message","delay":900,"from":"evelyn","text":"I just don’t want you to push it and hurt yourself because nobody is around"},
+    {"type":"message","delay":900,"from":"evelyn","text":"So ask if you need anything"},
+    {"type":"message","delay":900,"from":"player","text":"I will"},
+    {"type":"message","delay":900,"from":"evelyn","text":"Perfect"},
+    {"type":"message","delay":900,"from":"evelyn","text":"See you at dinner"},
+    {"type":"message","delay":900,"from":"evelyn","text":"Enjoy your time with {{name:lena}}"},
+    {"type":"message","delay":900,"from":"player","text":"Thanks, {{name:evelyn}}"}
+  ]
+}

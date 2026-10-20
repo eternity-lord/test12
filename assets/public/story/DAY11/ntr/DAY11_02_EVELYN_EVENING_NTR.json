@@ -1,0 +1,29 @@
+{
+  "onceKey": "d11_02_evelyn_evening_ntr_v1",
+  "contactId": "evelyn",
+  "requireOnceKey": "d11_01_evelyn_afternoon_ntr_v1",
+  "steps": [
+    {"type":"notify","delay":1200,"fromId":"evelyn","fromName":"{{name:evelyn}}","avatar":"assets/avatars/evelyn.jpg","text":"Hey, I prepared dinner for tonight 😊","target":"conversation"},
+    {"type":"message","delay":850,"from":"evelyn","text":"It's in the fridge"},
+    {"type":"message","delay":850,"from":"evelyn","text":"If you can't go downstairs, just ask {{name:hailey}} or {{name:mason}} to bring it to you"},
+    {"type":"message","delay":850,"from":"player","text":"Thank you"},
+    {"type":"message","delay":850,"from":"player","text":"Good luck for tonight"},
+    {"type":"message","delay":850,"from":"player","text":"I hope it's going to be okay"},
+    {"type":"message","delay":850,"from":"evelyn","text":"It should be okay today"},
+    {"type":"message","delay":850,"from":"evelyn","text":"My manager isn't supposed to be working tonight"},
+    {"type":"message","delay":850,"from":"player","text":"Then try to enjoy the shift with your coworkers"},
+    {"type":"message","delay":850,"from":"evelyn","text":"I will 😊"},
+    {"type":"message","delay":850,"from":"evelyn","text":"And you, don't go to bed too late"},
+    {"type":"message","delay":850,"from":"player","text":"Yes madam"},
+    {"type":"message","delay":850,"from":"player","text":"Good luck again"},
+    {"type":"message","delay":850,"from":"player","text":"See you tomorrow"},
+    {"type":"message","delay":850,"from":"evelyn","text":"See you tomorrow ❤️"},
+    {"type":"if","condition":"active_character:mason","then":[
+      {"type":"time_card","text":"DAY 12","goHome":true,"startStory":"story/DAY12/ntr/DAY12_00_MASON_MORNING_NTR.json","startDelayMs":200}
+    ],"else":[
+      {"type":"time_card","text":"DAY 12","goHome":true,"startStory":"story/DAY12/ntr/DAY12_00_EVELYN_MORNING_NTR.json","startDelayMs":200}
+    ],"__masonNextDayPatched":true}
+  ],
+  "route": "ntr",
+  "routeLock": "route_evelyn_locked_v1:ntr"
+}

@@ -1,0 +1,26 @@
+{
+  "onceKey": "d8_03_mason_normal_day_text_v1",
+  "contactId": "mason",
+  "requireOnceKey": "d7_09_player_suggests_aiden_to_mason_v1",
+  "onCompleteStartStory": "story/DAY8/DAY8_06_HAILEY_SHOPPING_ADVICE.json",
+  "steps": [
+    {"type":"notify","delay":1200,"fromId":"mason","fromName":"{{name:mason}}","avatar":"assets/avatars/male_mason.jpg","text":"Come eat","target":"conversation"},
+    {"type":"message","delay":900,"from":"mason","text":"There's chicken in the fridge 🍗"},
+    {"type":"message","delay":900,"from":"mason","text":"Hurry before {{name:hailey}} gets there first"},
+    {"type":"message","delay":900,"from":"mason","text":"{{name:evelyn}} said you'd forget"},
+    {"type":"message","delay":900,"from":"player","text":"Wow"},
+    {"type":"message","delay":900,"from":"player","text":"So much faith in me 😑"},
+    {"type":"message","delay":900,"from":"mason","text":"Not that much"},
+    {"type":"message","delay":900,"from":"mason","text":"Just enough to text you once 🙄"},
+    {"type":"message","delay":900,"from":"mason","text":"See how nice I've become"},
+    {"type":"message","delay":900,"from":"player","text":"That's true"},
+    {"type":"message","delay":900,"from":"player","text":"I'm touched 🙂"},
+    {"type":"message","delay":900,"from":"mason","text":"Asshole"},
+    {"type":"message","delay":900,"from":"mason","text":"I'm going to work"},
+    {"type":"message","delay":900,"from":"mason","text":"If you need something else, ask {{name:hailey}} or {{name:evelyn}} before they leave"},
+    {"type":"message","delay":900,"from":"player","text":"I'm okay"},
+    {"type":"message","delay":900,"from":"player","text":"Thanks for being so considerate 😌"},
+    {"type":"message","delay":900,"from":"mason","text":"Go starve to death"},
+    {"type":"image","image":"assets/pictures/Conversation/male_mason/mason_work_photo.jpg"}
+  ]
+}

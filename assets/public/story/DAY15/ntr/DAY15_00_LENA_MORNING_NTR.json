@@ -1,0 +1,50 @@
+{
+  "onceKey": "d15_00_lena_morning_ntr_v1",
+  "contactId": "lena",
+  "requireOnceKey": "d14_03_lena_night_ntr_v1",
+  "steps": [
+    {"type":"notify","delay":1300,"fromId":"lena","fromName":"{{name:lena}}","avatar":"assets/avatars/lena.jpg","text":"Good morning 🙂","target":"conversation"},
+    {"type":"message","delay":900,"from":"player","text":"Morning"},
+    {"type":"message","delay":900,"from":"player","text":"Did you sleep well?"},
+    {"type":"message","delay":900,"from":"lena","text":"It was okay"},
+    {"type":"message","delay":900,"from":"lena","text":"Not amazing, but fine"},
+    {"type":"message","delay":900,"from":"lena","text":"What about you?"},
+    {"type":"message","delay":900,"from":"player","text":"Not great"},
+    {"type":"message","delay":900,"from":"player","text":"My leg hurt a bit during the night"},
+    {"type":"message","delay":900,"from":"lena","text":"Oh..."},
+    {"type":"message","delay":900,"from":"lena","text":"Is it bad?"},
+    {"type":"message","delay":900,"from":"player","text":"Not too much"},
+    {"type":"message","delay":900,"from":"player","text":"Just annoying"},
+    {"type":"message","delay":900,"from":"lena","text":"Still, keep me updated today"},
+    {"type":"message","delay":900,"from":"lena","text":"If it gets worse, tell me"},
+    {"type":"message","delay":900,"from":"player","text":"I will"},
+    {"type":"message","delay":900,"from":"player","text":"Are you going to have some time today?"},
+    {"type":"message","delay":900,"from":"lena","text":"Probably not"},
+    {"type":"message","delay":900,"from":"lena","text":"I'll be running around again all day"},
+    {"type":"message","delay":900,"from":"player","text":"Oh ok.."},
+    {"type":"message","delay":900,"from":"player","text":"Just one more week"},
+    {"type":"message","delay":900,"from":"player","text":"Then you're done with classes"},
+    {"type":"message","delay":900,"from":"lena","text":"Yeah..."},
+    {"type":"message","delay":900,"from":"lena","text":"I really can't wait for that"},
+    {"type":"message","delay":900,"from":"lena","text":"Thank you for reminding me 🙂"},
+    {"type":"message","delay":900,"from":"lena","text":"I'm lucky to have you"},
+    {"type":"message","delay":900,"from":"player","text":"You are"},
+    {"type":"message","delay":900,"from":"player","text":"Can I have a quick pic before you go?"},
+    {"type":"message","delay":900,"from":"lena","text":"Of course handsome"},
+    {"type":"image","delay":900,"from":"lena","image":"assets/pictures/Conversation/lena_day15_morning_ntr.jpg"},
+    {"type":"message","delay":900,"from":"lena","text":"Quick one"},
+    {"type":"message","delay":900,"from":"player","text":"You look good"},
+    {"type":"message","delay":900,"from":"lena","text":"Thank you 🙂"},
+    {"type":"message","delay":900,"from":"player","text":"Good luck today"},
+    {"type":"message","delay":900,"from":"lena","text":"Thanks"},
+    {"type":"message","delay":900,"from":"lena","text":"I'll try to text you on my break"},
+    {"type":"message","delay":900,"from":"lena","text":"Not sure I'll have time though"},
+    {"type":"message","delay":900,"from":"player","text":"It's okay, focus on your studies and work"},
+    {"type":"message","delay":900,"from":"player","text":"I will wait for you"},
+    {"type":"if","condition":"active_character:hailey","then":[
+      {"type":"start_story","goHome":true,"startStory":"story/DAY15/DAY15_HAILEY_MORNING.json"}
+    ],"else":[
+      {"type":"start_story","goHome":true,"startStory":"story/DAY15/DAY15_HAILEY_AFTERNOON.json"}
+    ]}
+  ]
+}

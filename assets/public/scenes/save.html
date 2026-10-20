@@ -1,0 +1,401 @@
+<!-- scenes/save.html -->
+<style>
+  :root{
+    --fg:#f0f5ff;
+    --muted:rgba(240,245,255,.68);
+    --edge:rgba(245,248,255,.18);
+    --card:rgba(22,24,29,.86);
+    --card-hover:rgba(28,31,36,.92);
+
+    --save:var(--btn-green-bg);
+    --save-b:var(--btn-green-border);
+    --load:var(--btn-blue-bg);
+    --load-b:var(--btn-blue-border);
+    --del:var(--btn-red-bg);
+    --del-b:var(--btn-red-border);
+
+    --status-h:24px;
+  }
+
+  .wrap{
+    min-height:100%;
+    height:100%;
+    padding:calc(var(--status-h) + env(safe-area-inset-top, 0px) + 10px) 16px 14px;
+    position:relative;
+    z-index:0;
+    color:var(--fg);
+    font-family:var(--ui-font);
+    display:flex;
+    flex-direction:column;
+    overflow:auto;
+    scrollbar-width:none;
+    -ms-overflow-style:none;
+  }
+  .wrap::-webkit-scrollbar{width:0;height:0}
+
+  .wrap::after{
+    content:"";
+    position:fixed;
+    top:-18px;
+    left:-18px;
+    right:-18px;
+    bottom:-18px;
+    z-index:-3;
+    pointer-events:none;
+    background:var(--phone-wallpaper-image) center/cover no-repeat;
+    filter:blur(12px) saturate(.55) brightness(.62) contrast(1.06);
+    transform:scale(1.06);
+    opacity:1;
+  }
+
+  .wrap::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    z-index:-2;
+    pointer-events:none;
+    background:
+      radial-gradient(circle at top, rgba(18,20,24,.16), rgba(5,6,8,.42)),
+      linear-gradient(180deg,
+        rgba(8,9,12,.12) 0%,
+        rgba(8,9,12,.22) 45%,
+        rgba(8,9,12,.34) 100%
+      ),
+      repeating-linear-gradient(
+        to bottom,
+        rgba(255,255,255,0.00) 0px,
+        rgba(255,255,255,0.00) 3px,
+        rgba(255,255,255,0.028) 4px
+      ),
+      repeating-linear-gradient(
+        135deg,
+        rgba(255,255,255,0.020) 0px,
+        rgba(255,255,255,0.00) 2px,
+        rgba(255,255,255,0.014) 4px
+      );
+    opacity:.95;
+  }
+
+  .sv-header{
+    margin:4px 0 12px;
+    padding:9px 14px;
+    text-align:center;
+    font-weight:900;
+    letter-spacing:.2em;
+    text-transform:uppercase;
+    background:rgba(6,7,10,.62);
+    border:1px solid rgba(245,248,255,.16);
+    border-radius:14px;
+    box-shadow:0 12px 24px rgba(0,0,0,.64);
+  }
+
+  .sv-panel{display:flex;flex:1;min-height:0;flex-direction:column}
+  .sv-form{display:flex;gap:8px;margin:0 0 14px}
+  .sv-input{flex:1;min-width:0;padding:8px 12px;border-radius:999px;border:1px solid var(--edge);background:rgba(6,7,10,.62);color:var(--fg);outline:none}
+  .sv-btn,.sv-action{border:none;border-radius:999px;cursor:pointer;color:#f5f9ff;border:1px solid transparent;font-weight:900;text-transform:uppercase;letter-spacing:.09em}
+  .sv-btn{padding:8px 14px;font-size:.8rem}
+  .sv-action{padding:6px 10px;font-size:.76rem}
+  .sv-btn-save{background:var(--save);border-color:var(--save-b)}
+  .sv-load-btn{background:var(--load);border-color:var(--load-b)}
+  .sv-delete-btn{background:var(--del);border-color:var(--del-b)}
+  .sv-empty{font-size:.84rem;color:var(--muted);padding:12px 0}
+  .sv-list{display:flex;flex-direction:column;gap:10px;margin:0;padding:0;list-style:none}
+  .sv-slot{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:10px 12px;border-radius:14px;border:1px solid var(--edge);background:var(--card);cursor:pointer}
+  .sv-slot:hover{background:var(--card-hover)}
+  .sv-slot-auto{border-color:rgba(255,210,122,.55)}
+  .sv-meta{min-width:0;display:flex;flex-direction:column;gap:4px}
+  .sv-name{font-size:.95rem;font-weight:900;line-height:1.28;white-space:normal;overflow-wrap:anywhere;word-break:break-word}
+  .sv-extra{font-size:.74rem;color:var(--muted);display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+  .sv-tag{padding:2px 8px;border-radius:999px;border:1px solid rgba(245,248,255,.16);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;background:rgba(245,248,255,.08)}
+  .sv-actions{display:flex;align-items:center;gap:8px;flex-shrink:0}
+  @media (max-width:520px){
+    .wrap{padding-left:12px;padding-right:12px}
+    .sv-slot{display:grid;grid-template-columns:minmax(0,1fr);align-items:stretch;gap:9px}
+    .sv-meta{width:100%}
+    .sv-name{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:3;overflow:hidden}
+    .sv-actions{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));width:100%;gap:6px}
+    .sv-action{min-width:0;padding:7px 5px;font-size:.7rem;letter-spacing:.055em;white-space:normal;overflow-wrap:anywhere}
+  }
+  @media (max-width:430px){
+    .sv-actions{grid-template-columns:repeat(2,minmax(0,1fr))}
+    .sv-overwrite-btn{grid-column:1 / -1}
+  }
+  @media (max-width:360px){
+    .sv-form{flex-wrap:wrap}
+    .sv-input,.sv-form .sv-btn{flex-basis:100%}
+  }
+  @media (max-width:340px){
+    .sv-actions{grid-template-columns:minmax(0,1fr)}
+  }
+</style>
+<link rel="stylesheet" href="assets/styles/theme.css">
+
+<div class="wrap" data-scene data-scene-name="save">
+  <div class="sv-header" data-i18n="save.title">Save / Load</div>
+
+  <section class="sv-panel" role="tabpanel" data-tab-panel="saves">
+    <form class="sv-form">
+      <input class="sv-input" type="text" placeholder="Save name" data-i18n-placeholder="save.name_placeholder" />
+      <button class="sv-btn sv-btn-save" type="submit" data-sfx="ui_confirm" data-i18n="common.save">Save</button>
+    </form>
+    <p class="sv-empty" data-save-storage-status role="status" aria-live="polite" hidden></p>
+    <p class="sv-empty" data-empty-saves data-i18n="save.empty" style="display:none">No saves yet.</p>
+    <ul class="sv-list" data-list-saves></ul>
+  </section>
+</div>
+
+<script>
+(function () {
+  var root = document.querySelector('[data-scene-name="save"]'); if (!root) return;
+  var SAVE_KEY_V2 = "saves_v2", SAVE_KEY_V1 = "saves_v1";
+  var AUTOSAVE_RETURN_LABEL = "Return to start of previous conversation";
+  var AUTOSAVE_RETURN_TYPE = "auto_return";
+
+  var form = root.querySelector(".sv-form"), input = root.querySelector(".sv-input");
+  var saveSubmitBtn = root.querySelector(".sv-btn-save");
+  var saveSubmitFromClick = false;
+  var savesListEl = root.querySelector("[data-list-saves]"), savesEmptyEl = root.querySelector("[data-empty-saves]");
+  var storageStatusEl = root.querySelector("[data-save-storage-status]");
+  var storageReady = !window.SaveSystem?.ready, storageUnavailable = false, sceneActive = true;
+
+  function ui(key, source){ try { return window.Game?.i18n?.ui?.(key, source) || source; } catch { return source; } }
+  function updateControls(){
+    var busy = operationPending || !storageReady;
+    root.setAttribute("aria-busy", busy ? "true" : "false");
+    root.querySelectorAll(".sv-btn, .sv-action, .sv-input").forEach(function(control){
+      control.disabled = busy || storageUnavailable;
+    });
+  }
+
+  function parse(raw, fb){ try { var v = JSON.parse(raw); return v == null ? fb : v; } catch { return fb; } }
+  function tok(v){ return String(v || "").trim().toLowerCase().replace(/\s+/g, "_"); }
+  function date(ts){ if (!ts) return ""; var d = new Date(ts); return d.toLocaleString(undefined, { day: "2-digit", month: "2-digit", hour: "2-digit", minute: "2-digit" }); }
+  function unnamed(v){ v = String(v || "").trim().toLowerCase(); return !v || v === "(unnamed save)" || v === "unnamed save"; }
+
+  function uiAlert(text, title){
+    var msg = String(text || "").trim();
+    if (!msg) return Promise.resolve();
+    if (window.UIModal && typeof window.UIModal.alert === "function") {
+      return Promise.resolve(window.UIModal.alert({
+        title: String(title || "Save"),
+        text: msg
+      }));
+    }
+    try { window.showToast && window.showToast(msg); } catch {}
+    return Promise.resolve();
+  }
+
+  function uiConfirm(text, title, okText, cancelText){
+    var msg = String(text || "").trim();
+    if (!msg) return Promise.resolve(false);
+    if (window.UIModal && typeof window.UIModal.confirm === "function") {
+      return Promise.resolve(window.UIModal.confirm({
+        title: String(title || "Confirm"),
+        text: msg,
+        okText: okText || "OK",
+        cancelText: cancelText || "Cancel"
+      }));
+    }
+    return Promise.resolve(false);
+  }
+
+  var operationPending = false;
+  function setBusy(busy){
+    operationPending = !!busy;
+    updateControls();
+  }
+  async function runOperation(button, operation, failureTitle){
+    if (operationPending || !storageReady || storageUnavailable) return { ok: false, ignored: true, reason: 'storage_not_ready' };
+    setBusy(true);
+    try { return await operation(); }
+    catch (error) {
+      await uiAlert(String(error && (error.code || error.message) || 'Save operation failed.'), failureTitle || 'Save failed');
+      return { ok: false, error: String(error && (error.code || error.message) || error) };
+    } finally {
+      setBusy(false);
+      renderSaves();
+      if (button && document.contains(button)) button.focus();
+    }
+  }
+
+  function saveState() {
+    if (window.SaveSystem && typeof window.SaveSystem.getSlots === "function") return { slots: window.SaveSystem.getSlots() };
+    var v1 = localStorage.getItem(SAVE_KEY_V1);
+    var p = v1 ? parse(v1, null) : null;
+    if (!p) return { slots: [] };
+    if (Array.isArray(p)) return { slots: p };
+    if (Array.isArray(p.slots)) return { slots: p.slots };
+    return { slots: [] };
+  }
+
+  function slotLabel(slot){
+    if (slot && slot.type === AUTOSAVE_RETURN_TYPE) return AUTOSAVE_RETURN_LABEL;
+    if (window.SaveSystem && typeof window.SaveSystem.computeSlotLabel === "function") {
+      var s = window.SaveSystem.computeSlotLabel(slot, { renderTemplate: true });
+      if (String(s || "").trim()) return s;
+    }
+    var raw = String((slot && slot.label) || "").trim();
+    if (!unnamed(raw)) return raw;
+    var scene = String((slot && slot.scene) || "").trim().toLowerCase();
+    if (scene === "conversation") {
+      var cid = tok(localStorage.getItem("openConversationId") || localStorage.getItem("activeConversationId") || "");
+      return cid ? ("In conversation with {{name:" + cid + "}}") : "In conversation";
+    }
+    if (scene === "home") return "On Home Screen";
+    if (scene === "snapgram") return "In SnapGram";
+    if (scene === "cardvault") return "In Card Vault";
+    if (scene === "settings") return "In Settings";
+    if (scene === "save") return "Save / Load";
+    if (scene === "achievements") return "Achievements";
+    if (scene === "story") return "Story";
+    return scene ? ("In " + scene) : "On Home Screen";
+  }
+
+  function renderSaves(){
+    if (!sceneActive) return;
+    storageUnavailable = storageUnavailable || window.SaveSystem?.getStorageBackend?.() === "indexedDB_degraded";
+    savesListEl.innerHTML = "";
+    savesEmptyEl.style.display = "none";
+    if (!storageReady || storageUnavailable) {
+      storageStatusEl.hidden = false;
+      storageStatusEl.dataset.state = storageUnavailable ? "unavailable" : "loading";
+      storageStatusEl.textContent = storageUnavailable
+        ? ui("save.storage_unavailable", "Your save list could not be opened. Close and reopen the game, then try again.")
+        : ui("save.loading", "Loading saves...");
+      updateControls();
+      return;
+    }
+    storageStatusEl.hidden = true;
+    var slots = (saveState().slots || []).filter(function(slot){
+      if (window.SaveSystem && typeof window.SaveSystem.isPlayerVisibleSlot === "function") {
+        return window.SaveSystem.isPlayerVisibleSlot(slot);
+      }
+      var type = String((slot && slot.type) || "").trim().toLowerCase();
+      return type !== "chapter" && type !== "choice_rewind" && type !== "story_replay";
+    }).slice().sort(function(a,b){
+      return (Number((b && (b.updatedAt || b.createdAt)) || 0) - Number((a && (a.updatedAt || a.createdAt)) || 0));
+    });
+    if (!slots.length) { savesEmptyEl.style.display = "block"; updateControls(); return; }
+    savesEmptyEl.style.display = "none";
+    slots.forEach(function(slot){
+      var li = document.createElement("li"), row = document.createElement("div"), meta = document.createElement("div");
+      row.className = "sv-slot" + ((slot && slot.type === AUTOSAVE_RETURN_TYPE) ? " sv-slot-auto" : "");
+      meta.className = "sv-meta";
+      var name = document.createElement("div"); name.className = "sv-name"; name.textContent = slotLabel(slot); name.title = name.textContent;
+      var extra = document.createElement("div"); extra.className = "sv-extra";
+      var tag = document.createElement("span"); tag.className = "sv-tag"; tag.textContent = slot.type === "quick" ? "QUICKSAVE" : ((slot.type === "auto" || slot.type === AUTOSAVE_RETURN_TYPE) ? "AUTOSAVE" : "MANUAL");
+      extra.appendChild(tag);
+      if (slot && slot.type === AUTOSAVE_RETURN_TYPE) {
+        var returnTag = document.createElement("span");
+        returnTag.className = "sv-tag";
+        returnTag.textContent = "RETURN";
+        extra.appendChild(returnTag);
+      }
+      var d = date(slot.updatedAt || slot.createdAt);
+      if (d) {
+        var ds = document.createElement("span");
+        ds.textContent = d;
+        extra.appendChild(ds);
+      }
+      meta.appendChild(name);
+      meta.appendChild(extra);
+
+      var actions = document.createElement("div"); actions.className = "sv-actions";
+      var overwrite = document.createElement("button"); overwrite.type = "button"; overwrite.className = "sv-action sv-overwrite-btn"; overwrite.textContent = "Overwrite";
+      var load = document.createElement("button"); load.type = "button"; load.className = "sv-action sv-load-btn"; load.textContent = "Load";
+      var del = document.createElement("button"); del.type = "button"; del.className = "sv-action sv-delete-btn"; del.textContent = "Delete";
+      async function doLoad(ev){
+        if (ev) ev.stopPropagation();
+        if (window.SaveSystem && typeof window.SaveSystem.loadFromSlot === "function") {
+          return runOperation(load, function(){ return window.SaveSystem.loadFromSlot(slot.id, { reload: true, source: "save_scene" }); }, "Load failed");
+        }
+        uiAlert("Load system not available.", "Load");
+      }
+      load.addEventListener("click", doLoad);
+      row.addEventListener("click", doLoad);
+      overwrite.addEventListener("click", async function(ev){
+        ev.stopPropagation();
+        if (!window.SaveSystem || typeof window.SaveSystem.saveToSlot !== "function") { await uiAlert("Save system not available.", "Save"); return; }
+        var okOverwrite = await uiConfirm("Overwrite this save?", "Overwrite save", "Overwrite", "Cancel");
+        if (okOverwrite) await runOperation(overwrite, function(){ return window.SaveSystem.saveToSlot(slot.id, { forceScene: "save" }); }, "Save failed");
+      });
+      del.addEventListener("click", async function(ev){
+        ev.stopPropagation();
+        if (!window.SaveSystem || typeof window.SaveSystem.deleteSlot !== "function") {
+          await uiAlert("Save system not available.", "Save");
+          return;
+        }
+        var okDelete = await uiConfirm("Delete this save?", "Delete save", "Delete", "Cancel");
+        if (okDelete) await runOperation(del, function(){ return window.SaveSystem.deleteSlot(slot.id); }, "Delete failed");
+      });
+      actions.appendChild(overwrite);
+      actions.appendChild(load);
+      actions.appendChild(del);
+      row.appendChild(meta);
+      row.appendChild(actions);
+      li.appendChild(row);
+      savesListEl.appendChild(li);
+    });
+    updateControls();
+  }
+
+  if (saveSubmitBtn) {
+    saveSubmitBtn.addEventListener("pointerdown", function(){ saveSubmitFromClick = true; }, true);
+    saveSubmitBtn.addEventListener("click", function(){ saveSubmitFromClick = true; }, true);
+  }
+
+  form.addEventListener("submit", async function(e){
+    e.preventDefault();
+    if (operationPending || !storageReady || storageUnavailable) return;
+    var fromSaveButton = saveSubmitFromClick;
+    saveSubmitFromClick = false;
+    var label = String(input.value || "").trim();
+    if (!label) {
+      await uiAlert("Enter a name for your save.", "Save");
+      input.focus();
+      return;
+    }
+    if (!window.SaveSystem || typeof window.SaveSystem.manualSave !== "function") {
+      await uiAlert("Save system not available.", "Save");
+      return;
+    }
+    var result = await runOperation(saveSubmitBtn, function(){ return window.SaveSystem.manualSave(label, { playSfx: !fromSaveButton }); }, "Save failed");
+    if (result && result.ok === false && result.code === "SAVE_FAILED_STORAGE_FULL") {
+      // Saves live in IndexedDB (bounded by free device space); only a
+      // localStorage backend means the game's own storage area is full.
+      var deviceFull = result.storage === "indexedDB";
+      await uiAlert(deviceFull
+        ? ui("storage.full.save_device", "There is not enough free space on this device to create this save. Your current game is still safe and playable. Free some space on your phone, then try again.")
+        : ui("storage.full.save_internal", "The internal save space of the game is full, so this save was not created. Your current game is still safe and playable. This is storage reserved for the game, not the storage of your phone."), "Save failed");
+      return;
+    }
+    input.value = "";
+    input.focus();
+  });
+
+  if (window.__saveSceneCleanup) { try { window.__saveSceneCleanup(); } catch {} }
+  var onSaves = function(){ renderSaves(); };
+  var onId = function(){ renderSaves(); };
+  window.addEventListener("game:saves-updated", onSaves);
+  window.addEventListener("identity:changed", onId);
+  window.__saveSceneCleanup = function(){
+    sceneActive = false;
+    try { window.removeEventListener("game:saves-updated", onSaves); } catch {}
+    try { window.removeEventListener("identity:changed", onId); } catch {}
+  };
+
+  renderSaves();
+  if (window.SaveSystem?.ready) {
+    Promise.resolve(window.SaveSystem.ready).then(function(result){
+      storageReady = true;
+      storageUnavailable = !!result?.degraded;
+      renderSaves();
+    }, function(){
+      storageReady = true;
+      storageUnavailable = true;
+      renderSaves();
+    });
+  }
+  if (input) setTimeout(function(){ input.focus(); }, 0);
+})();
+</script>

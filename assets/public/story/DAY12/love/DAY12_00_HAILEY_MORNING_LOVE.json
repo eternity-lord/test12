@@ -1,0 +1,44 @@
+{
+  "onceKey": "d12_00_hailey_morning_love_v1",
+  "contactId": "hailey",
+  "requireOnceKey": "d12_00_lena_morning_love_v1|d11_02_hailey_evening_love_v1",
+  "steps": [
+    {"type":"notify","delay":1200,"fromId":"hailey","fromName":"{{name:hailey}}","avatar":"assets/avatars/hailey.jpg","text":"Health inspection 😌","target":"conversation"},
+    {"type":"message","delay":850,"from":"hailey","text":"Are you alive?"},
+    {"type":"message","delay":850,"from":"hailey","text":"Blink twice if your leg is being dramatic"},
+    {"type":"message","delay":900,"from":"player","text":"Alive"},
+    {"type":"message","delay":900,"from":"player","text":"Less dramatic than your homework"},
+    {"type":"message","delay":850,"from":"hailey","text":"Impossible"},
+    {"type":"message","delay":850,"from":"hailey","text":"My homework has theatre training"},
+    {"type":"message","delay":850,"from":"hailey","text":"But good"},
+    {"type":"message","delay":850,"from":"hailey","text":"Do not overdo it today"},
+    {"type":"message","delay":850,"from":"hailey","text":"I still need my favorite tutor functional"},
+    {"type":"message","delay":900,"from":"player","text":"Favorite?"},
+    {"type":"message","delay":850,"from":"hailey","text":"Temporary favorite"},
+    {"type":"message","delay":850,"from":"hailey","text":"Probationary favorite"},
+    {"type":"message","delay":850,"from":"hailey","text":"Do well tonight and we can discuss benefits 😇"},
+    {"type":"message","delay":900,"from":"player","text":"Classes today?"},
+    {"type":"message","delay":850,"from":"hailey","text":"Two classes"},
+    {"type":"message","delay":850,"from":"hailey","text":"One break"},
+    {"type":"message","delay":850,"from":"hailey","text":"Many chances to regret my choices"},
+    {"type":"message","delay":850,"from":"hailey","text":"I will probably need help after the second one"},
+    {"type":"message","delay":900,"from":"player","text":"I will be here"},
+    {"type":"message","delay":850,"from":"hailey","text":"I know"},
+    {"type":"message","delay":850,"from":"hailey","text":"That is the problem"},
+    {"type":"message","delay":850,"from":"hailey","text":"Now I have no excuse to fail 😭"},
+    {"type":"message","delay":900,"from":"player","text":"Go to your classes, quickly before I heal completely"},
+    {"type":"message","delay":850,"from":"hailey","text":"So scary"},
+    {"type":"message","delay":850,"from":"hailey","text":"The injured tutor threat level is rising 😔"},
+    {"type":"message","delay":850,"from":"hailey","text":"Fine, I am going"},
+    {"type":"message","delay":850,"from":"hailey","text":"If I learn anything against my will, I am blaming you 💅"}
+    ,{"type":"if","condition":"route_evelyn_locked_v1:ntr","then":[
+      {"type":"start_story","goHome":true,"startStory":"story/DAY12/DAY12_EVELYN_MORNING.json"}
+    ],"else":[
+      {"type":"if","condition":"route_evelyn_locked_v1:nts","then":[
+        {"type":"start_story","goHome":true,"startStory":"story/DAY12/DAY12_EVELYN_MORNING.json"}
+      ],"else":[
+        {"type":"start_story","goHome":true,"startStory":"story/DAY12/DAY12_EVELYN_MORNING.json"}
+      ]}
+    ]}
+  ]
+}

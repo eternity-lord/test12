@@ -1,0 +1,36 @@
+{
+  "onceKey": "d11_00_lena_morning_ntr_v1",
+  "contactId": "lena",
+  "requireOnceKey": "d10_02_lena_evening_ntr_v1",
+  "steps": [
+    {"type":"notify","delay":1300,"fromId":"lena","fromName":"{{name:lena}}","avatar":"assets/avatars/lena.jpg","text":"Good morning 🙂","target":"conversation"},
+    {"type":"message","delay":900,"from":"lena","text":"I'm up early today"},
+    {"type":"message","delay":900,"from":"player","text":"That's new"},
+    {"type":"message","delay":900,"from":"lena","text":"I know 😅"},
+    {"type":"message","delay":900,"from":"lena","text":"I actually have a lot to do today"},
+    {"type":"message","delay":900,"from":"player","text":"University?"},
+    {"type":"message","delay":900,"from":"lena","text":"And work"},
+    {"type":"message","delay":900,"from":"lena","text":"Since they gave me more responsibilities i need to be there more often"},
+    {"type":"message","delay":900,"from":"player","text":"That sounds serious"},
+    {"type":"message","delay":900,"from":"lena","text":"A little"},
+    {"type":"message","delay":900,"from":"lena","text":"But it's actually nice"},
+    {"type":"message","delay":900,"from":"lena","text":"I feel a bit more useful there"},
+    {"type":"message","delay":900,"from":"player","text":"You were already useful"},
+    {"type":"message","delay":900,"from":"lena","text":"Maybe"},
+    {"type":"message","delay":900,"from":"lena","text":"Now I have actual things to take care of"},
+    {"type":"message","delay":900,"from":"player","text":"Does that mean more hours?"},
+    {"type":"message","delay":900,"from":"lena","text":"Yeah"},
+    {"type":"message","delay":900,"from":"lena","text":"I'll probably stay longer than usual"},
+    {"type":"message","delay":900,"from":"player","text":"Be careful not to overdo it"},
+    {"type":"message","delay":900,"from":"lena","text":"I will 🙂"},
+    {"type":"message","delay":900,"from":"lena","text":"Don't worry"},
+    {"type":"message","delay":900,"from":"player","text":"I always do"},
+    {"type":"message","delay":900,"from":"lena","text":"I know"},
+    {"type":"message","delay":900,"from":"lena","text":"It's okay"},
+    {"type":"if","condition":"active_character:hailey","then":[
+      {"type":"start_story","goHome":true,"startStory":"story/DAY11/DAY11_HAILEY_MORNING.json"}
+    ],"else":[
+      {"type":"start_story","goHome":true,"startStory":"story/DAY11/ntr/DAY11_02_LENA_EVENING_NTR.json"}
+    ]}
+  ]
+}

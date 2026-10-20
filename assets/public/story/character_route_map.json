@@ -1,0 +1,1972 @@
+{
+  "version": 1,
+  "generatedAt": "2026-10-14T15:27:38.095Z",
+  "paths": {
+    "story/DAY10/love/DAY10_00_EVELYN_MORNING_LOVE.json": {
+      "love": "story/DAY10/love/DAY10_00_EVELYN_MORNING_LOVE.json",
+      "ntr": "story/DAY10/ntr/DAY10_00_EVELYN_MORNING_NTR.json",
+      "nts": "story/DAY10/nts/DAY10_00_EVELYN_MORNING_NTS.json"
+    },
+    "story/DAY10/love/DAY10_00_HAILEY_MORNING_LOVE.json": {
+      "love": "story/DAY10/love/DAY10_00_HAILEY_MORNING_LOVE.json",
+      "ntr": "story/DAY10/ntr/DAY10_00_HAILEY_MORNING_NTR.json",
+      "nts": "story/DAY10/nts/DAY10_00_HAILEY_MORNING_NTS.json"
+    },
+    "story/DAY10/love/DAY10_00_LENA_MORNING_LOVE.json": {
+      "love": "story/DAY10/love/DAY10_00_LENA_MORNING_LOVE.json",
+      "ntr": "story/DAY10/ntr/DAY10_00_LENA_MORNING_NTR.json",
+      "nts": "story/DAY10/nts/DAY10_00_LENA_MORNING_NTS.json"
+    },
+    "story/DAY10/love/DAY10_01_EVELYN_AFTERNOON_LOVE.json": {
+      "love": "story/DAY10/love/DAY10_01_EVELYN_AFTERNOON_LOVE.json",
+      "ntr": "story/DAY10/ntr/DAY10_01_EVELYN_AFTERNOON_NTR.json",
+      "nts": "story/DAY10/nts/DAY10_01_EVELYN_AFTERNOON_NTS.json"
+    },
+    "story/DAY10/love/DAY10_01_HAILEY_AFTERNOON_LOVE.json": {
+      "love": "story/DAY10/love/DAY10_01_HAILEY_AFTERNOON_LOVE.json",
+      "ntr": "story/DAY10/ntr/DAY10_01_HAILEY_AFTERNOON_NTR.json",
+      "nts": "story/DAY10/nts/DAY10_01_HAILEY_AFTERNOON_NTS.json"
+    },
+    "story/DAY10/love/DAY10_01_LENA_AFTERNOON_LOVE.json": {
+      "love": "story/DAY10/love/DAY10_01_LENA_AFTERNOON_LOVE.json",
+      "ntr": "story/DAY10/ntr/DAY10_01_LENA_AFTERNOON_NTR.json",
+      "nts": "story/DAY10/nts/DAY10_01_LENA_AFTERNOON_NTS.json"
+    },
+    "story/DAY10/love/DAY10_02_EVELYN_EVENING_LOVE.json": {
+      "love": "story/DAY10/love/DAY10_02_EVELYN_EVENING_LOVE.json",
+      "ntr": "story/DAY10/ntr/DAY10_02_EVELYN_EVENING_NTR.json",
+      "nts": "story/DAY10/nts/DAY10_02_EVELYN_EVENING_NTS.json"
+    },
+    "story/DAY10/love/DAY10_02_HAILEY_EVENING_LOVE.json": {
+      "love": "story/DAY10/love/DAY10_02_HAILEY_EVENING_LOVE.json",
+      "ntr": "story/DAY10/ntr/DAY10_02_HAILEY_EVENING_NTR.json",
+      "nts": "story/DAY10/nts/DAY10_02_HAILEY_EVENING_NTS.json"
+    },
+    "story/DAY10/love/DAY10_02_LENA_EVENING_LOVE.json": {
+      "love": "story/DAY10/love/DAY10_02_LENA_EVENING_LOVE.json",
+      "ntr": "story/DAY10/ntr/DAY10_02_LENA_EVENING_NTR.json",
+      "nts": "story/DAY10/nts/DAY10_02_LENA_EVENING_NTS.json"
+    },
+    "story/DAY10/love/DAY10_00_MASON_MORNING_LOVE.json": {
+      "love": "story/DAY10/love/DAY10_00_MASON_MORNING_LOVE.json",
+      "ntr": "story/DAY10/ntr/DAY10_00_MASON_MORNING_NTR.json",
+      "nts": "story/DAY10/nts/DAY10_00_MASON_MORNING_NTS.json"
+    },
+    "story/DAY10/love/DAY10_01_MASON_AFTERNOON_LOVE.json": {
+      "love": "story/DAY10/love/DAY10_01_MASON_AFTERNOON_LOVE.json",
+      "ntr": "story/DAY10/ntr/DAY10_01_MASON_AFTERNOON_NTR.json",
+      "nts": "story/DAY10/nts/DAY10_01_MASON_AFTERNOON_NTS.json"
+    },
+    "story/DAY10/love/DAY10_02_MASON_EVENING_LOVE.json": {
+      "love": "story/DAY10/love/DAY10_02_MASON_EVENING_LOVE.json",
+      "ntr": "story/DAY10/ntr/DAY10_02_MASON_EVENING_NTR.json",
+      "nts": "story/DAY10/nts/DAY10_02_MASON_EVENING_NTS.json"
+    },
+    "story/DAY10/ntr/DAY10_00_EVELYN_MORNING_NTR.json": {
+      "love": "story/DAY10/love/DAY10_00_EVELYN_MORNING_LOVE.json",
+      "ntr": "story/DAY10/ntr/DAY10_00_EVELYN_MORNING_NTR.json",
+      "nts": "story/DAY10/nts/DAY10_00_EVELYN_MORNING_NTS.json"
+    },
+    "story/DAY10/ntr/DAY10_00_HAILEY_MORNING_NTR.json": {
+      "love": "story/DAY10/love/DAY10_00_HAILEY_MORNING_LOVE.json",
+      "ntr": "story/DAY10/ntr/DAY10_00_HAILEY_MORNING_NTR.json",
+      "nts": "story/DAY10/nts/DAY10_00_HAILEY_MORNING_NTS.json"
+    },
+    "story/DAY10/ntr/DAY10_00_LENA_MORNING_NTR.json": {
+      "love": "story/DAY10/love/DAY10_00_LENA_MORNING_LOVE.json",
+      "ntr": "story/DAY10/ntr/DAY10_00_LENA_MORNING_NTR.json",
+      "nts": "story/DAY10/nts/DAY10_00_LENA_MORNING_NTS.json"
+    },
+    "story/DAY10/ntr/DAY10_01_EVELYN_AFTERNOON_NTR.json": {
+      "love": "story/DAY10/love/DAY10_01_EVELYN_AFTERNOON_LOVE.json",
+      "ntr": "story/DAY10/ntr/DAY10_01_EVELYN_AFTERNOON_NTR.json",
+      "nts": "story/DAY10/nts/DAY10_01_EVELYN_AFTERNOON_NTS.json"
+    },
+    "story/DAY10/ntr/DAY10_01_HAILEY_AFTERNOON_NTR.json": {
+      "love": "story/DAY10/love/DAY10_01_HAILEY_AFTERNOON_LOVE.json",
+      "ntr": "story/DAY10/ntr/DAY10_01_HAILEY_AFTERNOON_NTR.json",
+      "nts": "story/DAY10/nts/DAY10_01_HAILEY_AFTERNOON_NTS.json"
+    },
+    "story/DAY10/ntr/DAY10_01_LENA_AFTERNOON_NTR.json": {
+      "love": "story/DAY10/love/DAY10_01_LENA_AFTERNOON_LOVE.json",
+      "ntr": "story/DAY10/ntr/DAY10_01_LENA_AFTERNOON_NTR.json",
+      "nts": "story/DAY10/nts/DAY10_01_LENA_AFTERNOON_NTS.json"
+    },
+    "story/DAY10/ntr/DAY10_02_EVELYN_EVENING_NTR.json": {
+      "love": "story/DAY10/love/DAY10_02_EVELYN_EVENING_LOVE.json",
+      "ntr": "story/DAY10/ntr/DAY10_02_EVELYN_EVENING_NTR.json",
+      "nts": "story/DAY10/nts/DAY10_02_EVELYN_EVENING_NTS.json"
+    },
+    "story/DAY10/ntr/DAY10_02_HAILEY_EVENING_NTR.json": {
+      "love": "story/DAY10/love/DAY10_02_HAILEY_EVENING_LOVE.json",
+      "ntr": "story/DAY10/ntr/DAY10_02_HAILEY_EVENING_NTR.json",
+      "nts": "story/DAY10/nts/DAY10_02_HAILEY_EVENING_NTS.json"
+    },
+    "story/DAY10/ntr/DAY10_02_LENA_EVENING_NTR.json": {
+      "love": "story/DAY10/love/DAY10_02_LENA_EVENING_LOVE.json",
+      "ntr": "story/DAY10/ntr/DAY10_02_LENA_EVENING_NTR.json",
+      "nts": "story/DAY10/nts/DAY10_02_LENA_EVENING_NTS.json"
+    },
+    "story/DAY10/ntr/DAY10_00_MASON_MORNING_NTR.json": {
+      "love": "story/DAY10/love/DAY10_00_MASON_MORNING_LOVE.json",
+      "ntr": "story/DAY10/ntr/DAY10_00_MASON_MORNING_NTR.json",
+      "nts": "story/DAY10/nts/DAY10_00_MASON_MORNING_NTS.json"
+    },
+    "story/DAY10/ntr/DAY10_01_MASON_AFTERNOON_NTR.json": {
+      "love": "story/DAY10/love/DAY10_01_MASON_AFTERNOON_LOVE.json",
+      "ntr": "story/DAY10/ntr/DAY10_01_MASON_AFTERNOON_NTR.json",
+      "nts": "story/DAY10/nts/DAY10_01_MASON_AFTERNOON_NTS.json"
+    },
+    "story/DAY10/ntr/DAY10_02_MASON_EVENING_NTR.json": {
+      "love": "story/DAY10/love/DAY10_02_MASON_EVENING_LOVE.json",
+      "ntr": "story/DAY10/ntr/DAY10_02_MASON_EVENING_NTR.json",
+      "nts": "story/DAY10/nts/DAY10_02_MASON_EVENING_NTS.json"
+    },
+    "story/DAY10/nts/DAY10_00_EVELYN_MORNING_NTS.json": {
+      "love": "story/DAY10/love/DAY10_00_EVELYN_MORNING_LOVE.json",
+      "ntr": "story/DAY10/ntr/DAY10_00_EVELYN_MORNING_NTR.json",
+      "nts": "story/DAY10/nts/DAY10_00_EVELYN_MORNING_NTS.json"
+    },
+    "story/DAY10/nts/DAY10_00_HAILEY_MORNING_NTS.json": {
+      "love": "story/DAY10/love/DAY10_00_HAILEY_MORNING_LOVE.json",
+      "ntr": "story/DAY10/ntr/DAY10_00_HAILEY_MORNING_NTR.json",
+      "nts": "story/DAY10/nts/DAY10_00_HAILEY_MORNING_NTS.json"
+    },
+    "story/DAY10/nts/DAY10_00_LENA_MORNING_NTS.json": {
+      "love": "story/DAY10/love/DAY10_00_LENA_MORNING_LOVE.json",
+      "ntr": "story/DAY10/ntr/DAY10_00_LENA_MORNING_NTR.json",
+      "nts": "story/DAY10/nts/DAY10_00_LENA_MORNING_NTS.json"
+    },
+    "story/DAY10/nts/DAY10_01_EVELYN_AFTERNOON_NTS.json": {
+      "love": "story/DAY10/love/DAY10_01_EVELYN_AFTERNOON_LOVE.json",
+      "ntr": "story/DAY10/ntr/DAY10_01_EVELYN_AFTERNOON_NTR.json",
+      "nts": "story/DAY10/nts/DAY10_01_EVELYN_AFTERNOON_NTS.json"
+    },
+    "story/DAY10/nts/DAY10_01_HAILEY_AFTERNOON_NTS.json": {
+      "love": "story/DAY10/love/DAY10_01_HAILEY_AFTERNOON_LOVE.json",
+      "ntr": "story/DAY10/ntr/DAY10_01_HAILEY_AFTERNOON_NTR.json",
+      "nts": "story/DAY10/nts/DAY10_01_HAILEY_AFTERNOON_NTS.json"
+    },
+    "story/DAY10/nts/DAY10_01_LENA_AFTERNOON_NTS.json": {
+      "love": "story/DAY10/love/DAY10_01_LENA_AFTERNOON_LOVE.json",
+      "ntr": "story/DAY10/ntr/DAY10_01_LENA_AFTERNOON_NTR.json",
+      "nts": "story/DAY10/nts/DAY10_01_LENA_AFTERNOON_NTS.json"
+    },
+    "story/DAY10/nts/DAY10_02_EVELYN_EVENING_NTS.json": {
+      "love": "story/DAY10/love/DAY10_02_EVELYN_EVENING_LOVE.json",
+      "ntr": "story/DAY10/ntr/DAY10_02_EVELYN_EVENING_NTR.json",
+      "nts": "story/DAY10/nts/DAY10_02_EVELYN_EVENING_NTS.json"
+    },
+    "story/DAY10/nts/DAY10_02_HAILEY_EVENING_NTS.json": {
+      "love": "story/DAY10/love/DAY10_02_HAILEY_EVENING_LOVE.json",
+      "ntr": "story/DAY10/ntr/DAY10_02_HAILEY_EVENING_NTR.json",
+      "nts": "story/DAY10/nts/DAY10_02_HAILEY_EVENING_NTS.json"
+    },
+    "story/DAY10/nts/DAY10_02_LENA_EVENING_NTS.json": {
+      "love": "story/DAY10/love/DAY10_02_LENA_EVENING_LOVE.json",
+      "ntr": "story/DAY10/ntr/DAY10_02_LENA_EVENING_NTR.json",
+      "nts": "story/DAY10/nts/DAY10_02_LENA_EVENING_NTS.json"
+    },
+    "story/DAY10/nts/DAY10_00_MASON_MORNING_NTS.json": {
+      "love": "story/DAY10/love/DAY10_00_MASON_MORNING_LOVE.json",
+      "ntr": "story/DAY10/ntr/DAY10_00_MASON_MORNING_NTR.json",
+      "nts": "story/DAY10/nts/DAY10_00_MASON_MORNING_NTS.json"
+    },
+    "story/DAY10/nts/DAY10_01_MASON_AFTERNOON_NTS.json": {
+      "love": "story/DAY10/love/DAY10_01_MASON_AFTERNOON_LOVE.json",
+      "ntr": "story/DAY10/ntr/DAY10_01_MASON_AFTERNOON_NTR.json",
+      "nts": "story/DAY10/nts/DAY10_01_MASON_AFTERNOON_NTS.json"
+    },
+    "story/DAY10/nts/DAY10_02_MASON_EVENING_NTS.json": {
+      "love": "story/DAY10/love/DAY10_02_MASON_EVENING_LOVE.json",
+      "ntr": "story/DAY10/ntr/DAY10_02_MASON_EVENING_NTR.json",
+      "nts": "story/DAY10/nts/DAY10_02_MASON_EVENING_NTS.json"
+    },
+    "story/DAY11/love/DAY11_00_EVELYN_MORNING_LOVE.json": {
+      "love": "story/DAY11/love/DAY11_00_EVELYN_MORNING_LOVE.json",
+      "ntr": "story/DAY11/ntr/DAY11_00_EVELYN_MORNING_NTR.json",
+      "nts": "story/DAY11/nts/DAY11_00_EVELYN_MORNING_NTS.json"
+    },
+    "story/DAY11/love/DAY11_00_HAILEY_MORNING_LOVE.json": {
+      "love": "story/DAY11/love/DAY11_00_HAILEY_MORNING_LOVE.json",
+      "ntr": "story/DAY11/ntr/DAY11_00_HAILEY_MORNING_NTR.json",
+      "nts": "story/DAY11/nts/DAY11_00_HAILEY_MORNING_NTS.json"
+    },
+    "story/DAY11/love/DAY11_00_LENA_MORNING_LOVE.json": {
+      "love": "story/DAY11/love/DAY11_00_LENA_MORNING_LOVE.json",
+      "ntr": "story/DAY11/ntr/DAY11_00_LENA_MORNING_NTR.json",
+      "nts": "story/DAY11/nts/DAY11_00_LENA_MORNING_NTS.json"
+    },
+    "story/DAY11/love/DAY11_01_EVELYN_AFTERNOON_LOVE.json": {
+      "love": "story/DAY11/love/DAY11_01_EVELYN_AFTERNOON_LOVE.json",
+      "ntr": "story/DAY11/ntr/DAY11_01_EVELYN_AFTERNOON_NTR.json",
+      "nts": "story/DAY11/nts/DAY11_01_EVELYN_AFTERNOON_NTS.json"
+    },
+    "story/DAY11/love/DAY11_01_HAILEY_AFTERNOON_LOVE.json": {
+      "love": "story/DAY11/love/DAY11_01_HAILEY_AFTERNOON_LOVE.json",
+      "ntr": "story/DAY11/ntr/DAY11_01_HAILEY_AFTERNOON_NTR.json",
+      "nts": "story/DAY11/nts/DAY11_01_HAILEY_AFTERNOON_NTS.json"
+    },
+    "story/DAY11/love/DAY11_02_LENA_EVENING_LOVE.json": {
+      "love": "story/DAY11/love/DAY11_02_LENA_EVENING_LOVE.json",
+      "ntr": "story/DAY11/ntr/DAY11_02_LENA_EVENING_NTR.json",
+      "nts": "story/DAY11/nts/DAY11_02_LENA_EVENING_NTS.json"
+    },
+    "story/DAY11/love/DAY11_02_EVELYN_EVENING_LOVE.json": {
+      "love": "story/DAY11/love/DAY11_02_EVELYN_EVENING_LOVE.json",
+      "ntr": "story/DAY11/ntr/DAY11_02_EVELYN_EVENING_NTR.json",
+      "nts": "story/DAY11/nts/DAY11_02_EVELYN_EVENING_NTS.json"
+    },
+    "story/DAY11/love/DAY11_02_HAILEY_EVENING_LOVE.json": {
+      "love": "story/DAY11/love/DAY11_02_HAILEY_EVENING_LOVE.json",
+      "ntr": "story/DAY11/ntr/DAY11_02_HAILEY_EVENING_NTR.json",
+      "nts": "story/DAY11/nts/DAY11_02_HAILEY_EVENING_NTS.json"
+    },
+    "story/DAY11/love/DAY11_03_LENA_NIGHT_LOVE.json": {
+      "love": "story/DAY11/love/DAY11_03_LENA_NIGHT_LOVE.json",
+      "ntr": "story/DAY11/ntr/DAY11_03_LENA_NIGHT_NTR.json",
+      "nts": "story/DAY11/nts/DAY11_03_LENA_NIGHT_NTS.json"
+    },
+    "story/DAY11/love/DAY11_00_MASON_MORNING_LOVE.json": {
+      "love": "story/DAY11/love/DAY11_00_MASON_MORNING_LOVE.json",
+      "ntr": "story/DAY11/ntr/DAY11_00_MASON_MORNING_NTR.json",
+      "nts": "story/DAY11/nts/DAY11_00_MASON_MORNING_NTS.json"
+    },
+    "story/DAY11/love/DAY11_01_MASON_AFTERNOON_LOVE.json": {
+      "love": "story/DAY11/love/DAY11_01_MASON_AFTERNOON_LOVE.json",
+      "ntr": "story/DAY11/ntr/DAY11_01_MASON_AFTERNOON_NTR.json",
+      "nts": "story/DAY11/nts/DAY11_01_MASON_AFTERNOON_NTS.json"
+    },
+    "story/DAY11/love/DAY11_02_MASON_EVENING_LOVE.json": {
+      "love": "story/DAY11/love/DAY11_02_MASON_EVENING_LOVE.json",
+      "ntr": "story/DAY11/ntr/DAY11_02_MASON_EVENING_NTR.json",
+      "nts": "story/DAY11/nts/DAY11_02_MASON_EVENING_NTS.json"
+    },
+    "story/DAY11/ntr/DAY11_00_EVELYN_MORNING_NTR.json": {
+      "love": "story/DAY11/love/DAY11_00_EVELYN_MORNING_LOVE.json",
+      "ntr": "story/DAY11/ntr/DAY11_00_EVELYN_MORNING_NTR.json",
+      "nts": "story/DAY11/nts/DAY11_00_EVELYN_MORNING_NTS.json"
+    },
+    "story/DAY11/ntr/DAY11_00_HAILEY_MORNING_NTR.json": {
+      "love": "story/DAY11/love/DAY11_00_HAILEY_MORNING_LOVE.json",
+      "ntr": "story/DAY11/ntr/DAY11_00_HAILEY_MORNING_NTR.json",
+      "nts": "story/DAY11/nts/DAY11_00_HAILEY_MORNING_NTS.json"
+    },
+    "story/DAY11/ntr/DAY11_00_LENA_MORNING_NTR.json": {
+      "love": "story/DAY11/love/DAY11_00_LENA_MORNING_LOVE.json",
+      "ntr": "story/DAY11/ntr/DAY11_00_LENA_MORNING_NTR.json",
+      "nts": "story/DAY11/nts/DAY11_00_LENA_MORNING_NTS.json"
+    },
+    "story/DAY11/ntr/DAY11_01_EVELYN_AFTERNOON_NTR.json": {
+      "love": "story/DAY11/love/DAY11_01_EVELYN_AFTERNOON_LOVE.json",
+      "ntr": "story/DAY11/ntr/DAY11_01_EVELYN_AFTERNOON_NTR.json",
+      "nts": "story/DAY11/nts/DAY11_01_EVELYN_AFTERNOON_NTS.json"
+    },
+    "story/DAY11/ntr/DAY11_01_HAILEY_AFTERNOON_NTR.json": {
+      "love": "story/DAY11/love/DAY11_01_HAILEY_AFTERNOON_LOVE.json",
+      "ntr": "story/DAY11/ntr/DAY11_01_HAILEY_AFTERNOON_NTR.json",
+      "nts": "story/DAY11/nts/DAY11_01_HAILEY_AFTERNOON_NTS.json"
+    },
+    "story/DAY11/ntr/DAY11_02_LENA_EVENING_NTR.json": {
+      "love": "story/DAY11/love/DAY11_02_LENA_EVENING_LOVE.json",
+      "ntr": "story/DAY11/ntr/DAY11_02_LENA_EVENING_NTR.json",
+      "nts": "story/DAY11/nts/DAY11_02_LENA_EVENING_NTS.json"
+    },
+    "story/DAY11/ntr/DAY11_02_EVELYN_EVENING_NTR.json": {
+      "love": "story/DAY11/love/DAY11_02_EVELYN_EVENING_LOVE.json",
+      "ntr": "story/DAY11/ntr/DAY11_02_EVELYN_EVENING_NTR.json",
+      "nts": "story/DAY11/nts/DAY11_02_EVELYN_EVENING_NTS.json"
+    },
+    "story/DAY11/ntr/DAY11_02_HAILEY_EVENING_NTR.json": {
+      "love": "story/DAY11/love/DAY11_02_HAILEY_EVENING_LOVE.json",
+      "ntr": "story/DAY11/ntr/DAY11_02_HAILEY_EVENING_NTR.json",
+      "nts": "story/DAY11/nts/DAY11_02_HAILEY_EVENING_NTS.json"
+    },
+    "story/DAY11/ntr/DAY11_03_LENA_NIGHT_NTR.json": {
+      "love": "story/DAY11/love/DAY11_03_LENA_NIGHT_LOVE.json",
+      "ntr": "story/DAY11/ntr/DAY11_03_LENA_NIGHT_NTR.json",
+      "nts": "story/DAY11/nts/DAY11_03_LENA_NIGHT_NTS.json"
+    },
+    "story/DAY11/ntr/DAY11_00_MASON_MORNING_NTR.json": {
+      "love": "story/DAY11/love/DAY11_00_MASON_MORNING_LOVE.json",
+      "ntr": "story/DAY11/ntr/DAY11_00_MASON_MORNING_NTR.json",
+      "nts": "story/DAY11/nts/DAY11_00_MASON_MORNING_NTS.json"
+    },
+    "story/DAY11/ntr/DAY11_01_MASON_AFTERNOON_NTR.json": {
+      "love": "story/DAY11/love/DAY11_01_MASON_AFTERNOON_LOVE.json",
+      "ntr": "story/DAY11/ntr/DAY11_01_MASON_AFTERNOON_NTR.json",
+      "nts": "story/DAY11/nts/DAY11_01_MASON_AFTERNOON_NTS.json"
+    },
+    "story/DAY11/ntr/DAY11_02_MASON_EVENING_NTR.json": {
+      "love": "story/DAY11/love/DAY11_02_MASON_EVENING_LOVE.json",
+      "ntr": "story/DAY11/ntr/DAY11_02_MASON_EVENING_NTR.json",
+      "nts": "story/DAY11/nts/DAY11_02_MASON_EVENING_NTS.json"
+    },
+    "story/DAY11/nts/DAY11_00_EVELYN_MORNING_NTS.json": {
+      "love": "story/DAY11/love/DAY11_00_EVELYN_MORNING_LOVE.json",
+      "ntr": "story/DAY11/ntr/DAY11_00_EVELYN_MORNING_NTR.json",
+      "nts": "story/DAY11/nts/DAY11_00_EVELYN_MORNING_NTS.json"
+    },
+    "story/DAY11/nts/DAY11_00_HAILEY_MORNING_NTS.json": {
+      "love": "story/DAY11/love/DAY11_00_HAILEY_MORNING_LOVE.json",
+      "ntr": "story/DAY11/ntr/DAY11_00_HAILEY_MORNING_NTR.json",
+      "nts": "story/DAY11/nts/DAY11_00_HAILEY_MORNING_NTS.json"
+    },
+    "story/DAY11/nts/DAY11_00_LENA_MORNING_NTS.json": {
+      "love": "story/DAY11/love/DAY11_00_LENA_MORNING_LOVE.json",
+      "ntr": "story/DAY11/ntr/DAY11_00_LENA_MORNING_NTR.json",
+      "nts": "story/DAY11/nts/DAY11_00_LENA_MORNING_NTS.json"
+    },
+    "story/DAY11/nts/DAY11_01_EVELYN_AFTERNOON_NTS.json": {
+      "love": "story/DAY11/love/DAY11_01_EVELYN_AFTERNOON_LOVE.json",
+      "ntr": "story/DAY11/ntr/DAY11_01_EVELYN_AFTERNOON_NTR.json",
+      "nts": "story/DAY11/nts/DAY11_01_EVELYN_AFTERNOON_NTS.json"
+    },
+    "story/DAY11/nts/DAY11_01_HAILEY_AFTERNOON_NTS.json": {
+      "love": "story/DAY11/love/DAY11_01_HAILEY_AFTERNOON_LOVE.json",
+      "ntr": "story/DAY11/ntr/DAY11_01_HAILEY_AFTERNOON_NTR.json",
+      "nts": "story/DAY11/nts/DAY11_01_HAILEY_AFTERNOON_NTS.json"
+    },
+    "story/DAY11/nts/DAY11_02_LENA_EVENING_NTS.json": {
+      "love": "story/DAY11/love/DAY11_02_LENA_EVENING_LOVE.json",
+      "ntr": "story/DAY11/ntr/DAY11_02_LENA_EVENING_NTR.json",
+      "nts": "story/DAY11/nts/DAY11_02_LENA_EVENING_NTS.json"
+    },
+    "story/DAY11/nts/DAY11_02_EVELYN_EVENING_NTS.json": {
+      "love": "story/DAY11/love/DAY11_02_EVELYN_EVENING_LOVE.json",
+      "ntr": "story/DAY11/ntr/DAY11_02_EVELYN_EVENING_NTR.json",
+      "nts": "story/DAY11/nts/DAY11_02_EVELYN_EVENING_NTS.json"
+    },
+    "story/DAY11/nts/DAY11_02_HAILEY_EVENING_NTS.json": {
+      "love": "story/DAY11/love/DAY11_02_HAILEY_EVENING_LOVE.json",
+      "ntr": "story/DAY11/ntr/DAY11_02_HAILEY_EVENING_NTR.json",
+      "nts": "story/DAY11/nts/DAY11_02_HAILEY_EVENING_NTS.json"
+    },
+    "story/DAY11/nts/DAY11_03_LENA_NIGHT_NTS.json": {
+      "love": "story/DAY11/love/DAY11_03_LENA_NIGHT_LOVE.json",
+      "ntr": "story/DAY11/ntr/DAY11_03_LENA_NIGHT_NTR.json",
+      "nts": "story/DAY11/nts/DAY11_03_LENA_NIGHT_NTS.json"
+    },
+    "story/DAY11/nts/DAY11_00_MASON_MORNING_NTS.json": {
+      "love": "story/DAY11/love/DAY11_00_MASON_MORNING_LOVE.json",
+      "ntr": "story/DAY11/ntr/DAY11_00_MASON_MORNING_NTR.json",
+      "nts": "story/DAY11/nts/DAY11_00_MASON_MORNING_NTS.json"
+    },
+    "story/DAY11/nts/DAY11_01_MASON_AFTERNOON_NTS.json": {
+      "love": "story/DAY11/love/DAY11_01_MASON_AFTERNOON_LOVE.json",
+      "ntr": "story/DAY11/ntr/DAY11_01_MASON_AFTERNOON_NTR.json",
+      "nts": "story/DAY11/nts/DAY11_01_MASON_AFTERNOON_NTS.json"
+    },
+    "story/DAY11/nts/DAY11_02_MASON_EVENING_NTS.json": {
+      "love": "story/DAY11/love/DAY11_02_MASON_EVENING_LOVE.json",
+      "ntr": "story/DAY11/ntr/DAY11_02_MASON_EVENING_NTR.json",
+      "nts": "story/DAY11/nts/DAY11_02_MASON_EVENING_NTS.json"
+    },
+    "story/DAY12/love/DAY12_00_EVELYN_MORNING_LOVE.json": {
+      "love": "story/DAY12/love/DAY12_00_EVELYN_MORNING_LOVE.json",
+      "ntr": "story/DAY12/ntr/DAY12_00_EVELYN_MORNING_NTR.json",
+      "nts": "story/DAY12/nts/DAY12_00_EVELYN_MORNING_NTS.json"
+    },
+    "story/DAY12/love/DAY12_00_HAILEY_MORNING_LOVE.json": {
+      "love": "story/DAY12/love/DAY12_00_HAILEY_MORNING_LOVE.json",
+      "ntr": "story/DAY12/ntr/DAY12_00_HAILEY_MORNING_NTR.json",
+      "nts": "story/DAY12/nts/DAY12_00_HAILEY_MORNING_NTS.json"
+    },
+    "story/DAY12/love/DAY12_00_LENA_MORNING_LOVE.json": {
+      "love": "story/DAY12/love/DAY12_00_LENA_MORNING_LOVE.json",
+      "ntr": "story/DAY12/ntr/DAY12_00_LENA_MORNING_NTR.json",
+      "nts": "story/DAY12/nts/DAY12_00_LENA_MORNING_NTS.json"
+    },
+    "story/DAY12/love/DAY12_01_EVELYN_AFTERNOON_LOVE.json": {
+      "love": "story/DAY12/love/DAY12_01_EVELYN_AFTERNOON_LOVE.json",
+      "ntr": "story/DAY12/ntr/DAY12_01_EVELYN_AFTERNOON_NTR.json",
+      "nts": "story/DAY12/nts/DAY12_01_EVELYN_AFTERNOON_NTS.json"
+    },
+    "story/DAY12/love/DAY12_01_HAILEY_AFTERNOON_LOVE.json": {
+      "love": "story/DAY12/love/DAY12_01_HAILEY_AFTERNOON_LOVE.json",
+      "ntr": "story/DAY12/ntr/DAY12_01_HAILEY_AFTERNOON_NTR.json",
+      "nts": "story/DAY12/nts/DAY12_01_HAILEY_AFTERNOON_NTS.json"
+    },
+    "story/DAY12/love/DAY12_02_LENA_EVENING_LOVE.json": {
+      "love": "story/DAY12/love/DAY12_02_LENA_EVENING_LOVE.json",
+      "ntr": "story/DAY12/ntr/DAY12_02_LENA_EVENING_NTR.json",
+      "nts": "story/DAY12/nts/DAY12_02_LENA_EVENING_NTS.json"
+    },
+    "story/DAY12/love/DAY12_02_EVELYN_EVENING_LOVE.json": {
+      "love": "story/DAY12/love/DAY12_02_EVELYN_EVENING_LOVE.json",
+      "ntr": "story/DAY12/ntr/DAY12_02_EVELYN_EVENING_NTR.json",
+      "nts": "story/DAY12/nts/DAY12_02_EVELYN_EVENING_NTS.json"
+    },
+    "story/DAY12/love/DAY12_02_HAILEY_EVENING_LOVE.json": {
+      "love": "story/DAY12/love/DAY12_02_HAILEY_EVENING_LOVE.json",
+      "ntr": "story/DAY12/ntr/DAY12_02_HAILEY_EVENING_NTR.json",
+      "nts": "story/DAY12/nts/DAY12_02_HAILEY_EVENING_NTS.json"
+    },
+    "story/DAY12/love/DAY12_00_MASON_MORNING_LOVE.json": {
+      "love": "story/DAY12/love/DAY12_00_MASON_MORNING_LOVE.json",
+      "ntr": "story/DAY12/ntr/DAY12_00_MASON_MORNING_NTR.json",
+      "nts": "story/DAY12/nts/DAY12_00_MASON_MORNING_NTS.json"
+    },
+    "story/DAY12/love/DAY12_01_MASON_AFTERNOON_LOVE.json": {
+      "love": "story/DAY12/love/DAY12_01_MASON_AFTERNOON_LOVE.json",
+      "ntr": "story/DAY12/ntr/DAY12_01_MASON_AFTERNOON_NTR.json",
+      "nts": "story/DAY12/nts/DAY12_01_MASON_AFTERNOON_NTS.json"
+    },
+    "story/DAY12/love/DAY12_02_MASON_EVENING_LOVE.json": {
+      "love": "story/DAY12/love/DAY12_02_MASON_EVENING_LOVE.json",
+      "ntr": "story/DAY12/ntr/DAY12_02_MASON_EVENING_NTR.json",
+      "nts": "story/DAY12/nts/DAY12_02_MASON_EVENING_NTS.json"
+    },
+    "story/DAY12/ntr/DAY12_00_EVELYN_MORNING_NTR.json": {
+      "love": "story/DAY12/love/DAY12_00_EVELYN_MORNING_LOVE.json",
+      "ntr": "story/DAY12/ntr/DAY12_00_EVELYN_MORNING_NTR.json",
+      "nts": "story/DAY12/nts/DAY12_00_EVELYN_MORNING_NTS.json"
+    },
+    "story/DAY12/ntr/DAY12_00_HAILEY_MORNING_NTR.json": {
+      "love": "story/DAY12/love/DAY12_00_HAILEY_MORNING_LOVE.json",
+      "ntr": "story/DAY12/ntr/DAY12_00_HAILEY_MORNING_NTR.json",
+      "nts": "story/DAY12/nts/DAY12_00_HAILEY_MORNING_NTS.json"
+    },
+    "story/DAY12/ntr/DAY12_00_LENA_MORNING_NTR.json": {
+      "love": "story/DAY12/love/DAY12_00_LENA_MORNING_LOVE.json",
+      "ntr": "story/DAY12/ntr/DAY12_00_LENA_MORNING_NTR.json",
+      "nts": "story/DAY12/nts/DAY12_00_LENA_MORNING_NTS.json"
+    },
+    "story/DAY12/ntr/DAY12_01_EVELYN_AFTERNOON_NTR.json": {
+      "love": "story/DAY12/love/DAY12_01_EVELYN_AFTERNOON_LOVE.json",
+      "ntr": "story/DAY12/ntr/DAY12_01_EVELYN_AFTERNOON_NTR.json",
+      "nts": "story/DAY12/nts/DAY12_01_EVELYN_AFTERNOON_NTS.json"
+    },
+    "story/DAY12/ntr/DAY12_01_HAILEY_AFTERNOON_NTR.json": {
+      "love": "story/DAY12/love/DAY12_01_HAILEY_AFTERNOON_LOVE.json",
+      "ntr": "story/DAY12/ntr/DAY12_01_HAILEY_AFTERNOON_NTR.json",
+      "nts": "story/DAY12/nts/DAY12_01_HAILEY_AFTERNOON_NTS.json"
+    },
+    "story/DAY12/ntr/DAY12_02_LENA_EVENING_NTR.json": {
+      "love": "story/DAY12/love/DAY12_02_LENA_EVENING_LOVE.json",
+      "ntr": "story/DAY12/ntr/DAY12_02_LENA_EVENING_NTR.json",
+      "nts": "story/DAY12/nts/DAY12_02_LENA_EVENING_NTS.json"
+    },
+    "story/DAY12/ntr/DAY12_02_EVELYN_EVENING_NTR.json": {
+      "love": "story/DAY12/love/DAY12_02_EVELYN_EVENING_LOVE.json",
+      "ntr": "story/DAY12/ntr/DAY12_02_EVELYN_EVENING_NTR.json",
+      "nts": "story/DAY12/nts/DAY12_02_EVELYN_EVENING_NTS.json"
+    },
+    "story/DAY12/ntr/DAY12_02_HAILEY_EVENING_NTR.json": {
+      "love": "story/DAY12/love/DAY12_02_HAILEY_EVENING_LOVE.json",
+      "ntr": "story/DAY12/ntr/DAY12_02_HAILEY_EVENING_NTR.json",
+      "nts": "story/DAY12/nts/DAY12_02_HAILEY_EVENING_NTS.json"
+    },
+    "story/DAY12/ntr/DAY12_00_MASON_MORNING_NTR.json": {
+      "love": "story/DAY12/love/DAY12_00_MASON_MORNING_LOVE.json",
+      "ntr": "story/DAY12/ntr/DAY12_00_MASON_MORNING_NTR.json",
+      "nts": "story/DAY12/nts/DAY12_00_MASON_MORNING_NTS.json"
+    },
+    "story/DAY12/ntr/DAY12_01_MASON_AFTERNOON_NTR.json": {
+      "love": "story/DAY12/love/DAY12_01_MASON_AFTERNOON_LOVE.json",
+      "ntr": "story/DAY12/ntr/DAY12_01_MASON_AFTERNOON_NTR.json",
+      "nts": "story/DAY12/nts/DAY12_01_MASON_AFTERNOON_NTS.json"
+    },
+    "story/DAY12/ntr/DAY12_02_MASON_EVENING_NTR.json": {
+      "love": "story/DAY12/love/DAY12_02_MASON_EVENING_LOVE.json",
+      "ntr": "story/DAY12/ntr/DAY12_02_MASON_EVENING_NTR.json",
+      "nts": "story/DAY12/nts/DAY12_02_MASON_EVENING_NTS.json"
+    },
+    "story/DAY12/nts/DAY12_00_EVELYN_MORNING_NTS.json": {
+      "love": "story/DAY12/love/DAY12_00_EVELYN_MORNING_LOVE.json",
+      "ntr": "story/DAY12/ntr/DAY12_00_EVELYN_MORNING_NTR.json",
+      "nts": "story/DAY12/nts/DAY12_00_EVELYN_MORNING_NTS.json"
+    },
+    "story/DAY12/nts/DAY12_00_HAILEY_MORNING_NTS.json": {
+      "love": "story/DAY12/love/DAY12_00_HAILEY_MORNING_LOVE.json",
+      "ntr": "story/DAY12/ntr/DAY12_00_HAILEY_MORNING_NTR.json",
+      "nts": "story/DAY12/nts/DAY12_00_HAILEY_MORNING_NTS.json"
+    },
+    "story/DAY12/nts/DAY12_00_LENA_MORNING_NTS.json": {
+      "love": "story/DAY12/love/DAY12_00_LENA_MORNING_LOVE.json",
+      "ntr": "story/DAY12/ntr/DAY12_00_LENA_MORNING_NTR.json",
+      "nts": "story/DAY12/nts/DAY12_00_LENA_MORNING_NTS.json"
+    },
+    "story/DAY12/nts/DAY12_01_EVELYN_AFTERNOON_NTS.json": {
+      "love": "story/DAY12/love/DAY12_01_EVELYN_AFTERNOON_LOVE.json",
+      "ntr": "story/DAY12/ntr/DAY12_01_EVELYN_AFTERNOON_NTR.json",
+      "nts": "story/DAY12/nts/DAY12_01_EVELYN_AFTERNOON_NTS.json"
+    },
+    "story/DAY12/nts/DAY12_01_HAILEY_AFTERNOON_NTS.json": {
+      "love": "story/DAY12/love/DAY12_01_HAILEY_AFTERNOON_LOVE.json",
+      "ntr": "story/DAY12/ntr/DAY12_01_HAILEY_AFTERNOON_NTR.json",
+      "nts": "story/DAY12/nts/DAY12_01_HAILEY_AFTERNOON_NTS.json"
+    },
+    "story/DAY12/nts/DAY12_02_LENA_EVENING_NTS.json": {
+      "love": "story/DAY12/love/DAY12_02_LENA_EVENING_LOVE.json",
+      "ntr": "story/DAY12/ntr/DAY12_02_LENA_EVENING_NTR.json",
+      "nts": "story/DAY12/nts/DAY12_02_LENA_EVENING_NTS.json"
+    },
+    "story/DAY12/nts/DAY12_02_EVELYN_EVENING_NTS.json": {
+      "love": "story/DAY12/love/DAY12_02_EVELYN_EVENING_LOVE.json",
+      "ntr": "story/DAY12/ntr/DAY12_02_EVELYN_EVENING_NTR.json",
+      "nts": "story/DAY12/nts/DAY12_02_EVELYN_EVENING_NTS.json"
+    },
+    "story/DAY12/nts/DAY12_02_HAILEY_EVENING_NTS.json": {
+      "love": "story/DAY12/love/DAY12_02_HAILEY_EVENING_LOVE.json",
+      "ntr": "story/DAY12/ntr/DAY12_02_HAILEY_EVENING_NTR.json",
+      "nts": "story/DAY12/nts/DAY12_02_HAILEY_EVENING_NTS.json"
+    },
+    "story/DAY12/nts/DAY12_00_MASON_MORNING_NTS.json": {
+      "love": "story/DAY12/love/DAY12_00_MASON_MORNING_LOVE.json",
+      "ntr": "story/DAY12/ntr/DAY12_00_MASON_MORNING_NTR.json",
+      "nts": "story/DAY12/nts/DAY12_00_MASON_MORNING_NTS.json"
+    },
+    "story/DAY12/nts/DAY12_01_MASON_AFTERNOON_NTS.json": {
+      "love": "story/DAY12/love/DAY12_01_MASON_AFTERNOON_LOVE.json",
+      "ntr": "story/DAY12/ntr/DAY12_01_MASON_AFTERNOON_NTR.json",
+      "nts": "story/DAY12/nts/DAY12_01_MASON_AFTERNOON_NTS.json"
+    },
+    "story/DAY12/nts/DAY12_02_MASON_EVENING_NTS.json": {
+      "love": "story/DAY12/love/DAY12_02_MASON_EVENING_LOVE.json",
+      "ntr": "story/DAY12/ntr/DAY12_02_MASON_EVENING_NTR.json",
+      "nts": "story/DAY12/nts/DAY12_02_MASON_EVENING_NTS.json"
+    },
+    "story/DAY13/love/DAY13_00_EVELYN_MORNING_LOVE.json": {
+      "love": "story/DAY13/love/DAY13_00_EVELYN_MORNING_LOVE.json",
+      "ntr": "story/DAY13/ntr/DAY13_00_EVELYN_MORNING_NTR.json",
+      "nts": "story/DAY13/nts/DAY13_00_EVELYN_MORNING_NTS.json"
+    },
+    "story/DAY13/love/DAY13_00_HAILEY_MORNING_LOVE.json": {
+      "love": "story/DAY13/love/DAY13_00_HAILEY_MORNING_LOVE.json",
+      "ntr": "story/DAY13/ntr/DAY13_00_HAILEY_MORNING_NTR.json",
+      "nts": "story/DAY13/nts/DAY13_00_HAILEY_MORNING_NTS.json"
+    },
+    "story/DAY13/love/DAY13_00_LENA_MORNING_LOVE.json": {
+      "love": "story/DAY13/love/DAY13_00_LENA_MORNING_LOVE.json",
+      "ntr": "story/DAY13/ntr/DAY13_00_LENA_MORNING_NTR.json",
+      "nts": "story/DAY13/nts/DAY13_00_LENA_MORNING_NTS.json"
+    },
+    "story/DAY13/love/DAY13_01_EVELYN_AFTERNOON_LOVE.json": {
+      "love": "story/DAY13/love/DAY13_01_EVELYN_AFTERNOON_LOVE.json",
+      "ntr": "story/DAY13/ntr/DAY13_01_EVELYN_AFTERNOON_NTR.json",
+      "nts": "story/DAY13/nts/DAY13_01_EVELYN_AFTERNOON_NTS.json"
+    },
+    "story/DAY13/love/DAY13_01_HAILEY_AFTERNOON_LOVE.json": {
+      "love": "story/DAY13/love/DAY13_01_HAILEY_AFTERNOON_LOVE.json",
+      "ntr": "story/DAY13/ntr/DAY13_01_HAILEY_AFTERNOON_NTR.json",
+      "nts": "story/DAY13/nts/DAY13_01_HAILEY_AFTERNOON_NTS.json"
+    },
+    "story/DAY13/love/DAY13_01_LENA_AFTERNOON_LOVE.json": {
+      "love": "story/DAY13/love/DAY13_01_LENA_AFTERNOON_LOVE.json",
+      "ntr": "story/DAY13/ntr/DAY13_01_LENA_AFTERNOON_NTR.json",
+      "nts": "story/DAY13/nts/DAY13_01_LENA_AFTERNOON_NTS.json"
+    },
+    "story/DAY13/love/DAY13_02_EVELYN_EVENING_LOVE.json": {
+      "love": "story/DAY13/love/DAY13_02_EVELYN_EVENING_LOVE.json",
+      "ntr": "story/DAY13/ntr/DAY13_02_EVELYN_EVENING_NTR.json",
+      "nts": "story/DAY13/nts/DAY13_02_EVELYN_EVENING_NTS.json"
+    },
+    "story/DAY13/love/DAY13_02_HAILEY_EVENING_LOVE.json": {
+      "love": "story/DAY13/love/DAY13_02_HAILEY_EVENING_LOVE.json",
+      "ntr": "story/DAY13/ntr/DAY13_02_HAILEY_EVENING_NTR.json",
+      "nts": "story/DAY13/nts/DAY13_02_HAILEY_EVENING_NTS.json"
+    },
+    "story/DAY13/love/DAY13_02_LENA_EVENING_LOVE.json": {
+      "love": "story/DAY13/love/DAY13_02_LENA_EVENING_LOVE.json",
+      "ntr": "story/DAY13/ntr/DAY13_02_LENA_EVENING_NTR.json",
+      "nts": "story/DAY13/nts/DAY13_02_LENA_EVENING_NTS.json"
+    },
+    "story/DAY13/love/DAY13_00_MASON_MORNING_LOVE.json": {
+      "love": "story/DAY13/love/DAY13_00_MASON_MORNING_LOVE.json",
+      "ntr": "story/DAY13/ntr/DAY13_00_MASON_MORNING_NTR.json",
+      "nts": "story/DAY13/nts/DAY13_00_MASON_MORNING_NTS.json"
+    },
+    "story/DAY13/love/DAY13_01_MASON_AFTERNOON_LOVE.json": {
+      "love": "story/DAY13/love/DAY13_01_MASON_AFTERNOON_LOVE.json",
+      "ntr": "story/DAY13/ntr/DAY13_01_MASON_AFTERNOON_NTR.json",
+      "nts": "story/DAY13/nts/DAY13_01_MASON_AFTERNOON_NTS.json"
+    },
+    "story/DAY13/love/DAY13_02_MASON_EVENING_LOVE.json": {
+      "love": "story/DAY13/love/DAY13_02_MASON_EVENING_LOVE.json",
+      "ntr": "story/DAY13/ntr/DAY13_02_MASON_EVENING_NTR.json",
+      "nts": "story/DAY13/nts/DAY13_02_MASON_EVENING_NTS.json"
+    },
+    "story/DAY13/ntr/DAY13_00_EVELYN_MORNING_NTR.json": {
+      "love": "story/DAY13/love/DAY13_00_EVELYN_MORNING_LOVE.json",
+      "ntr": "story/DAY13/ntr/DAY13_00_EVELYN_MORNING_NTR.json",
+      "nts": "story/DAY13/nts/DAY13_00_EVELYN_MORNING_NTS.json"
+    },
+    "story/DAY13/ntr/DAY13_00_HAILEY_MORNING_NTR.json": {
+      "love": "story/DAY13/love/DAY13_00_HAILEY_MORNING_LOVE.json",
+      "ntr": "story/DAY13/ntr/DAY13_00_HAILEY_MORNING_NTR.json",
+      "nts": "story/DAY13/nts/DAY13_00_HAILEY_MORNING_NTS.json"
+    },
+    "story/DAY13/ntr/DAY13_00_LENA_MORNING_NTR.json": {
+      "love": "story/DAY13/love/DAY13_00_LENA_MORNING_LOVE.json",
+      "ntr": "story/DAY13/ntr/DAY13_00_LENA_MORNING_NTR.json",
+      "nts": "story/DAY13/nts/DAY13_00_LENA_MORNING_NTS.json"
+    },
+    "story/DAY13/ntr/DAY13_01_EVELYN_AFTERNOON_NTR.json": {
+      "love": "story/DAY13/love/DAY13_01_EVELYN_AFTERNOON_LOVE.json",
+      "ntr": "story/DAY13/ntr/DAY13_01_EVELYN_AFTERNOON_NTR.json",
+      "nts": "story/DAY13/nts/DAY13_01_EVELYN_AFTERNOON_NTS.json"
+    },
+    "story/DAY13/ntr/DAY13_01_HAILEY_AFTERNOON_NTR.json": {
+      "love": "story/DAY13/love/DAY13_01_HAILEY_AFTERNOON_LOVE.json",
+      "ntr": "story/DAY13/ntr/DAY13_01_HAILEY_AFTERNOON_NTR.json",
+      "nts": "story/DAY13/nts/DAY13_01_HAILEY_AFTERNOON_NTS.json"
+    },
+    "story/DAY13/ntr/DAY13_01_LENA_AFTERNOON_NTR.json": {
+      "love": "story/DAY13/love/DAY13_01_LENA_AFTERNOON_LOVE.json",
+      "ntr": "story/DAY13/ntr/DAY13_01_LENA_AFTERNOON_NTR.json",
+      "nts": "story/DAY13/nts/DAY13_01_LENA_AFTERNOON_NTS.json"
+    },
+    "story/DAY13/ntr/DAY13_02_EVELYN_EVENING_NTR.json": {
+      "love": "story/DAY13/love/DAY13_02_EVELYN_EVENING_LOVE.json",
+      "ntr": "story/DAY13/ntr/DAY13_02_EVELYN_EVENING_NTR.json",
+      "nts": "story/DAY13/nts/DAY13_02_EVELYN_EVENING_NTS.json"
+    },
+    "story/DAY13/ntr/DAY13_02_HAILEY_EVENING_NTR.json": {
+      "love": "story/DAY13/love/DAY13_02_HAILEY_EVENING_LOVE.json",
+      "ntr": "story/DAY13/ntr/DAY13_02_HAILEY_EVENING_NTR.json",
+      "nts": "story/DAY13/nts/DAY13_02_HAILEY_EVENING_NTS.json"
+    },
+    "story/DAY13/ntr/DAY13_02_LENA_EVENING_NTR.json": {
+      "love": "story/DAY13/love/DAY13_02_LENA_EVENING_LOVE.json",
+      "ntr": "story/DAY13/ntr/DAY13_02_LENA_EVENING_NTR.json",
+      "nts": "story/DAY13/nts/DAY13_02_LENA_EVENING_NTS.json"
+    },
+    "story/DAY13/ntr/DAY13_00_MASON_MORNING_NTR.json": {
+      "love": "story/DAY13/love/DAY13_00_MASON_MORNING_LOVE.json",
+      "ntr": "story/DAY13/ntr/DAY13_00_MASON_MORNING_NTR.json",
+      "nts": "story/DAY13/nts/DAY13_00_MASON_MORNING_NTS.json"
+    },
+    "story/DAY13/ntr/DAY13_01_MASON_AFTERNOON_NTR.json": {
+      "love": "story/DAY13/love/DAY13_01_MASON_AFTERNOON_LOVE.json",
+      "ntr": "story/DAY13/ntr/DAY13_01_MASON_AFTERNOON_NTR.json",
+      "nts": "story/DAY13/nts/DAY13_01_MASON_AFTERNOON_NTS.json"
+    },
+    "story/DAY13/ntr/DAY13_02_MASON_EVENING_NTR.json": {
+      "love": "story/DAY13/love/DAY13_02_MASON_EVENING_LOVE.json",
+      "ntr": "story/DAY13/ntr/DAY13_02_MASON_EVENING_NTR.json",
+      "nts": "story/DAY13/nts/DAY13_02_MASON_EVENING_NTS.json"
+    },
+    "story/DAY13/nts/DAY13_00_EVELYN_MORNING_NTS.json": {
+      "love": "story/DAY13/love/DAY13_00_EVELYN_MORNING_LOVE.json",
+      "ntr": "story/DAY13/ntr/DAY13_00_EVELYN_MORNING_NTR.json",
+      "nts": "story/DAY13/nts/DAY13_00_EVELYN_MORNING_NTS.json"
+    },
+    "story/DAY13/nts/DAY13_00_HAILEY_MORNING_NTS.json": {
+      "love": "story/DAY13/love/DAY13_00_HAILEY_MORNING_LOVE.json",
+      "ntr": "story/DAY13/ntr/DAY13_00_HAILEY_MORNING_NTR.json",
+      "nts": "story/DAY13/nts/DAY13_00_HAILEY_MORNING_NTS.json"
+    },
+    "story/DAY13/nts/DAY13_00_LENA_MORNING_NTS.json": {
+      "love": "story/DAY13/love/DAY13_00_LENA_MORNING_LOVE.json",
+      "ntr": "story/DAY13/ntr/DAY13_00_LENA_MORNING_NTR.json",
+      "nts": "story/DAY13/nts/DAY13_00_LENA_MORNING_NTS.json"
+    },
+    "story/DAY13/nts/DAY13_01_EVELYN_AFTERNOON_NTS.json": {
+      "love": "story/DAY13/love/DAY13_01_EVELYN_AFTERNOON_LOVE.json",
+      "ntr": "story/DAY13/ntr/DAY13_01_EVELYN_AFTERNOON_NTR.json",
+      "nts": "story/DAY13/nts/DAY13_01_EVELYN_AFTERNOON_NTS.json"
+    },
+    "story/DAY13/nts/DAY13_01_HAILEY_AFTERNOON_NTS.json": {
+      "love": "story/DAY13/love/DAY13_01_HAILEY_AFTERNOON_LOVE.json",
+      "ntr": "story/DAY13/ntr/DAY13_01_HAILEY_AFTERNOON_NTR.json",
+      "nts": "story/DAY13/nts/DAY13_01_HAILEY_AFTERNOON_NTS.json"
+    },
+    "story/DAY13/nts/DAY13_01_LENA_AFTERNOON_NTS.json": {
+      "love": "story/DAY13/love/DAY13_01_LENA_AFTERNOON_LOVE.json",
+      "ntr": "story/DAY13/ntr/DAY13_01_LENA_AFTERNOON_NTR.json",
+      "nts": "story/DAY13/nts/DAY13_01_LENA_AFTERNOON_NTS.json"
+    },
+    "story/DAY13/nts/DAY13_02_EVELYN_EVENING_NTS.json": {
+      "love": "story/DAY13/love/DAY13_02_EVELYN_EVENING_LOVE.json",
+      "ntr": "story/DAY13/ntr/DAY13_02_EVELYN_EVENING_NTR.json",
+      "nts": "story/DAY13/nts/DAY13_02_EVELYN_EVENING_NTS.json"
+    },
+    "story/DAY13/nts/DAY13_02_HAILEY_EVENING_NTS.json": {
+      "love": "story/DAY13/love/DAY13_02_HAILEY_EVENING_LOVE.json",
+      "ntr": "story/DAY13/ntr/DAY13_02_HAILEY_EVENING_NTR.json",
+      "nts": "story/DAY13/nts/DAY13_02_HAILEY_EVENING_NTS.json"
+    },
+    "story/DAY13/nts/DAY13_02_LENA_EVENING_NTS.json": {
+      "love": "story/DAY13/love/DAY13_02_LENA_EVENING_LOVE.json",
+      "ntr": "story/DAY13/ntr/DAY13_02_LENA_EVENING_NTR.json",
+      "nts": "story/DAY13/nts/DAY13_02_LENA_EVENING_NTS.json"
+    },
+    "story/DAY13/nts/DAY13_00_MASON_MORNING_NTS.json": {
+      "love": "story/DAY13/love/DAY13_00_MASON_MORNING_LOVE.json",
+      "ntr": "story/DAY13/ntr/DAY13_00_MASON_MORNING_NTR.json",
+      "nts": "story/DAY13/nts/DAY13_00_MASON_MORNING_NTS.json"
+    },
+    "story/DAY13/nts/DAY13_01_MASON_AFTERNOON_NTS.json": {
+      "love": "story/DAY13/love/DAY13_01_MASON_AFTERNOON_LOVE.json",
+      "ntr": "story/DAY13/ntr/DAY13_01_MASON_AFTERNOON_NTR.json",
+      "nts": "story/DAY13/nts/DAY13_01_MASON_AFTERNOON_NTS.json"
+    },
+    "story/DAY13/nts/DAY13_02_MASON_EVENING_NTS.json": {
+      "love": "story/DAY13/love/DAY13_02_MASON_EVENING_LOVE.json",
+      "ntr": "story/DAY13/ntr/DAY13_02_MASON_EVENING_NTR.json",
+      "nts": "story/DAY13/nts/DAY13_02_MASON_EVENING_NTS.json"
+    },
+    "story/DAY14/love/DAY14_00_EVELYN_MORNING_LOVE.json": {
+      "love": "story/DAY14/love/DAY14_00_EVELYN_MORNING_LOVE.json",
+      "ntr": "story/DAY14/ntr/DAY14_00_EVELYN_MORNING_NTR.json",
+      "nts": "story/DAY14/nts/DAY14_00_EVELYN_MORNING_NTS.json"
+    },
+    "story/DAY14/love/DAY14_00_HAILEY_MORNING_LOVE.json": {
+      "love": "story/DAY14/love/DAY14_00_HAILEY_MORNING_LOVE.json",
+      "ntr": "story/DAY14/ntr/DAY14_00_HAILEY_MORNING_NTR.json",
+      "nts": "story/DAY14/nts/DAY14_00_HAILEY_MORNING_NTS.json"
+    },
+    "story/DAY14/love/DAY14_00_LENA_MORNING_LOVE.json": {
+      "love": "story/DAY14/love/DAY14_00_LENA_MORNING_LOVE.json",
+      "ntr": "story/DAY14/ntr/DAY14_00_LENA_MORNING_NTR.json",
+      "nts": "story/DAY14/nts/DAY14_00_LENA_MORNING_NTS.json"
+    },
+    "story/DAY14/love/DAY14_01_EVELYN_AFTERNOON_LOVE.json": {
+      "love": "story/DAY14/love/DAY14_01_EVELYN_AFTERNOON_LOVE.json",
+      "ntr": "story/DAY14/ntr/DAY14_01_EVELYN_AFTERNOON_NTR.json",
+      "nts": "story/DAY14/nts/DAY14_01_EVELYN_AFTERNOON_NTS.json"
+    },
+    "story/DAY14/love/DAY14_01_HAILEY_AFTERNOON_LOVE.json": {
+      "love": "story/DAY14/love/DAY14_01_HAILEY_AFTERNOON_LOVE.json",
+      "ntr": "story/DAY14/ntr/DAY14_01_HAILEY_AFTERNOON_NTR.json",
+      "nts": "story/DAY14/nts/DAY14_01_HAILEY_AFTERNOON_NTS.json"
+    },
+    "story/DAY14/love/DAY14_01_LENA_BREAK_LOVE.json": {
+      "love": "story/DAY14/love/DAY14_01_LENA_BREAK_LOVE.json",
+      "ntr": "story/DAY14/ntr/DAY14_01_LENA_BREAK_NTR.json",
+      "nts": "story/DAY14/nts/DAY14_01_LENA_BREAK_NTS.json"
+    },
+    "story/DAY14/love/DAY14_02_EVELYN_EVENING_LOVE.json": {
+      "love": "story/DAY14/love/DAY14_02_EVELYN_EVENING_LOVE.json",
+      "ntr": "story/DAY14/ntr/DAY14_02_EVELYN_EVENING_NTR.json",
+      "nts": "story/DAY14/nts/DAY14_02_EVELYN_EVENING_NTS.json"
+    },
+    "story/DAY14/love/DAY14_02_HAILEY_EVENING_LOVE.json": {
+      "love": "story/DAY14/love/DAY14_02_HAILEY_EVENING_LOVE.json",
+      "ntr": "story/DAY14/ntr/DAY14_02_HAILEY_EVENING_NTR.json",
+      "nts": "story/DAY14/nts/DAY14_02_HAILEY_EVENING_NTS.json"
+    },
+    "story/DAY14/love/DAY14_02_LENA_EVENING_LOVE.json": {
+      "love": "story/DAY14/love/DAY14_02_LENA_EVENING_LOVE.json",
+      "ntr": "story/DAY14/ntr/DAY14_02_LENA_EVENING_NTR.json",
+      "nts": "story/DAY14/nts/DAY14_02_LENA_EVENING_NTS.json"
+    },
+    "story/DAY14/love/DAY14_03_LENA_NIGHT.LOVE.json": {
+      "love": "story/DAY14/love/DAY14_03_LENA_NIGHT.LOVE.json",
+      "ntr": "story/DAY14/ntr/DAY14_03_LENA_NIGHT_NTR.json",
+      "nts": "story/DAY14/nts/DAY14_03_LENA_NIGHT.NTS.json"
+    },
+    "story/DAY14/love/DAY14_00_MASON_MORNING_LOVE.json": {
+      "love": "story/DAY14/love/DAY14_00_MASON_MORNING_LOVE.json",
+      "ntr": "story/DAY14/ntr/DAY14_00_MASON_MORNING_NTR.json",
+      "nts": "story/DAY14/nts/DAY14_00_MASON_MORNING_NTS.json"
+    },
+    "story/DAY14/love/DAY14_01_MASON_AFTERNOON_LOVE.json": {
+      "love": "story/DAY14/love/DAY14_01_MASON_AFTERNOON_LOVE.json",
+      "ntr": "story/DAY14/ntr/DAY14_01_MASON_AFTERNOON_NTR.json",
+      "nts": "story/DAY14/nts/DAY14_01_MASON_AFTERNOON_NTS.json"
+    },
+    "story/DAY14/love/DAY14_02_MASON_EVENING_LOVE.json": {
+      "love": "story/DAY14/love/DAY14_02_MASON_EVENING_LOVE.json",
+      "ntr": "story/DAY14/ntr/DAY14_02_MASON_EVENING_NTR.json",
+      "nts": "story/DAY14/nts/DAY14_02_MASON_EVENING_NTS.json"
+    },
+    "story/DAY14/ntr/DAY14_00_EVELYN_MORNING_NTR.json": {
+      "love": "story/DAY14/love/DAY14_00_EVELYN_MORNING_LOVE.json",
+      "ntr": "story/DAY14/ntr/DAY14_00_EVELYN_MORNING_NTR.json",
+      "nts": "story/DAY14/nts/DAY14_00_EVELYN_MORNING_NTS.json"
+    },
+    "story/DAY14/ntr/DAY14_00_HAILEY_MORNING_NTR.json": {
+      "love": "story/DAY14/love/DAY14_00_HAILEY_MORNING_LOVE.json",
+      "ntr": "story/DAY14/ntr/DAY14_00_HAILEY_MORNING_NTR.json",
+      "nts": "story/DAY14/nts/DAY14_00_HAILEY_MORNING_NTS.json"
+    },
+    "story/DAY14/ntr/DAY14_00_LENA_MORNING_NTR.json": {
+      "love": "story/DAY14/love/DAY14_00_LENA_MORNING_LOVE.json",
+      "ntr": "story/DAY14/ntr/DAY14_00_LENA_MORNING_NTR.json",
+      "nts": "story/DAY14/nts/DAY14_00_LENA_MORNING_NTS.json"
+    },
+    "story/DAY14/ntr/DAY14_01_EVELYN_AFTERNOON_NTR.json": {
+      "love": "story/DAY14/love/DAY14_01_EVELYN_AFTERNOON_LOVE.json",
+      "ntr": "story/DAY14/ntr/DAY14_01_EVELYN_AFTERNOON_NTR.json",
+      "nts": "story/DAY14/nts/DAY14_01_EVELYN_AFTERNOON_NTS.json"
+    },
+    "story/DAY14/ntr/DAY14_01_HAILEY_AFTERNOON_NTR.json": {
+      "love": "story/DAY14/love/DAY14_01_HAILEY_AFTERNOON_LOVE.json",
+      "ntr": "story/DAY14/ntr/DAY14_01_HAILEY_AFTERNOON_NTR.json",
+      "nts": "story/DAY14/nts/DAY14_01_HAILEY_AFTERNOON_NTS.json"
+    },
+    "story/DAY14/ntr/DAY14_01_LENA_BREAK_NTR.json": {
+      "love": "story/DAY14/love/DAY14_01_LENA_BREAK_LOVE.json",
+      "ntr": "story/DAY14/ntr/DAY14_01_LENA_BREAK_NTR.json",
+      "nts": "story/DAY14/nts/DAY14_01_LENA_BREAK_NTS.json"
+    },
+    "story/DAY14/ntr/DAY14_02_EVELYN_EVENING_NTR.json": {
+      "love": "story/DAY14/love/DAY14_02_EVELYN_EVENING_LOVE.json",
+      "ntr": "story/DAY14/ntr/DAY14_02_EVELYN_EVENING_NTR.json",
+      "nts": "story/DAY14/nts/DAY14_02_EVELYN_EVENING_NTS.json"
+    },
+    "story/DAY14/ntr/DAY14_02_HAILEY_EVENING_NTR.json": {
+      "love": "story/DAY14/love/DAY14_02_HAILEY_EVENING_LOVE.json",
+      "ntr": "story/DAY14/ntr/DAY14_02_HAILEY_EVENING_NTR.json",
+      "nts": "story/DAY14/nts/DAY14_02_HAILEY_EVENING_NTS.json"
+    },
+    "story/DAY14/ntr/DAY14_02_LENA_EVENING_NTR.json": {
+      "love": "story/DAY14/love/DAY14_02_LENA_EVENING_LOVE.json",
+      "ntr": "story/DAY14/ntr/DAY14_02_LENA_EVENING_NTR.json",
+      "nts": "story/DAY14/nts/DAY14_02_LENA_EVENING_NTS.json"
+    },
+    "story/DAY14/ntr/DAY14_03_LENA_NIGHT_NTR.json": {
+      "love": "story/DAY14/love/DAY14_03_LENA_NIGHT.LOVE.json",
+      "ntr": "story/DAY14/ntr/DAY14_03_LENA_NIGHT_NTR.json",
+      "nts": "story/DAY14/nts/DAY14_03_LENA_NIGHT.NTS.json"
+    },
+    "story/DAY14/ntr/DAY14_00_MASON_MORNING_NTR.json": {
+      "love": "story/DAY14/love/DAY14_00_MASON_MORNING_LOVE.json",
+      "ntr": "story/DAY14/ntr/DAY14_00_MASON_MORNING_NTR.json",
+      "nts": "story/DAY14/nts/DAY14_00_MASON_MORNING_NTS.json"
+    },
+    "story/DAY14/ntr/DAY14_01_MASON_AFTERNOON_NTR.json": {
+      "love": "story/DAY14/love/DAY14_01_MASON_AFTERNOON_LOVE.json",
+      "ntr": "story/DAY14/ntr/DAY14_01_MASON_AFTERNOON_NTR.json",
+      "nts": "story/DAY14/nts/DAY14_01_MASON_AFTERNOON_NTS.json"
+    },
+    "story/DAY14/ntr/DAY14_02_MASON_EVENING_NTR.json": {
+      "love": "story/DAY14/love/DAY14_02_MASON_EVENING_LOVE.json",
+      "ntr": "story/DAY14/ntr/DAY14_02_MASON_EVENING_NTR.json",
+      "nts": "story/DAY14/nts/DAY14_02_MASON_EVENING_NTS.json"
+    },
+    "story/DAY14/nts/DAY14_00_EVELYN_MORNING_NTS.json": {
+      "love": "story/DAY14/love/DAY14_00_EVELYN_MORNING_LOVE.json",
+      "ntr": "story/DAY14/ntr/DAY14_00_EVELYN_MORNING_NTR.json",
+      "nts": "story/DAY14/nts/DAY14_00_EVELYN_MORNING_NTS.json"
+    },
+    "story/DAY14/nts/DAY14_00_HAILEY_MORNING_NTS.json": {
+      "love": "story/DAY14/love/DAY14_00_HAILEY_MORNING_LOVE.json",
+      "ntr": "story/DAY14/ntr/DAY14_00_HAILEY_MORNING_NTR.json",
+      "nts": "story/DAY14/nts/DAY14_00_HAILEY_MORNING_NTS.json"
+    },
+    "story/DAY14/nts/DAY14_00_LENA_MORNING_NTS.json": {
+      "love": "story/DAY14/love/DAY14_00_LENA_MORNING_LOVE.json",
+      "ntr": "story/DAY14/ntr/DAY14_00_LENA_MORNING_NTR.json",
+      "nts": "story/DAY14/nts/DAY14_00_LENA_MORNING_NTS.json"
+    },
+    "story/DAY14/nts/DAY14_01_EVELYN_AFTERNOON_NTS.json": {
+      "love": "story/DAY14/love/DAY14_01_EVELYN_AFTERNOON_LOVE.json",
+      "ntr": "story/DAY14/ntr/DAY14_01_EVELYN_AFTERNOON_NTR.json",
+      "nts": "story/DAY14/nts/DAY14_01_EVELYN_AFTERNOON_NTS.json"
+    },
+    "story/DAY14/nts/DAY14_01_HAILEY_AFTERNOON_NTS.json": {
+      "love": "story/DAY14/love/DAY14_01_HAILEY_AFTERNOON_LOVE.json",
+      "ntr": "story/DAY14/ntr/DAY14_01_HAILEY_AFTERNOON_NTR.json",
+      "nts": "story/DAY14/nts/DAY14_01_HAILEY_AFTERNOON_NTS.json"
+    },
+    "story/DAY14/nts/DAY14_01_LENA_BREAK_NTS.json": {
+      "love": "story/DAY14/love/DAY14_01_LENA_BREAK_LOVE.json",
+      "ntr": "story/DAY14/ntr/DAY14_01_LENA_BREAK_NTR.json",
+      "nts": "story/DAY14/nts/DAY14_01_LENA_BREAK_NTS.json"
+    },
+    "story/DAY14/nts/DAY14_02_EVELYN_EVENING_NTS.json": {
+      "love": "story/DAY14/love/DAY14_02_EVELYN_EVENING_LOVE.json",
+      "ntr": "story/DAY14/ntr/DAY14_02_EVELYN_EVENING_NTR.json",
+      "nts": "story/DAY14/nts/DAY14_02_EVELYN_EVENING_NTS.json"
+    },
+    "story/DAY14/nts/DAY14_02_HAILEY_EVENING_NTS.json": {
+      "love": "story/DAY14/love/DAY14_02_HAILEY_EVENING_LOVE.json",
+      "ntr": "story/DAY14/ntr/DAY14_02_HAILEY_EVENING_NTR.json",
+      "nts": "story/DAY14/nts/DAY14_02_HAILEY_EVENING_NTS.json"
+    },
+    "story/DAY14/nts/DAY14_02_LENA_EVENING_NTS.json": {
+      "love": "story/DAY14/love/DAY14_02_LENA_EVENING_LOVE.json",
+      "ntr": "story/DAY14/ntr/DAY14_02_LENA_EVENING_NTR.json",
+      "nts": "story/DAY14/nts/DAY14_02_LENA_EVENING_NTS.json"
+    },
+    "story/DAY14/nts/DAY14_03_LENA_NIGHT.NTS.json": {
+      "love": "story/DAY14/love/DAY14_03_LENA_NIGHT.LOVE.json",
+      "ntr": "story/DAY14/ntr/DAY14_03_LENA_NIGHT_NTR.json",
+      "nts": "story/DAY14/nts/DAY14_03_LENA_NIGHT.NTS.json"
+    },
+    "story/DAY14/nts/DAY14_00_MASON_MORNING_NTS.json": {
+      "love": "story/DAY14/love/DAY14_00_MASON_MORNING_LOVE.json",
+      "ntr": "story/DAY14/ntr/DAY14_00_MASON_MORNING_NTR.json",
+      "nts": "story/DAY14/nts/DAY14_00_MASON_MORNING_NTS.json"
+    },
+    "story/DAY14/nts/DAY14_01_MASON_AFTERNOON_NTS.json": {
+      "love": "story/DAY14/love/DAY14_01_MASON_AFTERNOON_LOVE.json",
+      "ntr": "story/DAY14/ntr/DAY14_01_MASON_AFTERNOON_NTR.json",
+      "nts": "story/DAY14/nts/DAY14_01_MASON_AFTERNOON_NTS.json"
+    },
+    "story/DAY14/nts/DAY14_02_MASON_EVENING_NTS.json": {
+      "love": "story/DAY14/love/DAY14_02_MASON_EVENING_LOVE.json",
+      "ntr": "story/DAY14/ntr/DAY14_02_MASON_EVENING_NTR.json",
+      "nts": "story/DAY14/nts/DAY14_02_MASON_EVENING_NTS.json"
+    },
+    "story/DAY15/love/DAY15_00_EVELYN_MORNING_LOVE.json": {
+      "love": "story/DAY15/love/DAY15_00_EVELYN_MORNING_LOVE.json",
+      "ntr": "story/DAY15/ntr/DAY15_00_EVELYN_MORNING_NTR.json",
+      "nts": "story/DAY15/nts/DAY15_00_EVELYN_MORNING_NTS.json"
+    },
+    "story/DAY15/love/DAY15_00_HAILEY_MORNING_LOVE.json": {
+      "love": "story/DAY15/love/DAY15_00_HAILEY_MORNING_LOVE.json",
+      "ntr": "story/DAY15/ntr/DAY15_00_HAILEY_MORNING_NTR.json",
+      "nts": "story/DAY15/nts/DAY15_00_HAILEY_MORNING_NTS.json"
+    },
+    "story/DAY15/love/DAY15_00_LENA_MORNING_LOVE.json": {
+      "love": "story/DAY15/love/DAY15_00_LENA_MORNING_LOVE.json",
+      "ntr": "story/DAY15/ntr/DAY15_00_LENA_MORNING_NTR.json",
+      "nts": "story/DAY15/nts/DAY15_00_LENA_MORNING_NTS.json"
+    },
+    "story/DAY15/love/DAY15_01_EVELYN_AFTERNOON_LOVE.json": {
+      "love": "story/DAY15/love/DAY15_01_EVELYN_AFTERNOON_LOVE.json",
+      "ntr": "story/DAY15/ntr/DAY15_01_EVELYN_AFTERNOON_NTR.json",
+      "nts": "story/DAY15/nts/DAY15_01_EVELYN_AFTERNOON_NTS.json"
+    },
+    "story/DAY15/love/DAY15_01_HAILEY_AFTERNOON_LOVE.json": {
+      "love": "story/DAY15/love/DAY15_01_HAILEY_AFTERNOON_LOVE.json",
+      "ntr": "story/DAY15/ntr/DAY15_01_HAILEY_AFTERNOON_NTR.json",
+      "nts": "story/DAY15/nts/DAY15_01_HAILEY_AFTERNOON_NTS.json"
+    },
+    "story/DAY15/love/DAY15_02_LENA_EVENING_LOVE.json": {
+      "love": "story/DAY15/love/DAY15_02_LENA_EVENING_LOVE.json",
+      "ntr": "story/DAY15/ntr/DAY15_02_LENA_EVENING_NTR.json",
+      "nts": "story/DAY15/nts/DAY15_02_LENA_EVENING_NTS.json"
+    },
+    "story/DAY15/love/DAY15_02_EVELYN_EVENING_LOVE.json": {
+      "love": "story/DAY15/love/DAY15_02_EVELYN_EVENING_LOVE.json",
+      "ntr": "story/DAY15/ntr/DAY15_02_EVELYN_EVENING_NTR.json",
+      "nts": "story/DAY15/nts/DAY15_02_EVELYN_EVENING_NTS.json"
+    },
+    "story/DAY15/love/DAY15_02_HAILEY_EVENING_LOVE.json": {
+      "love": "story/DAY15/love/DAY15_02_HAILEY_EVENING_LOVE.json",
+      "ntr": "story/DAY15/ntr/DAY15_02_HAILEY_EVENING_NTR.json",
+      "nts": "story/DAY15/nts/DAY15_02_HAILEY_EVENING_NTS.json"
+    },
+    "story/DAY15/love/DAY15_00_MASON_MORNING_LOVE.json": {
+      "love": "story/DAY15/love/DAY15_00_MASON_MORNING_LOVE.json",
+      "ntr": "story/DAY15/ntr/DAY15_00_MASON_MORNING_NTR.json",
+      "nts": "story/DAY15/nts/DAY15_00_MASON_MORNING_NTS.json"
+    },
+    "story/DAY15/love/DAY15_01_MASON_AFTERNOON_LOVE.json": {
+      "love": "story/DAY15/love/DAY15_01_MASON_AFTERNOON_LOVE.json",
+      "ntr": "story/DAY15/ntr/DAY15_01_MASON_AFTERNOON_NTR.json",
+      "nts": "story/DAY15/nts/DAY15_01_MASON_AFTERNOON_NTS.json"
+    },
+    "story/DAY15/love/DAY15_02_MASON_EVENING_LOVE.json": {
+      "love": "story/DAY15/love/DAY15_02_MASON_EVENING_LOVE.json",
+      "ntr": "story/DAY15/ntr/DAY15_02_MASON_EVENING_NTR.json",
+      "nts": "story/DAY15/nts/DAY15_02_MASON_EVENING_NTS.json"
+    },
+    "story/DAY15/ntr/DAY15_00_EVELYN_MORNING_NTR.json": {
+      "love": "story/DAY15/love/DAY15_00_EVELYN_MORNING_LOVE.json",
+      "ntr": "story/DAY15/ntr/DAY15_00_EVELYN_MORNING_NTR.json",
+      "nts": "story/DAY15/nts/DAY15_00_EVELYN_MORNING_NTS.json"
+    },
+    "story/DAY15/ntr/DAY15_00_HAILEY_MORNING_NTR.json": {
+      "love": "story/DAY15/love/DAY15_00_HAILEY_MORNING_LOVE.json",
+      "ntr": "story/DAY15/ntr/DAY15_00_HAILEY_MORNING_NTR.json",
+      "nts": "story/DAY15/nts/DAY15_00_HAILEY_MORNING_NTS.json"
+    },
+    "story/DAY15/ntr/DAY15_00_LENA_MORNING_NTR.json": {
+      "love": "story/DAY15/love/DAY15_00_LENA_MORNING_LOVE.json",
+      "ntr": "story/DAY15/ntr/DAY15_00_LENA_MORNING_NTR.json",
+      "nts": "story/DAY15/nts/DAY15_00_LENA_MORNING_NTS.json"
+    },
+    "story/DAY15/ntr/DAY15_01_EVELYN_AFTERNOON_NTR.json": {
+      "love": "story/DAY15/love/DAY15_01_EVELYN_AFTERNOON_LOVE.json",
+      "ntr": "story/DAY15/ntr/DAY15_01_EVELYN_AFTERNOON_NTR.json",
+      "nts": "story/DAY15/nts/DAY15_01_EVELYN_AFTERNOON_NTS.json"
+    },
+    "story/DAY15/ntr/DAY15_01_HAILEY_AFTERNOON_NTR.json": {
+      "love": "story/DAY15/love/DAY15_01_HAILEY_AFTERNOON_LOVE.json",
+      "ntr": "story/DAY15/ntr/DAY15_01_HAILEY_AFTERNOON_NTR.json",
+      "nts": "story/DAY15/nts/DAY15_01_HAILEY_AFTERNOON_NTS.json"
+    },
+    "story/DAY15/ntr/DAY15_02_LENA_EVENING_NTR.json": {
+      "love": "story/DAY15/love/DAY15_02_LENA_EVENING_LOVE.json",
+      "ntr": "story/DAY15/ntr/DAY15_02_LENA_EVENING_NTR.json",
+      "nts": "story/DAY15/nts/DAY15_02_LENA_EVENING_NTS.json"
+    },
+    "story/DAY15/ntr/DAY15_02_EVELYN_EVENING_NTR.json": {
+      "love": "story/DAY15/love/DAY15_02_EVELYN_EVENING_LOVE.json",
+      "ntr": "story/DAY15/ntr/DAY15_02_EVELYN_EVENING_NTR.json",
+      "nts": "story/DAY15/nts/DAY15_02_EVELYN_EVENING_NTS.json"
+    },
+    "story/DAY15/ntr/DAY15_02_HAILEY_EVENING_NTR.json": {
+      "love": "story/DAY15/love/DAY15_02_HAILEY_EVENING_LOVE.json",
+      "ntr": "story/DAY15/ntr/DAY15_02_HAILEY_EVENING_NTR.json",
+      "nts": "story/DAY15/nts/DAY15_02_HAILEY_EVENING_NTS.json"
+    },
+    "story/DAY15/ntr/DAY15_00_MASON_MORNING_NTR.json": {
+      "love": "story/DAY15/love/DAY15_00_MASON_MORNING_LOVE.json",
+      "ntr": "story/DAY15/ntr/DAY15_00_MASON_MORNING_NTR.json",
+      "nts": "story/DAY15/nts/DAY15_00_MASON_MORNING_NTS.json"
+    },
+    "story/DAY15/ntr/DAY15_01_MASON_AFTERNOON_NTR.json": {
+      "love": "story/DAY15/love/DAY15_01_MASON_AFTERNOON_LOVE.json",
+      "ntr": "story/DAY15/ntr/DAY15_01_MASON_AFTERNOON_NTR.json",
+      "nts": "story/DAY15/nts/DAY15_01_MASON_AFTERNOON_NTS.json"
+    },
+    "story/DAY15/ntr/DAY15_02_MASON_EVENING_NTR.json": {
+      "love": "story/DAY15/love/DAY15_02_MASON_EVENING_LOVE.json",
+      "ntr": "story/DAY15/ntr/DAY15_02_MASON_EVENING_NTR.json",
+      "nts": "story/DAY15/nts/DAY15_02_MASON_EVENING_NTS.json"
+    },
+    "story/DAY15/nts/DAY15_00_EVELYN_MORNING_NTS.json": {
+      "love": "story/DAY15/love/DAY15_00_EVELYN_MORNING_LOVE.json",
+      "ntr": "story/DAY15/ntr/DAY15_00_EVELYN_MORNING_NTR.json",
+      "nts": "story/DAY15/nts/DAY15_00_EVELYN_MORNING_NTS.json"
+    },
+    "story/DAY15/nts/DAY15_00_HAILEY_MORNING_NTS.json": {
+      "love": "story/DAY15/love/DAY15_00_HAILEY_MORNING_LOVE.json",
+      "ntr": "story/DAY15/ntr/DAY15_00_HAILEY_MORNING_NTR.json",
+      "nts": "story/DAY15/nts/DAY15_00_HAILEY_MORNING_NTS.json"
+    },
+    "story/DAY15/nts/DAY15_00_LENA_MORNING_NTS.json": {
+      "love": "story/DAY15/love/DAY15_00_LENA_MORNING_LOVE.json",
+      "ntr": "story/DAY15/ntr/DAY15_00_LENA_MORNING_NTR.json",
+      "nts": "story/DAY15/nts/DAY15_00_LENA_MORNING_NTS.json"
+    },
+    "story/DAY15/nts/DAY15_01_EVELYN_AFTERNOON_NTS.json": {
+      "love": "story/DAY15/love/DAY15_01_EVELYN_AFTERNOON_LOVE.json",
+      "ntr": "story/DAY15/ntr/DAY15_01_EVELYN_AFTERNOON_NTR.json",
+      "nts": "story/DAY15/nts/DAY15_01_EVELYN_AFTERNOON_NTS.json"
+    },
+    "story/DAY15/nts/DAY15_01_HAILEY_AFTERNOON_NTS.json": {
+      "love": "story/DAY15/love/DAY15_01_HAILEY_AFTERNOON_LOVE.json",
+      "ntr": "story/DAY15/ntr/DAY15_01_HAILEY_AFTERNOON_NTR.json",
+      "nts": "story/DAY15/nts/DAY15_01_HAILEY_AFTERNOON_NTS.json"
+    },
+    "story/DAY15/nts/DAY15_02_LENA_EVENING_NTS.json": {
+      "love": "story/DAY15/love/DAY15_02_LENA_EVENING_LOVE.json",
+      "ntr": "story/DAY15/ntr/DAY15_02_LENA_EVENING_NTR.json",
+      "nts": "story/DAY15/nts/DAY15_02_LENA_EVENING_NTS.json"
+    },
+    "story/DAY15/nts/DAY15_02_EVELYN_EVENING_NTS.json": {
+      "love": "story/DAY15/love/DAY15_02_EVELYN_EVENING_LOVE.json",
+      "ntr": "story/DAY15/ntr/DAY15_02_EVELYN_EVENING_NTR.json",
+      "nts": "story/DAY15/nts/DAY15_02_EVELYN_EVENING_NTS.json"
+    },
+    "story/DAY15/nts/DAY15_02_HAILEY_EVENING_NTS.json": {
+      "love": "story/DAY15/love/DAY15_02_HAILEY_EVENING_LOVE.json",
+      "ntr": "story/DAY15/ntr/DAY15_02_HAILEY_EVENING_NTR.json",
+      "nts": "story/DAY15/nts/DAY15_02_HAILEY_EVENING_NTS.json"
+    },
+    "story/DAY15/nts/DAY15_00_MASON_MORNING_NTS.json": {
+      "love": "story/DAY15/love/DAY15_00_MASON_MORNING_LOVE.json",
+      "ntr": "story/DAY15/ntr/DAY15_00_MASON_MORNING_NTR.json",
+      "nts": "story/DAY15/nts/DAY15_00_MASON_MORNING_NTS.json"
+    },
+    "story/DAY15/nts/DAY15_01_MASON_AFTERNOON_NTS.json": {
+      "love": "story/DAY15/love/DAY15_01_MASON_AFTERNOON_LOVE.json",
+      "ntr": "story/DAY15/ntr/DAY15_01_MASON_AFTERNOON_NTR.json",
+      "nts": "story/DAY15/nts/DAY15_01_MASON_AFTERNOON_NTS.json"
+    },
+    "story/DAY15/nts/DAY15_02_MASON_EVENING_NTS.json": {
+      "love": "story/DAY15/love/DAY15_02_MASON_EVENING_LOVE.json",
+      "ntr": "story/DAY15/ntr/DAY15_02_MASON_EVENING_NTR.json",
+      "nts": "story/DAY15/nts/DAY15_02_MASON_EVENING_NTS.json"
+    },
+    "story/DAY9/love/DAY9_00_MASON_MORNING_LOVE.json": {
+      "love": "story/DAY9/love/DAY9_00_MASON_MORNING_LOVE.json",
+      "ntr": "story/DAY9/ntr/DAY9_00_MASON_MORNING_NTR.json",
+      "nts": "story/DAY9/nts/DAY9_00_MASON_MORNING_NTS.json"
+    },
+    "story/DAY9/love/DAY9_01_HAILEY_MORNING_LOVE.json": {
+      "love": "story/DAY9/love/DAY9_01_HAILEY_MORNING_LOVE.json",
+      "ntr": "story/DAY9/ntr/DAY9_01_HAILEY_MORNING_NTR.json",
+      "nts": "story/DAY9/nts/DAY9_01_HAILEY_MORNING_NTS1.json"
+    },
+    "story/DAY9/love/DAY9_02_EVELYN_MORNING_LOVE.json": {
+      "love": "story/DAY9/love/DAY9_02_EVELYN_MORNING_LOVE.json",
+      "ntr": "story/DAY9/ntr/DAY9_02_EVELYN_MORNING_NTR.json",
+      "nts": "story/DAY9/nts/DAY9_02_EVELYN_MORNING_NTS.json"
+    },
+    "story/DAY9/love/DAY9_06_EVELYN_AFTERNOON_LOVE.json": {
+      "love": "story/DAY9/love/DAY9_06_EVELYN_AFTERNOON_LOVE.json",
+      "ntr": "story/DAY9/ntr/DAY9_07_EVELYN_AFTERNOON_NTR.json",
+      "nts": "story/DAY9/nts/DAY9_08_EVELYN_AFTERNOON_NTS.json"
+    },
+    "story/DAY9/love/DAY9_03_LENA_LATE_MORNING_LOVE.json": {
+      "love": "story/DAY9/love/DAY9_03_LENA_LATE_MORNING_LOVE.json",
+      "ntr": "story/DAY9/ntr/DAY9_03_LENA_LATE_MORNING_NTR.json",
+      "nts": "story/DAY9/nts/DAY9_03_LENA_LATE_MORNING_NTS.json"
+    },
+    "story/DAY9/love/DAY9_07_EVELYN_EVENING_LOVE.json": {
+      "love": "story/DAY9/love/DAY9_07_EVELYN_EVENING_LOVE.json",
+      "ntr": "story/DAY9/ntr/DAY9_08_EVELYN_EVENING_NTR.json",
+      "nts": "story/DAY9/nts/DAY9_09_EVELYN_EVENING_NTS.json"
+    },
+    "story/DAY9/love/DAY9_04_HAILEY_AFTERNOON_LOVE.json": {
+      "love": "story/DAY9/love/DAY9_04_HAILEY_AFTERNOON_LOVE.json",
+      "ntr": "story/DAY9/ntr/DAY9_04_HAILEY_AFTERNOON_NTR.json",
+      "nts": "story/DAY9/nts/DAY9_04_HAILEY_AFTERNOON_NTS.json"
+    },
+    "story/DAY9/love/DAY9_10_LENA_EVENING_LOVE.json": {
+      "love": "story/DAY9/love/DAY9_10_LENA_EVENING_LOVE.json",
+      "ntr": "story/DAY9/ntr/DAY9_05_LENA_AFTERNOON_NTR.json",
+      "nts": "story/DAY9/nts/DAY9_07_LENA_AFTERNOON_NTS.json"
+    },
+    "story/DAY9/love/DAY9_09_HAILEY_EVENING_LOVE.json": {
+      "love": "story/DAY9/love/DAY9_09_HAILEY_EVENING_LOVE.json",
+      "ntr": "story/DAY9/ntr/DAY9_10_HAILEY_EVENING_NTR.json",
+      "nts": "story/DAY9/nts/DAY9_11_HAILEY_EVENING_NTS.json"
+    },
+    "story/DAY9/love/DAY9_05_MASON_AFTERNOON_LOVE.json": {
+      "love": "story/DAY9/love/DAY9_05_MASON_AFTERNOON_LOVE.json",
+      "ntr": "story/DAY9/ntr/DAY9_06_MASON_AFTERNOON_NTR.json",
+      "nts": "story/DAY9/nts/DAY9_06_MASON_AFTERNOON_NTS.json"
+    },
+    "story/DAY9/love/DAY9_08_MASON_EVENING_LOVE.json": {
+      "love": "story/DAY9/love/DAY9_08_MASON_EVENING_LOVE.json",
+      "ntr": "story/DAY9/ntr/DAY9_09_MASON_EVENING_NTR.json",
+      "nts": "story/DAY9/nts/DAY9_10_MASON_EVENING_NTS.json"
+    },
+    "story/DAY9/ntr/DAY9_00_MASON_MORNING_NTR.json": {
+      "love": "story/DAY9/love/DAY9_00_MASON_MORNING_LOVE.json",
+      "ntr": "story/DAY9/ntr/DAY9_00_MASON_MORNING_NTR.json",
+      "nts": "story/DAY9/nts/DAY9_00_MASON_MORNING_NTS.json"
+    },
+    "story/DAY9/ntr/DAY9_01_HAILEY_MORNING_NTR.json": {
+      "love": "story/DAY9/love/DAY9_01_HAILEY_MORNING_LOVE.json",
+      "ntr": "story/DAY9/ntr/DAY9_01_HAILEY_MORNING_NTR.json",
+      "nts": "story/DAY9/nts/DAY9_01_HAILEY_MORNING_NTS1.json"
+    },
+    "story/DAY9/ntr/DAY9_02_EVELYN_MORNING_NTR.json": {
+      "love": "story/DAY9/love/DAY9_02_EVELYN_MORNING_LOVE.json",
+      "ntr": "story/DAY9/ntr/DAY9_02_EVELYN_MORNING_NTR.json",
+      "nts": "story/DAY9/nts/DAY9_02_EVELYN_MORNING_NTS.json"
+    },
+    "story/DAY9/ntr/DAY9_07_EVELYN_AFTERNOON_NTR.json": {
+      "love": "story/DAY9/love/DAY9_06_EVELYN_AFTERNOON_LOVE.json",
+      "ntr": "story/DAY9/ntr/DAY9_07_EVELYN_AFTERNOON_NTR.json",
+      "nts": "story/DAY9/nts/DAY9_08_EVELYN_AFTERNOON_NTS.json"
+    },
+    "story/DAY9/ntr/DAY9_03_LENA_LATE_MORNING_NTR.json": {
+      "love": "story/DAY9/love/DAY9_03_LENA_LATE_MORNING_LOVE.json",
+      "ntr": "story/DAY9/ntr/DAY9_03_LENA_LATE_MORNING_NTR.json",
+      "nts": "story/DAY9/nts/DAY9_03_LENA_LATE_MORNING_NTS.json"
+    },
+    "story/DAY9/ntr/DAY9_08_EVELYN_EVENING_NTR.json": {
+      "love": "story/DAY9/love/DAY9_07_EVELYN_EVENING_LOVE.json",
+      "ntr": "story/DAY9/ntr/DAY9_08_EVELYN_EVENING_NTR.json",
+      "nts": "story/DAY9/nts/DAY9_09_EVELYN_EVENING_NTS.json"
+    },
+    "story/DAY9/ntr/DAY9_04_HAILEY_AFTERNOON_NTR.json": {
+      "love": "story/DAY9/love/DAY9_04_HAILEY_AFTERNOON_LOVE.json",
+      "ntr": "story/DAY9/ntr/DAY9_04_HAILEY_AFTERNOON_NTR.json",
+      "nts": "story/DAY9/nts/DAY9_04_HAILEY_AFTERNOON_NTS.json"
+    },
+    "story/DAY9/ntr/DAY9_05_LENA_AFTERNOON_NTR.json": {
+      "ntr": "story/DAY9/ntr/DAY9_05_LENA_AFTERNOON_NTR.json",
+      "nts": "story/DAY9/nts/DAY9_07_LENA_AFTERNOON_NTS.json",
+      "love": "story/DAY9/love/DAY9_10_LENA_EVENING_LOVE.json"
+    },
+    "story/DAY9/ntr/DAY9_10_HAILEY_EVENING_NTR.json": {
+      "love": "story/DAY9/love/DAY9_09_HAILEY_EVENING_LOVE.json",
+      "ntr": "story/DAY9/ntr/DAY9_10_HAILEY_EVENING_NTR.json",
+      "nts": "story/DAY9/nts/DAY9_11_HAILEY_EVENING_NTS.json"
+    },
+    "story/DAY9/ntr/DAY9_11_LENA_NIGHT_NTR.json": {
+      "ntr": "story/DAY9/ntr/DAY9_11_LENA_NIGHT_NTR.json",
+      "nts": "story/DAY9/nts/DAY9_12_LENA_NIGHT_NTS.json",
+      "love": "story/DAY9/love/DAY9_10_LENA_EVENING_LOVE.json"
+    },
+    "story/DAY9/ntr/DAY9_06_MASON_AFTERNOON_NTR.json": {
+      "love": "story/DAY9/love/DAY9_05_MASON_AFTERNOON_LOVE.json",
+      "ntr": "story/DAY9/ntr/DAY9_06_MASON_AFTERNOON_NTR.json",
+      "nts": "story/DAY9/nts/DAY9_06_MASON_AFTERNOON_NTS.json"
+    },
+    "story/DAY9/ntr/DAY9_09_MASON_EVENING_NTR.json": {
+      "love": "story/DAY9/love/DAY9_08_MASON_EVENING_LOVE.json",
+      "ntr": "story/DAY9/ntr/DAY9_09_MASON_EVENING_NTR.json",
+      "nts": "story/DAY9/nts/DAY9_10_MASON_EVENING_NTS.json"
+    },
+    "story/DAY9/nts/DAY9_00_MASON_MORNING_NTS.json": {
+      "love": "story/DAY9/love/DAY9_00_MASON_MORNING_LOVE.json",
+      "ntr": "story/DAY9/ntr/DAY9_00_MASON_MORNING_NTR.json",
+      "nts": "story/DAY9/nts/DAY9_00_MASON_MORNING_NTS.json"
+    },
+    "story/DAY9/nts/DAY9_02_EVELYN_MORNING_NTS.json": {
+      "love": "story/DAY9/love/DAY9_02_EVELYN_MORNING_LOVE.json",
+      "ntr": "story/DAY9/ntr/DAY9_02_EVELYN_MORNING_NTR.json",
+      "nts": "story/DAY9/nts/DAY9_02_EVELYN_MORNING_NTS.json"
+    },
+    "story/DAY9/nts/DAY9_01_HAILEY_MORNING_NTS1.json": {
+      "love": "story/DAY9/love/DAY9_01_HAILEY_MORNING_LOVE.json",
+      "ntr": "story/DAY9/ntr/DAY9_01_HAILEY_MORNING_NTR.json",
+      "nts": "story/DAY9/nts/DAY9_01_HAILEY_MORNING_NTS1.json"
+    },
+    "story/DAY9/nts/DAY9_08_EVELYN_AFTERNOON_NTS.json": {
+      "love": "story/DAY9/love/DAY9_06_EVELYN_AFTERNOON_LOVE.json",
+      "ntr": "story/DAY9/ntr/DAY9_07_EVELYN_AFTERNOON_NTR.json",
+      "nts": "story/DAY9/nts/DAY9_08_EVELYN_AFTERNOON_NTS.json"
+    },
+    "story/DAY9/nts/DAY9_04_HAILEY_AFTERNOON_NTS.json": {
+      "love": "story/DAY9/love/DAY9_04_HAILEY_AFTERNOON_LOVE.json",
+      "ntr": "story/DAY9/ntr/DAY9_04_HAILEY_AFTERNOON_NTR.json",
+      "nts": "story/DAY9/nts/DAY9_04_HAILEY_AFTERNOON_NTS.json"
+    },
+    "story/DAY9/nts/DAY9_03_LENA_LATE_MORNING_NTS.json": {
+      "love": "story/DAY9/love/DAY9_03_LENA_LATE_MORNING_LOVE.json",
+      "ntr": "story/DAY9/ntr/DAY9_03_LENA_LATE_MORNING_NTR.json",
+      "nts": "story/DAY9/nts/DAY9_03_LENA_LATE_MORNING_NTS.json"
+    },
+    "story/DAY9/nts/DAY9_09_EVELYN_EVENING_NTS.json": {
+      "love": "story/DAY9/love/DAY9_07_EVELYN_EVENING_LOVE.json",
+      "ntr": "story/DAY9/ntr/DAY9_08_EVELYN_EVENING_NTR.json",
+      "nts": "story/DAY9/nts/DAY9_09_EVELYN_EVENING_NTS.json"
+    },
+    "story/DAY9/nts/DAY9_11_HAILEY_EVENING_NTS.json": {
+      "love": "story/DAY9/love/DAY9_09_HAILEY_EVENING_LOVE.json",
+      "ntr": "story/DAY9/ntr/DAY9_10_HAILEY_EVENING_NTR.json",
+      "nts": "story/DAY9/nts/DAY9_11_HAILEY_EVENING_NTS.json"
+    },
+    "story/DAY9/nts/DAY9_07_LENA_AFTERNOON_NTS.json": {
+      "ntr": "story/DAY9/ntr/DAY9_05_LENA_AFTERNOON_NTR.json",
+      "nts": "story/DAY9/nts/DAY9_07_LENA_AFTERNOON_NTS.json",
+      "love": "story/DAY9/love/DAY9_10_LENA_EVENING_LOVE.json"
+    },
+    "story/DAY9/nts/DAY9_12_LENA_NIGHT_NTS.json": {
+      "ntr": "story/DAY9/ntr/DAY9_11_LENA_NIGHT_NTR.json",
+      "nts": "story/DAY9/nts/DAY9_12_LENA_NIGHT_NTS.json",
+      "love": "story/DAY9/love/DAY9_10_LENA_EVENING_LOVE.json"
+    },
+    "story/DAY9/nts/DAY9_06_MASON_AFTERNOON_NTS.json": {
+      "love": "story/DAY9/love/DAY9_05_MASON_AFTERNOON_LOVE.json",
+      "ntr": "story/DAY9/ntr/DAY9_06_MASON_AFTERNOON_NTR.json",
+      "nts": "story/DAY9/nts/DAY9_06_MASON_AFTERNOON_NTS.json"
+    },
+    "story/DAY9/nts/DAY9_10_MASON_EVENING_NTS.json": {
+      "love": "story/DAY9/love/DAY9_08_MASON_EVENING_LOVE.json",
+      "ntr": "story/DAY9/ntr/DAY9_09_MASON_EVENING_NTR.json",
+      "nts": "story/DAY9/nts/DAY9_10_MASON_EVENING_NTS.json"
+    },
+    "story/DAY16/nts/DAY16_00_LENA_MORNING_NTS.json": {
+      "ntr": "story/DAY16/ntr/DAY16_00_LENA_MORNING_NTR.json",
+      "nts": "story/DAY16/nts/DAY16_00_LENA_MORNING_NTS.json",
+      "love": "story/DAY16/love/DAY16_00_LENA_MORNING_LOVE.json"
+    },
+    "story/DAY16/nts/DAY16_01_LENA_AFTERNOON_NTS.json": {
+      "ntr": "story/DAY16/ntr/DAY16_01_LENA_AFTERNOON_NTR.json",
+      "nts": "story/DAY16/nts/DAY16_01_LENA_AFTERNOON_NTS.json",
+      "love": "story/DAY16/love/DAY16_01_LENA_AFTERNOON_LOVE.json"
+    },
+    "story/DAY16/nts/DAY16_02_LENA_EVENING_NTS.json": {
+      "ntr": "story/DAY16/ntr/DAY16_02_LENA_EVENING_NTR.json",
+      "nts": "story/DAY16/nts/DAY16_02_LENA_EVENING_NTS.json",
+      "love": "story/DAY16/love/DAY16_02_LENA_EVENING_LOVE.json"
+    },
+    "story/DAY17/nts/DAY17_00_LENA_MORNING_NTS.json": {
+      "ntr": "story/DAY17/ntr/DAY17_00_LENA_MORNING_NTR.json",
+      "nts": "story/DAY17/nts/DAY17_00_LENA_MORNING_NTS.json",
+      "love": "story/DAY17/love/DAY17_00_LENA_MORNING_LOVE.json"
+    },
+    "story/DAY17/nts/DAY17_01_LENA_AFTERNOON_NTS.json": {
+      "nts": "story/DAY17/nts/DAY17_01_LENA_AFTERNOON_NTS.json",
+      "ntr": "story/DAY17/ntr/DAY17_01_LENA_EVENING_NTR.json",
+      "love": "story/DAY17/love/DAY17_01_LENA_AFTERNOON_LOVE.json"
+    },
+    "story/DAY17/nts/DAY17_02_LENA_EVENING_NTS.json": {
+      "ntr": "story/DAY17/ntr/DAY17_01_LENA_EVENING_NTR.json",
+      "nts": "story/DAY17/nts/DAY17_02_LENA_EVENING_NTS.json",
+      "love": "story/DAY17/love/DAY17_02_LENA_EVENING_LOVE.json"
+    },
+    "story/DAY18/nts/DAY18_00_LENA_MORNING_NTS.json": {
+      "ntr": "story/DAY18/ntr/DAY18_00_LENA_MORNING_NTR.json",
+      "nts": "story/DAY18/nts/DAY18_00_LENA_MORNING_NTS.json",
+      "love": "story/DAY18/love/DAY18_00_LENA_MORNING_LOVE.json"
+    },
+    "story/DAY18/nts/DAY18_01_LENA_AFTERNOON_NTS.json": {
+      "ntr": "story/DAY18/ntr/DAY18_01_LENA_AFTERNOON_NTR.json",
+      "nts": "story/DAY18/nts/DAY18_01_LENA_AFTERNOON_NTS.json",
+      "love": "story/DAY18/love/DAY18_01_LENA_AFTERNOON_LOVE.json"
+    },
+    "story/DAY18/nts/DAY18_02_LENA_EVENING_NTS.json": {
+      "ntr": "story/DAY18/ntr/DAY18_02_LENA_EVENING_NTR.json",
+      "nts": "story/DAY18/nts/DAY18_02_LENA_EVENING_NTS.json",
+      "love": "story/DAY18/love/DAY18_02_LENA_EVENING_LOVE.json"
+    },
+    "story/DAY19/nts/DAY19_00_LENA_MORNING_NTS.json": {
+      "ntr": "story/DAY19/ntr/DAY19_00_LENA_MORNING_NTR.json",
+      "nts": "story/DAY19/nts/DAY19_00_LENA_MORNING_NTS.json",
+      "love": "story/DAY19/love/DAY19_00_LENA_MORNING_LOVE.json"
+    },
+    "story/DAY19/nts/DAY19_01_LENA_EVENING_NTS.json": {
+      "ntr": "story/DAY19/ntr/DAY19_02_LENA_EVENING_NTR.json",
+      "nts": "story/DAY19/nts/DAY19_01_LENA_EVENING_NTS.json",
+      "love": "story/DAY19/love/DAY19_02_LENA_EVENING_LOVE.json"
+    },
+    "story/DAY19/nts/DAY19_02_LENA_NIGHT_NTS.json": {
+      "nts": "story/DAY19/nts/DAY19_02_LENA_NIGHT_NTS.json",
+      "ntr": "story/DAY19/ntr/DAY19_02_LENA_EVENING_NTR.json",
+      "love": "story/DAY19/love/DAY19_02_LENA_EVENING_LOVE.json"
+    },
+    "story/DAY20/nts/DAY20_00_LENA_MORNING_NTS.json": {
+      "ntr": "story/DAY20/ntr/DAY20_00_LENA_MORNING_NTR.json",
+      "nts": "story/DAY20/nts/DAY20_00_LENA_MORNING_NTS.json",
+      "love": "story/DAY20/love/DAY20_00_LENA_MORNING_LOVE.json"
+    },
+    "story/DAY20/nts/DAY20_01_LENA_EVENING_NTS.json": {
+      "ntr": "story/DAY20/ntr/DAY20_01_LENA_EVENING_NTR.json",
+      "nts": "story/DAY20/nts/DAY20_01_LENA_EVENING_NTS.json",
+      "love": "story/DAY20/love/DAY20_03_LENA_EVENING_LOVE.json"
+    },
+    "story/DAY16/ntr/DAY16_00_LENA_MORNING_NTR.json": {
+      "ntr": "story/DAY16/ntr/DAY16_00_LENA_MORNING_NTR.json",
+      "nts": "story/DAY16/nts/DAY16_00_LENA_MORNING_NTS.json",
+      "love": "story/DAY16/love/DAY16_00_LENA_MORNING_LOVE.json"
+    },
+    "story/DAY16/ntr/DAY16_01_LENA_AFTERNOON_NTR.json": {
+      "ntr": "story/DAY16/ntr/DAY16_01_LENA_AFTERNOON_NTR.json",
+      "nts": "story/DAY16/nts/DAY16_01_LENA_AFTERNOON_NTS.json",
+      "love": "story/DAY16/love/DAY16_01_LENA_AFTERNOON_LOVE.json"
+    },
+    "story/DAY16/ntr/DAY16_02_LENA_EVENING_NTR.json": {
+      "ntr": "story/DAY16/ntr/DAY16_02_LENA_EVENING_NTR.json",
+      "nts": "story/DAY16/nts/DAY16_02_LENA_EVENING_NTS.json",
+      "love": "story/DAY16/love/DAY16_02_LENA_EVENING_LOVE.json"
+    },
+    "story/DAY17/ntr/DAY17_00_LENA_MORNING_NTR.json": {
+      "ntr": "story/DAY17/ntr/DAY17_00_LENA_MORNING_NTR.json",
+      "nts": "story/DAY17/nts/DAY17_00_LENA_MORNING_NTS.json",
+      "love": "story/DAY17/love/DAY17_00_LENA_MORNING_LOVE.json"
+    },
+    "story/DAY17/ntr/DAY17_01_LENA_EVENING_NTR.json": {
+      "ntr": "story/DAY17/ntr/DAY17_01_LENA_EVENING_NTR.json",
+      "nts": "story/DAY17/nts/DAY17_02_LENA_EVENING_NTS.json",
+      "love": "story/DAY17/love/DAY17_02_LENA_EVENING_LOVE.json"
+    },
+    "story/DAY17/ntr/DAY17_02_LENA_NIGHT_NTR.json": {
+      "ntr": "story/DAY17/ntr/DAY17_02_LENA_NIGHT_NTR.json",
+      "nts": "story/DAY17/nts/DAY17_02_LENA_EVENING_NTS.json",
+      "love": "story/DAY17/love/DAY17_02_LENA_EVENING_LOVE.json"
+    },
+    "story/DAY18/ntr/DAY18_00_LENA_MORNING_NTR.json": {
+      "ntr": "story/DAY18/ntr/DAY18_00_LENA_MORNING_NTR.json",
+      "nts": "story/DAY18/nts/DAY18_00_LENA_MORNING_NTS.json",
+      "love": "story/DAY18/love/DAY18_00_LENA_MORNING_LOVE.json"
+    },
+    "story/DAY18/ntr/DAY18_01_LENA_AFTERNOON_NTR.json": {
+      "ntr": "story/DAY18/ntr/DAY18_01_LENA_AFTERNOON_NTR.json",
+      "nts": "story/DAY18/nts/DAY18_01_LENA_AFTERNOON_NTS.json",
+      "love": "story/DAY18/love/DAY18_01_LENA_AFTERNOON_LOVE.json"
+    },
+    "story/DAY18/ntr/DAY18_02_LENA_EVENING_NTR.json": {
+      "ntr": "story/DAY18/ntr/DAY18_02_LENA_EVENING_NTR.json",
+      "nts": "story/DAY18/nts/DAY18_02_LENA_EVENING_NTS.json",
+      "love": "story/DAY18/love/DAY18_02_LENA_EVENING_LOVE.json"
+    },
+    "story/DAY19/ntr/DAY19_00_LENA_MORNING_NTR.json": {
+      "ntr": "story/DAY19/ntr/DAY19_00_LENA_MORNING_NTR.json",
+      "nts": "story/DAY19/nts/DAY19_00_LENA_MORNING_NTS.json",
+      "love": "story/DAY19/love/DAY19_00_LENA_MORNING_LOVE.json"
+    },
+    "story/DAY19/ntr/DAY19_01_LENA_AFTERNOON_NTR.json": {
+      "ntr": "story/DAY19/ntr/DAY19_01_LENA_AFTERNOON_NTR.json",
+      "nts": "story/DAY19/nts/DAY19_01_LENA_EVENING_NTS.json",
+      "love": "story/DAY19/love/DAY19_01_LENA_AFTERNOON_LOVE.json"
+    },
+    "story/DAY19/ntr/DAY19_02_LENA_EVENING_NTR.json": {
+      "ntr": "story/DAY19/ntr/DAY19_02_LENA_EVENING_NTR.json",
+      "nts": "story/DAY19/nts/DAY19_01_LENA_EVENING_NTS.json",
+      "love": "story/DAY19/love/DAY19_02_LENA_EVENING_LOVE.json"
+    },
+    "story/DAY20/ntr/DAY20_00_LENA_MORNING_NTR.json": {
+      "ntr": "story/DAY20/ntr/DAY20_00_LENA_MORNING_NTR.json",
+      "nts": "story/DAY20/nts/DAY20_00_LENA_MORNING_NTS.json",
+      "love": "story/DAY20/love/DAY20_00_LENA_MORNING_LOVE.json"
+    },
+    "story/DAY20/ntr/DAY20_01_LENA_EVENING_NTR.json": {
+      "ntr": "story/DAY20/ntr/DAY20_01_LENA_EVENING_NTR.json",
+      "nts": "story/DAY20/nts/DAY20_01_LENA_EVENING_NTS.json",
+      "love": "story/DAY20/love/DAY20_03_LENA_EVENING_LOVE.json"
+    },
+    "story/DAY16/love/DAY16_00_LENA_MORNING_LOVE.json": {
+      "love": "story/DAY16/love/DAY16_00_LENA_MORNING_LOVE.json",
+      "ntr": "story/DAY16/ntr/DAY16_00_LENA_MORNING_NTR.json",
+      "nts": "story/DAY16/nts/DAY16_00_LENA_MORNING_NTS.json"
+    },
+    "story/DAY16/love/DAY16_01_LENA_AFTERNOON_LOVE.json": {
+      "love": "story/DAY16/love/DAY16_01_LENA_AFTERNOON_LOVE.json",
+      "ntr": "story/DAY16/ntr/DAY16_01_LENA_AFTERNOON_NTR.json",
+      "nts": "story/DAY16/nts/DAY16_01_LENA_AFTERNOON_NTS.json"
+    },
+    "story/DAY16/love/DAY16_02_LENA_EVENING_LOVE.json": {
+      "love": "story/DAY16/love/DAY16_02_LENA_EVENING_LOVE.json",
+      "ntr": "story/DAY16/ntr/DAY16_02_LENA_EVENING_NTR.json",
+      "nts": "story/DAY16/nts/DAY16_02_LENA_EVENING_NTS.json"
+    },
+    "story/DAY17/love/DAY17_00_LENA_MORNING_LOVE.json": {
+      "love": "story/DAY17/love/DAY17_00_LENA_MORNING_LOVE.json",
+      "ntr": "story/DAY17/ntr/DAY17_00_LENA_MORNING_NTR.json",
+      "nts": "story/DAY17/nts/DAY17_00_LENA_MORNING_NTS.json"
+    },
+    "story/DAY17/love/DAY17_01_LENA_AFTERNOON_LOVE.json": {
+      "love": "story/DAY17/love/DAY17_01_LENA_AFTERNOON_LOVE.json",
+      "ntr": "story/DAY17/ntr/DAY17_01_LENA_EVENING_NTR.json",
+      "nts": "story/DAY17/nts/DAY17_01_LENA_AFTERNOON_NTS.json"
+    },
+    "story/DAY17/love/DAY17_02_LENA_EVENING_LOVE.json": {
+      "love": "story/DAY17/love/DAY17_02_LENA_EVENING_LOVE.json",
+      "ntr": "story/DAY17/ntr/DAY17_01_LENA_EVENING_NTR.json",
+      "nts": "story/DAY17/nts/DAY17_02_LENA_EVENING_NTS.json"
+    },
+    "story/DAY18/love/DAY18_00_LENA_MORNING_LOVE.json": {
+      "love": "story/DAY18/love/DAY18_00_LENA_MORNING_LOVE.json",
+      "ntr": "story/DAY18/ntr/DAY18_00_LENA_MORNING_NTR.json",
+      "nts": "story/DAY18/nts/DAY18_00_LENA_MORNING_NTS.json"
+    },
+    "story/DAY18/love/DAY18_01_LENA_AFTERNOON_LOVE.json": {
+      "love": "story/DAY18/love/DAY18_01_LENA_AFTERNOON_LOVE.json",
+      "ntr": "story/DAY18/ntr/DAY18_01_LENA_AFTERNOON_NTR.json",
+      "nts": "story/DAY18/nts/DAY18_01_LENA_AFTERNOON_NTS.json"
+    },
+    "story/DAY18/love/DAY18_02_LENA_EVENING_LOVE.json": {
+      "love": "story/DAY18/love/DAY18_02_LENA_EVENING_LOVE.json",
+      "ntr": "story/DAY18/ntr/DAY18_02_LENA_EVENING_NTR.json",
+      "nts": "story/DAY18/nts/DAY18_02_LENA_EVENING_NTS.json"
+    },
+    "story/DAY19/love/DAY19_00_LENA_MORNING_LOVE.json": {
+      "love": "story/DAY19/love/DAY19_00_LENA_MORNING_LOVE.json",
+      "ntr": "story/DAY19/ntr/DAY19_00_LENA_MORNING_NTR.json",
+      "nts": "story/DAY19/nts/DAY19_00_LENA_MORNING_NTS.json"
+    },
+    "story/DAY19/love/DAY19_01_LENA_AFTERNOON_LOVE.json": {
+      "love": "story/DAY19/love/DAY19_01_LENA_AFTERNOON_LOVE.json",
+      "ntr": "story/DAY19/ntr/DAY19_01_LENA_AFTERNOON_NTR.json",
+      "nts": "story/DAY19/nts/DAY19_01_LENA_EVENING_NTS.json"
+    },
+    "story/DAY19/love/DAY19_02_LENA_EVENING_LOVE.json": {
+      "love": "story/DAY19/love/DAY19_02_LENA_EVENING_LOVE.json",
+      "ntr": "story/DAY19/ntr/DAY19_02_LENA_EVENING_NTR.json",
+      "nts": "story/DAY19/nts/DAY19_01_LENA_EVENING_NTS.json"
+    },
+    "story/DAY20/love/DAY20_00_LENA_MORNING_LOVE.json": {
+      "love": "story/DAY20/love/DAY20_00_LENA_MORNING_LOVE.json",
+      "ntr": "story/DAY20/ntr/DAY20_00_LENA_MORNING_NTR.json",
+      "nts": "story/DAY20/nts/DAY20_00_LENA_MORNING_NTS.json"
+    },
+    "story/DAY20/love/DAY20_01_LENA_AFTERNOON_LOVE.json": {
+      "love": "story/DAY20/love/DAY20_01_LENA_AFTERNOON_LOVE.json",
+      "ntr": "story/DAY20/ntr/DAY20_01_LENA_EVENING_NTR.json",
+      "nts": "story/DAY20/nts/DAY20_01_LENA_EVENING_NTS.json"
+    },
+    "story/DAY20/love/DAY20_02_LENA_EVENING_LOVE.json": {
+      "love": "story/DAY20/love/DAY20_03_LENA_EVENING_LOVE.json",
+      "ntr": "story/DAY20/ntr/DAY20_01_LENA_EVENING_NTR.json",
+      "nts": "story/DAY20/nts/DAY20_01_LENA_EVENING_NTS.json"
+    },
+    "story/DAY20/love/DAY20_02_HAILEY_LATE_AFTERNOON_LOVE.json": {
+      "love": "story/DAY20/love/DAY20_02_HAILEY_LATE_AFTERNOON_LOVE.json"
+    },
+    "story/DAY20/love/DAY20_02_HAILEY_NIGHT_LOVE.json": {
+      "love": "story/DAY20/love/DAY20_02_HAILEY_LATE_AFTERNOON_LOVE.json"
+    },
+    "story/DAY20/love/DAY20_03_LENA_EVENING_LOVE.json": {
+      "love": "story/DAY20/love/DAY20_03_LENA_EVENING_LOVE.json",
+      "ntr": "story/DAY20/ntr/DAY20_01_LENA_EVENING_NTR.json",
+      "nts": "story/DAY20/nts/DAY20_01_LENA_EVENING_NTS.json"
+    },
+    "story/DAY20/love/DAY20_02_LENA_LATE_AFTERNOON_LOVE.json": {
+      "love": "story/DAY20/love/DAY20_02_LENA_LATE_AFTERNOON_LOVE.json",
+      "ntr": "story/DAY20/ntr/DAY20_01_LENA_EVENING_NTR.json",
+      "nts": "story/DAY20/nts/DAY20_01_LENA_EVENING_NTS.json"
+    }
+  },
+  "sequences": {
+    "DAY10:evelyn:love": [
+      "story/DAY10/love/DAY10_00_EVELYN_MORNING_LOVE.json",
+      "story/DAY10/love/DAY10_01_EVELYN_AFTERNOON_LOVE.json",
+      "story/DAY10/love/DAY10_02_EVELYN_EVENING_LOVE.json"
+    ],
+    "DAY10:evelyn:ntr": [
+      "story/DAY10/ntr/DAY10_00_EVELYN_MORNING_NTR.json",
+      "story/DAY10/ntr/DAY10_01_EVELYN_AFTERNOON_NTR.json",
+      "story/DAY10/ntr/DAY10_02_EVELYN_EVENING_NTR.json"
+    ],
+    "DAY10:evelyn:nts": [
+      "story/DAY10/nts/DAY10_00_EVELYN_MORNING_NTS.json",
+      "story/DAY10/nts/DAY10_01_EVELYN_AFTERNOON_NTS.json",
+      "story/DAY10/nts/DAY10_02_EVELYN_EVENING_NTS.json"
+    ],
+    "DAY10:hailey:love": [
+      "story/DAY10/love/DAY10_00_HAILEY_MORNING_LOVE.json",
+      "story/DAY10/love/DAY10_01_HAILEY_AFTERNOON_LOVE.json",
+      "story/DAY10/love/DAY10_02_HAILEY_EVENING_LOVE.json"
+    ],
+    "DAY10:hailey:ntr": [
+      "story/DAY10/ntr/DAY10_00_HAILEY_MORNING_NTR.json",
+      "story/DAY10/ntr/DAY10_01_HAILEY_AFTERNOON_NTR.json",
+      "story/DAY10/ntr/DAY10_02_HAILEY_EVENING_NTR.json"
+    ],
+    "DAY10:hailey:nts": [
+      "story/DAY10/nts/DAY10_00_HAILEY_MORNING_NTS.json",
+      "story/DAY10/nts/DAY10_01_HAILEY_AFTERNOON_NTS.json",
+      "story/DAY10/nts/DAY10_01_TUTOR_FIRST_MEETING_NTS.json",
+      "story/DAY10/nts/DAY10_02_HAILEY_EVENING_NTS.json"
+    ],
+    "DAY10:lena:love": [
+      "story/DAY10/love/DAY10_00_LENA_MORNING_LOVE.json",
+      "story/DAY10/love/DAY10_01_LENA_AFTERNOON_LOVE.json",
+      "story/DAY10/love/DAY10_02_LENA_EVENING_LOVE.json"
+    ],
+    "DAY10:lena:ntr": [
+      "story/DAY10/ntr/DAY10_00_LENA_MORNING_NTR.json",
+      "story/DAY10/ntr/DAY10_01_LENA_AFTERNOON_NTR.json",
+      "story/DAY10/ntr/DAY10_02_LENA_EVENING_NTR.json"
+    ],
+    "DAY10:lena:nts": [
+      "story/DAY10/nts/DAY10_00_LENA_MORNING_NTS.json",
+      "story/DAY10/nts/DAY10_01_LENA_AFTERNOON_NTS.json",
+      "story/DAY10/nts/DAY10_02_LENA_EVENING_NTS.json"
+    ],
+    "DAY10:mason:love": [
+      "story/DAY10/love/DAY10_00_MASON_MORNING_LOVE.json",
+      "story/DAY10/love/DAY10_01_MASON_AFTERNOON_LOVE.json",
+      "story/DAY10/love/DAY10_02_MASON_EVENING_LOVE.json"
+    ],
+    "DAY10:mason:ntr": [
+      "story/DAY10/ntr/DAY10_00_MASON_MORNING_NTR.json",
+      "story/DAY10/ntr/DAY10_01_MASON_AFTERNOON_NTR.json",
+      "story/DAY10/ntr/DAY10_02_MASON_EVENING_NTR.json"
+    ],
+    "DAY10:mason:nts": [
+      "story/DAY10/nts/DAY10_00_MASON_MORNING_NTS.json",
+      "story/DAY10/nts/DAY10_01_MASON_AFTERNOON_NTS.json",
+      "story/DAY10/nts/DAY10_02_MASON_EVENING_NTS.json"
+    ],
+    "DAY11:evelyn:love": [
+      "story/DAY11/love/DAY11_00_EVELYN_MORNING_LOVE.json",
+      "story/DAY11/love/DAY11_01_EVELYN_AFTERNOON_LOVE.json",
+      "story/DAY11/love/DAY11_02_EVELYN_EVENING_LOVE.json"
+    ],
+    "DAY11:evelyn:ntr": [
+      "story/DAY11/ntr/DAY11_00_EVELYN_MORNING_NTR.json",
+      "story/DAY11/ntr/DAY11_01_EVELYN_AFTERNOON_NTR.json",
+      "story/DAY11/ntr/DAY11_02_EVELYN_EVENING_NTR.json"
+    ],
+    "DAY11:evelyn:nts": [
+      "story/DAY11/nts/DAY11_00_EVELYN_MORNING_NTS.json",
+      "story/DAY11/nts/DAY11_01_EVELYN_AFTERNOON_NTS.json",
+      "story/DAY11/nts/DAY11_02_EVELYN_EVENING_NTS.json"
+    ],
+    "DAY11:hailey:love": [
+      "story/DAY11/love/DAY11_00_HAILEY_MORNING_LOVE.json",
+      "story/DAY11/love/DAY11_01_HAILEY_AFTERNOON_LOVE.json",
+      "story/DAY11/love/DAY11_02_HAILEY_EVENING_LOVE.json"
+    ],
+    "DAY11:hailey:ntr": [
+      "story/DAY11/ntr/DAY11_00_HAILEY_MORNING_NTR.json",
+      "story/DAY11/ntr/DAY11_01_HAILEY_AFTERNOON_NTR.json",
+      "story/DAY11/ntr/DAY11_02_HAILEY_EVENING_NTR.json"
+    ],
+    "DAY11:hailey:nts": [
+      "story/DAY11/nts/DAY11_00_HAILEY_MORNING_NTS.json",
+      "story/DAY11/nts/DAY11_01_HAILEY_AFTERNOON_NTS.json",
+      "story/DAY11/nts/DAY11_01_TUTOR_STUDY_UPDATE_NTS.json",
+      "story/DAY11/nts/DAY11_02_HAILEY_EVENING_NTS.json"
+    ],
+    "DAY11:lena:love": [
+      "story/DAY11/love/DAY11_00_LENA_MORNING_LOVE.json",
+      "story/DAY11/love/DAY11_02_LENA_EVENING_LOVE.json",
+      "story/DAY11/love/DAY11_03_LENA_NIGHT_LOVE.json"
+    ],
+    "DAY11:lena:ntr": [
+      "story/DAY11/ntr/DAY11_00_LENA_MORNING_NTR.json",
+      "story/DAY11/ntr/DAY11_02_LENA_EVENING_NTR.json",
+      "story/DAY11/ntr/DAY11_03_LENA_NIGHT_NTR.json"
+    ],
+    "DAY11:lena:nts": [
+      "story/DAY11/nts/DAY11_00_LENA_MORNING_NTS.json",
+      "story/DAY11/nts/DAY11_02_LENA_EVENING_NTS.json",
+      "story/DAY11/nts/DAY11_03_LENA_NIGHT_NTS.json"
+    ],
+    "DAY11:mason:love": [
+      "story/DAY11/love/DAY11_00_MASON_MORNING_LOVE.json",
+      "story/DAY11/love/DAY11_01_MASON_AFTERNOON_LOVE.json",
+      "story/DAY11/love/DAY11_02_MASON_EVENING_LOVE.json"
+    ],
+    "DAY11:mason:ntr": [
+      "story/DAY11/ntr/DAY11_00_MASON_MORNING_NTR.json",
+      "story/DAY11/ntr/DAY11_01_MASON_AFTERNOON_NTR.json",
+      "story/DAY11/ntr/DAY11_02_MASON_EVENING_NTR.json"
+    ],
+    "DAY11:mason:nts": [
+      "story/DAY11/nts/DAY11_00_MASON_MORNING_NTS.json",
+      "story/DAY11/nts/DAY11_01_MASON_AFTERNOON_NTS.json",
+      "story/DAY11/nts/DAY11_02_MASON_EVENING_NTS.json"
+    ],
+    "DAY12:evelyn:love": [
+      "story/DAY12/love/DAY12_00_EVELYN_MORNING_LOVE.json",
+      "story/DAY12/love/DAY12_01_EVELYN_AFTERNOON_LOVE.json",
+      "story/DAY12/love/DAY12_02_EVELYN_EVENING_LOVE.json"
+    ],
+    "DAY12:evelyn:ntr": [
+      "story/DAY12/ntr/DAY12_00_EVELYN_MORNING_NTR.json",
+      "story/DAY12/ntr/DAY12_01_EVELYN_AFTERNOON_NTR.json",
+      "story/DAY12/ntr/DAY12_02_EVELYN_EVENING_NTR.json"
+    ],
+    "DAY12:evelyn:nts": [
+      "story/DAY12/nts/DAY12_00_EVELYN_MORNING_NTS.json",
+      "story/DAY12/nts/DAY12_01_EVELYN_AFTERNOON_NTS.json",
+      "story/DAY12/nts/DAY12_02_EVELYN_EVENING_NTS.json"
+    ],
+    "DAY12:hailey:love": [
+      "story/DAY12/love/DAY12_00_HAILEY_MORNING_LOVE.json",
+      "story/DAY12/love/DAY12_01_HAILEY_AFTERNOON_LOVE.json",
+      "story/DAY12/love/DAY12_02_HAILEY_EVENING_LOVE.json"
+    ],
+    "DAY12:hailey:ntr": [
+      "story/DAY12/ntr/DAY12_00_HAILEY_MORNING_NTR.json",
+      "story/DAY12/ntr/DAY12_01_HAILEY_AFTERNOON_NTR.json",
+      "story/DAY12/ntr/DAY12_02_HAILEY_EVENING_NTR.json"
+    ],
+    "DAY12:hailey:nts": [
+      "story/DAY12/nts/DAY12_00_HAILEY_MORNING_NTS.json",
+      "story/DAY12/nts/DAY12_01_HAILEY_AFTERNOON_NTS.json",
+      "story/DAY12/nts/DAY12_01_TUTOR_STUDY_UPDATE_NTS.json",
+      "story/DAY12/nts/DAY12_02_HAILEY_EVENING_NTS.json"
+    ],
+    "DAY12:lena:love": [
+      "story/DAY12/love/DAY12_00_LENA_MORNING_LOVE.json",
+      "story/DAY12/love/DAY12_02_LENA_EVENING_LOVE.json"
+    ],
+    "DAY12:lena:ntr": [
+      "story/DAY12/ntr/DAY12_00_LENA_MORNING_NTR.json",
+      "story/DAY12/ntr/DAY12_02_LENA_EVENING_NTR.json"
+    ],
+    "DAY12:lena:nts": [
+      "story/DAY12/nts/DAY12_00_LENA_MORNING_NTS.json",
+      "story/DAY12/nts/DAY12_02_LENA_EVENING_NTS.json"
+    ],
+    "DAY12:mason:love": [
+      "story/DAY12/love/DAY12_00_MASON_MORNING_LOVE.json",
+      "story/DAY12/love/DAY12_01_MASON_AFTERNOON_LOVE.json",
+      "story/DAY12/love/DAY12_02_MASON_EVENING_LOVE.json"
+    ],
+    "DAY12:mason:ntr": [
+      "story/DAY12/ntr/DAY12_00_MASON_MORNING_NTR.json",
+      "story/DAY12/ntr/DAY12_01_MASON_AFTERNOON_NTR.json",
+      "story/DAY12/ntr/DAY12_02_MASON_EVENING_NTR.json"
+    ],
+    "DAY12:mason:nts": [
+      "story/DAY12/nts/DAY12_00_MASON_MORNING_NTS.json",
+      "story/DAY12/nts/DAY12_01_MASON_AFTERNOON_NTS.json",
+      "story/DAY12/nts/DAY12_02_MASON_EVENING_NTS.json"
+    ],
+    "DAY13:evelyn:love": [
+      "story/DAY13/love/DAY13_00_EVELYN_MORNING_LOVE.json",
+      "story/DAY13/love/DAY13_01_EVELYN_AFTERNOON_LOVE.json",
+      "story/DAY13/love/DAY13_02_EVELYN_EVENING_LOVE.json"
+    ],
+    "DAY13:evelyn:ntr": [
+      "story/DAY13/ntr/DAY13_00_EVELYN_MORNING_NTR.json",
+      "story/DAY13/ntr/DAY13_01_EVELYN_AFTERNOON_NTR.json",
+      "story/DAY13/ntr/DAY13_02_EVELYN_EVENING_NTR.json"
+    ],
+    "DAY13:evelyn:nts": [
+      "story/DAY13/nts/DAY13_00_EVELYN_MORNING_NTS.json",
+      "story/DAY13/nts/DAY13_01_EVELYN_AFTERNOON_NTS.json",
+      "story/DAY13/nts/DAY13_02_EVELYN_EVENING_NTS.json"
+    ],
+    "DAY13:hailey:love": [
+      "story/DAY13/love/DAY13_00_HAILEY_MORNING_LOVE.json",
+      "story/DAY13/love/DAY13_01_HAILEY_AFTERNOON_LOVE.json",
+      "story/DAY13/love/DAY13_02_HAILEY_EVENING_LOVE.json"
+    ],
+    "DAY13:hailey:ntr": [
+      "story/DAY13/ntr/DAY13_00_HAILEY_MORNING_NTR.json",
+      "story/DAY13/ntr/DAY13_01_HAILEY_AFTERNOON_NTR.json",
+      "story/DAY13/ntr/DAY13_02_HAILEY_EVENING_NTR.json"
+    ],
+    "DAY13:hailey:nts": [
+      "story/DAY13/nts/DAY13_00_HAILEY_MORNING_NTS.json",
+      "story/DAY13/nts/DAY13_01_HAILEY_AFTERNOON_NTS.json",
+      "story/DAY13/nts/DAY13_02_HAILEY_EVENING_NTS.json"
+    ],
+    "DAY13:lena:love": [
+      "story/DAY13/love/DAY13_00_LENA_MORNING_LOVE.json",
+      "story/DAY13/love/DAY13_01_LENA_AFTERNOON_LOVE.json",
+      "story/DAY13/love/DAY13_02_LENA_EVENING_LOVE.json"
+    ],
+    "DAY13:lena:ntr": [
+      "story/DAY13/ntr/DAY13_00_LENA_MORNING_NTR.json",
+      "story/DAY13/ntr/DAY13_01_LENA_AFTERNOON_NTR.json",
+      "story/DAY13/ntr/DAY13_02_LENA_EVENING_NTR.json"
+    ],
+    "DAY13:lena:nts": [
+      "story/DAY13/nts/DAY13_00_LENA_MORNING_NTS.json",
+      "story/DAY13/nts/DAY13_01_LENA_AFTERNOON_NTS.json",
+      "story/DAY13/nts/DAY13_02_LENA_EVENING_NTS.json"
+    ],
+    "DAY13:mason:love": [
+      "story/DAY13/love/DAY13_00_MASON_MORNING_LOVE.json",
+      "story/DAY13/love/DAY13_01_MASON_AFTERNOON_LOVE.json",
+      "story/DAY13/love/DAY13_02_MASON_EVENING_LOVE.json"
+    ],
+    "DAY13:mason:ntr": [
+      "story/DAY13/ntr/DAY13_00_MASON_MORNING_NTR.json",
+      "story/DAY13/ntr/DAY13_01_MASON_AFTERNOON_NTR.json",
+      "story/DAY13/ntr/DAY13_02_MASON_EVENING_NTR.json"
+    ],
+    "DAY13:mason:nts": [
+      "story/DAY13/nts/DAY13_00_MASON_MORNING_NTS.json",
+      "story/DAY13/nts/DAY13_01_MASON_AFTERNOON_NTS.json",
+      "story/DAY13/nts/DAY13_02_MASON_EVENING_NTS.json"
+    ],
+    "DAY14:evelyn:love": [
+      "story/DAY14/love/DAY14_00_EVELYN_MORNING_LOVE.json",
+      "story/DAY14/love/DAY14_01_EVELYN_AFTERNOON_LOVE.json",
+      "story/DAY14/love/DAY14_02_EVELYN_EVENING_LOVE.json"
+    ],
+    "DAY14:evelyn:ntr": [
+      "story/DAY14/ntr/DAY14_00_EVELYN_MORNING_NTR.json",
+      "story/DAY14/ntr/DAY14_01_EVELYN_AFTERNOON_NTR.json",
+      "story/DAY14/ntr/DAY14_02_EVELYN_EVENING_NTR.json"
+    ],
+    "DAY14:evelyn:nts": [
+      "story/DAY14/nts/DAY14_00_EVELYN_MORNING_NTS.json",
+      "story/DAY14/nts/DAY14_01_EVELYN_AFTERNOON_NTS.json",
+      "story/DAY14/nts/DAY14_02_EVELYN_EVENING_NTS.json"
+    ],
+    "DAY14:hailey:love": [
+      "story/DAY14/love/DAY14_00_HAILEY_MORNING_LOVE.json",
+      "story/DAY14/love/DAY14_01_HAILEY_AFTERNOON_LOVE.json",
+      "story/DAY14/love/DAY14_02_HAILEY_EVENING_LOVE.json"
+    ],
+    "DAY14:hailey:ntr": [
+      "story/DAY14/ntr/DAY14_00_HAILEY_MORNING_NTR.json",
+      "story/DAY14/ntr/DAY14_01_HAILEY_AFTERNOON_NTR.json",
+      "story/DAY14/ntr/DAY14_02_HAILEY_EVENING_NTR.json"
+    ],
+    "DAY14:hailey:nts": [
+      "story/DAY14/nts/DAY14_00_HAILEY_MORNING_NTS.json",
+      "story/DAY14/nts/DAY14_01_HAILEY_AFTERNOON_NTS.json",
+      "story/DAY14/nts/DAY14_02_HAILEY_EVENING_NTS.json"
+    ],
+    "DAY14:lena:love": [
+      "story/DAY14/love/DAY14_00_LENA_MORNING_LOVE.json",
+      "story/DAY14/love/DAY14_01_LENA_BREAK_LOVE.json",
+      "story/DAY14/love/DAY14_02_LENA_EVENING_LOVE.json",
+      "story/DAY14/love/DAY14_03_LENA_NIGHT.LOVE.json"
+    ],
+    "DAY14:lena:ntr": [
+      "story/DAY14/ntr/DAY14_00_LENA_MORNING_NTR.json",
+      "story/DAY14/ntr/DAY14_01_LENA_BREAK_NTR.json",
+      "story/DAY14/ntr/DAY14_02_LENA_EVENING_NTR.json",
+      "story/DAY14/ntr/DAY14_03_LENA_NIGHT_NTR.json"
+    ],
+    "DAY14:lena:nts": [
+      "story/DAY14/nts/DAY14_00_LENA_MORNING_NTS.json",
+      "story/DAY14/nts/DAY14_01_LENA_BREAK_NTS.json",
+      "story/DAY14/nts/DAY14_02_LENA_EVENING_NTS.json",
+      "story/DAY14/nts/DAY14_03_LENA_NIGHT.NTS.json"
+    ],
+    "DAY14:mason:love": [
+      "story/DAY14/love/DAY14_00_MASON_MORNING_LOVE.json",
+      "story/DAY14/love/DAY14_01_MASON_AFTERNOON_LOVE.json",
+      "story/DAY14/love/DAY14_02_MASON_EVENING_LOVE.json"
+    ],
+    "DAY14:mason:ntr": [
+      "story/DAY14/ntr/DAY14_00_MASON_MORNING_NTR.json",
+      "story/DAY14/ntr/DAY14_01_MASON_AFTERNOON_NTR.json",
+      "story/DAY14/ntr/DAY14_02_MASON_EVENING_NTR.json"
+    ],
+    "DAY14:mason:nts": [
+      "story/DAY14/nts/DAY14_00_MASON_MORNING_NTS.json",
+      "story/DAY14/nts/DAY14_01_MASON_AFTERNOON_NTS.json",
+      "story/DAY14/nts/DAY14_02_MASON_EVENING_NTS.json"
+    ],
+    "DAY15:evelyn:love": [
+      "story/DAY15/love/DAY15_00_EVELYN_MORNING_LOVE.json",
+      "story/DAY15/love/DAY15_01_EVELYN_AFTERNOON_LOVE.json",
+      "story/DAY15/love/DAY15_02_EVELYN_EVENING_LOVE.json"
+    ],
+    "DAY15:evelyn:ntr": [
+      "story/DAY15/ntr/DAY15_00_EVELYN_MORNING_NTR.json",
+      "story/DAY15/ntr/DAY15_01_EVELYN_AFTERNOON_NTR.json",
+      "story/DAY15/ntr/DAY15_02_EVELYN_EVENING_NTR.json"
+    ],
+    "DAY15:evelyn:nts": [
+      "story/DAY15/nts/DAY15_00_EVELYN_MORNING_NTS.json",
+      "story/DAY15/nts/DAY15_01_EVELYN_AFTERNOON_NTS.json",
+      "story/DAY15/nts/DAY15_02_EVELYN_EVENING_NTS.json"
+    ],
+    "DAY15:hailey:love": [
+      "story/DAY15/love/DAY15_00_HAILEY_MORNING_LOVE.json",
+      "story/DAY15/love/DAY15_01_HAILEY_AFTERNOON_LOVE.json",
+      "story/DAY15/love/DAY15_02_HAILEY_EVENING_LOVE.json"
+    ],
+    "DAY15:hailey:ntr": [
+      "story/DAY15/ntr/DAY15_00_HAILEY_MORNING_NTR.json",
+      "story/DAY15/ntr/DAY15_01_HAILEY_AFTERNOON_NTR.json",
+      "story/DAY15/ntr/DAY15_02_HAILEY_EVENING_NTR.json"
+    ],
+    "DAY15:hailey:nts": [
+      "story/DAY15/nts/DAY15_00_HAILEY_MORNING_NTS.json",
+      "story/DAY15/nts/DAY15_01_HAILEY_AFTERNOON_NTS.json",
+      "story/DAY15/nts/DAY15_02_HAILEY_EVENING_NTS.json"
+    ],
+    "DAY15:lena:love": [
+      "story/DAY15/love/DAY15_00_LENA_MORNING_LOVE.json",
+      "story/DAY15/love/DAY15_02_LENA_EVENING_LOVE.json"
+    ],
+    "DAY15:lena:ntr": [
+      "story/DAY15/ntr/DAY15_00_LENA_MORNING_NTR.json",
+      "story/DAY15/ntr/DAY15_02_LENA_EVENING_NTR.json"
+    ],
+    "DAY15:lena:nts": [
+      "story/DAY15/nts/DAY15_00_LENA_MORNING_NTS.json",
+      "story/DAY15/nts/DAY15_02_LENA_EVENING_NTS.json"
+    ],
+    "DAY15:mason:love": [
+      "story/DAY15/love/DAY15_00_MASON_MORNING_LOVE.json",
+      "story/DAY15/love/DAY15_01_MASON_AFTERNOON_LOVE.json",
+      "story/DAY15/love/DAY15_02_MASON_EVENING_LOVE.json"
+    ],
+    "DAY15:mason:ntr": [
+      "story/DAY15/ntr/DAY15_00_MASON_MORNING_NTR.json",
+      "story/DAY15/ntr/DAY15_01_MASON_AFTERNOON_NTR.json",
+      "story/DAY15/ntr/DAY15_02_MASON_EVENING_NTR.json"
+    ],
+    "DAY15:mason:nts": [
+      "story/DAY15/nts/DAY15_00_MASON_MORNING_NTS.json",
+      "story/DAY15/nts/DAY15_01_MASON_AFTERNOON_NTS.json",
+      "story/DAY15/nts/DAY15_02_MASON_EVENING_NTS.json"
+    ],
+    "DAY9:mason:love": [
+      "story/DAY9/love/DAY9_00_MASON_MORNING_LOVE.json",
+      "story/DAY9/love/DAY9_05_MASON_AFTERNOON_LOVE.json",
+      "story/DAY9/love/DAY9_08_MASON_EVENING_LOVE.json"
+    ],
+    "DAY9:mason:ntr": [
+      "story/DAY9/ntr/DAY9_00_MASON_MORNING_NTR.json",
+      "story/DAY9/ntr/DAY9_06_MASON_AFTERNOON_NTR.json",
+      "story/DAY9/ntr/DAY9_09_MASON_EVENING_NTR.json"
+    ],
+    "DAY9:mason:nts": [
+      "story/DAY9/nts/DAY9_00_MASON_MORNING_NTS.json",
+      "story/DAY9/nts/DAY9_06_MASON_AFTERNOON_NTS.json",
+      "story/DAY9/nts/DAY9_10_MASON_EVENING_NTS.json"
+    ],
+    "DAY9:hailey:love": [
+      "story/DAY9/love/DAY9_01_HAILEY_MORNING_LOVE.json",
+      "story/DAY9/love/DAY9_04_HAILEY_AFTERNOON_LOVE.json",
+      "story/DAY9/love/DAY9_09_HAILEY_EVENING_LOVE.json"
+    ],
+    "DAY9:hailey:ntr": [
+      "story/DAY9/ntr/DAY9_01_HAILEY_MORNING_NTR.json",
+      "story/DAY9/ntr/DAY9_04_HAILEY_AFTERNOON_NTR.json",
+      "story/DAY9/ntr/DAY9_10_HAILEY_EVENING_NTR.json"
+    ],
+    "DAY9:hailey:nts": [
+      "story/DAY9/nts/DAY9_01_HAILEY_MORNING_NTS1.json",
+      "story/DAY9/nts/DAY9_04_HAILEY_AFTERNOON_NTS.json",
+      "story/DAY9/nts/DAY9_11_HAILEY_EVENING_NTS.json"
+    ],
+    "DAY9:evelyn:love": [
+      "story/DAY9/love/DAY9_02_EVELYN_MORNING_LOVE.json",
+      "story/DAY9/love/DAY9_06_EVELYN_AFTERNOON_LOVE.json",
+      "story/DAY9/love/DAY9_07_EVELYN_EVENING_LOVE.json"
+    ],
+    "DAY9:evelyn:ntr": [
+      "story/DAY9/ntr/DAY9_02_EVELYN_MORNING_NTR.json",
+      "story/DAY9/ntr/DAY9_07_EVELYN_AFTERNOON_NTR.json",
+      "story/DAY9/ntr/DAY9_08_EVELYN_EVENING_NTR.json"
+    ],
+    "DAY9:evelyn:nts": [
+      "story/DAY9/nts/DAY9_02_EVELYN_MORNING_NTS.json",
+      "story/DAY9/nts/DAY9_08_EVELYN_AFTERNOON_NTS.json",
+      "story/DAY9/nts/DAY9_09_EVELYN_EVENING_NTS.json"
+    ],
+    "DAY9:lena:love": [
+      "story/DAY9/love/DAY9_03_LENA_LATE_MORNING_LOVE.json",
+      "story/DAY9/love/DAY9_10_LENA_EVENING_LOVE.json"
+    ],
+    "DAY9:lena:ntr": [
+      "story/DAY9/ntr/DAY9_03_LENA_LATE_MORNING_NTR.json",
+      "story/DAY9/ntr/DAY9_05_LENA_AFTERNOON_NTR.json",
+      "story/DAY9/ntr/DAY9_11_LENA_NIGHT_NTR.json"
+    ],
+    "DAY9:lena:nts": [
+      "story/DAY9/nts/DAY9_03_LENA_LATE_MORNING_NTS.json",
+      "story/DAY9/nts/DAY9_07_LENA_AFTERNOON_NTS.json",
+      "story/DAY9/nts/DAY9_12_LENA_NIGHT_NTS.json"
+    ],
+    "DAY16:lena:nts": [
+      "story/DAY16/nts/DAY16_00_LENA_MORNING_NTS.json",
+      "story/DAY16/nts/DAY16_01_LENA_AFTERNOON_NTS.json",
+      "story/DAY16/nts/DAY16_02_LENA_EVENING_NTS.json"
+    ],
+    "DAY17:lena:nts": [
+      "story/DAY17/nts/DAY17_00_LENA_MORNING_NTS.json",
+      "story/DAY17/nts/DAY17_01_LENA_AFTERNOON_NTS.json",
+      "story/DAY17/nts/DAY17_02_LENA_EVENING_NTS.json"
+    ],
+    "DAY18:lena:nts": [
+      "story/DAY18/nts/DAY18_00_LENA_MORNING_NTS.json",
+      "story/DAY18/nts/DAY18_01_LENA_AFTERNOON_NTS.json",
+      "story/DAY18/nts/DAY18_02_LENA_EVENING_NTS.json"
+    ],
+    "DAY19:lena:nts": [
+      "story/DAY19/nts/DAY19_00_LENA_MORNING_NTS.json",
+      "story/DAY19/nts/DAY19_01_LENA_EVENING_NTS.json",
+      "story/DAY19/nts/DAY19_02_LENA_NIGHT_NTS.json"
+    ],
+    "DAY20:lena:nts": [
+      "story/DAY20/nts/DAY20_00_LENA_MORNING_NTS.json",
+      "story/DAY20/nts/DAY20_01_LENA_EVENING_NTS.json"
+    ],
+    "DAY16:lena:ntr": [
+      "story/DAY16/ntr/DAY16_00_LENA_MORNING_NTR.json",
+      "story/DAY16/ntr/DAY16_01_LENA_AFTERNOON_NTR.json",
+      "story/DAY16/ntr/DAY16_02_LENA_EVENING_NTR.json"
+    ],
+    "DAY17:lena:ntr": [
+      "story/DAY17/ntr/DAY17_00_LENA_MORNING_NTR.json",
+      "story/DAY17/ntr/DAY17_01_LENA_EVENING_NTR.json",
+      "story/DAY17/ntr/DAY17_02_LENA_NIGHT_NTR.json"
+    ],
+    "DAY18:lena:ntr": [
+      "story/DAY18/ntr/DAY18_00_LENA_MORNING_NTR.json",
+      "story/DAY18/ntr/DAY18_01_LENA_AFTERNOON_NTR.json",
+      "story/DAY18/ntr/DAY18_02_LENA_EVENING_NTR.json"
+    ],
+    "DAY19:lena:ntr": [
+      "story/DAY19/ntr/DAY19_00_LENA_MORNING_NTR.json",
+      "story/DAY19/ntr/DAY19_01_LENA_AFTERNOON_NTR.json",
+      "story/DAY19/ntr/DAY19_02_LENA_EVENING_NTR.json"
+    ],
+    "DAY20:lena:ntr": [
+      "story/DAY20/ntr/DAY20_00_LENA_MORNING_NTR.json",
+      "story/DAY20/ntr/DAY20_01_LENA_EVENING_NTR.json"
+    ],
+    "DAY16:lena:love": [
+      "story/DAY16/love/DAY16_00_LENA_MORNING_LOVE.json",
+      "story/DAY16/love/DAY16_01_LENA_AFTERNOON_LOVE.json",
+      "story/DAY16/love/DAY16_02_LENA_EVENING_LOVE.json"
+    ],
+    "DAY17:lena:love": [
+      "story/DAY17/love/DAY17_00_LENA_MORNING_LOVE.json",
+      "story/DAY17/love/DAY17_01_LENA_AFTERNOON_LOVE.json",
+      "story/DAY17/love/DAY17_02_LENA_EVENING_LOVE.json"
+    ],
+    "DAY18:lena:love": [
+      "story/DAY18/love/DAY18_00_LENA_MORNING_LOVE.json",
+      "story/DAY18/love/DAY18_01_LENA_AFTERNOON_LOVE.json",
+      "story/DAY18/love/DAY18_02_LENA_EVENING_LOVE.json"
+    ],
+    "DAY19:lena:love": [
+      "story/DAY19/love/DAY19_00_LENA_MORNING_LOVE.json",
+      "story/DAY19/love/DAY19_01_LENA_AFTERNOON_LOVE.json",
+      "story/DAY19/love/DAY19_02_LENA_EVENING_LOVE.json"
+    ],
+    "DAY20:lena:love": [
+      "story/DAY20/love/DAY20_00_LENA_MORNING_LOVE.json",
+      "story/DAY20/love/DAY20_01_LENA_AFTERNOON_LOVE.json",
+      "story/DAY20/love/DAY20_02_LENA_LATE_AFTERNOON_LOVE.json",
+      "story/DAY20/love/DAY20_03_LENA_EVENING_LOVE.json"
+    ]
+  }
+}

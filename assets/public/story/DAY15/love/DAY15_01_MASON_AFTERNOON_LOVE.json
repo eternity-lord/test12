@@ -1,0 +1,41 @@
+{
+  "onceKey": "d15_04_mason_afternoon_love_v1",
+  "contactId": "mason",
+  "requireOnceKey": "d15_03_mason_morning_love_v1",
+  "onCompleteStartStory": "story/DAY15/love/DAY15_02_MASON_EVENING_LOVE.json",
+  "route": "love",
+  "routeLock": "route_mason_locked_v1:love",
+  "steps": [
+    {"type":"notify","delay":1200,"fromId":"mason","fromName":"{{name:mason}}","avatar":"assets/avatars/male_mason.jpg","text":"My boss just texted me","target":"conversation"},
+    {"type":"message","delay":850,"from":"mason","text":"I'm not working today"},
+    {"type":"message","delay":850,"from":"player","text":"And why would I care?"},
+    {"type":"message","delay":850,"from":"mason","text":"Because now you have more time to annoy me"},
+    {"type":"message","delay":850,"from":"player","text":"Lucky you"},
+    {"type":"if","condition":"choice:d14_mason_day15_activity_choice:pool","then":[
+      {"type":"image","from":"player","galleryOwnerId":"mason","image":"assets/pictures/Conversation/male_mason/mason_jump_fail.jpg"},
+      {"type":"message","delay":850,"from":"player","text":"By the way"},
+      {"type":"message","delay":850,"from":"player","text":"Turns out jump rope wasn't your only weakness"},
+      {"type":"message","delay":850,"from":"player","text":"You can't dive either"},
+      {"type":"message","delay":850,"from":"mason","text":"I can dive"},
+      {"type":"message","delay":850,"from":"mason","text":"I just chose not to look good doing it"}
+    ],"else":[
+      {"type":"image","from":"player","galleryOwnerId":"mason","image":"assets/pictures/Conversation/male_mason/mason_yoga.jpg"},
+      {"type":"message","delay":850,"from":"player","text":"By the way"},
+      {"type":"message","delay":850,"from":"player","text":"I've never seen someone so stiff"},
+      {"type":"message","delay":850,"from":"player","text":"Even with a cast, I think I did better"},
+      {"type":"message","delay":850,"from":"mason","text":"You barely moved"},
+      {"type":"message","delay":850,"from":"mason","text":"That's not flexibility, that's cheating"}
+    ]},
+    {"type":"message","delay":850,"from":"mason","text":"I'm finishing my food"},
+    {"type":"message","delay":850,"from":"mason","text":"Then we're settling this"},
+    {"type":"message","delay":850,"from":"player","text":"Good"},
+    {"type":"message","delay":850,"from":"player","text":"I'll wait for you on the game"},
+    {"type":"message","delay":850,"from":"mason","text":"I meant settling it by fighting"},
+    {"type":"message","delay":850,"from":"player","text":"You can't hit someone who's already injured"},
+    {"type":"message","delay":850,"from":"mason","text":"Fine"},
+    {"type":"message","delay":850,"from":"mason","text":"You're lucky"},
+    {"type":"message","delay":850,"from":"mason","text":"I'll kill you on the game instead"},
+    {"type":"message","delay":850,"from":"player","text":"Try not to cry when you lose"},
+    {"type":"start_story","goHome":true,"startStory":"story/DAY15/love/DAY15_02_MASON_EVENING_LOVE.json","startDelayMs":200}
+  ]
+}

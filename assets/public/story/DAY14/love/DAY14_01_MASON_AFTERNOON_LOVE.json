@@ -1,0 +1,43 @@
+{
+  "onceKey": "d14_05_mason_afternoon_love_v1",
+  "contactId": "mason",
+  "requireOnceKey": "d14_04_mason_morning_love_v1",
+  "route": "love",
+  "routeLock": "route_mason_locked_v1:love",
+  "steps": [
+    {"type":"message","delay":850,"from":"player","text":"Hey"},
+    {"type":"image","from":"player","galleryOwnerId":"mason","image":"assets/pictures/Conversation/male_mason/mason_squats.jpg"},
+    {"type":"message","delay":850,"from":"player","text":"I have to admit"},
+    {"type":"message","delay":850,"from":"player","text":"You were actually pretty impressive for once"},
+    {"type":"message","delay":850,"from":"mason","text":"I know"},
+    {"type":"message","delay":850,"from":"mason","text":"Try not to sound too surprised"},
+    {"type":"message","delay":850,"from":"player","text":"Don't let it get to your head"},
+    {"type":"message","delay":850,"from":"mason","text":"Too late"},
+    {"type":"message","delay":850,"from":"mason","text":"I finish work early today"},
+    {"type":"message","delay":850,"from":"mason","text":"If you've got a problem with me"},
+    {"type":"message","delay":850,"from":"mason","text":"We'll settle it on the game tonight"},
+    {"type":"message","delay":850,"from":"player","text":"Works for me"},
+    {"type":"message","delay":850,"from":"player","text":"By the way"},
+    {"type":"message","delay":850,"from":"player","text":"I was thinking about tomorrow"},
+    {"type":"message","delay":850,"from":"player","text":"Maybe we should train somewhere else"},
+    {"type":"message","delay":850,"from":"mason","text":"Why not"},
+    {"type":"choice","key":"d14_mason_day15_activity_choice","prompt":"What should we do tomorrow?","options":[{"id":"pool","text":"Let's go swimming","goto":"pool","points":{"love":1}},{"id":"yoga","text":"Let's try a yoga session","goto":"yoga","points":{"love":1}}]},
+    {"type":"label","name":"pool"},
+    {"type":"message","delay":850,"from":"mason","text":"Swimming sounds good"},
+    {"type":"message","delay":850,"from":"mason","text":"If you can with your cast"},
+    {"type":"message","delay":850,"from":"player","text":"It should work"},
+    {"type":"message","delay":850,"from":"player","text":"I've already seen people swimming with a cast"},
+    {"type":"goto","label":"end"},
+    {"type":"label","name":"yoga"},
+    {"type":"message","delay":850,"from":"mason","text":"Yoga?"},
+    {"type":"message","delay":850,"from":"mason","text":"We should ask {{name:evelyn}}"},
+    {"type":"message","delay":850,"from":"mason","text":"She's probably better than both of us"},
+    {"type":"goto","label":"end"},
+    {"type":"label","name":"end"},
+    {"type":"if","condition":"active_character:lena","then":[
+      {"type":"start_story","goHome":true,"startStory":"story/DAY14/DAY14_LENA_EVENING.json","startDelayMs":200}
+    ],"else":[
+      {"type":"start_story","goHome":true,"startStory":"story/DAY14/love/DAY14_02_MASON_EVENING_LOVE.json","startDelayMs":200}
+    ]}
+  ]
+}

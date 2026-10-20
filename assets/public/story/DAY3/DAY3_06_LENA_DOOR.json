@@ -1,0 +1,25 @@
+{
+  "onceKey": "d3_00_lena_door_v1",
+  "contactId": "lena",
+  "onCompleteStartStory": "story/DAY3/DAY3_07_EVELYN_AFTERNOON_LAUNDRY.json",
+  "steps": [
+    {"type":"notify","delay":1200,"fromId":"lena","fromName":"{{name:lena}}","avatar":"assets/avatars/lena.jpg","text":"I'm at your door","target":"conversation"},
+    {"type":"message","delay":900,"from":"player","text":"Who is it?"},
+    {"type":"message","delay":900,"from":"lena","text":"Me, of course!"},
+    {"type":"image","image":"assets/pictures/Conversation/lena_at_door.jpg"},
+    {"type":"message","delay":900,"from":"lena","text":"Your lovely girlfriend"},
+    {"type":"message","delay":900,"from":"player","text":"Already?"},
+    {"type":"message","delay":900,"from":"player","text":"Impossible"},
+    {"type":"message","delay":900,"from":"lena","text":"Of course it's possible"},
+    {"type":"message","delay":900,"from":"lena","text":"I'm really fast when I want something"},
+    {"type":"message","delay":900,"from":"lena","text":"And I want to see youuu"},
+    {"type":"message","delay":900,"from":"lena","text":"So open up"},
+    {"type":"message","delay":900,"from":"lena","text":"Or I'll climb through the window"},
+    {"type":"message","delay":900,"from":"player","text":"I'm coming"},
+    {"type":"message","delay":900,"from":"player","text":"Give me a second"},
+    {"type":"message","delay":900,"from":"player","text":"My leg is slow today 😅"},
+    {"type":"message","delay":900,"from":"lena","text":"Okay okay"},
+    {"type":"message","delay":900,"from":"lena","text":"I'll wait"},
+    {"type":"message","delay":900,"from":"lena","text":"And don't hurt yourself 😌"}
+  ]
+}

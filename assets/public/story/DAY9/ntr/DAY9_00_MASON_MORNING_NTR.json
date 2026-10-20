@@ -1,0 +1,75 @@
+{
+  "onceKey": "d9_00_mason_morning_ntr_v1",
+  "contactId": "mason",
+  "requireOnceKey": "d8_route_day9_mason_ntr_locked_v1",
+  "route": "ntr",
+  "routeLock": "route_mason_locked_v1:ntr",
+  "steps": [
+    {"type":"notify","delay":1200,"fromId":"mason","fromName":"{{name:mason}}","avatar":"assets/avatars/male_mason.jpg","text":"Hey","target":"conversation"},
+    {"type":"message","delay":900,"from":"mason","text":"Just letting you know I handled it myself"},
+    {"type":"message","delay":900,"from":"mason","text":"I'm going back to that gym on my own terms"},
+    {"type":"message","delay":900,"from":"player","text":"So you're good?"},
+    {"type":"message","delay":900,"from":"mason","text":"I'll be fine"},
+    {"type":"message","delay":900,"from":"mason","text":"If they start bothering me again, we can settle it outside 😒"},
+    {"type":"message","delay":900,"from":"player","text":"Yeah absolutely"},
+    {"type":"message","delay":900,"from":"player","text":"But you could also ask to have them kicked out of the gym"},
+    {"type":"message","delay":900,"from":"mason","text":"I can't"},
+    {"type":"message","delay":900,"from":"mason","text":"One of them owns the place"},
+    {"type":"message","delay":900,"from":"player","text":"Oh..."},
+    {"type":"message","delay":900,"from":"player","text":"Sorry again then"},
+    {"type":"message","delay":900,"from":"mason","text":"Don't worry"},
+    {"type":"message","delay":900,"from":"mason","text":"I'll be okay"},
+    {"type":"message","delay":900,"from":"mason","text":"Just watch me get huge 😏"},
+    {"type":"image","image":"assets/pictures/Conversation/male_mason/mason_gym_progress.jpg"},
+    {"type":"message","delay":900,"from":"player","text":"I will 🙂"},
+    {"type":"if","condition":"active_character:hailey","then":[
+      {"type":"if","condition":"route_hailey_locked_v1:love","then":[
+        {"type":"start_story","goHome":true,"startStory":"story/DAY9/DAY9_HAILEY_MORNING.json"}
+      ],"else":[
+        {"type":"if","condition":"route_hailey_locked_v1:nts","then":[
+          {"type":"start_story","goHome":true,"startStory":"story/DAY9/DAY9_HAILEY_MORNING.json"}
+        ],"else":[
+          {"type":"if","condition":"route_hailey_locked_v1:nts1","then":[
+            {"type":"start_story","goHome":true,"startStory":"story/DAY9/DAY9_HAILEY_MORNING.json"}
+          ],"else":[
+            {"type":"if","condition":"route_hailey_locked_v1:ntr","then":[
+              {"type":"start_story","goHome":true,"startStory":"story/DAY9/DAY9_HAILEY_MORNING.json"}
+            ],"else":[
+              {"type":"start_story","goHome":true,"startStory":"story/DAY9/DAY9_HAILEY_MORNING.json"}
+            ]}
+          ]}
+        ]}
+      ]}
+    ],"else":[
+      {"type":"if","condition":"active_character:evelyn","then":[
+        {"type":"if","condition":"route_evelyn_locked_v1:love","then":[
+          {"type":"start_story","goHome":true,"startStory":"story/DAY9/DAY9_EVELYN_MORNING.json"}
+        ],"else":[
+          {"type":"if","condition":"route_evelyn_locked_v1:nts","then":[
+            {"type":"start_story","goHome":true,"startStory":"story/DAY9/DAY9_EVELYN_MORNING.json"}
+          ],"else":[
+            {"type":"if","condition":"route_evelyn_locked_v1:ntr","then":[
+              {"type":"start_story","goHome":true,"startStory":"story/DAY9/DAY9_EVELYN_MORNING.json"}
+            ],"else":[
+              {"type":"start_story","goHome":true,"startStory":"story/DAY9/DAY9_EVELYN_MORNING.json"}
+            ]}
+          ]}
+        ]}
+      ],"else":[
+        {"type":"if","condition":"active_character:lena","then":[
+          {"type":"if","condition":"route_lena_locked_v1:nts","then":[
+            {"type":"start_story","goHome":true,"startStory":"story/DAY9/DAY9_LENA_LATE_MORNING.json"}
+          ],"else":[
+            {"type":"if","condition":"route_lena_locked_v1:ntr","then":[
+              {"type":"start_story","goHome":true,"startStory":"story/DAY9/DAY9_LENA_LATE_MORNING.json"}
+            ],"else":[
+              {"type":"start_story","goHome":true,"startStory":"story/DAY9/DAY9_LENA_LATE_MORNING.json"}
+            ]}
+          ]}
+        ],"else":[
+          {"type":"start_story","goHome":true,"startStory":"story/DAY9/ntr/DAY9_06_MASON_AFTERNOON_NTR.json","startDelayMs":200}
+        ]}
+      ]}
+    ]}
+  ]
+}

@@ -1,0 +1,57 @@
+{
+  "onceKey": "d13_00_hailey_morning_love_v1",
+  "contactId": "hailey",
+  "requireOnceKey": "d13_00_lena_morning_love_v1|d12_02_hailey_evening_love_v1",
+  "steps": [
+    {"type":"notify","delay":1200,"fromId":"hailey","fromName":"{{name:hailey}}","avatar":"assets/avatars/hailey.jpg","text":"My head hurts 😭","target":"conversation"},
+    {"type":"message","delay":850,"from":"hailey","text":"I think studying is killing me"},
+    {"type":"message","delay":850,"from":"hailey","text":"My brain is swollen"},
+    {"type":"message","delay":900,"from":"player","text":"That would explain a lot"},
+    {"type":"message","delay":850,"from":"hailey","text":"WOW"},
+    {"type":"message","delay":850,"from":"hailey","text":"No sympathy at all 😔"},
+    {"type":"message","delay":900,"from":"player","text":"Drink water and survive"},
+    {"type":"message","delay":850,"from":"hailey","text":"Bossy nurse energy"},
+    {"type":"message","delay":850,"from":"hailey","text":"I still have a huge morning too 😭"},
+    {"type":"message","delay":850,"from":"hailey","text":"But my afternoon is free"},
+    {"type":"message","delay":850,"from":"hailey","text":"So I will probably go shopping after class 😌"},
+    {"type":"message","delay":900,"from":"player","text":"No you will not"},
+    {"type":"message","delay":850,"from":"hailey","text":"Excuse me?"},
+    {"type":"message","delay":900,"from":"player","text":"Revision afternoon"},
+    {"type":"message","delay":850,"from":"hailey","text":"Please?"},
+    {"type":"message","delay":850,"from":"hailey","text":"Pleaaaase 😭"},
+    {"type":"message","delay":850,"from":"hailey","text":"Just a little shopping"},
+    {"type":"message","delay":900,"from":"player","text":"No"},
+    {"type":"message","delay":850,"from":"hailey","text":"You are evil"},
+    {"type":"image","delay":900,"from":"hailey","image":"assets/pictures/Conversation/hailey_begging.jpg"},
+    {"type":"message","delay":850,"from":"hailey","text":"Look at this face"},
+    {"type":"message","delay":850,"from":"hailey","text":"How can you say no to this 😔"},
+    {"type":"message","delay":900,"from":"player","text":"Very easily"},
+    {"type":"message","delay":850,"from":"hailey","text":"Monster"},
+    {"type":"message","delay":850,"from":"hailey","text":"Fine"},
+    {"type":"message","delay":850,"from":"hailey","text":"But I can reward you if you let me go 😇"},
+    {"type":"message","delay":900,"from":"player","text":"Reward me how?"},
+    {"type":"message","delay":850,"from":"hailey","text":"You will see 💅"},
+    {"type":"message","delay":850,"from":"hailey","text":"Maybe I can be very convincing when I want to"},
+    {"type":"message","delay":900,"from":"player","text":"Alright"},
+    {"type":"message","delay":900,"from":"player","text":"But it better be worth it"},
+    {"type":"message","delay":850,"from":"hailey","text":"Deal 😌"},
+    {"type":"message","delay":850,"from":"hailey","text":"Now let me survive this horrible morning first 😭"},
+    {"type":"if","condition":"active_character:evelyn","then":[
+      {"type":"if","condition":"route_evelyn_locked_v1:love","then":[
+        {"type":"start_story","goHome":true,"startStory":"story/DAY13/DAY13_EVELYN_MORNING.json"}
+      ],"else":[
+        {"type":"if","condition":"route_evelyn_locked_v1:nts","then":[
+          {"type":"start_story","goHome":true,"startStory":"story/DAY13/DAY13_EVELYN_MORNING.json"}
+        ],"else":[
+          {"type":"if","condition":"route_evelyn_locked_v1:ntr","then":[
+            {"type":"start_story","goHome":true,"startStory":"story/DAY13/DAY13_EVELYN_MORNING.json"}
+          ],"else":[
+            {"type":"start_story","goHome":true,"startStory":"story/DAY13/DAY13_EVELYN_MORNING.json"}
+          ]}
+        ]}
+      ]}
+    ],"else":[
+      {"type":"start_story","goHome":true,"startStory":"story/DAY13/DAY13_LENA_AFTERNOON.json"}
+    ]}
+  ]
+}

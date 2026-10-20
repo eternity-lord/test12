@@ -1,0 +1,35 @@
+{
+  "onceKey": "d10_02_lena_evening_ntr_v1",
+  "contactId": "lena",
+  "requireOnceKey": "d10_01_lena_afternoon_ntr_v1",
+  "steps": [
+    {"type":"notify","delay":1500,"fromId":"lena","fromName":"{{name:lena}}","avatar":"assets/avatars/lena.jpg","text":"Still awake 😴","target":"conversation"},
+    {"type":"message","delay":900,"from":"lena","text":"I told myself I would sleep early tonight"},
+    {"type":"message","delay":900,"from":"player","text":"And yet here you are"},
+    {"type":"message","delay":900,"from":"lena","text":"Yeah"},
+    {"type":"message","delay":900,"from":"lena","text":"I guess I have no discipline 😌"},
+    {"type":"message","delay":900,"from":"player","text":"At least you're honest"},
+    {"type":"message","delay":900,"from":"lena","text":"With you, yeah"},
+    {"type":"message","delay":900,"from":"player","text":"How was the rest of your day?"},
+    {"type":"message","delay":900,"from":"lena","text":"Pretty calm"},
+    {"type":"message","delay":900,"from":"lena","text":"I cooked something simple"},
+    {"type":"message","delay":900,"from":"lena","text":"Tried to watch a movie"},
+    {"type":"message","delay":900,"from":"lena","text":"Didn't finish it 😅"},
+    {"type":"message","delay":900,"from":"player","text":"Sounds like a successful rest day"},
+    {"type":"message","delay":900,"from":"lena","text":"I guess it was"},
+    {"type":"message","delay":900,"from":"lena","text":"I needed something quiet"},
+    {"type":"message","delay":900,"from":"player","text":"You sound better"},
+    {"type":"message","delay":900,"from":"lena","text":"Maybe a little 🙂"},
+    {"type":"message","delay":900,"from":"lena","text":"Just tired now"},
+    {"type":"message","delay":900,"from":"player","text":"You should sleep"},
+    {"type":"message","delay":900,"from":"lena","text":"Yeah"},
+    {"type":"message","delay":900,"from":"lena","text":"I'm going to bed"},
+    {"type":"message","delay":900,"from":"lena","text":"Good night 😌"},
+    {"type":"message","delay":900,"from":"player","text":"Good night"},
+    {"type":"if","condition":"active_character:hailey","then":[
+      {"type":"time_card","text":"DAY 11","goHome":true,"startStory":"story/DAY10/ntr/DAY10_02_HAILEY_EVENING_NTR.json","startDelayMs":200}
+    ],"else":[
+      {"type":"time_card","text":"DAY 11","goHome":true,"startStory":"story/DAY11/DAY11_00_AIDEN_SHARED.json","startDelayMs":200}
+    ]}
+  ]
+}

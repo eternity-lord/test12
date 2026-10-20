@@ -1,0 +1,24 @@
+{
+  "onceKey": "d3_07_mason_evelyn_food_leg_v1",
+  "contactId": "mason",
+  "requireOnceKey": "d3_03_mason_hailey_check_v1",
+  "onCompleteStartStory": "story/DAY3/DAY3_11_EVELYN_NIGHT_OUTFIT_HELP.json",
+  "steps": [
+    {"type":"notify","delay":1200,"fromId":"mason","fromName":"{{name:mason}}","avatar":"assets/avatars/male_mason.jpg","text":"Dinner's ready 🍽️","target":"conversation"},
+    {"type":"image","image":"assets/pictures/Conversation/male_mason/mason_plate.jpg"},
+    {"type":"message","delay":900,"from":"mason","text":"Want a plate upstairs?"},
+    {"type":"message","delay":900,"from":"mason","text":"{{name:evelyn}} told me to ask"},
+    {"type":"message","delay":900,"from":"mason","text":"I'm just the messenger"},
+    {"type":"choice","key":"d3_mason_food_leg_choice_v1","prompt":"","options":[{"id":"bring_it","text":"Bring it up please","goto":"bring_it"},{"id":"coming_down","text":"I'll come down","goto":"coming_down"}]},
+    {"type":"label","name":"bring_it"},
+    {"type":"message","delay":900,"from":"mason","text":"Seriously? 🙄"},
+    {"type":"message","delay":900,"from":"mason","text":"Fine"},
+    {"type":"message","delay":900,"from":"mason","text":"Give me a minute"},
+    {"type":"goto","label":"end"},
+    {"type":"label","name":"coming_down"},
+    {"type":"message","delay":900,"from":"mason","text":"Good"},
+    {"type":"message","delay":900,"from":"mason","text":"Move carefully so {{name:evelyn}} stops worrying"},
+    {"type":"message","delay":900,"from":"player","text":"I will"},
+    {"type":"label","name":"end"}
+  ]
+}

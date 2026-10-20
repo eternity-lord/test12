@@ -1,0 +1,54 @@
+{
+  "onceKey": "d9_01_hailey_morning_ntr_v1",
+  "contactId": "hailey",
+  "requireOnceKey": "d8_route_day9_hailey_ntr_locked_v1",
+  "steps": [
+    {"type":"notify","delay":1200,"fromId":"hailey","fromName":"{{name:hailey}}","avatar":"assets/avatars/hailey.jpg","text":"Wake up 😭","target":"conversation"},
+    {"type":"message","delay":850,"from":"hailey","text":"Tiny academic crisis"},
+    {"type":"message","delay":850,"from":"hailey","text":"Actually medium academic crisis"},
+    {"type":"message","delay":850,"from":"hailey","text":"The assignment is still ugly"},
+    {"type":"message","delay":900,"from":"player","text":"Send it later and I will look"},
+    {"type":"message","delay":850,"from":"hailey","text":"That was the plan"},
+    {"type":"message","delay":850,"from":"hailey","text":"But school already answered about the private lessons"},
+    {"type":"message","delay":850,"from":"hailey","text":"They want me with my main professor"},
+    {"type":"message","delay":850,"from":"hailey","text":"Starting tomoroww 😭"},
+    {"type":"message","delay":900,"from":"player","text":"Already?"},
+    {"type":"message","delay":850,"from":"hailey","text":"Yeah"},
+    {"type":"message","delay":850,"from":"hailey","text":"He said I can stay after class and he will go through the assignment with me"},
+    {"type":"message","delay":850,"from":"hailey","text":"Like a real emergency student 😭"},
+    {"type":"message","delay":900,"from":"player","text":"That is probably the fastest way to make you learn"},
+    {"type":"message","delay":850,"from":"hailey","text":"I know"},
+    {"type":"message","delay":850,"from":"hailey","text":"That is the annoying part"},
+    {"type":"message","delay":850,"from":"hailey","text":"He sounded calm about it"},
+    {"type":"message","delay":850,"from":"hailey","text":"Like I am not doomed, just badly organized"},
+    {"type":"message","delay":900,"from":"player","text":"That sounds accurate 😇"},
+    {"type":"message","delay":850,"from":"hailey","text":"Rude but accurate 😌"},
+    {"type":"message","delay":850,"from":"hailey","text":"Also party tonight"},
+    {"type":"message","delay":850,"from":"hailey","text":"Your outfit choice is still under investigation"},
+    {"type":"message","delay":900,"from":"player","text":"Even with professor rescue mode?"},
+    {"type":"message","delay":850,"from":"hailey","text":"Especially with professor rescue mode"},
+    {"type":"message","delay":850,"from":"hailey","text":"If I have to suffer academically, I deserve to look amazing later"},
+    {"type":"message","delay":850,"from":"hailey","text":"I will update you after his help session 😇"},
+    {"type":"if","condition":"active_character:evelyn","then":[
+      {"type":"if","condition":"route_evelyn_locked_v1:love","then":[
+        {"type":"start_story","goHome":true,"startStory":"story/DAY9/DAY9_EVELYN_MORNING.json"}
+      ],"else":[
+        {"type":"if","condition":"route_evelyn_locked_v1:nts","then":[
+          {"type":"start_story","goHome":true,"startStory":"story/DAY9/DAY9_EVELYN_MORNING.json"}
+        ],"else":[
+          {"type":"if","condition":"route_evelyn_locked_v1:ntr","then":[
+            {"type":"start_story","goHome":true,"startStory":"story/DAY9/DAY9_EVELYN_MORNING.json"}
+          ],"else":[
+            {"type":"start_story","goHome":true,"startStory":"story/DAY9/DAY9_EVELYN_MORNING.json"}
+          ]}
+        ]}
+      ]}
+    ],"else":[
+      {"type":"if","condition":"active_character:lena","then":[
+        {"type":"start_story","goHome":true,"startStory":"story/DAY9/DAY9_LENA_LATE_MORNING.json"}
+      ],"else":[
+        {"type":"start_story","goHome":true,"startStory":"story/DAY9/ntr/DAY9_04_HAILEY_AFTERNOON_NTR.json"}
+      ]}
+    ]}
+  ]
+}

@@ -1,0 +1,48 @@
+{
+  "onceKey": "d9_04_hailey_afternoon_ntr_v1",
+  "contactId": "hailey",
+  "requireOnceKey": "d9_00_lena_late_morning_ntr_v1|d9_01_hailey_morning_ntr_v1",
+  "steps": [
+    {"type":"notify","delay":1200,"fromId":"hailey","fromName":"{{name:hailey}}","avatar":"assets/avatars/hailey.jpg","text":"Your personnal maid is here !","target":"conversation"},
+    {"type":"message","delay":900,"from":"player","text":"Finally ! I always had hope in you"},
+    {"type":"message","delay":850,"from":"hailey","text":"Asshole"},
+    {"type":"message","delay":850,"from":"hailey","text":"{{name:evelyn}} decided today is apparently war against dust"},
+    {"type":"message","delay":900,"from":"player","text":"Sounds serious"},
+    {"type":"message","delay":850,"from":"hailey","text":"It is"},
+    {"type":"message","delay":850,"from":"hailey","text":"We are doing a huge cleaning session"},
+    {"type":"message","delay":850,"from":"hailey","text":"Drawers"},
+    {"type":"message","delay":850,"from":"hailey","text":"Closet"},
+    {"type":"message","delay":850,"from":"hailey","text":"Desk"},
+    {"type":"message","delay":850,"from":"hailey","text":"Everything"},
+    {"type":"message","delay":900,"from":"player","text":"Your room finally lost the fight"},
+    {"type":"message","delay":850,"from":"hailey","text":"Excuse you"},
+    {"type":"message","delay":850,"from":"hailey","text":"My room is not messy"},
+    {"type":"message","delay":850,"from":"hailey","text":"It is creatively organized"},
+    {"type":"message","delay":900,"from":"player","text":"Show me the damage"},
+    {"type":"message","delay":850,"from":"hailey","text":"Fine"},
+    {"type":"message","delay":850,"from":"hailey","text":"But no judging 😤"},
+    {"type":"image","delay":900,"from":"hailey","image":"assets/pictures/Conversation/hailey_room_clean.jpg"},
+    {"type":"message","delay":850,"from":"hailey","text":"Historic suffering"},
+    {"type":"message","delay":900,"from":"player","text":"You look like you are supervising more than cleaning"},
+    {"type":"message","delay":850,"from":"hailey","text":"That is leadership"},
+    {"type":"message","delay":850,"from":"hailey","text":"You would not understand"},
+    {"type":"message","delay":900,"from":"player","text":"Hurry up and clean your room"},
+    {"type":"message","delay":850,"from":"hailey","text":"Say that again and I am putting you in the donation bag"},
+    {"type":"message","delay":900,"from":"player","text":"Threatening me now?😤"},
+    {"type":"message","delay":850,"from":"hailey","text":"Lovingly"},
+    {"type":"message","delay":850,"from":"hailey","text":"With violence 😌"},
+    {"type":"message","delay":900,"from":"player","text":"Good luck then, little maid"},
+    {"type":"message","delay":850,"from":"hailey","text":"Thank you very much"},
+    {"type":"message","delay":850,"from":"hailey","text":"I will need it"},
+    {"type":"message","delay":850,"from":"hailey","text":"{{name:evelyn}} found a box under my bed and gave me the mother look"},
+    {"type":"message","delay":900,"from":"player","text":"What was in it?"},
+    {"type":"message","delay":850,"from":"hailey","text":"Not answering that"},
+    {"type":"message","delay":850,"from":"hailey","text":"My lawyer said I should stay silent"},
+    {"type":"message","delay":850,"from":"hailey","text":"Now I need to go before she finds more evidence 😭"},
+    {"type":"if","condition":"active_character:lena","then":[
+      {"type":"start_story","goHome":true,"startStory":"story/DAY9/DAY9_LENA_AFTERNOON.json","startDelayMs":200}
+    ],"else":[
+      {"type":"start_story","goHome":true,"startStory":"story/DAY9/ntr/DAY9_10_HAILEY_EVENING_NTR.json","startDelayMs":200}
+    ]}
+  ]
+}

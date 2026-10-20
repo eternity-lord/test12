@@ -1,0 +1,77 @@
+{
+  "onceKey": "d15_02_hailey_evening_love_v1",
+  "contactId": "hailey",
+  "requireOnceKey": "d15_01_lena_afternoon_love_v1|d15_01_hailey_afternoon_love_v1",
+  "steps": [
+    {"type":"notify","delay":1200,"fromId":"hailey","fromName":"{{name:hailey}}","avatar":"assets/avatars/hailey.jpg","text":"I'm back","target":"conversation"},
+    {"type":"message","delay":900,"from":"hailey","text":"And I am happy with this week"},
+    {"type":"message","delay":900,"from":"hailey","text":"Even with all the revision torture"},
+    {"type":"message","delay":900,"from":"player","text":"Torture?"},
+    {"type":"message","delay":900,"from":"hailey","text":"Academic torture 😭"},
+    {"type":"message","delay":900,"from":"hailey","text":"Very legal apparently"},
+    {"type":"message","delay":900,"from":"player","text":"It worked though"},
+    {"type":"message","delay":900,"from":"hailey","text":"It did"},
+    {"type":"message","delay":900,"from":"hailey","text":"Annoyingly"},
+    {"type":"message","delay":900,"from":"hailey","text":"And I kind of liked spending that time with you"},
+    {"type":"message","delay":900,"from":"player","text":"Kind of?"},
+    {"type":"message","delay":900,"from":"hailey","text":"Do not get greedy 😌"},
+    {"type":"message","delay":900,"from":"hailey","text":"I already gave you emotional honesty"},
+    {"type":"message","delay":900,"from":"hailey","text":"That is expensive"},
+    {"type":"message","delay":900,"from":"player","text":"I will treasure it"},
+    {"type":"message","delay":900,"from":"hailey","text":"You better"},
+    {"type":"message","delay":900,"from":"hailey","text":"But I still have one surprise for you"},
+    {"type":"message","delay":900,"from":"player","text":"What kind of surprise?"},
+    {"type":"message","delay":900,"from":"hailey","text":"I bought a few extra little things while shopping"},
+    {"type":"message","delay":900,"from":"hailey","text":"Strictly for scientific outfit research 💅"},
+    {"type":"message","delay":900,"from":"player","text":"Scientific?"},
+    {"type":"message","delay":900,"from":"hailey","text":"Very serious science"},
+    {"type":"message","delay":900,"from":"hailey","text":"Choose a color"},
+    {"type":"choice","key":"d15_02_hailey_color_surprise_choice_v1","options":[{"id":"black","text":"Black","goto":"d15_surprise_black"},{"id":"white","text":"White","goto":"d15_surprise_white"},{"id":"red","text":"Red","goto":"d15_surprise_red"}]},
+    {"type":"label","id":"d15_surprise_black"},
+    {"type":"if","condition":"any:active_character:hailey,!active_character:hailey","then":[
+      {"type":"image","delay":900,"from":"hailey","image":"assets/pictures/Conversation/hailey_surprise_black.jpg"},
+      {"type":"note","delay":900,"text":"So that was the surprise. She looks far too pleased with herself.","presentation":"player_thought","speaker":"player"}
+    ]},
+    {"type":"goto","label":"d15_surprise_after"},
+    {"type":"label","id":"d15_surprise_white"},
+    {"type":"if","condition":"any:active_character:hailey,!active_character:hailey","then":[
+      {"type":"image","delay":900,"from":"hailey","image":"assets/pictures/Conversation/hailey_surprise_white.jpg"},
+      {"type":"note","delay":900,"text":"So that was the surprise. She looks far too pleased with herself.","presentation":"player_thought","speaker":"player"}
+    ]},
+    {"type":"goto","label":"d15_surprise_after"},
+    {"type":"label","id":"d15_surprise_red"},
+    {"type":"if","condition":"any:active_character:hailey,!active_character:hailey","then":[
+      {"type":"image","delay":900,"from":"hailey","image":"assets/pictures/Conversation/hailey_surprise_red.jpg"},
+      {"type":"note","delay":900,"text":"So that was the surprise. She looks far too pleased with herself.","presentation":"player_thought","speaker":"player"}
+    ]},
+    {"type":"goto","label":"d15_surprise_after"},
+    {"type":"label","id":"d15_surprise_after"},
+    {"type":"message","delay":900,"from":"player","text":"Wow"},
+    {"type":"message","delay":900,"from":"hailey","text":"Well?"},
+    {"type":"message","delay":900,"from":"hailey","text":"Can't speak anymore ?"},
+    {"type":"message","delay":900,"from":"player","text":"I was not expecting that"},
+    {"type":"message","delay":900,"from":"hailey","text":"Good 😇"},
+    {"type":"message","delay":900,"from":"hailey","text":"That means the surprise worked"},
+    {"type":"message","delay":900,"from":"player","text":"Thank you very much"},
+    {"type":"message","delay":900,"from":"player","text":"Now I want to see every color"},
+    {"type":"message","delay":900,"from":"hailey","text":"Pervert 😭"},
+    {"type":"message","delay":900,"from":"hailey","text":"One color and suddenly you want the whole collection"},
+    {"type":"message","delay":900,"from":"player","text":"I am just being thorough"},
+    {"type":"message","delay":900,"from":"hailey","text":"Sure"},
+    {"type":"message","delay":900,"from":"hailey","text":"Very academic of you 💅"},
+    {"type":"message","delay":900,"from":"hailey","text":"Maybe soon"},
+    {"type":"message","delay":900,"from":"hailey","text":"If you are nice"},
+    {"type":"message","delay":900,"from":"player","text":"I will certainly be nice"},
+    {"type":"message","delay":900,"from":"hailey","text":"Dangerous claim"},
+    {"type":"message","delay":900,"from":"hailey","text":"Have a good night, professor 🤍"},
+    {"type":"if","condition":"all:!d15_cast_removal_summary_seen_v1,!active_character:evelyn","then":[
+      {"type":"note","delay":1200,"text":"DAY 15 — After examining your leg, the doctor removed your cast. You can move more freely now, but your leg still needs rest."},
+      {"type":"set_flag","key":"d15_cast_removal_summary_seen_v1","value":true}
+    ]},
+    {"type":"if","condition":"active_character:evelyn","then":[
+      {"type":"start_story","goHome":true,"startStory":"story/DAY15/DAY15_02_EVELYN_EVENING.json"}
+    ],"else":[
+      {"type":"time_card","text":"DAY 16","day":16,"goHome":true,"startStory":"story/DAY16/love/DAY16_00_HAILEY_MORNING_LOVE.json","contactId":"hailey","startDelayMs":200}
+    ]}
+  ]
+}

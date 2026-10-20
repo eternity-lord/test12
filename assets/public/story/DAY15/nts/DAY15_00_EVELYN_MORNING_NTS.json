@@ -1,0 +1,31 @@
+{
+  "onceKey": "d15_00_evelyn_morning_nts_v1",
+  "contactId": "evelyn",
+  "requireOnceKey": "d14_02_evelyn_evening_nts_v1",
+  "onCompleteStartStory": "story/DAY15/nts/DAY15_01_EVELYN_AFTERNOON_NTS.json",
+  "steps": [
+    {"type":"notify","delay":1200,"fromId":"evelyn","fromName":"{{name:evelyn}}","avatar":"assets/avatars/evelyn.jpg","text":"Hey, how are you feeling this morning?😊","target":"conversation"},
+    {"type":"message","delay":850,"from":"evelyn","text":"Did you sleep well?"},
+    {"type":"message","delay":850,"from":"player","text":"I did, what about you?"},
+    {"type":"message","delay":850,"from":"evelyn","text":"I slept alright too"},
+    {"type":"message","delay":850,"from":"evelyn","text":"You have your doctor's appointment today, right?"},
+    {"type":"message","delay":850,"from":"evelyn","text":"To see if they can remove the cast"},
+    {"type":"message","delay":850,"from":"player","text":"Yeah, I didn't forget"},
+    {"type":"message","delay":850,"from":"evelyn","text":"Do you want me to stay with you today?"},
+    {"type":"message","delay":850,"from":"evelyn","text":"I can cancel everything if you need me"},
+    {"type":"message","delay":850,"from":"player","text":"No, it's okay"},
+    {"type":"message","delay":850,"from":"player","text":"I'll be fine"},
+    {"type":"message","delay":850,"from":"player","text":"We can do one last client today if you want"},
+    {"type":"message","delay":850,"from":"player","text":"And after that, we take the weekend to rest together"},
+    {"type":"message","delay":850,"from":"evelyn","text":"That sounds good to me"},
+    {"type":"message","delay":850,"from":"evelyn","text":"Thank you for managing everything"},
+    {"type":"message","delay":850,"from":"player","text":"It's teamwork"},
+    {"type":"message","delay":850,"from":"evelyn","text":"You're right 😊"},
+    {"type":"message","delay":850,"from":"evelyn","text":"Then keep me updated when you find the client"},
+    {"type":"message","delay":850,"from":"evelyn","text":"And how things go with the doctor"},
+    {"type":"message","delay":850,"from":"player","text":"I will"},
+    {"type":"start_story","goHome":true,"startStory":"story/DAY15/nts/DAY15_01_EVELYN_AFTERNOON_NTS.json"}
+  ],
+  "route": "nts",
+  "routeLock": "route_evelyn_locked_v1:nts"
+}

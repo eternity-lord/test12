@@ -1,0 +1,46 @@
+{
+  "onceKey": "d10_05_mason_evening_love_v1",
+  "contactId": "mason",
+  "requireOnceKey": "d10_04_mason_afternoon_love_v1",
+  "route": "love",
+  "routeLock": "route_mason_locked_v1:love",
+  "steps": [
+    {"type":"notify","delay":1200,"fromId":"mason","fromName":"{{name:mason}}","avatar":"assets/avatars/male_mason.jpg","text":"Done with my shower","target":"conversation"},
+    {"type":"message","delay":850,"from":"mason","text":"Everything's ready"},
+    {"type":"image","from":"mason","image":"assets/pictures/Conversation/male_mason/mason_playing_room.jpg"},
+    {"type":"message","delay":850,"from":"mason","text":"I'm waiting in my room"},
+    {"type":"message","delay":850,"from":"mason","text":"Get over here"},
+    {"type":"message","delay":850,"from":"player","text":"On my way"},
+    {"type":"message","delay":850,"from":"player","text":"Hope you're ready to lose"},
+    {"type":"message","delay":850,"from":"mason","text":"I admire your optimism"},
+    {"type":"message","delay":850,"from":"player","text":"Keep talking"},
+    {"type":"message","delay":850,"from":"mason","text":"I'll let the scoreboard do the talking"},
+    {"type":"note","text":"2 HOURS LATER"},
+    {"type":"message","delay":850,"from":"player","text":"That game was actually really fun"},
+    {"type":"message","delay":850,"from":"player","text":"It's a shame you're so bad at it 😂"},
+    {"type":"message","delay":850,"from":"mason","text":"Enjoy it while you can"},
+    {"type":"message","delay":850,"from":"mason","text":"Tomorrow I'm getting my revenge"},
+    {"type":"message","delay":850,"from":"player","text":"Sure you are 😏"},
+    {"type":"message","delay":850,"from":"mason","text":"How's your body feeling?"},
+    {"type":"message","delay":850,"from":"mason","text":"Mine's already starting to hurt"},
+    {"type":"message","delay":850,"from":"player","text":"Same here"},
+    {"type":"message","delay":850,"from":"player","text":"I think we'll be sore tomorrow"},
+    {"type":"message","delay":850,"from":"mason","text":"Probably"},
+    {"type":"message","delay":850,"from":"mason","text":"It should pass"},
+    {"type":"message","delay":850,"from":"player","text":"See you tomorrow"},
+    {"type":"message","delay":850,"from":"mason","text":"Don't oversleep"},
+    {"type":"if","condition":"active_character:lena","then":[
+      {"type":"start_story","goHome":true,"startStory":"story/DAY10/DAY10_LENA_MORNING.json","startDelayMs":200}
+    ],"else":[
+      {"type":"if","condition":"active_character:hailey","then":[
+        {"type":"start_story","goHome":true,"startStory":"story/DAY10/DAY10_HAILEY_MORNING.json","startDelayMs":200}
+      ],"else":[
+        {"type":"if","condition":"active_character:evelyn","then":[
+          {"type":"start_story","goHome":true,"startStory":"story/DAY10/DAY10_EVELYN_MORNING.json","startDelayMs":200}
+        ],"else":[
+          {"type":"time_card","text":"DAY 11","goHome":true,"startStory":"story/DAY11/love/DAY11_00_MASON_MORNING_LOVE.json","startDelayMs":200}
+        ]}
+      ]}
+    ]}
+  ]
+}

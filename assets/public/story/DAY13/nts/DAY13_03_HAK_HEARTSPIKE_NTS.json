@@ -1,0 +1,18 @@
+{
+  "onceKey": "d13_03_hak_heartspike_nts_v1",
+  "contactId": "lena",
+  "requireOnceKey": "d13_02_lena_after_visit_nts_v1",
+  "steps": [
+    {"type":"hak_overlay","title":"HAK//NOTICE","messages":["Repeated cardiac anomalies detected during today's private interactions","Running emotional trace reconstruction...","Signal spikes isolated","Relevant moments have been archived into HAK Evidence",{"kind":"thought","speaker":"player","text":"Those little moments leave me curious, and a little less sure that this will feel simple."}]},
+    {"type":"hak_add_evidence","kind":"nts","route":"nts","profileId":"lena","profile":{"name":"Lena","avatar":"assets/avatars/lena.jpg","kind":"nts","route":"nts"},"evidences":[{"id":"lena_nts_evidence_1","kind":"nts","route":"nts","src":"assets/pictures/evidence/lena_1.jpg","url":"assets/pictures/evidence/lena_1.jpg","type":"image","characterId":"lena","contactId":"lena","label":"Heartspike evidence 1","title":"Heartspike evidence 1"},{"id":"lena_nts_evidence_2","kind":"nts","route":"nts","src":"assets/pictures/evidence/lena_2.jpg","url":"assets/pictures/evidence/lena_2.jpg","type":"image","characterId":"lena","contactId":"lena","label":"Heartspike evidence 2","title":"Heartspike evidence 2"},{"id":"lena_nts_evidence_3","kind":"nts","route":"nts","src":"assets/pictures/evidence/lena_3.mp4","url":"assets/pictures/evidence/lena_3.mp4","type":"video","characterId":"lena","contactId":"lena","label":"Heartspike evidence 3","title":"Heartspike evidence 3"}],"notifyTitle":"HAK","notifyText":"3 new evidences received","target":"hak"},
+    {"type":"if","condition":"all:active_character:evelyn|!once:d13_00_evelyn_morning_nts_v1","then":[
+      {"type":"time_card","text":"DAY 14","goHome":true,"startStory":"story/DAY14/DAY14_00_AIDEN_SHARED.json","startDelayMs":200}
+    ],"else":[
+      {"type":"if","condition":"active_character:mason","then":[
+        {"type":"time_card","text":"DAY 14","goHome":true,"startStory":"story/DAY14/nts/DAY14_00_MASON_MORNING_NTS.json","startDelayMs":200}
+      ],"else":[
+        {"type":"time_card","text":"DAY 14","goHome":true,"startStory":"story/DAY14/DAY14_00_AIDEN_SHARED.json","startDelayMs":200}
+      ],"__masonNextDayPatched":true}
+    ]}
+  ]
+}

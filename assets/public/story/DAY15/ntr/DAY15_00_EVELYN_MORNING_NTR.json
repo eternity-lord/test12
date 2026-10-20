@@ -1,0 +1,24 @@
+{
+  "onceKey": "d15_00_evelyn_morning_ntr_v1",
+  "contactId": "evelyn",
+  "requireOnceKey": "d14_02_evelyn_evening_ntr_v1",
+  "onCompleteStartStory": "story/DAY15/ntr/DAY15_01_EVELYN_AFTERNOON_NTR.json",
+  "steps": [
+    {"type":"notify","delay":1200,"fromId":"evelyn","fromName":"{{name:evelyn}}","avatar":"assets/avatars/evelyn.jpg","text":"Hey 😊","target":"conversation"},
+    {"type":"image","delay":1200,"image":"assets/pictures/Conversation/evelyn_proud_morning.jpg"},
+    {"type":"message","delay":850,"from":"evelyn","text":"Look at me being responsible 😌"},
+    {"type":"message","delay":850,"from":"evelyn","text":"I woke up before you today"},
+    {"type":"message","delay":850,"from":"evelyn","text":"And I made breakfast this time"},
+    {"type":"message","delay":850,"from":"evelyn","text":"I'll be waiting downstairs when you wake up"},
+    {"type":"note","delay":1200,"text":"A LITTLE LATER"},
+    {"type":"message","delay":850,"from":"player","text":"I'm impressed"},
+    {"type":"message","delay":850,"from":"player","text":"I honestly didn't think you'd beat me to it"},
+    {"type":"message","delay":850,"from":"evelyn","text":"See?"},
+    {"type":"message","delay":850,"from":"evelyn","text":"I told you I'd wake up earlier today 😄"},
+    {"type":"message","delay":850,"from":"player","text":"Alright, you win"},
+    {"type":"message","delay":850,"from":"player","text":"I'm coming downstairs"},
+    {"type":"start_story","goHome":true,"startStory":"story/DAY15/ntr/DAY15_01_EVELYN_AFTERNOON_NTR.json"}
+  ],
+  "route": "ntr",
+  "routeLock": "route_evelyn_locked_v1:ntr"
+}

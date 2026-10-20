@@ -1,0 +1,32 @@
+{
+  "onceKey": "d11_01_hailey_afternoon_ntr_v1",
+  "contactId": "hailey",
+  "requireOnceKey": "d11_00_hailey_morning_ntr_v1",
+  "onCompleteStartStory": "story/DAY11/DAY11_LENA_EVENING.json",
+  "steps": [
+    {"type":"notify","delay":1200,"fromId":"hailey","fromName":"{{name:hailey}}","avatar":"assets/avatars/hailey.jpg","text":"Class survived mostly 😭","target":"conversation"},
+    {"type":"message","delay":850,"from":"hailey","text":"Mostly"},
+    {"type":"message","delay":850,"from":"hailey","text":"One question looked angry"},
+    {"type":"message","delay":850,"from":"hailey","text":"But I read it twice like he said"},
+    {"type":"message","delay":900,"from":"player","text":"And?"},
+    {"type":"message","delay":850,"from":"hailey","text":"I guessed with confidence"},
+    {"type":"message","delay":850,"from":"player","text":"Which is better than guessing while internally screaming"},
+    {"type":"image","delay":900,"from":"hailey","image":"assets/pictures/Conversation/hailey_tired_face.jpg"},
+    {"type":"message","delay":850,"from":"hailey","text":"Brain fried face"},
+    {"type":"message","delay":900,"from":"player","text":"You look dramatic"},
+    {"type":"message","delay":850,"from":"hailey","text":"I AM dramatic"},
+    {"type":"message","delay":850,"from":"hailey","text":"My professor wants me to come by his office before the next class"},
+    {"type":"message","delay":850,"from":"hailey","text":"Just five minutes to check what I missed"},
+    {"type":"message","delay":900,"from":"player","text":"That is a lot of extra attention"},
+    {"type":"message","delay":850,"from":"hailey","text":"It is called education"},
+    {"type":"message","delay":850,"from":"hailey","text":"Probably"},
+    {"type":"message","delay":850,"from":"hailey","text":"But yeah"},
+    {"type":"message","delay":850,"from":"hailey","text":"He is taking it really seriously"},
+    {"type":"hak_overlay","title":"HAK//NOTICE","messages":["Timeline inconsistency candidate detected","Subject reports brief office review between classes","Expected duration: 5 minutes","Monitoring actual location persistence",{"kind":"thought","speaker":"player","text":"I want to believe this is just a quick review, so why am I already bracing for something else?"}]},
+    {"type":"message","delay":850,"from":"hailey","text":"I need a walk after this"},
+    {"type":"message","delay":850,"from":"hailey","text":"If my legs still work"},
+    {"type":"message","delay":900,"from":"player","text":"Walk first. Panic later."},
+    {"type":"message","delay":850,"from":"hailey","text":"Fine"},
+    {"type":"message","delay":850,"from":"hailey","text":"Professor and you both making sense is unfair"}
+  ]
+}

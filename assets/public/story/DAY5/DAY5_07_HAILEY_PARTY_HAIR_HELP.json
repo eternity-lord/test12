@@ -1,0 +1,21 @@
+{
+  "onceKey": "d5_06_hailey_party_hair_help_v1",
+  "contactId": "hailey",
+  "onCompleteStartStory": "story/DAY5/DAY5_08_LENA_NIGHT_TIRED.json",
+  "steps": [
+    {"type":"notify","delay":1200,"fromId":"hailey","fromName":"{{name:hailey}}","avatar":"assets/avatars/hailey.jpg","text":"Emergency stylist 😇","target":"conversation"},
+    {"type":"message","delay":900,"from":"hailey","text":"I have a party on Saturday night"},
+    {"type":"message","delay":900,"from":"hailey","text":"So I may need your opinion on hair tomorrow"},
+    {"type":"message","delay":900,"from":"player","text":"May?"},
+    {"type":"message","delay":900,"from":"hailey","text":"Okay, will"},
+    {"type":"message","delay":900,"from":"hailey","text":"And if it goes badly, you are legally required to save me"},
+    {"type":"message","delay":900,"from":"hailey","text":"Or you will have to pay for the damage"},
+    {"type":"message","delay":900,"from":"player","text":"How am I saving you from hair?"},
+    {"type":"message","delay":900,"from":"hailey","text":"By telling me when I look insane before I leave the house 😌"},
+    {"type":"message","delay":900,"from":"player","text":"That seems hard, you will hear me everyday"},
+    {"type":"message","delay":900,"from":"hailey","text":"I will pretend i didnt see that"},
+    {"type":"message","delay":900,"from":"hailey","text":"I knew keeping you around had value"},
+    {"type":"message","delay":900,"from":"player","text":"That's touching"},
+    {"type":"message","delay":900,"from":"hailey","text":"Don't get emotional, you still haven't seen the options yet 😇"}
+  ]
+}

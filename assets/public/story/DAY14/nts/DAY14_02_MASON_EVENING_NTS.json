@@ -1,0 +1,57 @@
+{
+  "onceKey": "d14_06_mason_evening_nts_v1",
+  "contactId": "mason",
+  "requireOnceKey": "d14_05_mason_afternoon_nts_v1",
+  "route": "nts",
+  "routeLock": "route_mason_locked_v1:nts",
+  "steps": [
+    {"type":"if","condition":"choice:d9_mason_nts_coach_identity_v1:chris","then":[
+      {"type":"notify","delay":1200,"fromId":"mason","fromName":"{{name:mason}}","avatar":"assets/avatars/male_mason.jpg","text":"How dare you add sports challenges to a gaming session?","target":"conversation"},
+      {"type":"image","from":"player","galleryOwnerId":"mason","image":"assets/pictures/Conversation/male_mason/mason_doing_crunch.jpg"},
+      {"type":"message","delay":850,"from":"player","text":"You just shouldn't be so bad 😂"},
+      {"type":"message","delay":850,"from":"mason","text":"I'm the only one who lost"},
+      {"type":"message","delay":850,"from":"mason","text":"How is that fair?"},
+      {"type":"message","delay":850,"from":"player","text":"Take it up with Chris"},
+      {"type":"message","delay":850,"from":"mason","text":"Don't worry"},
+      {"type":"message","delay":850,"from":"mason","text":"I will"},
+      {"type":"message","delay":850,"from":"mason","text":"When are you coming back to play?"},
+      {"type":"message","delay":850,"from":"player","text":"I still need to help {{name:evelyn}} with a letter"},
+      {"type":"message","delay":850,"from":"player","text":"I'll be there when I'm done"},
+      {"type":"message","delay":850,"from":"mason","text":"Hurry up"},
+      {"type":"message","delay":850,"from":"mason","text":"You're going to miss Chris losing"},
+      {"type":"note","text":"15 MINUTES LATER"},
+      {"type":"hak_overlay","title":"HAK//PROXIMITY EVENT","messages":["Unexpected physical proximity detected","Mason and Chris moved unusually close after a lost challenge","Interaction intensity increased beyond normal gaming behavior",{"kind":"thought","speaker":"player","text":"Their closeness is becoming harder to shrug off, and I'm still working out what I make of it."}]},
+      {"type":"hak_add_evidence","kind":"physical_closeness","route":"nts","profileId":"mason","profile":{"name":"mason","avatar":"assets/avatars/male_mason.jpg","kind":"physical_closeness","route":"nts"},"evidences":[{"id":"d14_mason_chris_lost_challenge_closeness_v1","kind":"physical_closeness","route":"nts","src":"assets/pictures/evidence/mason_male/mason_ass_slapped.jpg","url":"assets/pictures/evidence/mason_male/mason_ass_slapped.jpg","type":"image","characterId":"mason","contactId":"mason","label":"Lost challenge","title":"Lost challenge","text":"Mason and Chris shared an unusually close moment after a lost gaming challenge"}]}
+    ],"else":[
+      {"type":"notify","delay":1200,"fromId":"mason","fromName":"{{name:mason}}","avatar":"assets/avatars/male_mason.jpg","text":"How dare you add sports challenges to a gaming session?","target":"conversation"},
+      {"type":"image","from":"player","galleryOwnerId":"mason","image":"assets/pictures/Conversation/male_mason/mason_doing_crunch.jpg"},
+      {"type":"message","delay":850,"from":"player","text":"You just shouldn't be so bad 😂"},
+      {"type":"message","delay":850,"from":"mason","text":"I'm the only one who lost"},
+      {"type":"message","delay":850,"from":"mason","text":"How is that fair?"},
+      {"type":"message","delay":850,"from":"player","text":"Take it up with {{name:aiden}}"},
+      {"type":"message","delay":850,"from":"mason","text":"Don't worry"},
+      {"type":"message","delay":850,"from":"mason","text":"I will"},
+      {"type":"message","delay":850,"from":"mason","text":"When are you coming back to play?"},
+      {"type":"message","delay":850,"from":"player","text":"I still need to help {{name:evelyn}} with a letter"},
+      {"type":"message","delay":850,"from":"player","text":"I'll be there when I'm done"},
+      {"type":"message","delay":850,"from":"mason","text":"Hurry up"},
+      {"type":"message","delay":850,"from":"mason","text":"You're going to miss {{name:aiden}} losing"},
+      {"type":"note","text":"15 MINUTES LATER"},
+      {"type":"hak_overlay","title":"HAK//PROXIMITY EVENT","messages":["Unexpected physical proximity detected","Mason and {{name:aiden}} moved unusually close after a lost challenge","Interaction intensity increased beyond normal gaming behavior",{"kind":"thought","speaker":"player","text":"Their closeness is becoming harder to shrug off, and I'm still working out what I make of it."}]},
+      {"type":"hak_add_evidence","kind":"physical_closeness","route":"nts","profileId":"mason","profile":{"name":"mason","avatar":"assets/avatars/male_mason.jpg","kind":"physical_closeness","route":"nts"},"evidences":[{"id":"d14_mason_aiden_lost_challenge_closeness_v1","kind":"physical_closeness","route":"nts","src":"assets/pictures/evidence/mason_male/mason_ass_slapped.jpg","url":"assets/pictures/evidence/mason_male/mason_ass_slapped.jpg","type":"image","characterId":"mason","contactId":"mason","label":"Lost challenge","title":"Lost challenge","text":"Mason and {{name:aiden}} shared an unusually close moment after a lost gaming challenge"}]}
+    ]},
+    {"type":"if","condition":"active_character:lena","then":[
+      {"type":"start_story","goHome":true,"startStory":"story/DAY14/DAY14_LENA_MORNING.json","startDelayMs":200}
+    ],"else":[
+      {"type":"if","condition":"active_character:hailey","then":[
+        {"type":"start_story","goHome":true,"startStory":"story/DAY14/DAY14_HAILEY_MORNING.json","startDelayMs":200}
+      ],"else":[
+        {"type":"if","condition":"active_character:evelyn","then":[
+          {"type":"start_story","goHome":true,"startStory":"story/DAY14/DAY14_EVELYN_MORNING.json","startDelayMs":200}
+        ],"else":[
+          {"type":"time_card","text":"DAY 15","goHome":true,"startStory":"story/DAY15/nts/DAY15_00_MASON_MORNING_NTS.json","startDelayMs":200}
+        ]}
+      ]}
+    ]}
+  ]
+}

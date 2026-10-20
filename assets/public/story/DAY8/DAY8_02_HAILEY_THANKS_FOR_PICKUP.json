@@ -1,0 +1,24 @@
+{
+  "onceKey": "d8_02_hailey_thanks_for_pickup_v1",
+  "contactId": "hailey",
+  "onCompleteStartStory": "story/DAY8/DAY8_03_LENA_LUNCH_AIDEN.json",
+  "steps": [
+    {"type":"notify","delay":1200,"fromId":"hailey","fromName":"{{name:hailey}}","avatar":"assets/avatars/hailey.jpg","text":"Good morning 😇","target":"conversation"},
+    {"type":"message","delay":900,"from":"hailey","text":"How are you feeling today?"},
+    {"type":"message","delay":900,"from":"player","text":"Better than yesterday and the day before"},
+    {"type":"message","delay":900,"from":"player","text":"Hopefully I'll be healed soon"},
+    {"type":"message","delay":900,"from":"hailey","text":"Finally my room is going to get cleaned 😌"},
+    {"type":"message","delay":900,"from":"player","text":"You're so sweet in the morning"},
+    {"type":"message","delay":900,"from":"hailey","text":"Don't get used to it 😇"},
+    {"type":"message","delay":900,"from":"hailey","text":"I might go shopping this afternoon"},
+    {"type":"message","delay":900,"from":"hailey","text":"I need to find an evening outfit for Saturday night"},
+    {"type":"message","delay":900,"from":"player","text":"So this is a fashion emergency?"},
+    {"type":"message","delay":900,"from":"hailey","text":"Obviously 😌"},
+    {"type":"message","delay":900,"from":"hailey","text":"A serious and glamorous one ✨"},
+    {"type":"message","delay":900,"from":"player","text":"I hope the city survives"},
+    {"type":"message","delay":900,"from":"hailey","text":"Rude 😭"},
+    {"type":"message","delay":900,"from":"hailey","text":"If I find a few options, you might be forced to give your opinion later 🤍"},
+    {"type":"message","delay":900,"from":"player","text":"I decline your invitation"},
+    {"type":"message","delay":900,"from":"hailey","text":"Too bad it wasn't a question 😌"}
+  ]
+}

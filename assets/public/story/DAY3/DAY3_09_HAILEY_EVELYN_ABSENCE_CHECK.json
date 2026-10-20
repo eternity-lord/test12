@@ -1,0 +1,26 @@
+{
+  "onceKey": "d3_08_hailey_evelyn_absence_check_v1",
+  "contactId": "hailey",
+  "onCompleteStartStory": "story/DAY3/DAY3_10_MASON_EVELYN_FOOD_LEG.json",
+  "steps": [
+    {"type":"notify","delay":1200,"fromId":"hailey","fromName":"{{name:hailey}}","avatar":"assets/avatars/hailey.jpg","text":"New house rule 😌","target":"conversation"},
+    {"type":"message","delay":900,"from":"hailey","text":"{{name:evelyn}} told me she starts work again tomorrow"},
+    {"type":"message","delay":900,"from":"hailey","text":"So if you need something while she's out, she said you'll have to beg for my help 😇"},
+    {"type":"message","delay":900,"from":"player","text":"That sounds surprisingly unlike something {{name:evelyn}} would say"},
+    {"type":"message","delay":900,"from":"hailey","text":"She said it, I was there 😌"},
+    {"type":"message","delay":900,"from":"player","text":"How convenient"},
+    {"type":"message","delay":900,"from":"hailey","text":"Alright, alright, maybe she didn't say anything about begging 😇"},
+    {"type":"message","delay":900,"from":"player","text":"Wow, how quick of you to turn to the truth"},
+    {"type":"message","delay":900,"from":"hailey","text":"Please appreciate how much personal growth this is 😇"},
+    {"type":"message","delay":900,"from":"player","text":"Should I notify the press?"},
+    {"type":"message","delay":900,"from":"hailey","text":"Obviously, dumbass 😌"},
+    {"type":"message","delay":900,"from":"hailey","text":"But seriously, if you need water, food, or someone to reach a shelf because your leg is being dramatic, just say it 🤍"},
+    {"type":"message","delay":900,"from":"player","text":"Thanks, {{name:hailey}}"},
+    {"type":"message","delay":900,"from":"hailey","text":"You're welcome 🤍"},
+    {"type":"message","delay":900,"from":"hailey","text":"Try not to abuse the service though 😌"},
+    {"type":"message","delay":900,"from":"hailey","text":"Or I'll make you pay 😇"},
+    {"type":"image","image":"assets/pictures/Conversation/hailey_menacing.jpg"},
+    {"type":"message","delay":900,"from":"player","text":"You're quite convincing 😌"},
+    {"type":"message","delay":900,"from":"player","text":"No abuse of service understood"}
+  ]
+}

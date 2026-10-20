@@ -1,0 +1,43 @@
+{
+  "onceKey": "d10_02_evelyn_evening_love_v1",
+  "contactId": "evelyn",
+  "requireOnceKey": "d10_01_evelyn_afternoon_love_v1",
+  "steps": [
+    {"type":"notify","delay":1200,"fromId":"evelyn","fromName":"{{name:evelyn}}","avatar":"assets/avatars/evelyn.jpg","text":"Hey 😊","target":"conversation"},
+    {"type":"message","delay":850,"from":"evelyn","text":"The laundry is done"},
+    {"type":"message","delay":850,"from":"evelyn","text":"If you need any clothes tomorrow, everything should be dry by then"},
+    {"type":"message","delay":850,"from":"player","text":"Perfect"},
+    {"type":"message","delay":850,"from":"player","text":"Thank you"},
+    {"type":"message","delay":850,"from":"evelyn","text":"Also, I'll start cooking soon"},
+    {"type":"message","delay":850,"from":"evelyn","text":"So if you're hungry, dinner should be ready in about twenty-five minutes"},
+    {"type":"message","delay":850,"from":"player","text":"Good timing"},
+    {"type":"message","delay":850,"from":"evelyn","text":"Actually"},
+    {"type":"message","delay":850,"from":"evelyn","text":"You should probably go take your shower now 😌"},
+    {"type":"message","delay":850,"from":"player","text":"Why now?"},
+    {"type":"message","delay":850,"from":"evelyn","text":"Because {{name:hailey}} is about to go next"},
+    {"type":"message","delay":850,"from":"evelyn","text":"And she'll use all the hot water and stay in there for three hours"},
+    {"type":"message","delay":850,"from":"player","text":"Three hours?"},
+    {"type":"message","delay":850,"from":"evelyn","text":"At least"},
+    {"type":"message","delay":850,"from":"evelyn","text":"I'm being generous"},
+    {"type":"message","delay":850,"from":"player","text":"Now I'm scared"},
+    {"type":"message","delay":850,"from":"evelyn","text":"Then hurry 😄"},
+    {"type":"message","delay":850,"from":"player","text":"Alright"},
+    {"type":"message","delay":850,"from":"player","text":"I'm going right now"},
+    {"type":"message","delay":850,"from":"player","text":"Thanks for the warning"},
+    {"type":"message","delay":850,"from":"evelyn","text":"Anytime"},
+    {"type":"message","delay":850,"from":"evelyn","text":"Do you need help getting into the shower?"},
+    {"type":"message","delay":850,"from":"player","text":"I think I'll manage for now"},
+    {"type":"message","delay":850,"from":"player","text":"But if I need help, I'll call you"},
+    {"type":"message","delay":850,"from":"evelyn","text":"Please call me before you're naked then 😌"},
+    {"type":"message","delay":850,"from":"player","text":"I'll try, yes 😂"},
+    {"type":"message","delay":850,"from":"evelyn","text":"Good"},
+    {"type":"message","delay":850,"from":"evelyn","text":"Enjoy your shower"},
+    {"type":"if","condition":"active_character:mason","then":[
+      {"type":"time_card","text":"DAY 11","goHome":true,"startStory":"story/DAY11/love/DAY11_00_MASON_MORNING_LOVE.json","startDelayMs":200}
+    ],"else":[
+      {"type":"time_card","text":"DAY 11","goHome":true,"startStory":"story/DAY11/love/DAY11_00_EVELYN_MORNING_LOVE.json","startDelayMs":200}
+    ],"__masonNextDayPatched":true}
+  ],
+  "route": "love",
+  "routeLock": "route_evelyn_locked_v1:love"
+}

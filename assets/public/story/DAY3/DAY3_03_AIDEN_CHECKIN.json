@@ -1,0 +1,25 @@
+{
+  "onceKey": "d3_10_aiden_checkin_v1",
+  "contactId": "aiden",
+  "onCompleteStartStory": "story/DAY3/DAY3_04_MASON_HAILEY_CHECK.json",
+  "steps": [
+    {"type":"notify","delay":1200,"fromId":"aiden","fromName":"{{name:aiden}}","avatar":"assets/avatars/aiden.jpg","text":"You awake?","target":"conversation"},
+    {"type":"message","delay":900,"from":"aiden","text":"How are you actually doing this morning?"},
+    {"type":"message","delay":900,"from":"player","text":"Still waking up"},
+    {"type":"message","delay":900,"from":"player","text":"Head is still heavy from yesterday"},
+    {"type":"message","delay":900,"from":"aiden","text":"Yeah I can tell"},
+    {"type":"message","delay":900,"from":"aiden","text":"I almost called because your replies were slow"},
+    {"type":"message","delay":900,"from":"aiden","text":"If those guys ever show up again, I swear I'll break their..."},
+    {"type":"message","delay":900,"from":"aiden","text":"Forget it, bad idea. I am trying to stay calm"},
+    {"type":"message","delay":900,"from":"player","text":"I know"},
+    {"type":"message","delay":900,"from":"player","text":"Thanks for caring"},
+    {"type":"message","delay":900,"from":"aiden","text":"Always"},
+    {"type":"message","delay":900,"from":"aiden","text":"Do one chill match later, no ranked sweat"},
+    {"type":"message","delay":900,"from":"player","text":"You inviting me?"},
+    {"type":"message","delay":900,"from":"aiden","text":"Obviously"},
+    {"type":"message","delay":900,"from":"aiden","text":"One game later if you want. Doctor mode orders"},
+    {"type":"message","delay":900,"from":"player","text":"You are so dramatic"},
+    {"type":"message","delay":900,"from":"aiden","text":"And still right"},
+    {"type":"message","delay":900,"from":"aiden","text":"Ping me if your leg hurts later"}
+  ]
+}

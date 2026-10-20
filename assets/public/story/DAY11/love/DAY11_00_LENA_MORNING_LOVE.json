@@ -1,0 +1,42 @@
+{
+  "onceKey": "d11_00_lena_morning_love_v1",
+  "contactId": "lena",
+  "requireOnceKey": "d10_02_lena_evening_love_v1",
+  "steps": [
+    {"type":"notify","delay":1300,"fromId":"lena","fromName":"{{name:lena}}","avatar":"assets/avatars/lena.jpg","text":"Already up 😴","target":"conversation"},
+    {"type":"message","delay":900,"from":"lena","text":"I hate Mondays already"},
+    {"type":"message","delay":900,"from":"player","text":"And it's barely started"},
+    {"type":"message","delay":900,"from":"lena","text":"Exactly 😭"},
+    {"type":"message","delay":900,"from":"lena","text":"University this morning"},
+    {"type":"message","delay":900,"from":"lena","text":"Then my part time job after"},
+    {"type":"message","delay":900,"from":"player","text":"That's brutal"},
+    {"type":"message","delay":900,"from":"lena","text":"Mhm"},
+    {"type":"message","delay":900,"from":"lena","text":"At least I tried to look cute to survive it"},
+    {"type":"image","delay":900,"from":"lena","image":"assets/pictures/Conversation/lena_day11_outfit.jpg"},
+    {"type":"message","delay":900,"from":"player","text":"Okay now I have a problem"},
+    {"type":"message","delay":900,"from":"lena","text":"Oh?"},
+    {"type":"message","delay":900,"from":"player","text":"Yeah"},
+    {"type":"message","delay":900,"from":"player","text":"You're going out looking like that and I'm supposed to stay calm?"},
+    {"type":"message","delay":900,"from":"lena","text":"Poor baby 😌"},
+    {"type":"message","delay":900,"from":"player","text":"I'm serious"},
+    {"type":"message","delay":900,"from":"player","text":"The most beautiful girl in the world is going to university and I won't even be there to protect her"},
+    {"type":"message","delay":900,"from":"lena","text":"Hey"},
+    {"type":"message","delay":900,"from":"lena","text":"You're the only one for me anyway ❤️"},
+    {"type":"message","delay":900,"from":"lena","text":"And the one I'm thinking about"},
+    {"type":"message","delay":900,"from":"lena","text":"If someone comes near me, I'll kick him in the balls 😌"},
+    {"type":"message","delay":900,"from":"player","text":"That's my girl"},
+    {"type":"message","delay":900,"from":"lena","text":"Possessive this morning?"},
+    {"type":"message","delay":900,"from":"player","text":"A little"},
+    {"type":"message","delay":900,"from":"lena","text":"Good"},
+    {"type":"message","delay":900,"from":"lena","text":"I kind of like it when you're like that 😌"},
+    {"type":"message","delay":900,"from":"player","text":"Good luck surviving university"},
+    {"type":"message","delay":900,"from":"player","text":"And good luck at work later"},
+    {"type":"message","delay":900,"from":"lena","text":"Thank you, handsome 🤍"},
+    {"type":"message","delay":900,"from":"lena","text":"I'll text you at noon"},
+    {"type":"if","condition":"active_character:hailey","then":[
+      {"type":"start_story","goHome":true,"startStory":"story/DAY11/DAY11_HAILEY_MORNING.json"}
+    ],"else":[
+      {"type":"start_story","goHome":true,"startStory":"story/DAY11/love/DAY11_02_LENA_EVENING_LOVE.json"}
+    ]}
+  ]
+}

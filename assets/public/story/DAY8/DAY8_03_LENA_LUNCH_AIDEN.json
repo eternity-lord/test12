@@ -1,0 +1,33 @@
+{
+  "onceKey": "d8_00_lena_lunch_aiden_v1",
+  "contactId": "lena",
+  "onCompleteStartStory": "story/DAY8/DAY8_04_AIDEN_CHECKIN.json",
+  "steps": [
+    {"type":"notify","delay":1200,"fromId":"lena","fromName":"{{name:lena}}","avatar":"assets/avatars/lena.jpg","text":"Lunch 🍴","target":"conversation"},
+    {"type":"message","delay":900,"from":"lena","text":"He's here again"},
+    {"type":"message","delay":900,"from":"player","text":"{{name:aiden}}?"},
+    {"type":"message","delay":900,"from":"lena","text":"Yes 😭"},
+    {"type":"message","delay":900,"from":"lena","text":"I guess he feels lonely without you"},
+    {"type":"message","delay":900,"from":"lena","text":"So now I have to put up with him instead"},
+    {"type":"message","delay":900,"from":"lena","text":"He's telling everyone he's your nurse now"},
+    {"type":"message","delay":900,"from":"player","text":"Of course he is"},
+    {"type":"message","delay":900,"from":"player","text":"He would love that"},
+    {"type":"message","delay":900,"from":"lena","text":"He's joking about it"},
+    {"type":"message","delay":900,"from":"lena","text":"But still, how dare he try to steal my job and brag about it"},
+    {"type":"message","delay":900,"from":"lena","text":"There's only one solution"},
+    {"type":"message","delay":900,"from":"player","text":"Which is?"},
+    {"type":"message","delay":900,"from":"lena","text":"I'm going to break his leg too"},
+    {"type":"message","delay":900,"from":"player","text":"😂"},
+    {"type":"message","delay":900,"from":"player","text":"I get it but that's not a good idea"},
+    {"type":"message","delay":900,"from":"player","text":"He'd make you nurse him too"},
+    {"type":"message","delay":900,"from":"lena","text":"That's true"},
+    {"type":"message","delay":900,"from":"lena","text":"He's lucky this time"},
+    {"type":"message","delay":900,"from":"player","text":"He won't even know how close to death he was"},
+    {"type":"message","delay":900,"from":"lena","text":"Exactly 😌"},
+    {"type":"message","delay":900,"from":"lena","text":"I have to go back now"},
+    {"type":"message","delay":900,"from":"lena","text":"I'm going straight to work after this"},
+    {"type":"message","delay":900,"from":"player","text":"Good luck"},
+    {"type":"message","delay":900,"from":"lena","text":"Thanks 💕"},
+    {"type":"note","text":"3 hours later"}
+  ]
+}

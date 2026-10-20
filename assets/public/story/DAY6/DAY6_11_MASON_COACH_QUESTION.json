@@ -1,0 +1,25 @@
+{
+  "onceKey": "d6_08_mason_coach_question_v1",
+  "contactId": "mason",
+  "requireOnceKey": "d6_02_mason_evelyn_check_leg_v1",
+  "onCompleteStartStory": "story/DAY6/DAY6_12_PLAYER_TEXT_EVELYN_NO_REPLY.json",
+  "steps": [
+    {"type":"notify","delay":1200,"fromId":"mason","fromName":"{{name:mason}}","avatar":"assets/avatars/male_mason.jpg","text":"Quick question","target":"conversation"},
+    {"type":"message","delay":900,"from":"mason","text":"You know a serious coach?"},
+    {"type":"message","delay":900,"from":"mason","text":"Not some influencer clown"},
+    {"type":"message","delay":900,"from":"mason","text":"Someone real"},
+    {"type":"message","delay":900,"from":"player","text":"Not really"},
+    {"type":"message","delay":900,"from":"player","text":"Why?"},
+    {"type":"message","delay":900,"from":"mason","text":"Because the gym is getting annoying"},
+    {"type":"message","delay":900,"from":"mason","text":"Same guys keep hovering around"},
+    {"type":"message","delay":900,"from":"mason","text":"Talking and wasting my time"},
+    {"type":"message","delay":900,"from":"mason","text":"And I don't progress the way I want 😒"},
+    {"type":"message","delay":900,"from":"mason","text":"But it's the only gym in the area"},
+    {"type":"message","delay":900,"from":"mason","text":"I need a solution"},
+    {"type":"message","delay":900,"from":"player","text":"I'll think about it"},
+    {"type":"message","delay":900,"from":"player","text":"I might have a few leads"},
+    {"type":"message","delay":900,"from":"player","text":"Give me a few days"},
+    {"type":"message","delay":900,"from":"mason","text":"Nice"},
+    {"type":"message","delay":900,"from":"mason","text":"Thanks again "}
+  ]
+}

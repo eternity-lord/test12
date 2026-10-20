@@ -1,0 +1,24 @@
+{
+  "onceKey": "d8_10_aiden_checkin_v1",
+  "contactId": "aiden",
+  "onCompleteStartStory": "story/DAY8/DAY8_05_MASON_NORMAL_DAY_TEXT.json",
+  "steps": [
+    {"type":"notify","delay":1200,"fromId":"aiden","fromName":"{{name:aiden}}","avatar":"assets/avatars/aiden.jpg","text":"Yo","target":"conversation"},
+    {"type":"message","delay":900,"from":"player","text":"Yo"},
+    {"type":"message","delay":900,"from":"aiden","text":"My setup is finally clean for once"},
+    {"type":"image","delay":900,"from":"aiden","image":"assets/pictures/Conversation/aiden_setup_day8.jpg"},
+    {"type":"message","delay":900,"from":"aiden","text":"Do not zoom in, my cable management is still criminal"},
+    {"type":"message","delay":900,"from":"player","text":"Looks fine to me"},
+    {"type":"message","delay":900,"from":"player","text":"For once"},
+    {"type":"message","delay":900,"from":"aiden","text":"That is a generous lie but I'll take it"},
+    {"type":"message","delay":900,"from":"aiden","text":"How are you doing right now?"},
+    {"type":"message","delay":900,"from":"player","text":"Good, and you?"},
+    {"type":"message","delay":900,"from":"aiden","text":"Perfect"},
+    {"type":"message","delay":900,"from":"aiden","text":"Wanna play?"},
+    {"type":"message","delay":900,"from":"aiden","text":"I've got time today"},
+    {"type":"message","delay":900,"from":"player","text":"I never say no to gaming"},
+    {"type":"message","delay":900,"from":"aiden","text":"Except when I kick your ass"},
+    {"type":"message","delay":900,"from":"player","text":"Witch never happens"},
+    {"type":"message","delay":900,"from":"aiden","text":"Come and see"}
+  ]
+}

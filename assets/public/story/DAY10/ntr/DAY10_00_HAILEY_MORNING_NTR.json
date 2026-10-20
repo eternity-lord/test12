@@ -1,0 +1,32 @@
+{
+  "onceKey": "d10_00_hailey_morning_ntr_v1",
+  "contactId": "hailey",
+  "requireOnceKey": "d10_00_lena_morning_ntr_v1|d9_05_hailey_evening_ntr_v1",
+  "onCompleteStartStory": "story/DAY10/DAY10_LENA_AFTERNOON.json",
+  "steps": [
+    {"type":"notify","delay":1200,"fromId":"hailey","fromName":"{{name:hailey}}","avatar":"assets/avatars/hailey.jpg","text":"I survived the party 😇","target":"conversation"},
+    {"type":"message","delay":850,"from":"hailey","text":"No scandal"},
+    {"type":"message","delay":850,"from":"hailey","text":"No speeches"},
+    {"type":"message","delay":850,"from":"hailey","text":"No mysterious disappearance"},
+    {"type":"message","delay":850,"from":"hailey","text":"Very boring of me 😌"},
+    {"type":"message","delay":900,"from":"player","text":"Proud of you"},
+    {"type":"message","delay":850,"from":"hailey","text":"I know"},
+    {"type":"message","delay":850,"from":"hailey","text":"Also how is your leg?"},
+    {"type":"message","delay":850,"from":"hailey","text":"Still dramatic?"},
+    {"type":"message","delay":900,"from":"player","text":"Manageable"},
+    {"type":"message","delay":850,"from":"hailey","text":"Good"},
+    {"type":"message","delay":850,"from":"hailey","text":"I need my emergency audience alive"},
+    {"type":"message","delay":850,"from":"hailey","text":"No heavy studying today though"},
+    {"type":"message","delay":850,"from":"hailey","text":"My brain is post-party soup"},
+    {"type":"message","delay":900,"from":"player","text":"But you have professor homework"},
+    {"type":"message","delay":850,"from":"hailey","text":"Unfortunately yes"},
+    {"type":"message","delay":850,"from":"hailey","text":"He sent a tiny correction list this morning"},
+    {"type":"message","delay":850,"from":"hailey","text":"Tiny in professor language means annoying"},
+    {"type":"message","delay":900,"from":"player","text":"You can do it later"},
+    {"type":"message","delay":850,"from":"hailey","text":"He said the same thing"},
+    {"type":"message","delay":850,"from":"hailey","text":"Why are you both using calm voices at me"},
+    {"type":"message","delay":850,"from":"hailey","text":"It is suspicious"},
+    {"type":"message","delay":900,"from":"player","text":"Because panic does not solve homework"},
+    {"type":"message","delay":850,"from":"hailey","text":"Reported for being correct 😭"}
+  ]
+}

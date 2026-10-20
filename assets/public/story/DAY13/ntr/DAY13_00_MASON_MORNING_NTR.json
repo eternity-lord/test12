@@ -1,0 +1,31 @@
+{
+  "onceKey": "d13_04_mason_morning_ntr_v1",
+  "contactId": "mason",
+  "requireOnceKey": "d12_05_mason_evening_ntr_v1",
+  "onCompleteStartStory": "story/DAY13/ntr/DAY13_01_MASON_AFTERNOON_NTR.json",
+  "route": "ntr",
+  "routeLock": "route_mason_locked_v1:ntr",
+  "steps": [
+    {"type":"message","delay":850,"from":"player","text":"Hey"},
+    {"type":"message","delay":850,"from":"player","text":"You should probably wake up"},
+    {"type":"message","delay":850,"from":"player","text":"You have work today"},
+    {"type":"message","delay":850,"from":"player","text":"If you don't get up soon"},
+    {"type":"message","delay":850,"from":"player","text":"I'll drag my cast all the way to your room just to wake you up 😌"},
+    {"type":"note","text":"15 MINUTES LATER"},
+    {"type":"message","delay":850,"from":"player","text":"I'm coming"},
+    {"type":"note","text":"10 MINUTES LATER"},
+    {"type":"message","delay":850,"from":"mason","text":"You're an asshole"},
+    {"type":"message","delay":850,"from":"player","text":"Worth it"},
+    {"type":"image","from":"player","galleryOwnerId":"mason","image":"assets/pictures/Conversation/male_mason/mason_morning_sleeping.jpg"},
+    {"type":"message","delay":850,"from":"player","text":"You sleep like a princess 😂"},
+    {"type":"message","delay":850,"from":"mason","text":"Delete that picture"},
+    {"type":"message","delay":850,"from":"player","text":"No chance"},
+    {"type":"message","delay":850,"from":"mason","text":"Keep laughing"},
+    {"type":"message","delay":850,"from":"mason","text":"I'll make sure you're the one getting dragged out of bed tomorrow"},
+    {"type":"message","delay":850,"from":"player","text":"Good luck"},
+    {"type":"message","delay":850,"from":"player","text":"Keep talking and you'll be late for work"},
+    {"type":"message","delay":850,"from":"mason","text":"Yeah, yeah"},
+    {"type":"message","delay":850,"from":"mason","text":"I'm getting up"},
+    {"type":"start_story","goHome":true,"startStory":"story/DAY13/ntr/DAY13_01_MASON_AFTERNOON_NTR.json","startDelayMs":200}
+  ]
+}

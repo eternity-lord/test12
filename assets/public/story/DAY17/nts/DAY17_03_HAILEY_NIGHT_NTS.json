@@ -1,0 +1,45 @@
+{
+  "id": "day17_03_hailey_night_nts",
+  "onceKey": "d17_03_hailey_night_nts_v1",
+  "day": 17,
+  "slot": "night",
+  "route": "nts",
+  "routeLock": "route_hailey_locked_v1:nts",
+  "contactId": "hailey",
+  "requireOnceKey": "d17_01_hailey_afternoon_nts_v1",
+  "requireCondition": "all:active_character:hailey,route_hailey_locked_v1:nts",
+  "onCompleteStartStory": "story/DAY18/nts/DAY18_00_HAILEY_MORNING_NTS.json",
+  "steps": [
+    {"type":"notify","delay":900,"fromId":"hailey","fromName":"{{name:hailey}}","avatar":"assets/avatars/hailey.jpg","text":"Hey","target":"conversation"},
+    {"type":"message","delay":900,"from":"hailey","text":"It was a good day 😌"},
+    {"type":"message","delay":900,"from":"player","text":"Why?"},
+    {"type":"if","condition":"hailey_nts_post15_path:ethan","then":[
+      {"type":"message","delay":900,"from":"hailey","text":"I had a really good session"},
+      {"type":"message","delay":900,"from":"hailey","text":"I feel like I'm actually going to succeed"},
+      {"type":"message","delay":900,"from":"player","text":"Succeed at getting Ethan into your bed, yeah"},
+      {"type":"message","delay":900,"from":"hailey","text":"Excuse you 😭"},
+      {"type":"message","delay":900,"from":"hailey","text":"I'm talking about my exams"},
+      {"type":"message","delay":900,"from":"player","text":"Sure you are"},
+      {"type":"message","delay":900,"from":"hailey","text":"You're the worst"},
+      {"type":"message","delay":900,"from":"player","text":"And yet you keep texting me"},
+      {"type":"message","delay":900,"from":"hailey","text":"Unfortunately 😌"}
+    ],"else":[
+      {"type":"message","delay":900,"from":"hailey","text":"You were right"},
+      {"type":"message","delay":900,"from":"hailey","text":"Getting back into sports actually felt really good"},
+      {"type":"message","delay":900,"from":"player","text":"Isn't it more the flirting with {{name:aiden}} that felt good?"},
+      {"type":"message","delay":900,"from":"hailey","text":"I have no idea what you're talking about 😇"},
+      {"type":"message","delay":900,"from":"player","text":"Of course you don't"},
+      {"type":"message","delay":900,"from":"hailey","text":"You're such a voyeur"},
+      {"type":"message","delay":900,"from":"player","text":"I'm just happy both of you are having fun"},
+      {"type":"message","delay":900,"from":"hailey","text":"Keep telling yourself that"},
+      {"type":"message","delay":900,"from":"hailey","text":"And get ready to see even more 😌"},
+      {"type":"message","delay":900,"from":"player","text":"Looking forward to it"}
+    ]},
+    {"type":"message","delay":900,"from":"hailey","text":"Anyway"},
+    {"type":"message","delay":900,"from":"hailey","text":"I'm going to sleep"},
+    {"type":"message","delay":900,"from":"hailey","text":"I need to rest after today"},
+    {"type":"message","delay":900,"from":"player","text":"Same"},
+    {"type":"message","delay":900,"from":"hailey","text":"Goodnight"},
+    {"type":"message","delay":900,"from":"player","text":"Goodnight"}
+  ]
+}

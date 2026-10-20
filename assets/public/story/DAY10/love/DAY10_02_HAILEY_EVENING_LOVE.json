@@ -1,0 +1,53 @@
+{
+  "onceKey": "d10_02_hailey_evening_love_v1",
+  "contactId": "hailey",
+  "requireOnceKey": "d10_02_lena_evening_love_v1|d10_01_hailey_afternoon_love_v1",
+  "steps": [
+    {"type":"notify","delay":1200,"fromId":"hailey","fromName":"{{name:hailey}}","avatar":"assets/avatars/hailey.jpg","text":"Movie report 😌","target":"conversation"},
+    {"type":"message","delay":850,"from":"hailey","text":"It was cute"},
+    {"type":"message","delay":850,"from":"hailey","text":"Ending was stupid"},
+    {"type":"message","delay":850,"from":"hailey","text":"But cute stupid"},
+    {"type":"message","delay":850,"from":"hailey","text":"So I forgive it"},
+    {"type":"message","delay":900,"from":"player","text":"That sounds like your kind of review"},
+    {"type":"message","delay":850,"from":"hailey","text":"My reviews are elite 💅"},
+    {"type":"message","delay":850,"from":"hailey","text":"Also"},
+    {"type":"message","delay":850,"from":"hailey","text":"I did two homework questions on the bus"},
+    {"type":"message","delay":850,"from":"hailey","text":"WITHOUT being threatened"},
+    {"type":"message","delay":900,"from":"player","text":"Wait"},
+    {"type":"message","delay":900,"from":"player","text":"Who are you?"},
+    {"type":"message","delay":850,"from":"hailey","text":"A scholar"},
+    {"type":"message","delay":850,"from":"hailey","text":"A visionary"},
+    {"type":"message","delay":850,"from":"hailey","text":"A tired little genius 😭"},
+    {"type":"message","delay":850,"from":"hailey","text":"Can you check one answer before I sleep?"},
+    {"type":"message","delay":900,"from":"player","text":"Send it"},
+    {"type":"message","delay":850,"from":"hailey","text":"Sent"},
+    {"type":"note","text":"{{name:hailey}} sends you a picture of her homework answer"},
+    {"type":"image","delay":900,"from":"hailey","image":"assets/pictures/Conversation/hailey_homework.jpg"},
+    {"type":"message","delay":850,"from":"hailey","text":"Do not destroy me"},
+    {"type":"message","delay":900,"from":"player","text":"Well..."},
+    {"type":"message","delay":900,"from":"player","text":"The logic is good"},
+    {"type":"message","delay":900,"from":"player","text":"Just fix the last sentence"},
+    {"type":"message","delay":850,"from":"hailey","text":"So I am not doomed?"},
+    {"type":"message","delay":900,"from":"player","text":"Not even close"},
+    {"type":"message","delay":850,"from":"hailey","text":"Hurray!"},
+    {"type":"message","delay":850,"from":"hailey","text":"Then time to rest this huge brain"},
+    {"type":"message","delay":850,"from":"hailey","text":"Good night professor menace 🤍"},
+    {"type":"if","condition":"active_character:evelyn","then":[
+      {"type":"if","condition":"route_evelyn_locked_v1:ntr","then":[
+        {"type":"start_story","goHome":true,"startStory":"story/DAY10/DAY10_EVELYN_MORNING.json","startDelayMs":200}
+      ],"else":[
+        {"type":"if","condition":"route_evelyn_locked_v1:nts","then":[
+          {"type":"start_story","goHome":true,"startStory":"story/DAY10/DAY10_EVELYN_MORNING.json","startDelayMs":200}
+        ],"else":[
+          {"type":"start_story","goHome":true,"startStory":"story/DAY10/DAY10_EVELYN_MORNING.json","startDelayMs":200}
+        ]}
+      ]}
+    ],"else":[
+      {"type":"if","condition":"active_character:mason","then":[
+        {"type":"time_card","text":"DAY 11","goHome":true,"startStory":"story/DAY11/love/DAY11_00_MASON_MORNING_LOVE.json","startDelayMs":200}
+      ],"else":[
+        {"type":"time_card","text":"DAY 11","goHome":true,"startStory":"story/DAY11/DAY11_00_AIDEN_SHARED.json","startDelayMs":200}
+      ]}
+    ]}
+  ]
+}

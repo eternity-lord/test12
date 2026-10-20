@@ -1,0 +1,6 @@
+{
+  "onceKey": "day9_end_chapter_v1",
+  "steps": [
+    { "type":"dev_message","delay":1200,"title":"END OF CHAPTER","text":"Thank you for playing Chapter 1 of iNTeRcepted.\n\nWe are already preparing more content, new routes, extra scenes, CGs, and gameplay features for upcoming updates.\n\nIf you want to support the game and development, you can join us on Patreon.\n\nYour support helps us deliver updates faster.\n\nSee you in the next chapter.","button":"( CONTINUE )","goHome":true }
+  ]
+}

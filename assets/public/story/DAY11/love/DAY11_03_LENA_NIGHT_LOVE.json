@@ -1,0 +1,72 @@
+{
+  "onceKey": "d11_02_lena_night_love_v1",
+  "contactId": "lena",
+  "requireOnceKey": "d11_01_lena_evening_love_v1",
+  "steps": [
+    {"type":"notify","delay":1300,"fromId":"lena","fromName":"{{name:lena}}","avatar":"assets/avatars/lena.jpg","text":"Finally home 😮‍💨","target":"conversation"},
+    {"type":"message","delay":900,"from":"lena","text":"I just got back from work"},
+    {"type":"message","delay":900,"from":"lena","text":"I'm not even that tired somehow 😌"},
+    {"type":"message","delay":900,"from":"player","text":"That's rare"},
+    {"type":"message","delay":900,"from":"lena","text":"Very rare"},
+    {"type":"message","delay":900,"from":"lena","text":"So?"},
+    {"type":"message","delay":900,"from":"lena","text":"How did the appointment go?"},
+    {"type":"message","delay":900,"from":"player","text":"Really well actually"},
+    {"type":"message","delay":900,"from":"player","text":"Everything looks good"},
+    {"type":"message","delay":900,"from":"player","text":"I should be able to get the cast off soon"},
+    {"type":"message","delay":900,"from":"lena","text":"Baby, that's amazing 😭❤️"},
+    {"type":"message","delay":900,"from":"lena","text":"I'm so happy for you"},
+    {"type":"message","delay":900,"from":"lena","text":"That makes me want to hug you right now"},
+    {"type":"message","delay":900,"from":"player","text":"I wouldn't complain"},
+    {"type":"message","delay":900,"from":"lena","text":"Good"},
+    {"type":"message","delay":900,"from":"lena","text":"Because you're getting one when I see you 😌"},
+    {"type":"message","delay":900,"from":"player","text":"Only one?"},
+    {"type":"message","delay":900,"from":"lena","text":"Probably more than one"},
+    {"type":"message","delay":900,"from":"player","text":"So what are we doing first when the cast is gone?"},
+    {"type":"message","delay":900,"from":"lena","text":"Mhm..."},
+    {"type":"message","delay":900,"from":"lena","text":"A proper walk together"},
+    {"type":"message","delay":900,"from":"lena","text":"Without me worrying every two seconds"},
+    {"type":"message","delay":900,"from":"player","text":"That's a good one"},
+    {"type":"message","delay":900,"from":"lena","text":"And maybe our park date too ❤️"},
+    {"type":"message","delay":900,"from":"player","text":"Now you're talking"},
+    {"type":"message","delay":900,"from":"lena","text":"Maybe even something wilder after that"},
+    {"type":"message","delay":900,"from":"player","text":"I'm listening 👀"},
+    {"type":"message","delay":900,"from":"lena","text":"Mhm"},
+    {"type":"message","delay":900,"from":"lena","text":"A reaaaally looong hugging session"},
+    {"type":"message","delay":900,"from":"player","text":"I accept that offer"},
+    {"type":"message","delay":900,"from":"lena","text":"Okay wait"},
+    {"type":"message","delay":900,"from":"lena","text":"I'm eating right now but I'm still smiling like an idiot"},
+    {"type":"image","delay":900,"from":"lena","image":"assets/pictures/Conversation/lena_day11_dinner.jpg"},
+    {"type":"message","delay":900,"from":"player","text":"You look very cute for someone who's eating"},
+    {"type":"message","delay":900,"from":"lena","text":"Wow"},
+    {"type":"message","delay":900,"from":"lena","text":"Romantic and weirdly specific"},
+    {"type":"message","delay":900,"from":"player","text":"It's a gift"},
+    {"type":"message","delay":900,"from":"lena","text":"Clearly 😌"},
+    {"type":"message","delay":900,"from":"player","text":"Send me one more later when you're changed and ready for bed"},
+    {"type":"message","delay":900,"from":"lena","text":"Bossy"},
+    {"type":"message","delay":900,"from":"player","text":"A little"},
+    {"type":"message","delay":900,"from":"lena","text":"Maybe if you ask nicely"},
+    {"type":"message","delay":900,"from":"player","text":"Please?"},
+    {"type":"message","delay":900,"from":"lena","text":"Better 😌"},
+    {"type":"note","text":"20 MINUTES LATER"},
+    {"type":"image","delay":900,"from":"lena","image":"assets/pictures/Conversation/lena_day11_bed_ready.jpg"},
+    {"type":"message","delay":900,"from":"lena","text":"There"},
+    {"type":"message","delay":900,"from":"lena","text":"Changed, clean, and ready to sleep 🤍"},
+    {"type":"message","delay":900,"from":"player","text":"You're beautiful"},
+    {"type":"message","delay":900,"from":"lena","text":"Stop complimenting me or I'm never going to sleep 😭"},
+    {"type":"message","delay":900,"from":"lena","text":"Now I'm really going to sleep before I fall asleep holding my phone"},
+    {"type":"message","delay":900,"from":"player","text":"Then go sleep now"},
+    {"type":"message","delay":900,"from":"player","text":"And dream about our future park date"},
+    {"type":"message","delay":900,"from":"lena","text":"Already doing that 😌❤️"},
+    {"type":"message","delay":900,"from":"lena","text":"Goodnight, handsome"},
+    {"type":"message","delay":900,"from":"player","text":"Goodnight, pretty girl"},
+    {"type":"if","condition":"all:active_character:mason,!once:d11_04_mason_afternoon_love_v1","then":[
+      {"type":"time_card","text":"DAY 12","goHome":true,"startStory":"story/DAY12/love/DAY12_00_MASON_MORNING_LOVE.json","startDelayMs":200}
+    ],"else":[
+      {"type":"if","condition":"active_character:mason","then":[
+        {"type":"time_card","text":"DAY 12","goHome":true,"startStory":"story/DAY12/love/DAY12_00_MASON_MORNING_LOVE.json","startDelayMs":200}
+      ],"else":[
+        {"type":"time_card","text":"DAY 12","goHome":true,"startStory":"story/DAY12/DAY12_00_AIDEN_SHARED.json","startDelayMs":200}
+      ]}
+    ],"__masonNextDayPatched":true}
+  ]
+}

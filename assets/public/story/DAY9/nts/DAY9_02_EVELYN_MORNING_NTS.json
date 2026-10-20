@@ -1,0 +1,87 @@
+{
+  "onceKey": "d9_00_evelyn_morning_nts_v1",
+  "contactId": "evelyn",
+  "requireOnceKey": "d8_route_day9_nts_locked_v1",
+  "steps": [
+    {"type":"notify","delay":1200,"fromId":"evelyn","fromName":"{{name:evelyn}}","avatar":"assets/avatars/evelyn.jpg","text":"Hey, are you awake?","target":"conversation"},
+    {"type":"message","delay":900,"from":"player","text":"Morning, yeah I woke up a few minutes ago"},
+    {"type":"message","delay":900,"from":"player","text":"How are you feeling today?"},
+    {"type":"message","delay":900,"from":"evelyn","text":"Better"},
+    {"type":"message","delay":900,"from":"evelyn","text":"But I still feel guilty"},
+    {"type":"message","delay":900,"from":"evelyn","text":"I stayed home like you said but I feel like I let my colleagues down"},
+    {"type":"message","delay":900,"from":"player","text":"Do not feel guilty, working there was not good for you anyway"},
+    {"type":"message","delay":900,"from":"player","text":"I told you I would handle it for the work, and for your coworkers it is fine, you can still see them outside work"},
+    {"type":"message","delay":900,"from":"evelyn","text":"Yes that is true"},
+    {"type":"message","delay":900,"from":"evelyn","text":"But I do not want to be useless"},
+    {"type":"message","delay":900,"from":"evelyn","text":"I want to help"},
+    {"type":"message","delay":900,"from":"player","text":"You are not useless, you are the one keeping everything running here"},
+    {"type":"message","delay":900,"from":"player","text":"Also I am looking for something we can do together"},
+    {"type":"message","delay":900,"from":"player","text":"I might have a lead"},
+    {"type":"message","delay":900,"from":"player","text":"But I want to verify it before I commit you to anything"},
+    {"type":"message","delay":900,"from":"evelyn","text":"What kind of work?"},
+    {"type":"message","delay":900,"from":"evelyn","text":"Is it safe?"},
+    {"type":"message","delay":900,"from":"evelyn","text":"And is it legal?"},
+    {"type":"message","delay":900,"from":"player","text":"Yes of course"},
+    {"type":"message","delay":900,"from":"player","text":"It is mostly scheduling and meeting people in public"},
+    {"type":"message","delay":900,"from":"player","text":"No bar"},
+    {"type":"message","delay":900,"from":"player","text":"No late nights forced by a manager"},
+    {"type":"message","delay":900,"from":"evelyn","text":"Meeting people?"},
+    {"type":"message","delay":900,"from":"evelyn","text":"For what?"},
+    {"type":"hak_hint","kind":"ntr","text":"Passive Insight says how you frame your next response can change her reaction"},
+    {"type":"choice","key":"d9_evelyn_job_pitch_v1","prompt":"","options":[{"id":"friend_for_day","text":"It is like being a friend for a day, they pay for your time and company","goto":"pitch_friend"},{"id":"paid_date","text":"It is basically paid dates, but with strict rules and public places only","goto":"pitch_date","points":{"nts":3}}]},
+    {"type":"label","name":"pitch_friend"},
+    {"type":"message","delay":900,"from":"evelyn","text":"That sounds strange"},
+    {"type":"message","delay":900,"from":"evelyn","text":"People pay just to talk?"},
+    {"type":"message","delay":900,"from":"player","text":"Some people feel really lonely"},
+    {"type":"message","delay":900,"from":"player","text":"They want company without pressure"},
+    {"type":"message","delay":900,"from":"player","text":"And you are good at making people feel safe"},
+    {"type":"message","delay":900,"from":"player","text":"And who knows, maybe you will find someone you like"},
+    {"type":"message","delay":900,"from":"player","text":"You took care of us for a long time, it is time for you to live your life too"},
+    {"type":"message","delay":900,"from":"evelyn","text":"I am too old for that"},
+    {"type":"message","delay":900,"from":"player","text":"No you are not, you are beautiful and still young, just give yourself a chance"},
+    {"type":"message","delay":900,"from":"evelyn","text":"Hmm..I will see"},
+    {"type":"goto","label":"join_after_pitch"},
+    {"type":"label","name":"pitch_date"},
+    {"type":"message","delay":900,"from":"evelyn","text":"Paid dates?"},
+    {"type":"message","delay":900,"from":"evelyn","text":"That is not really my world"},
+    {"type":"message","delay":900,"from":"player","text":"It does not mean you owe anything to anyone, it is more like acting for a day"},
+    {"type":"message","delay":900,"from":"player","text":"It is time and conversation"},
+    {"type":"message","delay":900,"from":"player","text":"It pays really well"},
+    {"type":"message","delay":900,"from":"player","text":"And we set boundaries before you accept any client so there is no risk"},
+    {"type":"message","delay":900,"from":"player","text":"And who knows, maybe you will find someone"},
+    {"type":"message","delay":900,"from":"player","text":"You took care of us for a long time, it is time for you to live your life too"},
+    {"type":"message","delay":900,"from":"evelyn","text":"I am too old for that"},
+    {"type":"message","delay":900,"from":"player","text":"No you are not, you are beautiful, just give yourself a chance"},
+    {"type":"message","delay":900,"from":"evelyn","text":"I will see"},
+    {"type":"goto","label":"join_after_pitch"},
+    {"type":"label","name":"join_after_pitch"},
+    {"type":"message","delay":900,"from":"evelyn","text":"But i do not like the idea of being judged"},
+    {"type":"message","delay":900,"from":"player","text":"No one will judge you"},
+    {"type":"message","delay":900,"from":"player","text":"And you will not be alone in this, I will check everything, check with the client and watch over you all day"},
+    {"type":"message","delay":900,"from":"player","text":"For now I will verify the platform and the rules"},
+    {"type":"message","delay":900,"from":"player","text":"If anything feels wrong we drop it"},
+    {"type":"message","delay":900,"from":"evelyn","text":"Alright"},
+    {"type":"message","delay":900,"from":"evelyn","text":"I can try it and if I do not like it I will stop"},
+    {"type":"message","delay":900,"from":"player","text":"Of course, you only have a one week obligation anyway"},
+    {"type":"message","delay":900,"from":"evelyn","text":"Alright, when do I start?"},
+    {"type":"message","delay":900,"from":"player","text":"I will text you once I know more"},
+    {"type":"message","delay":900,"from":"evelyn","text":"Okay"},
+    {"type":"message","delay":900,"from":"evelyn","text":"Thank you for taking care of me and finding me work"},
+    {"type":"message","delay":900,"from":"player","text":"It is normal, go rest a little you deserve your day off"},
+    {"type":"if","condition":"active_character:lena","then":[
+      {"type":"if","condition":"route_lena_locked_v1:nts","then":[
+        {"type":"start_story","goHome":true,"startStory":"story/DAY9/DAY9_LENA_LATE_MORNING.json"}
+      ],"else":[
+        {"type":"if","condition":"route_lena_locked_v1:ntr","then":[
+          {"type":"start_story","goHome":true,"startStory":"story/DAY9/DAY9_LENA_LATE_MORNING.json"}
+        ],"else":[
+          {"type":"start_story","goHome":true,"startStory":"story/DAY9/DAY9_LENA_LATE_MORNING.json"}
+        ]}
+      ]}
+    ],"else":[
+      {"type":"start_story","goHome":true,"startStory":"story/DAY9/nts/DAY9_08_EVELYN_AFTERNOON_NTS.json"}
+    ]}
+  ],
+  "route": "nts",
+  "routeLock": "route_evelyn_locked_v1:nts"
+}

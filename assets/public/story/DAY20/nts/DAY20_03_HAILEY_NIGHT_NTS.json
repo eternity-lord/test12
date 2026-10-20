@@ -1,0 +1,59 @@
+{
+  "id": "day20_03_hailey_night_nts",
+  "onceKey": "d20_03_hailey_night_nts_v1",
+  "day": 20,
+  "slot": "night",
+  "route": "nts",
+  "routeLock": "route_hailey_locked_v1:nts",
+  "contactId": "hailey",
+  "requireOnceKey": "d20_01_hailey_afternoon_nts_v1",
+  "requireCondition": "all:active_character:hailey,route_hailey_locked_v1:nts",
+  "onCompleteStartStory": "story/DEV/DAY20_END_CHAPTER.json",
+  "steps": [
+    {"type":"notify","delay":900,"fromId":"hailey","fromName":"{{name:hailey}}","avatar":"assets/avatars/hailey.jpg","text":"Hey","target":"conversation"},
+    {"type":"message","delay":900,"from":"hailey","text":"Did you enjoy this little day?"},
+    {"type":"message","delay":900,"from":"player","text":"Which part?"},
+    {"type":"if","condition":"hailey_nts_post15_path:ethan","then":[
+      {"type":"message","delay":900,"from":"hailey","text":"The part where I sent you a photo of my reward 😌"},
+      {"type":"message","delay":900,"from":"player","text":"I don’t know what you’re talking about"},
+      {"type":"message","delay":900,"from":"hailey","text":"Really?"},
+      {"type":"message","delay":900,"from":"hailey","text":"Too bad… I had another surprise for you if you liked it"},
+      {"type":"message","delay":900,"from":"player","text":"…"},
+      {"type":"message","delay":900,"from":"hailey","text":"Still pretending?"},
+      {"type":"message","delay":900,"from":"player","text":"Fine. I liked it"},
+      {"type":"message","delay":900,"from":"hailey","text":"I knew it! 😇"},
+      {"type":"message","delay":900,"from":"hailey","text":"Here"},
+      {"type":"message","delay":900,"from":"hailey","text":"For finally admitting it, you get a reward too"},
+      {"type":"photo","delay":900,"from":"hailey","image":"assets/pictures/Conversation/hailey_ethan_cuni_reward_d20.jpg"},
+      {"type":"message","delay":900,"from":"player","text":"You’re really insane"},
+      {"type":"message","delay":900,"from":"hailey","text":"And that’s the kind of crazy you love"},
+      {"type":"message","delay":900,"from":"player","text":"True"},
+      {"type":"message","delay":900,"from":"hailey","text":"Be ready to see even more"},
+      {"type":"message","delay":900,"from":"player","text":"Can’t wait"},
+      {"type":"message","delay":900,"from":"hailey","text":"Good night 😌"},
+      {"type":"message","delay":900,"from":"player","text":"Night"}
+    ],"else":[
+      {"type":"message","delay":900,"from":"hailey","text":"The part where you watched everything during the game session 😌"},
+      {"type":"message","delay":900,"from":"player","text":"…"},
+      {"type":"message","delay":900,"from":"hailey","text":"Come on, admit it"},
+      {"type":"message","delay":900,"from":"hailey","text":"If you admit properly I’ll show you something even better"},
+      {"type":"message","delay":900,"from":"player","text":"I liked it"},
+      {"type":"message","delay":900,"from":"hailey","text":"More"},
+      {"type":"message","delay":900,"from":"player","text":"I really liked it"},
+      {"type":"message","delay":900,"from":"hailey","text":"Good boy"},
+      {"type":"message","delay":900,"from":"hailey","text":"Look what your best friend left me like when he left"},
+      {"type":"photo","delay":900,"from":"hailey","image":"assets/pictures/Conversation/hailey_pussy_after_aiden_d20.jpg"},
+      {"type":"message","delay":900,"from":"player","text":"You’re really obsessed"},
+      {"type":"message","delay":900,"from":"hailey","text":"Yes"},
+      {"type":"message","delay":900,"from":"hailey","text":"And you like it too"},
+      {"type":"message","delay":900,"from":"player","text":"Yeah"},
+      {"type":"message","delay":900,"from":"hailey","text":"Looking forward to the next training session 😌"},
+      {"type":"message","delay":900,"from":"player","text":"Me too"},
+      {"type":"message","delay":900,"from":"hailey","text":"Good night"},
+      {"type":"message","delay":900,"from":"player","text":"Night"}
+    ]},
+    {"type":"if","condition":"all:active_character:lena,route_lena_locked_v1:love","then":[
+      {"type":"note","text":"After putting your phone down, you settle back beside {{name:lena}} and fall asleep together."}
+    ]}
+  ]
+}

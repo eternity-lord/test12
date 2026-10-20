@@ -1,0 +1,51 @@
+{
+  "onceKey": "d15_01_evelyn_afternoon_love_v1",
+  "contactId": "evelyn",
+  "requireOnceKey": "d15_00_evelyn_morning_love_v1",
+  "steps": [
+    {"type":"notify","delay":1200,"fromId":"evelyn","fromName":"{{name:evelyn}}","avatar":"assets/avatars/evelyn.jpg","text":"Did you finish work?","target":"conversation"},
+    {"type":"message","delay":850,"from":"player","text":"Yeah"},
+    {"type":"message","delay":850,"from":"player","text":"I just finished"},
+    {"type":"message","delay":850,"from":"evelyn","text":"Good"},
+    {"type":"message","delay":850,"from":"evelyn","text":"The doctor is downstairs"},
+    {"type":"message","delay":850,"from":"evelyn","text":"He's about to come up and examine you"},
+    {"type":"message","delay":850,"from":"player","text":"No problem"},
+    {"type":"note","delay":1000,"text":"1 HOUR LATER"},
+    {"type":"message","delay":850,"from":"evelyn","text":"How did it go?"},
+    {"type":"message","delay":850,"from":"player","text":"Pretty well, actually"},
+    {"type":"message","delay":850,"from":"player","text":"Everything seems to be healing correctly"},
+    {"type":"message","delay":850,"from":"player","text":"The doctor removed the cast"},
+    {"type":"message","delay":850,"from":"evelyn","text":"Really? 😊"},
+    {"type":"message","delay":850,"from":"player","text":"Yeah"},
+    {"type":"message","delay":850,"from":"player","text":"But he also made me do a lot of movements"},
+    {"type":"message","delay":850,"from":"player","text":"And now it's starting to hurt a little"},
+    {"type":"message","delay":850,"from":"evelyn","text":"Do you need anything?"},
+    {"type":"message","delay":850,"from":"player","text":"Could you bring me some ice?"},
+    {"type":"message","delay":850,"from":"evelyn","text":"Of course"},
+    {"type":"message","delay":850,"from":"evelyn","text":"I'm on my way"},
+    {"type":"note","delay":1000,"text":"10 MINUTES LATER"},
+    {"type":"message","delay":850,"from":"evelyn","text":"Does it help?"},
+    {"type":"message","delay":850,"from":"player","text":"Yeah, a little"},
+    {"type":"message","delay":850,"from":"player","text":"I think I'm just going to let it rest for an hour"},
+    {"type":"message","delay":850,"from":"evelyn","text":"That's probably a good idea"},
+    {"type":"message","delay":850,"from":"evelyn","text":"Just let me know if you need anything"},
+    {"type":"message","delay":850,"from":"evelyn","text":"Anything at all"},
+    {"type":"message","delay":850,"from":"player","text":"I will"},
+    {"type":"message","delay":850,"from":"player","text":"Thank you, {{name:evelyn}}"},
+    {"type":"if","condition":"active_character:mason","then":[
+      {"type":"start_story","goHome":true,"startStory":"story/DEV/DAY15_ROUTER_MASON_EVENING.json"}
+    ],"else":[
+      {"type":"if","condition":"active_character:lena","then":[
+        {"type":"start_story","goHome":true,"startStory":"story/DAY15/DAY15_02_LENA_EVENING.json"}
+      ],"else":[
+        {"type":"if","condition":"active_character:hailey","then":[
+          {"type":"start_story","goHome":true,"startStory":"story/DAY15/DAY15_02_HAILEY_EVENING.json"}
+        ],"else":[
+          {"type":"start_story","goHome":true,"startStory":"story/DAY15/DAY15_02_EVELYN_EVENING.json"}
+        ]}
+      ]}
+    ]}
+  ],
+  "route": "love",
+  "routeLock": "route_evelyn_locked_v1:love"
+}

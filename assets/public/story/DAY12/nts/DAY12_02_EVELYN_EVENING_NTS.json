@@ -1,0 +1,50 @@
+{
+  "onceKey": "d12_02_evelyn_evening_nts_v1",
+  "contactId": "evelyn",
+  "requireOnceKey": "d12_01_evelyn_afternoon_nts_v1",
+  "steps": [
+    {"type":"notify","delay":1200,"fromId":"evelyn","fromName":"{{name:evelyn}}","avatar":"assets/avatars/evelyn.jpg","text":"I'm heading home now 😊","target":"conversation"},
+    {"type":"message","delay":850,"from":"player","text":"How did it go?"},
+    {"type":"message","delay":850,"from":"evelyn","text":"Honestly, really well"},
+    {"type":"message","delay":850,"from":"evelyn","text":"The movie was good, and he was nice too"},
+    {"type":"message","delay":850,"from":"evelyn","text":"There was just one moment where I wasn't completely sure what to do"},
+    {"type":"message","delay":850,"from":"player","text":"What happened?"},
+    {"type":"message","delay":850,"from":"evelyn","text":"At one point, he asked if we could hold hands"},
+    {"type":"message","delay":850,"from":"evelyn","text":"I wasn't very comfortable at first, but I accepted"},
+    {"type":"message","delay":850,"from":"evelyn","text":"Do you think I should not have?"},
+    {"type":"message","delay":850,"from":"player","text":"You did fine"},
+    {"type":"message","delay":850,"from":"player","text":"The goal is also to get closer to your clients, as long as it stays within what you are comfortable doing"},
+    {"type":"message","delay":850,"from":"player","text":"If you feel okay with something, you do not have to hesitate too much"},
+    {"type":"message","delay":850,"from":"player","text":"And usually, people add tips when you make those little efforts"},
+    {"type":"message","delay":850,"from":"evelyn","text":"Tips?"},
+    {"type":"message","delay":850,"from":"player","text":"Yes"},
+    {"type":"message","delay":850,"from":"player","text":"I just received the transfer"},
+    {"type":"message","delay":850,"from":"player","text":"He paid $400 for the date and added $100 as a tip"},
+    {"type":"message","delay":850,"from":"evelyn","text":"$500?"},
+    {"type":"message","delay":850,"from":"evelyn","text":"For a movie and holding hands?"},
+    {"type":"message","delay":850,"from":"player","text":"Yes"},
+    {"type":"message","delay":850,"from":"player","text":"You made him feel good, and he wanted to reward that"},
+    {"type":"message","delay":850,"from":"evelyn","text":"I really did not expect that"},
+    {"type":"message","delay":850,"from":"evelyn","text":"I think I am starting to understand little by little"},
+    {"type":"message","delay":850,"from":"evelyn","text":"I still need to improve, but..."},
+    {"type":"message","delay":850,"from":"evelyn","text":"Earning that much money while having fun and meeting people is actually pretty nice"},
+    {"type":"message","delay":850,"from":"player","text":"That's why we take it slowly"},
+    {"type":"message","delay":850,"from":"player","text":"You learn what feels right for you"},
+    {"type":"message","delay":850,"from":"evelyn","text":"Thank you for guiding me through it"},
+    {"type":"message","delay":850,"from":"evelyn","text":"I'll be home soon 😊"},
+    {"type":"message","delay":850,"from":"evelyn","text":"'ll make a good meal for my little manager"},
+    {"type":"message","delay":850,"from":"player","text":"Can't wait to taste it!"},
+    {"type":"meetandgreet_tip","profileId":"noah","tipId":"noah_cinema_tip_01","amount":100,"label":"TIP","text":"Noah sent you a tip","onceKey":"meetandgreet_d12_noah_tip_v1"},
+    {"type":"if","condition":"all:active_character:hailey|route_hailey_locked_v1:nts|!once:d12_02_hailey_evening_nts_v1","then":[
+      {"type":"start_story","goHome":true,"startStory":"story/DAY12/DAY12_HAILEY_AFTERNOON.json"}
+    ],"else":[
+      {"type":"if","condition":"active_character:mason","then":[
+        {"type":"time_card","text":"DAY 13","goHome":true,"startStory":"story/DAY13/nts/DAY13_00_MASON_MORNING_NTS.json","startDelayMs":200}
+      ],"else":[
+        {"type":"time_card","text":"DAY 13","goHome":true,"startStory":"story/DAY13/nts/DAY13_00_EVELYN_MORNING_NTS.json","startDelayMs":200}
+      ],"__masonNextDayPatched":true}
+    ]}
+  ],
+  "route": "nts",
+  "routeLock": "route_evelyn_locked_v1:nts"
+}

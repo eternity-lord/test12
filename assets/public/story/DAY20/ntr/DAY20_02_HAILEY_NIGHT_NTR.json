@@ -1,0 +1,39 @@
+{
+  "id": "d20_02_hailey_night_ntr",
+  "onceKey": "d20_02_hailey_night_ntr_v1",
+  "day": 20,
+  "slot": "night",
+  "route": "ntr",
+  "routeLock": "route_hailey_locked_v1:ntr",
+  "contactId": "hailey",
+  "requireOnceKey": "d20_01_hailey_afternoon_ntr_v1",
+  "requireCondition": "all:active_character:hailey,route_hailey_locked_v1:ntr",
+  "onCompleteStartStory": "story/DEV/DAY20_END_CHAPTER.json",
+  "steps": [
+    {"type":"message","delay":1300,"from":"player","text":"You looked really pensive in the car earlier"},
+    {"type":"message","delay":950,"from":"hailey","text":"Did I?"},
+    {"type":"message","delay":900,"from":"player","text":"Yeah"},
+    {"type":"message","delay":850,"from":"player","text":"Is everything going okay with your professor?"},
+    {"type":"message","delay":950,"from":"hailey","text":"It is"},
+    {"type":"message","delay":900,"from":"hailey","text":"But he put me in difficulty with some exercises today"},
+    {"type":"message","delay":850,"from":"hailey","text":"I kind of want revenge"},
+    {"type":"message","delay":1000,"from":"player","text":"Then do the same thing to him"},
+    {"type":"message","delay":950,"from":"player","text":"Give him an exercise just as hard"},
+    {"type":"message","delay":900,"from":"hailey","text":"…"},
+    {"type":"message","delay":950,"from":"hailey","text":"That’s actually a really good idea"},
+    {"type":"message","delay":900,"from":"hailey","text":"I think I’ll do exactly that"},
+    {"type":"message","delay":1000,"from":"player","text":"Look at you becoming strategic"},
+    {"type":"message","delay":950,"from":"hailey","text":"I learn from the best"},
+    {"type":"message","delay":900,"from":"player","text":"Flattery won’t save you next cleaning day"},
+    {"type":"message","delay":950,"from":"hailey","text":"Worth a try though"},
+    {"type":"message","delay":900,"from":"hailey","text":"Anyway"},
+    {"type":"message","delay":850,"from":"hailey","text":"I’m going to sleep and plan my revenge properly"},
+    {"type":"message","delay":950,"from":"player","text":"Don’t go too hard on him"},
+    {"type":"message","delay":900,"from":"hailey","text":"No promises 😌"},
+    {"type":"message","delay":950,"from":"hailey","text":"Good night"},
+    {"type":"message","delay":900,"from":"player","text":"Good night"},
+    {"type":"if","condition":"all:active_character:lena,route_lena_locked_v1:love","then":[
+      {"type":"note","text":"After putting your phone down, you settle back beside {{name:lena}} and fall asleep together."}
+    ]}
+  ]
+}

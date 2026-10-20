@@ -1,0 +1,56 @@
+{
+  "onceKey": "d15_03_mason_morning_love_v1",
+  "contactId": "mason",
+  "requireOnceKey": "d14_06_mason_evening_love_v1",
+  "onCompleteStartStory": "story/DAY15/love/DAY15_01_MASON_AFTERNOON_LOVE.json",
+  "route": "love",
+  "routeLock": "route_mason_locked_v1:love",
+  "steps": [
+    {"type":"message","delay":850,"from":"player","text":"Hey"},
+    {"type":"message","delay":850,"from":"player","text":"How are you feeling?"},
+    {"type":"message","delay":850,"from":"player","text":"Ready for this morning?"},
+    {"type":"message","delay":850,"from":"mason","text":"I'm fine"},
+    {"type":"message","delay":850,"from":"mason","text":"Still sore in a few places"},
+    {"type":"message","delay":850,"from":"mason","text":"But ready"},
+    {"type":"message","delay":850,"from":"player","text":"Good"},
+    {"type":"message","delay":850,"from":"player","text":"Try not to complain too much"},
+    {"type":"message","delay":850,"from":"mason","text":"That's rich coming from you"},
+    {"type":"if","condition":"choice:d14_mason_day15_activity_choice:pool","then":[
+      {"type":"message","delay":850,"from":"player","text":"Did you prepare your swimsuit?"},
+      {"type":"message","delay":850,"from":"mason","text":"Yes"},
+      {"type":"message","delay":850,"from":"mason","text":"Unlike you, I can get ready without turning it into a medical operation"},
+      {"type":"message","delay":850,"from":"mason","text":"Did you prepare yours?"},
+      {"type":"message","delay":850,"from":"player","text":"I prepared it yesterday"},
+      {"type":"message","delay":850,"from":"player","text":"It's not exactly easy to put on with the cast"},
+      {"type":"message","delay":850,"from":"mason","text":"So the cast is now losing against clothes too"},
+      {"type":"message","delay":850,"from":"player","text":"Keep talking"},
+      {"type":"message","delay":850,"from":"mason","text":"Come on"},
+      {"type":"message","delay":850,"from":"mason","text":"Let's go before you need a break from getting dressed"}
+    ],"else":[
+      {"type":"message","delay":850,"from":"mason","text":"{{name:evelyn}} is ready"},
+      {"type":"message","delay":850,"from":"mason","text":"She's waiting downstairs"},
+      {"type":"message","delay":850,"from":"mason","text":"Honestly, stretching sounds good"},
+      {"type":"message","delay":850,"from":"mason","text":"I'm still sore everywhere"},
+      {"type":"message","delay":850,"from":"player","text":"Same"},
+      {"type":"message","delay":850,"from":"player","text":"But I might get the cast off soon"},
+      {"type":"message","delay":850,"from":"player","text":"After that I'll be able to move properly again"},
+      {"type":"message","delay":850,"from":"mason","text":"Great"},
+      {"type":"message","delay":850,"from":"mason","text":"Then you'll have fewer excuses"},
+      {"type":"message","delay":850,"from":"player","text":"You always find something"},
+      {"type":"message","delay":850,"from":"mason","text":"And I'm usually right"}
+    ]},
+    {"type":"if","condition":"active_character:lena","then":[
+      {"type":"start_story","goHome":true,"startStory":"story/DAY15/DAY15_LENA_MORNING.json","startDelayMs":200}
+    ],"else":[
+      {"type":"if","condition":"active_character:hailey","then":[
+        {"type":"start_story","goHome":true,"startStory":"story/DAY15/DAY15_HAILEY_MORNING.json","startDelayMs":200}
+      ],"else":[
+        {"type":"if","condition":"active_character:evelyn","then":[
+          {"type":"start_story","goHome":true,"startStory":"story/DAY15/DAY15_EVELYN_MORNING.json","startDelayMs":200}
+        ],"else":[
+          {"type":"start_story","goHome":true,"startStory":"story/DAY15/love/DAY15_01_MASON_AFTERNOON_LOVE.json","startDelayMs":200}
+        ]}
+      ]}
+    ]}
+  ]
+}

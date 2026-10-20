@@ -1,0 +1,49 @@
+{
+  "onceKey": "d13_02_evelyn_evening_ntr_v1",
+  "contactId": "evelyn",
+  "requireOnceKey": "d13_01_evelyn_afternoon_ntr_v1",
+  "steps": [
+    {"type":"notify","delay":1200,"fromId":"evelyn","fromName":"{{name:evelyn}}","avatar":"assets/avatars/evelyn.jpg","text":"I'm leaving for work now","target":"conversation"},
+    {"type":"message","delay":850,"from":"evelyn","text":"Everything is ready at home"},
+    {"type":"message","delay":850,"from":"evelyn","text":"If you need anything, just ask"},
+    {"type":"message","delay":850,"from":"player","text":"I can move around by myself now"},
+    {"type":"message","delay":850,"from":"player","text":"You don't need to worry so much"},
+    {"type":"message","delay":850,"from":"player","text":"Do you think you'll finish late tonight?"},
+    {"type":"message","delay":850,"from":"evelyn","text":"Hopefully not"},
+    {"type":"message","delay":850,"from":"evelyn","text":"I'd like a quiet shift for once 😅"},
+    {"type":"message","delay":850,"from":"player","text":"Good luck then"},
+    {"type":"message","delay":850,"from":"evelyn","text":"See you tomorrow if your're aslep when i come back ❤️"},
+    {"type":"message","delay":850,"from":"player","text":"See you tomorrow"},
+    {"type":"note","delay":1200,"text":"4 HOURS LATER"},
+    {"type":"message","delay":850,"from":"evelyn","text":"Hey, I'm on my break"},
+    {"type":"message","delay":850,"from":"player","text":"How is it going?"},
+    {"type":"message","delay":850,"from":"evelyn","text":"So far, so good"},
+    {"type":"message","delay":850,"from":"evelyn","text":"Nothing unusual for now"},
+    {"type":"message","delay":850,"from":"evelyn","text":"{{mason:evelyn_called}}"},
+    {"type":"message","delay":850,"from":"evelyn","text":"{{mason:evelyn_wait_home}}"},
+    {"type":"message","delay":850,"from":"evelyn","text":"{{mason:evelyn_door}}"},
+    {"type":"message","delay":850,"from":"player","text":"Sure, no problem"},
+    {"type":"message","delay":850,"from":"player","text":"I'll take care of it"},
+    {"type":"message","delay":850,"from":"player","text":"Good luck with the rest of the rush"},
+    {"type":"message","delay":850,"from":"evelyn","text":"Thank you 😊"},
+    {"type":"note","delay":1200,"text":"5 HOURS LATER"},
+    {"type":"hak_overlay","title":"HAK//NOTICE","messages":["Event intensity increased","Workplace monitoring detected unusual activity during closing hours","Behavioral pattern divergence observed","Additional evidence has been archived",{"kind":"thought","speaker":"player","text":"Something is changing at work. I should look at what HAK found before jumping to conclusions."}]},
+    {"type":"hak_add_evidence","kind":"ntr","route":"ntr","profileId":"evelyn","profile":{"name":"{{name:evelyn}}","avatar":"assets/avatars/evelyn.jpg","kind":"ntr","route":"ntr"},"evidences":[{"id":"evelyn_ntr_d13_evidence_1","kind":"ntr","route":"ntr","src":"assets/pictures/evidence/evelyn_new_outfit_gropping.jpg","url":"assets/pictures/evidence/evelyn_new_outfit_gropping.jpg","thumb":"assets/pictures/evidence/evelyn_new_outfit_gropping.jpg","title":"New Uniform","text":"HAK archived an image showing {{name:evelyn}} wearing the new work outfit introduced by management","time":"EVENING"}]},
+    {"type":"onlyfun_post","onceKey":"of_evelyn_d13_comment_v1","creatorId":"static_muse","image":"assets/pictures/OnlyFun/posts/evelyn_tits_comment.jpg","text":"She's starting to let go a little","likes":1087,"requiresSub":true,"notify":true},
+    {"type":"if","condition":"all:active_character:mason,not once:d13_06_mason_evening_ntr_v1","then":[
+      {"type":"start_story","goHome":true,"startStory":"story/DAY13/DAY13_MASON_EVENING.json","startDelayMs":200}
+    ],"else":[
+      {"type":"if","condition":"all:active_character:lena,not once:d13_03_hak_heartspike_ntr_v1","then":[
+        {"type":"start_story","goHome":true,"startStory":"story/DAY13/ntr/DAY13_03_HAK_HEARTSPIKE_NTR.json","startDelayMs":200}
+      ],"else":[
+        {"type":"if","condition":"active_character:mason","then":[
+          {"type":"time_card","text":"DAY 14","goHome":true,"startStory":"story/DAY14/ntr/DAY14_00_MASON_MORNING_NTR.json","startDelayMs":200}
+        ],"else":[
+          {"type":"time_card","text":"DAY 14","goHome":true,"startStory":"story/DAY14/ntr/DAY14_00_EVELYN_MORNING_NTR.json","startDelayMs":200}
+        ]}
+      ]}
+    ],"__masonNextDayPatched":true}
+  ],
+  "route": "ntr",
+  "routeLock": "route_evelyn_locked_v1:ntr"
+}

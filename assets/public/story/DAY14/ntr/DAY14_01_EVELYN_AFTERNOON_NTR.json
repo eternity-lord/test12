@@ -1,0 +1,21 @@
+{
+  "onceKey": "d14_01_evelyn_afternoon_ntr_v1",
+  "contactId": "evelyn",
+  "requireOnceKey": "d14_00_evelyn_morning_ntr_v1",
+  "onCompleteStartStory": "story/DAY14/ntr/DAY14_02_EVELYN_EVENING_NTR.json",
+  "steps": [
+    {"type":"notify","delay":1200,"fromId":"evelyn","fromName":"{{name:evelyn}}","avatar":"assets/avatars/evelyn.jpg","text":"I'm ready for our walk 😊","target":"conversation"},
+    {"type":"message","delay":850,"from":"player","text":"I'm almost done getting dressed"},
+    {"type":"message","delay":850,"from":"player","text":"Did you put on something light for the heat?"},
+    {"type":"image","delay":1200,"image":"assets/pictures/Conversation/evelyn_summer_outfit.jpg"},
+    {"type":"message","delay":850,"from":"evelyn","text":"I wore my favorite summer outfit"},
+    {"type":"message","delay":850,"from":"evelyn","text":"And I feel perfectly comfortable in it"},
+    {"type":"message","delay":850,"from":"player","text":"You look beautiful"},
+    {"type":"message","delay":850,"from":"player","text":"It suits you really well"},
+    {"type":"message","delay":850,"from":"player","text":"I'm coming downstairs"},
+    {"type":"message","delay":850,"from":"evelyn","text":"I'll wait for you outside 😊"},
+    {"type":"start_story","goHome":true,"startStory":"story/DAY14/ntr/DAY14_02_EVELYN_EVENING_NTR.json"}
+  ],
+  "route": "ntr",
+  "routeLock": "route_evelyn_locked_v1:ntr"
+}

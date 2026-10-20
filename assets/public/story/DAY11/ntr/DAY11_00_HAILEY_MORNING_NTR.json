@@ -1,0 +1,55 @@
+{
+  "onceKey": "d11_00_hailey_morning_ntr_v1",
+  "contactId": "hailey",
+  "requireOnceKey": "d11_00_lena_morning_ntr_v1|d10_02_hailey_evening_ntr_v1",
+  "steps": [
+    {"type":"notify","delay":1200,"fromId":"hailey","fromName":"{{name:hailey}}","avatar":"assets/avatars/hailey.jpg","text":"What a bad start 😭","target":"conversation"},
+    {"type":"message","delay":850,"from":"hailey","text":"I am outside class"},
+    {"type":"message","delay":850,"from":"hailey","text":"Pretending to be a girl who understands chapters"},
+    {"type":"image","delay":900,"from":"hailey","image":"assets/pictures/Conversation/hailey_before_class.jpg"},
+    {"type":"message","delay":900,"from":"player","text":"You revised yesterday"},
+    {"type":"message","delay":850,"from":"hailey","text":"Because he bullied me with structure"},
+    {"type":"message","delay":850,"from":"hailey","text":"Respectfully"},
+    {"type":"message","delay":850,"from":"hailey","text":"He told me to breathe and read the question twice"},
+    {"type":"message","delay":900,"from":"player","text":"That is good advice"},
+    {"type":"message","delay":850,"from":"hailey","text":"I know"},
+    {"type":"message","delay":850,"from":"hailey","text":"He says it like I am not allowed to fail"},
+    {"type":"message","delay":850,"from":"hailey","text":"Which is rude but also helpful"},
+    {"type":"message","delay":900,"from":"player","text":"You are quite smart"},
+    {"type":"message","delay":850,"from":"hailey","text":"Well thanks I guess ?"},
+    {"type":"message","delay":850,"from":"hailey","text":"Also he just walked past and gave me the professor nod"},
+    {"type":"message","delay":850,"from":"hailey","text":"Good sign right ??"},
+    {"type":"hak_hint","kind":"ntr","text":"Emotional regulation source shifting. Pressing too hard may cause defensive minimization.","onceKey":"d11_hailey_ntr_professor_reassurance_hint_once_v1"},
+    {"type":"choice","key":"d11_00_hailey_professor_reassurance_choice_v1","prompt":"","options":[{"id":"ask_calm","text":"Ask if his attention helps her calm down","goto":"ask_calm"},{"id":"let_class","text":"Let her focus before class","goto":"let_class"}]},
+    {"type":"label","name":"ask_calm"},
+    {"type":"message","delay":900,"from":"player","text":"Does it help when he checks on you like that?"},
+    {"type":"message","delay":850,"from":"hailey","text":"Maybe"},
+    {"type":"message","delay":850,"from":"hailey","text":"Do not make a psychology documentary about it"},
+    {"type":"message","delay":850,"from":"hailey","text":"I just need to pass 😭"},
+    {"type":"goto","label":"end"},
+    {"type":"label","name":"let_class"},
+    {"type":"message","delay":900,"from":"player","text":"Go focus. You can survive this."},
+    {"type":"message","delay":850,"from":"hailey","text":"That is the correct supportive answer"},
+    {"type":"message","delay":850,"from":"hailey","text":"Gold star maybe"},
+    {"type":"label","name":"end"},
+    {"type":"message","delay":850,"from":"hailey","text":"If I die, delete my search history"},
+    {"type":"message","delay":850,"from":"hailey","text":"And tell my friends I was academically brave 😭"},
+    {"type":"if","condition":"active_character:evelyn","then":[
+      {"type":"if","condition":"route_evelyn_locked_v1:love","then":[
+        {"type":"start_story","goHome":true,"startStory":"story/DAY11/DAY11_EVELYN_MORNING.json"}
+      ],"else":[
+        {"type":"if","condition":"route_evelyn_locked_v1:nts","then":[
+          {"type":"start_story","goHome":true,"startStory":"story/DAY11/DAY11_EVELYN_MORNING.json"}
+        ],"else":[
+          {"type":"if","condition":"route_evelyn_locked_v1:ntr","then":[
+            {"type":"start_story","goHome":true,"startStory":"story/DAY11/DAY11_EVELYN_MORNING.json"}
+          ],"else":[
+            {"type":"start_story","goHome":true,"startStory":"story/DAY11/DAY11_EVELYN_MORNING.json"}
+          ]}
+        ]}
+      ]}
+    ],"else":[
+      {"type":"start_story","goHome":true,"startStory":"story/DAY11/ntr/DAY11_01_HAILEY_AFTERNOON_NTR.json"}
+    ]}
+  ]
+}

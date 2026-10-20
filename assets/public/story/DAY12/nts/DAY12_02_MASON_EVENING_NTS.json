@@ -1,0 +1,45 @@
+{
+  "onceKey": "d12_05_mason_evening_nts_v1",
+  "contactId": "mason",
+  "requireOnceKey": "d12_04_mason_afternoon_nts_v1",
+  "route": "nts",
+  "routeLock": "route_mason_locked_v1:nts",
+  "steps": [
+    {"type":"notify","delay":1200,"fromId":"mason","fromName":"{{name:mason}}","avatar":"assets/avatars/male_mason.jpg","text":"I am vengeance","target":"conversation"},
+    {"type":"image","image":"assets/pictures/Conversation/male_mason/mason_eating_cake.jpg"},
+    {"type":"message","delay":850,"from":"player","text":"You fucking asshole"},
+    {"type":"message","delay":850,"from":"player","text":"You ate the last piece of cake?"},
+    {"type":"message","delay":850,"from":"mason","text":"Justice has been served"},
+    {"type":"message","delay":850,"from":"player","text":"You look really proud for someone who just signed {{mason:his}} own death warrant"},
+    {"type":"message","delay":850,"from":"mason","text":"It was worth it"},
+    {"type":"message","delay":850,"from":"player","text":"An eye for an eye"},
+    {"type":"message","delay":850,"from":"mason","text":"No"},
+    {"type":"message","delay":850,"from":"mason","text":"No no no"},
+    {"type":"message","delay":850,"from":"mason","text":"Let's not do anything stupid"},
+    {"type":"message","delay":850,"from":"mason","text":"I'll buy you another cake tomorrow"},
+    {"type":"message","delay":850,"from":"player","text":"Too late"},
+    {"type":"message","delay":850,"from":"player","text":"You have a session tomorrow at 8 AM"},
+    {"type":"message","delay":850,"from":"mason","text":"I can't"},
+    {"type":"message","delay":850,"from":"mason","text":"I have work"},
+    {"type":"message","delay":850,"from":"player","text":"That's fine"},
+    {"type":"message","delay":850,"from":"player","text":"Your session starts as soon as you get home then"},
+    {"type":"message","delay":850,"from":"player","text":"I already talked to your coach"},
+    {"type":"message","delay":850,"from":"player","text":"He said it's going to be intense"},
+    {"type":"message","delay":850,"from":"mason","text":"You really need to find a hobby that doesn't involve obsessing over me"},
+    {"type":"message","delay":850,"from":"player","text":"I had one"},
+    {"type":"message","delay":850,"from":"player","text":"Then you ate the last piece of it"},
+    {"type":"if","condition":"active_character:lena","then":[
+      {"type":"start_story","goHome":true,"startStory":"story/DAY12/DAY12_LENA_MORNING.json","startDelayMs":200}
+    ],"else":[
+      {"type":"if","condition":"active_character:hailey","then":[
+        {"type":"start_story","goHome":true,"startStory":"story/DAY12/DAY12_HAILEY_MORNING.json","startDelayMs":200}
+      ],"else":[
+        {"type":"if","condition":"active_character:evelyn","then":[
+          {"type":"start_story","goHome":true,"startStory":"story/DAY12/DAY12_EVELYN_MORNING.json","startDelayMs":200}
+        ],"else":[
+          {"type":"time_card","text":"DAY 13","goHome":true,"startStory":"story/DAY13/nts/DAY13_00_MASON_MORNING_NTS.json","startDelayMs":200}
+        ]}
+      ]}
+    ]}
+  ]
+}

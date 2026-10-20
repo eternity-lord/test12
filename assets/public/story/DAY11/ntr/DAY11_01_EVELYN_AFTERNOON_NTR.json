@@ -1,0 +1,29 @@
+{
+  "onceKey": "d11_01_evelyn_afternoon_ntr_v1",
+  "contactId": "evelyn",
+  "requireOnceKey": "d11_00_evelyn_morning_ntr_v1",
+  "onCompleteStartStory": "story/DAY11/ntr/DAY11_02_EVELYN_EVENING_NTR.json",
+  "steps": [
+    {"type":"notify","delay":1200,"fromId":"evelyn","fromName":"{{name:evelyn}}","avatar":"assets/avatars/evelyn.jpg","text":"Thank you for this morning 😊","target":"conversation"},
+    {"type":"message","delay":850,"from":"evelyn","text":"That walk did me a lot of good"},
+    {"type":"message","delay":850,"from":"player","text":"We didn't exactly go very far"},
+    {"type":"message","delay":850,"from":"player","text":"And we came back pretty quickly too 😄"},
+    {"type":"message","delay":850,"from":"evelyn","text":"Maybe"},
+    {"type":"message","delay":850,"from":"evelyn","text":"But it was perfect for me"},
+    {"type":"message","delay":850,"from":"evelyn","text":"It didn't bother me at all"},
+    {"type":"message","delay":850,"from":"player","text":"That's reassuring"},
+    {"type":"message","delay":850,"from":"player","text":"We'll try to do it more often then"},
+    {"type":"message","delay":850,"from":"evelyn","text":"I'd love that"},
+    {"type":"message","delay":850,"from":"player","text":"By the way"},
+    {"type":"message","delay":850,"from":"player","text":"What time do you start at the bar today?"},
+    {"type":"message","delay":850,"from":"evelyn","text":"Later than usual"},
+    {"type":"message","delay":850,"from":"evelyn","text":"And I'll finish later too"},
+    {"type":"message","delay":850,"from":"evelyn","text":"But I'll make a little more money because of it !"},
+    {"type":"message","delay":850,"from":"player","text":"Just make sure you don't get too tired"},
+    {"type":"message","delay":850,"from":"evelyn","text":"I'll be okay"},
+    {"type":"message","delay":850,"from":"evelyn","text":"But thank you for worrying about me ❤️"},
+    {"type":"start_story","goHome":true,"startStory":"story/DAY11/ntr/DAY11_02_EVELYN_EVENING_NTR.json"}
+  ],
+  "route": "ntr",
+  "routeLock": "route_evelyn_locked_v1:ntr"
+}

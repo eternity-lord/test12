@@ -1,0 +1,4516 @@
+<!-- scenes/story.html -->
+<style>
+  :root{
+    --story-fg:#f3f6ff;
+    --story-muted:rgba(243,246,255,.68);
+    --story-edge:rgba(196,222,255,.18);
+    --story-choice:#ffb25e;
+    --story-shadow:0 10px 22px rgba(0,0,0,.34);
+    --story-radius:18px;
+    --status-h:24px;
+  }
+  .story-wrap{
+    min-height:100%;
+    height:100%;
+    padding:calc(var(--status-h) + env(safe-area-inset-top, 0px) + 10px) 16px calc(10px + env(safe-area-inset-bottom, 0px));
+    position:relative;
+    z-index:0;
+    color:var(--story-fg);
+    font-family:var(--ui-font);
+    display:flex;
+    flex-direction:column;
+    overflow:hidden;
+    scrollbar-width:none;
+    -ms-overflow-style:none;
+  }
+  .story-wrap::-webkit-scrollbar{width:0;height:0}
+  .story-wrap::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    z-index:-3;
+    background:
+      radial-gradient(ellipse at 50% -12%, rgba(48,118,156,.20), transparent 76%),
+      linear-gradient(180deg, rgba(2,5,10,.58), rgba(3,6,10,.84)),
+      var(--phone-wallpaper-image) center/cover no-repeat;
+    filter:saturate(.80) brightness(.50);
+    transform:translateZ(0) scale(1.035);
+    backface-visibility:hidden;
+  }
+  .story-wrap::after{
+    content:"";
+    position:fixed;
+    inset:0;
+    z-index:-2;
+    background:linear-gradient(180deg, rgba(3,5,9,.08), rgba(3,5,9,.32));
+    pointer-events:none;
+    transform:translateZ(0);
+    backface-visibility:hidden;
+  }
+  .st-header{
+    margin:4px 0 12px;
+    padding:11px 14px;
+    text-align:center;
+    font-weight:900;
+    letter-spacing:.22em;
+    text-transform:uppercase;
+    border-radius:15px;
+    background:linear-gradient(180deg, rgba(8,11,18,.78), rgba(9,13,20,.62));
+    border:1px solid rgba(202,228,255,.16);
+    box-shadow:var(--story-shadow);
+  }
+  .st-calendar-clock{padding:0 14px 12px;color:var(--story-muted);font-size:12px;line-height:1.5;flex-shrink:0}
+  .st-tabs{
+    display:grid;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:8px;
+    margin:0 0 12px;
+  }
+  .st-tab,.st-pill,.st-link-btn,.st-modal-btn,.st-card-btn{
+    appearance:none;
+    border:1px solid var(--story-edge);
+    border-radius:999px;
+    background:rgba(8,11,18,.64);
+    color:var(--story-fg);
+    cursor:pointer;
+  }
+  .st-tab{
+    padding:9px 8px;
+    font-size:.72rem;
+    font-weight:900;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+  }
+  .st-tab.is-active{
+    border-color:rgba(122,215,255,.48);
+    background:linear-gradient(180deg, rgba(16,28,42,.96), rgba(10,16,26,.88));
+    box-shadow:0 0 0 1px rgba(122,215,255,.12), inset 0 0 18px rgba(122,215,255,.08);
+  }
+  .st-panel{display:none;flex:1;min-height:0}
+  .st-panel.is-active{display:flex;flex-direction:column;min-height:0}
+  .st-scroll{
+    overflow:auto;
+    min-height:0;
+    display:flex;
+    flex-direction:column;
+    scrollbar-width:none;
+    -ms-overflow-style:none;
+    padding-right:2px;
+  }
+  .st-scroll::-webkit-scrollbar{width:0;height:0}
+  .st-empty{
+    margin:2px 0 0;
+    padding:12px 4px;
+    color:var(--story-muted);
+    font-size:.84rem;
+  }
+  .st-subhead{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:10px;
+    margin:2px 0 12px;
+  }
+  .st-subhead-title{
+    font-size:.84rem;
+    font-weight:900;
+    letter-spacing:.1em;
+    text-transform:uppercase;
+  }
+  .st-subhead-text{
+    margin-top:4px;
+    color:var(--story-muted);
+    font-size:.72rem;
+    line-height:1.35;
+  }
+  .st-character-grid,.st-overview-grid{
+    display:grid;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:12px;
+  }
+  .st-character-card,.st-overview-card,.st-day-section,.st-modal-card,.st-chapter-card{
+    border:1px solid var(--story-edge);
+    border-radius:var(--story-radius);
+    background:linear-gradient(180deg, rgba(15,20,30,.92), rgba(10,13,20,.82));
+    box-shadow:var(--story-shadow);
+  }
+  .st-character-card,.st-overview-card{
+    position:relative;
+    overflow:hidden;
+  }
+  .st-character-card::before,.st-overview-card::before,.st-day-section::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:linear-gradient(135deg, rgba(122,215,255,.08), transparent 35%, rgba(124,255,179,.04));
+    pointer-events:none;
+  }
+  .st-character-card{
+    padding:12px;
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+    text-align:left;
+  }
+  .st-character-top,.st-overview-top,.st-char-hero{
+    display:flex;
+    align-items:flex-start;
+    gap:11px;
+    min-width:0;
+  }
+  .st-character-avatar,.st-hero-avatar,.st-overview-avatar{
+    width:64px;
+    height:64px;
+    object-fit:cover;
+    border-radius:17px;
+    border:1px solid rgba(202,228,255,.28);
+    background:#0a0f17;
+    box-shadow:0 0 24px rgba(122,215,255,.15);
+    flex-shrink:0;
+  }
+  .st-hero-avatar{width:54px;height:54px}
+  .st-character-meta,.st-overview-meta{min-width:0;flex:1}
+  .st-character-name,.st-overview-name,.st-char-hero-name{
+    font-size:.86rem;
+    font-weight:900;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+  }
+  .st-character-progress,.st-overview-sub,.st-char-hero-sub{
+    margin-top:4px;
+    color:var(--story-muted);
+    font-size:.62rem;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+  }
+  .st-character-stats,.st-overview-stats{
+    display:grid;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:8px;
+  }
+  .st-character-chip{
+    border:1px solid rgba(202,228,255,.16);
+    border-radius:12px;
+    background:rgba(6,10,16,.62);
+    padding:7px 8px;
+  }
+  .st-character-chip-label{
+    color:var(--story-muted);
+    font-size:.54rem;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+  }
+  .st-character-chip-value{
+    margin-top:3px;
+    font-size:.75rem;
+    font-weight:900;
+    letter-spacing:.05em;
+  }
+  .st-mini{
+    border:1px solid rgba(202,228,255,.12);
+    border-radius:14px;
+    background:rgba(6,9,15,.48);
+    padding:8px 9px;
+  }
+  .st-mini-label{
+    color:var(--story-muted);
+    font-size:.61rem;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+  }
+  .st-mini-value{
+    margin-top:4px;
+    font-size:.84rem;
+    font-weight:800;
+  }
+  .st-card-btn{
+    width:100%;
+    margin-top:2px;
+    padding:10px 12px;
+    font-size:.68rem;
+    font-weight:900;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+    background:linear-gradient(180deg, rgba(19,34,49,.94), rgba(11,22,34,.94));
+    border-color:rgba(122,215,255,.28);
+    box-shadow:0 8px 18px rgba(0,0,0,.28), inset 0 0 14px rgba(122,215,255,.08);
+  }
+  .st-timeline-home[hidden],.st-route-view[hidden]{display:none !important}
+  .st-route-view{
+    display:flex;
+    flex-direction:column;
+    flex:1;
+    min-height:0;
+    overflow:hidden;
+    gap:10px;
+    padding-bottom:0;
+  }
+  .st-route-toolbar{
+    display:flex;
+    align-items:center;
+    gap:8px;
+  }
+  .st-route-toolbar-copy{min-width:0}
+  .st-route-kicker{
+    color:var(--story-muted);
+    font-size:.56rem;
+    font-weight:900;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+  }
+  .st-route-toolbar-title{
+    margin-top:3px;
+    font-size:.75rem;
+    font-weight:900;
+    letter-spacing:.09em;
+    text-transform:uppercase;
+  }
+  .st-route-hero{
+    position:relative;
+    overflow:hidden;
+    padding:11px 12px;
+    border:1px solid var(--story-edge);
+    border-radius:18px;
+    background:linear-gradient(180deg, rgba(15,20,30,.96), rgba(9,13,21,.92));
+    box-shadow:var(--story-shadow);
+  }
+  .st-route-hero::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    pointer-events:none;
+    background:
+      radial-gradient(ellipse at 20% 8%, rgba(122,215,255,.08), transparent 68%),
+      linear-gradient(135deg, rgba(255,255,255,.035), transparent 58%);
+  }
+  .st-route-hero > *{position:relative;z-index:1}
+  .st-route-hero-top{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    min-width:0;
+  }
+  .st-route-avatar{
+    width:52px;
+    height:52px;
+    object-fit:cover;
+    border-radius:14px;
+    border:1px solid rgba(202,228,255,.28);
+    background:#0a0f17;
+    box-shadow:0 0 10px rgba(122,215,255,.10);
+    flex-shrink:0;
+  }
+  .st-route-copy{min-width:0;flex:1}
+  .st-route-name{
+    font-size:.84rem;
+    font-weight:900;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+  }
+  .st-route-sub{
+    margin-top:4px;
+    color:var(--story-muted);
+    font-size:.63rem;
+    line-height:1.3;
+    letter-spacing:.1em;
+    text-transform:uppercase;
+  }
+  .st-route-stats{
+    display:grid;
+    grid-template-columns:repeat(3,minmax(0,1fr));
+    gap:6px;
+    margin-top:8px;
+  }
+  .st-route-stats .st-mini{
+    border-radius:11px;
+    padding:6px 8px;
+  }
+  .st-route-stats .st-mini-label{
+    font-size:.54rem;
+    letter-spacing:.1em;
+  }
+  .st-route-stats .st-mini-value{
+    margin-top:2px;
+    font-size:.74rem;
+  }
+  .st-route-lanes{
+    display:grid;
+    grid-template-columns:repeat(3,minmax(0,1fr));
+    gap:6px;
+    margin-top:8px;
+  }
+  .st-route-lane{
+    border:1px solid rgba(202,228,255,.12);
+    border-radius:11px;
+    background:rgba(6,9,15,.42);
+    padding:7px 6px;
+    text-align:center;
+    color:var(--story-muted);
+    font-size:.54rem;
+    font-weight:900;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+  }
+  .st-route-lane.is-active{
+    color:var(--story-fg);
+    border-color:rgba(202,228,255,.26);
+    box-shadow:inset 0 0 16px rgba(122,215,255,.08);
+  }
+  .st-route-lane.is-ntr{border-color:rgba(255,119,119,.24)}
+  .st-route-lane.is-nts{border-color:rgba(122,215,255,.24)}
+  .st-route-lane.is-love{border-color:rgba(182,122,255,.24)}
+  .st-route-lane.is-ntr.is-active{box-shadow:inset 0 0 12px rgba(255,119,119,.10)}
+  .st-route-lane.is-nts.is-active{box-shadow:inset 0 0 12px rgba(122,215,255,.10)}
+  .st-route-lane.is-love.is-active{box-shadow:inset 0 0 12px rgba(182,122,255,.10)}
+  .st-route-focus{
+    margin-top:8px;
+    color:var(--story-muted);
+    font-size:.62rem;
+    line-height:1.36;
+    letter-spacing:.07em;
+  }
+  .st-route-tree-shell{
+    position:relative;
+    overflow:auto;
+    flex:1;
+    min-height:0;
+    max-height:none;
+    padding:6px 20px calc(16px + env(safe-area-inset-bottom, 0px));
+    border-radius:18px;
+    touch-action:none;
+    cursor:grab;
+    scrollbar-width:none;
+    -ms-overflow-style:none;
+  }
+  .st-route-tree-shell::-webkit-scrollbar{width:0;height:0}
+  .st-route-tree-shell.is-panning{
+    cursor:grabbing;
+    user-select:none;
+  }
+  .st-route-tree-shell::before{
+    content:"";
+    position:absolute;
+    top:0;
+    bottom:0;
+    left:50%;
+    width:2px;
+    transform:translateX(-50%);
+    background:linear-gradient(180deg, rgba(202,228,255,.08), rgba(122,215,255,.3) 20%, rgba(202,228,255,.14) 56%, rgba(202,228,255,.06));
+    box-shadow:0 0 8px rgba(122,215,255,.06);
+    pointer-events:none;
+  }
+  .st-route-tree{
+    position:relative;
+    display:flex;
+    flex-direction:column;
+    gap:14px;
+    min-width:max(100%, 680px);
+    padding-bottom:6px;
+  }
+  .st-tree-day-group{
+    position:relative;
+    border:1px solid rgba(202,228,255,.16);
+    border-radius:18px;
+    padding:10px 10px 12px;
+    background:linear-gradient(180deg, rgba(10,14,22,.92), rgba(8,12,19,.84));
+    box-shadow:0 12px 24px rgba(0,0,0,.24);
+  }
+  .st-tree-day-group::before{
+    content:"";
+    position:absolute;
+    top:42px;
+    bottom:12px;
+    left:50%;
+    width:1px;
+    transform:translateX(-50%);
+    background:linear-gradient(180deg, rgba(202,228,255,.05), rgba(122,215,255,.18), rgba(202,228,255,.04));
+    pointer-events:none;
+  }
+  .st-tree-day-rows{
+    position:relative;
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+  }
+  .st-tree-day-rows.is-branch-columns{
+    display:grid;
+    grid-template-columns:repeat(3,minmax(0,1fr));
+    align-items:start;
+    gap:10px;
+    margin-top:10px;
+  }
+  .st-route-column{
+    min-width:0;
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+    border:1px solid rgba(202,228,255,.13);
+    border-radius:14px;
+    background:rgba(6,10,16,.34);
+    padding:8px;
+  }
+  .st-route-column-title{
+    align-self:stretch;
+    text-align:center;
+    padding:7px 8px;
+    border-radius:10px;
+    border:1px solid rgba(202,228,255,.13);
+    background:rgba(10,14,22,.72);
+    font-size:.56rem;
+    font-weight:900;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+  }
+  .st-route-column.is-love .st-route-column-title{border-color:rgba(255,154,132,.28);color:rgba(255,204,192,.96)}
+  .st-route-column.is-ntr .st-route-column-title{border-color:rgba(121,201,255,.28);color:rgba(194,229,255,.96)}
+  .st-route-column.is-nts .st-route-column-title{border-color:rgba(255,208,122,.28);color:rgba(255,229,178,.96)}
+  .st-tree-day-rows.is-branch-columns .st-tree-row{
+    min-height:0;
+    padding:0;
+  }
+  .st-tree-day-rows.is-branch-columns .st-route-node{
+    width:100%;
+    transform:none;
+  }
+  .st-tree-day-rows.is-branch-columns .st-tree-anchor,
+  .st-tree-day-rows.is-branch-columns .st-route-node::before{
+    display:none;
+  }
+  .st-tree-day{
+    display:inline-flex;
+    align-self:center;
+    position:relative;
+    z-index:1;
+    padding:7px 12px;
+    border-radius:999px;
+    border:1px solid rgba(202,228,255,.18);
+    background:rgba(10,14,22,.92);
+    color:var(--story-fg);
+    font-size:.63rem;
+    font-weight:900;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    box-shadow:0 12px 28px rgba(0,0,0,.28);
+  }
+  .st-tree-day-meta{
+    margin-left:8px;
+    color:var(--story-muted);
+    font-size:.55rem;
+    letter-spacing:.1em;
+    text-transform:uppercase;
+  }
+  .st-tree-row{
+    --tree-shift:0px;
+    position:relative;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    min-height:94px;
+    padding:0 8px;
+  }
+  .st-tree-row.lane-left{--tree-shift:-34px}
+  .st-tree-row.lane-right{--tree-shift:34px}
+  .st-tree-anchor{
+    display:none;
+    position:absolute;
+    left:50%;
+    top:50%;
+    width:12px;
+    height:12px;
+    border-radius:999px;
+    transform:translate(-50%,-50%);
+    border:1px solid rgba(202,228,255,.28);
+    background:rgba(7,10,16,.96);
+    box-shadow:0 0 0 4px rgba(12,18,28,.58);
+    z-index:1;
+  }
+  .st-tree-anchor.is-completed{border-color:rgba(127,227,162,.6);background:rgba(127,227,162,.18);box-shadow:0 0 0 4px rgba(14,28,20,.62), 0 0 18px rgba(127,227,162,.16)}
+  .st-tree-anchor.is-current{border-color:rgba(255,228,143,.72);background:rgba(255,228,143,.2);box-shadow:0 0 0 4px rgba(35,31,18,.68), 0 0 20px rgba(255,228,143,.18)}
+  .st-tree-anchor.is-unlocked{border-color:rgba(122,215,255,.58);background:rgba(122,215,255,.18);box-shadow:0 0 0 4px rgba(11,23,31,.64), 0 0 18px rgba(122,215,255,.16)}
+  .st-tree-anchor.is-locked{border-color:rgba(142,151,168,.26);background:rgba(142,151,168,.14)}
+  .st-tree-anchor.is-choice{width:16px;height:16px;border-color:rgba(255,178,94,.54);box-shadow:0 0 0 4px rgba(35,24,15,.72), 0 0 18px rgba(255,178,94,.16)}
+  .st-route-node{
+    position:relative;
+    width:min(100%, 248px);
+    padding:11px 12px 11px;
+    border-radius:16px;
+    border:1px solid rgba(202,228,255,.16);
+    background:linear-gradient(180deg, rgba(12,17,26,.98), rgba(9,13,20,.92));
+    box-shadow:0 14px 28px rgba(0,0,0,.28);
+    transform:translateX(var(--tree-shift));
+    transition:transform .18s ease, border-color .18s ease, box-shadow .18s ease, opacity .18s ease;
+  }
+  .st-route-node::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    border-radius:inherit;
+    pointer-events:none;
+    background:linear-gradient(135deg, rgba(122,215,255,.08), transparent 35%, rgba(124,255,179,.04));
+    opacity:.9;
+  }
+  .st-tree-row.lane-left .st-route-node::before,
+  .st-tree-row.lane-right .st-route-node::before{
+    content:"";
+    position:absolute;
+    top:50%;
+    width:30px;
+    height:2px;
+    background:rgba(202,228,255,.18);
+    transform:translateY(-50%);
+    pointer-events:none;
+  }
+  .st-tree-row.lane-left .st-route-node::before{right:-30px}
+  .st-tree-row.lane-right .st-route-node::before{left:-30px}
+  .st-route-node > *{position:relative;z-index:1}
+  .st-route-node.is-choice{
+    border-color:rgba(255,178,94,.34);
+    box-shadow:0 0 0 1px rgba(255,178,94,.08), 0 14px 28px rgba(0,0,0,.28);
+  }
+  .st-route-node.is-completed{border-color:rgba(127,227,162,.42)}
+  .st-route-node.is-current{
+    border-color:rgba(255,228,143,.58);
+    box-shadow:0 0 0 1px rgba(255,228,143,.14), 0 16px 30px rgba(0,0,0,.34), 0 0 20px rgba(255,228,143,.08);
+  }
+  .st-route-node.is-locked{
+    opacity:.64;
+    border-color:rgba(142,151,168,.2);
+  }
+  .st-route-node.is-loading{
+    border-color:rgba(122,215,255,.5);
+    box-shadow:0 0 0 1px rgba(122,215,255,.14), 0 16px 30px rgba(0,0,0,.34), 0 0 22px rgba(122,215,255,.12);
+  }
+  .st-route-node.is-loading .st-node-cta,
+  .st-route-node.is-loading .st-route-node-btn{
+    cursor:wait;
+  }
+  .st-route-node.is-disabled{
+    opacity:.74;
+    border-color:rgba(161,169,184,.24);
+    box-shadow:0 12px 24px rgba(0,0,0,.22);
+  }
+  .st-route-node-btn{
+    all:unset;
+    display:block;
+    width:100%;
+    cursor:pointer;
+  }
+  .st-route-node-btn[disabled]{
+    cursor:default;
+    pointer-events:none;
+  }
+  .st-route-node .st-node-title,
+  .st-route-node .st-node-sub{
+    min-height:0;
+  }
+  .st-detail[hidden]{display:none !important}
+  .st-detail-top{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    margin-bottom:12px;
+  }
+  .st-link-btn{
+    padding:7px 11px;
+    font-size:.66rem;
+    font-weight:900;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+  }
+  .st-char-hero{
+    flex:1;
+    border:1px solid rgba(202,228,255,.16);
+    border-radius:16px;
+    padding:10px 12px;
+    background:rgba(8,12,19,.68);
+    min-width:0;
+  }
+  .st-filter-row{
+    display:flex;
+    gap:8px;
+    overflow:auto;
+    margin:0 0 12px;
+    padding-bottom:2px;
+    scrollbar-width:none;
+    -ms-overflow-style:none;
+  }
+  .st-filter-row::-webkit-scrollbar{height:0}
+  .st-pill{
+    padding:7px 11px;
+    font-size:.64rem;
+    font-weight:900;
+    letter-spacing:.1em;
+    text-transform:uppercase;
+    white-space:nowrap;
+  }
+  .st-pill.is-active{
+    border-color:rgba(122,215,255,.44);
+    background:rgba(16,28,42,.92);
+    box-shadow:inset 0 0 18px rgba(122,215,255,.08);
+  }
+  .st-day-stack{
+    display:flex;
+    flex-direction:column;
+    gap:14px;
+    padding-bottom:8px;
+  }
+  .st-day-section{
+    position:relative;
+    overflow:hidden;
+    padding:12px;
+  }
+  .st-day-head{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:10px;
+    margin-bottom:10px;
+  }
+  .st-day-title{
+    font-size:.8rem;
+    font-weight:900;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+  }
+  .st-day-meta{
+    color:var(--story-muted);
+    font-size:.64rem;
+    letter-spacing:.1em;
+    text-transform:uppercase;
+    white-space:nowrap;
+  }
+  .st-node-track{
+    display:flex;
+    gap:10px;
+    overflow:auto;
+    padding:2px 0 4px;
+    scrollbar-width:none;
+    -ms-overflow-style:none;
+  }
+  .st-node-track::-webkit-scrollbar{height:0}
+  .st-node{
+    position:relative;
+    width:188px;
+    min-width:188px;
+    padding:12px;
+    border-radius:16px;
+    border:1px solid rgba(202,228,255,.16);
+    background:linear-gradient(180deg, rgba(12,17,26,.96), rgba(9,13,20,.9));
+    box-shadow:0 10px 24px rgba(0,0,0,.28);
+  }
+  .st-node::before{
+    content:"";
+    position:absolute;
+    left:-12px;
+    top:30px;
+    width:12px;
+    height:2px;
+    background:rgba(202,228,255,.18);
+  }
+  .st-node:first-child::before{display:none}
+  .st-node.is-choice{
+    border-color:rgba(255,178,94,.34);
+    box-shadow:0 0 0 1px rgba(255,178,94,.08), 0 10px 24px rgba(0,0,0,.28);
+  }
+  .st-node.is-completed{border-color:rgba(127,227,162,.42)}
+  .st-node.is-current{
+    border-color:rgba(255,228,143,.56);
+    box-shadow:0 0 0 1px rgba(255,228,143,.14), 0 12px 28px rgba(0,0,0,.32);
+  }
+  .st-node.is-locked{
+    opacity:.64;
+    border-color:rgba(142,151,168,.2);
+  }
+  .st-node-btn{
+    all:unset;
+    display:block;
+    width:100%;
+    cursor:pointer;
+  }
+  .st-node-btn[disabled]{
+    cursor:default;
+    pointer-events:none;
+  }
+  .st-node-top{
+    display:flex;
+    align-items:flex-start;
+    justify-content:space-between;
+    gap:8px;
+    margin-bottom:8px;
+  }
+  .st-node-type,.st-state-badge,.st-route-badge{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    min-height:20px;
+    padding:2px 8px;
+    border-radius:999px;
+    font-size:.57rem;
+    font-weight:900;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+    white-space:nowrap;
+  }
+  .st-node-type{
+    border:1px solid rgba(122,215,255,.22);
+    background:rgba(122,215,255,.08);
+    color:#bbecff;
+  }
+  .st-node.is-choice .st-node-type{
+    border-color:rgba(255,178,94,.36);
+    background:rgba(255,178,94,.1);
+    color:#ffd9aa;
+  }
+  .st-state-badge.is-completed{background:rgba(127,227,162,.12);border:1px solid rgba(127,227,162,.34);color:#b8ffd0}
+  .st-state-badge.is-current{background:rgba(255,228,143,.12);border:1px solid rgba(255,228,143,.34);color:#ffebb7}
+  .st-state-badge.is-unlocked{background:rgba(122,215,255,.1);border:1px solid rgba(122,215,255,.24);color:#c3efff}
+  .st-state-badge.is-locked{background:rgba(142,151,168,.12);border:1px solid rgba(142,151,168,.26);color:#d1d7e1}
+  .st-node-label{
+    color:var(--story-muted);
+    font-size:.58rem;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+  }
+  .st-node-title{
+    margin-top:4px;
+    font-size:.76rem;
+    font-weight:800;
+    line-height:1.32;
+    min-height:36px;
+  }
+  .st-node-sub{
+    margin-top:5px;
+    color:var(--story-muted);
+    font-size:.61rem;
+    line-height:1.35;
+    min-height:26px;
+  }
+  .st-node-meta{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:8px;
+    margin-top:8px;
+  }
+  .st-node-meta .st-node-footer{
+    margin-top:0;
+    flex:1;
+    min-width:0;
+  }
+  .st-node-footer{
+    display:flex;
+    flex-wrap:wrap;
+    gap:6px;
+    margin-top:10px;
+  }
+  .st-route-badge{
+    border:1px solid transparent;
+    min-width:42px;
+  }
+  .st-route-love{background:rgba(182,122,255,.16);border-color:rgba(182,122,255,.34);color:#e2c9ff}
+  .st-route-nts{background:rgba(122,215,255,.14);border-color:rgba(122,215,255,.34);color:#c5eeff}
+  .st-route-ntr{background:rgba(255,119,119,.14);border-color:rgba(255,119,119,.34);color:#ffc1c1}
+  .st-route-none{background:rgba(202,228,255,.08);border-color:rgba(202,228,255,.18);color:#d6ebff}
+  .st-node-action{
+    margin-top:8px;
+    color:#d9f4ff;
+    font-size:.58rem;
+    font-weight:800;
+    letter-spacing:.1em;
+    text-transform:uppercase;
+  }
+  .st-node-cta{
+    margin-top:8px;
+    width:100%;
+    padding:8px 10px;
+    border-radius:11px;
+    border:1px solid rgba(122,215,255,.28);
+    background:linear-gradient(180deg, rgba(17,31,47,.96), rgba(9,20,32,.92));
+    color:#e4f6ff;
+    font-size:.59rem;
+    font-weight:900;
+    letter-spacing:.11em;
+    text-transform:uppercase;
+    cursor:pointer;
+    box-shadow:0 8px 20px rgba(0,0,0,.24), inset 0 0 14px rgba(122,215,255,.08);
+  }
+  .st-node-cta[disabled]{
+    cursor:default;
+    opacity:.62;
+    border-color:rgba(142,151,168,.24);
+    box-shadow:none;
+  }
+  .st-overview-card{
+    padding:12px;
+  }
+  .st-overview-body{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+  }
+  .st-overview-route{
+    display:flex;
+    flex-wrap:wrap;
+    gap:6px;
+  }
+  .st-chapters-list{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+    padding-bottom:8px;
+  }
+  .st-chapter-card{
+    padding:12px 13px;
+    display:grid;
+    grid-template-columns:minmax(0,1fr) auto;
+    gap:10px;
+    align-items:center;
+  }
+  .st-chapter-title{
+    font-size:.82rem;
+    font-weight:900;
+    line-height:1.28;
+  }
+  .st-chapter-meta{
+    margin-top:4px;
+    color:var(--story-muted);
+    font-size:.66rem;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+  }
+  .st-chapter-select{
+    display:block;
+    width:100%;
+    margin-top:8px;
+    padding:6px 8px;
+    border:1px solid rgba(122,215,255,.28);
+    border-radius:8px;
+    background:#0c1e2c;
+    color:var(--story-fg);
+    font:inherit;
+    font-size:.66rem;
+  }
+  .st-load-btn{
+    appearance:none;
+    border:1px solid rgba(122,215,255,.38);
+    border-radius:999px;
+    background:rgba(12,30,44,.88);
+    color:#e8f9ff;
+    padding:7px 11px;
+    font-size:.65rem;
+    font-weight:900;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+    cursor:pointer;
+  }
+  .st-modal[hidden]{display:none !important}
+  .st-modal{
+    position:fixed;
+    inset:0;
+    z-index:120;
+    display:flex;
+    align-items:flex-end;
+    justify-content:center;
+    padding:18px 14px calc(14px + env(safe-area-inset-bottom, 0px));
+    background:rgba(2,4,8,.72);
+    backdrop-filter:blur(10px);
+  }
+  .st-modal-card{
+    width:min(100%, 460px);
+    max-height:100%;
+    overflow:auto;
+    overscroll-behavior:contain;
+    padding:16px;
+    border-radius:22px;
+    background:linear-gradient(180deg, rgba(16,20,30,.98), rgba(10,13,20,.96));
+  }
+  .st-modal-label{
+    color:var(--story-choice);
+    font-size:.64rem;
+    font-weight:900;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+  }
+  .st-modal-title{
+    margin-top:6px;
+    font-size:1rem;
+    font-weight:900;
+    line-height:1.26;
+  }
+  .st-modal-copy{
+    margin-top:10px;
+    color:var(--story-muted);
+    font-size:.78rem;
+    line-height:1.5;
+  }
+  .st-modal-list{
+    margin:12px 0 0;
+    padding:0;
+    list-style:none;
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+  }
+  .st-modal-option{
+    border:1px solid rgba(202,228,255,.14);
+    border-radius:14px;
+    background:rgba(6,10,16,.52);
+    padding:10px 11px;
+  }
+  .st-modal-option.is-selected{
+    border-color:rgba(122,215,255,.34);
+    box-shadow:inset 0 0 16px rgba(122,215,255,.08);
+  }
+  .st-modal-option-top{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:8px;
+  }
+  .st-modal-option-id{
+    color:var(--story-muted);
+    font-size:.58rem;
+    font-weight:900;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+  }
+  .st-modal-option-text{
+    margin-top:5px;
+    font-size:.76rem;
+    line-height:1.4;
+  }
+  .st-modal-warning{
+    margin-top:12px;
+    padding:10px 11px;
+    border:1px solid rgba(255,178,94,.28);
+    border-radius:14px;
+    background:rgba(255,178,94,.08);
+    color:#ffd9aa;
+    font-size:.73rem;
+    line-height:1.45;
+  }
+  .st-modal-actions{
+    display:flex;
+    gap:8px;
+    margin-top:14px;
+  }
+  .st-modal-btn{
+    flex:1;
+    padding:10px 12px;
+    font-size:.68rem;
+    font-weight:900;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+  }
+  .st-modal-btn.is-primary{
+    border-color:rgba(255,178,94,.34);
+    background:rgba(45,28,11,.94);
+    color:#ffe4bf;
+  }
+  .st-modal-btn[disabled]{
+    opacity:.5;
+    cursor:default;
+  }
+  .st-dev-setup-card{
+    width:min(100%, 540px);
+    max-height:min(82vh, 720px);
+    overflow:auto;
+  }
+  .st-dev-setup-form{
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+    margin-top:13px;
+  }
+  .st-dev-setup-section{
+    border:1px solid rgba(202,228,255,.12);
+    border-radius:16px;
+    background:rgba(6,10,16,.46);
+    padding:11px;
+  }
+  .st-dev-setup-heading{
+    color:#d8f4ff;
+    font-size:.66rem;
+    font-weight:900;
+    letter-spacing:.13em;
+    text-transform:uppercase;
+  }
+  .st-dev-setup-grid{
+    display:grid;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:9px;
+    margin-top:10px;
+  }
+  .st-dev-setup-row{
+    display:grid;
+    grid-template-columns:minmax(74px, .8fr) minmax(0,1.2fr) auto;
+    gap:8px;
+    align-items:center;
+  }
+  .st-dev-setup-label{
+    color:var(--story-muted);
+    font-size:.62rem;
+    font-weight:900;
+    letter-spacing:.1em;
+    text-transform:uppercase;
+  }
+  .st-dev-setup-select{
+    width:100%;
+    min-width:0;
+    appearance:none;
+    border:1px solid rgba(122,215,255,.24);
+    border-radius:12px;
+    background:#08111b;
+    color:#e8f9ff;
+    padding:9px 10px;
+    font-size:.72rem;
+    font-weight:900;
+    text-transform:uppercase;
+  }
+  .st-dev-setup-active{
+    display:flex;
+    align-items:center;
+    justify-content:flex-end;
+    gap:6px;
+    color:#c8e9f5;
+    font-size:.6rem;
+    font-weight:900;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    white-space:nowrap;
+  }
+  .st-dev-setup-active input{
+    width:16px;
+    height:16px;
+    accent-color:#7ad7ff;
+  }
+  .st-dev-setup-summary{
+    color:var(--story-muted);
+    font-size:.69rem;
+    line-height:1.45;
+  }
+  @media (max-width:420px){
+    .st-route-tree{min-width:100%}
+    .st-tree-day-rows.is-branch-columns{grid-template-columns:1fr}
+  }
+  @media (max-width:380px){
+    .st-tabs{display:flex;flex-wrap:wrap}
+    .st-tab{flex:1 0 auto;padding-inline:4px;letter-spacing:.04em}
+  }
+  @media (max-width:460px), (max-height:740px){
+    .st-route-view{flex:0 0 auto;overflow:visible}
+    .st-route-toolbar,.st-route-hero{flex-shrink:0}
+    .st-route-tree-shell{flex:0 0 auto;height:clamp(320px,60vh,640px)}
+  }
+  @media (max-width:460px){
+    .st-character-grid,.st-overview-grid{grid-template-columns:1fr}
+    .st-dev-setup-grid{grid-template-columns:1fr}
+    .st-dev-setup-row{grid-template-columns:70px minmax(0,1fr) auto}
+    .st-node{width:172px;min-width:172px}
+    .st-route-lanes{gap:6px}
+    .st-route-lane{padding:8px 6px;font-size:.56rem}
+    .st-route-stats{grid-template-columns:repeat(2,minmax(0,1fr))}
+    .st-tree-row{min-height:96px}
+    .st-tree-row.lane-left{--tree-shift:-22px}
+    .st-tree-row.lane-right{--tree-shift:22px}
+    .st-route-node{width:min(100%, 220px)}
+    .st-tree-row.lane-left .st-route-node::before,
+    .st-tree-row.lane-right .st-route-node::before{width:22px}
+    .st-tree-row.lane-left .st-route-node::before{right:-22px}
+    .st-tree-row.lane-right .st-route-node::before{left:-22px}
+  }
+</style>
+<link rel="stylesheet" href="assets/styles/theme.css">
+
+<div class="story-wrap" data-scene data-scene-name="story">
+  <div class="st-header" data-i18n="story.title">Story</div>
+  <div class="st-calendar-clock" data-story-calendar-clock></div>
+
+  <div class="st-tabs" role="tablist" aria-label="Story tabs">
+    <button class="st-tab is-active" type="button" role="tab" aria-selected="true" data-st-tab="timeline" data-i18n="story.timeline">Timeline</button>
+    <button class="st-tab" type="button" role="tab" aria-selected="false" data-st-tab="chapters" data-i18n="story.chapters">Chapters</button>
+  </div>
+
+  <section class="st-panel is-active" role="tabpanel" data-st-panel="timeline">
+    <div class="st-scroll" data-timeline-scroll>
+      <div class="st-timeline-home" data-timeline-home>
+        <div class="st-subhead">
+          <div class="st-subhead-copy">
+            <div class="st-subhead-title" data-i18n="story.character_routes">Character Routes</div>
+            <div class="st-subhead-text" data-i18n="story.character_routes_copy">Choose a character to enter a dedicated route browser with route state, progress, and replayable story nodes.</div>
+          </div>
+        </div>
+        <p class="st-empty" data-empty-timeline hidden data-i18n="story.no_routes">No character routes available yet.</p>
+        <div class="st-character-grid" data-timeline-root></div>
+      </div>
+
+      <div class="st-route-view" data-route-view hidden>
+        <div class="st-route-toolbar">
+          <button class="st-link-btn" type="button" data-route-back data-i18n="common.back">Back</button>
+          <div class="st-route-toolbar-copy">
+            <div class="st-route-kicker" data-i18n="story.timeline">Timeline</div>
+            <div class="st-route-toolbar-title" data-i18n="story.route_browser">Route Browser</div>
+          </div>
+        </div>
+        <section class="st-route-hero">
+          <div class="st-route-hero-top">
+            <img class="st-route-avatar" data-route-avatar src="assets/avatars/default.jpg" alt="">
+            <div class="st-route-copy">
+              <div class="st-route-name" data-route-name>Character</div>
+              <div class="st-route-sub" data-route-sub data-i18n="story.route_progress">Route progress</div>
+            </div>
+          </div>
+          <div class="st-route-stats" data-route-stats></div>
+          <div class="st-route-lanes" data-route-legend></div>
+          <div class="st-route-focus" data-route-focus data-i18n="story.no_current_conversation">No current live conversation.</div>
+        </section>
+        <div class="st-route-tree-shell">
+          <div class="st-route-tree" data-route-tree></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="st-panel" role="tabpanel" data-st-panel="chapters">
+    <div class="st-scroll">
+      <div class="st-subhead">
+        <div class="st-subhead-copy">
+          <div class="st-subhead-title" data-i18n="story.chapters">Chapters</div>
+          <div class="st-subhead-text" data-i18n="story.chapters_copy">Global chapter checkpoints remain separate from character route browsing.</div>
+        </div>
+      </div>
+      <p class="st-empty" data-empty-chapters data-i18n="story.no_chapters">No unlocked chapters yet.</p>
+      <div class="st-chapters-list" data-chapters-list></div>
+    </div>
+  </section>
+</div>
+
+<div class="st-modal" data-replay-modal hidden>
+  <div class="st-modal-card" role="dialog" aria-modal="true" aria-labelledby="story-replay-title">
+    <div class="st-modal-label">Decision Replay</div>
+    <div class="st-modal-title" id="story-replay-title" data-modal-title>Choice Point</div>
+    <div class="st-modal-copy" data-modal-copy>Select a saved decisive choice to restore the full checkpoint saved before that replayable conversation began.</div>
+    <ul class="st-modal-list" data-modal-options></ul>
+    <div class="st-modal-warning" data-modal-warning>Replaying from here rewinds the story back to that checkpoint. Gallery/global unlocks remain untouched.</div>
+    <div class="st-modal-actions">
+      <button class="st-modal-btn" type="button" data-modal-cancel>Close</button>
+      <button class="st-modal-btn is-primary" type="button" data-modal-confirm>Replay From Here</button>
+    </div>
+  </div>
+</div>
+
+<div class="st-modal" data-dev-setup-modal hidden>
+  <div class="st-modal-card st-dev-setup-card" role="dialog" aria-modal="true" aria-labelledby="dev-setup-title">
+    <div class="st-modal-label">Developer Setup</div>
+    <div class="st-modal-title" id="dev-setup-title" data-dev-setup-title>DAY</div>
+    <div class="st-modal-copy" data-dev-setup-copy>Choose the route and active characters for this checkpoint.</div>
+    <div class="st-dev-setup-form" data-dev-setup-form></div>
+    <div class="st-modal-warning" data-dev-setup-warning>Setup writes route locks, active-character state, and required previous completion keys before launch.</div>
+    <div class="st-modal-actions">
+      <button class="st-modal-btn" type="button" data-dev-setup-cancel>Cancel</button>
+      <button class="st-modal-btn is-primary" type="button" data-dev-setup-continue>Continue</button>
+    </div>
+  </div>
+</div>
+
+<script>
+(function () {
+  var root = document.querySelector('[data-scene-name="story"]');
+  if (!root) return;
+
+  var SAVE_KEY_V2 = "saves_v2";
+  var SAVE_KEY_V1 = "saves_v1";
+  var CHAPTERS_KEY_V2 = "chapters_v2";
+  var CHAPTER_LOAD_MODE_KEY = "__chapter_load_mode";
+  var DEV_CHECKPOINTS_PATH = "story/dev_checkpoints.json";
+  var DEV_SETUP_STATE_KEY = "dev_chapter_setup_v1";
+  var BOOT_INTENT_KEY = "__boot_intent_v1";
+  var DAYLOAD_BOOT_KEY = "__boot_dayload_v1";
+  var CHOICE_REWINDS_KEY = "choice_rewinds_v1";
+  var STORY_REPLAYS_KEY = "story_replays_v1";
+  var STORY_RUNTIME_KEY = "story_runtime_v1";
+  var PENDING_CHAIN_KEY = "pending_chain_story_v1";
+  var TIMELINE_CONVERSATION_FOCUS_KEY = "__story_timeline_focus_v1";
+  var DAY1_RESTART_CHAPTER_ID = "__chapter_restart_day1__";
+  var DAY1_START_STORY_PATH = "story/DAY1/DAY1_00_LANDLADY_INTRO.json";
+  var DEV_CHAPTER_START_DAY = 1;
+  var DEV_CHAPTER_END_DAY = 20;
+  var DEFAULT_AVATAR = "assets/avatars/default.jpg";
+  var SYSTEM_CONTACTS = { player: true, system: true, hak: true, dev: true, snapgram: true, onlyfun: true };
+  var PSEUDO_ROUTE_CONTACTS = { boot: true, post: true, text: true };
+  var TIMELINE_CHARACTER_ALIASES = {
+    mother: "evelyn",
+    landlady: "evelyn",
+    brother: "mason",
+    lilsis: "hailey",
+    girlfriend: "lena",
+    antagonist: "aiden"
+  };
+  var PHOTO_GENERIC_OWNER_IDS = {
+    "": true,
+    unknown: true,
+    snapgram: true,
+    story: true,
+    post: true,
+    ig: true,
+    msg: true,
+    player: true,
+    system: true
+  };
+
+  var state = {
+    activeTab: "timeline",
+    activeCharacterId: "",
+    currentNodeId: "",
+    catalog: { characters: [], byId: Object.create(null), ownerByPath: Object.create(null), dayStartEntries: [] },
+    replayNode: null,
+    routePan: { active: false, moved: false, suppressUntil: 0, pointerId: null, startX: 0, startY: 0, startLeft: 0, startTop: 0 },
+    routeZoom: 1,
+    chapterSelections: Object.create(null)
+  };
+  var storySceneActive = true;
+  var retireStoryInit = null;
+  var storyTimelineDebug = null;
+  var storySceneRetired = new Promise(function (resolve) { retireStoryInit = resolve; });
+  var devCheckpointsConfigPromise = null;
+  var devPreviousOnceCache = Object.create(null);
+  var ROUTE_ZOOM_MIN = 0.8;
+  var ROUTE_ZOOM_MAX = 1.35;
+
+  var refs = {
+    tabButtons: Array.prototype.slice.call(root.querySelectorAll("[data-st-tab]")),
+    panels: Array.prototype.slice.call(root.querySelectorAll("[data-st-panel]")),
+    timelineScroll: root.querySelector("[data-timeline-scroll]"),
+    timelineHome: root.querySelector("[data-timeline-home]"),
+    emptyTimeline: root.querySelector("[data-empty-timeline]"),
+    timelineRoot: root.querySelector("[data-timeline-root]"),
+    routeView: root.querySelector("[data-route-view]"),
+    routeBack: root.querySelector("[data-route-back]"),
+    routeAvatar: root.querySelector("[data-route-avatar]"),
+    routeName: root.querySelector("[data-route-name]"),
+    routeSub: root.querySelector("[data-route-sub]"),
+    routeStats: root.querySelector("[data-route-stats]"),
+    routeLegend: root.querySelector("[data-route-legend]"),
+    routeFocus: root.querySelector("[data-route-focus]"),
+    routeTreeShell: root.querySelector(".st-route-tree-shell"),
+    routeTree: root.querySelector("[data-route-tree]"),
+    emptyChapters: root.querySelector("[data-empty-chapters]"),
+    chaptersList: root.querySelector("[data-chapters-list]"),
+    replayModal: document.querySelector("[data-replay-modal]"),
+    modalTitle: document.querySelector("[data-modal-title]"),
+    modalCopy: document.querySelector("[data-modal-copy]"),
+    modalOptions: document.querySelector("[data-modal-options]"),
+    modalWarning: document.querySelector("[data-modal-warning]"),
+    modalCancel: document.querySelector("[data-modal-cancel]"),
+    modalConfirm: document.querySelector("[data-modal-confirm]"),
+    devSetupModal: document.querySelector("[data-dev-setup-modal]"),
+    devSetupTitle: document.querySelector("[data-dev-setup-title]"),
+    devSetupCopy: document.querySelector("[data-dev-setup-copy]"),
+    devSetupForm: document.querySelector("[data-dev-setup-form]"),
+    devSetupWarning: document.querySelector("[data-dev-setup-warning]"),
+    devSetupCancel: document.querySelector("[data-dev-setup-cancel]"),
+    devSetupContinue: document.querySelector("[data-dev-setup-continue]")
+  };
+
+  function parse(raw, fallback) {
+    try {
+      var value = JSON.parse(raw);
+      return value == null ? fallback : value;
+    } catch {
+      return fallback;
+    }
+  }
+  function tok(value) {
+    return String(value || "").trim().toLowerCase().replace(/[^a-z0-9_.:/-]+/g, "_");
+  }
+  function normalizeTimelineCharacterId(value) {
+    var id = tok(value);
+    if (!id) return "";
+    return tok(TIMELINE_CHARACTER_ALIASES[id] || id);
+  }
+  function cleanPath(value) {
+    return String(value || "").trim().replace(/\\/g, "/");
+  }
+  function isCharacterStorageTruthy(value) {
+    var v = tok(value);
+    return v === "1" || v === "true" || v === "on" || v === "yes" || v === "active";
+  }
+  function isSelectionMapTruthy(value) {
+    if (value === true) return true;
+    if (value === false) return false;
+    if (typeof value === "number") return value > 0;
+    return isCharacterStorageTruthy(value);
+  }
+  function addSelectedIdsFromValue(rawValue, selectedSet) {
+    if (!selectedSet || typeof selectedSet.add !== "function") return false;
+    var parsed = (typeof rawValue === "string") ? parse(rawValue, null) : rawValue;
+    var hasData = false;
+
+    if (Array.isArray(parsed)) {
+      hasData = true;
+      parsed.forEach(function (raw) {
+        var id = tok(raw);
+        if (!id) return;
+        selectedSet.add(id);
+      });
+      return hasData;
+    }
+
+    if (parsed && typeof parsed === "object") {
+      if (Array.isArray(parsed.selected)) {
+        hasData = true;
+        parsed.selected.forEach(function (raw) {
+          var id = tok(raw);
+          if (!id) return;
+          selectedSet.add(id);
+        });
+      }
+
+      Object.keys(parsed).forEach(function (rawKey) {
+        var id = tok(rawKey);
+        if (!id) return;
+        hasData = true;
+        if (isSelectionMapTruthy(parsed[rawKey])) selectedSet.add(id);
+      });
+    }
+
+    return hasData;
+  }
+  function inferCharacterActiveFromSelection(rawId) {
+    var cid = tok(rawId);
+    if (!cid) return null;
+
+    var selectedSet = new Set();
+    var hasData = false;
+    hasData = addSelectedIdsFromValue(localStorage.getItem("hak_targets_v1"), selectedSet) || hasData;
+    hasData = addSelectedIdsFromValue(localStorage.getItem("hak_watchlist_v1"), selectedSet) || hasData;
+    hasData = addSelectedIdsFromValue(localStorage.getItem("hak_watchlist_v1_selected"), selectedSet) || hasData;
+    if (!hasData) return null;
+    return selectedSet.has(cid);
+  }
+  function isCharacterActiveForUi(rawId) {
+    var cid = tok(rawId);
+    if (!cid) return false;
+    if (cid === "aiden") return true;
+    try {
+      if (window.Game && typeof window.Game.isCharacterActive === "function") {
+        return window.Game.isCharacterActive(cid) === true;
+      }
+    } catch {}
+    try {
+      var raw = localStorage.getItem("active_character:" + cid);
+      if (raw == null) {
+        var inferred = inferCharacterActiveFromSelection(cid);
+        if (typeof inferred === "boolean") return inferred;
+        return true;
+      }
+      return isCharacterStorageTruthy(raw);
+    } catch {
+      return true;
+    }
+  }
+  function shouldHideCharacterFromUI(rawId) {
+    var cid = tok(rawId);
+    if (!cid) return false;
+    try {
+      if (window.Game && typeof window.Game.shouldHideCharacterFromUI === "function") {
+        return window.Game.shouldHideCharacterFromUI(cid) === true;
+      }
+    } catch {}
+    return !isCharacterActiveForUi(cid);
+  }
+  // Tutor belongs to Hailey's NTS story, not to a standalone Timeline route.
+  // Keep the underlying catalog and each node's saved contact identity intact.
+  function shouldHideTimelineCharacter(rawId) {
+    return tok(rawId) === "tutor" || shouldHideCharacterFromUI(rawId);
+  }
+  function timelineNodesForCharacter(character) {
+    var nodes = Array.isArray(character && character.nodes) ? character.nodes : [];
+    if (tok(character && character.id) !== "hailey") return nodes;
+    var tutor = state.catalog && state.catalog.byId && state.catalog.byId.tutor;
+    var nts = normRoute(getCharacterRouteLock("hailey")) === "nts";
+    var linked = (Array.isArray(tutor && tutor.nodes) ? tutor.nodes : []).filter(function (node) {
+      // Shared Day 15 dispatchers are control flow, not Tutor episodes.
+      return tok(node && node.contactId) === "tutor" && uniqueRoutes(node.routes).indexOf("nts") >= 0
+        && (nts || !!(node.storyOnceKey && onceDone(node.storyOnceKey)));
+    });
+    return nodes.concat(linked.filter(function (node) {
+      return !nodes.some(function (existing) { return getTimelineNodeKey(existing) === getTimelineNodeKey(node); });
+    }));
+  }
+  function timelineNodeCharacter(character, node) {
+    var owner = tok(node && node.contactId);
+    return (owner && state.catalog && state.catalog.byId && state.catalog.byId[owner]) || character;
+  }
+  function inferOwnerIdFromStoryPath(path) {
+    var file = (cleanPath(path).split("/").pop() || "").replace(/\.json$/i, "");
+    var m = file.match(/^DAY\d+_\d+_([A-Za-z0-9]+)(?:_|$)/i);
+    if (!m) return "";
+    return tok(m[1]);
+  }
+  function ownerIdForStoryPath(path) {
+    var clean = cleanPath(path);
+    if (!clean) return "";
+    var fromCatalog = tok((state.catalog && state.catalog.ownerByPath && state.catalog.ownerByPath[clean]) || "");
+    if (fromCatalog) return fromCatalog;
+    return inferOwnerIdFromStoryPath(clean);
+  }
+  function shouldHideStoryPath(path) {
+    var ownerId = ownerIdForStoryPath(path);
+    if (!ownerId) return false;
+    return shouldHideCharacterFromUI(ownerId);
+  }
+  function cap(value) {
+    var text = String(value || "").trim().replace(/[_-]+/g, " ");
+    return text ? text.replace(/\b\w/g, function (m) { return m.toUpperCase(); }) : "";
+  }
+  function clamp(value, min, max) {
+    var num = Number(value);
+    if (!isFinite(num)) num = Number(min) || 0;
+    return Math.min(max, Math.max(min, num));
+  }
+  function safeTpl(text) {
+    var raw = String(text || "");
+    try {
+      if (window.Game && typeof window.Game.tpl === "function") return window.Game.tpl(raw);
+    } catch {}
+    return raw.replace(/\{\{\s*name:([^}]+)\s*\}\}/gi, function (_, id) { return cap(tok(id)); });
+  }
+  function uiAlert(text, title) {
+    var msg = String(text || "").trim();
+    if (!msg) return Promise.resolve();
+    if (window.UIModal && typeof window.UIModal.alert === "function") {
+      return Promise.resolve(window.UIModal.alert({ title: String(title || "Story"), text: msg }));
+    }
+    try { window.showToast && window.showToast(msg); } catch {}
+    return Promise.resolve();
+  }
+  function normRoute(value) {
+    var route = tok(value);
+    if (route === "love" || route === "nts" || route === "ntr") return route;
+    if (route.indexOf("nts") === 0) return "nts";
+    return "";
+  }
+  function routeLabel(route) {
+    var r = normRoute(route);
+    return r ? r.toUpperCase() : "Route";
+  }
+  function routeClass(route) {
+    return "st-route-" + (normRoute(route) || "none");
+  }
+  function uniqueRoutes(routes) {
+    return (Array.isArray(routes) ? routes : []).map(normRoute).filter(Boolean).filter(function (route, index, list) {
+      return list.indexOf(route) === index;
+    });
+  }
+  function ownerFromPhotoSource(rawSource) {
+    var source = tok(rawSource);
+    if (!source) return "";
+    if (source.indexOf(":") >= 0) source = tok(source.split(":").pop() || "");
+    return source;
+  }
+  function resolveVariantTimelineAvatar(id, avatar) {
+    var cid = tok(id);
+    var raw = String(avatar || "").trim();
+    try {
+      if (window.Game && typeof window.Game.resolveCharacterVariantAvatar === "function") {
+        var gameResolved = String(window.Game.resolveCharacterVariantAvatar(cid, raw) || "").trim();
+        if (gameResolved) return gameResolved;
+      }
+    } catch {}
+    try {
+      if (window.ConvoRuntime && typeof window.ConvoRuntime.resolveCharacterVariantAvatar === "function") {
+        var runtimeResolved = String(window.ConvoRuntime.resolveCharacterVariantAvatar(cid, raw) || "").trim();
+        if (runtimeResolved) return runtimeResolved;
+      }
+    } catch {}
+    if (cid === "mason" || /(?:^|\/)assets\/avatars\/mason(?:_female)?\.jpg(?:[?#].*)?$/i.test(raw)) {
+      try {
+        return localStorage.getItem("character_variant_mason") === "female"
+          ? "assets/avatars/female_mason.jpg"
+          : "assets/avatars/male_mason.jpg";
+      } catch {}
+    }
+    return raw;
+  }
+  function resolveVariantTimelineImage(url, ownerId) {
+    var raw = String(url || "").trim();
+    if (!raw) return "";
+    try {
+      if (window.Game && typeof window.Game.resolveCharacterVariantImage === "function") {
+        var resolved = String(window.Game.resolveCharacterVariantImage(raw, ownerId) || "").trim();
+        if (resolved) return resolved;
+      }
+    } catch {}
+    return raw;
+  }
+  function photoCountsByOwner() {
+    var map = Object.create(null);
+    var seen = Object.create(null);
+    var rows = readJsonKey("gallery_photos", []);
+    if (!Array.isArray(rows)) return map;
+    rows.forEach(function (row) {
+      if (!row || typeof row !== "object") return;
+      var owner = tok(row.ownerId || row.owner || row.characterId || row.contactId || "");
+      if (!owner) owner = ownerFromPhotoSource(row.src);
+      if (!owner || PHOTO_GENERIC_OWNER_IDS[owner]) return;
+      var url = resolveVariantTimelineImage(row.url || row.image || row.photo || row.src || "", owner);
+      if (!url) return;
+      var key = owner + "::" + url;
+      if (seen[key]) return;
+      seen[key] = true;
+      map[owner] = (map[owner] || 0) + 1;
+    });
+    return map;
+  }
+  function normalizeStorySpeaker(rawSpeaker, fallbackSpeaker, fallbackContactId) {
+    var explicit = tok(rawSpeaker);
+    if (explicit === "player") return "player";
+    if (explicit) return explicit;
+    var fallback = tok(fallbackSpeaker);
+    if (fallback === "player") return "player";
+    if (fallback) return fallback;
+    return tok(fallbackContactId || "");
+  }
+  function collectStoryPhotoUrlsForOwner(storyJson, ownerId, bucket) {
+    var targetOwner = tok(ownerId);
+    if (!targetOwner || !bucket) return;
+    function walk(steps, fallbackSpeaker) {
+      var list = Array.isArray(steps) ? steps : [];
+      var lastSpeaker = tok(fallbackSpeaker) || targetOwner;
+      for (var i = 0; i < list.length; i++) {
+        var step = list[i] || {};
+        var type = tok(step.type || "");
+        if (type === "notify") {
+          var app = tok(step.app || "messages");
+          if (app === "messages") {
+            var notifySpeaker = normalizeStorySpeaker(step.fromId || step.contactId || step.from || "", "", targetOwner);
+            if (notifySpeaker && notifySpeaker !== "player") lastSpeaker = notifySpeaker;
+          }
+        } else if (type === "message") {
+          var msgSpeaker = normalizeStorySpeaker(step.from || step.fromId || step.contactId || "", "", targetOwner);
+          if (msgSpeaker) lastSpeaker = msgSpeaker;
+        } else if (type === "image" || type === "photo" || type === "video" || type === "media") {
+          var src = String(step.image || step.video || step.src || step.url || "").trim();
+          var explicitSpeaker = normalizeStorySpeaker(step.from || step.fromId || step.contactId || "", "", "");
+          var imageSpeaker = explicitSpeaker || normalizeStorySpeaker("", lastSpeaker, targetOwner);
+          if (imageSpeaker && imageSpeaker === targetOwner && src) bucket[resolveVariantTimelineImage(src, targetOwner)] = true;
+          if (imageSpeaker) lastSpeaker = imageSpeaker;
+        } else if (type === "instagram_post" || type === "snapgram_post" || type === "instagram_story" || type === "story") {
+          var mediaUrl = String(step.image || step.photo || step.url || "").trim();
+          var mediaOwner = tok(step.authorId || step.fromId || step.contactId || step.user || "");
+          if (!mediaOwner) mediaOwner = targetOwner;
+          if (mediaOwner === targetOwner && mediaUrl) bucket[resolveVariantTimelineImage(mediaUrl, targetOwner)] = true;
+        } else if (type === "gallery_add") {
+          var galleryUrl = String((step.photo && step.photo.url) || step.url || step.src || "").trim();
+          var galleryOwner = tok((step.photo && step.photo.ownerId) || step.ownerId || (step.photo && step.photo.characterId) || step.characterId || (step.photo && step.photo.contactId) || step.contactId || step.fromId || step.from || "");
+          if (!galleryOwner) galleryOwner = targetOwner;
+          if (galleryOwner === targetOwner && galleryUrl) bucket[resolveVariantTimelineImage(galleryUrl, targetOwner)] = true;
+        }
+        if (Array.isArray(step.then)) walk(step.then, lastSpeaker);
+        if (Array.isArray(step.else)) walk(step.else, lastSpeaker);
+        if (Array.isArray(step.steps)) walk(step.steps, lastSpeaker);
+      }
+    }
+    walk(storyJson && storyJson.steps, targetOwner);
+  }
+  function totalPhotosForCharacter(character) {
+    var ownerId = tok(character && character.id);
+    if (!ownerId) return 0;
+    var seen = Object.create(null);
+    (Array.isArray(character && character.nodes) ? character.nodes : []).forEach(function (node) {
+      collectStoryPhotoUrlsForOwner(node && node.json, ownerId, seen);
+    });
+    return Object.keys(seen).length;
+  }
+  function readJsonKey(key, fallback) {
+    try { return parse(localStorage.getItem(key), fallback); } catch { return fallback; }
+  }
+  function readConversations() {
+    var raw = readJsonKey("conversations", {});
+    return raw && typeof raw === "object" ? raw : {};
+  }
+  function readContactNames() {
+    var raw = readJsonKey("contact_names_v1", {});
+    return raw && typeof raw === "object" ? raw : {};
+  }
+  function displayNameFor(id, fallback) {
+    var cid = tok(id);
+    var conv = readConversations()[cid];
+    if (conv && String(conv.name || "").trim()) return String(conv.name).trim();
+    var names = readContactNames();
+    if (String(names[cid] || "").trim()) return String(names[cid]).trim();
+    return safeTpl(String(fallback || cap(cid) || "Unknown"));
+  }
+  function avatarFor(id, fallback) {
+    var cid = tok(id);
+    var conv = readConversations()[cid];
+    // A saved placeholder must not hide the character's authored portrait.
+    var avatar = [conv && conv.avatar, fallback].map(function (value) {
+      return String(value || "").trim();
+    }).find(function (value) {
+      return value && !/(?:^|\/)assets\/avatars\/default\.jpg(?:[?#].*)?$/i.test(value);
+    });
+    if (avatar) return resolveVariantTimelineAvatar(cid, avatar);
+    // Every canonical story owner that ships a portrait under assets/avatars/.
+    // "tutor" was missing here while owning real NTS chapters
+    // (DAY10_01_TUTOR_FIRST_MEETING_NTS and later), so a Tutor row with no
+    // saved conversation avatar fell through to the generic default even
+    // though assets/avatars/tutor.jpg ships -- the same class of defect as the
+    // saved-placeholder case handled just above.
+    if (cid && ["aiden", "evelyn", "hailey", "lena", "mason", "tutor"].indexOf(cid) >= 0) {
+      return resolveVariantTimelineAvatar(cid, "assets/avatars/" + cid + ".jpg");
+    }
+    return DEFAULT_AVATAR;
+  }
+  function convDoneForOnceKey(onceKey) {
+    var key = tok(onceKey);
+    if (!key) return false;
+    var suffix = "_" + key;
+    try {
+      for (var i = 0; i < localStorage.length; i++) {
+        var storageKey = localStorage.key(i);
+        if (!storageKey || storageKey.indexOf("conv_done_") !== 0) continue;
+        if (!storageKey.endsWith(suffix)) continue;
+        if (localStorage.getItem(storageKey) === "1") return true;
+      }
+    } catch {}
+    return false;
+  }
+  function onceDone(onceKey) {
+    if (window.ConvoRuntime && typeof window.ConvoRuntime.onceDone === "function") {
+      try { return window.ConvoRuntime.onceDone(onceKey) === true; } catch {}
+    }
+    var key = tok(onceKey);
+    if (!key) return false;
+    if (convDoneForOnceKey(key)) return true;
+    try {
+      return localStorage.getItem("once_" + key) === "1" || localStorage.getItem("__once:" + key) === "1";
+    } catch {
+      return false;
+    }
+  }
+  function requirementsMet(requirementInput) {
+    if (window.ConvoRuntime && typeof window.ConvoRuntime.requirementsMet === "function") {
+      try { return window.ConvoRuntime.requirementsMet(requirementInput) === true; } catch {}
+    }
+    var isObj = !!requirementInput && typeof requirementInput === "object";
+    var requireOnceKey = isObj ? requirementInput.requireOnceKey : requirementInput;
+    if (!requireOnceKey) return true;
+    var parts = String(requireOnceKey).split("|").map(tok).filter(Boolean);
+    if (!parts.length) return true;
+    return parts.some(function (key) { return onceDone(key); });
+  }
+  function getChoicesLog() {
+    if (window.ConvoRuntime && typeof window.ConvoRuntime.getChoicesLog === "function") {
+      try {
+        var runtimeList = window.ConvoRuntime.getChoicesLog();
+        return Array.isArray(runtimeList) ? runtimeList : [];
+      } catch {}
+    }
+    var raw = readJsonKey("choices_log_v1", []);
+    return Array.isArray(raw) ? raw : [];
+  }
+  function getChoiceRewinds() {
+    var saveSystem = window.SaveSystem || {};
+    if (typeof saveSystem.getChoiceRewinds === "function") {
+      try {
+        var fromApi = saveSystem.getChoiceRewinds();
+        return Array.isArray(fromApi) ? fromApi : [];
+      } catch {}
+    }
+    var raw = readJsonKey(CHOICE_REWINDS_KEY, []);
+    return Array.isArray(raw) ? raw : [];
+  }
+  function getStoryReplays() {
+    var saveSystem = window.SaveSystem || {};
+    if (typeof saveSystem.getStoryReplays === "function") {
+      try {
+        var fromApi = saveSystem.getStoryReplays();
+        return Array.isArray(fromApi) ? fromApi : [];
+      } catch {}
+    }
+    var raw = readJsonKey(STORY_REPLAYS_KEY, []);
+    return Array.isArray(raw) ? raw : [];
+  }
+  function getConversationStartSnapshot(contactId) {
+    var saveSystem = window.SaveSystem || {};
+    if (typeof saveSystem.getConversationStartSnapshot === "function") {
+      try {
+        return saveSystem.getConversationStartSnapshot(contactId);
+      } catch {}
+    }
+    return null;
+  }
+  function storyReplayKey(contactId, storyPath) {
+    return tok(contactId) + "::" + cleanPath(storyPath);
+  }
+  function ensureHistoricalTimelineAccess() {
+    var saveSystem = window.SaveSystem || {};
+    if (typeof saveSystem.createStoryReplaySlot !== "function") return 0;
+    if (!state.catalog || !Array.isArray(state.catalog.characters)) return 0;
+
+    var existing = Object.create(null);
+    getStoryReplays().forEach(function (row) {
+      var key = storyReplayKey(row && (row.contactId || row.characterId), row && row.storyPath);
+      if (key) existing[key] = true;
+    });
+
+    var seeded = 0;
+    state.catalog.characters.forEach(function (character) {
+      var nodes = Array.isArray(character && character.nodes) ? character.nodes : [];
+      nodes.forEach(function (node) {
+        if (!node || !node.storyPath) return;
+        var key = storyReplayKey(node.contactId, node.storyPath);
+        if (!node.storyOnceKey || !onceDone(node.storyOnceKey)) return;
+        var snapshot = getConversationStartSnapshot(node.contactId);
+        if (!snapshot || typeof snapshot !== "object") return;
+        var created = false;
+        try {
+          var pendingReplay = saveSystem.createStoryReplaySlot({
+            contactId: node.contactId,
+            storyPath: node.storyPath,
+            storyOnceKey: node.storyOnceKey,
+            day: node.day,
+            title: node.title,
+            snapshot: snapshot
+          });
+          created = !!pendingReplay;
+          if (pendingReplay && typeof pendingReplay.catch === "function") pendingReplay.catch(function(error){ console.warn("[Timeline] best-effort replay snapshot failed", error && (error.code || error.message) || error); });
+        } catch {}
+        if (created) {
+          existing[key] = true;
+          seeded += 1;
+        }
+      });
+    });
+
+    return seeded;
+  }
+  function getRoutePoints() {
+    var raw = readJsonKey("route_points_v1", {});
+    return raw && typeof raw === "object" ? raw : {};
+  }
+  function getCharacterRouteLock(contactId) {
+    var cid = tok(contactId);
+    if (!cid) return "";
+    try {
+      var official = window.CharacterRoutes && window.CharacterRoutes.get && window.CharacterRoutes.get(cid, { persistInherited: true });
+      if (official) return String(official);
+    } catch (_) {}
+    try {
+      return String(localStorage.getItem("route_" + cid + "_locked_v1") || "").trim();
+    } catch {
+      return "";
+    }
+  }
+  function dayNumberFromPath(path) {
+    var match = String(path || "").match(/[\\/](?:DAY|day)(\d+)(?:[\\/]|$)/);
+    var day = match ? (Number(match[1]) || 0) : 0;
+    return day > 0 ? Math.floor(day) : 0;
+  }
+  function dayLabel(day) {
+    var dayN = Math.max(0, Number(day || 0) || 0);
+    return dayN > 0 ? ("Day " + dayN) : "Day ?";
+  }
+  function compareNodes(a, b) {
+    var dayDiff = (Number(a.day || 0) || 0) - (Number(b.day || 0) || 0);
+    if (dayDiff) return dayDiff;
+    var orderDiff = (Number(a.order || 0) || 0) - (Number(b.order || 0) || 0);
+    if (orderDiff) return orderDiff;
+    return String(a.id || "").localeCompare(String(b.id || ""));
+  }
+  function compareManifestEntries(a, b) {
+    var dayDiff = (Number(a && a.day || 0) || 0) - (Number(b && b.day || 0) || 0);
+    if (dayDiff) return dayDiff;
+    var orderDiff = (Number(a && a.order || 0) || 0) - (Number(b && b.order || 0) || 0);
+    if (orderDiff) return orderDiff;
+    return String(a && a.path || "").localeCompare(String(b && b.path || ""));
+  }
+  function shortTitleFromPath(path) {
+    var clean = cleanPath(path);
+    var file = clean.split("/").pop() || clean;
+    var base = file.replace(/\.json$/i, "");
+    base = base.replace(/^DAY\d+_\d+_/i, "");
+    base = base.replace(/_/g, " ");
+    return cap(base);
+  }
+  function routeFromPath(path) {
+    var match = cleanPath(path).match(/\/(love|nts|ntr)\//i);
+    return match ? normRoute(match[1]) : "";
+  }
+  function storyHasReplayableChoice(storyJson) {
+    function walk(steps) {
+      var list = Array.isArray(steps) ? steps : [];
+      for (var i = 0; i < list.length; i++) {
+        var step = list[i] || {};
+        var type = tok(step.type || "");
+        if ((type === "choice" || type === "player_choice") && Array.isArray(step.options) && step.options.length) return true;
+        if (walk(step.then) || walk(step.else) || walk(step.steps)) return true;
+      }
+      return false;
+    }
+    return walk(storyJson && storyJson.steps);
+  }
+  function extractSpeakers(storyJson) {
+    var out = [];
+    function walk(steps) {
+      var list = Array.isArray(steps) ? steps : [];
+      for (var i = 0; i < list.length; i++) {
+        var step = list[i] || {};
+        var type = tok(step.type || "");
+        if (type === "message" || type === "image") {
+          var fromA = tok(step.from || step.fromId || step.contactId || "");
+          if (fromA && !SYSTEM_CONTACTS[fromA]) out.push(fromA);
+        } else if (type === "notify") {
+          var fromB = tok(step.fromId || step.contactId || step.from || "");
+          if (fromB && !SYSTEM_CONTACTS[fromB]) out.push(fromB);
+        } else if (type === "rename") {
+          var key = tok(step.key || step.contactId || "");
+          if (key && !SYSTEM_CONTACTS[key]) out.push(key);
+        }
+        if (Array.isArray(step.then)) walk(step.then);
+        if (Array.isArray(step.else)) walk(step.else);
+        if (Array.isArray(step.steps)) walk(step.steps);
+      }
+    }
+    walk(storyJson && storyJson.steps);
+    return out;
+  }
+  function inferPrimaryContactId(storyJson, path) {
+    var direct = normalizeTimelineCharacterId(storyJson && (storyJson.contactId || storyJson.contact || storyJson.fromId) || "");
+    if (direct && !SYSTEM_CONTACTS[direct]) return direct;
+    var speakers = extractSpeakers(storyJson);
+    if (speakers.length) {
+      var counts = Object.create(null);
+      var first = Object.create(null);
+      for (var i = 0; i < speakers.length; i++) {
+        var id = speakers[i];
+        counts[id] = (counts[id] || 0) + 1;
+        if (!Object.prototype.hasOwnProperty.call(first, id)) first[id] = i;
+      }
+      var bestId = "";
+      Object.keys(counts).forEach(function (id) {
+        if (!bestId) { bestId = id; return; }
+        if (counts[id] > counts[bestId]) { bestId = id; return; }
+        if (counts[id] === counts[bestId] && first[id] < first[bestId]) bestId = id;
+      });
+      if (bestId) return normalizeTimelineCharacterId(bestId);
+    }
+    var file = (cleanPath(path).split("/").pop() || "").replace(/\.json$/i, "");
+    var tokens = file.replace(/^DAY\d+_\d+_/i, "").split("_").map(tok).filter(Boolean);
+    for (var j = 0; j < tokens.length; j++) {
+      if (!SYSTEM_CONTACTS[tokens[j]]) return normalizeTimelineCharacterId(tokens[j]);
+    }
+    return "";
+  }
+  function inferAvatar(storyJson, contactId) {
+    var cid = tok(contactId);
+    var found = "";
+    function walk(steps) {
+      if (found) return;
+      var list = Array.isArray(steps) ? steps : [];
+      for (var i = 0; i < list.length; i++) {
+        var step = list[i] || {};
+        var fromId = tok(step.fromId || step.contactId || step.from || step.key || "");
+        if (fromId === cid) {
+          var avatar = String(step.avatar || step.image || (step.rename && step.rename.image) || "").trim();
+          if (avatar) { found = avatar; return; }
+        }
+        if (step.rename && tok(step.rename.key || "") === cid && String(step.rename.image || "").trim()) {
+          found = String(step.rename.image || "").trim();
+          return;
+        }
+        if (Array.isArray(step.then)) walk(step.then);
+        if (Array.isArray(step.else)) walk(step.else);
+        if (Array.isArray(step.steps)) walk(step.steps);
+      }
+    }
+    walk(storyJson && storyJson.steps);
+    return found;
+  }
+  function collectChoiceNodes(storyJson, baseMeta) {
+    var out = [];
+    function walk(steps, pathPrefix) {
+      var list = Array.isArray(steps) ? steps : [];
+      for (var i = 0; i < list.length; i++) {
+        var step = list[i] || {};
+        var type = tok(step.type || "");
+        var pathKey = pathPrefix ? (pathPrefix + "." + i) : String(i);
+        if ((type === "choice" || type === "player_choice") && Array.isArray(step.options) && step.options.length) {
+          var choiceKey = String(step.key || pathKey).trim();
+          var options = step.options.map(function (opt, idx) {
+            var optionId = tok(opt && (opt.id || opt.key) || idx);
+            var points = (opt && typeof opt.points === "object") ? opt.points : {};
+            var route = normRoute(optionId || Object.keys(points || {}).find(function (key) { return normRoute(key); }) || "");
+            return {
+              id: optionId || ("choice_" + idx),
+              text: safeTpl(String(opt && (opt.text || opt.label || opt.id) || ("Choice " + (idx + 1)))),
+              route: route
+            };
+          });
+          out.push({
+            id: baseMeta.storyId + "::choice::" + tok(choiceKey || pathKey),
+            type: "choice",
+            contactId: tok(baseMeta.contactId || ""),
+            storyPath: baseMeta.storyPath,
+            storyOnceKey: baseMeta.storyOnceKey,
+            storyId: baseMeta.storyId,
+            day: baseMeta.day,
+            order: baseMeta.order + ((out.length + 1) / 100),
+            title: safeTpl(String(step.prompt || "").trim() || "Decision Point"),
+            subtitle: shortTitleFromPath(baseMeta.storyPath),
+            choiceKey: choiceKey,
+            options: options,
+            routes: options.map(function (opt) { return opt.route; }).filter(Boolean)
+          });
+        }
+        if (Array.isArray(step.then)) walk(step.then, pathKey + ".then");
+        if (Array.isArray(step.else)) walk(step.else, pathKey + ".else");
+        if (Array.isArray(step.steps)) walk(step.steps, pathKey + ".steps");
+      }
+    }
+    walk(storyJson && storyJson.steps, "");
+    return out;
+  }
+  function collectRestoreOnceKeys(storyJson) {
+    var out = [];
+    var seen = Object.create(null);
+    function push(key) {
+      var clean = tok(key);
+      if (!clean || seen[clean]) return;
+      seen[clean] = true;
+      out.push(clean);
+    }
+    function walk(steps) {
+      var list = Array.isArray(steps) ? steps : [];
+      for (var i = 0; i < list.length; i++) {
+        var step = list[i] || {};
+        push(step.onceKey);
+        if (Array.isArray(step.set)) step.set.forEach(push);
+        if (Array.isArray(step.options)) {
+          step.options.forEach(function (opt) {
+            if (Array.isArray(opt && opt.set)) opt.set.forEach(push);
+          });
+        }
+        if (Array.isArray(step.then)) walk(step.then);
+        if (Array.isArray(step.else)) walk(step.else);
+        if (Array.isArray(step.steps)) walk(step.steps);
+      }
+    }
+    push(storyJson && storyJson.onceKey);
+    walk(storyJson && storyJson.steps);
+    return out;
+  }
+  function collectRouteKeys(storyJson, contactId) {
+    var cid = tok(contactId);
+    var keys = Object.create(null);
+    if (cid) {
+      keys["route_" + cid + "_locked_v1"] = true;
+      keys["route_" + cid + "_lock_day_v1"] = true;
+    }
+    function walk(steps) {
+      var list = Array.isArray(steps) ? steps : [];
+      for (var i = 0; i < list.length; i++) {
+        var step = list[i] || {};
+        if (tok(step.type || "") === "set_flag") {
+          var key = String(step.key || "").trim();
+          if (key && (!cid || key.indexOf("route_" + cid + "_") === 0)) keys[key] = true;
+        }
+        if (Array.isArray(step.then)) walk(step.then);
+        if (Array.isArray(step.else)) walk(step.else);
+        if (Array.isArray(step.steps)) walk(step.steps);
+      }
+    }
+    walk(storyJson && storyJson.steps);
+    return Object.keys(keys);
+  }
+  function createCharacter(contactId, displayName, avatar) {
+    return {
+      id: tok(contactId),
+      displayName: displayNameFor(contactId, displayName),
+      avatar: avatarFor(contactId, avatar),
+      nodes: [],
+      restoreOnceKeys: [],
+      routeKeys: []
+    };
+  }
+  async function loadManifestEntries() {
+    if (window.ConvoRuntime && typeof window.ConvoRuntime.loadStoryManifest === "function") {
+      var runtimeManifest = await window.ConvoRuntime.loadStoryManifest();
+      var runtimeEntries = runtimeManifest && (runtimeManifest.sortedEntries || runtimeManifest.entries);
+      if (Array.isArray(runtimeEntries)) return runtimeEntries.slice();
+    }
+    var res = await fetch("story/story_manifest.json", { cache: "no-store" });
+    if (!res || !res.ok) throw new Error("Manifest unavailable");
+    var json = await res.json();
+    return Array.isArray(json) ? json : [];
+  }
+  async function loadStoryJson(path) {
+    var clean = cleanPath(path);
+    // Timeline catalog construction must inspect the exact manifest entry.
+    // ConvoRuntime.loadJson is intentionally route-aware and may substitute or
+    // skip a completed counterpart, which makes valid nodes disappear here.
+    var res = await fetch(clean, { cache: "no-store" });
+    if (res && res.ok) return res.json();
+    throw new Error("Story unavailable: " + clean);
+  }
+  function hasTimelineDevUnlock() {
+    try {
+      if (window.Game && typeof window.Game.hasDevUnlock === "function") return !!window.Game.hasDevUnlock();
+      if (window.ConvoRuntime && typeof window.ConvoRuntime.hasDevUnlock === "function") return !!window.ConvoRuntime.hasDevUnlock();
+    } catch {}
+    try { return localStorage.getItem("dev_timeline_unlock_v1") === "1"; } catch { return false; }
+  }
+  function hasTimelinePremiumUnlock() {
+    try {
+      if (window.Game && typeof window.Game.hasPremiumUnlock === "function") return !!window.Game.hasPremiumUnlock();
+      if (window.ConvoRuntime && typeof window.ConvoRuntime.hasPremiumUnlock === "function") return !!window.ConvoRuntime.hasPremiumUnlock();
+    } catch {}
+    try {
+      return localStorage.getItem("patreon_master_unlock_v1") === "1" || localStorage.getItem("dev_timeline_unlock_v1") === "1";
+    } catch { return false; }
+  }
+  function isPremiumTimelineNode(node) {
+    try {
+      var entry = {
+        path: cleanPath(node && node.storyPath || ""),
+        storyPath: cleanPath(node && node.storyPath || ""),
+        day: Math.max(0, Number(node && node.day || dayNumberFromPath(node && node.storyPath) || 0) || 0),
+        order: Math.max(0, Number(node && node.order || 0) || 0),
+        contactId: tok(node && node.contactId || ""),
+        id: String(node && (node.manifestId || node.id || node.storyId) || "").trim()
+      };
+      if (window.Game && typeof window.Game.isPremiumStory === "function") return !!window.Game.isPremiumStory(entry);
+      if (window.ConvoRuntime && typeof window.ConvoRuntime.isPremiumStory === "function") return !!window.ConvoRuntime.isPremiumStory(entry);
+    } catch {}
+    return false;
+  }
+  function canAccessTimelineNode(node) {
+    if (!node) return false;
+    if (hasTimelinePremiumUnlock()) return true;
+    try {
+      var entry = {
+        path: cleanPath(node.storyPath || ""),
+        storyPath: cleanPath(node.storyPath || ""),
+        day: Math.max(0, Number(node.day || dayNumberFromPath(node.storyPath) || 0) || 0),
+        order: Math.max(0, Number(node.order || 0) || 0),
+        contactId: tok(node.contactId || ""),
+        id: String(node.manifestId || node.id || node.storyId || "").trim()
+      };
+      if (window.Game && typeof window.Game.canAccessStory === "function") return !!window.Game.canAccessStory(entry);
+      if (window.ConvoRuntime && typeof window.ConvoRuntime.canAccessStory === "function") return !!window.ConvoRuntime.canAccessStory(entry);
+    } catch {}
+    return !isPremiumTimelineNode(node);
+  }
+  function buildTimelineBlueprint(timelineJson) {
+    var out = {
+      charactersById: Object.create(null),
+      byCharacterPath: Object.create(null),
+      ownerByPath: Object.create(null)
+    };
+    var chars = timelineJson && timelineJson.characters && typeof timelineJson.characters === "object"
+      ? timelineJson.characters
+      : {};
+    Object.keys(chars).forEach(function (key) {
+      var cid = normalizeTimelineCharacterId(key);
+      if (!cid) return;
+      var character = chars[key] || {};
+      out.charactersById[cid] = {
+        displayName: String(character.displayName || "").trim(),
+        avatar: String(character.avatar || "").trim()
+      };
+      var nodes = Array.isArray(character.nodes) ? character.nodes : [];
+      nodes.forEach(function (node) {
+        var jump = node && typeof node.jump === "object" ? node.jump : {};
+        var payload = jump && typeof jump.payload === "object" ? jump.payload : {};
+        var storyPath = cleanPath(payload.storyPath || payload.path || payload.story || "");
+        if (!storyPath) return;
+        out.byCharacterPath[cid + "::" + storyPath] = {
+          title: safeTpl(String(node.title || "").trim()),
+          routes: uniqueRoutes(node.routes || [])
+        };
+        if (!out.ownerByPath[storyPath]) out.ownerByPath[storyPath] = cid;
+      });
+    });
+    return out;
+  }
+  function buildConversationIndexOwnerMap(indexJson) {
+    var out = Object.create(null);
+    var src = indexJson && typeof indexJson === "object" ? indexJson : {};
+    Object.keys(src).forEach(function (rawId) {
+      var cid = normalizeTimelineCharacterId(rawId);
+      if (!cid || SYSTEM_CONTACTS[cid] || PSEUDO_ROUTE_CONTACTS[cid]) return;
+      var paths = Array.isArray(src[rawId]) ? src[rawId] : [];
+      paths.forEach(function (rawPath) {
+        var storyPath = cleanPath(rawPath);
+        if (!storyPath || out[storyPath]) return;
+        out[storyPath] = cid;
+      });
+    });
+    return out;
+  }
+  async function loadTimelineBlueprint() {
+    try {
+      return buildTimelineBlueprint(await loadStoryJson("story/timeline_v2.json"));
+    } catch {
+      return { charactersById: Object.create(null), byCharacterPath: Object.create(null), ownerByPath: Object.create(null) };
+    }
+  }
+  async function loadConversationIndexOwnerMap() {
+    try {
+      return buildConversationIndexOwnerMap(await loadStoryJson("story/conversations_index.json"));
+    } catch {
+      return Object.create(null);
+    }
+  }
+  function readTimelineRuntimeState() {
+    var raw = parse(localStorage.getItem(STORY_RUNTIME_KEY), null);
+    var src = raw && typeof raw === "object" ? raw : {};
+    return {
+      activeStoryPath: cleanPath(src.activeStoryPath || src.storyPath || ""),
+      expectedNextStory: cleanPath(src.expectedNextStory || src.nextStoryPath || ""),
+      turnOwner: tok(src.turnOwner || src.expectedContactId || ""),
+      activeCharacterId: tok(src.activeCharacterId || src.contactId || src.characterId || ""),
+      externalChainInProgress: src.externalChainInProgress === true,
+      transitionLock: src.transitionLock === true,
+      timelineReplayChain: src.timelineReplayChain === true,
+      updatedAt: Math.max(0, Number(src.updatedAt || 0) || 0)
+    };
+  }
+  function readPendingStoryState(key) {
+    var raw = parse(localStorage.getItem(key), null);
+    var src = raw && typeof raw === "object" ? raw : {};
+    return {
+      kind: tok(src.kind || ""),
+      path: cleanPath(src.path || src.storyPath || ""),
+      storyPath: cleanPath(src.storyPath || src.path || ""),
+      contactId: tok(src.contactId || src.characterId || src.id || src.targetContactId || src.activeCharacterId || ""),
+      reason: String(src.reason || src.via || "").trim(),
+      updatedAt: Math.max(0, Number(src.updatedAt || src.createdAt || src.at || 0) || 0)
+    };
+  }
+  function readTimelinePendingState() {
+    return readPendingStoryState("pending_story_v1");
+  }
+  function readTimelineChainState() {
+    return readPendingStoryState(PENDING_CHAIN_KEY);
+  }
+  function getTimelineNodeKey(node) {
+    var contactId = tok(node && node.contactId || "");
+    var storyPath = cleanPath(node && node.storyPath || "").toLowerCase();
+    if (contactId || storyPath) return contactId + "::" + storyPath;
+    return tok(node && node.id || "");
+  }
+  function findTimelineNodeByPath(path) {
+    var wanted = cleanPath(path || "").toLowerCase();
+    if (!wanted) return null;
+    var characters = Array.isArray(state.catalog && state.catalog.characters) ? state.catalog.characters : [];
+    for (var i = 0; i < characters.length; i++) {
+      var character = characters[i];
+      if (!character || shouldHideCharacterFromUI(character.id)) continue;
+      var nodes = Array.isArray(character.nodes) ? character.nodes : [];
+      for (var j = 0; j < nodes.length; j++) {
+        var node = nodes[j];
+        if (!node || cleanPath(node.storyPath || "").toLowerCase() !== wanted) continue;
+        return { character: character, node: node };
+      }
+    }
+    return null;
+  }
+  function resolveTimelineCurrentNodeId() {
+    var runtime = readTimelineRuntimeState();
+    var pending = readTimelinePendingState();
+    var chain = readTimelineChainState();
+    var candidatePaths = [];
+
+    function pushPath(path) {
+      var clean = cleanPath(path || "");
+      if (!clean) return;
+      if (candidatePaths.indexOf(clean) >= 0) return;
+      candidatePaths.push(clean);
+    }
+
+    pushPath(runtime.activeStoryPath);
+    pushPath(runtime.expectedNextStory);
+    pushPath(pending.path);
+    pushPath(pending.storyPath);
+    pushPath(chain.path);
+    pushPath(chain.storyPath);
+
+    for (var i = 0; i < candidatePaths.length; i++) {
+      var match = findTimelineNodeByPath(candidatePaths[i]);
+      if (match && match.node) return getTimelineNodeKey(match.node);
+    }
+    return "";
+  }
+  async function buildCatalog() {
+    var entries = await loadManifestEntries();
+    var blueprint = await loadTimelineBlueprint();
+    var indexOwnerByPath = await loadConversationIndexOwnerMap();
+    var dayStartMap = Object.create(null);
+    entries.slice().sort(compareManifestEntries).forEach(function (entry) {
+      var path = cleanPath(entry && entry.path || "");
+      var day = Math.max(0, Number(entry && entry.day || dayNumberFromPath(path) || 0) || 0);
+      if (!path || day < DEV_CHAPTER_START_DAY || day > DEV_CHAPTER_END_DAY) return;
+      if (dayStartMap[day]) return;
+      dayStartMap[day] = {
+        id: String(entry && entry.id || ("day_" + day)).trim() || ("day_" + day),
+        path: path,
+        day: day,
+        order: Number(entry && entry.order || 0) || 0
+      };
+    });
+    var dayStartEntries = [];
+    for (var checkpointDay = DEV_CHAPTER_START_DAY; checkpointDay <= DEV_CHAPTER_END_DAY; checkpointDay++) {
+      if (dayStartMap[checkpointDay]) dayStartEntries.push(dayStartMap[checkpointDay]);
+    }
+    // Chapter loads only need the manifest-derived first story for each day;
+    // publish those controls before the heavier character-route catalog has
+    // parsed every episode. This keeps Chapters usable during a cold build.
+    state.catalog.dayStartEntries = dayStartEntries;
+    try { document.documentElement.setAttribute("data-story-day-checkpoints-ready", "1"); } catch {}
+    // Loading every story with one giant Promise.all creates a burst of JSON
+    // parsing/microtasks on the renderer thread.  The global nav remains
+    // visually present during that burst, but hover/click events cannot be
+    // serviced until it drains.  Keep bounded I/O concurrency and yield a
+    // frame between batches so shell navigation stays interactive while the
+    // first catalog is built.
+    //
+    // window.__storyCatalogPromise is intentionally a GLOBAL cache (see
+    // init()'s own comment: "reuse the in-flight or completed build on
+    // remount") -- this loop must not be aborted outright on exit, or a
+    // player who bounces back into Story shortly after leaving pays the
+    // full ~450-file rebuild cost again for no reason. But every batch was
+    // still yielding via requestAnimationFrame UNCONDITIONALLY, including
+    // for however many seconds this loop is still draining AFTER the player
+    // has already navigated away -- rAF callbacks run every single frame
+    // regardless of priority, so this leftover work kept competing for
+    // main-thread time against whatever scene the player actually
+    // navigated to. Real, live, reported bug: the perceived exit cost is
+    // NOT the scene swap itself (synchronous, already fast) but the
+    // destination scene's OWN responsiveness being starved by this
+    // still-running loop for however long it takes to drain. Once this
+    // exact mount is no longer connected, pause until Story is mounted again.
+    // requestIdleCallback with a timeout is not safe here: Chromium may run a
+    // timed-out callback with no idle budget, and one expensive route scan can
+    // then freeze the destination scene for seconds.
+    var results = [];
+    var batchSize = 2;
+    var hasMountedOnce = root.isConnected;
+    var storyWorkMayRun = function () {
+      var sceneName = String(window.Game && window.Game.currentScene || "").toLowerCase();
+      var nav = window.__sceneNavigationDiagnostics && window.__sceneNavigationDiagnostics.state;
+      var leavingStory = !!(nav && nav.busy && String(nav.activeKey || "").toLowerCase().indexOf("story|") !== 0);
+      return sceneName === "story" && !leavingStory;
+    };
+    var resumeWhenStoryMayRun = function (resolve) {
+      if (storyWorkMayRun()) {
+        resolve();
+        return;
+      }
+      setTimeout(function () { resumeWhenStoryMayRun(resolve); }, 50);
+    };
+    var yieldForNextBatch = function () {
+      return new Promise(function (resolve) {
+        if (root.isConnected) hasMountedOnce = true;
+        if (hasMountedOnce && (!root.isConnected || !storyWorkMayRun())) {
+          setTimeout(function () { resumeWhenStoryMayRun(resolve); }, 50);
+        } else if (typeof requestAnimationFrame === "function") {
+          // Recheck inside the scheduled callback. Home may be accepted after
+          // this yield was requested but before the next animation frame.
+          requestAnimationFrame(function () { resumeWhenStoryMayRun(resolve); });
+        } else {
+          setTimeout(function () { resumeWhenStoryMayRun(resolve); }, 0);
+        }
+      });
+    };
+    for (var batchStart = 0; batchStart < entries.length; batchStart += batchSize) {
+      var batch = entries.slice(batchStart, batchStart + batchSize);
+      var rows = await Promise.all(batch.map(async function (entry, batchIndex) {
+        var index = batchStart + batchIndex;
+        var path = cleanPath(entry && entry.path || "");
+        if (!path) return null;
+        try {
+          return {
+            manifestId: String(entry && entry.id || ("entry_" + index)).trim() || ("entry_" + index),
+            path: path,
+            day: Math.max(0, Number(entry && entry.day || dayNumberFromPath(path) || 0) || 0),
+            order: Math.max(0, Number(entry && entry.order || index) || index),
+            json: await loadStoryJson(path)
+          };
+        } catch (err) {
+          // Electron's exported log flattens object arguments to [object Object].
+          // Keep the exact file and error readable, including reload cancellations.
+          try { console.warn("[StoryApp] Failed to load story for timeline " + JSON.stringify({ path: path, error: { name: String(err && err.name || "Error"), message: String(err && err.message || err || ""), code: String(err && err.code || "") } })); } catch {}
+          return null;
+        }
+      }));
+      Array.prototype.push.apply(results, rows);
+      await yieldForNextBatch();
+    }
+
+    var charactersById = Object.create(null);
+    var ownerByPath = Object.create(null);
+    var catalogRows = results.filter(Boolean);
+    for (var catalogIndex = 0; catalogIndex < catalogRows.length; catalogIndex++) {
+      var entry = catalogRows[catalogIndex];
+      var json = entry.json || {};
+      var contactId = normalizeTimelineCharacterId(indexOwnerByPath[entry.path] || blueprint.ownerByPath[entry.path] || "") || inferPrimaryContactId(json, entry.path);
+      if (!contactId || SYSTEM_CONTACTS[contactId] || PSEUDO_ROUTE_CONTACTS[contactId]) {
+        if ((catalogIndex + 1) % 4 === 0) await yieldForNextBatch();
+        continue;
+      }
+      if (!ownerByPath[entry.path]) ownerByPath[entry.path] = contactId;
+      var blueprintCharacter = blueprint.charactersById[contactId] || null;
+      var character = charactersById[contactId];
+      if (!character) {
+        character = createCharacter(
+          contactId,
+          (blueprintCharacter && blueprintCharacter.displayName) || json.contactName || json.displayName || "",
+          (blueprintCharacter && blueprintCharacter.avatar) || inferAvatar(json, contactId)
+        );
+        charactersById[contactId] = character;
+      } else if (!character.avatar || character.avatar === DEFAULT_AVATAR) {
+        character.avatar = avatarFor(contactId, (blueprintCharacter && blueprintCharacter.avatar) || inferAvatar(json, contactId));
+      }
+
+      var blueprintNode = blueprint.byCharacterPath[contactId + "::" + entry.path] || null;
+      var episodeRoutes = blueprintNode && Array.isArray(blueprintNode.routes) && blueprintNode.routes.length
+        ? uniqueRoutes(blueprintNode.routes)
+        : [];
+      if (!episodeRoutes.length) {
+        var pathRoute = routeFromPath(entry.path);
+        if (pathRoute) episodeRoutes.push(pathRoute);
+      }
+      character.nodes.push({
+        id: entry.manifestId,
+        type: "episode",
+        contactId: contactId,
+        storyId: entry.manifestId,
+        storyPath: entry.path,
+        storyOnceKey: String(json.onceKey || "").trim(),
+        requireOnceKey: String(json.requireOnceKey || "").trim(),
+        day: entry.day,
+        order: entry.order,
+        title: safeTpl(String((blueprintNode && blueprintNode.title) || json.title || shortTitleFromPath(entry.path))),
+        subtitle: String(json.requireOnceKey || "").trim() ? "Requires previous progress" : "",
+        routes: episodeRoutes,
+        hasChoices: storyHasReplayableChoice(json),
+        json: json
+      });
+      collectRestoreOnceKeys(json).forEach(function (key) {
+        if (character.restoreOnceKeys.indexOf(key) < 0) character.restoreOnceKeys.push(key);
+      });
+      collectRouteKeys(json, contactId).forEach(function (key) {
+        if (character.routeKeys.indexOf(key) < 0) character.routeKeys.push(key);
+      });
+      // Parsing was already incremental, but route extraction used to process
+      // the complete catalog synchronously at the end. That final burst could
+      // block an accepted Home navigation for many seconds. Keep the complete
+      // projection while yielding throughout the CPU-heavy assembly too.
+      if ((catalogIndex + 1) % 4 === 0) await yieldForNextBatch();
+    }
+
+    var characters = Object.keys(charactersById).map(function (id) {
+      var character = charactersById[id];
+      character.nodes.sort(compareNodes);
+      return character;
+    }).sort(function (a, b) {
+      return String(a.displayName || a.id).localeCompare(String(b.displayName || b.id));
+    });
+    var photoTotalsByOwner = Object.create(null);
+    for (var characterIndex = 0; characterIndex < characters.length; characterIndex++) {
+      var character = characters[characterIndex];
+      photoTotalsByOwner[tok(character.id)] = totalPhotosForCharacter(character);
+      await yieldForNextBatch();
+    }
+    return { characters: characters, byId: charactersById, ownerByPath: ownerByPath, photoTotalsByOwner: photoTotalsByOwner, dayStartEntries: dayStartEntries };
+  }
+  function buildReplayStateMaps() {
+    var replayMap = Object.create(null);
+    getStoryReplays().forEach(function (row) {
+      if (!row || typeof row !== "object") return;
+      var key = tok(row.contactId || row.characterId) + "::" + cleanPath(row.storyPath);
+      if (!key) return;
+      replayMap[key] = row;
+    });
+    return {
+      replayMap: replayMap,
+      photoCounts: photoCountsByOwner(),
+      contactStats: window.CalendarService?.read?.().stats || {},
+      photoTotals: (state.catalog && state.catalog.photoTotalsByOwner) || Object.create(null)
+    };
+  }
+  function inferResolvedRouteFromRows(rows) {
+    var stats = {
+      ntr: { completed: 0, unlocked: 0, latest: -1 },
+      nts: { completed: 0, unlocked: 0, latest: -1 },
+      love: { completed: 0, unlocked: 0, latest: -1 }
+    };
+    (Array.isArray(rows) ? rows : []).forEach(function (row) {
+      if (!row || !row.node || !row.status) return;
+      var nodeDay = Math.max(0, Number(row.node.day || 0) || 0);
+      if (nodeDay < 9) return;
+      var routes = uniqueRoutes(row.node.routes);
+      if (routes.length !== 1) return;
+      var route = routes[0];
+      if (!stats[route]) return;
+      if (row.status.completed) stats[route].completed += 1;
+      if (row.status.unlocked) stats[route].unlocked += 1;
+      var rank = (nodeDay * 1000) + (Number(row.node.order || 0) || 0);
+      if (rank > stats[route].latest) stats[route].latest = rank;
+    });
+    function pick(metric) {
+      var bestRoute = "";
+      var bestValue = 0;
+      var bestLatest = -1;
+      var tie = false;
+      ["ntr", "nts", "love"].forEach(function (route) {
+        var value = Number(stats[route][metric] || 0) || 0;
+        if (value > bestValue) {
+          bestRoute = route;
+          bestValue = value;
+          bestLatest = Number(stats[route].latest || 0) || 0;
+          tie = false;
+          return;
+        }
+        if (!value || value !== bestValue) return;
+        var latest = Number(stats[route].latest || 0) || 0;
+        if (latest > bestLatest) {
+          bestRoute = route;
+          bestLatest = latest;
+          tie = false;
+          return;
+        }
+        if (latest === bestLatest) tie = true;
+      });
+      return (bestValue > 0 && !tie) ? bestRoute : "";
+    }
+    return pick("completed") || pick("unlocked") || "";
+  }
+  function resolveRouteState(characterId, rows) {
+    var lockedRoute = normRoute(getCharacterRouteLock(characterId));
+    if (lockedRoute) return { activeRoute: lockedRoute, coreActive: false };
+    var inferred = inferResolvedRouteFromRows(rows);
+    if (inferred) return { activeRoute: inferred, coreActive: false };
+    return { activeRoute: "", coreActive: true };
+  }
+  function isNodeAllowedForRoute(node, routeLock) {
+    var route = normRoute(routeLock);
+    if (!route || !node) return true;
+    var routes = uniqueRoutes(node.routes || []);
+    if (!routes.length) return true;
+    return routes.indexOf(route) >= 0;
+  }
+  function buildBaseNodeState(node, maps, routeState) {
+    if (!node) return { state: "locked", unlocked: false, completed: false, requirementsMet: false, routeAllowed: false };
+    var devUnlocked = hasTimelineDevUnlock();
+    var completedEpisode = !!(node.storyOnceKey && onceDone(node.storyOnceKey));
+    var accessAllowed = devUnlocked || canAccessTimelineNode(node);
+    var requirementsUnlocked = devUnlocked || completedEpisode || requirementsMet(node.json || node.requireOnceKey || "");
+    var routeAllowed = devUnlocked || completedEpisode || isNodeAllowedForRoute(node, routeState && routeState.activeRoute);
+    var replay = maps.replayMap[tok(node.contactId) + "::" + cleanPath(node.storyPath)] || null;
+    var replayable = !!node.hasChoices && (!!replay || requirementsUnlocked);
+    var baseUnlocked = !!(requirementsUnlocked && routeAllowed && accessAllowed);
+    return {
+      state: completedEpisode ? "completed" : (baseUnlocked ? "unlocked" : "locked"),
+      unlocked: baseUnlocked,
+      completed: completedEpisode,
+      requirementsMet: requirementsUnlocked,
+      routeAllowed: routeAllowed,
+      premium: isPremiumTimelineNode(node),
+      accessAllowed: accessAllowed,
+      replay: replay,
+      replayable: replayable
+    };
+  }
+  function computeCharacterView(character, currentNodeId, renderMaps) {
+    var hasForcedCurrent = arguments.length > 1;
+    var maps = renderMaps || buildReplayStateMaps();
+    var sortedNodes = timelineNodesForCharacter(character)
+      .filter(function (node) { return hasTimelinePremiumUnlock() || !isPremiumTimelineNode(node); })
+      .slice()
+      .sort(compareNodes);
+    var initialRows = sortedNodes.map(function (node) {
+      return { node: node, status: { state: "locked", unlocked: false, completed: false } };
+    });
+    var routeState = resolveRouteState(character && character.id, initialRows);
+    var decoratedBase = sortedNodes.map(function (node) {
+      return { node: node, status: buildBaseNodeState(node, maps, routeState) };
+    });
+    if (!routeState.activeRoute) {
+      var inferredRoute = inferResolvedRouteFromRows(decoratedBase.map(function (row) {
+        return { node: row.node, status: row.status };
+      }));
+      if (inferredRoute) routeState = { activeRoute: inferredRoute, coreActive: false };
+    }
+    if (routeState.activeRoute) {
+      decoratedBase = sortedNodes.map(function (node) {
+        return { node: node, status: buildBaseNodeState(node, maps, routeState) };
+      });
+    }
+
+    var decorated = decoratedBase.map(function (row) {
+      var base = row.status || {};
+      var isCurrent = !!currentNodeId && getTimelineNodeKey(row.node) === tok(currentNodeId || "");
+      var status = {
+        completed: !!base.completed,
+        current: isCurrent,
+        replay: base.replay || null,
+        replayable: !!base.replayable,
+        requirementsMet: !!base.requirementsMet,
+        routeAllowed: !!base.routeAllowed,
+        premium: !!base.premium,
+        accessAllowed: !!base.accessAllowed,
+        progressionUnlocked: !!(base.requirementsMet && base.routeAllowed),
+        unlocked: false,
+        state: "locked"
+      };
+      if (status.current) {
+        status.unlocked = true;
+        status.state = "current";
+        return { node: row.node, status: status };
+      }
+      if (status.completed) {
+        status.unlocked = true;
+        return { node: row.node, status: status };
+      }
+      status.unlocked = false;
+      status.state = "locked";
+      return { node: row.node, status: status };
+    });
+
+    var groups = Object.create(null);
+    var days = [];
+    decorated.forEach(function (row) {
+      var day = Math.max(0, Number(row.node.day || 0) || 0);
+      if (!groups[day]) {
+        groups[day] = [];
+        days.push(day);
+      }
+      groups[day].push({ node: row.node, status: row.status, current: !!row.status.current });
+    });
+    days.sort(function (a, b) { return a - b; });
+
+    var unlockedDays = days.filter(function (day) {
+      return (groups[day] || []).some(function (row) { return row.status.unlocked; });
+    });
+    var rows = decorated.map(function (row) {
+      return { node: row.node, status: row.status, current: !!row.status.current };
+    });
+    var currentRow = rows.find(function (row) { return row.current; }) || null;
+    return {
+      character: character,
+      rows: rows,
+      groups: groups,
+      days: days,
+      unlockedEpisodes: decorated.filter(function (row) { return row.status.unlocked; }).length,
+      completedEpisodes: decorated.filter(function (row) { return row.status.completed; }).length,
+      totalEpisodes: decorated.length,
+      totalChoices: decorated.filter(function (row) { return row.node.hasChoices; }).length,
+      replayCount: decorated.filter(function (row) { return row.node.hasChoices && row.status.replayable; }).length,
+      routeLock: routeState.activeRoute,
+      coreActive: !!routeState.coreActive,
+      photoUnlocked: Number(maps.photoCounts[tok(character.id)] || 0) || 0,
+      photoTotal: Math.max(Number(maps.photoTotals[tok(character.id)] || 0) || 0, Number(maps.photoCounts[tok(character.id)] || 0) || 0),
+      contactStats: maps.contactStats[tok(character.id)] || {messages: 0, receivedPhotos: 0, conversationDays: 0},
+      lastUnlockedDay: unlockedDays.length ? unlockedDays[unlockedDays.length - 1] : 0,
+      currentNodeId: currentRow ? getTimelineNodeKey(currentRow.node) : "",
+      currentNodeTitle: currentRow ? currentRow.node.title : ""
+    };
+  }
+  function setTab(tabId) {
+    state.activeTab = tabId;
+    refs.tabButtons.forEach(function (btn) {
+      var active = btn.getAttribute("data-st-tab") === tabId;
+      btn.classList.toggle("is-active", active);
+      btn.setAttribute("aria-selected", active ? "true" : "false");
+    });
+    refs.panels.forEach(function (panel) {
+      panel.classList.toggle("is-active", panel.getAttribute("data-st-panel") === tabId);
+    });
+    if (tabId === "chapters") renderChapters();
+  }
+  function syncTimelineView() {
+    var showingRoute = !!state.activeCharacterId;
+    refs.timelineHome.hidden = showingRoute;
+    refs.routeView.hidden = !showingRoute;
+  }
+  function scrollTimelineTop() {
+    try { refs.timelineScroll.scrollTop = 0; } catch {}
+  }
+  function applyRouteZoom(nextZoom, focusX, focusY) {
+    var shell = refs.routeTreeShell;
+    var tree = refs.routeTree;
+    if (!shell || !tree) return state.routeZoom;
+    var prev = clamp(state.routeZoom || 1, ROUTE_ZOOM_MIN, ROUTE_ZOOM_MAX);
+    var next = clamp(nextZoom, ROUTE_ZOOM_MIN, ROUTE_ZOOM_MAX);
+    var rect = shell.getBoundingClientRect();
+    var anchorX = (typeof focusX === "number" && isFinite(focusX)) ? focusX : (rect.width / 2);
+    var anchorY = (typeof focusY === "number" && isFinite(focusY)) ? focusY : (rect.height / 2);
+    var worldX = (shell.scrollLeft + anchorX) / prev;
+    var worldY = (shell.scrollTop + anchorY) / prev;
+    state.routeZoom = next;
+    tree.style.zoom = String(next);
+    shell.scrollLeft = Math.max(0, (worldX * next) - anchorX);
+    shell.scrollTop = Math.max(0, (worldY * next) - anchorY);
+    return next;
+  }
+  function bindRouteTreeZoom() {
+    var shell = refs.routeTreeShell;
+    if (!shell) return;
+    applyRouteZoom(state.routeZoom || 1);
+    shell.addEventListener("wheel", function (ev) {
+      if (!state.activeCharacterId) return;
+      var modeScale = ev.deltaMode === 1 ? 16 : (ev.deltaMode === 2 ? Math.max(1, shell.clientHeight) : 1);
+      var deltaY = Number(ev.deltaY || 0) * modeScale;
+      if (!deltaY) return;
+      var factor = Math.exp(-deltaY * 0.0012);
+      var current = clamp(state.routeZoom || 1, ROUTE_ZOOM_MIN, ROUTE_ZOOM_MAX);
+      var next = clamp(current * factor, ROUTE_ZOOM_MIN, ROUTE_ZOOM_MAX);
+      if (Math.abs(next - current) < 0.0005) return;
+      var rect = shell.getBoundingClientRect();
+      ev.preventDefault();
+      applyRouteZoom(next, ev.clientX - rect.left, ev.clientY - rect.top);
+    }, { passive: false });
+  }
+  function bindRouteTreePan() {
+    var shell = refs.routeTreeShell;
+    if (!shell) return;
+    var threshold = 6;
+    function isInteractiveTarget(node) {
+      if (!node || typeof node.closest !== "function") return false;
+      return !!node.closest(".st-route-node-btn, .st-node-cta, .st-link-btn, .st-card-btn, button, a, input, textarea, select");
+    }
+    function stopPan() {
+      if (!state.routePan.active) return;
+      state.routePan.active = false;
+      state.routePan.pointerId = null;
+      shell.classList.remove("is-panning");
+    }
+    shell.addEventListener("pointerdown", function (ev) {
+      if (ev.button != null && ev.button !== 0) return;
+      if (isInteractiveTarget(ev.target)) return;
+      state.routePan.active = true;
+      state.routePan.moved = false;
+      state.routePan.pointerId = ev.pointerId;
+      state.routePan.startX = ev.clientX;
+      state.routePan.startY = ev.clientY;
+      state.routePan.startLeft = shell.scrollLeft;
+      state.routePan.startTop = shell.scrollTop;
+      shell.classList.remove("is-panning");
+      try { shell.setPointerCapture(ev.pointerId); } catch {}
+    });
+    shell.addEventListener("pointermove", function (ev) {
+      if (!state.routePan.active || state.routePan.pointerId !== ev.pointerId) return;
+      var dx = ev.clientX - state.routePan.startX;
+      var dy = ev.clientY - state.routePan.startY;
+      if (!state.routePan.moved && (Math.abs(dx) >= threshold || Math.abs(dy) >= threshold)) {
+        state.routePan.moved = true;
+        shell.classList.add("is-panning");
+      }
+      if (!state.routePan.moved) return;
+      shell.scrollLeft = state.routePan.startLeft - dx;
+      shell.scrollTop = state.routePan.startTop - dy;
+      ev.preventDefault();
+    }, { passive: false });
+    shell.addEventListener("pointerup", function (ev) {
+      if (state.routePan.active && state.routePan.pointerId === ev.pointerId && state.routePan.moved) {
+        state.routePan.suppressUntil = Date.now() + 140;
+      }
+      stopPan();
+    });
+    shell.addEventListener("pointercancel", stopPan);
+    shell.addEventListener("lostpointercapture", stopPan);
+  }
+  function openCharacterDetail(contactId) {
+    var cid = tok(contactId);
+    if (!cid || shouldHideTimelineCharacter(cid)) {
+      closeCharacterDetail();
+      return;
+    }
+    state.activeCharacterId = cid;
+    syncTimelineView();
+    renderCharacterRoute();
+    try {
+      refs.routeTreeShell.scrollLeft = 0;
+      refs.routeTreeShell.scrollTop = 0;
+    } catch {}
+    scrollTimelineTop();
+  }
+  function closeCharacterDetail() {
+    state.activeCharacterId = "";
+    syncTimelineView();
+    scrollTimelineTop();
+  }
+  function createRouteBadges(routes, fragment) {
+    var list = uniqueRoutes(routes);
+    if (!list.length) return;
+    list.filter(function (route, index, arr) { return arr.indexOf(route) === index; }).forEach(function (route) {
+      var badge = document.createElement("span");
+      badge.className = "st-route-badge " + routeClass(route);
+      badge.textContent = routeLabel(route);
+      fragment.appendChild(badge);
+    });
+  }
+  function createCharacterCard(view) {
+    var card = document.createElement("article");
+    card.className = "st-character-card";
+    card.dataset.characterId = view.character.id;
+
+    var top = document.createElement("div");
+    top.className = "st-character-top";
+    var avatar = document.createElement("img");
+    avatar.className = "st-character-avatar";
+    avatar.src = avatarFor(view.character.id, view.character.avatar);
+    avatar.alt = view.character.displayName;
+    top.appendChild(avatar);
+    var meta = document.createElement("div");
+    meta.className = "st-character-meta";
+    var name = document.createElement("div");
+    name.className = "st-character-name";
+    name.textContent = view.character.displayName;
+    meta.appendChild(name);
+    var progress = document.createElement("div");
+    progress.className = "st-character-progress";
+    progress.textContent = view.unlockedEpisodes + " unlocked  |  " + view.completedEpisodes + " completed";
+    meta.appendChild(progress);
+    top.appendChild(meta);
+    card.appendChild(top);
+
+    var stats = document.createElement("div");
+    stats.className = "st-character-stats";
+    var photos = document.createElement("div");
+    photos.className = "st-character-chip";
+    photos.innerHTML = '<div class="st-character-chip-label">Photos</div><div class="st-character-chip-value">' + view.photoUnlocked + " / " + view.photoTotal + "</div>";
+    stats.appendChild(photos);
+    var episodes = document.createElement("div");
+    episodes.className = "st-character-chip";
+    episodes.innerHTML = '<div class="st-character-chip-label">Conversations</div><div class="st-character-chip-value">' + view.completedEpisodes + " / " + view.totalEpisodes + "</div>";
+    stats.appendChild(episodes);
+    appendContactStats(stats, view.contactStats, "st-character-chip");
+    card.appendChild(stats);
+
+    var btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "st-card-btn";
+    btn.textContent = "Open Route";
+    btn.addEventListener("click", function () { openCharacterDetail(view.character.id); });
+    card.appendChild(btn);
+    return card;
+  }
+  function renderTimelineRoot() {
+    refs.timelineRoot.innerHTML = "";
+    if (state.activeCharacterId && shouldHideTimelineCharacter(state.activeCharacterId)) {
+      state.activeCharacterId = "";
+    }
+    syncTimelineView();
+    var characters = state.catalog.characters
+      .filter(function (character) { return !shouldHideTimelineCharacter(character && character.id); });
+    // One fresh projection for this synchronous render; standalone detail
+    // views keep their own fresh read and nothing survives across renders.
+    var renderMaps = characters.length ? buildReplayStateMaps() : null;
+    var views = characters.map(function (character) {
+      return computeCharacterView(character, state.currentNodeId || "", renderMaps);
+    });
+    refs.emptyTimeline.hidden = views.length > 0;
+    views.forEach(function (view) {
+      refs.timelineRoot.appendChild(createCharacterCard(view));
+    });
+  }
+  function stateBadge(status, isCurrent) {
+    if (isCurrent) return { className: "is-current", label: "Current" };
+    if (status.completed) return { className: "is-completed", label: "Completed" };
+    if (status.unlocked) return { className: "is-unlocked", label: "Unlocked" };
+    return { className: "is-locked", label: "Locked" };
+  }
+  function openReplayModal(payload) {
+    state.replayNode = payload || null;
+    if (!payload) return;
+    refs.modalTitle.textContent = payload.node.title || "Decision Point";
+    refs.modalCopy.textContent = payload.status.selectedOptionId
+      ? "Previously selected: " + payload.status.selectedOptionId.toUpperCase() + ". Replaying restores the full checkpoint saved before this conversation began."
+      : "This replay point restores the full checkpoint saved before this conversation first started.";
+    refs.modalOptions.innerHTML = "";
+    (payload.node.options || []).forEach(function (opt) {
+      var item = document.createElement("li");
+      item.className = "st-modal-option" + (tok(opt.id) === tok(payload.status.selectedOptionId) ? " is-selected" : "");
+      var top = document.createElement("div");
+      top.className = "st-modal-option-top";
+      var id = document.createElement("div");
+      id.className = "st-modal-option-id";
+      id.textContent = String(opt.id || "option").toUpperCase();
+      top.appendChild(id);
+      if (opt.route) {
+        var badge = document.createElement("span");
+        badge.className = "st-route-badge " + routeClass(opt.route);
+        badge.textContent = routeLabel(opt.route);
+        top.appendChild(badge);
+      }
+      item.appendChild(top);
+      var text = document.createElement("div");
+      text.className = "st-modal-option-text";
+      text.textContent = opt.text;
+      item.appendChild(text);
+      refs.modalOptions.appendChild(item);
+    });
+    refs.modalWarning.textContent = "Replaying from here restores the real story checkpoint saved before this conversation. Later progress after that point will be rewound.";
+    refs.modalConfirm.disabled = !payload.status.rewind || (!(window.Game && typeof window.Game.restoreChoiceRewind === "function") && !(window.SaveSystem && typeof window.SaveSystem.restoreChoiceRewind === "function"));
+    refs.replayModal.hidden = false;
+  }
+  function closeReplayModal() {
+    state.replayNode = null;
+    refs.replayModal.hidden = true;
+  }
+  async function confirmReplay() {
+    var payload = state.replayNode;
+    if (!payload || !payload.status || !payload.status.rewind) return;
+    var restoreFn = (window.Game && window.Game.restoreChoiceRewind) || (window.SaveSystem && window.SaveSystem.restoreChoiceRewind);
+    if (typeof restoreFn !== "function") {
+      await uiAlert("Choice rewind is not available in this build.", "Story");
+      return;
+    }
+    restoreFn(payload.status.rewind.slotId || payload.status.rewind.id, {
+      contactId: payload.character.id,
+      restoreOnceKeys: payload.character.restoreOnceKeys || [],
+      routeKeys: payload.character.routeKeys || []
+    });
+  }
+  function routeStateLabel(route, coreActive) {
+    if (route) return routeLabel(route);
+    return "OPEN";
+  }
+  function appendMiniStat(rootEl, label, value) {
+    var mini = document.createElement("div");
+    mini.className = "st-mini";
+    var labelEl = document.createElement("div"), valueEl = document.createElement("div");
+    labelEl.className = "st-mini-label"; labelEl.textContent = label;
+    valueEl.className = "st-mini-value"; valueEl.textContent = value;
+    mini.append(labelEl, valueEl);
+    rootEl.appendChild(mini);
+  }
+  function appendContactStats(target, stats, className) {
+    [
+      ["story.stats.messages", "Messages exchanged", stats.messages],
+      ["story.stats.received_photos", "Photos received", stats.receivedPhotos],
+      ["story.stats.conversation_days", "Days in touch", stats.conversationDays]
+    ].forEach(function (row) {
+      var chip = document.createElement("div"), label = document.createElement("div"), value = document.createElement("div");
+      chip.className = className; chip.dataset.contactStat = row[0];
+      label.className = className + "-label";
+      label.textContent = window.Game?.i18n?.ui?.(row[0], row[1]) || row[1];
+      value.className = className + "-value"; value.textContent = String(row[2]);
+      chip.append(label, value); target.appendChild(chip);
+    });
+  }
+  function renderRouteLegend(activeRoute, coreActive) {
+    refs.routeLegend.innerHTML = "";
+    var selected = activeRoute || "";
+    [
+      { route: "love", label: "LOVE" },
+      { route: "ntr", label: "NTR" },
+      { route: "nts", label: "NTS" }
+    ].forEach(function (entry) {
+      var pill = document.createElement("div");
+      pill.className = "st-route-lane is-" + entry.route + (entry.route === selected ? " is-active" : "");
+      pill.textContent = entry.label;
+      refs.routeLegend.appendChild(pill);
+    });
+  }
+  function routeLaneForNode(node, view) {
+    if (!node) return "center";
+    var nodeDay = Math.max(0, Number(node.day || 0) || 0);
+    if (!node.hasChoices && nodeDay < 9) return "center";
+    var routes = uniqueRoutes(node && node.routes);
+    if (routes.length === 1) {
+      if (routes[0] === "ntr") return "left";
+      if (routes[0] === "love") return "right";
+      return "center";
+    }
+    if (view && view.routeLock && routes.indexOf(view.routeLock) >= 0) {
+      if (view.routeLock === "ntr") return "left";
+      if (view.routeLock === "love") return "right";
+    }
+    return "center";
+  }
+  function nodeActionCopy(node, status, isCurrent) {
+    if (!status) return "Locked by route progress";
+    if (isCurrent && !status.completed) return "Open conversation";
+    if (status.completed) return "Replay from start";
+    return "Locked by route progress";
+  }
+  function writeTimelineConversationFocus(node, contactId) {
+    var payload = {
+      source: "story_route_tree",
+      at: Date.now(),
+      contactId: tok(contactId || node && node.contactId || ""),
+      storyPath: cleanPath(node && node.storyPath || ""),
+      storyOnceKey: tok(node && node.storyOnceKey || ""),
+      nodeId: String(node && node.id || "").trim(),
+      manifestId: String(node && (node.manifestId || node.id) || "").trim(),
+      title: String(node && node.title || "").trim()
+    };
+    try { localStorage.setItem(TIMELINE_CONVERSATION_FOCUS_KEY, JSON.stringify(payload)); } catch {}
+    return payload;
+  }
+  function navigateToConversationScene(contactId, extras) {
+    var cid = tok(contactId || "");
+    if (!cid) return false;
+    var q = extras && typeof extras === "object" ? extras : {};
+    var query = {
+      id: cid,
+      from: String(q.from || "story_route_tree").trim() || "story_route_tree"
+    };
+    if (q.storyPath) query.storyPath = cleanPath(q.storyPath);
+    if (q.storyOnceKey) query.onceKey = tok(q.storyOnceKey);
+    if (q.nodeId) query.nodeId = String(q.nodeId || "").trim();
+    if (q.manifestId) query.manifestId = String(q.manifestId || "").trim();
+    if (q.timelineReplay) query.timelineReplay = "1";
+    try {
+      localStorage.setItem("openConversationId", cid);
+      localStorage.setItem("activeConversationId", cid);
+    } catch {}
+    if (typeof window.navigateToScene === "function") {
+      window.navigateToScene("conversation", query);
+      return true;
+    }
+    return false;
+  }
+  function dayTitleForLoading(node, fallback) {
+    var day = Math.max(0, Number(node && node.day || dayNumberFromPath(node && node.storyPath) || 0) || 0);
+    var title = String(node && node.title || fallback || "Conversation").trim() || "Conversation";
+    return day ? (dayLabel(day) + " - " + title) : title;
+  }
+  function showAsyncLoading(opts) {
+    var api = window.AsyncLoadingOverlay || (window.Game && window.Game.AsyncLoadingOverlay);
+    if (!api || typeof api.show !== "function") return null;
+    try {
+      return api.show(Object.assign({
+        label: "Loading conversation...",
+        messages: ["Preparing replay...", "Opening Day 9...", "Loading messages..."],
+        timeoutMs: 15000,
+        timeoutMessage: "The conversation did not start. Please try again."
+      }, opts || {}));
+    } catch {
+      return null;
+    }
+  }
+  function failAsyncLoading(handle, message) {
+    try {
+      if (handle && typeof handle.fail === "function") {
+        handle.fail(message);
+        return;
+      }
+    } catch {}
+    try {
+      if (window.AsyncLoadingOverlay && typeof window.AsyncLoadingOverlay.fail === "function") {
+        window.AsyncLoadingOverlay.fail(message);
+      }
+    } catch {}
+  }
+  function hideAsyncLoading(handle, reason) {
+    try {
+      if (handle && typeof handle.hide === "function") {
+        handle.hide(reason || "done");
+        return;
+      }
+    } catch {}
+    try { window.AsyncLoadingOverlay && window.AsyncLoadingOverlay.hide && window.AsyncLoadingOverlay.hide(reason || "done"); } catch {}
+  }
+  async function startStoryNode(node, opts) {
+    var options = opts && typeof opts === "object" ? opts : {};
+    var path = cleanPath(node && node.storyPath || "");
+    var contactId = tok(node && node.contactId || "");
+    var source = String(options.source || "story_route_tree").trim() || "story_route_tree";
+    var timelineReplay = options.timelineReplay === true;
+    if (!path) return false;
+    if (window.Game && typeof window.Game.queueStoryStart === "function") {
+      try {
+        window.Game.queueStoryStart(path, {
+          targetContactId: contactId,
+          contactId: contactId,
+          index: 0,
+          force: true,
+          reason: source,
+          via: source,
+          nodeId: String(node && node.id || "").trim(),
+          manifestId: String(node && (node.manifestId || node.id) || "").trim(),
+          opts: {
+            contactId: contactId,
+            startIndex: 0,
+            forceStoryRestart: true,
+            from: source,
+            reason: source,
+            timelineReplay: timelineReplay,
+            timelineReplayChain: timelineReplay,
+            storyPath: path,
+            storyOnceKey: String(node && node.storyOnceKey || "").trim(),
+            nodeId: String(node && node.id || "").trim(),
+            manifestId: String(node && (node.manifestId || node.id) || "").trim()
+          }
+        });
+      } catch {}
+    }
+    if (navigateToConversationScene(contactId, {
+      from: source,
+      storyPath: path,
+      storyOnceKey: node && node.storyOnceKey,
+      nodeId: node && node.id,
+      manifestId: node && (node.manifestId || node.id),
+      timelineReplay: timelineReplay
+    })) {
+      return true;
+    }
+    if (window.Game && typeof window.Game.startStory === "function") {
+      return window.Game.startStory(path, {
+        contactId: contactId,
+        startIndex: 0,
+        forceStoryRestart: true,
+        from: source,
+        reason: source,
+        timelineReplay: timelineReplay,
+        timelineReplayChain: timelineReplay
+      });
+    }
+    await uiAlert("Unable to open this conversation in this build.", "Story");
+    return false;
+  }
+  function restoreStoryReplayNode(character, node, status) {
+    character = timelineNodeCharacter(character, node);
+    var restoreFn = (window.Game && window.Game.restoreStoryReplay) || (window.SaveSystem && window.SaveSystem.restoreStoryReplay);
+    if (typeof restoreFn !== "function") return false;
+    var replay = status && status.replay ? status.replay : null;
+    if (!replay) {
+      var key = storyReplayKey(character && character.id, node && node.storyPath);
+      var liveReplay = getStoryReplays().find(function (row) {
+        return storyReplayKey(row && (row.contactId || row.characterId), row && row.storyPath) === key;
+      }) || null;
+      replay = liveReplay;
+    }
+    if (!replay) return false;
+    return restoreFn(replay.slotId || replay.id, {
+      contactId: character && character.id,
+      storyPath: node && node.storyPath || "",
+      storyOnceKey: node && node.storyOnceKey || "",
+      nodeId: node && node.id || "",
+      manifestId: node && (node.manifestId || node.id) || "",
+      restoreOnceKeys: character && character.restoreOnceKeys || [],
+      routeKeys: character && character.routeKeys || [],
+      timelineReplay: true
+    });
+  }
+  function openStoryHistoryNode(character, node) {
+    var contactId = tok(character && character.id || node && node.contactId || "");
+    if (!contactId) return false;
+    writeTimelineConversationFocus(node, contactId);
+    return navigateToConversationScene(contactId, {
+      from: "story_route_tree_history",
+      storyPath: cleanPath(node && node.storyPath || ""),
+      storyOnceKey: node && node.storyOnceKey || "",
+      nodeId: node && node.id,
+      manifestId: node && (node.manifestId || node.id)
+    });
+  }
+  function canActivateNode(node, status) {
+    if (!node || !status) return false;
+    return !!(status.completed || status.current);
+  }
+  function setReplayLoading(rowEl, loading) {
+    if (!rowEl) return;
+    var on = loading === true;
+    rowEl.querySelectorAll(".st-route-node").forEach(function (el) {
+      el.classList.toggle("is-loading", on);
+    });
+    rowEl.querySelectorAll(".st-route-node-btn,.st-node-cta").forEach(function (btn) {
+      if (!btn) return;
+      if (on) {
+        if (!btn.dataset.originalText) btn.dataset.originalText = btn.textContent || "";
+        btn.disabled = true;
+        btn.setAttribute("aria-disabled", "true");
+        btn.textContent = "Loading...";
+      } else {
+        btn.disabled = false;
+        btn.setAttribute("aria-disabled", "false");
+        if (btn.dataset.originalText) btn.textContent = btn.dataset.originalText;
+        delete btn.dataset.originalText;
+      }
+    });
+  }
+  function replayBusyKey(character, node) {
+    return tok(character && character.id || node && node.contactId || "") + "::" + cleanPath(node && node.storyPath || "");
+  }
+  function activateRouteNode(character, node, status, rowEl) {
+    character = timelineNodeCharacter(character, node);
+    if (Date.now() < Number(state.routePan.suppressUntil || 0)) {
+      return;
+    }
+    if (status.current && !status.completed) {
+      var currentLoading = showAsyncLoading({
+        source: "story_route_tree_current",
+        title: dayTitleForLoading(node, "Conversation"),
+        subtitle: "Opening conversation...",
+        messages: ["Opening conversation...", "Loading messages...", "Preparing chat..."]
+      });
+      return Promise.resolve(startStoryNode(node)).then(function (started) {
+        if (started === false) {
+          failAsyncLoading(currentLoading, "Unable to open this conversation right now.");
+          uiAlert("Unable to open this conversation right now.", "Story");
+        }
+      }).catch(function () {
+        failAsyncLoading(currentLoading, "Unable to open this conversation right now.");
+        uiAlert("Unable to open this conversation right now.", "Story");
+      });
+    }
+    if (status.completed) {
+      var busyKey = replayBusyKey(character, node);
+      if (state.replayBusyKey && state.replayBusyKey === busyKey) return;
+      state.replayBusyKey = busyKey;
+      var replayLoading = showAsyncLoading({
+        source: "story_route_tree_replay",
+        title: dayTitleForLoading(node, "Replay"),
+        subtitle: "Preparing replay...",
+        messages: ["Preparing replay...", "Opening Day " + Math.max(1, Number(node && node.day || 0) || 9) + "...", "Loading messages..."],
+        timeoutMessage: "The replay did not start. Please try again."
+      });
+      setReplayLoading(rowEl, true);
+      var replayWatchdog = setTimeout(function () {
+        if (state.replayBusyKey !== busyKey) return;
+        state.replayBusyKey = "";
+        setReplayLoading(rowEl, false);
+        failAsyncLoading(replayLoading, "The replay did not start. Please try again.");
+        uiAlert("The replay did not start. Please try again.", "Story");
+      }, 12000);
+      try {
+        window.dispatchEvent(new CustomEvent("achievement:timeline-replay-used", {
+          detail: {
+            source: "story_route_tree_replay",
+            contactId: character && character.id || "",
+            storyPath: cleanPath(node && node.storyPath || ""),
+            storyOnceKey: node && node.storyOnceKey || "",
+            nodeId: node && node.id || "",
+            manifestId: node && (node.manifestId || node.id) || ""
+          }
+        }));
+      } catch {}
+      Promise.resolve((function () {
+        return openStoryHistoryNode(character, node);
+      })()).then(function (started) {
+        if (started !== false) {
+          clearTimeout(replayWatchdog);
+          state.replayBusyKey = "";
+          setReplayLoading(rowEl, false);
+          return;
+        }
+        clearTimeout(replayWatchdog);
+        state.replayBusyKey = "";
+        setReplayLoading(rowEl, false);
+        failAsyncLoading(replayLoading, "Unable to replay this conversation right now.");
+        uiAlert("Unable to replay this conversation right now.", "Story");
+      }).catch(function () {
+        clearTimeout(replayWatchdog);
+        state.replayBusyKey = "";
+        setReplayLoading(rowEl, false);
+        failAsyncLoading(replayLoading, "Unable to replay this conversation right now.");
+        uiAlert("Unable to replay this conversation right now.", "Story");
+      });
+      return;
+    }
+    var loading = showAsyncLoading({
+      source: "story_route_tree_node",
+      title: dayTitleForLoading(node, "Conversation"),
+      subtitle: "Opening conversation..."
+    });
+    Promise.resolve(startStoryNode(node)).then(function (started) {
+      if (started === false) {
+        failAsyncLoading(loading, "Unable to open this conversation right now.");
+        uiAlert("Unable to open this conversation right now.", "Story");
+      }
+    }).catch(function () {
+      failAsyncLoading(loading, "Unable to open this conversation right now.");
+      uiAlert("Unable to open this conversation right now.", "Story");
+    });
+  }
+  function createTreeDayMarker(day, rows) {
+    var marker = document.createElement("div");
+    marker.className = "st-tree-day";
+    marker.textContent = dayLabel(day);
+    var list = Array.isArray(rows) ? rows : [];
+    var doneCount = list.filter(function (row) { return row && row.status && row.status.completed; }).length;
+    var meta = document.createElement("span");
+    meta.className = "st-tree-day-meta";
+    meta.textContent = doneCount + " / " + list.length + " complete";
+    marker.appendChild(meta);
+    return marker;
+  }
+  function createRouteNodeRow(view, character, row, episodeIndex, forcedLane) {
+    var node = row.node;
+    var status = row.status;
+    var badge = stateBadge(status, row.current);
+    var lane = forcedLane || routeLaneForNode(node, view);
+    var rowEl = document.createElement("div");
+    rowEl.className = "st-tree-row lane-" + lane;
+
+    var anchor = document.createElement("div");
+    anchor.className = "st-tree-anchor " + badge.className + (node.hasChoices ? " is-choice" : "");
+    rowEl.appendChild(anchor);
+
+    var card = document.createElement("article");
+    card.className = "st-route-node is-" + badge.className.replace("is-", "") + (node.hasChoices ? " is-choice" : "");
+    var btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "st-route-node-btn";
+    btn.setAttribute("data-story-path", cleanPath(node && node.storyPath || ""));
+    btn.setAttribute("data-contact-id", tok(node && node.contactId || ""));
+    btn.setAttribute("data-story-once-key", tok(node && node.storyOnceKey || ""));
+    btn.setAttribute("data-node-id", String(node && node.id || "").trim());
+    btn.setAttribute("data-manifest-id", String(node && (node.manifestId || node.id) || "").trim());
+
+    var top = document.createElement("div");
+    top.className = "st-node-top";
+    var stateEl = document.createElement("span");
+    stateEl.className = "st-state-badge " + badge.className;
+    stateEl.textContent = badge.label;
+    top.appendChild(stateEl);
+    btn.appendChild(top);
+
+    var label = document.createElement("div");
+    label.className = "st-node-label";
+    label.textContent = "Conversation " + String(Math.max(1, Number(episodeIndex || 0) + 1));
+    btn.appendChild(label);
+
+    var nodeTitle = document.createElement("div");
+    nodeTitle.className = "st-node-title";
+    nodeTitle.textContent = node.title;
+    btn.appendChild(nodeTitle);
+
+    var subText = "";
+    if (status.current && !status.completed) subText = String(node.subtitle || "").trim() || "Continue this conversation.";
+    else if (status.completed) subText = "Replay this completed conversation from the beginning.";
+    else subText = "Conversation locked.";
+    if (subText) {
+      var sub = document.createElement("div");
+      sub.className = "st-node-sub";
+      sub.textContent = subText;
+      btn.appendChild(sub);
+    }
+
+    var meta = document.createElement("div");
+    meta.className = "st-node-meta";
+    var footer = document.createElement("div");
+    footer.className = "st-node-footer";
+    createRouteBadges(node.routes || [], footer);
+    meta.appendChild(footer);
+    btn.appendChild(meta);
+
+    var action = document.createElement("div");
+    action.className = "st-node-action";
+    action.textContent = nodeActionCopy(node, status, row.current);
+    if (action.textContent) btn.appendChild(action);
+
+    var cta = document.createElement("button");
+    cta.type = "button";
+    cta.className = "st-node-cta";
+    cta.textContent = action.textContent || "Locked by route progress";
+    cta.setAttribute("aria-label", cta.textContent);
+
+    if (canActivateNode(node, status)) {
+      btn.addEventListener("click", function () { activateRouteNode(character, node, status, rowEl); });
+      cta.addEventListener("click", function () { activateRouteNode(character, node, status, rowEl); });
+    } else {
+      btn.disabled = true;
+      cta.disabled = true;
+    }
+
+    card.appendChild(btn);
+    card.appendChild(cta);
+    rowEl.appendChild(card);
+    return rowEl;
+  }
+  function renderCharacterRoute() {
+    var character = state.catalog.byId[state.activeCharacterId];
+    if (!character || shouldHideTimelineCharacter(character.id)) { closeCharacterDetail(); return; }
+    var view = computeCharacterView(character, state.currentNodeId || "");
+    refs.routeAvatar.src = avatarFor(character.id, character.avatar);
+    refs.routeAvatar.alt = character.displayName;
+    refs.routeName.textContent = character.displayName;
+    refs.routeSub.textContent = routeStateLabel(view.routeLock, view.coreActive) + " route  |  " + view.completedEpisodes + " / " + view.totalEpisodes + " complete";
+    refs.routeFocus.textContent = view.currentNodeTitle
+      ? ("Current focus: " + view.currentNodeTitle)
+      : "No current live conversation for this character.";
+
+    refs.routeStats.innerHTML = "";
+    appendMiniStat(refs.routeStats, "Conversations", view.completedEpisodes + " / " + view.totalEpisodes);
+    appendMiniStat(refs.routeStats, "Unlocked", String(view.unlockedEpisodes));
+    appendMiniStat(refs.routeStats, "Photos", view.photoUnlocked + " / " + view.photoTotal);
+    appendContactStats(refs.routeStats, view.contactStats, "st-mini");
+    renderRouteLegend(view.routeLock, view.coreActive);
+
+    refs.routeTree.innerHTML = "";
+    function makeRouteColumn(route) {
+      var col = document.createElement("div");
+      col.className = "st-route-column is-" + route;
+      col.dataset.routeColumn = route;
+      var title = document.createElement("div");
+      title.className = "st-route-column-title";
+      title.textContent = routeLabel(route);
+      col.appendChild(title);
+      return col;
+    }
+    function routeBucketForRow(row) {
+      var routes = uniqueRoutes(row && row.node && row.node.routes);
+      if (routes.indexOf("love") >= 0) return "love";
+      if (routes.indexOf("ntr") >= 0) return "ntr";
+      if (routes.indexOf("nts") >= 0) return "nts";
+      return "";
+    }
+    view.days.forEach(function (day) {
+      var dayRows = Array.isArray(view.groups[day]) ? view.groups[day] : [];
+      var branchRows = dayRows.filter(function (row) {
+        return routeLaneForNode(row && row.node, view) !== "center";
+      });
+      var useBranchLanes = branchRows.length > 1;
+      var dayGroup = document.createElement("section");
+      dayGroup.className = "st-tree-day-group";
+      dayGroup.appendChild(createTreeDayMarker(day, dayRows));
+      var rowsWrap = document.createElement("div");
+      rowsWrap.className = "st-tree-day-rows" + (useBranchLanes ? " is-branch-columns" : "");
+      if (useBranchLanes) {
+        var columns = {
+          love: makeRouteColumn("love"),
+          ntr: makeRouteColumn("ntr"),
+          nts: makeRouteColumn("nts")
+        };
+        ["love", "ntr", "nts"].forEach(function (route) {
+          rowsWrap.appendChild(columns[route]);
+        });
+        dayRows.forEach(function (row, index) {
+          var bucket = routeBucketForRow(row);
+          var target = columns[bucket] || columns.nts;
+          target.appendChild(createRouteNodeRow(view, character, row, index, "center"));
+        });
+      } else {
+        dayRows.forEach(function (row, index) {
+          var lane = useBranchLanes ? routeLaneForNode(row && row.node, view) : "center";
+          rowsWrap.appendChild(createRouteNodeRow(view, character, row, index, lane));
+        });
+      }
+      dayGroup.appendChild(rowsWrap);
+      refs.routeTree.appendChild(dayGroup);
+    });
+    applyRouteZoom(state.routeZoom || 1);
+  }
+  function chapterPathOrder(path) {
+    var p = cleanPath(path).toLowerCase();
+    var match = p.match(/day(\d+)(?:[_-](\d+))?/i);
+    return {
+      dayN: match ? (Number(match[1]) || 0) : 9999,
+      storyN: match && match[2] ? (Number(match[2]) || 0) : 9999,
+      path: p
+    };
+  }
+  function compareChapterNodesStable(a, b) {
+    var pa = chapterPathOrder(a && a.storyPath), pb = chapterPathOrder(b && b.storyPath);
+    if (pa.dayN !== pb.dayN) return pa.dayN - pb.dayN;
+    if (pa.storyN !== pb.storyN) return pa.storyN - pb.storyN;
+    if (pa.path !== pb.path) return pa.path.localeCompare(pb.path);
+    return String(a && a.id || "").localeCompare(String(b && b.id || ""));
+  }
+  function chapterMetaText(node) {
+    var custom = String(node && node.metaText || "").trim();
+    if (custom) return custom;
+    var day = dayNumberFromPath(node && node.storyPath);
+    var bits = [];
+    if (day > 0) bits.push(dayLabel(day));
+    if (node && node.at) {
+      try {
+        bits.push(new Date(node.at).toLocaleString(undefined, { day: "2-digit", month: "2-digit", hour: "2-digit", minute: "2-digit" }));
+      } catch {}
+    }
+    return bits.join("  |  ");
+  }
+  function saveState() {
+    if (window.SaveSystem && typeof window.SaveSystem.getSlots === "function") return { slots: window.SaveSystem.getSlots() };
+    var rawV1 = localStorage.getItem(SAVE_KEY_V1);
+    var parsed = rawV1 ? parse(rawV1, null) : null;
+    if (!parsed) return { slots: [] };
+    if (Array.isArray(parsed)) return { slots: parsed };
+    if (Array.isArray(parsed.slots)) return parsed;
+    return { slots: [] };
+  }
+  function findSlotById(slotId) {
+    var id = String(slotId || "").trim();
+    var slots = saveState().slots || [];
+    for (var i = 0; i < slots.length; i++) {
+      if (String(slots[i] && slots[i].id || "").trim() === id) return slots[i];
+    }
+    return null;
+  }
+  function markChapterLoadMode(meta) {
+    try {
+      localStorage.setItem(CHAPTER_LOAD_MODE_KEY, JSON.stringify({
+        mode: "chapter_load",
+        source: String(meta && meta.source || "story_chapters"),
+        at: Date.now(),
+        storyPath: cleanPath(meta && meta.storyPath || ""),
+        chapterId: String(meta && meta.chapterId || "").trim(),
+        startIndex: Math.max(0, Number(meta && meta.startIndex || 0) || 0)
+      }));
+    } catch {}
+  }
+  function clearDayLoadBootIntent() {
+    try { localStorage.removeItem(BOOT_INTENT_KEY); } catch {}
+    try { localStorage.removeItem(DAYLOAD_BOOT_KEY); } catch {}
+  }
+  function setRuntimeDayLoadBootIntent(intent) {
+    var startStory = cleanPath(intent && intent.startStory || "");
+    if (!startStory) return null;
+    var payload = { kind: "dayload", timeCardText: String(intent && intent.text || "THE NEXT DAY"), startStory: startStory };
+    try {
+      if (!window.Game || typeof window.Game !== "object") window.Game = {};
+      window.Game._bootIntent = payload;
+    } catch {}
+    return payload;
+  }
+  function clearRuntimeDayLoadBootIntent() {
+    try {
+      if (window.Game && typeof window.Game === "object") delete window.Game._bootIntent;
+    } catch {}
+  }
+  function inferDayStartFromChapters(dayNumber) {
+    var day = Math.max(0, Number(dayNumber || 0) || 0);
+    var nodes = chaptersList().filter(function (node) {
+      return dayNumberFromPath(node && node.storyPath) === day;
+    }).sort(compareChapterNodesStable);
+    return nodes.length ? cleanPath(nodes[0] && nodes[0].storyPath || "") : "";
+  }
+  async function resolveChapterLoadIntent(chapter, path, idx) {
+    var out = {
+      text: String(chapter && (chapter.title || "") || "").trim() || dayLabel(dayNumberFromPath(path)),
+      startStory: cleanPath(chapter && (chapter.startStory || chapter.nextStory) || ""),
+      fromTimeCard: false
+    };
+    if (out.startStory) return out;
+    try {
+      var res = await fetch(path, { cache: "no-store" });
+      if (res && res.ok) {
+        var json = await res.json();
+        var steps = Array.isArray(json && json.steps) ? json.steps : [];
+        var step = steps[Math.max(0, Number(idx || 0) - 1)] || {};
+        var type = tok(step.type || "");
+        if (type === "time_card" || type === "next_day") {
+          out.fromTimeCard = true;
+          out.text = String(step.text || out.text || "").trim() || out.text;
+          out.startStory = cleanPath(step.startStory || step.storyPath || step.story || json.onCompleteStartStory || "");
+        }
+      }
+    } catch {}
+    if (!out.startStory) {
+      var dayN = dayNumberFromPath(path);
+      out.startStory = inferDayStartFromChapters(dayN) || path;
+      out.text = out.text || dayLabel(dayN);
+    }
+    return out;
+  }
+  function clearPendingStoryState() {
+    return true;
+  }
+  function routeLabel(value) {
+    var v = String(value || "").trim().toUpperCase();
+    return v || "LOVE";
+  }
+  function canonicalOnceKey(value) {
+    return String(value || "").trim().toLowerCase().replace(/\s+/g, "_");
+  }
+  function uniqueList(values) {
+    var out = [];
+    var seen = Object.create(null);
+    (Array.isArray(values) ? values : []).forEach(function (raw) {
+      var value = String(raw || "").trim();
+      if (!value || seen[value]) return;
+      seen[value] = true;
+      out.push(value);
+    });
+    return out;
+  }
+  async function loadDevCheckpointsConfig() {
+    if (devCheckpointsConfigPromise) return devCheckpointsConfigPromise;
+    devCheckpointsConfigPromise = (async function () {
+      try {
+        var res = await fetch(DEV_CHECKPOINTS_PATH, { cache: "no-store" });
+        if (!res || !res.ok) throw new Error("Dev checkpoints unavailable");
+        var json = await res.json();
+        return json && typeof json === "object" ? json : null;
+      } catch (err) {
+        try { console.warn("[StoryApp] Dev checkpoints config unavailable", err); } catch {}
+        return null;
+      }
+    })();
+    return devCheckpointsConfigPromise;
+  }
+  function devCheckpointForDay(config, dayNumber) {
+    var day = Math.max(0, Number(dayNumber || 0) || 0);
+    var checkpoints = config && config.checkpoints && typeof config.checkpoints === "object" ? config.checkpoints : {};
+    var entry = checkpoints[String(day)] || null;
+    if (!entry || typeof entry !== "object") return null;
+    return {
+      day: day,
+      entryStory: cleanPath(entry.entryStory || ""),
+      setup: entry.setup !== false,
+      requiredActiveCharacters: uniqueList(entry.requiredActiveCharacters || []),
+      requiredRoutes: entry.requiredRoutes && typeof entry.requiredRoutes === "object" ? Object.assign({}, entry.requiredRoutes) : {}
+    };
+  }
+  function setupDefaultRouteForCharacter(config, cid, mainRoute) {
+    var route = tok(mainRoute || "love") || "love";
+    var aliases = config && config.routeAliases && config.routeAliases[cid] ? config.routeAliases[cid] : null;
+    return aliases && aliases[route] ? String(aliases[route]) : route;
+  }
+  function setupDisplayRouteForCharacter(config, cid, storedRoute) {
+    var raw = tok(storedRoute || "");
+    if (!raw) return "love";
+    var aliases = config && config.routeAliases && config.routeAliases[cid] ? config.routeAliases[cid] : null;
+    if (aliases) {
+      for (var route in aliases) {
+        if (tok(aliases[route]) === raw) return tok(route);
+      }
+    }
+    if (raw.indexOf("nts") === 0) return "nts";
+    if (raw.indexOf("ntr") === 0) return "ntr";
+    return "love";
+  }
+  function createDevSetupSelect(name, values, selected) {
+    var select = document.createElement("select");
+    select.className = "st-dev-setup-select";
+    select.name = name;
+    values.forEach(function (value) {
+      var option = document.createElement("option");
+      option.value = String(value || "");
+      option.textContent = routeLabel(value);
+      if (String(value) === String(selected)) option.selected = true;
+      select.appendChild(option);
+    });
+    return select;
+  }
+  function readStoredDevSetup() {
+    return parse(localStorage.getItem(DEV_SETUP_STATE_KEY), null) || {};
+  }
+  function buildDefaultDevSetup(config, checkpoint) {
+    var stored = readStoredDevSetup();
+    var routeOptions = Array.isArray(config && config.routeOptions) && config.routeOptions.length ? config.routeOptions : ["love", "nts", "ntr"];
+    var routeLockCharacters = Array.isArray(config && config.routeLockCharacters) && config.routeLockCharacters.length
+      ? config.routeLockCharacters.map(tok).filter(Boolean)
+      : ["lena", "evelyn", "mason", "hailey"];
+    var activeCharacters = Array.isArray(config && config.activeCharacters) && config.activeCharacters.length
+      ? config.activeCharacters.map(tok).filter(Boolean)
+      : ["lena", "evelyn", "mason", "hailey", "aiden"];
+    var storedActive = stored.activeCharacters && typeof stored.activeCharacters === "object" ? stored.activeCharacters : {};
+    var storedRoutes = stored.characterRoutes && typeof stored.characterRoutes === "object" ? stored.characterRoutes : {};
+    var mainRoute = tok(stored.mainRoute || "love") || "love";
+    if (routeOptions.indexOf(mainRoute) < 0) mainRoute = routeOptions[0] || "love";
+    var setup = {
+      mainRoute: mainRoute,
+      characterRoutes: {},
+      activeCharacters: {},
+      masonVariant: tok(stored.masonVariant || "male") === "female" ? "female" : "male",
+      coachIdentity: tok(stored.coachIdentity || stored.coach || "") || null
+    };
+    routeLockCharacters.forEach(function (cid) {
+      var active = storedActive[cid] === false ? false : true;
+      var route = setupDisplayRouteForCharacter(config, cid, storedRoutes[cid] || setupDefaultRouteForCharacter(config, cid, mainRoute));
+      if (route === "disabled") active = false;
+      setup.activeCharacters[cid] = active;
+      setup.characterRoutes[cid] = active ? setupDefaultRouteForCharacter(config, cid, route) : "disabled";
+    });
+    activeCharacters.forEach(function (cid) {
+      if (setup.activeCharacters[cid] !== undefined) return;
+      setup.activeCharacters[cid] = storedActive[cid] === false ? false : true;
+    });
+    (checkpoint && checkpoint.requiredActiveCharacters || []).forEach(function (cid) {
+      cid = tok(cid);
+      if (cid) setup.activeCharacters[cid] = true;
+    });
+    Object.keys(checkpoint && checkpoint.requiredRoutes || {}).forEach(function (cid) {
+      var requiredRoute = tok(checkpoint.requiredRoutes[cid]);
+      if (!requiredRoute) return;
+      setup.activeCharacters[tok(cid)] = true;
+      setup.characterRoutes[tok(cid)] = setupDefaultRouteForCharacter(config, tok(cid), requiredRoute);
+      setup.mainRoute = requiredRoute;
+    });
+    if (checkpoint && Number(checkpoint.day || 0) >= 9) setup.activeCharacters.aiden = true;
+    return setup;
+  }
+  function showDevSetupModal(config, checkpoint, chapter) {
+    return new Promise(function (resolve) {
+      var modal = refs.devSetupModal;
+      var form = refs.devSetupForm;
+      if (!modal || !form) {
+        resolve(null);
+        return;
+      }
+      var day = Math.max(0, Number(checkpoint && checkpoint.day || 0) || 0);
+      var stored = readStoredDevSetup();
+      var routeOptions = Array.isArray(config && config.routeOptions) && config.routeOptions.length ? config.routeOptions : ["love", "nts", "ntr"];
+      var activeCharacters = Array.isArray(config && config.activeCharacters) && config.activeCharacters.length
+        ? config.activeCharacters.map(tok).filter(Boolean)
+        : ["lena", "evelyn", "mason", "hailey", "aiden"];
+      var routeLockCharacters = Array.isArray(config && config.routeLockCharacters) && config.routeLockCharacters.length
+        ? config.routeLockCharacters.map(tok).filter(Boolean)
+        : ["lena", "evelyn", "mason", "hailey"];
+      var initialMainRoute = tok(stored.mainRoute || "love") || "love";
+      var initialActive = stored.activeCharacters && typeof stored.activeCharacters === "object" ? stored.activeCharacters : {};
+      var initialRoutes = stored.characterRoutes && typeof stored.characterRoutes === "object" ? stored.characterRoutes : {};
+
+      refs.devSetupTitle.textContent = "DAY " + day;
+      refs.devSetupCopy.textContent = "Entry: " + shortTitleFromPath((checkpoint && checkpoint.entryStory) || (chapter && chapter.storyPath) || "");
+      refs.devSetupWarning.textContent = "Setup writes route locks, active-character state, and required previous completion keys before launch.";
+      form.innerHTML = "";
+
+      var mainSection = document.createElement("section");
+      mainSection.className = "st-dev-setup-section";
+      var mainHeading = document.createElement("div");
+      mainHeading.className = "st-dev-setup-heading";
+      mainHeading.textContent = "Main route";
+      mainSection.appendChild(mainHeading);
+      var mainGrid = document.createElement("div");
+      mainGrid.className = "st-dev-setup-grid";
+      var mainRow = document.createElement("label");
+      mainRow.className = "st-dev-setup-row";
+      var mainLabel = document.createElement("span");
+      mainLabel.className = "st-dev-setup-label";
+      mainLabel.textContent = "Route";
+      var mainSelect = createDevSetupSelect("mainRoute", routeOptions, initialMainRoute);
+      mainRow.appendChild(mainLabel);
+      mainRow.appendChild(mainSelect);
+      mainGrid.appendChild(mainRow);
+      mainSection.appendChild(mainGrid);
+      form.appendChild(mainSection);
+
+      var charSection = document.createElement("section");
+      charSection.className = "st-dev-setup-section";
+      var charHeading = document.createElement("div");
+      charHeading.className = "st-dev-setup-heading";
+      charHeading.textContent = "Character routes";
+      charSection.appendChild(charHeading);
+      var charGrid = document.createElement("div");
+      charGrid.className = "st-dev-setup-grid";
+      routeLockCharacters.forEach(function (cid) {
+        var row = document.createElement("label");
+        row.className = "st-dev-setup-row";
+        row.setAttribute("data-dev-character", cid);
+        var label = document.createElement("span");
+        label.className = "st-dev-setup-label";
+        label.textContent = displayNameFor(cid);
+        var selectedRoute = setupDisplayRouteForCharacter(config, cid, initialRoutes[cid] || setupDefaultRouteForCharacter(config, cid, initialMainRoute));
+        var select = createDevSetupSelect("route_" + cid, routeOptions.concat(["disabled"]), selectedRoute);
+        var activeWrap = document.createElement("span");
+        activeWrap.className = "st-dev-setup-active";
+        var active = document.createElement("input");
+        active.type = "checkbox";
+        active.name = "active_" + cid;
+        active.checked = initialActive[cid] === false ? false : selectedRoute !== "disabled";
+        activeWrap.appendChild(active);
+        activeWrap.appendChild(document.createTextNode("Active"));
+        select.addEventListener("change", function () {
+          if (select.value === "disabled") active.checked = false;
+          else if (!active.checked) active.checked = true;
+        });
+        active.addEventListener("change", function () {
+          if (!active.checked) select.value = "disabled";
+          else if (select.value === "disabled") select.value = mainSelect.value || "love";
+        });
+        row.appendChild(label);
+        row.appendChild(select);
+        row.appendChild(activeWrap);
+        charGrid.appendChild(row);
+      });
+      charSection.appendChild(charGrid);
+      form.appendChild(charSection);
+
+      var activeSection = document.createElement("section");
+      activeSection.className = "st-dev-setup-section";
+      var activeHeading = document.createElement("div");
+      activeHeading.className = "st-dev-setup-heading";
+      activeHeading.textContent = "Active characters";
+      activeSection.appendChild(activeHeading);
+      var activeGrid = document.createElement("div");
+      activeGrid.className = "st-dev-setup-grid";
+      activeCharacters.forEach(function (cid) {
+        if (routeLockCharacters.indexOf(cid) >= 0) return;
+        var row = document.createElement("label");
+        row.className = "st-dev-setup-row";
+        var label = document.createElement("span");
+        label.className = "st-dev-setup-label";
+        label.textContent = displayNameFor(cid);
+        var summary = document.createElement("span");
+        summary.className = "st-dev-setup-summary";
+        summary.textContent = "Shared";
+        var activeWrap = document.createElement("span");
+        activeWrap.className = "st-dev-setup-active";
+        var active = document.createElement("input");
+        active.type = "checkbox";
+        active.name = "active_" + cid;
+        active.checked = initialActive[cid] === false ? false : true;
+        activeWrap.appendChild(active);
+        activeWrap.appendChild(document.createTextNode("Active"));
+        row.appendChild(label);
+        row.appendChild(summary);
+        row.appendChild(activeWrap);
+        activeGrid.appendChild(row);
+      });
+      activeSection.appendChild(activeGrid);
+      form.appendChild(activeSection);
+
+      function close(result) {
+        modal.hidden = true;
+        refs.devSetupCancel.removeEventListener("click", onCancel);
+        refs.devSetupContinue.removeEventListener("click", onContinue);
+        resolve(result);
+      }
+      function readSetup() {
+        var setup = {
+          mainRoute: tok(mainSelect.value || "love") || "love",
+          characterRoutes: {},
+          activeCharacters: {}
+        };
+        routeLockCharacters.forEach(function (cid) {
+          var select = form.querySelector('select[name="route_' + cid + '"]');
+          var active = form.querySelector('input[name="active_' + cid + '"]');
+          var route = tok(select && select.value || setup.mainRoute) || setup.mainRoute;
+          var isActive = !!(active && active.checked) && route !== "disabled";
+          setup.activeCharacters[cid] = isActive;
+          setup.characterRoutes[cid] = isActive ? setupDefaultRouteForCharacter(config, cid, route) : "disabled";
+        });
+        activeCharacters.forEach(function (cid) {
+          if (setup.activeCharacters[cid] !== undefined) return;
+          var active = form.querySelector('input[name="active_' + cid + '"]');
+          setup.activeCharacters[cid] = active ? !!active.checked : true;
+        });
+        return setup;
+      }
+      function syncRoutesToMain() {
+        var mainRoute = tok(mainSelect.value || "love") || "love";
+        routeLockCharacters.forEach(function (cid) {
+          var select = form.querySelector('select[name="route_' + cid + '"]');
+          if (!select || select.value === "disabled") return;
+          select.value = mainRoute;
+        });
+      }
+      function onCancel() { close(null); }
+      function onContinue() { close(readSetup()); }
+      mainSelect.addEventListener("change", syncRoutesToMain);
+      refs.devSetupCancel.addEventListener("click", onCancel);
+      refs.devSetupContinue.addEventListener("click", onContinue);
+      modal.hidden = false;
+    });
+  }
+  function shouldRemoveForDevSetup(key) {
+    if (!key) return false;
+    if (key === DEV_SETUP_STATE_KEY) return false;
+    if (key === "hak_watchlist_v1" || key === "hak_watchlist_v1_selected" || key === "hak_targets_v1" || key === "hak_characters_chosen_v1") return true;
+    if (key === "pending_story_v1" || key === "pending_chain_story_v1" || key === "pending_story_lock_v1" || key === "pending_outbound_v1" || key === "story_runtime_v1") return true;
+    if (key === "openConversationId" || key === "activeConversationId" || key === "choices_log_v1") return true;
+    if (/^route_[a-z0-9_]+_locked_v1$/i.test(key) || /^route_[a-z0-9_]+_lock_day_v1$/i.test(key)) return true;
+    if (/^active_character:/i.test(key)) return true;
+    if (/^once_/i.test(key) || /^__once:/i.test(key)) return true;
+    if (/^conv_(progress|episode|story|done|episode_done|oncomplete_fired|chain_fired)_/i.test(key)) return true;
+    return false;
+  }
+  function clearDevSetupProgressionState() {
+    return [];
+  }
+  function markDevOnceKey(rawKey) {
+    return !!canonicalOnceKey(rawKey);
+  }
+  async function collectPreviousBaselineOnceKeys(targetDay) {
+    var day = Math.max(0, Number(targetDay || 0) || 0);
+    var cacheKey = String(day);
+    if (devPreviousOnceCache[cacheKey]) return devPreviousOnceCache[cacheKey].slice();
+    var keys = [];
+    try {
+      // The generated graph already contains every stable onceKey.  The old
+      // implementation synchronously fetched and parsed every earlier story
+      // JSON on each LOAD click (particularly expensive from an asar archive).
+      // One manifest read gives the builder the same canonical input without
+      // blocking the renderer on an N-file waterfall.
+      var graphRes = await fetch("scripts/generated/story-graph.manifest.json", { cache: "default" });
+      var graph = graphRes && graphRes.ok ? await graphRes.json() : null;
+      var entries = Array.isArray(graph && graph.stories) ? graph.stories : (Array.isArray(graph && graph.nodes) ? graph.nodes : []);
+      for (var i = 0; i < entries.length; i++) {
+        var entry = entries[i] || {};
+        var entryDay = Math.max(0, Number(entry.day || entry.chapterDay || dayNumberFromPath(entry.path) || 0) || 0);
+        if (!entryDay || entryDay >= day || entryDay >= 9) continue;
+        if (entry.onceKey) keys.push(String(entry.onceKey));
+      }
+    } catch (err) {
+      try { console.warn("[StoryApp] Unable to collect previous dev once keys", err); } catch {}
+    }
+    devPreviousOnceCache[cacheKey] = uniqueList(keys);
+    return devPreviousOnceCache[cacheKey].slice();
+  }
+  function collectRouteLockOnceKeys(config, setup) {
+    var keys = [];
+    var map = config && config.routeLockOnceKeys && typeof config.routeLockOnceKeys === "object" ? config.routeLockOnceKeys : {};
+    var routes = setup && setup.characterRoutes && typeof setup.characterRoutes === "object" ? setup.characterRoutes : {};
+    Object.keys(routes).forEach(function (cid) {
+      if (tok(routes[cid]) === "disabled") return;
+      var route = setupDisplayRouteForCharacter(config, cid, routes[cid]);
+      if (route === "disabled") return;
+      var byRoute = map[cid] || {};
+      if (byRoute[route]) keys.push(byRoute[route]);
+    });
+    var mainRoute = tok(setup && setup.mainRoute || "love") || "love";
+    if (map.evelyn && map.evelyn[mainRoute]) keys.push(map.evelyn[mainRoute]);
+    return uniqueList(keys);
+  }
+  function collectRouteProgressionOnceKeys(config, targetDay, mainRoute) {
+    var keys = [];
+    var route = tok(mainRoute || "love") || "love";
+    var map = config && config.routeProgressionByDay && typeof config.routeProgressionByDay === "object" ? config.routeProgressionByDay : {};
+    var day = Math.max(0, Number(targetDay || 0) || 0);
+    for (var d = 9; d < day; d++) {
+      var byRoute = map[String(d)] || {};
+      if (Array.isArray(byRoute[route])) keys = keys.concat(byRoute[route]);
+    }
+    return uniqueList(keys);
+  }
+  async function applyDevChapterSetup(config, checkpoint, setup) {
+    var day = Math.max(0, Number(checkpoint && checkpoint.day || 0) || 0);
+    var cleanSetup = setup && typeof setup === "object" ? setup : {};
+    var mainRoute = tok(cleanSetup.mainRoute || "love") || "love";
+    var activeCharacters = cleanSetup.activeCharacters && typeof cleanSetup.activeCharacters === "object" ? cleanSetup.activeCharacters : {};
+    var characterRoutes = cleanSetup.characterRoutes && typeof cleanSetup.characterRoutes === "object" ? cleanSetup.characterRoutes : {};
+    (checkpoint && checkpoint.requiredActiveCharacters || []).forEach(function (cid) {
+      cid = tok(cid);
+      if (cid) activeCharacters[cid] = true;
+    });
+    Object.keys(checkpoint && checkpoint.requiredRoutes || {}).forEach(function (cid) {
+      var requiredRoute = tok(checkpoint.requiredRoutes[cid]);
+      cid = tok(cid);
+      if (!cid || !requiredRoute) return;
+      activeCharacters[cid] = true;
+      characterRoutes[cid] = setupDefaultRouteForCharacter(config, cid, requiredRoute);
+      mainRoute = requiredRoute;
+    });
+    var activeIds = [];
+    ["lena", "evelyn", "mason", "hailey", "aiden"].forEach(function (cid) {
+      var isActive = activeCharacters[cid] !== false;
+      if (cid === "aiden" && activeCharacters[cid] !== false) isActive = true;
+      if (isActive && cid !== "aiden") activeIds.push(cid);
+    });
+    ["lena", "evelyn", "mason", "hailey"].forEach(function (cid) {
+      var rawRoute = characterRoutes[cid];
+      if (!rawRoute || rawRoute === "disabled") rawRoute = activeCharacters[cid] === false ? "disabled" : setupDefaultRouteForCharacter(config, cid, mainRoute);
+      if (rawRoute === "disabled") return;
+      try { localStorage.setItem("route_" + cid + "_lock_day_v1", "8"); } catch {}
+      try { window.CharacterRoutes && window.CharacterRoutes.set && window.CharacterRoutes.set(cid, setupDisplayRouteForCharacter(config, cid, rawRoute), { storedRoute: rawRoute, lockDay: 8 }); } catch (_) {}
+    });
+
+    var baselineKeys = await collectPreviousBaselineOnceKeys(day);
+    var routeLockKeys = collectRouteLockOnceKeys(config, cleanSetup);
+    var progressionKeys = collectRouteProgressionOnceKeys(config, day, mainRoute);
+    var completedOnceKeys = uniqueList([].concat(baselineKeys, routeLockKeys, progressionKeys));
+    var routes = {};
+    Object.keys(characterRoutes).forEach(function (cid) { if (characterRoutes[cid] && characterRoutes[cid] !== "disabled") routes[cid] = characterRoutes[cid]; });
+    var builder = new window.CheckpointStateBuilder({ nodes: [] });
+    var canonical = builder.build({ day: day, routes: routes, activeCharacters: activeIds.concat(["aiden"]), hakPoints: Number(cleanSetup.hakPoints || 0), hakWatchlist: { selected: activeIds.slice(), targets: Object.fromEntries(activeIds.map(function (id) { return [id, true]; })), configured: day >= 3 }, hakTutorial: { completed: day >= 3, required: false, state: day >= 3 ? "done" : "evidence" }, masonVariant: cleanSetup.masonVariant, coachIdentity: cleanSetup.coachIdentity });
+    canonical.progression.onceKeys = completedOnceKeys.slice();
+    canonical.world.routeLocks = Object.assign({}, routes);
+    canonical.world.variables = canonical.world.variables || {};
+    Object.keys(routes).forEach(function (cid) {
+      canonical.world.variables["route_" + cid + "_locked_v1"] = setupDisplayRouteForCharacter(config, cid, routes[cid]);
+    });
+    canonical.execution.activeStoryPath = cleanPath(checkpoint && checkpoint.entryStory || "");
+    var entryStoryJson = await loadStoryJson(canonical.execution.activeStoryPath);
+    canonical.execution.activeStoryId = String(entryStoryJson && entryStoryJson.onceKey || canonical.execution.activeStoryPath);
+    canonical.execution.activeContactId = ownerIdForStoryPath(canonical.execution.activeStoryPath);
+    var before = window.GameStateEngine.getState();
+    var playthroughId = String(before && before.playthrough && before.playthrough.id || "playthrough");
+    var committed = window.GameStateEngine.dispatch({ type: "INITIALIZE_CHECKPOINT", commandId: "checkpoint:" + playthroughId + ":" + day + ":" + mainRoute + ":" + before.revision, expectedRevision: before.revision, payload: { state: canonical, source: "story_chapters" } });
+    if (!committed.ok && committed.status !== "DUPLICATE_COMMAND") throw new Error(committed.error && committed.error.message || committed.status);
+
+    var statePayload = {
+      version: 1,
+      day: day,
+      entryStory: cleanPath(checkpoint && checkpoint.entryStory || ""),
+      entryStoryId: canonical.execution.activeStoryId,
+      mainRoute: mainRoute,
+      characterRoutes: characterRoutes,
+      activeCharacters: activeCharacters,
+      masonVariant: canonical.world.masonVariant,
+      coachIdentity: canonical.world.coachIdentity,
+      requiredCompletedOnceKeys: completedOnceKeys,
+      routeLockOnceKeys: routeLockKeys,
+      routeProgressionOnceKeys: progressionKeys,
+      baselinePreviousOnceKeys: baselineKeys,
+      updatedAt: Date.now()
+    };
+    try { localStorage.setItem(DEV_SETUP_STATE_KEY, JSON.stringify(statePayload)); } catch {}
+    try { window.dispatchEvent(new CustomEvent("game:dev-chapter-setup-applied", { detail: statePayload })); } catch {}
+    return statePayload;
+  }
+  async function maybeRunDevChapterSetup(chapter, path) {
+    try {
+      (window.__devChapterSetupDebug ||= []).push({ step: "enter", path: cleanPath(path), dev: hasTimelineDevUnlock(), at: Date.now() });
+    } catch {}
+    if (!hasTimelineDevUnlock()) return { ok: true, path: path, setupState: null };
+    var day = dayNumberFromPath(path);
+    try { (window.__devChapterSetupDebug ||= []).push({ step: "day", day: day, at: Date.now() }); } catch {}
+    if (day <= 1) return { ok: true, path: path, setupState: null };
+    var config = await loadDevCheckpointsConfig();
+    var checkpoint = devCheckpointForDay(config, day);
+    try {
+      (window.__devChapterSetupDebug ||= []).push({
+        step: "config",
+        hasConfig: !!config,
+        hasCheckpoint: !!checkpoint,
+        checkpoint: checkpoint,
+        at: Date.now()
+      });
+    } catch {}
+    if (!config || !checkpoint || checkpoint.setup === false) return { ok: true, path: path, setupState: null };
+    var setup = buildDefaultDevSetup(config, checkpoint);
+    try { (window.__devChapterSetupDebug ||= []).push({ step: "modal_result", hasSetup: !!setup, at: Date.now() }); } catch {}
+    if (!setup) return { ok: false, path: path, setupState: null };
+    var statePayload = await applyDevChapterSetup(config, checkpoint, setup);
+    return {
+      ok: true,
+      path: cleanPath(checkpoint.entryStory || path),
+      setupState: statePayload
+    };
+  }
+  function createDayOneRestartChapter() {
+    return {
+      id: DAY1_RESTART_CHAPTER_ID,
+      title: "DAY 1",
+      dayLabel: "DAY 1",
+      storyPath: DAY1_START_STORY_PATH,
+      startIndex: 0,
+      metaText: "Beginning of the story",
+      kind: "restart_story"
+    };
+  }
+  function createDevChapterCheckpoint(entry) {
+    var day = Math.max(0, Number(entry && entry.day || dayNumberFromPath(entry && entry.path) || 0) || 0);
+    var path = cleanPath(entry && entry.path || "");
+    if (!day || !path) return null;
+    return {
+      id: "__dev_chapter_day_" + day + "__",
+      title: "DAY " + day,
+      dayLabel: "DAY " + day,
+      storyPath: path,
+      contactId: ownerIdForStoryPath(path),
+      startStory: path,
+      nextStory: path,
+      startIndex: 0,
+      metaText: "Developer checkpoint - " + shortTitleFromPath(path),
+      kind: "dev_day_checkpoint",
+      devUnlocked: true,
+      at: day
+    };
+  }
+  function devChapterCheckpoints() {
+    if (!hasTimelineDevUnlock()) return [];
+    var entries = Array.isArray(state.catalog && state.catalog.dayStartEntries) ? state.catalog.dayStartEntries : [];
+    var nodes = [];
+    entries.forEach(function (entry) {
+      var node = createDevChapterCheckpoint(entry);
+      if (node) nodes.push(node);
+    });
+    return nodes;
+  }
+  function mergeDevChapterCheckpoints(items) {
+    var base = Array.isArray(items) ? items.slice() : [];
+    var byDay = Object.create(null);
+    base.forEach(function (node) {
+      var day = dayNumberFromPath(node && node.storyPath);
+      if (day > 0) byDay[day] = true;
+    });
+    devChapterCheckpoints().forEach(function (node) {
+      var day = dayNumberFromPath(node && node.storyPath);
+      if (day > 0 && byDay[day]) return;
+      base.push(node);
+      if (day > 0) byDay[day] = true;
+    });
+    return base;
+  }
+  function mergePersistedChapterSlots(items) {
+    var base = (Array.isArray(items) ? items : []).map(function (node) { return Object.assign({}, node, { chapterSnapshotHeader: null }); });
+    var slots = [], hasSlotInventory = false, orphanNodes = [];
+    try {
+      if (window.SaveSystem && typeof window.SaveSystem.getSlots === "function") {
+        slots = window.SaveSystem.getSlots();
+        hasSlotInventory = Array.isArray(slots);
+      }
+    } catch {}
+    // The index outlives deleted/retained-out snapshots. Only acquired slots
+    // can be loaded; never substitute another branch or jump with today's state.
+    if (hasSlotInventory) {
+      var acquiredSlots = Object.create(null);
+      slots.forEach(function (slot) {
+        if (String(slot && slot.type || "").toLowerCase() === "chapter") acquiredSlots[String(slot.id || "").trim()] = true;
+      });
+      orphanNodes = base.filter(function (node) { return !acquiredSlots[String(node.slotId || "").trim()]; });
+      base = base.filter(function (node) { return !!acquiredSlots[String(node.slotId || "").trim()]; });
+    }
+    function presentationHeader(canonical) {
+      if (!canonical) return null;
+      var execution = canonical.execution || {}, cursor = execution.cursor || {}, world = canonical.world || {};
+      return {
+        routeSummary: ["lena", "hailey", "evelyn", "mason"].map(function (cid) {
+          var route = String(world.variables && world.variables["route_" + cid + "_locked_v1"] || world.routeLocks && world.routeLocks[cid] || world.routes && world.routes[cid] || "").toLowerCase();
+          var active = Array.isArray(world.activeCharacters) ? world.activeCharacters.indexOf(cid) >= 0 : null;
+          var label = active === false ? "OFF" : /^(love|nts[12]?|nts_coach|ntr)$/.test(route) ? route.toUpperCase().replace(/_/g, " ") : "?";
+          return displayNameFor(cid) + ": " + label;
+        }).join(" | "),
+        day: Number(world.day) || 0, contactId: String(execution.activeContactId || ""),
+        route: String(world.variables && world.variables["route_" + execution.activeContactId + "_locked_v1"] || world.routeLocks && world.routeLocks[execution.activeContactId] || world.routes && world.routes[execution.activeContactId] || ""),
+        minuteOfDay: Number.isFinite(world.gameTime && world.gameTime.minuteOfDay) ? world.gameTime.minuteOfDay : null,
+        activeStoryPath: cleanPath(execution.activeStoryPath || ""), cursorStoryPath: cleanPath(cursor.storyPath || ""),
+        rootIndex: Number.isInteger(cursor.rootIndex) ? cursor.rootIndex : null, branchDepth: Array.isArray(cursor.branchPath) ? cursor.branchPath.length : 0,
+        phase: String(cursor.phase || ""), pendingUserIntent: !!cursor.pendingUserIntent, pendingPresentationAck: !!cursor.pendingPresentationAck, hasLease: !!execution.lease
+      };
+    }
+    var knownIds = Object.create(null), knownSlots = Object.create(null);
+    base.forEach(function (node) {
+      var id = String(node.id || "").trim(), slotId = String(node.slotId || "").trim();
+      if (id) knownIds[id] = node;
+      if (slotId) knownSlots[slotId] = node;
+    });
+    (Array.isArray(slots) ? slots : []).forEach(function (slot) {
+      if (String(slot && slot.type || "").toLowerCase() !== "chapter") return;
+      var id = String(slot.chapterId || slot.logicalId || slot.id || "").trim();
+      var canonical = typeof window.SaveSystem.getChapterSnapshotHeader === "function" ? window.SaveSystem.getChapterSnapshotHeader(slot) : slot.snapshot && slot.snapshot.canonicalState;
+      var execution = canonical && canonical.execution || {};
+      var cursor = execution.cursor || {};
+      var world = canonical && canonical.world || {};
+      var storyPath = cleanPath(slot.storyPath || execution.activeStoryPath || "");
+      if (!id || !storyPath) return;
+      // Only scalar header fields survive this existing save-store pass.
+      // Never retain a slot, snapshot or shared history in the rendered nodes.
+      var header = presentationHeader(canonical);
+      var known = knownSlots[String(slot.id || "")];
+      if (known) {
+        if (String(known.slotId || "") === String(slot.id || "")) known.chapterSnapshotHeader = header;
+        return;
+      }
+      var day = dayNumberFromPath(storyPath);
+      var node = {
+        id: id,
+        title: String(slot.label || (day ? "DAY " + day : "Chapter checkpoint")),
+        dayLabel: day ? "DAY " + day : "DAY ?",
+        storyPath: storyPath,
+        startStory: storyPath,
+        nextStory: storyPath,
+        startIndex: 0,
+        slotId: String(slot.id || "").trim() || null,
+        at: Number(slot.updatedAt || slot.createdAt || 0) || 0,
+        kind: "persisted_chapter_slot",
+        chapterSnapshotHeader: header
+      };
+      base.push(node);
+      knownIds[id] = node;
+      if (node.slotId) knownSlots[node.slotId] = node;
+    });
+    // An older interrupted chapter write may leave only an exact retained
+    // save. Offer that saved position without relabelling it as day-start,
+    // changing its payload, or replacing an acquired chapter/another fork.
+    var saveSystem = window.SaveSystem, identity = window.GameStateEngine && window.GameStateEngine.getRuntimeLifecycleIdentity && window.GameStateEngine.getRuntimeLifecycleIdentity();
+    if (identity && typeof saveSystem.getChapterSnapshotHeader === "function") {
+      var covered = Object.create(null), candidates = Object.create(null);
+      base.forEach(function (node) { covered[dayNumberFromPath(node.storyPath)] = true; });
+      (Array.isArray(slots) ? slots : []).forEach(function (slot) {
+        if (["manual", "story_replay", "auto", "quick", "auto_return"].indexOf(String(slot.type || "")) < 0) return;
+        var saved = saveSystem.getChapterSnapshotHeader(slot), e = saved && saved.execution || {}, c = e.cursor || {}, w = saved && saved.world || {}, p = saved && saved.playthrough || {};
+        var day = Number(w.day), source = cleanPath(e.activeStoryPath || "");
+        if (!saved || !saved.canVerifyExactAuthority || day < 2 || covered[day] || p.id !== identity.playthroughId || Number(p.generation) !== identity.playthroughGeneration ||
+            !source || dayNumberFromPath(source) !== day || cleanPath(c.storyPath || "") !== source || !e.lease || !Number.isInteger(c.rootIndex) || c.rootIndex < 0 ||
+            c.completion === "completed" || !Number.isFinite(w.gameTime && w.gameTime.minuteOfDay)) return;
+        var matchingOrphans = orphanNodes.filter(function (node) { return dayNumberFromPath(node.storyPath) === day; });
+        if (matchingOrphans.length && !matchingOrphans.some(function (node) { return String(node.branchKey || "") === saved.branchKey; })) return;
+        var absolute = Number.isFinite(w.gameTime.absoluteMinute) ? w.gameTime.absoluteMinute : (day - 1) * 1440 + w.gameTime.minuteOfDay;
+        (candidates[day] || (candidates[day] = [])).push({slot: slot, saved: saved, path: source, absolute: absolute});
+      });
+      Object.keys(candidates).forEach(function (day) {
+        var ordered = candidates[day].sort(function (a, b) { return a.absolute - b.absolute || compareChapterNodesStable({storyPath: a.path}, {storyPath: b.path}) || a.saved.execution.cursor.rootIndex - b.saved.execution.cursor.rootIndex || Number(a.slot.updatedAt || 0) - Number(b.slot.updatedAt || 0); });
+        for (var i = 0; i < ordered.length; i++) {
+          var candidate = ordered[i], verified = saveSystem.getChapterSnapshotHeader(candidate.slot, {verifyExactAuthority: true});
+          if (!verified || !verified.exactAuthority) continue;
+          var minute = verified.world.gameTime.minuteOfDay, time = String(Math.floor(minute / 60)).padStart(2, "0") + ":" + String(minute % 60).padStart(2, "0");
+          var label = window.Game && window.Game.i18n && window.Game.i18n.ui ? window.Game.i18n.ui("story.chapters.saved_checkpoint", "Saved checkpoint · {{time}}") : "Saved checkpoint · {{time}}";
+          base.push({id: "retained-save:" + candidate.slot.id, kind: "retained_save_checkpoint", title: dayLabel(Number(day)), dayLabel: dayLabel(Number(day)),
+            storyPath: candidate.path, startIndex: verified.execution.cursor.rootIndex, slotId: candidate.slot.id, branchKey: verified.branchKey,
+            at: Number(candidate.slot.updatedAt || candidate.slot.createdAt || 0), metaText: String(label).replace("{{time}}", time), chapterSnapshotHeader: presentationHeader(verified)});
+          break;
+        }
+      });
+    }
+    return base;
+  }
+
+  function chaptersList() {
+    var items = [];
+    if (window.Game && typeof window.Game.getChapters === "function") {
+      try {
+        var fromGame = window.Game.getChapters();
+        if (Array.isArray(fromGame)) items = fromGame.slice();
+      } catch {}
+    }
+    if (!items.length) {
+      var raw = readJsonKey(CHAPTERS_KEY_V2, null);
+      var nodes = raw && raw.nodes && typeof raw.nodes === "object" ? Object.values(raw.nodes) : [];
+      items = Array.isArray(nodes) ? nodes : [];
+    }
+    items = mergePersistedChapterSlots(items);
+    items.unshift(createDayOneRestartChapter());
+    return mergeDevChapterCheckpoints(items);
+  }
+  async function startChapter(node) {
+    var chapter = node && typeof node === "object" ? node : {};
+    var chapterId = String(chapter.id || "").trim();
+    var chapterKind = tok(chapter.kind || "");
+    var saveSystem = window.SaveSystem || {};
+    if (chapterId === DAY1_RESTART_CHAPTER_ID || chapterKind === "restart_story") {
+      if (typeof saveSystem.restartStoryFromBeginning === "function") {
+        var restarted = await saveSystem.restartStoryFromBeginning({ source: "story_chapters_day1_restart" });
+        return restarted && restarted.ok === true;
+      }
+      await uiAlert("Story restart is not available right now.", "Chapters");
+      return false;
+    }
+    var path = cleanPath(chapter.storyPath || "");
+    var idx = Math.max(0, Number(chapter.startIndex || 0) || 0);
+    if (!path) return false;
+    if (chapterKind === "retained_save_checkpoint") {
+      var retained = typeof saveSystem.getChapterSnapshotHeader === "function" ? saveSystem.getChapterSnapshotHeader(chapter.slotId, {verifyExactAuthority: true}) : null;
+      var currentIdentity = window.GameStateEngine && window.GameStateEngine.getRuntimeLifecycleIdentity && window.GameStateEngine.getRuntimeLifecycleIdentity();
+      if (!retained || !retained.exactAuthority || !currentIdentity || retained.playthrough.id !== currentIdentity.playthroughId || retained.playthrough.generation !== currentIdentity.playthroughGeneration || retained.branchKey !== chapter.branchKey) return false;
+      clearDayLoadBootIntent(); clearRuntimeDayLoadBootIntent();
+      try { localStorage.removeItem(CHAPTER_LOAD_MODE_KEY); } catch {}
+      // Generic save restoration preserves its actual saved cursor/branch and
+      // pending input. Chapter boot intents would incorrectly force root0.
+      await saveSystem.loadFromSlot(chapter.slotId, {reload: true});
+      return true;
+    }
+    var devSetupResult = await maybeRunDevChapterSetup(chapter, path);
+    if (!devSetupResult || devSetupResult.ok === false) return false;
+    if (devSetupResult.setupState) {
+      path = cleanPath(devSetupResult.path || path);
+      idx = 0;
+      chapter = Object.assign({}, chapter, {
+        storyPath: path,
+        startStory: path,
+        nextStory: path,
+        startIndex: 0,
+        slotId: ""
+      });
+    }
+    var slotId = devSetupResult.setupState ? "" : String(chapter.slotId || "").trim();
+    var intent = await resolveChapterLoadIntent(chapter, path, idx);
+    var markedStoryPath = cleanPath(intent && intent.startStory || path);
+
+    if (slotId && typeof saveSystem.loadFromSlot === "function") {
+      var slot = findSlotById(slotId);
+      if (!slot) {
+        await uiAlert("Chapter snapshot missing. Reach this chapter again to regenerate it.", "Chapters");
+        return false;
+      }
+      clearPendingStoryState();
+      clearDayLoadBootIntent();
+      if (intent && intent.startStory) setRuntimeDayLoadBootIntent(intent);
+      markChapterLoadMode({ source: "save_slot_restore", storyPath: markedStoryPath, chapterId: chapter.id, startIndex: idx });
+      await saveSystem.loadFromSlot(slotId, { bootIntent: intent || null, reload: true });
+      return true;
+    }
+
+    clearPendingStoryState();
+    clearDayLoadBootIntent();
+    clearRuntimeDayLoadBootIntent();
+    markChapterLoadMode({ source: "legacy_story_jump", storyPath: markedStoryPath, chapterId: chapter.id, startIndex: idx });
+
+    if (intent && intent.fromTimeCard && intent.startStory && typeof window.showTimeCard === "function") {
+      window.showTimeCard(intent.text, { goHome: true, startStory: intent.startStory, startDelayMs: 200 });
+      return true;
+    }
+    var contactId = tok(chapter.contactId || ownerIdForStoryPath(path));
+    if (contactId) {
+      try {
+        if (window.Game && typeof window.Game.queueStoryStart === "function") {
+          window.Game.queueStoryStart(path, {
+            targetContactId: contactId,
+            contactId: contactId,
+            index: idx,
+            force: true,
+            reason: "chapter_load",
+            via: "story_chapters",
+            opts: {
+              contactId: contactId,
+              startIndex: idx,
+              forceStoryRestart: true,
+              fromChapter: true,
+              allowConversationInterrupt: true,
+              __strictRequestedPath: true,
+              from: "story_chapters",
+              reason: "chapter_load",
+              storyPath: path
+            }
+          });
+        }
+      } catch {}
+      if (navigateToConversationScene(contactId, {
+        from: "story_chapters",
+        storyPath: path
+      })) {
+        return true;
+      }
+    }
+    if (window.Game && typeof window.Game.startStory === "function") {
+      return window.Game.startStory(path, {
+        contactId: contactId,
+        startIndex: idx,
+        fromChapter: true,
+        forceStoryRestart: true,
+        allowConversationInterrupt: true,
+        __strictRequestedPath: true,
+        reason: "chapter_load"
+      });
+    }
+    await uiAlert("Story runtime not available.", "Chapters");
+    return false;
+  }
+  function renderChapters() {
+    refs.chaptersList.innerHTML = "";
+    var nodes = chaptersList()
+      .filter(function (node) {
+        var path = String(node && node.storyPath || "").trim();
+        return !!node && !!path;
+      })
+      .sort(compareChapterNodesStable);
+    var dayStarts = typeof state === "object" && state && state.catalog && Array.isArray(state.catalog.dayStartEntries) ? state.catalog.dayStartEntries : [];
+    var selections = typeof state === "object" && state ? (state.chapterSelections || (state.chapterSelections = Object.create(null))) : Object.create(null);
+    var groups = [], byDay = Object.create(null);
+    nodes.forEach(function (node) {
+      var day = dayNumberFromPath(node.storyPath || "");
+      var groupKey = day > 0 ? String(day) : "node:" + String(node.id || node.storyPath);
+      var group = byDay[groupKey];
+      if (!group) { group = { key: groupKey, day: day, rows: [] }; byDay[groupKey] = group; groups.push(group); }
+      var header = node.chapterSnapshotHeader || {};
+      var sameDay = header.day === day;
+      var firstPath = dayStarts.some(function (entry) { return Number(entry.day) === day && cleanPath(entry.path) === cleanPath(node.storyPath); });
+      var beginning = !!(sameDay && firstPath && header.hasLease && header.activeStoryPath === cleanPath(node.storyPath) && header.cursorStoryPath === cleanPath(node.storyPath) && header.rootIndex === 0 && header.branchDepth === 0 && header.phase !== "completed" && !header.pendingUserIntent && !header.pendingPresentationAck);
+      var clock = sameDay ? header.minuteOfDay : null;
+      group.rows.push({ node: node, beginning: beginning, clock: Number.isFinite(clock) && clock >= 0 && clock < 1440 ? clock : null });
+    });
+    refs.emptyChapters.style.display = groups.length ? "none" : "block";
+    groups.forEach(function (group) {
+      group.rows.sort(function (a, b) {
+        var restartA = tok(a.node.kind) === "restart_story", restartB = tok(b.node.kind) === "restart_story";
+        if (restartA !== restartB) return restartA ? -1 : 1;
+        if (a.beginning !== b.beginning) return a.beginning ? -1 : 1;
+        return compareChapterNodesStable(a.node, b.node);
+      });
+      var remembered = selections[group.key];
+      var selectedIndex = remembered ? group.rows.findIndex(function (row) { return String(row.node.id || "") === remembered.id && String(row.node.slotId || "") === remembered.slotId; }) : -1;
+      if (selectedIndex < 0) { selectedIndex = 0; if (remembered) delete selections[group.key]; }
+      var node = group.rows[selectedIndex].node;
+      var card = document.createElement("article");
+      card.className = "st-chapter-card";
+      var copy = document.createElement("div");
+      var title = document.createElement("div");
+      title.className = "st-chapter-title";
+      title.textContent = String(node.title || "Chapter checkpoint");
+      copy.appendChild(title);
+      var meta = document.createElement("div");
+      meta.className = "st-chapter-meta";
+      copy.appendChild(meta);
+      function selectChapter(row) {
+        node = row.node;
+        card.setAttribute("data-chapter-id", String(node.id || ""));
+        card.setAttribute("data-chapter-day", String(group.day));
+        card.setAttribute("data-story-path", cleanPath(node.storyPath || ""));
+        meta.textContent = chapterMetaText(node) + (node.chapterSnapshotHeader && node.chapterSnapshotHeader.routeSummary ? " · " + node.chapterSnapshotHeader.routeSummary : "");
+      }
+      selectChapter(group.rows[selectedIndex]);
+      if (group.rows.length > 1) {
+        var select = document.createElement("select");
+        select.className = "st-chapter-select";
+        select.setAttribute("aria-label", window.Game && window.Game.i18n && typeof window.Game.i18n.ui === "function" ? window.Game.i18n.ui("story.chapters", "Chapters") : "Chapters");
+        group.rows.forEach(function (row, index) {
+          var option = document.createElement("option");
+          option.value = String(index);
+          option.setAttribute("data-chapter-id", String(row.node.id || ""));
+          option.setAttribute("data-slot-id", String(row.node.slotId || ""));
+          var parts = [String(index + 1)];
+          var header = row.node.chapterSnapshotHeader || {};
+          if (header.routeSummary) parts.push(header.routeSummary);
+          var path = cleanPath(row.node.storyPath || "");
+          var contactMatch = path.match(/DAY\d+_\d+_(aiden|evelyn|hailey|lena|mason)(?:_|\.)/i);
+          var contact = String(header.contactId || (contactMatch && contactMatch[1]) || "").toLowerCase();
+          var routeMatch = path.match(/\/(love|nts|ntr)\//i);
+          var route = String(header.route || (routeMatch && routeMatch[1]) || "").toUpperCase();
+          var context = [contact && contact !== "__global_story__" ? displayNameFor(contact) : "", route].filter(Boolean);
+          if (context.length) parts.push(context.join(" · "));
+          if (row.clock !== null) parts.push("In-game " + String(Math.floor(row.clock / 60)).padStart(2, "0") + ":" + String(Math.floor(row.clock % 60)).padStart(2, "0"));
+          parts.push(chapterMetaText(row.node));
+          option.textContent = parts.join(" | ");
+          select.appendChild(option);
+        });
+        select.value = String(selectedIndex);
+        select.addEventListener("click", function (ev) { ev.stopPropagation(); });
+        select.addEventListener("change", function (ev) {
+          ev.stopPropagation();
+          var index = Number(select.value);
+          if (Number.isInteger(index) && index >= 0 && index < group.rows.length) {
+            selectChapter(group.rows[index]);
+            selections[group.key] = { id: String(node.id || ""), slotId: String(node.slotId || "") };
+          }
+        });
+        copy.appendChild(select);
+      }
+      card.appendChild(copy);
+      var btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "st-load-btn";
+      btn.textContent = "LOAD";
+      btn.addEventListener("click", function (ev) {
+        ev.stopPropagation();
+        Promise.resolve(startChapter(node)).catch(function (err) {
+          try { console.error("[StoryApp] Unable to load chapter", err); } catch {}
+          uiAlert("Unable to load this chapter.", "Chapters");
+        });
+      });
+      card.addEventListener("click", function () {
+        Promise.resolve(startChapter(node)).catch(function (err) {
+          try { console.error("[StoryApp] Unable to load chapter", err); } catch {}
+          uiAlert("Unable to load this chapter.", "Chapters");
+        });
+      });
+      card.appendChild(btn);
+      refs.chaptersList.appendChild(card);
+    });
+  }
+
+  function renderCalendarClock() {
+    var clock = root.querySelector("[data-story-calendar-clock]");
+    if (clock && window.CalendarService) {
+      var time = typeof window.GameStateEngine?.getGameTime === "function"
+        ? window.GameStateEngine.getGameTime() : window.CalendarService.read().time;
+      clock.textContent = window.CalendarService.formatCurrent(time);
+    }
+  }
+  function renderAll() {
+    if (!storySceneActive) return;
+    renderCalendarClock();
+    if (state.activeCharacterId && shouldHideTimelineCharacter(state.activeCharacterId)) {
+      state.activeCharacterId = "";
+    }
+    state.currentNodeId = resolveTimelineCurrentNodeId();
+    renderTimelineRoot();
+    if (state.activeCharacterId) renderCharacterRoute();
+    else syncTimelineView();
+    if (state.activeTab === "chapters") renderChapters();
+  }
+  async function init() {
+    // Catalog data is independent from this mount's DOM. Reuse the in-flight
+    // or completed build on remount instead of reparsing every shipped story.
+    window.__storyCatalogPromise = window.__storyCatalogPromise || buildCatalog().catch(function (err) {
+      window.__storyCatalogPromise = null;
+      throw err;
+    });
+    // The shared build can pause while Story is closed. Retire this mount's
+    // wait independently so every reopen does not leave its DOM retained by
+    // a pending promise reaction until the whole catalog eventually finishes.
+    var catalog = await Promise.race([window.__storyCatalogPromise, storySceneRetired]);
+    if (!storySceneActive) return;
+    state.catalog = catalog;
+    renderAll();
+    try {
+      document.documentElement.setAttribute("data-story-catalog-ready", "1");
+      window.dispatchEvent(new CustomEvent("story:catalog-ready"));
+    } catch {}
+  }
+
+  refs.tabButtons.forEach(function (btn) {
+    btn.addEventListener("click", function () { setTab(btn.getAttribute("data-st-tab")); });
+  });
+  bindRouteTreeZoom();
+  bindRouteTreePan();
+  refs.routeBack.addEventListener("click", closeCharacterDetail);
+  refs.modalCancel.addEventListener("click", closeReplayModal);
+  refs.modalConfirm.addEventListener("click", function () { Promise.resolve(confirmReplay()).catch(function () {}); });
+  refs.replayModal.addEventListener("click", function (ev) {
+    if (ev.target === refs.replayModal) closeReplayModal();
+  });
+
+  if (window.__storySceneCleanup) {
+    try { window.__storySceneCleanup(); } catch {}
+  }
+  var onRefresh = function () { renderAll(); };
+  window.addEventListener("game:saves-updated", onRefresh);
+  window.addEventListener("game:choice-rewinds-updated", onRefresh);
+  window.addEventListener("game:story-replays-updated", onRefresh);
+  window.addEventListener("game:chapters-updated", onRefresh);
+  window.addEventListener("identity:changed", onRefresh);
+  window.addEventListener("i18n:language-ready", onRefresh);
+  window.addEventListener("hak:watchlistChanged", onRefresh);
+  window.addEventListener("patreon:master-unlock-changed", onRefresh);
+  window.addEventListener("timeline:dev-unlock-changed", onRefresh);
+  try { window.StoryBus?.on?.("hak:watchlistChanged", onRefresh); } catch {}
+  window.__storySceneCleanup = function () {
+    storySceneActive = false;
+    retireStoryInit();
+    if (window.__storyTimelineDebug === storyTimelineDebug) window.__storyTimelineDebug = null;
+    try { window.removeEventListener("game:saves-updated", onRefresh); } catch {}
+    try { window.removeEventListener("game:choice-rewinds-updated", onRefresh); } catch {}
+    try { window.removeEventListener("game:story-replays-updated", onRefresh); } catch {}
+    try { window.removeEventListener("game:chapters-updated", onRefresh); } catch {}
+    try { window.removeEventListener("identity:changed", onRefresh); } catch {}
+    try { window.removeEventListener("i18n:language-ready", onRefresh); } catch {}
+    try { window.removeEventListener("hak:watchlistChanged", onRefresh); } catch {}
+    try { window.removeEventListener("patreon:master-unlock-changed", onRefresh); } catch {}
+    try { window.removeEventListener("timeline:dev-unlock-changed", onRefresh); } catch {}
+    try { window.StoryBus?.off?.("hak:watchlistChanged", onRefresh); } catch {}
+  };
+
+  try {
+    storyTimelineDebug = window.__storyTimelineDebug = {
+      setTab: function (tabId) { setTab(tabId); return true; },
+      startChapterDay: function (dayNumber) {
+        var day = Math.max(0, Number(dayNumber || 0) || 0);
+        var node = chaptersList().filter(function (row) {
+          return dayNumberFromPath(row && row.storyPath) === day;
+        }).sort(compareChapterNodesStable)[0] || null;
+        if (!node) return false;
+        Promise.resolve(startChapter(node)).catch(function (err) {
+          try { console.error("[StoryApp] Unable to load chapter", err); } catch {}
+          uiAlert("Unable to load this chapter.", "Chapters");
+        });
+        return true;
+      },
+      openCharacter: function (contactId) { openCharacterDetail(contactId); return true; },
+      closeCharacter: function () { closeCharacterDetail(); return true; },
+      render: function () { renderAll(); return true; },
+      getState: function () {
+        return {
+          activeCharacterId: state.activeCharacterId || "",
+          currentNodeId: state.currentNodeId || "",
+          characterIds: (state.catalog && Array.isArray(state.catalog.characters) ? state.catalog.characters : []).map(function (row) { return row.id; })
+        };
+      }
+    };
+  } catch {}
+
+  renderCalendarClock();
+  init().catch(function (err) {
+    if (!storySceneActive) return;
+    try { console.error("[StoryApp] init failed", err); } catch {}
+    refs.emptyTimeline.hidden = false;
+  });
+})();
+</script>

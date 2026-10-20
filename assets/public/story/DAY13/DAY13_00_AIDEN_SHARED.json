@@ -1,0 +1,87 @@
+{
+  "onceKey": "d13_00_aiden_shared_v1",
+  "contactId": "aiden",  "steps": [
+    {"type":"notify","delay":900,"fromId":"aiden","fromName":"{{name:aiden}}","avatar":"assets/avatars/aiden.jpg","text":"Evening check","target":"conversation"},
+    {"type":"message","delay":700,"from":"aiden","text":"How was your day"},
+    {"type":"message","delay":700,"from":"player","text":"Mostly good"},
+    {"type":"message","delay":700,"from":"player","text":"What about you"},
+    {"type":"message","delay":700,"from":"player","text":"Did you start training again"},
+    {"type":"message","delay":700,"from":"aiden","text":"A little"},
+    {"type":"message","delay":700,"from":"aiden","text":"Nothing crazy yet"},
+    {"type":"message","delay":700,"from":"aiden","text":"Just testing if my body still hates me"},
+    {"type":"message","delay":700,"from":"player","text":"And ?"},
+    {"type":"message","delay":700,"from":"aiden","text":"It only hates me a normal amount now"},
+    {"type":"message","delay":700,"from":"player","text":"Good progress"},
+    {"type":"message","delay":700,"from":"aiden","text":"Exactly"},
+    {"type":"message","delay":700,"from":"aiden","text":"I still need to be careful for a bit though"},
+    {"type":"message","delay":700,"from":"player","text":"Probably smart"},
+    {"type":"message","delay":700,"from":"aiden","text":"By the way"},
+    {"type":"message","delay":700,"from":"aiden","text":"Did you try that app I sent you ?"},
+    {"type":"message","delay":700,"from":"player","text":"Yeah, a bit"},
+    {"type":"message","delay":700,"from":"player","text":"For now I'm just waiting to see what it becomes"},
+    {"type":"message","delay":700,"from":"player","text":"But I check it from time to time"},
+    {"type":"message","delay":700,"from":"aiden","text":"Fair"},
+    {"type":"message","delay":700,"from":"aiden","text":"I'm sure you will enjoy it when you find something you like"},
+    {"type":"message","delay":700,"from":"player","text":"You bet !"},
+    {"type":"message","delay":700,"from":"aiden","text":"Good"},
+    {"type":"message","delay":700,"from":"aiden","text":"Anyway I need to go"},
+    {"type":"message","delay":700,"from":"aiden","text":"My room looks like a crime scene"},
+    {"type":"message","delay":700,"from":"aiden","text":"And my desk cables are trying to form a new species"},
+    {"type":"message","delay":700,"from":"player","text":"Cable management day ?"},
+    {"type":"message","delay":700,"from":"aiden","text":"Sadly"},
+    {"type":"message","delay":700,"from":"aiden","text":"If I disappear, assume the wires won"},
+    {"type":"if","condition":"active_character:mason","then":[
+      {"type":"if","condition":"route_mason_locked_v1:nts_coach","then":[
+        {"type":"start_story","goHome":true,"startStory":"story/DAY13/nts/DAY13_00_MASON_MORNING_NTS.json","startDelayMs":200}
+      ],"else":[
+        {"type":"if","condition":"route_mason_locked_v1:ntr","then":[
+          {"type":"start_story","goHome":true,"startStory":"story/DAY13/ntr/DAY13_00_MASON_MORNING_NTR.json","startDelayMs":200}
+        ],"else":[
+          {"type":"if","condition":"route_mason_locked_v1:nts","then":[
+            {"type":"start_story","goHome":true,"startStory":"story/DAY13/nts/DAY13_00_MASON_MORNING_NTS.json","startDelayMs":200}
+          ],"else":[
+            {"type":"start_story","goHome":true,"startStory":"story/DAY13/love/DAY13_00_MASON_MORNING_LOVE.json","startDelayMs":200}
+          ]}
+        ]}
+      ]}
+    ],"else":[
+      {"type":"if","condition":"active_character:lena","then":[
+        {"type":"if","condition":"route_lena_locked_v1:ntr","then":[
+          {"type":"start_story","goHome":true,"startStory":"story/DAY13/ntr/DAY13_00_LENA_MORNING_NTR.json","startDelayMs":200}
+        ],"else":[
+          {"type":"if","condition":"route_lena_locked_v1:nts","then":[
+            {"type":"start_story","goHome":true,"startStory":"story/DAY13/nts/DAY13_00_LENA_MORNING_NTS.json","startDelayMs":200}
+          ],"else":[
+            {"type":"start_story","goHome":true,"startStory":"story/DAY13/love/DAY13_00_LENA_MORNING_LOVE.json","startDelayMs":200}
+          ]}
+        ]}
+      ],"else":[
+        {"type":"if","condition":"active_character:hailey","then":[
+          {"type":"if","condition":"route_hailey_locked_v1:ntr","then":[
+            {"type":"start_story","goHome":true,"startStory":"story/DAY13/ntr/DAY13_00_HAILEY_MORNING_NTR.json","startDelayMs":200}
+          ],"else":[
+            {"type":"if","condition":"route_hailey_locked_v1:nts","then":[
+              {"type":"start_story","goHome":true,"startStory":"story/DAY13/nts/DAY13_00_HAILEY_MORNING_NTS.json","startDelayMs":200}
+            ],"else":[
+              {"type":"start_story","goHome":true,"startStory":"story/DAY13/love/DAY13_00_HAILEY_MORNING_LOVE.json","startDelayMs":200}
+            ]}
+          ]}
+        ],"else":[
+          {"type":"if","condition":"active_character:evelyn","then":[
+            {"type":"if","condition":"route_evelyn_locked_v1:ntr","then":[
+              {"type":"start_story","goHome":true,"startStory":"story/DAY13/ntr/DAY13_00_EVELYN_MORNING_NTR.json","startDelayMs":200}
+            ],"else":[
+              {"type":"if","condition":"route_evelyn_locked_v1:nts","then":[
+                {"type":"start_story","goHome":true,"startStory":"story/DAY13/nts/DAY13_00_EVELYN_MORNING_NTS.json","startDelayMs":200}
+              ],"else":[
+                {"type":"start_story","goHome":true,"startStory":"story/DAY13/love/DAY13_00_EVELYN_MORNING_LOVE.json","startDelayMs":200}
+              ]}
+            ]}
+          ],"else":[
+            {"type":"start_story","goHome":true,"startStory":"story/DEV/DAY9_END_CHAPTER.json","startDelayMs":200}
+          ]}
+        ]}
+      ]}
+    ],"__masonPatched":true}
+  ]
+}

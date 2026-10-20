@@ -1,0 +1,14 @@
+{
+  "onceKey": "d5_00_evelyn_night_late_home_v1",
+  "contactId": "evelyn",
+  "onCompleteStartStory": "story/DAY6/DAY6_00_EVELYN_MORNING_CHECKIN.json",
+  "steps": [
+    {"type":"notify","delay":1200,"fromId":"evelyn","fromName":"{{name:evelyn}}","avatar":"assets/avatars/evelyn.jpg","text":"Late tonight","target":"conversation"},
+    {"type":"message","delay":900,"from":"evelyn","text":"It is busier than expected"},
+    {"type":"message","delay":900,"from":"evelyn","text":"I will be very late tonight"},
+    {"type":"message","delay":900,"from":"evelyn","text":"Do not wait for me"},
+    {"type":"message","delay":900,"from":"player","text":"Okay, be careful on your way back"},
+    {"type":"message","delay":900,"from":"evelyn","text":"Rest well"},
+    {"type":"time_card","text":"DAY 6","goHome":true,"startStory":"story/DAY6/DAY6_00_EVELYN_MORNING_CHECKIN.json","startDelayMs":200}
+  ]
+}

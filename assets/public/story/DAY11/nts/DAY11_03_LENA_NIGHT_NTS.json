@@ -1,0 +1,56 @@
+{
+  "onceKey": "d11_02_lena_evening_nts_v1",
+  "contactId": "lena",
+  "requireOnceKey": "d11_01_lena_afternoon_nts_v1",
+  "steps": [
+    {"type":"notify","delay":1500,"fromId":"lena","fromName":"{{name:lena}}","avatar":"assets/avatars/lena.jpg","text":"Finally quiet 😌","target":"conversation"},
+    {"type":"message","delay":900,"from":"lena","text":"I'm home"},
+    {"type":"message","delay":900,"from":"player","text":"Long day?"},
+    {"type":"message","delay":900,"from":"lena","text":"A little"},
+    {"type":"message","delay":900,"from":"lena","text":"Not terrible, just draining"},
+    {"type":"message","delay":900,"from":"player","text":"Classes got you?"},
+    {"type":"message","delay":900,"from":"lena","text":"Classes, noise, people, everything 😭"},
+    {"type":"message","delay":900,"from":"lena","text":"I feel like my social battery has filed a complaint"},
+    {"type":"message","delay":900,"from":"lena","text":"I am currently wrapped in a blanket and accepting no responsibilities"},
+    {"type":"message","delay":900,"from":"player","text":"That sounds serious"},
+    {"type":"message","delay":900,"from":"lena","text":"Very serious"},
+    {"type":"message","delay":900,"from":"lena","text":"Blanket mode is not a joke"},
+    {"type":"message","delay":900,"from":"player","text":"Can I see blanket mode?"},
+    {"type":"message","delay":900,"from":"lena","text":"You want proof?"},
+    {"type":"message","delay":900,"from":"player","text":"Obviously"},
+    {"type":"message","delay":900,"from":"lena","text":"Fine"},
+    {"type":"message","delay":900,"from":"lena","text":"But this is a very exclusive report"},
+    {"type":"image","delay":1200,"from":"lena","image":"assets/pictures/Conversation/lena_blanket_evening_day11_nts.jpg"},
+    {"type":"message","delay":900,"from":"lena","text":"Blanket mode"},
+    {"type":"message","delay":900,"from":"player","text":"That's dangerously cute"},
+    {"type":"message","delay":900,"from":"lena","text":"Dangerously tired maybe"},
+    {"type":"message","delay":900,"from":"player","text":"Both"},
+    {"type":"message","delay":900,"from":"player","text":"You look cozy"},
+    {"type":"message","delay":900,"from":"lena","text":"I am"},
+    {"type":"message","delay":900,"from":"lena","text":"I think I needed this tonight"},
+    {"type":"message","delay":900,"from":"player","text":"Peace and quiet?"},
+    {"type":"message","delay":900,"from":"lena","text":"Peace, quiet, and you being sweet to me"},
+    {"type":"message","delay":900,"from":"player","text":"I can do that"},
+    {"type":"message","delay":900,"from":"lena","text":"You can"},
+    {"type":"message","delay":900,"from":"lena","text":"You're very good at it when you want to be ❤️"},
+    {"type":"message","delay":900,"from":"player","text":"Only when I want to be?"},
+    {"type":"message","delay":900,"from":"lena","text":"Mostly when you're not trying to act tough"},
+    {"type":"message","delay":900,"from":"player","text":"Fair"},
+    {"type":"message","delay":900,"from":"lena","text":"Now we both rest"},
+    {"type":"message","delay":900,"from":"player","text":"Deal"},
+    {"type":"message","delay":900,"from":"lena","text":"I'm going to stay wrapped up a little longer"},
+    {"type":"message","delay":900,"from":"lena","text":"Then sleep before I become useless tomorrow"},
+    {"type":"message","delay":900,"from":"player","text":"Sleep well when you do"},
+    {"type":"message","delay":900,"from":"lena","text":"You too ❤️"},
+    {"type":"message","delay":900,"from":"lena","text":"Good night, handsome"},
+    {"type":"if","condition":"all:active_character:hailey|!once:d11_02_hailey_evening_nts_v1","then":[
+      {"type":"time_card","text":"DAY 12","goHome":true,"startStory":"story/DAY12/DAY12_00_AIDEN_SHARED.json","startDelayMs":200}
+    ],"else":[
+      {"type":"if","condition":"active_character:mason","then":[
+        {"type":"time_card","text":"DAY 12","goHome":true,"startStory":"story/DAY12/nts/DAY12_00_MASON_MORNING_NTS.json","startDelayMs":200}
+      ],"else":[
+        {"type":"time_card","text":"DAY 12","goHome":true,"startStory":"story/DAY12/DAY12_00_AIDEN_SHARED.json","startDelayMs":200}
+      ],"__masonNextDayPatched":true}
+    ]}
+  ]
+}

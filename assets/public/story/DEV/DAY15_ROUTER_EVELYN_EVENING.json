@@ -1,0 +1,9 @@
+{"id":"day15_router_evelyn_evening","onceKey":"d15_dev_router_evelyn_evening_v1","contactId":"tutor","steps":[{"type":"if","condition":"route_evelyn_locked_v1:ntr","then":[
+      {"type":"start_story","startStory":"story/DAY15/ntr/DAY15_02_EVELYN_EVENING_NTR.json","contactId":"evelyn"}
+    ],"else":[
+      {"type":"if","condition":"route_evelyn_locked_v1:nts","then":[
+        {"type":"start_story","startStory":"story/DAY15/nts/DAY15_02_EVELYN_EVENING_NTS.json","contactId":"evelyn"}
+      ],"else":[
+        {"type":"start_story","startStory":"story/DAY15/love/DAY15_02_EVELYN_EVENING_LOVE.json","contactId":"evelyn"}
+      ]}
+    ]}]}

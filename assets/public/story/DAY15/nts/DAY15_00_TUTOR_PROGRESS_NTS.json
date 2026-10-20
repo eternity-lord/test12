@@ -1,0 +1,26 @@
+{
+  "onceKey": "d15_00_tutor_progress_nts_v1",
+  "contactId": "tutor",
+  "contactName": "Tutor",
+  "requireOnceKey": "d15_00_hailey_morning_nts_v1",
+  "onCompleteStartStory": "story/DAY15/nts/DAY15_01_HAILEY_AFTERNOON_NTS.json",
+  "steps": [
+    {"type":"notify","delay":800,"fromId":"tutor","fromName":"{{name:tutor}}","avatar":"assets/avatars/tutor.jpg","text":"Hey again","target":"conversation"},
+    {"type":"message","delay":700,"from":"tutor","text":"Just wanted to give you an update on {{name:hailey}}"},
+    {"type":"message","delay":900,"from":"tutor","text":"She’s improving a lot"},
+    {"type":"message","delay":950,"from":"tutor","text":"Her grades are getting noticeably better"},
+    {"type":"message","delay":900,"from":"tutor","text":"She’s understanding the material much faster now"},
+    {"type":"message","delay":950,"from":"tutor","text":"I think she's already ready for the exam of today"},
+    {"type":"message","delay":900,"from":"player","text":"I'm happy to see how much trust you have in this little demon 😂"},
+    {"type":"message","delay":900,"from":"tutor","text":"She’s not a demon, she’s a hardworking student 😂"},
+    {"type":"message","delay":900,"from":"player","text":"Yeah right 😂"},
+    {"type":"message","delay":900,"from":"tutor","text":"Anyway, I wanted to ask you something"},
+    {"type":"message","delay":900,"from":"tutor","text":"Since she’s doing so well, I was thinking of giving her some extra time for the next session"},
+    {"type":"message","delay":900,"from":"player","text":"What do you mean by extra time?"},
+    {"type":"message","delay":900,"from":"tutor","text":"I was thinking of letting her have a break during the session if she needs it"},
+    {"type":"message","delay":900,"from":"player","text":"That sounds good to me"},
+    {"type":"message","delay":900,"from":"player","text":"If it helps her stay focused, then it's a good idea"},
+    {"type":"message","delay":900,"from":"tutor","text":"Great, I'll do that then"},
+    {"type":"set_flag","key":"hailey_nts_day15_tutor_extra_time_ok_v1","value":"1"}
+  ]
+}

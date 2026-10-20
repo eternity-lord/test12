@@ -1,0 +1,52 @@
+{
+  "onceKey": "d13_04_mason_morning_nts_v1",
+  "contactId": "mason",
+  "requireOnceKey": "d12_05_mason_evening_nts_v1",
+  "onCompleteStartStory": "story/DAY13/nts/DAY13_01_MASON_AFTERNOON_NTS.json",
+  "route": "nts",
+  "routeLock": "route_mason_locked_v1:nts",
+  "steps": [
+    {"type":"if","condition":"choice:d9_mason_nts_coach_identity_v1:chris","then":[
+      {"type":"message","delay":850,"from":"player","text":"Good morning"},
+      {"type":"message","delay":850,"from":"player","text":"How are you feeling today?"},
+      {"type":"message","delay":850,"from":"mason","text":"Why are you being nice so soon?"},
+      {"type":"message","delay":850,"from":"mason","text":"What did you do?"},
+      {"type":"message","delay":850,"from":"player","text":"Nothing"},
+      {"type":"message","delay":850,"from":"player","text":"I just wanted to wish you good luck at work"},
+      {"type":"message","delay":850,"from":"mason","text":"Yeah, that's not suspicious at all"},
+      {"type":"message","delay":850,"from":"player","text":"I hope you have a nice day"},
+      {"type":"message","delay":850,"from":"player","text":"And that work isn't too exhausting"},
+      {"type":"message","delay":850,"from":"mason","text":"What did you arrange with Chris?"},
+      {"type":"message","delay":850,"from":"player","text":"Nothing at all"},
+      {"type":"message","delay":850,"from":"mason","text":"I don't believe you"},
+      {"type":"message","delay":850,"from":"player","text":"You really need to learn how to accept kindness"},
+      {"type":"message","delay":850,"from":"player","text":"Anyways, good luck today"},
+      {"type":"message","delay":850,"from":"player","text":"Try not to be too tired when you get home"},
+      {"type":"message","delay":850,"from":"mason","text":"You creepy little bastard"},
+      {"type":"message","delay":850,"from":"mason","text":"I'm strangling you when I get home"},
+      {"type":"message","delay":850,"from":"player","text":"You might not have time"}
+    ],"else":[
+      {"type":"message","delay":850,"from":"player","text":"Good morning"},
+      {"type":"message","delay":850,"from":"player","text":"How are you feeling today?"},
+      {"type":"message","delay":850,"from":"mason","text":"Why are you being nice so soon?"},
+      {"type":"message","delay":850,"from":"mason","text":"What did you do?"},
+      {"type":"message","delay":850,"from":"player","text":"Nothing"},
+      {"type":"message","delay":850,"from":"player","text":"I just wanted to wish you good luck at work"},
+      {"type":"message","delay":850,"from":"mason","text":"You've never cared about my day at work before"},
+      {"type":"message","delay":850,"from":"player","text":"People can change"},
+      {"type":"message","delay":850,"from":"player","text":"I hope work isn't too exhausting today"},
+      {"type":"message","delay":850,"from":"mason","text":"What did you plan with {{name:aiden}}?"},
+      {"type":"message","delay":850,"from":"mason","text":"I know you two are plotting something"},
+      {"type":"message","delay":850,"from":"player","text":"Nothing at all"},
+      {"type":"message","delay":850,"from":"mason","text":"Bullshit"},
+      {"type":"message","delay":850,"from":"mason","text":"He's your best friend and you talk all the time"},
+      {"type":"message","delay":850,"from":"player","text":"I'm just being a supportive coaching assistant"},
+      {"type":"message","delay":850,"from":"player","text":"Anyways, good luck today"},
+      {"type":"message","delay":850,"from":"player","text":"Try not to be too tired when you get home"},
+      {"type":"message","delay":850,"from":"mason","text":"You creepy little bastard"},
+      {"type":"message","delay":850,"from":"mason","text":"I'm strangling you when I get home"},
+      {"type":"message","delay":850,"from":"player","text":"You might not have time"}
+    ]},
+    {"type":"start_story","goHome":true,"startStory":"story/DAY13/nts/DAY13_01_MASON_AFTERNOON_NTS.json","startDelayMs":200}
+  ]
+}

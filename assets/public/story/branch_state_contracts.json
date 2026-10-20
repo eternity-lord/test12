@@ -1,0 +1,349 @@
+{
+  "version": 2,
+  "storage": {
+    "choices": "choices_log_v1",
+    "pointAwards": "route_point_awards_v1"
+  },
+  "entryPoints": [
+    "start_from",
+    "new_update",
+    "timeline",
+    "save_load"
+  ],
+  "contracts": [
+    {
+      "id": "d8_05_hailey_outfit_choice",
+      "kind": "choice",
+      "createdDay": 8,
+      "character": "hailey",
+      "routes": [
+        "love",
+        "ntr",
+        "nts"
+      ],
+      "values": [
+        "cute",
+        "bold",
+        "older"
+      ],
+      "canonicalDefault": "older",
+      "defaultRationale": "The original dialogue's explicit final branch is the third outfit (older/dramatic). Direct entries use that documented branch unless historicalChoices supplies the player's value.",
+      "storyOnceKey": "d8_05_hailey_shopping_advice_v1",
+      "sourceStory": "story/DAY8/DAY8_06_HAILEY_SHOPPING_ADVICE.json",
+      "storageKey": "choices_log_v1",
+      "ledgerImpact": {},
+      "routeLockImpact": false,
+      "characterActiveImpact": false,
+      "genderImpact": false,
+      "premiumImpact": false,
+      "dependsWhen": {
+        "minDay": 9,
+        "activeCharacter": "hailey"
+      },
+      "resolution": {
+        "type": "configured_or_default"
+      },
+      "restore": {
+        "start_from": true,
+        "new_update": true,
+        "timeline": "preserve",
+        "save_load": "preserve"
+      },
+      "sourceStoryId": "story/DAY8/DAY8_06_HAILEY_SHOPPING_ADVICE.json",
+      "sourceStepKey": "24"
+    },
+    {
+      "id": "d9_mason_nts_coach_identity_v1",
+      "kind": "choice",
+      "createdDay": 9,
+      "character": "mason",
+      "routes": [
+        "nts"
+      ],
+      "values": [
+        "aiden",
+        "chris"
+      ],
+      "storyOnceKey": "d9_07_mason_afternoon_nts_v1",
+      "sourceStory": "story/DAY9/nts/DAY9_06_MASON_AFTERNOON_NTS.json",
+      "storageKey": "choices_log_v1",
+      "ledgerImpact": {
+        "nts": 1
+      },
+      "routeLockImpact": false,
+      "characterActiveImpact": false,
+      "genderImpact": false,
+      "premiumImpact": false,
+      "dependsWhen": {
+        "minDay": 10,
+        "activeCharacter": "mason",
+        "route": "nts"
+      },
+      "resolution": {
+        "type": "aiden_active",
+        "trueValue": "aiden",
+        "falseValue": "chris"
+      },
+      "restore": {
+        "start_from": true,
+        "new_update": true,
+        "timeline": "preserve",
+        "save_load": "preserve"
+      },
+      "sourceStoryId": "story/DAY9/nts/DAY9_06_MASON_AFTERNOON_NTS.json",
+      "sourceStepKey": "3"
+    },
+    {
+      "id": "d14_mason_day15_activity_choice",
+      "kind": "choice",
+      "createdDay": 14,
+      "character": "mason",
+      "routes": [
+        "love"
+      ],
+      "values": [
+        "pool",
+        "yoga"
+      ],
+      "canonicalDefault": "yoga",
+      "defaultRationale": "The original dialogue's explicit else branch is yoga. Direct entries use this documented branch unless historicalChoices supplies the player's value.",
+      "storyOnceKey": "d14_05_mason_afternoon_love_v1",
+      "sourceStory": "story/DAY14/love/DAY14_01_MASON_AFTERNOON_LOVE.json",
+      "storageKey": "choices_log_v1",
+      "ledgerImpact": {
+        "love": 1
+      },
+      "routeLockImpact": false,
+      "characterActiveImpact": false,
+      "genderImpact": false,
+      "premiumImpact": false,
+      "dependsWhen": {
+        "minDay": 15,
+        "activeCharacter": "mason",
+        "route": "love"
+      },
+      "resolution": {
+        "type": "configured_or_default"
+      },
+      "restore": {
+        "start_from": true,
+        "new_update": false,
+        "timeline": "preserve",
+        "save_load": "preserve"
+      },
+      "sourceStoryId": "story/DAY14/love/DAY14_01_MASON_AFTERNOON_LOVE.json",
+      "sourceStepKey": "16"
+    },
+    {
+      "kind": "choice",
+      "storageKey": "choices_log_v1",
+      "routeLockImpact": false,
+      "characterActiveImpact": false,
+      "genderImpact": false,
+      "premiumImpact": false,
+      "defaultRationale": "Direct entries use the first authored outfit unless an explicit historical choice is supplied.",
+      "id": "d2_lena_outfit_choice_v1",
+      "createdDay": 2,
+      "character": "lena",
+      "routes": [],
+      "values": [
+        "outfit1",
+        "outfit2",
+        "outfit3"
+      ],
+      "canonicalDefault": "outfit1",
+      "storyOnceKey": "d2_12_lena_night_v1",
+      "sourceStory": "story/DAY2/DAY2_12_LENA_NIGHT.json",
+      "sourceStoryId": "story/DAY2/DAY2_12_LENA_NIGHT.json",
+      "sourceStepKey": "39",
+      "ledgerImpact": {},
+      "dependsWhen": {
+        "minDay": 3,
+        "activeCharacter": "lena"
+      },
+      "resolution": {
+        "type": "configured_or_default"
+      },
+      "restore": {
+        "start_from": true,
+        "new_update": true,
+        "timeline": "preserve",
+        "save_load": "preserve"
+      }
+    },
+    {
+      "kind": "choice",
+      "storageKey": "choices_log_v1",
+      "routeLockImpact": false,
+      "characterActiveImpact": false,
+      "genderImpact": false,
+      "premiumImpact": false,
+      "defaultRationale": "Direct entries use the first authored disclosure branch unless an explicit historical choice is supplied.",
+      "id": "d14_nts_want_to_know_choice",
+      "createdDay": 14,
+      "character": "lena",
+      "routes": [
+        "nts"
+      ],
+      "values": [
+        "know_and_receive",
+        "know_only",
+        "not_know_right_away"
+      ],
+      "canonicalDefault": "know_and_receive",
+      "storyOnceKey": "d14_03_lena_night_nts_v1",
+      "sourceStory": "story/DAY14/nts/DAY14_03_LENA_NIGHT.NTS.json",
+      "sourceStoryId": "story/DAY14/nts/DAY14_03_LENA_NIGHT.NTS.json",
+      "sourceStepKey": "38",
+      "ledgerImpact": {
+        "nts": 2
+      },
+      "ledgerImpactByValue": {
+        "know_and_receive": {
+          "nts": 2
+        },
+        "know_only": {
+          "nts": 1
+        },
+        "not_know_right_away": {
+          "nts": 2
+        }
+      },
+      "dependsWhen": {
+        "minDay": 15,
+        "activeCharacter": "lena",
+        "route": "nts"
+      },
+      "resolution": {
+        "type": "configured_or_default"
+      },
+      "restore": {
+        "start_from": true,
+        "new_update": true,
+        "timeline": "preserve",
+        "save_load": "preserve"
+      }
+    },
+    {
+      "kind": "choice",
+      "storageKey": "choices_log_v1",
+      "routeLockImpact": false,
+      "characterActiveImpact": false,
+      "genderImpact": false,
+      "premiumImpact": false,
+      "defaultRationale": "Direct entries use the authored random-guy branch, which remains valid when Aiden is inactive, unless an explicit historical choice is supplied.",
+      "id": "d15_nts_target_choice",
+      "createdDay": 15,
+      "character": "lena",
+      "routes": [
+        "nts"
+      ],
+      "values": [
+        "random_guy",
+        "aiden"
+      ],
+      "canonicalDefault": "random_guy",
+      "storyOnceKey": "d15_01_lena_afternoon_nts_v1",
+      "sourceStory": "story/DAY15/nts/DAY15_02_LENA_EVENING_NTS.json",
+      "sourceStoryId": "story/DAY15/nts/DAY15_02_LENA_EVENING_NTS.json",
+      "sourceStepKey": "44",
+      "ledgerImpact": {
+        "nts": 2
+      },
+      "dependsWhen": {
+        "minDay": 16,
+        "activeCharacter": "lena",
+        "route": "nts"
+      },
+      "resolution": {
+        "type": "configured_or_default"
+      },
+      "restore": {
+        "start_from": true,
+        "new_update": true,
+        "timeline": "preserve",
+        "save_load": "preserve"
+      }
+    },
+    {
+      "kind": "choice",
+      "storageKey": "choices_log_v1",
+      "routeLockImpact": false,
+      "characterActiveImpact": false,
+      "genderImpact": false,
+      "premiumImpact": false,
+      "defaultRationale": "Direct entries use the authored talk-afterward branch unless an explicit historical choice is supplied.",
+      "id": "d16_lena_nts_information_scope_v1",
+      "createdDay": 16,
+      "character": "lena",
+      "routes": [
+        "nts"
+      ],
+      "values": [
+        "surprise_within_limits",
+        "talk_afterward"
+      ],
+      "canonicalDefault": "talk_afterward",
+      "storyOnceKey": "d16_02_lena_evening_nts_v1",
+      "sourceStory": "story/DAY16/nts/DAY16_02_LENA_EVENING_NTS.json",
+      "sourceStoryId": "d16_02_lena_evening_nts",
+      "sourceStepKey": "65",
+      "ledgerImpact": {},
+      "dependsWhen": {
+        "minDay": 17,
+        "activeCharacter": "lena",
+        "route": "nts"
+      },
+      "resolution": {
+        "type": "configured_or_default"
+      },
+      "restore": {
+        "start_from": true,
+        "new_update": true,
+        "timeline": "preserve",
+        "save_load": "preserve"
+      }
+    },
+    {
+      "kind": "choice",
+      "storageKey": "choices_log_v1",
+      "routeLockImpact": false,
+      "characterActiveImpact": false,
+      "genderImpact": false,
+      "premiumImpact": false,
+      "defaultRationale": "Direct entries use the first authored reaction unless an explicit historical choice is supplied.",
+      "id": "d17_lena_nts_first_date_reaction_v1",
+      "createdDay": 17,
+      "character": "lena",
+      "routes": [
+        "nts"
+      ],
+      "values": [
+        "excited",
+        "nervous_but_willing"
+      ],
+      "canonicalDefault": "excited",
+      "storyOnceKey": "d17_02_lena_evening_nts_v1",
+      "sourceStory": "story/DAY17/nts/DAY17_02_LENA_EVENING_NTS.json",
+      "sourceStoryId": "d17_02_lena_evening_nts",
+      "sourceStepKey": "74",
+      "ledgerImpact": {
+        "nts": 2
+      },
+      "dependsWhen": {
+        "minDay": 18,
+        "activeCharacter": "lena",
+        "route": "nts"
+      },
+      "resolution": {
+        "type": "configured_or_default"
+      },
+      "restore": {
+        "start_from": true,
+        "new_update": true,
+        "timeline": "preserve",
+        "save_load": "preserve"
+      }
+    }
+  ]
+}

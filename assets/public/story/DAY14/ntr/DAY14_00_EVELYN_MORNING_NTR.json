@@ -1,0 +1,31 @@
+{
+  "onceKey": "d14_00_evelyn_morning_ntr_v1",
+  "contactId": "evelyn",
+  "requireOnceKey": "d13_02_evelyn_evening_ntr_v1",
+  "onCompleteStartStory": "story/DAY14/ntr/DAY14_01_EVELYN_AFTERNOON_NTR.json",
+  "steps": [
+    {"type":"message","delay":1200,"from":"player","text":"Hey, I'm already up 😊"},
+    {"type":"message","delay":850,"from":"player","text":"I made breakfast again"},
+    {"type":"message","delay":850,"from":"player","text":"And before you ask, I'm fine"},
+    {"type":"message","delay":850,"from":"player","text":"My leg doesn't hurt today"},
+    {"type":"message","delay":850,"from":"player","text":"So don't worry about me and get some rest"},
+    {"type":"message","delay":850,"from":"player","text":"Last night must have been exhausting"},
+    {"type":"note","delay":1200,"text":"1H30 LATER"},
+    {"type":"message","delay":850,"from":"evelyn","text":"I just woke up"},
+    {"type":"image","delay":1200,"image":"assets/pictures/Conversation/evelyn_waking_up2.jpg"},
+    {"type":"message","delay":850,"from":"evelyn","text":"Sorry I kept you waiting"},
+    {"type":"message","delay":850,"from":"evelyn","text":"You're way too nice ❤️"},
+    {"type":"message","delay":850,"from":"evelyn","text":"And I'm sorry I let you make breakfast again"},
+    {"type":"message","delay":850,"from":"player","text":"It's really not a problem"},
+    {"type":"message","delay":850,"from":"player","text":"I'm happy to take care of you for once"},
+    {"type":"message","delay":850,"from":"evelyn","text":"..."},
+    {"type":"message","delay":850,"from":"evelyn","text":"I don't even know what to say to that"},
+    {"type":"message","delay":850,"from":"player","text":"Then don't say anything"},
+    {"type":"message","delay":850,"from":"player","text":"Just come downstairs when you're ready"},
+    {"type":"message","delay":850,"from":"player","text":"I'll be waiting"},
+    {"type":"message","delay":850,"from":"evelyn","text":"Thank you 😊"},
+    {"type":"start_story","goHome":true,"startStory":"story/DAY14/ntr/DAY14_01_EVELYN_AFTERNOON_NTR.json"}
+  ],
+  "route": "ntr",
+  "routeLock": "route_evelyn_locked_v1:ntr"
+}

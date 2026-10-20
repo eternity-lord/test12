@@ -1,0 +1,53 @@
+{
+  "onceKey": "d9_06_mason_afternoon_love_v1",
+  "contactId": "mason",
+  "requireOnceKey": "d9_00_mason_morning_love_v1",
+  "route": "love",
+  "routeLock": "route_mason_locked_v1:love",
+  "steps": [
+    {"type":"notify","delay":1200,"fromId":"mason","fromName":"{{name:mason}}","avatar":"assets/avatars/male_mason.jpg","text":"Hey ","target":"conversation"},
+    {"type":"message","delay":850,"from":"mason","text":"I was thinking about this morning"},
+    {"type":"message","delay":850,"from":"player","text":"That doesn't sound good"},
+    {"type":"message","delay":850,"from":"mason","text":"We spent more time getting everything ready than actually exercising"},
+    {"type":"message","delay":850,"from":"mason","text":"Moving the weights"},
+    {"type":"message","delay":850,"from":"mason","text":"Finding the bands"},
+    {"type":"message","delay":850,"from":"mason","text":"Looking for the mat"},
+    {"type":"message","delay":850,"from":"mason","text":"By the time we finally started, we were almost done"},
+    {"type":"message","delay":850,"from":"player","text":"Look at the bright side"},
+    {"type":"message","delay":850,"from":"player","text":"Everything is already in place for tomorrow"},
+    {"type":"message","delay":850,"from":"mason","text":"That's... actually a fair point"},
+    {"type":"message","delay":850,"from":"mason","text":"Unless you somehow manage to lose a dumbbell overnight"},
+    {"type":"message","delay":850,"from":"player","text":"I'm talented, but not that talented"},
+    {"type":"message","delay":850,"from":"mason","text":"I'm still keeping an eye on you"},
+    {"type":"image","from":"mason","image":"assets/pictures/Conversation/male_mason/mason_work_outside.jpg"},
+    {"type":"message","delay":850,"from":"mason","text":"Almost done at work"},
+    {"type":"message","delay":850,"from":"player","text":"Busy?"},
+    {"type":"message","delay":850,"from":"mason","text":"Not really"},
+    {"type":"message","delay":850,"from":"mason","text":"I'm mostly waiting for my shift to end"},
+    {"type":"message","delay":850,"from":"mason","text":"So I started looking for games instead"},
+    {"type":"message","delay":850,"from":"player","text":"Find anything interesting?"},
+    {"type":"message","delay":850,"from":"mason","text":"I think I did"},
+    {"type":"message","delay":850,"from":"mason","text":"It's a co-op game"},
+    {"type":"message","delay":850,"from":"mason","text":"Looks like the kind of game that tests the player's teamwork 😅"},
+    {"type":"message","delay":850,"from":"player","text":"Sounds perfect for us"},
+    {"type":"message","delay":850,"from":"mason","text":"Exactly what I thought"},
+    {"type":"message","delay":850,"from":"player","text":"Can't wait to try it"},
+    {"type":"message","delay":850,"from":"mason","text":"Don't expect me to carry you"},
+    {"type":"message","delay":850,"from":"player","text":"We'll see who's carrying who"},
+    {"type":"message","delay":850,"from":"mason","text":"Confident for someone who almost got defeated by a yoga mat this morning 😂"},
+    {"type":"message","delay":850,"from":"player","text":"Shut up"},
+    {"type":"if","condition":"active_character:evelyn","then":[
+      {"type":"if","condition":"route_evelyn_locked_v1:ntr","then":[
+        {"type":"start_story","goHome":true,"startStory":"story/DAY9/DAY9_EVELYN_AFTERNOON.json","startDelayMs":200}
+      ],"else":[
+        {"type":"if","condition":"route_evelyn_locked_v1:nts","then":[
+          {"type":"start_story","goHome":true,"startStory":"story/DAY9/DAY9_EVELYN_AFTERNOON.json","startDelayMs":200}
+        ],"else":[
+          {"type":"start_story","goHome":true,"startStory":"story/DAY9/DAY9_EVELYN_AFTERNOON.json","startDelayMs":200}
+        ]}
+      ]}
+    ],"else":[
+      {"type":"start_story","goHome":true,"startStory":"story/DAY9/DAY9_LENA_EVENING.json","startDelayMs":200}
+    ]}
+  ]
+}

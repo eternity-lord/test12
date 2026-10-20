@@ -1,0 +1,33 @@
+{
+  "onceKey": "d13_00_evelyn_morning_ntr_v1",
+  "contactId": "evelyn",
+  "requireOnceKey": "d12_02_evelyn_evening_ntr_v1",
+  "onCompleteStartStory": "story/DAY13/ntr/DAY13_01_EVELYN_AFTERNOON_NTR.json",
+  "steps": [
+    {"type":"notify","delay":1200,"fromId":"evelyn","fromName":"{{name:evelyn}}","avatar":"assets/avatars/evelyn.jpg","text":"Good morning 😊","target":"conversation"},
+    {"type":"message","delay":850,"from":"evelyn","text":"Did you sleep well?"},
+    {"type":"message","delay":850,"from":"player","text":"Morning"},
+    {"type":"message","delay":850,"from":"player","text":"Yeah, not too bad"},
+    {"type":"message","delay":850,"from":"player","text":"What about you?"},
+    {"type":"message","delay":850,"from":"evelyn","text":"Pretty well actually"},
+    {"type":"message","delay":850,"from":"evelyn","text":"Although {{name:hailey}} is making enough noise for the whole house right now 😅"},
+    {"type":"message","delay":850,"from":"evelyn","text":"Can you tell her to be a little quieter?"},
+    {"type":"message","delay":850,"from":"evelyn","text":"Before she wakes {{name:mason}} up"},
+    {"type":"message","delay":850,"from":"evelyn","text":"Otherwise I'll have to go upstairs and do it myself"},
+    {"type":"message","delay":850,"from":"player","text":"😂"},
+    {"type":"message","delay":850,"from":"player","text":"Alright, I'll handle it"},
+    {"type":"note","delay":1200,"text":"A FEW MINUTES LATER..."},
+    {"type":"message","delay":850,"from":"player","text":"Mission accomplished"},
+    {"type":"message","delay":850,"from":"player","text":"{{name:hailey}} is dead"},
+    {"type":"message","delay":850,"from":"player","text":"She'll never make noise again"},
+    {"type":"message","delay":850,"from":"evelyn","text":"WHAT?!"},
+    {"type":"message","delay":850,"from":"player","text":"😄"},
+    {"type":"message","delay":850,"from":"player","text":"I mean she promised to be quieter"},
+    {"type":"message","delay":850,"from":"evelyn","text":"For a second I was actually worried"},
+    {"type":"message","delay":850,"from":"evelyn","text":"You're impossible"},
+    {"type":"message","delay":850,"from":"player","text":"You're welcome"},
+    {"type":"start_story","goHome":true,"startStory":"story/DAY13/ntr/DAY13_01_EVELYN_AFTERNOON_NTR.json"}
+  ],
+  "route": "ntr",
+  "routeLock": "route_evelyn_locked_v1:ntr"
+}

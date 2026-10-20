@@ -1,0 +1,32 @@
+{
+  "onceKey": "d10_01_tutor_first_meeting_nts_v1",
+  "contactId": "tutor",
+  "contactName": "Tutor",
+  "requireOnceKey": "d10_01_hailey_afternoon_nts_v1",
+  "onCompleteStartStory": "story/DAY10/DAY10_LENA_EVENING.json",
+  "steps": [
+    {"type":"notify","delay":800,"fromId":"tutor","fromName":"{{name:tutor}}","avatar":"assets/avatars/tutor.jpg","text":"Hey","target":"conversation"},
+    {"type":"message","delay":900,"from":"tutor","text":"Quick update regarding {{name:hailey}}"},
+    {"type":"message","delay":900,"from":"player","text":"How did it go?"},
+    {"type":"message","delay":900,"from":"tutor","text":"Honestly, better than expected"},
+    {"type":"message","delay":900,"from":"tutor","text":"She has some gaps to work on, but nothing alarming"},
+    {"type":"message","delay":900,"from":"tutor","text":"Most of the issue seems to be organization rather than ability"},
+    {"type":"photo","delay":900,"from":"tutor","image":"assets/pictures/Conversation/hailey_day10_tutor_first_session.jpg"},
+    {"type":"message","delay":900,"from":"tutor","text":"This was from earlier while we were reviewing her notes"},
+    {"type":"message","delay":900,"from":"tutor","text":"She stayed focused for most of the session"},
+    {"type":"message","delay":900,"from":"player","text":"That's surprising"},
+    {"type":"message","delay":900,"from":"tutor","text":"She'll be happy to hear that reaction 😄"},
+    {"type":"message","delay":900,"from":"tutor","text":"Jokes aside, I think she can catch up if she stays consistent"},
+    {"type":"message","delay":900,"from":"player","text":"That's reassuring"},
+    {"type":"message","delay":900,"from":"tutor","text":"Fortunately, I don't have another student taking this time slot right now"},
+    {"type":"message","delay":900,"from":"tutor","text":"So if you'd like, I can keep working with her all the way to the exam"},
+    {"type":"message","delay":900,"from":"player","text":"I think she'd benefit from that"},
+    {"type":"message","delay":900,"from":"player","text":"Please keep me updated on her progress"},
+    {"type":"message","delay":900,"from":"player","text":"Don't hesitate to send pictures"},
+    {"type":"message","delay":900,"from":"player","text":"I will make an album of her working, she'll love it"},
+    {"type":"message","delay":900,"from":"tutor","text":"Haha, I'll try to send some then"},
+    {"type":"message","delay":900,"from":"tutor","text":"I'll keep you updated on her progress"},
+    {"type":"message","delay":900,"from":"player","text":"Thanks, I appreciate it"},
+    {"type":"set_flag","key":"hailey_nts_tutor_first_meeting_started_v1","value":"1"}
+  ]
+}

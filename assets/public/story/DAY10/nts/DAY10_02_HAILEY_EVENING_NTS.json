@@ -1,0 +1,52 @@
+{
+  "onceKey": "d10_02_hailey_evening_nts_v1",
+  "contactId": "hailey",
+  "requireOnceKey": "d10_02_lena_evening_nts_v1|d10_01_hailey_afternoon_nts_v1",
+  "steps": [
+    {"type":"notify","delay":900,"fromId":"hailey","fromName":"{{name:hailey}}","avatar":"assets/avatars/hailey.jpg","text":"I survived 😌","target":"conversation"},
+    {"type":"message","delay":900,"from":"player","text":"That dramatic?"},
+    {"type":"message","delay":900,"from":"hailey","text":"I had to open a notebook willingly"},
+    {"type":"message","delay":900,"from":"hailey","text":"That counts as dramatic"},
+    {"type":"message","delay":900,"from":"player","text":"Fair"},
+    {"type":"message","delay":900,"from":"player","text":"How was he?"},
+    {"type":"message","delay":900,"from":"hailey","text":"Honestly?"},
+    {"type":"message","delay":900,"from":"hailey","text":"Extremely handsome"},
+    {"type":"message","delay":900,"from":"player","text":"Stay serious 😌"},
+    {"type":"message","delay":900,"from":"hailey","text":"Sorry, sorry"},
+    {"type":"message","delay":900,"from":"hailey","text":"He's also really nice"},
+    {"type":"message","delay":900,"from":"hailey","text":"And he doesn't make me feel stupid when I get something wrong"},
+    {"type":"message","delay":900,"from":"player","text":"That's a good start"},
+    {"type":"message","delay":900,"from":"hailey","text":"Yeah"},
+    {"type":"message","delay":900,"from":"hailey","text":"He's calm too"},
+    {"type":"message","delay":900,"from":"hailey","text":"Like annoyingly calm"},
+    {"type":"message","delay":900,"from":"player","text":"You mean he didn't panic after meeting you?"},
+    {"type":"message","delay":900,"from":"hailey","text":"Rude 😭"},
+    {"type":"message","delay":900,"from":"hailey","text":"But no"},
+    {"type":"message","delay":900,"from":"hailey","text":"He handled my chaos pretty well"},
+    {"type":"message","delay":900,"from":"player","text":"Good"},
+    {"type":"message","delay":900,"from":"player","text":"Then you should keep working with him"},
+    {"type":"message","delay":900,"from":"hailey","text":"I think I will"},
+    {"type":"message","delay":900,"from":"hailey","text":"He made a whole plan for me"},
+    {"type":"message","delay":900,"from":"hailey","text":"Like a scary organized person"},
+    {"type":"message","delay":900,"from":"player","text":"Exactly what you need"},
+    {"type":"message","delay":900,"from":"hailey","text":"Unfortunately yes"},
+    {"type":"message","delay":900,"from":"hailey","text":"I hate when you're right"},
+    {"type":"message","delay":900,"from":"player","text":"You'll survive"},
+    {"type":"message","delay":900,"from":"hailey","text":"Maybe"},
+    {"type":"message","delay":900,"from":"hailey","text":"But if I become a perfect student because of this, I'm blaming you 😊"},
+    {"type":"message","delay":900,"from":"player","text":"I'll take the blame"},
+    {"type":"message","delay":900,"from":"hailey","text":"Goodnight then"},
+    {"type":"message","delay":900,"from":"hailey","text":"I need sleep after all that brain damage"},
+    {"type":"message","delay":900,"from":"player","text":"Goodnight"},
+    {"type":"set_flag","key":"hailey_nts_day10_first_meeting_complete_v1","value":"1"},
+    {"type":"if","condition":"active_character:mason","then":[
+      {"type":"time_card","text":"DAY 11","goHome":true,"startStory":"story/DAY11/nts/DAY11_00_MASON_MORNING_NTS.json","startDelayMs":200}
+    ],"else":[
+      {"type":"if","condition":"active_character:lena","then":[
+        {"type":"time_card","text":"DAY 11","goHome":true,"startStory":"story/DAY11/DAY11_00_AIDEN_SHARED.json","startDelayMs":200}
+      ],"else":[
+        {"type":"time_card","text":"DAY 11","goHome":true,"startStory":"story/DAY11/nts/DAY11_00_HAILEY_MORNING_NTS.json","startDelayMs":200}
+      ]}
+    ],"__masonNextDayPatched":true}
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "onceKey": "d13_06_mason_evening_ntr_v1",
+  "contactId": "mason",
+  "requireOnceKey": "d13_05_mason_afternoon_ntr_v1",
+  "route": "ntr",
+  "routeLock": "route_mason_locked_v1:ntr",
+  "steps": [
+    {"type":"notify","delay":1200,"fromId":"mason","fromName":"{{name:mason}}","avatar":"assets/avatars/male_mason.jpg","text":"Just got home","target":"conversation"},
+    {"type":"message","delay":850,"from":"mason","text":"I'm taking a quick shower"},
+    {"type":"message","delay":850,"from":"mason","text":"Then we can leave"},
+    {"type":"message","delay":850,"from":"player","text":"I'm ready"},
+    {"type":"message","delay":850,"from":"player","text":"Just waiting for you"},
+    {"type":"note","text":"20 MINUTES LATER"},
+    {"type":"message","delay":850,"from":"player","text":"You need to hurry up"},
+    {"type":"message","delay":850,"from":"player","text":"We're going to be late for the movie"},
+    {"type":"message","delay":850,"from":"mason","text":"Relax"},
+    {"type":"message","delay":850,"from":"mason","text":"I'm done showering"},
+    {"type":"message","delay":850,"from":"mason","text":"I'm getting dressed"},
+    {"type":"image","from":"mason","image":"assets/pictures/Conversation/male_mason/mason_before_leaving.jpg"},
+    {"type":"message","delay":850,"from":"mason","text":"Unlike you, I don't leave the house looking like I just woke up"},
+    {"type":"message","delay":850,"from":"player","text":"Keep talking"},
+    {"type":"message","delay":850,"from":"mason","text":"I'll be downstairs in a minute"},
+    {"type":"if","condition":"all:active_character:lena,not once:d13_00_lena_morning_ntr_v1","then":[
+      {"type":"start_story","goHome":true,"startStory":"story/DAY13/DAY13_LENA_MORNING.json","startDelayMs":200}
+    ],"else":[
+      {"type":"if","condition":"all:active_character:hailey,not once:d13_00_hailey_morning_ntr_v1","then":[
+        {"type":"start_story","goHome":true,"startStory":"story/DAY13/DAY13_HAILEY_MORNING.json","startDelayMs":200}
+      ],"else":[
+        {"type":"if","condition":"all:active_character:evelyn,not once:d13_02_evelyn_evening_ntr_v1","then":[
+          {"type":"start_story","goHome":true,"startStory":"story/DAY13/DAY13_EVELYN_EVENING.json","startDelayMs":200}
+        ],"else":[
+          {"type":"if","condition":"all:active_character:lena,not once:d13_03_hak_heartspike_ntr_v1","then":[
+            {"type":"start_story","goHome":true,"startStory":"story/DAY13/ntr/DAY13_03_HAK_HEARTSPIKE_NTR.json","startDelayMs":200}
+          ],"else":[
+            {"type":"time_card","text":"DAY 14","goHome":true,"startStory":"story/DAY14/ntr/DAY14_00_MASON_MORNING_NTR.json","startDelayMs":200}
+          ]}
+        ]}
+      ]}
+    ]}
+  ]
+}

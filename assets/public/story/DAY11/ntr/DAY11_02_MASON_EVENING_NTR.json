@@ -1,0 +1,39 @@
+{
+  "onceKey": "d11_05_mason_evening_ntr_v1",
+  "contactId": "mason",
+  "requireOnceKey": "d11_04_mason_afternoon_ntr_v1",
+  "route": "ntr",
+  "routeLock": "route_mason_locked_v1:ntr",
+  "steps": [
+    {"type":"message","delay":850,"from":"player","text":"You got home pretty fast"},
+    {"type":"message","delay":850,"from":"player","text":"Straight to the shower and your room?"},
+    {"type":"message","delay":850,"from":"mason","text":"Yeah"},
+    {"type":"message","delay":850,"from":"player","text":"Everything okay?"},
+    {"type":"message","delay":850,"from":"mason","text":"Of course"},
+    {"type":"message","delay":850,"from":"mason","text":"Why?"},
+    {"type":"message","delay":850,"from":"player","text":"I don't know just making sure"},
+    {"type":"message","delay":850,"from":"player","text":"{{name:evelyn}} made dinner"},
+    {"type":"message","delay":850,"from":"player","text":"Come eat with us"},
+    {"type":"message","delay":850,"from":"mason","text":"I'm not really hungry"},
+    {"type":"message","delay":850,"from":"player","text":"Since when?"},
+    {"type":"message","delay":850,"from":"mason","text":"I grabbed something after training"},
+    {"type":"message","delay":850,"from":"player","text":"You could still come sit with us"},
+    {"type":"message","delay":850,"from":"mason","text":"Maybe later"},
+    {"type":"message","delay":850,"from":"player","text":"Am I really going to have to come drag you out of your room?"},
+    {"type":"message","delay":850,"from":"mason","text":"Good luck climbing the stairs with your leg"},
+    {"type":"hak_overlay","title":"HAK//NOTICE","messages":["Behavior change detected after gym session","Subject avoided shared dinner without clear explanation","Conversation pattern deviates from established baseline","Passive monitoring enabled",{"kind":"thought","speaker":"player","text":"The joke sounds like {{name:mason}}, but the distance doesn't feel familiar."}]},
+    {"type":"if","condition":"active_character:lena","then":[
+      {"type":"start_story","goHome":true,"startStory":"story/DAY11/DAY11_LENA_MORNING.json","startDelayMs":200}
+    ],"else":[
+      {"type":"if","condition":"active_character:hailey","then":[
+        {"type":"start_story","goHome":true,"startStory":"story/DAY11/DAY11_HAILEY_MORNING.json","startDelayMs":200}
+      ],"else":[
+        {"type":"if","condition":"active_character:evelyn","then":[
+          {"type":"start_story","goHome":true,"startStory":"story/DAY11/DAY11_EVELYN_MORNING.json","startDelayMs":200}
+        ],"else":[
+          {"type":"time_card","text":"DAY 12","goHome":true,"startStory":"story/DAY12/ntr/DAY12_00_MASON_MORNING_NTR.json","startDelayMs":200}
+        ]}
+      ]}
+    ]}
+  ]
+}
