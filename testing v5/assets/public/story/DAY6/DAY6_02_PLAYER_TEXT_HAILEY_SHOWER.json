@@ -1,0 +1,20 @@
+{
+  "onceKey": "d6_02_player_text_hailey_shower_v1",
+  "contactId": "hailey",
+  "onCompleteStartStory": "story/DAY6/DAY6_03_MASON_EVELYN_CHECK_LEG.json",
+  "steps": [
+    {"type":"message","delay":900,"from":"player","text":"How long are you taking?"},
+    {"type":"message","delay":900,"from":"player","text":"I actually made it all the way to the bathroom and now I'm stuck here"},
+    {"type":"message","delay":900,"from":"player","text":"You said two minutes ten minutes ago"},
+    {"type":"message","delay":900,"from":"hailey","text":"Excuse me??"},
+    {"type":"message","delay":900,"from":"hailey","text":"Beauty maintenance takes time 😌"},
+    {"type":"message","delay":900,"from":"player","text":"You're going to be late"},
+    {"type":"message","delay":900,"from":"player","text":"And I still need to wash too"},
+    {"type":"message","delay":900,"from":"hailey","text":"I knowwww"},
+    {"type":"message","delay":900,"from":"hailey","text":"I'm almost done"},
+    {"type":"message","delay":900,"from":"hailey","text":"Also this is very rude for someone loitering outside a bathroom door 😭"},
+    {"type":"message","delay":900,"from":"player","text":"Move faster and I become nicer"},
+    {"type":"message","delay":900,"from":"hailey","text":"No promises on either side"},
+    {"type":"message","delay":900,"from":"hailey","text":"Thirty seconds"}
+  ]
+}

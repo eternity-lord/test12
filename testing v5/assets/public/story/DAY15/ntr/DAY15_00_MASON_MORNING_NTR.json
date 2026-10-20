@@ -1,0 +1,29 @@
+{
+  "onceKey": "d15_03_mason_morning_ntr_v1",
+  "contactId": "mason",
+  "requireOnceKey": "d14_06_mason_evening_ntr_v1",
+  "onCompleteStartStory": "story/DAY15/ntr/DAY15_01_MASON_AFTERNOON_NTR.json",
+  "route": "ntr",
+  "routeLock": "route_mason_locked_v1:ntr",
+  "steps": [
+    {"type":"message","delay":850,"from":"player","text":"Hey"},
+    {"type":"message","delay":850,"from":"player","text":"There are leftovers in the fridge from yesterday"},
+    {"type":"message","delay":850,"from":"player","text":"Take them if you don't have time to come home for lunch"},
+    {"type":"message","delay":850,"from":"mason","text":"You packed me a lunch? 🤨"},
+    {"type":"message","delay":850,"from":"player","text":"Don't flatter yourself"},
+    {"type":"message","delay":850,"from":"player","text":"I just don't want the food to go to waste"},
+    {"type":"message","delay":850,"from":"mason","text":"Sure"},
+    {"type":"message","delay":850,"from":"mason","text":"Keep telling yourself that"},
+    {"type":"message","delay":850,"from":"player","text":"Take it or leave it"},
+    {"type":"message","delay":850,"from":"mason","text":"I'll take it"},
+    {"type":"message","delay":850,"from":"mason","text":"Thanks"},
+    {"type":"message","delay":850,"from":"mason","text":"You're weirdly thoughtful today"},
+    {"type":"message","delay":850,"from":"player","text":"Enjoy it, it's a once a lifetime experience"},
+    {"type":"message","delay":850,"from":"mason","text":"Good"},
+    {"type":"message","delay":850,"from":"mason","text":"I was starting to get suspicious"},
+    {"type":"message","delay":850,"from":"player","text":"Get to work before they replace you"},
+    {"type":"message","delay":850,"from":"mason","text":"Worry about your own job, cripple"},
+    {"type":"message","delay":850,"from":"mason","text":"Oh that's right, you don't have a job 😏"},
+    {"type":"start_story","goHome":true,"startStory":"story/DAY15/ntr/DAY15_01_MASON_AFTERNOON_NTR.json","startDelayMs":200}
+  ]
+}

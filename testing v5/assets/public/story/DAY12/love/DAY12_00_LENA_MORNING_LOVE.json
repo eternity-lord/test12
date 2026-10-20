@@ -1,0 +1,45 @@
+{
+  "onceKey": "d12_00_lena_morning_love_v1",
+  "contactId": "lena",
+  "requireOnceKey": "d11_02_lena_night_love_v1",
+  "steps": [
+    {"type":"notify","delay":1300,"fromId":"lena","fromName":"{{name:lena}}","avatar":"assets/avatars/lena.jpg","text":"Good morning 🌧️","target":"conversation"},
+    {"type":"message","delay":900,"from":"lena","text":"I slept so badly"},
+    {"type":"message","delay":900,"from":"player","text":"What happened?"},
+    {"type":"message","delay":900,"from":"lena","text":"There was a storm during the night"},
+    {"type":"message","delay":900,"from":"lena","text":"Like a real one"},
+    {"type":"message","delay":900,"from":"lena","text":"Thunder, rain, everything 😭"},
+    {"type":"message","delay":900,"from":"player","text":"You got scared?"},
+    {"type":"message","delay":900,"from":"lena","text":"A little"},
+    {"type":"message","delay":900,"from":"lena","text":"Okay maybe more than a little"},
+    {"type":"message","delay":900,"from":"lena","text":"I really wanted to sleep with you"},
+    {"type":"message","delay":900,"from":"player","text":"I would have wanted that too"},
+    {"type":"message","delay":900,"from":"lena","text":"You would have had to protect me from the evil sky 😌"},
+    {"type":"message","delay":900,"from":"player","text":"I take that responsibility very seriously"},
+    {"type":"message","delay":900,"from":"lena","text":"Very brave of you"},
+    {"type":"message","delay":900,"from":"player","text":"I'm basically a storm specialist"},
+    {"type":"message","delay":900,"from":"lena","text":"My hero 😌"},
+    {"type":"message","delay":900,"from":"player","text":"Send me a picture of my brave survivor then"},
+    {"type":"message","delay":900,"from":"lena","text":"I haven't finished doing my makeup yet 😭"},
+    {"type":"message","delay":900,"from":"player","text":"I didn't say full glam was required"},
+    {"type":"message","delay":900,"from":"lena","text":"Easy for you to say"},
+    {"type":"note","text":"3 MINUTES LATER"},
+    {"type":"image","delay":900,"from":"lena","image":"assets/pictures/Conversation/lena_day12_morning.jpg"},
+    {"type":"message","delay":900,"from":"lena","text":"Fine"},
+    {"type":"message","delay":900,"from":"lena","text":"You get the almost ready version"},
+    {"type":"message","delay":900,"from":"player","text":"You look perfect"},
+    {"type":"message","delay":900,"from":"lena","text":"Liar ❤️"},
+    {"type":"message","delay":900,"from":"player","text":"Never"},
+    {"type":"message","delay":900,"from":"lena","text":"Okay, I gotta go"},
+    {"type":"message","delay":900,"from":"player","text":"Good luck this morning"},
+    {"type":"message","delay":900,"from":"lena","text":"You too, handsome 🤍"},
+    {"type":"message","delay":900,"from":"lena","text":"And don't forget your leg exercises today"},
+    {"type":"message","delay":900,"from":"player","text":"Yes boss"},
+    {"type":"message","delay":900,"from":"lena","text":"Good 😌"},
+    {"type":"if","condition":"active_character:hailey","then":[
+      {"type":"start_story","goHome":true,"startStory":"story/DAY12/DAY12_HAILEY_MORNING.json"}
+    ],"else":[
+      {"type":"start_story","goHome":true,"startStory":"story/DAY12/love/DAY12_02_LENA_EVENING_LOVE.json"}
+    ]}
+  ]
+}

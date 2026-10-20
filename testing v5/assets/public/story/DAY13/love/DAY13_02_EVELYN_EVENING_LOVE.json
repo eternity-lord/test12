@@ -1,0 +1,48 @@
+{
+  "onceKey": "d13_02_evelyn_evening_love_v1",
+  "contactId": "evelyn",
+  "requireOnceKey": "d13_01_evelyn_afternoon_love_v1",
+  "steps": [
+    {"type":"message","delay":1200,"from":"player","text":"I finished my shower"},
+    {"type":"message","delay":850,"from":"player","text":"I'm coming downstairs"},
+    {"type":"message","delay":850,"from":"evelyn","text":"Perfect timing"},
+    {"type":"message","delay":850,"from":"evelyn","text":"I'm almost done cooking"},
+    {"type":"note","delay":1000,"text":"2 MINUTES LATER"},
+    {"type":"image","delay":850,"from":"player","galleryOwnerId":"evelyn","image":"assets/pictures/Conversation/evelyn_cooking_evening.jpg"},
+    {"type":"message","delay":850,"from":"player","text":"The kitchen pro preparing a beautiful dish"},
+    {"type":"note","delay":1000,"text":"10 MINUTES LATER"},
+    {"type":"message","delay":850,"from":"evelyn","text":"Paparazzi"},
+    {"type":"message","delay":850,"from":"evelyn","text":"I hope the dish is good at least 😄"},
+    {"type":"message","delay":850,"from":"player","text":"It already smells good"},
+    {"type":"message","delay":850,"from":"evelyn","text":"Can I ask you something?"},
+    {"type":"message","delay":850,"from":"player","text":"Of course"},
+    {"type":"message","delay":850,"from":"evelyn","text":"Do I look like I gained weight in that photo?"},
+    {"type":"message","delay":850,"from":"evelyn","text":"I feel like I look bigger than usual"},
+    {"type":"message","delay":850,"from":"player","text":"Not at all"},
+    {"type":"message","delay":850,"from":"player","text":"You look beautiful"},
+    {"type":"message","delay":850,"from":"evelyn","text":"I hope so"},
+    {"type":"message","delay":850,"from":"evelyn","text":"But I might still try to be a little more careful with what I eat"},
+    {"type":"message","delay":850,"from":"evelyn","text":"Maybe do some gymnastics or yoga too"},
+    {"type":"message","delay":850,"from":"player","text":"You have plenty of room before you need to worry about anything"},
+    {"type":"message","delay":850,"from":"player","text":"And you're gorgeous"},
+    {"type":"message","delay":850,"from":"player","text":"But yoga or gymnastics is good for health anyway"},
+    {"type":"message","delay":850,"from":"player","text":"So if you want to do it for yourself, that sounds great"},
+    {"type":"message","delay":850,"from":"evelyn","text":"Thank you"},
+    {"type":"message","delay":850,"from":"evelyn","text":"That was exactly the kind of answer I needed"},
+    {"type":"message","delay":850,"from":"evelyn","text":"I'm coming for the series now 😄"},
+    {"type":"note","delay":1000,"text":"47 MINUTES LATER"},
+    {"type":"hak_overlay","title":"HAK//NOTICE","messages":["Sustained emotional proximity detected between {{name:player}} and {{name:evelyn}}","Heartbeat intensity increased during shared private moment","Cross-referencing visual and emotional markers...","Relevant emotional capture archived into HAK Evidence",{"kind":"thought","speaker":"player","text":"HAK can measure my pulse, but it can't tell me what to do with these feelings."}]},
+    {"type":"hak_add_evidence","kind":"love","route":"love","profileId":"evelyn","profile":{"name":"{{name:evelyn}}","avatar":"assets/avatars/evelyn.jpg","kind":"love","route":"love"},"evidences":[{"id":"evelyn_love_d13_evidence_1","kind":"love","route":"love","src":"assets/pictures/evidence/evelyn_couch_series_love.mp4","url":"assets/pictures/evidence/evelyn_couch_series_love.mp4","type":"video","characterId":"evelyn","contactId":"evelyn","label":"Emotional proximity capture","title":"Shared evening closeness"}],"notifyTitle":"HAK","notifyText":"1 new evidence received","target":"hak"},
+    {"type":"if","condition":"active_character:lena","then":[
+      {"type":"start_story","goHome":true,"startStory":"story/DAY13/love/DAY13_03_HAK_HEARTSPIKE_LOVE.json","startDelayMs":200}
+    ],"else":[
+      {"type":"if","condition":"active_character:mason","then":[
+        {"type":"time_card","text":"DAY 14","goHome":true,"startStory":"story/DAY14/love/DAY14_00_MASON_MORNING_LOVE.json","startDelayMs":200}
+      ],"else":[
+        {"type":"time_card","text":"DAY 14","goHome":true,"startStory":"story/DAY14/love/DAY14_00_EVELYN_MORNING_LOVE.json","startDelayMs":200}
+      ]}
+    ],"__masonNextDayPatched":true}
+  ],
+  "route": "love",
+  "routeLock": "route_evelyn_locked_v1:love"
+}

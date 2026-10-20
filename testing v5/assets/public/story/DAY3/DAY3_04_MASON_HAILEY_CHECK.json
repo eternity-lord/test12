@@ -1,0 +1,30 @@
+{
+  "onceKey": "d3_03_mason_hailey_check_v1",
+  "contactId": "mason",
+  "requireOnceKey": "d2_10_mason_reply_v6",
+  "onCompleteStartStory": "story/DAY3/DAY3_05_HAILEY_RUGBY_THANKS.json",
+  "steps": [
+    {"type":"notify","delay":1200,"fromId":"mason","fromName":"{{name:mason}}","avatar":"assets/avatars/male_mason.jpg","text":"Where is {{name:hailey}}?","target":"conversation"},
+    {"type":"message","delay":900,"from":"mason","text":"Need my spare charger back"},
+    {"type":"message","delay":900,"from":"mason","text":"Did she leave already?"},
+    {"type":"message","delay":900,"from":"player","text":"Haven't seen her since breakfast"},
+    {"type":"message","delay":900,"from":"mason","text":"Great"},
+    {"type":"message","delay":900,"from":"mason","text":"If you see her, tell her I want it back before lunch"},
+    {"type":"message","delay":900,"from":"player","text":"Got it 👍"},
+    {"type":"message","delay":900,"from":"player","text":"You're going to the gym today?"},
+    {"type":"message","delay":900,"from":"mason","text":"Maybe"},
+    {"type":"message","delay":900,"from":"mason","text":"Why?"},
+    {"type":"message","delay":900,"from":"mason","text":"You're the gym police now? 🙄"},
+    {"type":"message","delay":900,"from":"player","text":"Stop acting like everything is an attack"},
+    {"type":"message","delay":900,"from":"player","text":"I was just asking because I've seen you going more often lately"},
+    {"type":"message","delay":900,"from":"mason","text":"Don't lecture me"},
+    {"type":"message","delay":900,"from":"mason","text":"I'm getting in shape and it takes work"},
+    {"type":"message","delay":900,"from":"mason","text":"You should try it too"},
+    {"type":"message","delay":900,"from":"mason","text":"Look at you right now"},
+    {"type":"message","delay":900,"from":"mason","text":"And don't blame the leg for all of it"},
+    {"type":"message","delay":900,"from":"player","text":"I know what my body looks like"},
+    {"type":"message","delay":900,"from":"player","text":"Right now I can't do any sport"},
+    {"type":"message","delay":900,"from":"player","text":"But when I'm healed, I'll get back in shape"},
+    {"type":"message","delay":900,"from":"mason","text":"We'll see"}
+  ]
+}

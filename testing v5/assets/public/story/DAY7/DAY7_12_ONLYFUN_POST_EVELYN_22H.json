@@ -1,0 +1,7 @@
+{
+  "onceKey": "d7_12_onlyfun_post_evelyn_22h_v1",
+  "onCompleteStartStory": "story/DAY7/DAY7_13_HAILEY_PICKUP_FOLLOWUP.json",
+  "steps": [
+    {"type":"onlyfun_post","onceKey":"of_evelyn_seen_d7_v1","creatorId":"static_muse","image":"assets/pictures/OnlyFun/posts/EvelynBarOutfit1Day7.png","imageVariant":{"storageKey":"evelyn_outfit_choice_v1","choiceKey":"d3_evelyn_outfit_pick_v1","fallback":"assets/pictures/OnlyFun/posts/EvelynBarOutfit1Day7.png","map":{"outfit_1":"assets/pictures/OnlyFun/posts/EvelynBarOutfit1Day7.png","outfit_2":"assets/pictures/OnlyFun/posts/EvelynBarOutfit2Day7.png","outfit_3":"assets/pictures/OnlyFun/posts/EvelynBarOutfit3Day7.png"}},"text":"Recreating bonding moments","likes":487,"requiresSub":true,"notify":true}
+  ]
+}

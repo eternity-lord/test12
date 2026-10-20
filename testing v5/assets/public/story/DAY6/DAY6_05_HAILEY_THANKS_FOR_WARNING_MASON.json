@@ -1,0 +1,33 @@
+{
+  "onceKey": "d6_05_hailey_thanks_for_warning_mason_v1",
+  "contactId": "hailey",
+  "onCompleteStartStory": "story/DAY6/DAY6_06_LENA_AFTER_UNI_TO_JOB.json",
+  "steps": [
+    {"type":"notify","delay":1200,"fromId":"hailey","fromName":"{{name:hailey}}","avatar":"assets/avatars/hailey.jpg","text":"Mission completed 😌","target":"conversation"},
+    {"type":"message","delay":900,"from":"hailey","text":"Thanks for warning {{name:mason}} about the ride 🤍"},
+    {"type":"message","delay":900,"from":"hailey","text":"{{mason:He}} did the full dramatic sigh, but {{mason:he}} got the message 😇"},
+    {"type":"message","delay":900,"from":"player","text":"Why not thank {{mason:him}} yourself?"},
+    {"type":"message","delay":900,"from":"hailey","text":"I'm too shy 😌"},
+    {"type":"message","delay":900,"from":"player","text":"Yes of course, shy to thank {{mason:him}} but not shy to ask for a ride"},
+    {"type":"message","delay":900,"from":"hailey","text":"Touché 😇"},
+    {"type":"message","delay":900,"from":"hailey","text":"But that's your job"},
+    {"type":"message","delay":900,"from":"hailey","text":"House logistics manager, remember?"},
+    {"type":"message","delay":900,"from":"player","text":"Since when?"},
+    {"type":"message","delay":900,"from":"hailey","text":"Since the meeting me, myself and I had two days ago 😌"},
+    {"type":"message","delay":900,"from":"hailey","text":"You're doing great in the role 😇"},
+    {"type":"message","delay":900,"from":"player","text":"You're impossible"},
+    {"type":"message","delay":900,"from":"hailey","text":"Thank you, see you tonight young Padawan 😌"},
+    {"type":"image","image":"assets/pictures/Conversation/hailey_blow_kiss.jpg"},
+    {"type":"message","delay":900,"from":"hailey","text":"Wait, one more job for my emergency stylist 😇"},
+    {"type":"message","delay":900,"from":"hailey","text":"For Saturday's party: loose waves or a high ponytail?"},
+    {"type":"choice","key":"d6_hailey_party_hair_choice_v1","options":[{"id":"waves","text":"Loose waves. You can't go wrong with those","goto":"hair_waves"},{"id":"ponytail","text":"High ponytail. Easier to dance with","goto":"hair_ponytail"}]},
+    {"type":"label","name":"hair_waves"},
+    {"type":"message","delay":900,"from":"hailey","text":"Loose waves it is. Soft, cute, and completely innocent 😌"},
+    {"type":"goto","label":"hair_done"},
+    {"type":"label","name":"hair_ponytail"},
+    {"type":"message","delay":900,"from":"hailey","text":"High ponytail it is. Practical AND cute. Look at you thinking ahead 😌"},
+    {"type":"label","name":"hair_done"},
+    {"type":"message","delay":900,"from":"player","text":"Styling crisis solved. My work here is done"},
+    {"type":"message","delay":900,"from":"hailey","text":"Thanks 🤍 Don't retire yet, I still need to choose the outfit"}
+  ]
+}

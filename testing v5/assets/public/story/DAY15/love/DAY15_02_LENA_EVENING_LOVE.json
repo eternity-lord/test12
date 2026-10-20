@@ -1,0 +1,93 @@
+{
+  "onceKey": "d15_01_lena_afternoon_love_v1",
+  "contactId": "lena",
+  "requireOnceKey": "d15_00_lena_morning_love_v1",
+  "steps": [
+    {"type":"notify","delay":1300,"fromId":"lena","fromName":"{{name:lena}}","avatar":"assets/avatars/lena.jpg","text":"Shopping mission started 😌🛍️","target":"conversation"},
+    {"type":"message","delay":900,"from":"lena","text":"I came here straight after class 😮‍💨"},
+    {"type":"message","delay":900,"from":"lena","text":"So now you're officially on outfit duty "},
+    {"type":"message","delay":900,"from":"player","text":"I was born for this "},
+    {"type":"message","delay":900,"from":"lena","text":"Good 😌"},
+    {"type":"message","delay":900,"from":"lena","text":"Because I'm about to start trying things on and you need to be ready to help me 🤍"},
+    {"type":"message","delay":900,"from":"player","text":"This is a lot of pressure 😭"},
+    {"type":"message","delay":900,"from":"lena","text":"Poor baby 😌"},
+    {"type":"message","delay":900,"from":"lena","text":"You'll survive "},
+    {"type":"message","delay":900,"from":"player","text":"Debatable 😮‍💨"},
+    {"type":"note","text":"12 MINUTES LATER"},
+    {"type":"image","delay":900,"from":"lena","image":"assets/pictures/Conversation/lena_day15_outfit_1.jpg"},
+    {"type":"message","delay":900,"from":"lena","text":"Option 1 😌"},
+    {"type":"image","delay":900,"from":"lena","image":"assets/pictures/Conversation/lena_day15_outfit_2.jpg"},
+    {"type":"message","delay":900,"from":"lena","text":"Option 2 🤍"},
+    {"type":"image","delay":900,"from":"lena","image":"assets/pictures/Conversation/lena_day15_outfit_3.jpg"},
+    {"type":"message","delay":900,"from":"lena","text":"Option 3 ❤️"},
+    {"type":"choice","key":"d15_lena_date_outfit_choice_v1","prompt":"Which outfit do you prefer?","options":[{"id":"outfit_1","text":"Option 1","goto":"pick_outfit_1"},{"id":"outfit_2","text":"Option 2","goto":"pick_outfit_2"},{"id":"outfit_3","text":"Option 3","goto":"pick_outfit_3"}]},
+    {"type":"label","name":"pick_outfit_1"},
+    {"type":"set_flag","key":"d15_lena_date_outfit_v1","value":"outfit_1"},
+    {"type":"message","delay":900,"from":"player","text":"Option 1 😌"},
+    {"type":"message","delay":900,"from":"player","text":"It looks perfect on you ❤️"},
+    {"type":"goto","label":"after_outfit_choice"},
+    {"type":"label","name":"pick_outfit_2"},
+    {"type":"set_flag","key":"d15_lena_date_outfit_v1","value":"outfit_2"},
+    {"type":"message","delay":900,"from":"player","text":"Option 2 😌"},
+    {"type":"message","delay":900,"from":"player","text":"That one really suits you 🤍"},
+    {"type":"goto","label":"after_outfit_choice"},
+    {"type":"label","name":"pick_outfit_3"},
+    {"type":"set_flag","key":"d15_lena_date_outfit_v1","value":"outfit_3"},
+    {"type":"message","delay":900,"from":"player","text":"Option 3 😌"},
+    {"type":"message","delay":900,"from":"player","text":"I think that's my favorite on you ❤️"},
+    {"type":"goto","label":"after_outfit_choice"},
+    {"type":"label","name":"after_outfit_choice"},
+    {"type":"message","delay":900,"from":"lena","text":"Mhm 😌"},
+    {"type":"message","delay":900,"from":"lena","text":"Good choice 🤍"},
+    {"type":"message","delay":900,"from":"lena","text":"I had a feeling you'd like that one ❤️"},
+    {"type":"note","text":"9 MINUTES LATER"},
+    {"type":"message","delay":900,"from":"lena","text":"Okay... 😌"},
+    {"type":"message","delay":900,"from":"lena","text":"Don't panic but I may have gone a little further 👀"},
+    {"type":"message","delay":900,"from":"player","text":"What did you do? 😭"},
+    {"type":"message","delay":900,"from":"lena","text":"Well I need to be completely prepared, right? 😌"},
+    {"type":"message","delay":900,"from":"lena","text":"Sooooo ❤️"},
+    {"type":"image","delay":900,"from":"lena","image":"assets/pictures/Conversation/lena_day15_underwear_1.jpg"},
+    {"type":"message","delay":900,"from":"lena","text":"Option A 😌"},
+    {"type":"image","delay":900,"from":"lena","image":"assets/pictures/Conversation/lena_day15_underwear_2.jpg"},
+    {"type":"message","delay":900,"from":"lena","text":"Option B 🤍"},
+    {"type":"choice","key":"d15_lena_underwear_choice_v1","prompt":"Which one do you prefer?","options":[{"id":"underwear_a","text":"Option A","goto":"pick_underwear_a"},{"id":"underwear_b","text":"Option B","goto":"pick_underwear_b"}]},
+    {"type":"label","name":"pick_underwear_a"},
+    {"type":"set_flag","key":"d15_lena_underwear_v1","value":"underwear_a"},
+    {"type":"message","delay":900,"from":"player","text":"Okay... Option A 😮‍💨"},
+    {"type":"message","delay":900,"from":"player","text":"You can't just surprise me like that 😭"},
+    {"type":"goto","label":"after_underwear_choice"},
+    {"type":"label","name":"pick_underwear_b"},
+    {"type":"set_flag","key":"d15_lena_underwear_v1","value":"underwear_b"},
+    {"type":"message","delay":900,"from":"player","text":"Definitely Option B 😮‍💨"},
+    {"type":"message","delay":900,"from":"player","text":"And no, I was not prepared for this 😭"},
+    {"type":"goto","label":"after_underwear_choice"},
+    {"type":"label","name":"after_underwear_choice"},
+    {"type":"message","delay":900,"from":"lena","text":"See? 😌"},
+    {"type":"message","delay":900,"from":"lena","text":"You have to be ready for anything with me 🤍"},
+    {"type":"message","delay":900,"from":"player","text":"Clearly 😭"},
+    {"type":"message","delay":900,"from":"player","text":"You look insanely good ❤️"},
+    {"type":"message","delay":900,"from":"lena","text":"That's better 😌"},
+    {"type":"message","delay":900,"from":"lena","text":"I was waiting for a proper compliment 🤍"},
+    {"type":"message","delay":900,"from":"player","text":"You're beautiful, sexy, and a little devil 😌"},
+    {"type":"message","delay":900,"from":"lena","text":"Perfect answer 😌"},
+    {"type":"message","delay":900,"from":"lena","text":"Okay, I'll text you again once I'm back home 🤍"},
+    {"type":"message","delay":900,"from":"player","text":"Get home safe, love you little devil ❤️"},
+    {"type":"if","condition":"all:!d15_cast_removal_summary_seen_v1,!active_character:evelyn","then":[
+      {"type":"note","delay":1200,"text":"DAY 15 — After examining your leg, the doctor removed your cast. You can move more freely now, but your leg still needs rest."},
+      {"type":"set_flag","key":"d15_cast_removal_summary_seen_v1","value":true}
+    ]},
+    {"type":"if","condition":"active_character:hailey","then":[
+      {"type":"start_story","goHome":true,"startStory":"story/DAY15/DAY15_02_HAILEY_EVENING.json"}
+    ],"else":[
+      {"type":"if","condition":"active_character:evelyn","then":[
+        {"type":"start_story","goHome":true,"startStory":"story/DAY15/DAY15_02_EVELYN_EVENING.json"}
+      ],"else":[
+        {"type":"if","condition":"all:active_character:lena,route_lena_locked_v1:love","then":[
+          {"type":"time_card","text":"DAY 16","day":16,"goHome":true,"startStory":"story/DAY16/love/DAY16_00_LENA_MORNING_LOVE.json","contactId":"lena","startDelayMs":200}
+        ],"else":[
+          {"type":"start_story","goHome":true,"startStory":"story/DEV/demo_end.json"}
+        ]}
+      ]}
+    ]}
+  ]
+}

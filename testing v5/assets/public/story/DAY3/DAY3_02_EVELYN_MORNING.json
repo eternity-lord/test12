@@ -1,0 +1,27 @@
+{
+  "onceKey": "d3_00_evelyn_morning_v1",
+  "contactId": "evelyn",
+  "onCompleteStartStory": "story/DAY3/DAY3_03_AIDEN_CHECKIN.json",
+  "steps": [
+    {"type":"notify","delay":1200,"fromId":"evelyn","fromName":"{{name:evelyn}}","avatar":"assets/avatars/evelyn.jpg","text":"Are you awake?","target":"conversation"},
+    {"type":"message","delay":900,"from":"evelyn","text":"How is the leg this morning?"},
+    {"type":"message","delay":900,"from":"player","text":"It’s okay. Still a little stiff"},
+    {"type":"message","delay":900,"from":"evelyn","text":"That’s normal"},
+    {"type":"message","delay":900,"from":"evelyn","text":"Just don’t try to be brave and overdo it"},
+    {"type":"message","delay":900,"from":"player","text":"How are you?"},
+    {"type":"message","delay":900,"from":"evelyn","text":"I’m alright"},
+    {"type":"message","delay":900,"from":"evelyn","text":"Stress is starting to get to me about going back to work, but I’ll manage"},
+    {"type":"message","delay":900,"from":"evelyn","text":"You don’t need to worry about me"},
+    {"type":"message","delay":900,"from":"player","text":"Are you sure?"},
+    {"type":"message","delay":900,"from":"player","text":"It’s going to be okay. Don’t overthink it"},
+    {"type":"message","delay":900,"from":"player","text":"And if something happens, we’ll figure out a solution together"},
+    {"type":"message","delay":900,"from":"evelyn","text":"Yes..  you're right"},
+    {"type":"message","delay":900,"from":"player","text":"By the way, {{name:lena}} is coming over today"},
+    {"type":"message","delay":900,"from":"evelyn","text":"That’s good"},
+    {"type":"message","delay":900,"from":"evelyn","text":"You shouldn’t stay alone too much"},
+    {"type":"message","delay":900,"from":"evelyn","text":"I’ll come by later and air your room a little"},
+    {"type":"message","delay":900,"from":"evelyn","text":"It needs fresh air anyway"},
+    {"type":"message","delay":900,"from":"player","text":"Thank you"},
+    {"type":"message","delay":900,"from":"evelyn","text":"You’re welcome"}
+  ]
+}

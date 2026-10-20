@@ -1,0 +1,24 @@
+{
+  "onceKey": "d7_02_mason_hailey_package_v1",
+  "contactId": "mason",
+  "requireOnceKey": "d6_08_mason_coach_question_v1",
+  "onCompleteStartStory": "story/DAY7/DAY7_03_LENA_VISIT_PLAYER.json",
+  "steps": [
+    {"type":"notify","delay":1200,"fromId":"mason","fromName":"{{name:mason}}","avatar":"assets/avatars/male_mason.jpg","text":"Hey","target":"conversation"},
+    {"type":"message","delay":900,"from":"mason","text":"I'm waiting on a delivery this morning"},
+    {"type":"message","delay":900,"from":"mason","text":"Did anything show up or did {{name:hailey}} grab it first? 🙄"},
+    {"type":"message","delay":900,"from":"player","text":"I haven't seen anything yet"},
+    {"type":"message","delay":900,"from":"mason","text":"Alright"},
+    {"type":"message","delay":900,"from":"player","text":"I'll let you know if it shows up"},
+    {"type":"message","delay":900,"from":"player","text":"Are you at work until lunch?"},
+    {"type":"message","delay":900,"from":"mason","text":"Yeah probably"},
+    {"type":"message","delay":900,"from":"mason","text":"Why?"},
+    {"type":"message","delay":900,"from":"player","text":"Can you stop by the store and get me an energy drink? 🥤"},
+    {"type":"message","delay":900,"from":"mason","text":"For what?"},
+    {"type":"message","delay":900,"from":"mason","text":"You can't move"},
+    {"type":"message","delay":900,"from":"mason","text":" You want to do nothing faster?"},
+    {"type":"message","delay":900,"from":"player","text":"Very funny 😑"},
+    {"type":"message","delay":900,"from":"mason","text":"I'll see if I get out on time"},
+    {"type":"message","delay":900,"from":"mason","text":"See you at lunch 👍"}
+  ]
+}

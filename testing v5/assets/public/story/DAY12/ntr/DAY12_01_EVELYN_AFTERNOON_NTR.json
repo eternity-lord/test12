@@ -1,0 +1,33 @@
+{
+  "onceKey": "d12_01_evelyn_afternoon_ntr_v1",
+  "contactId": "evelyn",
+  "requireOnceKey": "d12_00_evelyn_morning_ntr_v1",
+  "onCompleteStartStory": "story/DAY12/ntr/DAY12_02_EVELYN_EVENING_NTR.json",
+  "steps": [
+    {"type":"notify","delay":1200,"fromId":"evelyn","fromName":"{{name:evelyn}}","avatar":"assets/avatars/evelyn.jpg","text":"Thanks again for this morning","target":"conversation"},
+    {"type":"message","delay":850,"from":"player","text":"It's nothing, really"},
+    {"type":"message","delay":850,"from":"evelyn","text":"Maybe for you"},
+    {"type":"message","delay":850,"from":"evelyn","text":"But I still think it was really sweet"},
+    {"type":"message","delay":850,"from":"evelyn","text":"So I made a cake for you"},
+    {"type":"message","delay":850,"from":"player","text":"You didn't have to do that"},
+    {"type":"message","delay":850,"from":"player","text":"But I'm definitely not complaining 😄"},
+    {"type":"message","delay":850,"from":"evelyn","text":"I hope you'll like it"},
+    {"type":"image","delay":1200,"image":"assets/pictures/Conversation/evelyn_cake.jpg"},
+    {"type":"message","delay":850,"from":"player","text":"Wow"},
+    {"type":"message","delay":850,"from":"player","text":"That looks delicious"},
+    {"type":"message","delay":850,"from":"evelyn","text":"Good 😊"},
+    {"type":"message","delay":850,"from":"evelyn","text":"Then it was worth the effort"},
+    {"type":"message","delay":850,"from":"player","text":"By the way, are you working the same hours tonight?"},
+    {"type":"message","delay":850,"from":"evelyn","text":"No"},
+    {"type":"message","delay":850,"from":"evelyn","text":"Since my manager is working tonight, I'm back to my usual schedule"},
+    {"type":"message","delay":850,"from":"evelyn","text":"So I'll leave a little earlier"},
+    {"type":"message","delay":850,"from":"player","text":"Then make sure you take some time for yourself before work"},
+    {"type":"message","delay":850,"from":"evelyn","text":"I will 😊"},
+    {"type":"message","delay":850,"from":"evelyn","text":"I'm going to watch some TV for a bit"},
+    {"type":"message","delay":850,"from":"evelyn","text":"And then I'll start getting ready"},
+    {"type":"message","delay":850,"from":"player","text":"That sounds like a good plan 😊"},
+    {"type":"start_story","goHome":true,"startStory":"story/DAY12/ntr/DAY12_02_EVELYN_EVENING_NTR.json"}
+  ],
+  "route": "ntr",
+  "routeLock": "route_evelyn_locked_v1:ntr"
+}

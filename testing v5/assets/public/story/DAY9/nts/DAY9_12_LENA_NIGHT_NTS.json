@@ -1,0 +1,50 @@
+{
+  "onceKey": "d9_02_lena_evening_nts_v1",
+  "contactId": "lena",
+  "requireOnceKey": "d9_01_lena_afternoon_nts_v1",
+  "steps": [
+    {"type":"notify","delay":1600,"fromId":"lena","fromName":"{{name:lena}}","avatar":"assets/avatars/lena.jpg","text":"Finally home 😮‍💨","target":"conversation"},
+    {"type":"message","delay":900,"from":"player","text":"How are you?"},
+    {"type":"message","delay":900,"from":"lena","text":"Tired"},
+    {"type":"message","delay":900,"from":"lena","text":"But okay 😌"},
+    {"type":"message","delay":900,"from":"lena","text":"Today felt long"},
+    {"type":"message","delay":900,"from":"player","text":"Bad day?"},
+    {"type":"message","delay":900,"from":"lena","text":"Not really"},
+    {"type":"message","delay":900,"from":"lena","text":"Just repetitive"},
+    {"type":"message","delay":900,"from":"lena","text":"Same things over and over"},
+    {"type":"message","delay":900,"from":"player","text":"That can be exhausting"},
+    {"type":"message","delay":900,"from":"lena","text":"Yeah"},
+    {"type":"message","delay":900,"from":"lena","text":"But I feel like I'm getting better at it"},
+    {"type":"message","delay":900,"from":"lena","text":"So that's nice"},
+    {"type":"message","delay":900,"from":"player","text":"That's what matters"},
+    {"type":"message","delay":900,"from":"lena","text":"Exactly 😌"},
+    {"type":"message","delay":900,"from":"lena","text":"It makes it a little more worth it"},
+    {"type":"message","delay":900,"from":"player","text":"Proud of you"},
+    {"type":"message","delay":900,"from":"lena","text":"Thank you ❤️"},
+    {"type":"message","delay":900,"from":"lena","text":"That actually means a lot"},
+    {"type":"message","delay":900,"from":"player","text":"Can I see you before you go to bed?"},
+    {"type":"message","delay":900,"from":"lena","text":"You want a photo?"},
+    {"type":"message","delay":900,"from":"player","text":"Yeah"},
+    {"type":"message","delay":900,"from":"lena","text":"Give me a second"},
+    {"type":"image","delay":1200,"from":"lena","image":"assets/pictures/Conversation/lena_evening_tired_nts.jpg"},
+    {"type":"message","delay":900,"from":"lena","text":"I look exhausted"},
+    {"type":"message","delay":900,"from":"player","text":"You look good"},
+    {"type":"message","delay":900,"from":"lena","text":"Liar 😭"},
+    {"type":"message","delay":900,"from":"player","text":"I'm serious"},
+    {"type":"message","delay":900,"from":"lena","text":"You're biased"},
+    {"type":"message","delay":900,"from":"player","text":"Maybe"},
+    {"type":"message","delay":900,"from":"lena","text":"Still counts 😌"},
+    {"type":"message","delay":900,"from":"lena","text":"I needed that a little"},
+    {"type":"message","delay":900,"from":"player","text":"Good"},
+    {"type":"message","delay":900,"from":"lena","text":"I'm going to shower and go to bed"},
+    {"type":"message","delay":900,"from":"player","text":"Rest well"},
+    {"type":"message","delay":900,"from":"lena","text":"I will"},
+    {"type":"message","delay":900,"from":"lena","text":"Good night ❤️"},
+    {"type":"message","delay":900,"from":"player","text":"Good night"},
+    {"type":"if","condition":"active_character:mason","then":[
+      {"type":"time_card","text":"DAY 10","goHome":true,"startStory":"story/DAY10/DAY10_MASON_MORNING.json","startDelayMs":200}
+    ],"else":[
+      {"type":"time_card","text":"DAY 10","goHome":true,"startStory":"story/DAY10/DAY10_00_AIDEN_SHARED.json","startDelayMs":200}
+    ],"__masonNextDayPatched":true}
+  ]
+}

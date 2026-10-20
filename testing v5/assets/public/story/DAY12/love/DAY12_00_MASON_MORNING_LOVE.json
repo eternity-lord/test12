@@ -1,0 +1,31 @@
+{
+  "onceKey": "d12_03_mason_morning_love_v1",
+  "contactId": "mason",
+  "requireOnceKey": "d11_05_mason_evening_love_v1",
+  "onCompleteStartStory": "story/DAY12/DAY12_LENA_MORNING.json",
+  "route": "love",
+  "routeLock": "route_mason_locked_v1:love",
+  "steps": [
+    {"type":"message","delay":850,"from":"player","text":"Hey"},
+    {"type":"message","delay":850,"from":"player","text":"I feel better today"},
+    {"type":"message","delay":850,"from":"player","text":"How about you?"},
+    {"type":"message","delay":850,"from":"mason","text":"Better"},
+    {"type":"message","delay":850,"from":"mason","text":"Still a little sore though"},
+    {"type":"message","delay":850,"from":"player","text":"Same"},
+    {"type":"message","delay":850,"from":"player","text":"Maybe we do a small session today"},
+    {"type":"message","delay":850,"from":"player","text":"Nothing stupid this time"},
+    {"type":"message","delay":850,"from":"mason","text":"So nothing you planned yourself"},
+    {"type":"message","delay":850,"from":"player","text":"I'm trying to be responsible here"},
+    {"type":"message","delay":850,"from":"mason","text":"It's unsettling"},
+    {"type":"message","delay":850,"from":"mason","text":"But yes"},
+    {"type":"message","delay":850,"from":"mason","text":"Small session"},
+    {"type":"message","delay":850,"from":"mason","text":"Easy pace"},
+    {"type":"message","delay":850,"from":"player","text":"Deal"},
+    {"type":"message","delay":850,"from":"mason","text":"And I work this afternoon"},
+    {"type":"message","delay":850,"from":"player","text":"You say that like you're the responsible one"},
+    {"type":"message","delay":850,"from":"mason","text":"Compared to you? Easily"},
+    {"type":"message","delay":850,"from":"player","text":"Low bar"},
+    {"type":"message","delay":850,"from":"mason","text":"Still cleared it"},
+    {"type":"start_story","goHome":true,"startStory":"story/DAY12/DAY12_LENA_MORNING.json","startDelayMs":200}
+  ]
+}

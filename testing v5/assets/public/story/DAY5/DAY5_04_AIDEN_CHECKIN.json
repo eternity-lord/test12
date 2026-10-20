@@ -1,0 +1,23 @@
+{
+  "onceKey": "d5_03_aiden_checkin_v1",
+  "contactId": "aiden",
+  "onCompleteStartStory": "story/DAY5/DAY5_05_HAILEY_AFTER_LUNCH_TALK.json",
+  "steps": [
+    {"type":"notify","delay":1200,"fromId":"aiden","fromName":"{{name:aiden}}","avatar":"assets/avatars/aiden.jpg","text":"Ranked later?","target":"conversation"},
+    {"type":"message","delay":900,"from":"aiden","fromName":"{{name:aiden}}","text":"Or are you pretending to be productive today?"},
+    {"type":"message","delay":900,"from":"player","text":"I can be both"},
+    {"type":"message","delay":900,"from":"aiden","text":"Liar, but I respect the confidence"},
+    {"type":"message","delay":900,"from":"aiden","text":"How are you feeling?"},
+    {"type":"message","delay":900,"from":"player","text":"A little tired"},
+    {"type":"message","delay":900,"from":"player","text":"Head is noisy"},
+    {"type":"message","delay":900,"from":"aiden","text":"Then we do chill games, no screaming"},
+    {"type":"message","delay":900,"from":"aiden","text":"And if you do not feel it, we skip"},
+    {"type":"message","delay":900,"from":"player","text":"You are being weirdly nice"},
+    {"type":"message","delay":900,"from":"aiden","text":"Do not get used to it"},
+    {"type":"message","delay":900,"from":"aiden","text":"I just want your brain occupied for a bit"},
+    {"type":"message","delay":900,"from":"player","text":"That actually helps"},
+    {"type":"message","delay":900,"from":"aiden","text":"Yeah I know"},
+    {"type":"message","delay":900,"from":"aiden","text":"Send me one word later: alive"},
+    {"type":"message","delay":900,"from":"player","text":"Will do"}
+  ]
+}

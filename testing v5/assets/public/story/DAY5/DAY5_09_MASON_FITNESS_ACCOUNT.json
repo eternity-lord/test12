@@ -1,0 +1,25 @@
+{
+  "onceKey": "d5_06_mason_fitness_account_v1",
+  "contactId": "mason",
+  "requireOnceKey": "d5_04_mason_store_food_run_v1",
+  "onCompleteStartStory": "story/DAY5/DAY5_10_EVELYN_NIGHT_LATE_HOME.json",
+  "steps": [
+    {"type":"notify","delay":1200,"fromId":"mason","fromName":"{{name:mason}}","avatar":"assets/avatars/male_mason.jpg","text":"Hey","target":"conversation"},
+    {"type":"message","delay":900,"from":"mason","text":"Do one useful thing"},
+    {"type":"message","delay":900,"from":"mason","text":"I finally made my fitness page"},
+    {"type":"message","delay":900,"from":"mason","text":"Go follow it"},
+    {"type":"message","delay":900,"from":"mason","text":"Or at least make it look like I have more than three followers"},
+    {"type":"message","delay":900,"from":"player","text":"Is that a request or an order"},
+    {"type":"message","delay":900,"from":"mason","text":"Family duty"},
+    {"type":"message","delay":900,"from":"player","text":"That doesn't sound real"},
+    {"type":"message","delay":900,"from":"mason","text":"It is now"},
+    {"type":"message","delay":900,"from":"mason","text":"The pics are good anyway"},
+    {"type":"message","delay":900,"from":"mason","text":"So you can copy me and finally get some muscle"},
+    {"type":"message","delay":900,"from":"player","text":"Wow, you asked so nicely 🙂"},
+    {"type":"message","delay":900,"from":"mason","text":"Exactly"},
+    {"type":"message","delay":900,"from":"mason","text":"I'm making the first post tonight"},
+    {"type":"message","delay":900,"from":"mason","text":"You better be the first like"},
+    {"type":"message","delay":900,"from":"player","text":"Yes Lord Vader 😌"},
+    {"type":"instagram_post","onceKey":"ig_mason_fitness_first_post_v1","authorId":"mason","authorName":"Mason","avatar":"assets/avatars/male_mason.jpg","image":"assets/pictures/Snapgram/mason_fitness_first_post.jpg","caption":"No excuses","likes":14,"time":"JUST NOW"}
+  ]
+}

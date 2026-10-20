@@ -1,0 +1,48 @@
+{
+  "onceKey": "d13_06_mason_evening_love_v1",
+  "contactId": "mason",
+  "requireOnceKey": "d13_05_mason_afternoon_love_v1",
+  "route": "love",
+  "routeLock": "route_mason_locked_v1:love",
+  "steps": [
+    {"type":"notify","delay":1200,"fromId":"mason","fromName":"{{name:mason}}","avatar":"assets/avatars/male_mason.jpg","text":"Where are you?","target":"conversation"},
+    {"type":"message","delay":850,"from":"mason","text":"Don't tell me you're hiding"},
+    {"type":"message","delay":850,"from":"mason","text":"Getting scared already? 😏"},
+    {"type":"note","text":"15 minutes later"},
+    {"type":"message","delay":850,"from":"player","text":"I was in the shower"},
+    {"type":"message","delay":850,"from":"player","text":"Had to be clean before destroying you"},
+    {"type":"message","delay":850,"from":"mason","text":"Keep those excuses ready"},
+    {"type":"message","delay":850,"from":"mason","text":"You'll need them"},
+    {"type":"message","delay":850,"from":"player","text":"{{name:evelyn}} made dinner"},
+    {"type":"message","delay":850,"from":"player","text":"We eat first"},
+    {"type":"message","delay":850,"from":"player","text":"Then I destroy you"},
+    {"type":"message","delay":850,"from":"mason","text":"Dream on"},
+    {"type":"note","text":"1 H 30 LATER"},
+    {"type":"hak_overlay","title":"Heated Rivalry","messages":["The teasing between you and {{name:mason}} keeps getting more competitive.","Every game now feels like a personal challenge.",{"kind":"thought","speaker":"player","text":"I'm starting to care more about being there with {{name:mason}} than winning."}]},
+    {"type":"hak_add_evidence","kind":"love","route":"love","profileId":"mason","profile":{"name":"mason","avatar":"assets/avatars/male_mason.jpg","kind":"love","route":"love"},"evidences":[{"id":"mason_evidence_1","kind":"love","route":"love","src":"assets/pictures/Conversation/male_mason/mason_playing.jpg","url":"assets/pictures/Conversation/male_mason/mason_playing.jpg","type":"image","characterId":"mason","contactId":"mason","label":"Heartspike evidence 1","title":"Heartspike evidence 1"}]},
+    {"type":"note","text":"1 H LATER"},
+    {"type":"message","delay":850,"from":"mason","text":"Alright"},
+    {"type":"message","delay":850,"from":"mason","text":"What's my punishment?"},
+    {"type":"message","delay":850,"from":"player","text":"Tomorrow"},
+    {"type":"message","delay":850,"from":"player","text":"30 squats"},
+    {"type":"message","delay":850,"from":"player","text":"50 push-ups"},
+    {"type":"message","delay":850,"from":"player","text":"No stopping"},
+    {"type":"message","delay":850,"from":"mason","text":"Easy"},
+    {"type":"message","delay":850,"from":"mason","text":"You'll get a free lesson on how to exercise properly"},
+    {"type":"message","delay":850,"from":"player","text":"I'll be watching carefully"},
+    {"type":"message","delay":850,"from":"mason","text":"I know you will 😏"},
+    {"type":"if","condition":"active_character:lena","then":[
+      {"type":"start_story","goHome":true,"startStory":"story/DAY13/DAY13_LENA_MORNING.json","startDelayMs":200}
+    ],"else":[
+      {"type":"if","condition":"active_character:hailey","then":[
+        {"type":"start_story","goHome":true,"startStory":"story/DAY13/DAY13_HAILEY_MORNING.json","startDelayMs":200}
+      ],"else":[
+        {"type":"if","condition":"active_character:evelyn","then":[
+          {"type":"start_story","goHome":true,"startStory":"story/DAY13/DAY13_EVELYN_MORNING.json","startDelayMs":200}
+        ],"else":[
+          {"type":"time_card","text":"DAY 14","goHome":true,"startStory":"story/DAY14/love/DAY14_00_MASON_MORNING_LOVE.json","startDelayMs":200}
+        ]}
+      ]}
+    ]}
+  ]
+}

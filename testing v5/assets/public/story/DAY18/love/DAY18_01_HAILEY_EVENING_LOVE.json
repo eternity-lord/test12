@@ -1,0 +1,53 @@
+{
+  "id": "day18_01_hailey_evening_love",
+  "onceKey": "d18_01_hailey_evening_love_v1",
+  "day": 18,
+  "slot": "evening",
+  "route": "love",
+  "routeLock": "route_hailey_locked_v1:love",
+  "contactId": "hailey",
+  "requireOnceKey": "d18_00_hailey_afternoon_love_v1",
+  "requireCondition": "all:active_character:hailey,route_hailey_locked_v1:love",
+  "onCompleteStartStory": "story/DAY18/love/DAY18_02_HAILEY_NIGHT_LOVE.json",
+  "steps": [
+    {"type":"if","condition":"active_character:lena","then":[
+      {"type":"if","condition":"any:route_lena_locked_v1:love,route_lena_locked_v1:ntr","then":[
+        {"type":"note","text":"LATER THAT EVENING — {{name:lena}} has gone home. You have cleared the table before joining {{name:hailey}} on the sofa."}
+      ]}
+    ]},
+    {"type":"notify","delay":1700,"fromId":"hailey","fromName":"{{name:hailey}}","avatar":"assets/avatars/hailey.jpg","text":"I’m in the living room","target":"conversation"},
+    {"type":"message","delay":1400,"from":"hailey","text":"And I brought snacks"},
+    {"type":"message","delay":1300,"from":"hailey","text":"You’re welcome"},
+    {"type":"image","delay":1600,"from":"hailey","image":"assets/pictures/Conversation/hailey_snacks_couch.jpg"},
+    {"type":"message","delay":1400,"from":"hailey","text":"I even left space for you"},
+    {"type":"message","delay":1300,"from":"hailey","text":"Look how generous I am"},
+    {"type":"message","delay":1500,"from":"player","text":"Why are you texting me if you’re already in the living room?"},
+    {"type":"message","delay":1600,"from":"hailey","text":"Because {{name:mason}} is around"},
+    {"type":"message","delay":1500,"from":"hailey","text":"{{mason:in_front}}"},
+    {"type":"message","delay":1400,"from":"hailey","text":"I’m shy like that"},
+    {"type":"message","delay":1500,"from":"player","text":"Shy?"},
+    {"type":"message","delay":1400,"from":"hailey","text":"Don’t make fun of me"},
+    {"type":"message","delay":1500,"from":"hailey","text":"Just come already before I eat everything"},
+    {"type":"note","text":"A bit later on the couch"},
+    {"type":"hak_transcript","delay":1700,"from":"hailey","text":"You’re sitting too far"},
+    {"type":"hak_transcript","delay":1500,"from":"hailey","text":"What if I need to steal food from your plate?"},
+    {"type":"hak_transcript","delay":1600,"from":"player","text":"You already stole half of it"},
+    {"type":"hak_transcript","delay":1500,"from":"hailey","text":"That’s not the point"},
+    {"type":"hak_transcript","delay":1600,"from":"hailey","text":"The point is you’re being weirdly distant"},
+    {"type":"hak_transcript","delay":1700,"from":"player","text":"I’m literally right next to you"},
+    {"type":"hak_transcript","delay":1600,"from":"hailey","text":"Not close enough"},
+    {"type":"hak_transcript","delay":1500,"from":"hailey","text":"Move"},
+    {"type":"image","delay":1600,"from":"hailey","image":"assets/pictures/Conversation/hailey_closer_couch.jpg"},
+    {"type":"hak_transcript","delay":1500,"from":"player","text":"Happy?"},
+    {"type":"hak_transcript","delay":1600,"from":"hailey","text":"Better"},
+    {"type":"hak_transcript","delay":1500,"from":"hailey","text":"You’re warm"},
+    {"type":"hak_transcript","delay":1600,"from":"hailey","text":"Don’t move"},
+    {"type":"hak_transcript","delay":1700,"from":"player","text":"Wasn’t planning to"},
+    {"type":"hak_transcript","delay":1600,"from":"hailey","text":"Good"},
+    {"type":"hak_transcript","delay":1500,"from":"hailey","text":"Because I might fall asleep like this"},
+    {"type":"hak_transcript","delay":1600,"from":"hailey","text":"And then you’ll be stuck"},
+    {"type":"hak_transcript","delay":1700,"from":"player","text":"Tragic"},
+    {"type":"hak_transcript","delay":1600,"from":"hailey","text":"I know right"},
+    {"type":"hak_transcript","delay":1500,"from":"hailey","text":"You’re basically my prisoner now 😌"}
+  ]
+}

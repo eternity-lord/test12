@@ -1,0 +1,48 @@
+{
+  "onceKey": "d14_05_mason_afternoon_nts_v1",
+  "contactId": "mason",
+  "requireOnceKey": "d14_04_mason_morning_nts_v1",
+  "onCompleteStartStory": "story/DAY14/nts/DAY14_02_MASON_EVENING_NTS.json",
+  "route": "nts",
+  "routeLock": "route_mason_locked_v1:nts",
+  "steps": [
+    {"type":"if","condition":"choice:d9_mason_nts_coach_identity_v1:chris","then":[
+      {"type":"notify","delay":1200,"fromId":"mason","fromName":"{{name:mason}}","avatar":"assets/avatars/male_mason.jpg","text":"Hey, how is dinner coming along?","target":"conversation"},
+      {"type":"message","delay":850,"from":"player","text":"I'm doing what I can"},
+      {"type":"message","delay":850,"from":"mason","text":"Your legs are injured, not your hands"},
+      {"type":"message","delay":850,"from":"mason","text":"Try using them a little faster"},
+      {"type":"message","delay":850,"from":"player","text":"Keep talking and I'll season your food with painkillers"},
+      {"type":"message","delay":850,"from":"mason","text":"At least then the food might have some flavor"},
+      {"type":"message","delay":850,"from":"player","text":"You're getting dangerously close to eating nothing"},
+      {"type":"message","delay":850,"from":"mason","text":"Chris just arrived"},
+      {"type":"message","delay":850,"from":"player","text":"Then you can both sit at the table"},
+      {"type":"message","delay":850,"from":"player","text":"I'm coming"},
+      {"type":"image","image":"assets/pictures/Conversation/male_mason/mason_drinking.jpg"},
+      {"type":"message","delay":850,"from":"mason","text":"We didn't need your permission"},
+      {"type":"message","delay":850,"from":"mason","text":"We already started the drinks"},
+      {"type":"message","delay":850,"from":"player","text":"You seem pretty happy to spend time with your coach after all"},
+      {"type":"message","delay":850,"from":"mason","text":"Say that again and I'll tell him you volunteered for the next session"},
+      {"type":"message","delay":850,"from":"mason","text":"He could probably train your mouth since it's the only part of you that never gets tired"},
+      {"type":"message","delay":850,"from":"player","text":"Enjoy your drink before I get there"}
+    ],"else":[
+      {"type":"notify","delay":1200,"fromId":"mason","fromName":"{{name:mason}}","avatar":"assets/avatars/male_mason.jpg","text":"Hey, how is dinner coming along?","target":"conversation"},
+      {"type":"message","delay":850,"from":"player","text":"I'm doing what I can"},
+      {"type":"message","delay":850,"from":"mason","text":"Your legs are injured, not your hands"},
+      {"type":"message","delay":850,"from":"mason","text":"Try using them a little faster"},
+      {"type":"message","delay":850,"from":"player","text":"Keep talking and I'll make sure your plate accidentally ends up on the floor"},
+      {"type":"message","delay":850,"from":"mason","text":"You'd have to leave your bed first"},
+      {"type":"message","delay":850,"from":"player","text":"I'll find the strength just for you"},
+      {"type":"message","delay":850,"from":"mason","text":"{{name:aiden}} just arrived"},
+      {"type":"message","delay":850,"from":"player","text":"Then you can both sit at the table"},
+      {"type":"message","delay":850,"from":"player","text":"I'm coming"},
+      {"type":"image","image":"assets/pictures/Conversation/male_mason/mason_drinking_aiden.jpg"},
+      {"type":"message","delay":850,"from":"mason","text":"We didn't wait for you to tell us"},
+      {"type":"message","delay":850,"from":"mason","text":"We already started the drinks"},
+      {"type":"message","delay":850,"from":"player","text":"You seem pretty happy to spend time with your coach after all"},
+      {"type":"message","delay":850,"from":"mason","text":"Keep talking and I'll let {{name:aiden}} design your recovery program"},
+      {"type":"message","delay":850,"from":"mason","text":"Since he's your best friend, I'm sure he'll make it extra painful"},
+      {"type":"message","delay":850,"from":"player","text":"Enjoy the peace while it lasts"}
+    ]},
+    {"type":"start_story","goHome":true,"startStory":"story/DAY14/nts/DAY14_02_MASON_EVENING_NTS.json","startDelayMs":200}
+  ]
+}

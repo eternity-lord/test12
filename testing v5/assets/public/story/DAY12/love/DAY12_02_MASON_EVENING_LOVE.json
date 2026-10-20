@@ -1,0 +1,44 @@
+{
+  "onceKey": "d12_05_mason_evening_love_v1",
+  "contactId": "mason",
+  "requireOnceKey": "d12_04_mason_afternoon_love_v1",
+  "route": "love",
+  "routeLock": "route_mason_locked_v1:love",
+  "steps": [
+    {"type":"notify","delay":1200,"fromId":"mason","fromName":"{{name:mason}}","avatar":"assets/avatars/male_mason.jpg","text":"Done with my shower","target":"conversation"},
+    {"type":"message","delay":850,"from":"mason","text":"I'm ready"},
+    {"type":"image","from":"mason","image":"assets/pictures/Conversation/male_mason/mason_shower_finished.jpg"},
+    {"type":"message","delay":850,"from":"mason","text":"Come get your ass kicked in 5 minutes"},
+    {"type":"message","delay":850,"from":"player","text":"I've been waiting all day to make you cry"},
+    {"type":"message","delay":850,"from":"mason","text":"Keep dreaming"},
+    {"type":"message","delay":850,"from":"mason","text":"I'll try not to laugh too much"},
+    {"type":"message","delay":850,"from":"player","text":"We'll see who's laughing in a few minutes"},
+    {"type":"note","text":"3 HOURS LATER"},
+    {"type":"message","delay":850,"from":"mason","text":"Do you need a teddy bear to sleep tonight? 😏"},
+    {"type":"message","delay":850,"from":"mason","text":"You took that loss pretty hard"},
+    {"type":"message","delay":850,"from":"player","text":"Enjoy it while you can"},
+    {"type":"message","delay":850,"from":"player","text":"Beginner's luck"},
+    {"type":"message","delay":850,"from":"mason","text":"That's a lot of excuses for one evening"},
+    {"type":"message","delay":850,"from":"player","text":"Next time we should bet something"},
+    {"type":"message","delay":850,"from":"mason","text":"Now that sounds interesting"},
+    {"type":"message","delay":850,"from":"player","text":"Loser owes the winner a favor"},
+    {"type":"message","delay":850,"from":"mason","text":"Deal"},
+    {"type":"message","delay":850,"from":"mason","text":"I hope you don't lose too often then 😏"},
+    {"type":"message","delay":850,"from":"player","text":"We'll see about that"},
+    {"type":"message","delay":850,"from":"mason","text":"Good night"},
+    {"type":"message","delay":850,"from":"player","text":"Night"},
+    {"type":"if","condition":"all:active_character:evelyn|!once:d12_02_evelyn_evening_nts_v1","then":[
+      {"type":"start_story","goHome":true,"startStory":"story/DAY12/DAY12_EVELYN_EVENING.json","startDelayMs":200}
+    ],"else":[
+      {"type":"if","condition":"active_character:lena","then":[
+        {"type":"start_story","goHome":true,"startStory":"story/DAY12/DAY12_LENA_EVENING.json","startDelayMs":200}
+      ],"else":[
+        {"type":"if","condition":"active_character:hailey","then":[
+          {"type":"start_story","goHome":true,"startStory":"story/DAY12/DAY12_HAILEY_EVENING.json","startDelayMs":200}
+        ],"else":[
+          {"type":"time_card","text":"DAY 13","goHome":true,"startStory":"story/DAY13/love/DAY13_00_MASON_MORNING_LOVE.json","startDelayMs":200}
+        ]}
+      ]}
+    ]}
+  ]
+}

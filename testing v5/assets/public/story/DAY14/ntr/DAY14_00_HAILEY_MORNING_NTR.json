@@ -1,0 +1,31 @@
+{
+  "onceKey": "d14_00_hailey_morning_ntr_v1",
+  "contactId": "hailey",
+  "requireOnceKey": "d14_00_lena_morning_ntr_v1|d13_02_hailey_evening_ntr_v1",
+  "onCompleteStartStory": "story/DAY14/DAY14_LENA_BREAK.json",
+  "steps": [
+    {"type":"notify","delay":1200,"fromId":"hailey","fromName":"{{name:hailey}}","avatar":"assets/avatars/hailey.jpg","text":"Heeeelp 😭","target":"conversation"},
+    {"type":"message","delay":850,"from":"hailey","text":"Today is war"},
+    {"type":"message","delay":850,"from":"hailey","text":"Real academic war"},
+    {"type":"message","delay":850,"from":"hailey","text":"But i'm ready"},
+    {"type":"image","delay":900,"from":"hailey","image":"assets/pictures/Conversation/hailey_ready_exam.jpg"},
+    {"type":"message","delay":850,"from":"hailey","text":"Soldier face"},
+    {"type":"message","delay":900,"from":"player","text":"That is definitely a soldier face"},
+    {"type":"message","delay":850,"from":"hailey","text":"Thank you"},
+    {"type":"message","delay":850,"from":"hailey","text":"Professor made me review until my soul left my body yesterday"},
+    {"type":"message","delay":850,"from":"hailey","text":"So if I fail, I am suing him"},
+    {"type":"message","delay":900,"from":"player","text":"You will not fail"},
+    {"type":"message","delay":850,"from":"hailey","text":"He said that too"},
+    {"type":"message","delay":850,"from":"hailey","text":"Like not motivationally"},
+    {"type":"message","delay":850,"from":"hailey","text":"More like he already decided I am not allowed"},
+    {"type":"message","delay":900,"from":"player","text":"That helped?"},
+    {"type":"message","delay":850,"from":"hailey","text":"A little"},
+    {"type":"message","delay":850,"from":"hailey","text":"Maybe a lot"},
+    {"type":"message","delay":850,"from":"hailey","text":"Do not make me analyze it before battle"},
+    {"type":"message","delay":900,"from":"player","text":"Breathe. Read twice"},
+    {"type":"message","delay":850,"from":"hailey","text":"Yes"},
+    {"type":"message","delay":850,"from":"hailey","text":"Professor voice and your voice are merging in my head"},
+    {"type":"message","delay":850,"from":"hailey","text":"Terrible soundtrack"},
+    {"type":"message","delay":850,"from":"hailey","text":"See you after the first battle 🤍"}
+  ]
+}

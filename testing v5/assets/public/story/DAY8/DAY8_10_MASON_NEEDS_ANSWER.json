@@ -1,0 +1,32 @@
+{
+  "onceKey": "d8_07_mason_needs_answer_v1",
+  "contactId": "mason",
+  "requireOnceKey": "d8_03_mason_normal_day_text_v1",
+  "onCompleteStartStory": "story/DAY8/DAY8_11_ONLYFUN_POST_EVELYN_23H_IF_NTR.json",
+  "steps": [
+    {"type":"notify","delay":1200,"fromId":"mason","fromName":"{{name:mason}}","avatar":"assets/avatars/male_mason.jpg","text":"Need an answer","target":"conversation"},
+    {"type":"message","delay":900,"from":"mason","text":"You said you'd check"},
+    {"type":"message","delay":900,"from":"mason","text":"What did you actually find?"},
+    {"type":"message","delay":900,"from":"mason","text":"I need something concrete now 😒"},
+    {"type":"message","delay":900,"from":"player","text":"I have a few options"},
+    {"type":"message","delay":900,"from":"player","text":"I just want to give you the real version, not the rushed one"},
+    {"type":"message","delay":900,"from":"player","text":"So wait a little more"},
+    {"type":"message","delay":900,"from":"mason","text":"Fine"},
+    {"type":"message","delay":900,"from":"player","text":"It should be ready later tonight"},
+    {"type":"message","delay":900,"from":"player","text":"I'll keep you updated 👍"},
+    {"type":"message","delay":900,"from":"mason","text":"Thanks"},
+    {"type":"message","delay":900,"from":"mason","text":"I finish work around 6"},
+    {"type":"message","delay":900,"from":"mason","text":"Want to play when I get home?"},
+    {"type":"message","delay":900,"from":"player","text":"Wow"},
+    {"type":"message","delay":900,"from":"player","text":"How nice of you"},
+    {"type":"message","delay":900,"from":"player","text":"Are you sure this is {{name:mason}}? 😏"},
+    {"type":"message","delay":900,"from":"mason","text":"You tell me, fucker"},
+    {"type":"image","image":"assets/pictures/Conversation/male_mason/mason_middle_finger.jpg"},
+    {"type":"message","delay":900,"from":"player","text":"{{name:mason}} in the flesh"},
+    {"type":"message","delay":900,"from":"player","text":"Alright, come get your ass kicked when you get home 😌"},
+    {"type":"message","delay":900,"from":"player","text":"And don't blame me if you cry after"},
+    {"type":"message","delay":900,"from":"mason","text":"You really want to spend your life in a wheelchair?"},
+    {"type":"message","delay":900,"from":"player","text":"I'm sooo scared 🙄"},
+    {"type":"note","text":"AROUND 9PM"}
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "onceKey": "d8_00_evelyn_16h_going_work_if_ntr_v1",
+  "contactId": "evelyn",
+  "onCompleteStartStory": "story/DAY8/DAY8_09_LENA_HOME_EARLY_NIGHT.json",
+  "steps": [
+    {"type":"if","condition":"route_evelyn_locked_v1:ntr","then":[
+      {"type":"notify","delay":1200,"fromId":"evelyn","fromName":"{{name:evelyn}}","avatar":"assets/avatars/evelyn.jpg","text":"Leaving now","target":"conversation"},
+      {"type":"message","delay":900,"from":"evelyn","text":"I am leaving now"},
+      {"type":"message","delay":900,"from":"evelyn","text":"It has been tense again today"},
+      {"type":"message","delay":900,"from":"evelyn","text":"So I want to be there early"},
+      {"type":"message","delay":900,"from":"evelyn","text":"I will text when I can"},
+      {"type":"message","delay":900,"from":"player","text":"Okay"},
+      {"type":"message","delay":900,"from":"player","text":"Just be careful"},
+      {"type":"message","delay":900,"from":"evelyn","text":"I will"},
+      {"type":"message","delay":900,"from":"evelyn","text":"Eat something if you can"}
+    ]}
+  ]
+}

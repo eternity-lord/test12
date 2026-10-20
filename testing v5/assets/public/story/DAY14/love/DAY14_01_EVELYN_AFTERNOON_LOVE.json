@@ -1,0 +1,30 @@
+{
+  "onceKey": "d14_01_evelyn_afternoon_love_v1",
+  "contactId": "evelyn",
+  "requireOnceKey": "d14_00_evelyn_morning_love_v1",
+  "onCompleteStartStory": "story/DAY14/DAY14_LENA_BREAK.json",
+  "steps": [
+    {"type":"message","delay":1200,"from":"player","text":"Hey, I'm starting to get hungry"},
+    {"type":"message","delay":850,"from":"player","text":"Could you bring me something to eat if it does not bother you?"},
+    {"type":"note","delay":1000,"text":"5 MINUTES LATER"},
+    {"type":"message","delay":850,"from":"player","text":"Is everything okay?"},
+    {"type":"note","delay":1000,"text":"3 MINUTES LATER"},
+    {"type":"if","condition":"any:active_character:evelyn,!active_character:evelyn","then":[
+      {"type":"image","delay":850,"from":"evelyn","image":"assets/pictures/Conversation/evelyn_after_shower_afternoon.jpg"},
+      {"type":"note","delay":900,"text":"I was worried a second ago. Now I'm struggling to find my words.","presentation":"player_thought","speaker":"player"}
+    ]},
+    {"type":"message","delay":850,"from":"evelyn","text":"Sorry!!"},
+    {"type":"message","delay":850,"from":"evelyn","text":"I just got out of the shower"},
+    {"type":"message","delay":850,"from":"evelyn","text":"I'll dry myself quickly and bring you something to eat"},
+    {"type":"message","delay":850,"from":"player","text":"You look beautiful"},
+    {"type":"message","delay":850,"from":"player","text":"And you do not need to rush"},
+    {"type":"message","delay":850,"from":"player","text":"I can wait"},
+    {"type":"message","delay":850,"from":"player","text":"I was just worried because you did not answer"},
+    {"type":"message","delay":850,"from":"evelyn","text":"That is very sweet of you"},
+    {"type":"message","delay":850,"from":"evelyn","text":"I will be upstairs in ten minutes with your lunch"},
+    {"type":"message","delay":850,"from":"player","text":"Thank you"},
+    {"type":"start_story","goHome":true,"startStory":"story/DAY14/DAY14_LENA_BREAK.json"}
+  ],
+  "route": "love",
+  "routeLock": "route_evelyn_locked_v1:love"
+}

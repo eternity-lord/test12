@@ -1,0 +1,23 @@
+{
+  "onceKey": "d1_09_mason_warning_v1",
+  "contactId": "mason",
+  "onCompleteStartStory": "story/DAY2/DAY2_01_LENA_MORNING.json",
+  "steps": [
+    {"type":"notify","delay":1200,"fromId":"mason","fromName":"{{name:mason}}","avatar":"assets/avatars/male_mason.jpg","text":"You still awake","target":"conversation"},
+    {"type":"message","delay":950,"from":"mason","text":"I just walked past your room"},
+    {"type":"message","delay":950,"from":"mason","text":"Why is your light still on"},
+    {"type":"message","delay":900,"from":"player","text":"Same question"},
+    {"type":"message","delay":900,"from":"player","text":"Why are you not asleep"},
+    {"type":"message","delay":950,"from":"mason","text":"Not your business"},
+    {"type":"message","delay":900,"from":"player","text":"Funny"},
+    {"type":"message","delay":900,"from":"player","text":"That’s what I was gonna say"},
+    {"type":"message","delay":950,"from":"mason","text":"Keep talking like that and I’ll break both your arms"},
+    {"type":"message","delay":950,"from":"mason","text":"Just to make sure you stay humble"},
+    {"type":"message","delay":900,"from":"player","text":"Go fuck yourself"},
+    {"type":"message","delay":900,"from":"player","text":"With that body you wouldn’t even break a branch"},
+    {"type":"message","delay":950,"from":"mason","text":"Fuck you"},
+    {"type":"message","delay":900,"from":"player","text":"Good night to you too"},
+    {"type":"note","text":"You finally fall asleep"},
+    {"type":"time_card","text":"DAY 2","goHome":true}
+  ]
+}

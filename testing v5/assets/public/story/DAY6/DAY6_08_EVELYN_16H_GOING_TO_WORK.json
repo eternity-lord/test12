@@ -1,0 +1,15 @@
+{
+  "onceKey": "d6_00_evelyn_16h_going_to_work_v1",
+  "contactId": "evelyn",
+  "onCompleteStartStory": "story/DAY6/DAY6_09_AIDEN_CHECKIN.json",
+  "steps": [
+    {"type":"notify","delay":1200,"fromId":"evelyn","fromName":"{{name:evelyn}}","avatar":"assets/avatars/evelyn.jpg","text":"Hey again","target":"conversation"},
+    {"type":"message","delay":900,"from":"evelyn","text":"I am heading there now"},
+    {"type":"message","delay":900,"from":"evelyn","text":"Everything is prepared for tonight just like yesterday"},
+    {"type":"message","delay":900,"from":"evelyn","text":"Dinner is in the fridge in case you get hungry"},
+    {"type":"message","delay":900,"from":"evelyn","text":"Try not to stay up too late"},
+    {"type":"message","delay":900,"from":"player","text":"Okay, good luck and be safe"},
+    {"type":"message","delay":900,"from":"evelyn","text":"I will text you when I can"},
+    {"type":"message","delay":900,"from":"evelyn","text":"Goodnight"}
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "onceKey": "d14_00_hailey_morning_nts_v1",
+  "contactId": "hailey",
+  "requireOnceKey": "d14_00_lena_morning_nts_v1|d13_02_hailey_evening_nts_v1",
+  "steps": [
+    {"type":"notify","delay":800,"fromId":"hailey","fromName":"{{name:hailey}}","avatar":"assets/avatars/hailey.jpg","text":"Big study day 😭","target":"conversation"},
+    {"type":"message","delay":900,"from":"hailey","text":"Today's going to be rough"},
+    {"type":"message","delay":900,"from":"player","text":"really,why?"},
+    {"type":"message","delay":900,"from":"hailey","text":"We need to study at school for tomorrow's final exam"},
+    {"type":"message","delay":900,"from":"hailey","text":"And Ethan said he wants to do a full review session"},
+    {"type":"message","delay":900,"from":"hailey","text":"Apparently we're getting close to exam level"},
+    {"type":"message","delay":900,"from":"player","text":"That's a good sign"},
+    {"type":"message","delay":900,"from":"hailey","text":"For you maybe"},
+    {"type":"message","delay":900,"from":"hailey","text":"For me it means suffering"},
+    {"type":"message","delay":900,"from":"player","text":"You'll survive"},
+    {"type":"message","delay":900,"from":"hailey","text":"I hope so"},
+    {"type":"message","delay":900,"from":"player","text":"Just keep taking it seriously, it will be soon over"},
+    {"type":"message","delay":900,"from":"hailey","text":"I know"},
+    {"type":"message","delay":900,"from":"player","text":"I was saying it will be over since you will fail"},
+    {"type":"message","delay":900,"from":"hailey","text":"Wow, thanks for the confidence boost 😭"},
+    {"type":"message","delay":900,"from":"player","text":"I'm joking of course"},
+    {"type":"message","delay":900,"from":"hailey","text":"You better"},
+    {"type":"message","delay":900,"from":"hailey","text":"I actually want to do well now"},
+    {"type":"message","delay":900,"from":"player","text":"That's progress"},
+    {"type":"message","delay":900,"from":"hailey","text":"Don't get used to hearing me say that 😌"},
+    {"type":"if","condition":"all:active_character:evelyn|!once:d14_00_evelyn_morning_nts_v1","then":[
+      {"type":"start_story","goHome":true,"startStory":"story/DAY14/DAY14_EVELYN_MORNING.json"}
+    ],"else":[
+      {"type":"start_story","goHome":true,"startStory":"story/DAY14/nts/DAY14_00_TUTOR_DIRECT_TALK_NTS.json"}
+    ]}
+  ]
+}

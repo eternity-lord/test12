@@ -1,0 +1,42 @@
+{
+  "onceKey": "d14_00_hailey_morning_love_v1",
+  "contactId": "hailey",
+  "requireOnceKey": "d14_00_lena_morning_love_v1|d13_02_hailey_evening_love_v1",
+  "steps": [
+    {"type":"notify","delay":1200,"fromId":"hailey","fromName":"{{name:hailey}}","avatar":"assets/avatars/hailey.jpg","text":"War day 😭","target":"conversation"},
+    {"type":"message","delay":850,"from":"player","text":"Good morning to you too"},
+    {"type":"message","delay":850,"from":"hailey","text":"Today is the big test day"},
+    {"type":"message","delay":850,"from":"hailey","text":"First phase of exams 😭"},
+    {"type":"message","delay":850,"from":"hailey","text":"We are about to find out if all this revision actually worked"},
+    {"type":"message","delay":900,"from":"player","text":"It worked"},
+    {"type":"message","delay":900,"from":"player","text":"You know more than you think"},
+    {"type":"message","delay":850,"from":"hailey","text":"I hope so"},
+    {"type":"message","delay":850,"from":"hailey","text":"Because if my brain betrays me now I am suing it, and you"},
+    {"type":"message","delay":900,"from":"player","text":"Just focus on tomorrow's shopping reward"},
+    {"type":"message","delay":850,"from":"hailey","text":"Oh,true 😌"},
+    {"type":"message","delay":850,"from":"hailey","text":"Weaponized motivation"},
+    {"type":"message","delay":850,"from":"hailey","text":"I respect it"},
+    {"type":"message","delay":900,"from":"player","text":"You wanted the clothes deal"},
+    {"type":"message","delay":850,"from":"hailey","text":"And I fully intend to abuse it 💅"},
+    {"type":"message","delay":850,"from":"hailey","text":"You created a monster"},
+    {"type":"image","delay":900,"from":"hailey","image":"assets/pictures/Conversation/hailey_ready_exam.jpg"},
+    {"type":"message","delay":850,"from":"hailey","text":"Ready for battle 😭"},
+    {"type":"message","delay":850,"from":"hailey","text":"If I do not return, tell the world I fought bravely"},
+    {"type":"message","delay":850,"from":"hailey","text":"And that the cafeteria muffins were terrible"},
+    {"type":"message","delay":900,"from":"player","text":"Very heroic speech 😭"},
+    {"type":"message","delay":850,"from":"hailey","text":"Thank you"},
+    {"type":"message","delay":850,"from":"hailey","text":"I wrote it while emotionally unstable"},
+    {"type":"message","delay":900,"from":"player","text":"Go destroy the test"},
+    {"type":"message","delay":850,"from":"hailey","text":"I will try 😌"},
+    {"type":"message","delay":850,"from":"hailey","text":"See you after the academic war 🤍"}
+    ,{"type":"if","condition":"route_evelyn_locked_v1:ntr","then":[
+      {"type":"start_story","goHome":true,"startStory":"story/DAY14/DAY14_EVELYN_MORNING.json"}
+    ],"else":[
+      {"type":"if","condition":"route_evelyn_locked_v1:nts","then":[
+        {"type":"start_story","goHome":true,"startStory":"story/DAY14/DAY14_EVELYN_MORNING.json"}
+      ],"else":[
+        {"type":"start_story","goHome":true,"startStory":"story/DAY14/DAY14_EVELYN_MORNING.json"}
+      ]}
+    ]}
+  ]
+}

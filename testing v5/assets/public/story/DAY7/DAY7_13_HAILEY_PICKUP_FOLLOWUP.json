@@ -1,0 +1,18 @@
+{
+  "onceKey": "d7_13_hailey_pickup_followup_v1",
+  "contactId": "hailey",
+  "onCompleteStartStory": "story/DAY7/DAY7_14_AIDEN_CHECKIN.json",
+  "steps": [
+    {"type":"notify","delay":1200,"fromId":"hailey","fromName":"{{name:hailey}}","avatar":"assets/avatars/hailey.jpg","text":"Home safe 😌","target":"conversation"},
+    {"type":"message","delay":900,"from":"hailey","text":"{{name:mason}} came"},
+    {"type":"message","delay":900,"from":"hailey","text":"{{mason:He}} looked annoyed, but I think that's just {{mason:his}} face after dark 😇"},
+    {"type":"image","image":"assets/pictures/Conversation/hailey_male_mason_arrived.jpg"},
+    {"type":"message","delay":900,"from":"player","text":"So everything worked out?"},
+    {"type":"message","delay":900,"from":"hailey","text":"Yep 😌"},
+    {"type":"message","delay":900,"from":"hailey","text":"Thanks for the save, hero 🤍"},
+    {"type":"message","delay":900,"from":"player","text":"Hero only when I do what you ask?"},
+    {"type":"message","delay":900,"from":"hailey","text":"Obviously 😌"},
+    {"type":"message","delay":900,"from":"hailey","text":"So do it more often if you want to rise in my esteem 😇"},
+    {"type":"message","delay":900,"from":"player","text":"You wish 😌"}
+  ]
+}

@@ -1,0 +1,73 @@
+{
+  "onceKey": "d15_05_mason_evening_nts_v1",
+  "contactId": "mason",
+  "requireOnceKey": "d15_04_mason_afternoon_nts_v1",
+  "onCompleteStartStory": "story/DEV/DAY9_END_CHAPTER.json",
+  "route": "nts",
+  "routeLock": "route_mason_locked_v1:nts",
+  "steps": [
+    {"type":"if","condition":"choice:d9_mason_nts_coach_identity_v1:chris","then":[
+      {"type":"message","delay":850,"from":"player","text":"So, you didn't drown?"},
+      {"type":"message","delay":850,"from":"player","text":"I found your old swimsuit by the way"},
+      {"type":"message","delay":850,"from":"player","text":"Too bad"},
+      {"type":"note","text":"25 MINUTES LATER"},
+      {"type":"hak_overlay","title":"HAK//INTENSE PROXIMITY DETECTED","messages":["Unusual physical proximity detected in the swimming pool","Mason relied heavily on Chris during the session","An intense interaction occurred between Mason and his coach",{"kind":"thought","speaker":"player","text":"I want {{name:mason}} to feel free to choose, even while I'm figuring out where that leaves me."}]},
+      {"type":"hak_add_evidence","kind":"intense_situation","route":"nts","profileId":"mason","profile":{"name":"mason","avatar":"assets/avatars/male_mason.jpg","kind":"intense_situation","route":"nts"},"evidences":[{"id":"d15_mason_chris_pool_intense_situation_v1","kind":"intense_situation","route":"nts","src":"assets/pictures/Conversation/male_mason/mason_gropping_pool.jpg","url":"assets/pictures/Conversation/male_mason/mason_gropping_pool.jpg","type":"image","characterId":"mason","contactId":"mason","label":"Pool assistance","title":"Pool assistance","text":"Mason and Chris experienced an intense moment of physical proximity during the swimming session"}]},
+      {"type":"note","text":"50 minutes later"},
+      {"type":"message","delay":850,"from":"mason","text":"My new mission in life is to make yours miserable"},
+      {"type":"message","delay":850,"from":"player","text":"I don't understand why"},
+      {"type":"message","delay":850,"from":"player","text":"I'm completely innocent"},
+      {"type":"message","delay":850,"from":"mason","text":"You sent me to a pool in that swimsuit knowing I can barely swim"},
+      {"type":"message","delay":850,"from":"mason","text":"You're about as innocent as a serial killer holding the knife"},
+      {"type":"message","delay":850,"from":"player","text":"I'm sure you had a good time at the pool anyway"},
+      {"type":"message","delay":850,"from":"mason","text":"I didn't say that"},
+      {"type":"message","delay":850,"from":"player","text":"But you're not denying it either"},
+      {"type":"message","delay":850,"from":"mason","text":"Shut up"},
+      {"type":"message","delay":850,"from":"player","text":"Sounds like your torturer is growing on you"},
+      {"type":"message","delay":850,"from":"mason","text":"This is only the beginning of the war"},
+      {"type":"message","delay":850,"from":"player","text":"With pleasure"},
+      {"type":"message","delay":850,"from":"player","text":"Sincerely, your secretary"}
+    ],"else":[
+      {"type":"message","delay":850,"from":"player","text":"So, you didn't drown?"},
+      {"type":"message","delay":850,"from":"player","text":"I found your old swimsuit by the way"},
+      {"type":"message","delay":850,"from":"player","text":"Too bad"},
+      {"type":"note","text":"25 MINUTES LATER"},
+      {"type":"hak_overlay","title":"HAK//INTENSE PROXIMITY DETECTED","messages":["Unusual physical proximity detected in the swimming pool","Mason relied heavily on {{name:aiden}} during the session","An intense interaction occurred between Mason and his coach",{"kind":"thought","speaker":"player","text":"I want {{name:mason}} to feel free to choose, even while I'm figuring out where that leaves me."}]},
+      {"type":"hak_add_evidence","kind":"intense_situation","route":"nts","profileId":"mason","profile":{"name":"mason","avatar":"assets/avatars/male_mason.jpg","kind":"intense_situation","route":"nts"},"evidences":[{"id":"d15_mason_aiden_pool_intense_situation_v1","kind":"intense_situation","route":"nts","src":"assets/pictures/Conversation/male_mason/mason_gropping_pool_aiden.jpg","url":"assets/pictures/Conversation/male_mason/mason_gropping_pool_aiden.jpg","type":"image","characterId":"mason","contactId":"mason","label":"Pool assistance","title":"Pool assistance","text":"Mason and {{name:aiden}} experienced an intense moment of physical proximity during the swimming session"}]},
+      {"type":"note","text":"50 minutes later"},
+      {"type":"message","delay":850,"from":"mason","text":"My new mission in life is to make yours miserable"},
+      {"type":"message","delay":850,"from":"player","text":"I don't understand why"},
+      {"type":"message","delay":850,"from":"player","text":"I'm completely innocent"},
+      {"type":"message","delay":850,"from":"mason","text":"You sent me to a pool in that swimsuit with your best friend knowing I can barely swim"},
+      {"type":"message","delay":850,"from":"mason","text":"You're about as innocent as a serial killer holding the knife"},
+      {"type":"message","delay":850,"from":"mason","text":"And {{name:aiden}} have the best tan of the year, unlike me"},
+      {"type":"message","delay":850,"from":"mason","text":"I'm as white as a ghost compared to him"},
+      {"type":"message","delay":850,"from":"player","text":"That's for sure"},
+      {"type":"message","delay":850,"from":"player","text":"I'm sure you had a good time at the pool anyway"},
+      {"type":"message","delay":850,"from":"mason","text":"I didn't say that"},
+      {"type":"message","delay":850,"from":"player","text":"But you're not denying it either"},
+      {"type":"message","delay":850,"from":"mason","text":"Shut up"},
+      {"type":"message","delay":850,"from":"player","text":"Sounds like my best friend is growing on you"},
+      {"type":"message","delay":850,"from":"mason","text":"This is only the beginning of the war"},
+      {"type":"message","delay":850,"from":"player","text":"With pleasure"},
+      {"type":"message","delay":850,"from":"player","text":"Sincerely, your secretary"}
+    ]},
+    {"type":"if","condition":"all:!d15_cast_removal_summary_seen_v1,!active_character:evelyn","then":[
+      {"type":"note","delay":1200,"text":"DAY 15 — After examining your leg, the doctor removed your cast. You can move more freely now, but your leg still needs rest."},
+      {"type":"set_flag","key":"d15_cast_removal_summary_seen_v1","value":true}
+    ]},
+    {"type":"if","condition":"active_character:lena","then":[
+      {"type":"start_story","goHome":true,"startStory":"story/DAY15/DAY15_02_LENA_EVENING.json","startDelayMs":200}
+    ],"else":[
+      {"type":"if","condition":"active_character:hailey","then":[
+        {"type":"start_story","goHome":true,"startStory":"story/DAY15/DAY15_02_HAILEY_EVENING.json","startDelayMs":200}
+      ],"else":[
+        {"type":"if","condition":"active_character:evelyn","then":[
+          {"type":"start_story","goHome":true,"startStory":"story/DAY15/DAY15_02_EVELYN_EVENING.json","startDelayMs":200}
+        ],"else":[
+          {"type":"dev_message","delay":1200,"title":"DEVELOPER","text":"Hey.\n\nYou've reached the end of the available content for this character for now.\n\nThank you for playing iNTeRcepted.\n\nIf you want to support the project, get new episodes, and access exclusive content, you can subscribe to my Patreon.\n\nYour support genuinely helps me keep building this game.\n\nSee you in the next chapter.","button":"( CONTINUE )","goHome":true}
+        ]}
+      ]}
+    ]}
+  ]
+}

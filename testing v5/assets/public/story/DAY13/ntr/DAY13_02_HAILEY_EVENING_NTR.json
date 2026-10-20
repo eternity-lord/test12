@@ -1,0 +1,35 @@
+{
+  "onceKey": "d13_02_hailey_evening_ntr_v1",
+  "contactId": "hailey",
+  "requireOnceKey": "d13_02_lena_evening_ntr_v1|d13_01_hailey_afternoon_ntr_v1",
+  "steps": [
+    {"type":"notify","delay":1200,"fromId":"hailey","fromName":"{{name:hailey}}","avatar":"assets/avatars/hailey.jpg","text":"Heyyyy 😇","target":"conversation"},
+    {"type":"message","delay":850,"from":"hailey","text":"I'm home"},
+    {"type":"message","delay":900,"from":"player","text":"You didn't get a text when you left"},
+    {"type":"message","delay":850,"from":"hailey","text":"I know"},
+    {"type":"message","delay":850,"from":"hailey","text":"Sorry"},
+    {"type":"message","delay":850,"from":"hailey","text":"Review went longer"},
+    {"type":"message","delay":900,"from":"player","text":"it's quite late now"},
+    {"type":"message","delay":850,"from":"hailey","text":"And I have to cook because I promised myself I would be a functional person"},
+    {"type":"image","delay":900,"from":"hailey","image":"assets/pictures/Conversation/hailey_cooking.jpg"},
+    {"type":"message","delay":850,"from":"hailey","text":"Chef face"},
+    {"type":"message","delay":900,"from":"player","text":"That is not a chef face"},
+    {"type":"message","delay":850,"from":"hailey","text":"It is a dangerous chef face"},
+    {"type":"message","delay":850,"from":"hailey","text":"Anyway"},
+    {"type":"message","delay":850,"from":"hailey","text":"Thank you for still talking to me when I am like this"},
+    {"type":"message","delay":900,"from":"player","text":"Always"},
+    {"type":"message","delay":850,"from":"hailey","text":"Do not be too nice"},
+    {"type":"message","delay":850,"from":"hailey","text":"I will get emotional and then blame exams"},
+    {"type":"message","delay":900,"from":"player","text":"Go sleep"},
+    {"type":"message","delay":850,"from":"hailey","text":"Good night 😌🤍"},
+    {"type":"if","condition":"all:active_character:mason,not once:d13_06_mason_evening_ntr_v1","then":[
+      {"type":"start_story","goHome":true,"startStory":"story/DAY13/DAY13_MASON_EVENING.json","startDelayMs":200}
+    ],"else":[
+      {"type":"if","condition":"all:active_character:evelyn,not once:d13_02_evelyn_evening_ntr_v1","then":[
+        {"type":"start_story","goHome":true,"startStory":"story/DAY13/DAY13_EVELYN_EVENING.json","startDelayMs":200}
+      ],"else":[
+        {"type":"start_story","goHome":true,"startStory":"story/DAY13/ntr/DAY13_03_HAK_HEARTSPIKE_NTR.json","startDelayMs":200}
+      ]}
+    ]}
+  ]
+}

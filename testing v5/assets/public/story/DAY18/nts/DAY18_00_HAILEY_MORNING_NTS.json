@@ -1,0 +1,47 @@
+{
+  "id": "day18_00_hailey_morning_nts",
+  "onceKey": "d18_00_hailey_morning_nts_v1",
+  "day": 18,
+  "slot": "morning",
+  "route": "nts",
+  "routeLock": "route_hailey_locked_v1:nts",
+  "contactId": "hailey",
+  "requireOnceKey": "d17_03_hailey_night_nts_v1",
+  "requireCondition": "all:active_character:hailey,route_hailey_locked_v1:nts",
+  "onCompleteStartStory": "story/DAY18/nts/DAY18_01_HAILEY_AFTERNOON_NTS.json",
+  "steps": [
+    {"type":"message","delay":900,"from":"player","text":"Morning"},
+    {"type":"message","delay":900,"from":"player","text":"What are your plans today?"},
+    {"type":"if","condition":"hailey_nts_post15_path:aiden","then":[
+      {"type":"message","delay":900,"from":"hailey","text":"I’ll probably just rot in bed"},
+      {"type":"message","delay":900,"from":"hailey","text":"I’m sore everywhere 😭"},
+      {"type":"photo","delay":900,"from":"hailey","image":"assets/pictures/Conversation/hailey_sore_morning_d18.jpg"},
+      {"type":"message","delay":900,"from":"player","text":"Not surprised"},
+      {"type":"message","delay":900,"from":"player","text":"By the way"},
+      {"type":"message","delay":900,"from":"player","text":"I invited {{name:aiden}} over to hang out"},
+      {"type":"message","delay":900,"from":"hailey","text":"You could’ve warned me earlier"},
+      {"type":"message","delay":900,"from":"player","text":"Nah"},
+      {"type":"message","delay":900,"from":"player","text":"I prefer watching you struggle"},
+      {"type":"message","delay":900,"from":"player","text":"All sore, messy hair, looking half dead"},
+      {"type":"message","delay":900,"from":"hailey","text":"You’re gonna pay for this"},
+      {"type":"message","delay":900,"from":"hailey","text":"I’m going full bombass mode"},
+      {"type":"message","delay":900,"from":"hailey","text":"{{name:aiden}} won’t even want to hang out with you anymore"},
+      {"type":"message","delay":900,"from":"player","text":"Yeah yeah"},
+      {"type":"message","delay":900,"from":"player","text":"Good luck with that"},
+      {"type":"message","delay":900,"from":"hailey","text":"You’ll see 😌"}
+    ],"else":[
+      {"type":"message","delay":900,"from":"hailey","text":"I have to go buy some revision books with {{name:ethan}}"},
+      {"type":"photo","delay":900,"from":"hailey","image":"assets/pictures/Conversation/hailey_ready_books_d18.jpg"},
+      {"type":"message","delay":900,"from":"player","text":"Sure"},
+      {"type":"message","delay":900,"from":"player","text":"That’s just code for going to his place"},
+      {"type":"message","delay":900,"from":"hailey","text":"No, I actually need the books"},
+      {"type":"message","delay":900,"from":"player","text":"Of course you do"},
+      {"type":"message","delay":900,"from":"player","text":"Funny how you only start working hard at the end of the year"},
+      {"type":"message","delay":900,"from":"hailey","text":"That’s what happens when you have a professor who knows how to motivate 😌"},
+      {"type":"message","delay":900,"from":"player","text":"I’m sure he does"},
+      {"type":"message","delay":900,"from":"hailey","text":"Jealous?"},
+      {"type":"message","delay":900,"from":"player","text":"Not even a little"},
+      {"type":"message","delay":900,"from":"hailey","text":"Liar"}
+    ]}
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "onceKey": "d9_01_hailey_morning_nts_v1",
+  "contactId": "hailey",
+  "requireOnceKey": "d8_route_day9_hailey_nts1_locked_v1",
+  "steps": [
+    {"type":"notify","delay":1200,"fromId":"hailey","fromName":"{{name:hailey}}","avatar":"assets/avatars/hailey.jpg","text":"Hey 😌","target":"conversation"},
+    {"type":"message","delay":900,"from":"hailey","text":"So your {{name:tutor}} plan is becoming a real thing"},
+    {"type":"message","delay":900,"from":"hailey","text":"I still can't believe I actually need help that badly 😭"},
+    {"type":"message","delay":900,"from":"hailey","text":"But having someone at home or online already sounds way less awful than staying after class with teachers"},
+    {"type":"message","delay":900,"from":"player","text":"See"},
+    {"type":"message","delay":900,"from":"player","text":"I do have good ideas sometimes"},
+    {"type":"message","delay":900,"from":"hailey","text":"Sometimes is doing a lot of work there 😌"},
+    {"type":"message","delay":900,"from":"hailey","text":"Did you actually find someone serious or are you just improvising with confidence again?"},
+    {"type":"message","delay":900,"from":"player","text":"I told you I would handle it"},
+    {"type":"message","delay":900,"from":"player","text":"Your future is safe with me"},
+    {"type":"message","delay":900,"from":"hailey","text":"That sounds way too dramatic for homework help 😭"},
+    {"type":"message","delay":900,"from":"hailey","text":"But okay"},
+    {"type":"message","delay":900,"from":"hailey","text":"If this saves my grades and keeps me out of school humiliation then I owe you one 😇"},
+    {"type":"if","condition":"active_character:evelyn","then":[
+      {"type":"if","condition":"route_evelyn_locked_v1:love","then":[
+        {"type":"start_story","goHome":true,"startStory":"story/DAY9/DAY9_EVELYN_MORNING.json"}
+      ],"else":[
+        {"type":"if","condition":"route_evelyn_locked_v1:nts","then":[
+          {"type":"start_story","goHome":true,"startStory":"story/DAY9/DAY9_EVELYN_MORNING.json"}
+        ],"else":[
+          {"type":"if","condition":"route_evelyn_locked_v1:ntr","then":[
+            {"type":"start_story","goHome":true,"startStory":"story/DAY9/DAY9_EVELYN_MORNING.json"}
+          ],"else":[
+            {"type":"start_story","goHome":true,"startStory":"story/DAY9/DAY9_EVELYN_MORNING.json"}
+          ]}
+        ]}
+      ]}
+    ],"else":[
+      {"type":"if","condition":"active_character:lena","then":[
+        {"type":"start_story","goHome":true,"startStory":"story/DAY9/DAY9_LENA_LATE_MORNING.json"}
+      ],"else":[
+        {"type":"start_story","goHome":true,"startStory":"story/DAY9/nts/DAY9_04_HAILEY_AFTERNOON_NTS.json"}
+      ]}
+    ]}
+  ]
+}

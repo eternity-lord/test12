@@ -1,0 +1,30 @@
+{
+  "onceKey": "d13_00_evelyn_morning_nts_v1",
+  "contactId": "evelyn",
+  "requireOnceKey": "d12_02_evelyn_evening_nts_v1",
+  "onCompleteStartStory": "story/DAY13/nts/DAY13_01_EVELYN_AFTERNOON_NTS.json",
+  "steps": [
+    {"type":"notify","delay":1200,"fromId":"evelyn","fromName":"{{name:evelyn}}","avatar":"assets/avatars/evelyn.jpg","text":"Good morning 😊 I'm going out for a few groceries","target":"conversation"},
+    {"type":"message","delay":850,"from":"evelyn","text":"Do you need anything while I'm there?"},
+    {"type":"message","delay":850,"from":"player","text":"No, I'm good"},
+    {"type":"message","delay":850,"from":"player","text":"I have everything I need"},
+    {"type":"message","delay":850,"from":"evelyn","text":"Alright"},
+    {"type":"message","delay":850,"from":"evelyn","text":"I won't be too long"},
+    {"type":"message","delay":850,"from":"evelyn","text":"Is that okay with the work though?"},
+    {"type":"message","delay":850,"from":"evelyn","text":"Can I afford to go out for a bit?"},
+    {"type":"message","delay":850,"from":"player","text":"Yes, of course"},
+    {"type":"message","delay":850,"from":"player","text":"We're the ones accepting clients and choosing the hours"},
+    {"type":"message","delay":850,"from":"player","text":"We'll look at work once you're back"},
+    {"type":"message","delay":850,"from":"evelyn","text":"That is reassuring"},
+    {"type":"message","delay":850,"from":"evelyn","text":"Thank you 😊"},
+    {"type":"image","delay":1200,"from":"evelyn","image":"assets/pictures/Conversation/evelyn_taking_umbrella.jpg"},
+    {"type":"message","delay":850,"from":"evelyn","text":"I'm taking your umbrella just in case"},
+    {"type":"message","delay":850,"from":"evelyn","text":"They said it might rain later today"},
+    {"type":"message","delay":850,"from":"player","text":"No problem"},
+    {"type":"message","delay":850,"from":"player","text":"Be careful outside"},
+    {"type":"message","delay":850,"from":"evelyn","text":"I will 😊"},
+    {"type":"start_story","goHome":true,"startStory":"story/DAY13/nts/DAY13_01_EVELYN_AFTERNOON_NTS.json"}
+  ],
+  "route": "nts",
+  "routeLock": "route_evelyn_locked_v1:nts"
+}

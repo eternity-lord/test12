@@ -1,0 +1,22 @@
+{
+  "onceKey": "d15_02_hak_heartspike_ntr_v1",
+  "contactId": "lena",
+  "requireOnceKey": "d15_01_lena_evening_ntr_v1",
+  "steps": [
+    {"type":"hak_overlay","title":"HAK//NOTICE","messages":["New AlphaMana activity aligns with previous captures","Running delayed evidence correlation...","Signal match confirmed","Relevant capture has been archived into HAK Evidence"]},
+    {"type":"hak_add_evidence","kind":"ntr","route":"ntr","profileId":"lena","profile":{"name":"{{name:lena}}","avatar":"assets/avatars/lena.jpg","kind":"ntr","route":"ntr"},"evidences":[{"id":"lena_ntr_d15_evidence_1","kind":"ntr","route":"ntr","src":"assets/pictures/evidence/lena_boss_office_3.mp4","url":"assets/pictures/evidence/lena_boss_office_3.mp4","type":"video","characterId":"lena","contactId":"lena","label":"AlphaMana correlation","title":"AlphaMana correlation"}],"notifyTitle":"HAK","notifyText":"1 new evidence received","target":"hak"},
+    {"type":"if","condition":"all:active_character:evelyn|!once:d15_02_evelyn_evening_ntr_v1","then":[
+      {"type":"start_story","goHome":true,"startStory":"story/DAY15/DAY15_02_EVELYN_EVENING.json"}
+    ],"else":[
+      {"type":"if","condition":"all:active_character:hailey,route_hailey_locked_v1:ntr","then":[
+        {"type":"time_card","text":"DAY 16","day":16,"goHome":true,"startStory":"story/DAY16/ntr/DAY16_00_HAILEY_MORNING_NTR.json","contactId":"hailey","startDelayMs":200}
+      ],"else":[
+        {"type":"if","condition":"all:active_character:lena,route_lena_locked_v1:ntr","then":[
+          {"type":"time_card","text":"DAY 16","day":16,"goHome":true,"startStory":"story/DAY16/ntr/DAY16_00_LENA_MORNING_NTR.json","contactId":"lena","startDelayMs":200}
+        ],"else":[
+          {"type":"start_story","goHome":true,"startStory":"story/DEV/demo_end.json"}
+        ]}
+      ]}
+    ]}
+  ]
+}

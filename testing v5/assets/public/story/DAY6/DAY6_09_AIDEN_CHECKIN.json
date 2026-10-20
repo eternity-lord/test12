@@ -1,0 +1,24 @@
+{
+  "onceKey": "d6_05_aiden_checkin_v1",
+  "contactId": "aiden",
+  "onCompleteStartStory": "story/DAY6/DAY6_10_LENA_EVENING.json",
+  "steps": [
+    {"type":"notify","delay":1200,"fromId":"aiden","fromName":"{{name:aiden}}","avatar":"assets/avatars/aiden.jpg","text":"Quick check","target":"conversation"},
+    {"type":"message","delay":900,"from":"aiden","fromName":"{{name:aiden}}","text":"You good?"},
+    {"type":"message","delay":900,"from":"player","text":"Yeah, why?"},
+    {"type":"message","delay":900,"from":"aiden","text":"No reason"},
+    {"type":"message","delay":900,"from":"player","text":"You worry like a mother?"},
+    {"type":"message","delay":900,"from":"aiden","text":"Fuck u"},
+    {"type":"image","delay":900,"from":"aiden","image":"assets/pictures/Conversation/aiden_outside_day6.jpg"},
+    {"type":"message","delay":900,"from":"aiden","text":"I just stepped out for air anyway"},
+    {"type":"message","delay":900,"from":"aiden","text":"Can swing by if you need anything"},
+    {"type":"message","delay":900,"from":"player","text":"I am fine"},
+    {"type":"message","delay":900,"from":"player","text":"But thanks"},
+    {"type":"message","delay":900,"from":"aiden","text":"Cool"},
+    {"type":"message","delay":900,"from":"aiden","text":"And if someone starts acting weird around you again"},
+    {"type":"message","delay":900,"from":"aiden","text":"Tell me first before you try to handle it alone"},
+    {"type":"message","delay":900,"from":"player","text":"Deal"},
+    {"type":"message","delay":900,"from":"aiden","text":"Good"},
+    {"type":"message","delay":900,"from":"aiden","text":"Update me later, even if it is just two words"}
+  ]
+}

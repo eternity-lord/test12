@@ -1,0 +1,40 @@
+{
+  "onceKey": "d10_03_mason_morning_nts_v1",
+  "contactId": "mason",
+  "requireOnceKey": "d9_08_mason_evening_nts_v1",
+  "onCompleteStartStory": "story/DAY10/nts/DAY10_01_MASON_AFTERNOON_NTS.json",
+  "route": "nts",
+  "routeLock": "route_mason_locked_v1:nts",
+  "steps": [
+    {"type":"if","condition":"choice:d9_mason_nts_coach_identity_v1:chris","then":[
+      {"type":"notify","delay":1200,"fromId":"mason","fromName":"{{name:mason}}","avatar":"assets/avatars/male_mason.jpg","text":"Hey, what time is my session with Chris?","target":"conversation"},
+      {"type":"message","delay":850,"from":"player","text":"You can ask him yourself"},
+      {"type":"message","delay":850,"from":"player","text":"I'll give you his number"},
+      {"type":"message","delay":850,"from":"mason","text":"No need"},
+      {"type":"message","delay":850,"from":"mason","text":"You already have his number"},
+      {"type":"message","delay":850,"from":"mason","text":"Just book the sessions and keep me updated"},
+      {"type":"message","delay":850,"from":"player","text":"Do you think I'm your secretary?"},
+      {"type":"message","delay":850,"from":"mason","text":"You don't have anything else to do anyway"},
+      {"type":"message","delay":850,"from":"player","text":"..."},
+      {"type":"message","delay":850,"from":"mason","text":"That's what I thought"},
+      {"type":"message","delay":850,"from":"player","text":"Fuck you"},
+      {"type":"message","delay":850,"from":"mason","text":"Ask Chris what time I need to be ready 🙂"}
+    ],"else":[
+      {"type":"notify","delay":1200,"fromId":"mason","fromName":"{{name:mason}}","avatar":"assets/avatars/male_mason.jpg","text":"Hey, what time is my session with {{name:aiden}}?","target":"conversation"},
+      {"type":"message","delay":850,"from":"player","text":"Ask him yourself"},
+      {"type":"message","delay":850,"from":"player","text":"I'll give you his number"},
+      {"type":"message","delay":850,"from":"mason","text":"Why?"},
+      {"type":"message","delay":850,"from":"mason","text":"He's your best friend"},
+      {"type":"message","delay":850,"from":"mason","text":"You two talk all the time anyway"},
+      {"type":"message","delay":850,"from":"mason","text":"Just book the sessions and keep me updated"},
+      {"type":"message","delay":850,"from":"player","text":"Do you think I'm your secretary?"},
+      {"type":"message","delay":850,"from":"mason","text":"You don't have anything else to do anyway"},
+      {"type":"message","delay":850,"from":"player","text":"..."},
+      {"type":"message","delay":850,"from":"mason","text":"No comeback?"},
+      {"type":"message","delay":850,"from":"player","text":"I'm choosing not to waste my energy on you"},
+      {"type":"message","delay":850,"from":"mason","text":"Sure"},
+      {"type":"message","delay":850,"from":"mason","text":"Ask {{name:aiden}} what time I need to be ready 🙂"}
+    ]},
+    {"type":"start_story","goHome":true,"startStory":"story/DAY10/nts/DAY10_01_MASON_AFTERNOON_NTS.json","startDelayMs":200}
+  ]
+}

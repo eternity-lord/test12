@@ -1,0 +1,11 @@
+{
+  "onceKey": "d8_00_onlyfun_post_evelyn_23h_if_ntr_v1",
+  "onCompleteStartStory": "story/DAY8/DAY8_12_HAILEY_ROUTE_LOCK_OUTFITS_AND_CHOICE.json",
+  "steps": [
+    {"type":"if","condition":"route_evelyn_locked_v1:ntr","then":[
+      {"type":"onlyfun_post","onceKey":"of_evelyn_seen_d8_v1","creatorId":"static_muse","image":"assets/pictures/OnlyFun/posts/EvelynBarOutfit1Day8.png","imageVariant":{"storageKey":"evelyn_outfit_choice_v1","choiceKey":"d3_evelyn_outfit_pick_v1","fallback":"assets/pictures/OnlyFun/posts/EvelynBarOutfit1Day8.png","map":{"outfit_1":"assets/pictures/OnlyFun/posts/EvelynBarOutfit1Day8.png","outfit_2":"assets/pictures/OnlyFun/posts/EvelynBarOutfit2Day8.png","outfit_3":"assets/pictures/OnlyFun/posts/EvelynBarOutfit3Day8.png"}},"text":"Touching reunion with an old friend","likes":611,"requiresSub":true,"notify":true}
+    ],"else":[
+      {"type":"note","text":"No post tonight"}
+    ]}
+  ]
+}

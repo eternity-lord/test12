@@ -1,0 +1,24 @@
+{
+  "onceKey": "d4_00_evelyn_going_work_v1",
+  "contactId": "evelyn",
+  "onCompleteStartStory": "story/DAY4/DAY4_07_HAILEY_BUS_DELAY_FOOD.json",
+  "steps": [
+    {"type":"notify","delay":1200,"fromId":"evelyn","fromName":"{{name:evelyn}}","avatar":"assets/avatars/evelyn.jpg","text":"I am leaving now","target":"conversation"},
+    {"type":"message","delay":900,"from":"evelyn","text":"Everything is ready"},
+    {"type":"message","delay":900,"from":"evelyn","text":"I checked your medication and your food"},
+    {"type":"message","delay":900,"from":"evelyn","text":"Please do not skip lunch"},
+    {"type":"message","delay":900,"from":"player","text":"I won't"},
+    {"type":"message","delay":900,"from":"player","text":"Try not to stress too much okay"},
+    {"type":"message","delay":900,"from":"evelyn","text":"I will try"},
+    {"type":"message","delay":900,"from":"evelyn","text":"It still feels a little strange going back"},
+    {"type":"message","delay":900,"from":"evelyn","text":"But it will be fine"},
+    {"type":"message","delay":900,"from":"evelyn","text":"I might be back late"},
+    {"type":"message","delay":900,"from":"evelyn","text":"It can get busy in the evening"},
+    {"type":"message","delay":900,"from":"player","text":"Text me when you can"},
+    {"type":"message","delay":900,"from":"evelyn","text":"I will"},
+    {"type":"message","delay":900,"from":"evelyn","text":"Focus on getting better today"},
+    {"type":"message","delay":900,"from":"evelyn","text":"That is all I want"},
+    {"type":"message","delay":900,"from":"player","text":"Be careful❤️"},
+    {"type":"message","delay":900,"from":"evelyn","text":"Always❤️"}
+  ]
+}

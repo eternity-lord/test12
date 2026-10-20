@@ -1,0 +1,27 @@
+{
+  "onceKey": "d13_05_mason_afternoon_ntr_v1",
+  "contactId": "mason",
+  "requireOnceKey": "d13_04_mason_morning_ntr_v1",
+  "onCompleteStartStory": "story/DAY13/ntr/DAY13_02_MASON_EVENING_NTR.json",
+  "route": "ntr",
+  "routeLock": "route_mason_locked_v1:ntr",
+  "steps": [
+    {"type":"notify","delay":1200,"fromId":"mason","fromName":"{{name:mason}}","avatar":"assets/avatars/male_mason.jpg","text":"Leaving now","target":"conversation"},
+    {"type":"message","delay":850,"from":"mason","text":"I'm heading to the gym"},
+    {"type":"message","delay":850,"from":"mason","text":"When I get back"},
+    {"type":"message","delay":850,"from":"mason","text":"Do you want to go to the movies tonight?"},
+    {"type":"message","delay":850,"from":"player","text":"Wow"},
+    {"type":"message","delay":850,"from":"player","text":"You're spoiling me today"},
+    {"type":"message","delay":850,"from":"mason","text":"Don't get used to it"},
+    {"type":"message","delay":850,"from":"mason","text":"It's just to thank you for waking me up this morning"},
+    {"type":"message","delay":850,"from":"mason","text":"And I just don't feel like staying home all evening"},
+    {"type":"message","delay":850,"from":"player","text":"I'd love to"},
+    {"type":"message","delay":850,"from":"player","text":"Just don't make me pay"},
+    {"type":"message","delay":850,"from":"mason","text":"You wish"},
+    {"type":"message","delay":850,"from":"mason","text":"See you in a bit"},
+    {"type":"note","text":"1 HOUR LATER"},
+    {"type":"hak_overlay","title":"HAK//NOTICE","messages":["Elevated stress indicators detected","Unexpected interaction at gym","Conversation tone no longer appears relaxed","Passive monitoring continues",{"kind":"thought","speaker":"player","text":"I need to know whether {{name:mason}} is okay before I decide what this means."}]},
+    {"type":"hak_add_evidence","kind":"ntr","route":"ntr","profileId":"mason","profile":{"name":"{{name:mason}}","avatar":"assets/avatars/male_mason.jpg","kind":"ntr","route":"ntr"},"evidences":[{"id":"d13_mason_gym_tension_v1","kind":"ntr","route":"ntr","src":"assets/pictures/evidence/mason_male/mason_gym_harrassment.jpg","url":"assets/pictures/evidence/mason_male/mason_gym_harrassment.jpg","type":"image","characterId":"mason","contactId":"mason","title":"Tense Encounter","text":"{{name:mason}} appears visibly uncomfortable during an interaction at the gym."}],"notifyTitle":"HAK","notifyText":"1 new evidence received","target":"hak/evidence"},
+    {"type":"start_story","goHome":true,"startStory":"story/DAY13/ntr/DAY13_02_MASON_EVENING_NTR.json","startDelayMs":200}
+  ]
+}

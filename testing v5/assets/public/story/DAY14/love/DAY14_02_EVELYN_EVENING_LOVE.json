@@ -1,0 +1,47 @@
+{
+  "onceKey": "d14_02_evelyn_evening_love_v1",
+  "contactId": "evelyn",
+  "requireOnceKey": "d14_01_evelyn_afternoon_love_v1",
+  "steps": [
+    {"type":"notify","delay":1200,"fromId":"evelyn","fromName":"{{name:evelyn}}","avatar":"assets/avatars/evelyn.jpg","text":"Hey 😊","target":"conversation"},
+    {"type":"message","delay":850,"from":"evelyn","text":"Did you finish work?"},
+    {"type":"message","delay":850,"from":"player","text":"Yeah"},
+    {"type":"message","delay":850,"from":"player","text":"I just finished"},
+    {"type":"message","delay":850,"from":"evelyn","text":"How did it go today?"},
+    {"type":"message","delay":850,"from":"player","text":"Everything went well"},
+    {"type":"message","delay":850,"from":"player","text":"I actually enjoy what I'm doing"},
+    {"type":"message","delay":850,"from":"evelyn","text":"That's wonderful 😊"},
+    {"type":"message","delay":850,"from":"player","text":"Did you already start making dinner?"},
+    {"type":"message","delay":850,"from":"evelyn","text":"Not yet"},
+    {"type":"message","delay":850,"from":"player","text":"Then I'll come downstairs and help you"},
+    {"type":"message","delay":850,"from":"evelyn","text":"Are you sure?"},
+    {"type":"message","delay":850,"from":"player","text":"Of course"},
+    {"type":"message","delay":850,"from":"player","text":"I can't let you do everything alone"},
+    {"type":"message","delay":850,"from":"evelyn","text":"Thank you"},
+    {"type":"message","delay":850,"from":"evelyn","text":"I would appreciate the company"},
+    {"type":"message","delay":850,"from":"evelyn","text":"And after dinner..."},
+    {"type":"message","delay":850,"from":"evelyn","text":"Would you like to continue the series?"},
+    {"type":"message","delay":850,"from":"player","text":"With pleasure"},
+    {"type":"message","delay":850,"from":"player","text":"You don't even need to ask"},
+    {"type":"message","delay":850,"from":"evelyn","text":"Perfect"},
+    {"type":"note","delay":1000,"text":"1 HOUR LATER"},
+    {"type":"image","delay":850,"from":"evelyn","image":"assets/pictures/Conversation/evelyn_waiting_couch.jpg"},
+    {"type":"message","delay":850,"from":"evelyn","text":"I'm waiting for you on the couch 😌"},
+    {"type":"message","delay":850,"from":"player","text":"I just finished brushing my teeth"},
+    {"type":"message","delay":850,"from":"player","text":"I'm on my way"},
+    {"type":"note","delay":1000,"text":"20 MINUTES LATER"},
+    {"type":"hak_overlay","title":"HAK//NOTICE","messages":["Repeated private evening interactions detected","Emotional attachment indicators increasing","Cross-referencing recent behavioral patterns...","Relevant emotional capture archived into HAK Evidence",{"kind":"thought","speaker":"player","text":"So I'm not imagining how close we've become."}]},
+    {"type":"hak_add_evidence","kind":"love","route":"love","profileId":"evelyn","profile":{"name":"{{name:evelyn}}","avatar":"assets/avatars/evelyn.jpg","kind":"love","route":"love"},"evidences":[{"id":"evelyn_love_d14_evidence_1","kind":"love","route":"love","src":"assets/pictures/evidence/evelyn_bending_over.mp4","url":"assets/pictures/evidence/evelyn_bending_over.mp4","type":"video","characterId":"evelyn","contactId":"evelyn","label":"Private evening routine","title":"Waiting together"}],"notifyTitle":"HAK","notifyText":"1 new evidence received","target":"hak"},
+    {"type":"if","condition":"active_character:lena","then":[
+      {"type":"start_story","goHome":true,"startStory":"story/DAY14/DAY14_LENA_NIGHT.json","startDelayMs":200}
+    ],"else":[
+      {"type":"if","condition":"active_character:mason","then":[
+        {"type":"time_card","text":"DAY 15","goHome":true,"startStory":"story/DAY15/love/DAY15_00_MASON_MORNING_LOVE.json","startDelayMs":200}
+      ],"else":[
+        {"type":"time_card","text":"DAY 15","goHome":true,"startStory":"story/DAY15/love/DAY15_00_EVELYN_MORNING_LOVE.json","startDelayMs":200}
+      ]}
+    ],"__masonNextDayPatched":true}
+  ],
+  "route": "love",
+  "routeLock": "route_evelyn_locked_v1:love"
+}

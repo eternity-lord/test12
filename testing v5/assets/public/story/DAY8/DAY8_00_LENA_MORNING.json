@@ -1,0 +1,30 @@
+{
+  "onceKey": "d8_00_lena_morning_v1",
+  "contactId": "lena",
+  "onCompleteStartStory": "story/DAY8/DAY8_01_EVELYN_MORNING_ROUTE_LOCK.json",
+  "steps": [
+    {"type":"notify","delay":1200,"fromId":"lena","fromName":"{{name:lena}}","avatar":"assets/avatars/lena.jpg","text":"Friday 😮‍💨","target":"conversation"},
+    {"type":"message","delay":900,"from":"lena","text":"My body already knows it's the end of the week"},
+    {"type":"message","delay":900,"from":"player","text":"You literally just woke up"},
+    {"type":"message","delay":900,"from":"lena","text":"Exactly 😭"},
+    {"type":"message","delay":900,"from":"lena","text":"That's how bad it is"},
+    {"type":"message","delay":900,"from":"player","text":"Did you sleep okay at least?"},
+    {"type":"message","delay":900,"from":"lena","text":"Yes, pretty much"},
+    {"type":"message","delay":900,"from":"lena","text":"But not enough to make me a morning person"},
+    {"type":"message","delay":900,"from":"player","text":"Still no miracle then"},
+    {"type":"message","delay":900,"from":"lena","text":"No miracle"},
+    {"type":"message","delay":900,"from":"player","text":"At least it's Friday"},
+    {"type":"message","delay":900,"from":"lena","text":"That's the only thing keeping me alive 😌"},
+    {"type":"message","delay":900,"from":"lena","text":"How are you this morning?"},
+    {"type":"message","delay":900,"from":"player","text":"Pretty good, I'm feeling better and better"},
+    {"type":"message","delay":900,"from":"lena","text":"That makes my day"},
+    {"type":"message","delay":900,"from":"lena","text":"Keep it that way please"},
+    {"type":"message","delay":900,"from":"player","text":"Yes boss"},
+    {"type":"message","delay":900,"from":"lena","text":"Exactly"},
+    {"type":"message","delay":900,"from":"lena","text":"Text me if you need me"},
+    {"type":"message","delay":900,"from":"player","text":"You too"},
+    {"type":"message","delay":900,"from":"player","text":"Good luck today"},
+    {"type":"message","delay":900,"from":"lena","text":"Thank you 💕"},
+    {"type":"message","delay":900,"from":"lena","text":"I'll text you when I can"}
+  ]
+}

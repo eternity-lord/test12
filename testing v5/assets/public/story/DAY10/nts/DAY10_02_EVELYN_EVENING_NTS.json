@@ -1,0 +1,71 @@
+{
+  "onceKey": "d10_02_evelyn_evening_nts_v1",
+  "contactId": "evelyn",
+  "requireOnceKey": "d10_01_evelyn_afternoon_nts_v1",
+  "steps": [
+    {"type":"notify","delay":1200,"fromId":"evelyn","fromName":"{{name:evelyn}}","avatar":"assets/avatars/evelyn.jpg","text":"Hey, do you have a minute? 😊","target":"conversation"},
+    {"type":"message","delay":850,"from":"player","text":"I always have time for you"},
+    {"type":"message","delay":850,"from":"evelyn","text":"Careful, keep saying things like that and I'll start believing you 😉"},
+    {"type":"message","delay":850,"from":"evelyn","text":"I did a few test photos like you asked"},
+    {"type":"message","delay":850,"from":"evelyn","text":"Can you tell me honestly what works and what doesn't?"},
+    {"type":"image","delay":1200,"from":"evelyn","image":"assets/pictures/Conversation/evelyn_profile_test_1.jpg"},
+    {"type":"image","delay":1200,"from":"evelyn","image":"assets/pictures/Conversation/evelyn_profile_test_2.jpg"},
+    {"type":"image","delay":1200,"from":"evelyn","image":"assets/pictures/Conversation/evelyn_profile_test_3.jpg"},
+    {"type":"message","delay":850,"from":"player","text":"Wow..."},
+    {"type":"message","delay":850,"from":"player","text":"You're absolutely gorgeous"},
+    {"type":"message","delay":850,"from":"player","text":"Well, it looks like you're trying clothes"},
+    {"type":"message","delay":850,"from":"player","text":"But it's really nice"},
+    {"type":"choice","key":"d10_evelyn_photo_choice_v1","prompt":"","options":[{"id":"perfect","text":"They're perfect, I'll use these","goto":"perfect_photos"},{"id":"sexier","text":"Maybe we should add one or two more daring photos","goto":"more_photos","points":{"nts":4}}]},
+    {"type":"label","name":"perfect_photos"},
+    {"type":"message","delay":850,"from":"player","text":"I'll put them on the profile and everything should be ready"},
+    {"type":"message","delay":850,"from":"player","text":"With how beautiful you are, we'll probably be able to start tomorrow"},
+    {"type":"message","delay":850,"from":"evelyn","text":"You're such a charmer"},
+    {"type":"message","delay":850,"from":"evelyn","text":"But thank you"},
+    {"type":"message","delay":850,"from":"evelyn","text":"It actually feels nice to make an effort and see myself differently for once"},
+    {"type":"goto","label":"common_end"},
+    {"type":"label","name":"more_photos"},
+    {"type":"message","delay":850,"from":"evelyn","text":"More daring photos?"},
+    {"type":"message","delay":850,"from":"evelyn","text":"Are you really sure?"},
+    {"type":"message","delay":850,"from":"player","text":"I think it would help attract more attention"},
+    {"type":"message","delay":850,"from":"player","text":"Just one or two, nothing crazy"},
+    {"type":"message","delay":850,"from":"evelyn","text":"..."},
+    {"type":"message","delay":850,"from":"evelyn","text":"Alright"},
+    {"type":"message","delay":850,"from":"evelyn","text":"Give me a little time"},
+    {"type":"note","text":"30 MINUTES LATER"},
+    {"type":"message","delay":850,"from":"evelyn","text":"Okay..."},
+    {"type":"image","delay":1200,"from":"evelyn","image":"assets/pictures/Conversation/evelyn_profile_test_4.jpg"},
+    {"type":"image","delay":1200,"from":"evelyn","image":"assets/pictures/Conversation/evelyn_profile_test_5.jpg"},
+    {"type":"message","delay":850,"from":"player","text":"..."},
+    {"type":"message","delay":850,"from":"player","text":"Wow"},
+    {"type":"message","delay":850,"from":"evelyn","text":"Stop it, I look weird"},
+    {"type":"message","delay":850,"from":"player","text":"You're perfect"},
+    {"type":"message","delay":850,"from":"player","text":"There's no way this won't work"},
+    {"type":"message","delay":850,"from":"evelyn","text":"You're such a charmer"},
+    {"type":"message","delay":850,"from":"evelyn","text":"But thank you"},
+    {"type":"message","delay":850,"from":"evelyn","text":"It actually feels nice to make an effort and see myself differently for once"},
+    {"type":"label","name":"common_end"},
+    {"type":"message","delay":850,"from":"player","text":"You should be proud of yourself"},
+    {"type":"message","delay":850,"from":"player","text":"You've done great today"},
+    {"type":"message","delay":850,"from":"evelyn","text":"Thanks 😊"},
+    {"type":"message","delay":850,"from":"evelyn","text":"I'm starting to feel a little more confident because of you"},
+    {"type":"message","delay":850,"from":"evelyn","text":"Let's hope tomorrow goes well"},
+    {"type":"meetandgreet_unlock_app","badge":false},
+    {"type":"meetandgreet_profile_unlock","profileId":"laurent"},
+    {"type":"meetandgreet_notify","text":"MeetAndGreet is ready. Laurent is available as the first profile.","profileId":"laurent","onceKey":"meetandgreet_d10_laurent_notify_v1"},
+    {"type":"if","condition":"active_character:mason","then":[
+      {"type":"if","condition":"route_mason_locked_v1:ntr","then":[
+        {"type":"time_card","text":"DAY 11","goHome":true,"startStory":"story/DAY11/ntr/DAY11_00_MASON_MORNING_NTR.json","startDelayMs":200}
+      ],"else":[
+        {"type":"if","condition":"route_mason_locked_v1:nts","then":[
+          {"type":"time_card","text":"DAY 11","goHome":true,"startStory":"story/DAY11/nts/DAY11_00_MASON_MORNING_NTS.json","startDelayMs":200}
+        ],"else":[
+          {"type":"time_card","text":"DAY 11","goHome":true,"startStory":"story/DAY11/love/DAY11_00_MASON_MORNING_LOVE.json","startDelayMs":200}
+        ]}
+      ]}
+    ],"else":[
+      {"type":"time_card","text":"DAY 11","goHome":true,"startStory":"story/DAY11/nts/DAY11_00_EVELYN_MORNING_NTS.json","startDelayMs":200}
+    ],"__masonNextDayPatched":true}
+  ],
+  "route": "nts",
+  "routeLock": "route_evelyn_locked_v1:nts"
+}

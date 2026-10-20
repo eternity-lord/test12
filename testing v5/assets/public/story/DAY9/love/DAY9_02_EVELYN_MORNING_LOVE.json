@@ -1,0 +1,38 @@
+{
+  "onceKey": "d9_00_evelyn_morning_love_v1",
+  "contactId": "evelyn",
+  "requireOnceKey": "d8_route_day9_love_locked_v1",
+  "steps": [
+    {"type":"notify","delay":1200,"fromId":"evelyn","fromName":"{{name:evelyn}}","avatar":"assets/avatars/evelyn.jpg","text":"Good morning ","target":"conversation"},
+    {"type":"message","delay":850,"from":"evelyn","text":"How are you feeling today?"},
+    {"type":"message","delay":850,"from":"player","text":"I'm okay"},
+    {"type":"message","delay":850,"from":"player","text":"What about you?"},
+    {"type":"message","delay":850,"from":"evelyn","text":"I'm alright"},
+    {"type":"message","delay":850,"from":"evelyn","text":"I wanted to thank you again"},
+    {"type":"message","delay":850,"from":"evelyn","text":"For helping me like this"},
+    {"type":"message","delay":850,"from":"evelyn","text":"And for offering to handle the financial side for a while"},
+    {"type":"message","delay":850,"from":"evelyn","text":"But I still do not feel right letting you manage that while you are injured"},
+    {"type":"message","delay":850,"from":"player","text":"There is no problem"},
+    {"type":"message","delay":850,"from":"player","text":"Honestly, it will keep me busy"},
+    {"type":"message","delay":850,"from":"player","text":"And I am happy if it means you can finally rest a little"},
+    {"type":"message","delay":850,"from":"evelyn","text":"You really are kind"},
+    {"type":"message","delay":850,"from":"evelyn","text":"Thank you"},
+    {"type":"message","delay":850,"from":"evelyn","text":"Just keep me updated when you hear more about the work"},
+    {"type":"message","delay":850,"from":"player","text":"I will"},
+    {"type":"if","condition":"active_character:lena","then":[
+      {"type":"if","condition":"route_lena_locked_v1:nts","then":[
+        {"type":"start_story","goHome":true,"startStory":"story/DAY9/DAY9_LENA_LATE_MORNING.json"}
+      ],"else":[
+        {"type":"if","condition":"route_lena_locked_v1:ntr","then":[
+          {"type":"start_story","goHome":true,"startStory":"story/DAY9/DAY9_LENA_LATE_MORNING.json"}
+        ],"else":[
+          {"type":"start_story","goHome":true,"startStory":"story/DAY9/DAY9_LENA_LATE_MORNING.json"}
+        ]}
+      ]}
+    ],"else":[
+      {"type":"start_story","goHome":true,"startStory":"story/DAY9/love/DAY9_06_EVELYN_AFTERNOON_LOVE.json"}
+    ]}
+  ],
+  "route": "love",
+  "routeLock": "route_evelyn_locked_v1:love"
+}

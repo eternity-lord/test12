@@ -1,0 +1,459 @@
+{
+  "version": 1,
+  "routeOptions": [
+    "love",
+    "nts",
+    "ntr"
+  ],
+  "characters": [
+    "lena",
+    "evelyn",
+    "mason",
+    "hailey",
+    "aiden"
+  ],
+  "routeLockCharacters": [
+    "lena",
+    "evelyn",
+    "mason",
+    "hailey"
+  ],
+  "activeCharacters": [
+    "lena",
+    "evelyn",
+    "mason",
+    "hailey",
+    "aiden"
+  ],
+  "characterLocks": {
+    "lena": {
+      "startDay": 16,
+      "endDay": 20,
+      "type": "premium"
+    }
+  },
+  "routeAliases": {
+    "mason": {
+      "nts": "nts_coach"
+    },
+    "hailey": {
+      "nts": "nts1"
+    }
+  },
+  "routeLockOnceKeys": {
+    "evelyn": {
+      "love": "d8_route_day9_love_locked_v1",
+      "nts": "d8_route_day9_nts_locked_v1",
+      "ntr": "d8_route_day9_ntr_locked_v1"
+    },
+    "mason": {
+      "love": "d8_route_day9_mason_love_locked_v1",
+      "nts": "d8_route_day9_mason_nts_coach_locked_v1",
+      "ntr": "d8_route_day9_mason_ntr_locked_v1"
+    },
+    "hailey": {
+      "love": "d8_route_day9_hailey_love_locked_v1",
+      "nts": "d8_route_day9_hailey_nts1_locked_v1",
+      "ntr": "d8_route_day9_hailey_ntr_locked_v1"
+    }
+  },
+  "routeProgressionByDay": {
+    "9": {
+      "love": [
+        "d9_00_aiden_morning_checkin_v1",
+        "d9_00_mason_morning_love_v1",
+        "d9_01_hailey_morning_love_v1",
+        "d9_00_evelyn_morning_love_v1",
+        "d9_00_lena_late_morning_v1",
+        "d9_04_hailey_afternoon_love_v1",
+        "d9_06_mason_afternoon_love_v1",
+        "d9_01_evelyn_afternoon_love_v1",
+        "d9_02_evelyn_evening_love_v1",
+        "d9_08_mason_evening_love_v1",
+        "d9_05_hailey_evening_love_v1",
+        "d9_01_lena_evening_love_v1"
+      ],
+      "nts": [
+        "d9_00_aiden_morning_checkin_v1",
+        "d9_00_mason_morning_nts_coach_v1",
+        "d9_01_hailey_morning_nts_v1",
+        "d9_00_evelyn_morning_nts_v1",
+        "d9_00_lena_late_morning_nts_v1",
+        "d9_04_hailey_afternoon_nts_v1",
+        "d9_04_tutor_search_nts_v1",
+        "d9_07_mason_afternoon_nts_v1",
+        "d9_01_lena_afternoon_nts_v1",
+        "d9_01_evelyn_afternoon_nts_v1",
+        "d9_02_evelyn_evening_nts_v1",
+        "d9_08_mason_evening_nts_v1",
+        "d9_05_hailey_evening_nts_v1",
+        "d9_02_lena_evening_nts_v1"
+      ],
+      "ntr": [
+        "d9_00_aiden_morning_checkin_v1",
+        "d9_00_mason_morning_ntr_v1",
+        "d9_01_hailey_morning_ntr_v1",
+        "d9_00_evelyn_morning_ntr_v1",
+        "d9_00_lena_late_morning_ntr_v1",
+        "d9_04_hailey_afternoon_ntr_v1",
+        "d9_01_lena_afternoon_ntr_v1",
+        "d9_06_mason_afternoon_ntr_v1",
+        "d9_01_evelyn_afternoon_ntr_v1",
+        "d9_02_evelyn_evening_ntr_v1",
+        "d9_07_mason_evening_ntr_v1",
+        "d9_05_hailey_evening_ntr_v1",
+        "d9_02_lena_evening_ntr_v1"
+      ]
+    },
+    "10": {
+      "love": [
+        "d10_00_aiden_shared_v1",
+        "d10_03_mason_morning_love_v1",
+        "d10_04_mason_afternoon_love_v1",
+        "d10_05_mason_evening_love_v1",
+        "d10_00_lena_morning_love_v1",
+        "d10_01_lena_afternoon_park_love_v1",
+        "d10_02_lena_evening_love_v1",
+        "d10_00_hailey_morning_love_v1",
+        "d10_01_hailey_afternoon_love_v1",
+        "d10_02_hailey_evening_love_v1",
+        "d10_00_evelyn_morning_love_v1",
+        "d10_01_evelyn_afternoon_love_v1",
+        "d10_02_evelyn_evening_love_v1"
+      ],
+      "nts": [
+        "d10_00_aiden_shared_v1",
+        "d10_03_mason_morning_nts_v1",
+        "d10_04_mason_afternoon_nts_v1",
+        "d10_05_mason_evening_nts_v1",
+        "d10_00_lena_morning_nts_v1",
+        "d10_01_lena_afternoon_nts_v1",
+        "d10_02_lena_evening_nts_v1",
+        "d10_00_hailey_morning_nts_v1",
+        "d10_01_hailey_afternoon_nts_v1",
+        "d10_01_tutor_first_meeting_nts_v1",
+        "d10_02_hailey_evening_nts_v1",
+        "d10_00_evelyn_morning_nts_v1",
+        "d10_01_evelyn_afternoon_nts_v1",
+        "d10_02_evelyn_evening_nts_v1"
+      ],
+      "ntr": [
+        "d10_00_aiden_shared_v1",
+        "d10_00_mason_morning_ntr_v1",
+        "d10_01_mason_afternoon_ntr_v1",
+        "d10_05_mason_evening_ntr_v1",
+        "d10_00_lena_morning_ntr_v1",
+        "d10_01_lena_afternoon_ntr_v1",
+        "d10_02_lena_evening_ntr_v1",
+        "d10_00_hailey_morning_ntr_v1",
+        "d10_01_hailey_afternoon_ntr_v1",
+        "d10_02_hailey_evening_ntr_v1",
+        "d10_00_evelyn_morning_ntr_v1",
+        "d10_01_evelyn_afternoon_ntr_v1",
+        "d10_02_evelyn_evening_ntr_v1"
+      ]
+    },
+    "11": {
+      "love": [
+        "d11_00_aiden_shared_v1",
+        "d11_03_mason_morning_love_v1",
+        "d11_04_mason_afternoon_love_v1",
+        "d11_05_mason_evening_love_v1",
+        "d11_00_lena_morning_love_v1",
+        "d11_01_lena_evening_love_v1",
+        "d11_02_lena_night_love_v1",
+        "d11_00_hailey_morning_love_v1",
+        "d11_01_hailey_afternoon_love_v1",
+        "d11_02_hailey_evening_love_v1",
+        "d11_00_evelyn_morning_love_v1",
+        "d11_01_evelyn_afternoon_love_v1",
+        "d11_02_evelyn_evening_love_v1"
+      ],
+      "nts": [
+        "d11_00_aiden_shared_v1",
+        "d11_03_mason_morning_nts_v1",
+        "d11_04_mason_afternoon_nts_v1",
+        "d11_05_mason_evening_nts_v1",
+        "d11_00_lena_morning_nts_v1",
+        "d11_01_lena_afternoon_nts_v1",
+        "d11_02_lena_evening_nts_v1",
+        "d11_00_hailey_morning_nts_v1",
+        "d11_01_hailey_afternoon_nts_v1",
+        "d11_01_tutor_study_update_nts_v1",
+        "d11_02_hailey_evening_nts_v1",
+        "d11_00_evelyn_morning_nts_v1",
+        "d11_01_evelyn_afternoon_nts_v1",
+        "d11_02_evelyn_evening_nts_v1"
+      ],
+      "ntr": [
+        "d11_00_aiden_shared_v1",
+        "d11_03_mason_morning_ntr_v1",
+        "d11_04_mason_afternoon_ntr_v1",
+        "d11_05_mason_evening_ntr_v1",
+        "d11_00_lena_morning_ntr_v1",
+        "d11_01_lena_break_ntr_v1",
+        "d11_02_lena_evening_ntr_v1",
+        "d11_00_hailey_morning_ntr_v1",
+        "d11_01_hailey_afternoon_ntr_v1",
+        "d11_02_hailey_evening_ntr_v1",
+        "d11_00_evelyn_morning_ntr_v1",
+        "d11_01_evelyn_afternoon_ntr_v1",
+        "d11_02_evelyn_evening_ntr_v1"
+      ]
+    },
+    "12": {
+      "love": [
+        "d12_00_aiden_shared_v1",
+        "d12_03_mason_morning_love_v1",
+        "d12_04_mason_afternoon_love_v1",
+        "d12_05_mason_evening_love_v1",
+        "d12_00_lena_morning_love_v1",
+        "d12_01_lena_evening_love_v1",
+        "d12_00_hailey_morning_love_v1",
+        "d12_01_hailey_afternoon_love_v1",
+        "d12_02_hailey_evening_love_v1",
+        "d12_00_evelyn_morning_love_v1",
+        "d12_01_evelyn_afternoon_love_v1",
+        "d12_02_evelyn_evening_love_v1"
+      ],
+      "nts": [
+        "d12_00_aiden_shared_v1",
+        "d12_03_mason_morning_nts_v1",
+        "d12_04_mason_afternoon_nts_v1",
+        "d12_05_mason_evening_nts_v1",
+        "d12_00_lena_morning_nts_v1",
+        "d12_01_lena_evening_nts_v1",
+        "d12_00_hailey_morning_nts_v1",
+        "d12_01_hailey_afternoon_nts_v1",
+        "d12_01_tutor_study_update_nts_v1",
+        "d12_02_hailey_evening_nts_v1",
+        "d12_00_evelyn_morning_nts_v1",
+        "d12_01_evelyn_afternoon_nts_v1",
+        "d12_02_evelyn_evening_nts_v1"
+      ],
+      "ntr": [
+        "d12_00_aiden_shared_v1",
+        "d12_03_mason_morning_ntr_v1",
+        "d12_04_mason_afternoon_ntr_v1",
+        "d12_05_mason_evening_ntr_v1",
+        "d12_00_lena_morning_ntr_v1",
+        "d12_01_lena_late_night_ntr_v1",
+        "d12_00_hailey_morning_ntr_v1",
+        "d12_01_hailey_afternoon_ntr_v1",
+        "d12_02_hailey_evening_ntr_v1",
+        "d12_00_evelyn_morning_ntr_v1",
+        "d12_01_evelyn_afternoon_ntr_v1",
+        "d12_02_evelyn_evening_ntr_v1"
+      ]
+    },
+    "13": {
+      "love": [
+        "d13_00_aiden_shared_v1",
+        "d13_04_mason_morning_love_v1",
+        "d13_05_mason_afternoon_love_v1",
+        "d13_06_mason_evening_love_v1",
+        "d13_00_lena_morning_love_v1",
+        "d13_01_lena_afternoon_love_v1",
+        "d13_02_lena_after_visit_love_v1",
+        "d13_03_hak_heartspike_love_v1",
+        "d13_00_hailey_morning_love_v1",
+        "d13_01_hailey_afternoon_love_v1",
+        "d13_02_hailey_evening_love_v1",
+        "d13_00_evelyn_morning_love_v1",
+        "d13_01_evelyn_afternoon_love_v1",
+        "d13_02_evelyn_evening_love_v1"
+      ],
+      "nts": [
+        "d13_00_aiden_shared_v1",
+        "d13_04_mason_morning_nts_v1",
+        "d13_05_mason_afternoon_nts_v1",
+        "d13_06_mason_evening_nts_v1",
+        "d13_00_lena_morning_nts_v1",
+        "d13_01_lena_afternoon_nts_v1",
+        "d13_02_lena_after_visit_nts_v1",
+        "d13_03_hak_heartspike_nts_v1",
+        "d13_00_hailey_morning_nts_v1",
+        "d13_01_hailey_afternoon_nts_v1",
+        "d13_01_tutor_attention_pattern_nts_v1",
+        "d13_02_hailey_evening_nts_v1",
+        "d13_00_evelyn_morning_nts_v1",
+        "d13_01_evelyn_afternoon_nts_v1",
+        "d13_02_evelyn_evening_nts_v1"
+      ],
+      "ntr": [
+        "d13_00_aiden_shared_v1",
+        "d13_04_mason_morning_ntr_v1",
+        "d13_05_mason_afternoon_ntr_v1",
+        "d13_06_mason_evening_ntr_v1",
+        "d13_00_lena_morning_ntr_v1",
+        "d13_01_lena_break_ntr_v1",
+        "d13_02_lena_evening_ntr_v1",
+        "d13_03_hak_heartspike_ntr_v1",
+        "d13_00_hailey_morning_ntr_v1",
+        "d13_01_hailey_afternoon_ntr_v1",
+        "d13_02_hailey_evening_ntr_v1",
+        "d13_00_evelyn_morning_ntr_v1",
+        "d13_01_evelyn_afternoon_ntr_v1",
+        "d13_02_evelyn_evening_ntr_v1"
+      ]
+    },
+    "14": {
+      "love": [
+        "d14_00_aiden_shared_v1",
+        "d14_04_mason_morning_love_v1",
+        "d14_05_mason_afternoon_love_v1",
+        "d14_06_mason_evening_love_v1",
+        "d14_00_lena_morning_love_v1",
+        "d14_01_lena_noon_love_v1",
+        "d14_02_lena_evening_love_v1",
+        "d14_03_lena_night_love_v1",
+        "d14_00_hailey_morning_love_v1",
+        "d14_01_hailey_afternoon_love_v1",
+        "d14_02_hailey_evening_love_v1",
+        "d14_00_evelyn_morning_love_v1",
+        "d14_01_evelyn_afternoon_love_v1",
+        "d14_02_evelyn_evening_love_v1"
+      ],
+      "nts": [
+        "d14_00_aiden_shared_v1",
+        "d14_04_mason_morning_nts_v1",
+        "d14_05_mason_afternoon_nts_v1",
+        "d14_06_mason_evening_nts_v1",
+        "d14_00_lena_morning_nts_v1",
+        "d14_01_lena_noon_nts_v1",
+        "d14_02_lena_evening_nts_v1",
+        "d14_03_lena_night_nts_v1",
+        "d14_00_hailey_morning_nts_v1",
+        "d14_00_tutor_direct_talk_nts_v1",
+        "d14_01_hailey_afternoon_nts_v1",
+        "d14_02_hailey_evening_nts_v1",
+        "d14_00_evelyn_morning_nts_v1",
+        "d14_01_evelyn_afternoon_nts_v1",
+        "d14_02_evelyn_evening_nts_v1"
+      ],
+      "ntr": [
+        "d14_00_aiden_shared_v1",
+        "d14_04_mason_morning_ntr_v1",
+        "d14_05_mason_afternoon_ntr_v1",
+        "d14_06_mason_evening_ntr_v1",
+        "d14_00_lena_morning_ntr_v1",
+        "d14_01_lena_noon_ntr_v1",
+        "d14_02_lena_evening_ntr_v1",
+        "d14_03_lena_night_ntr_v1",
+        "d14_00_hailey_morning_ntr_v1",
+        "d14_01_hailey_afternoon_ntr_v1",
+        "d14_02_hailey_evening_ntr_v1",
+        "d14_00_evelyn_morning_ntr_v1",
+        "d14_01_evelyn_afternoon_ntr_v1",
+        "d14_02_evelyn_evening_ntr_v1"
+      ]
+    }
+  },
+  "checkpoints": {
+    "1": {
+      "entryStory": "story/DAY1/DAY1_00_LANDLADY_INTRO.json",
+      "setup": false
+    },
+    "2": {
+      "entryStory": "story/DAY2/DAY2_01_LENA_MORNING.json",
+      "setup": true
+    },
+    "3": {
+      "entryStory": "story/DAY3/DAY3_01_LENA_TICKETS.json",
+      "setup": true
+    },
+    "4": {
+      "entryStory": "story/DAY4/DAY4_00_LENA_MORNING.json",
+      "setup": true
+    },
+    "5": {
+      "entryStory": "story/DAY5/DAY5_00_PLAYER_TEXT_EVELYN_RECAP.json",
+      "setup": true
+    },
+    "6": {
+      "entryStory": "story/DAY6/DAY6_00_EVELYN_MORNING_CHECKIN.json",
+      "setup": true
+    },
+    "7": {
+      "entryStory": "story/DAY7/DAY7_00_LENA_MORNING_NO_CLASS.json",
+      "setup": true
+    },
+    "8": {
+      "entryStory": "story/DAY8/DAY8_00_LENA_MORNING.json",
+      "setup": true
+    },
+    "9": {
+      "entryStory": "story/DAY9/DAY9_00_AIDEN_CHECKIN.json",
+      "setup": true
+    },
+    "10": {
+      "entryStory": "story/DAY10/DAY10_00_AIDEN_SHARED.json",
+      "setup": true
+    },
+    "11": {
+      "entryStory": "story/DAY11/DAY11_00_AIDEN_SHARED.json",
+      "setup": true
+    },
+    "12": {
+      "entryStory": "story/DAY12/DAY12_00_AIDEN_SHARED.json",
+      "setup": true
+    },
+    "13": {
+      "entryStory": "story/DAY13/DAY13_00_AIDEN_SHARED.json",
+      "setup": true
+    },
+    "14": {
+      "entryStory": "story/DAY14/DAY14_00_AIDEN_SHARED.json",
+      "setup": true
+    },
+    "15": {
+      "entryStory": "story/DAY15/DAY15_00_AIDEN_SHARED.json",
+      "setup": true
+    },
+    "16": {
+      "entryStory": "story/DAY16/love/DAY16_00_HAILEY_MORNING_LOVE.json",
+      "entryStoryByRoute": {
+        "love": "story/DAY16/love/DAY16_00_HAILEY_MORNING_LOVE.json",
+        "ntr": "story/DAY16/ntr/DAY16_00_HAILEY_MORNING_NTR.json",
+        "nts": "story/DAY16/nts/DAY16_00_HAILEY_MORNING_NTS.json"
+      },
+      "setup": true
+    },
+    "17": {
+      "entryStory": "story/DAY17/love/DAY17_00_HAILEY_AFTERNOON_LOVE.json",
+      "entryStoryByRoute": {
+        "love": "story/DAY17/love/DAY17_00_HAILEY_AFTERNOON_LOVE.json",
+        "ntr": "story/DAY17/ntr/DAY17_00_HAILEY_MORNING_NTR.json",
+        "nts": "story/DAY17/nts/DAY17_00_HAILEY_MORNING_NTS.json"
+      },
+      "setup": true
+    },
+    "18": {
+      "entryStory": "story/DAY18/love/DAY18_00_HAILEY_AFTERNOON_LOVE.json",
+      "entryStoryByRoute": {
+        "love": "story/DAY18/love/DAY18_00_HAILEY_AFTERNOON_LOVE.json",
+        "ntr": "story/DAY18/ntr/DAY18_00_HAILEY_MORNING_NTR.json",
+        "nts": "story/DAY18/nts/DAY18_00_HAILEY_MORNING_NTS.json"
+      },
+      "setup": true
+    },
+    "19": {
+      "entryStory": "story/DAY19/love/DAY19_00_HAILEY_MORNING_LOVE.json",
+      "entryStoryByRoute": {
+        "love": "story/DAY19/love/DAY19_00_HAILEY_MORNING_LOVE.json",
+        "ntr": "story/DAY19/ntr/DAY19_01_HAILEY_AFTERNOON_NTR.json",
+        "nts": "story/DAY19/nts/DAY19_00_HAILEY_MORNING_NTS.json"
+      },
+      "setup": true
+    },
+    "20": {
+      "entryStory": "story/DAY20/love/DAY20_00_HAILEY_MORNING_LOVE.json",
+      "entryStoryByRoute": {
+        "love": "story/DAY20/love/DAY20_00_HAILEY_MORNING_LOVE.json",
+        "ntr": "story/DAY20/ntr/DAY20_00_HAILEY_MORNING_NTR.json",
+        "nts": "story/DAY20/nts/DAY20_00_HAILEY_MORNING_NTS.json"
+      },
+      "setup": true
+    }
+  }
+}

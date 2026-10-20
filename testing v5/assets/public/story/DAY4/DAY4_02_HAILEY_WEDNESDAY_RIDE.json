@@ -1,0 +1,30 @@
+{
+  "onceKey": "d4_02_hailey_wednesday_ride_v1",
+  "contactId": "hailey",
+  "onCompleteStartStory": "story/DAY4/DAY4_03_LENA_LUNCH.json",
+  "steps": [
+    {"type":"notify","delay":1200,"fromId":"hailey","fromName":"{{name:hailey}}","avatar":"assets/avatars/hailey.jpg","text":"Hello mister secretary 😌","target":"conversation"},
+    {"type":"message","delay":900,"from":"hailey","text":"Random warning 😇"},
+    {"type":"message","delay":900,"from":"hailey","text":"I need either {{name:aiden}} or {{name:mason}} to take me to rugby on Wednesday"},
+    {"type":"message","delay":900,"from":"hailey","text":"I'm planning ahead because apparently that's what mature women do 😌"},
+    {"type":"message","delay":900,"from":"player","text":"Who are you?"},
+    {"type":"message","delay":900,"from":"player","text":"What have you done to my {{name:hailey}}"},
+    {"type":"message","delay":900,"from":"hailey","text":"How dare you say that 😤"},
+    {"type":"message","delay":900,"from":"hailey","text":"That's not how a proper majordomo is supposed to behave 😌"},
+    {"type":"message","delay":900,"from":"player","text":"Are you a princess?"},
+    {"type":"message","delay":900,"from":"player","text":"More like a frog to me"},
+    {"type":"message","delay":900,"from":"hailey","text":"(I'm a grown woman, I'm a grown woman 😌)"},
+    {"type":"message","delay":900,"from":"hailey","text":"( Don't kill him 😇)"},
+    {"type":"message","delay":900,"from":"player","text":"How many of you are there in your head?"},
+    {"type":"message","delay":900,"from":"hailey","text":"Enough to bury you in the garden 🌸"},
+    {"type":"message","delay":900,"from":"hailey","text":"Anyway"},
+    {"type":"message","delay":900,"from":"hailey","text":"How are you doing today?"},
+    {"type":"message","delay":900,"from":"player","text":"Better than yesterday"},
+    {"type":"message","delay":900,"from":"player","text":"Still slow though"},
+    {"type":"message","delay":900,"from":"hailey","text":"Slow is fine, or more like your normal speed 😌"},
+    {"type":"message","delay":900,"from":"player","text":"You better train to run fast"},
+    {"type":"message","delay":900,"from":"player","text":"You'll see what happens to bad frogs when I'm fully healed"},
+    {"type":"message","delay":900,"from":"hailey","text":"Threats don't reach my princess ears"},
+    {"type":"message","delay":900,"from":"hailey","text":"Goodbye peasant 😇"}
+  ]
+}

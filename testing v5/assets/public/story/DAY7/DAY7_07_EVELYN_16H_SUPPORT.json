@@ -1,0 +1,18 @@
+{
+  "onceKey": "d7_00_evelyn_16h_support_v1",
+  "contactId": "evelyn",
+  "onCompleteStartStory": "story/DAY7/DAY7_08_LENA_AFTER_WORK_HOME.json",
+  "steps": [
+    {"type":"message","delay":900,"from":"player","text":"Good luck today"},
+    {"type":"message","delay":900,"from":"evelyn","text":"Thank you"},
+    {"type":"message","delay":900,"from":"evelyn","text":"It might be a little tense again"},
+    {"type":"message","delay":900,"from":"evelyn","text":"But I will stay focused on my work"},
+    {"type":"message","delay":900,"from":"player","text":"Do not let him get to you"},
+    {"type":"message","delay":900,"from":"evelyn","text":"I will not"},
+    {"type":"message","delay":900,"from":"evelyn","text":"I know my limits"},
+    {"type":"message","delay":900,"from":"evelyn","text":"And I know when to step back if needed"},
+    {"type":"message","delay":900,"from":"player","text":"Text me if something feels off"},
+    {"type":"message","delay":900,"from":"evelyn","text":"I will"},
+    {"type":"message","delay":900,"from":"evelyn","text":"And you take care of yourself too"}
+  ]
+}

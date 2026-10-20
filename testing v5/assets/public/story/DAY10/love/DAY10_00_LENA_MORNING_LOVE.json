@@ -1,0 +1,52 @@
+{
+  "onceKey": "d10_00_lena_morning_love_v1",
+  "contactId": "lena",
+  "requireOnceKey": "d9_01_lena_evening_love_v1",
+  "steps": [
+    {"type":"notify","delay":1300,"fromId":"lena","fromName":"{{name:lena}}","avatar":"assets/avatars/lena.jpg","text":"Coffee audit ☕","target":"conversation"},
+    {"type":"message","delay":900,"from":"lena","text":"Rate my morning mood from 1 to disaster"},
+    {"type":"message","delay":900,"from":"player","text":"You texted early so maybe 6"},
+    {"type":"message","delay":900,"from":"lena","text":"Very generous"},
+    {"type":"message","delay":900,"from":"lena","text":"I was about to send a sleepy voice note just to make you suffer"},
+    {"type":"message","delay":900,"from":"player","text":"Threat accepted"},
+    {"type":"message","delay":900,"from":"lena","text":"You're impossible 😭"},
+    {"type":"message","delay":900,"from":"lena","text":"Anyway I think today's going to be really simple"},
+    {"type":"message","delay":900,"from":"lena","text":"I'm probably going to spend some time with my family"},
+    {"type":"message","delay":900,"from":"lena","text":"And maybe go to the park if the weather stays nice ☀️"},
+    {"type":"message","delay":900,"from":"player","text":"That sounds like a good Sunday"},
+    {"type":"message","delay":900,"from":"lena","text":"Mhm"},
+    {"type":"message","delay":900,"from":"lena","text":"Soft and peaceful"},
+    {"type":"message","delay":900,"from":"lena","text":"What about you?"},
+    {"type":"message","delay":900,"from":"player","text":"Nothing too crazy"},
+    {"type":"message","delay":900,"from":"player","text":"I want to walk around the house a little today"},
+    {"type":"message","delay":900,"from":"player","text":"Just to keep rebuilding the muscles in my leg"},
+    {"type":"message","delay":900,"from":"lena","text":"That's a really good plan"},
+    {"type":"message","delay":900,"from":"lena","text":"I'm proud of you every time you do that"},
+    {"type":"message","delay":900,"from":"player","text":"Then I'll do a few extra laps for the praise 😌"},
+    {"type":"message","delay":900,"from":"lena","text":"Good"},
+    {"type":"message","delay":900,"from":"lena","text":"And after that?"},
+    {"type":"message","delay":900,"from":"player","text":"Probably play games for a while"},
+    {"type":"message","delay":900,"from":"lena","text":"Wow"},
+    {"type":"message","delay":900,"from":"lena","text":"Athlete and gamer"},
+    {"type":"message","delay":900,"from":"player","text":"The complete package"},
+    {"type":"message","delay":900,"from":"lena","text":"Debatable 😌"},
+    {"type":"message","delay":900,"from":"player","text":"That's rude for a Sunday morning"},
+    {"type":"message","delay":900,"from":"lena","text":"A little 🤍"},
+    {"type":"message","delay":900,"from":"lena","text":"Send me a picture later if you actually do your rehab"},
+    {"type":"message","delay":900,"from":"player","text":"You don't trust me?"},
+    {"type":"message","delay":900,"from":"lena","text":"I do"},
+    {"type":"message","delay":900,"from":"lena","text":"I just want to check on you"},
+    {"type":"message","delay":900,"from":"lena","text":"And maybe admire you a little too 😌"},
+    {"type":"message","delay":900,"from":"player","text":"Now who's impossible?"},
+    {"type":"message","delay":900,"from":"lena","text":"Still you"},
+    {"type":"message","delay":900,"from":"player","text":"Then send me one too"},
+    {"type":"message","delay":900,"from":"lena","text":"Maybe if you're nice"},
+    {"type":"message","delay":900,"from":"lena","text":"Okay, I should get ready now"},
+    {"type":"message","delay":900,"from":"lena","text":"Text me later, handsome ❤️"},
+    {"type":"if","condition":"active_character:hailey","then":[
+      {"type":"start_story","goHome":true,"startStory":"story/DAY10/DAY10_HAILEY_MORNING.json"}
+    ],"else":[
+      {"type":"start_story","goHome":true,"startStory":"story/DAY10/love/DAY10_01_LENA_AFTERNOON_LOVE.json"}
+    ]}
+  ]
+}

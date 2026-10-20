@@ -1,0 +1,2308 @@
+<!-- scenes/home.html -->
+<style>
+:root{
+  /* ===== Matte + slightly vivid (same theme as splash/settings/index) ===== */
+  --fg:#f0f5ff;
+  --muted:rgba(240,245,255,0.68);
+
+  --btn-bg: rgba(6,7,10,0.46);
+  --btn-bg-hover: rgba(8,10,14,0.60);
+
+  --edge: rgba(245,248,255,0.20);
+  --edge-strong: rgba(245,248,255,0.44);
+
+  --glow-soft: rgba(112,220,255,0.12);
+  --glow-strong: rgba(112,220,255,0.18);
+
+  --accent-a: rgba(112,220,255,0.55); /* soft cyan */
+  --accent-b: rgba(255,166,92,0.45);  /* soft orange */
+
+  --line: rgba(245,248,255,0.14);
+
+  --patreon:#F96854;
+  --subscribestar-cyan:#44e5ff;
+  --subscribestar-blue:#4c7dff;
+  --subscribestar-pink:#ff5eea;
+
+  --card2: rgba(6,7,10,0.46);
+}
+
+/* ===== shared animations ===== */
+@keyframes borderPulse {
+  0%   { opacity:0.18; filter:blur(6px); }
+  50%  { opacity:0.46; filter:blur(8px); }
+  100% { opacity:0.22; filter:blur(6px); }
+}
+@keyframes microGlitchY {
+  0%   { transform: translateY(0); }
+  20%  { transform: translateY(-1px); }
+  45%  { transform: translateY(1px); }
+  70%  { transform: translateY(-0.5px); }
+  100% { transform: translateY(0); }
+}
+@keyframes home-arrive-jitter{
+  0%   { transform:translate(0,0); filter:contrast(1) brightness(1); }
+  25%  { transform:translate(-1px,1px); filter:contrast(1.14) brightness(1.04); }
+  50%  { transform:translate(1px,-1px); filter:contrast(1.18) brightness(1.08); }
+  100% { transform:translate(0,0); filter:contrast(1) brightness(1); }
+}
+@keyframes home-arrive-overlay{
+  0%   { opacity:0; }
+  20%  { opacity:.92; }
+  70%  { opacity:.45; }
+  100% { opacity:0; }
+}
+body.glitch-arrive .home{
+  animation: home-arrive-jitter .18s steps(2,end) 3;
+}
+body.glitch-arrive .home::after{
+  opacity:.92;
+  animation: home-arrive-overlay .62s steps(4,end) 1;
+}
+
+/* ===== Scene ===== */
+.home{
+  height:100%;
+  display:flex;
+  flex-direction:column;
+
+  color:var(--fg);
+  font-family:var(--ui-font);
+
+  background-image: var(--phone-wallpaper-image);
+  background-position:center;
+  background-size:cover;
+  background-repeat:no-repeat;
+
+  position:relative;
+  overflow:hidden;
+
+  padding-top:24px;
+  padding-bottom:max(12px, env(safe-area-inset-bottom, 0px));
+}
+
+/* matte wash + subtle vignette (not too dark) */
+.home::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:0;
+  background:
+    radial-gradient(ellipse at 50% -10%, rgba(28,35,54,0.20), rgba(3,5,12,0) 76%),
+    linear-gradient(180deg, rgba(5,7,14,0.24) 0%, rgba(4,5,10,0.44) 100%);
+  transform:translateZ(0);
+  backface-visibility:hidden;
+}
+
+/* soft dark wash; fine noise is provided globally by the shell */
+.home::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:1;
+  pointer-events:none;
+  opacity:.22;
+  background:linear-gradient(180deg, rgba(255,255,255,0.025), rgba(0,0,0,0.10));
+  mix-blend-mode:soft-light;
+}
+
+.home > *{ position:relative; z-index:2; }
+
+.home .home-bg-video{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  pointer-events:none;
+  z-index:0;
+  opacity:1;
+}
+
+.home .home-bg-video.is-hidden{
+  display:none;
+}
+
+/* ===== Home layout ===== */
+.home-shell{
+  flex:1;
+  min-height:0;
+  width:100%;
+  max-width:680px;
+  align-self:center;
+  display:flex;
+  flex-direction:column;
+  gap:16px;
+  padding:24px 24px 8px;
+}
+
+.home-top{
+  flex:1;
+  min-height:0;
+  display:flex;
+  flex-direction:column;
+  gap:20px;
+}
+
+.home-row-static,
+.home-dynamic-grid,
+.home-dock{
+  display:grid;
+  grid-template-columns:repeat(3, minmax(0, 1fr));
+  justify-items:center;
+  gap:24px 18px;
+}
+
+.home-row-static{
+  align-content:start;
+}
+
+.home-dynamic-wrap{
+  flex:1;
+  min-height:0;
+  overflow-x:hidden;
+  overflow-y:auto;
+  padding-right:2px;
+}
+
+.home-dynamic-grid{
+  grid-auto-rows:min-content;
+  align-content:start;
+  padding-bottom:6px;
+}
+
+.home-dock{
+  margin-top:auto;
+  padding-top:10px;
+  border-top:1px solid rgba(245,248,255,0.16);
+  grid-template-columns:repeat(4, minmax(0, 1fr));
+  gap:18px 8px;
+  overflow:visible;
+  background:linear-gradient(
+    180deg,
+    rgba(4,6,12,0.00) 0%,
+    rgba(4,6,12,0.26) 100%
+  );
+}
+
+/* ===== App button ===== */
+.app{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:10px;
+  cursor:pointer;
+  background:transparent;
+  border:0;
+  color:var(--fg);
+  font-size:15px;
+  justify-self:center;
+  padding:6px 2px;
+  border-radius:12px;
+  text-shadow:0 2px 10px rgba(0,0,0,.55);
+
+  /* ✅ no movement on hover */
+  transform:translateZ(0);
+
+  transition:
+    opacity .18s ease,
+    transform .18s cubic-bezier(.2,.8,.2,1);
+  will-change: auto;
+  isolation:isolate;
+  width:100%;
+  min-width:0;
+}
+.app.app-pop-in{
+  animation: app-pop-in .28s cubic-bezier(.2,.82,.32,1);
+}
+.app.app-pop-pending{
+  opacity:0;
+  pointer-events:none;
+}
+.app:focus-visible{
+  outline:2px solid rgba(245,248,255,0.44);
+  outline-offset:4px;
+}
+.app span{
+  font-weight:800;
+  letter-spacing:.04em;
+  text-transform:uppercase;
+  font-size:0.56rem;
+  color:var(--muted);
+  max-width:100%;
+  overflow-wrap:anywhere;
+  word-break:normal;
+  text-align:center;
+}
+.app-achievements > span,
+.app-meetandgreet > span{
+  font-size:0.46rem;
+  letter-spacing:0;
+}
+
+.app-hak{
+  position:relative;
+  isolation:isolate;
+  opacity:0;
+  pointer-events:none;
+}
+.app-hak.hak-locked .icon-hak{
+  filter:brightness(0.9);
+}
+
+@keyframes app-pop-in{
+  0%   { opacity:0; transform:translateY(4px) scale(0.97); }
+  100% { opacity:1; transform:scale(1); }
+}
+
+/* ===== Icon (matte glass tile) ===== */
+.icon{
+  position:relative;
+  width:78px;
+  height:78px;
+  border-radius:22px;
+
+  background: var(--btn-bg);
+  border:1px solid rgba(245,248,255,0.18);
+
+  display:grid;
+  place-items:center;
+
+  box-shadow: 0 10px 22px rgba(0,0,0,0.58);
+  overflow:hidden;
+
+  /* ✅ no scale/jitter */
+  transform:translateZ(0);
+
+  transition:
+    border-color .18s ease,
+    background .18s ease,
+    transform .18s cubic-bezier(.2,.8,.2,1);
+}
+
+/* scanlines + grain + gentle tint */
+.icon::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  opacity:.70;
+  background:
+    repeating-linear-gradient(
+      to bottom,
+      rgba(255,255,255,0.00) 0px,
+      rgba(255,255,255,0.00) 3px,
+      rgba(255,255,255,0.045) 4px
+    ),
+    repeating-linear-gradient(
+      135deg,
+      rgba(255,255,255,0.038) 0px,
+      rgba(255,255,255,0.00) 2px,
+      rgba(255,255,255,0.028) 4px
+    ),
+    radial-gradient(circle at 20% 0%,
+      rgba(112,220,255,0.10),
+      rgba(0,0,0,0.00) 62%
+    ),
+    radial-gradient(circle at 90% 95%,
+      rgba(255,166,92,0.06),
+      rgba(0,0,0,0.00) 62%
+    );
+}
+
+/* ✅ border bloom: OFF base, ON hover only */
+.icon::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  border-radius:inherit;
+  padding:0;
+
+  /* white-ish glow, not cyan-only */
+  background:
+    radial-gradient(circle at 50% 45%, rgba(245,248,255,0.13), transparent 64%),
+    linear-gradient(180deg, rgba(255,255,255,0.07), transparent 62%);
+
+  opacity:0;                 /* ✅ OFF base */
+  filter:none;
+
+  pointer-events:none;
+  transition: opacity .18s ease, filter .18s ease;
+}
+
+/* ✅ Hover: illuminate only (no move, no glitch, no scale) */
+.app:hover{
+  opacity:1;
+  transform:translateY(-2px);
+}
+.app:hover .icon{
+  transform:scale(1.035);
+  border-color: rgba(245,248,255,0.44);
+  background: var(--btn-bg-hover);
+  box-shadow:
+    0 12px 24px rgba(0,0,0,0.62),
+    0 0 0 1px rgba(245,248,255,0.08);
+}
+.app:hover .icon::after{
+  opacity:1;                /* ✅ ON hover */
+  filter:none;
+}
+
+/* Active: small press */
+.app:active{
+  transform:translateY(1px) scale(0.985);
+}
+.app:active .icon{
+  transform:scale(0.965);
+  border-color: rgba(245,248,255,0.70);
+}
+
+.app-patreon:hover .icon{
+  box-shadow:
+    0 12px 24px rgba(0,0,0,0.66),
+    0 0 0 1px rgba(255,255,255,0.10),
+    0 0 10px rgba(255,255,255,0.12);
+}
+.app-subscribestar .icon{
+  border-color: rgba(68,229,255,0.24);
+}
+.app-subscribestar .icon::before{
+  background:
+    repeating-linear-gradient(
+      to bottom,
+      rgba(255,255,255,0.00) 0px,
+      rgba(255,255,255,0.00) 3px,
+      rgba(255,255,255,0.045) 4px
+    ),
+    radial-gradient(circle at 22% 12%, rgba(68,229,255,0.24), transparent 52%),
+    radial-gradient(circle at 86% 88%, rgba(255,94,234,0.18), transparent 58%),
+    linear-gradient(145deg, rgba(76,125,255,0.08), rgba(0,0,0,0.00));
+}
+.app-subscribestar:hover .icon{
+  border-color: rgba(68,229,255,0.58);
+  box-shadow:
+    0 12px 24px rgba(0,0,0,0.66),
+    0 0 0 1px rgba(68,229,255,0.10),
+    0 0 10px rgba(68,229,255,0.14),
+    0 0 12px rgba(255,94,234,0.08);
+}
+
+.home-dock .icon{
+  width:66px;
+  height:66px;
+  border-radius:19px;
+  box-shadow: 0 8px 18px rgba(0,0,0,0.54);
+}
+.home-dock .icon svg{
+  width:34px;
+  height:34px;
+}
+.home-dock .app{
+  gap:8px;
+  padding:6px 2px;
+}
+.home-dock .app span{
+  font-size:0.55rem;
+  letter-spacing:.04em;
+}
+.home-dock .app-subscribestar span{
+  font-size:0.43rem;
+  letter-spacing:0;
+  text-transform:none;
+}
+
+@media (max-width:360px){
+  .home-shell{ padding-inline:14px; }
+  .home-row-static,.home-dynamic-grid{ column-gap:12px; }
+  .app,.home-dock .app{ padding-inline:0; }
+  .app > span{ font-size:0.54rem !important; letter-spacing:.015em; }
+  .app-achievements > span,.app-meetandgreet > span{ font-size:0.46rem !important; letter-spacing:0; }
+  .home-dock .app > span{ font-size:0.49rem !important; letter-spacing:0; }
+  .home-dock .app-subscribestar > span{ font-size:0.43rem !important; }
+}
+@media (max-height:600px){
+  .home-shell{ padding-top:12px; gap:10px; }
+  .home-top{ overflow-y:auto; overflow-x:hidden; scrollbar-width:none; }
+  .home-top::-webkit-scrollbar{ width:0; }
+  .home-row-static{ flex-shrink:0; }
+  .home-dynamic-wrap{ flex:0 0 auto; overflow:visible; }
+}
+
+/* Glyphes */
+.icon svg{
+  width:40px; height:40px;
+  stroke:rgba(240,245,255,0.94);
+  fill:none;
+  stroke-width:1.7;
+  opacity:.98;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+  shape-rendering:geometricPrecision;
+  filter: drop-shadow(0 0 8px rgba(0,0,0,.55));
+  position:relative;
+  z-index:1;
+}
+.icon.messages svg,
+.icon.settings svg{ width:40px; height:40px; }
+.home-dock .icon.settings svg{ width:34px; height:34px; }
+.icon svg.filled{ stroke:none; opacity:1 }
+
+/* ===== Badges ===== */
+@keyframes badgePulse{
+  0%,100%{ opacity:1; }
+  50%{ opacity:.8; }
+}
+.badge{
+  position:absolute;
+  right:6px;
+  bottom:6px;
+  min-width:20px;
+  height:20px;
+  padding:0 6px;
+  display:none;
+  align-items:center;
+  justify-content:center;
+
+  background: linear-gradient(
+    180deg,
+    rgba(255, 70, 70, 0.98),
+    rgba(190, 20, 20, 0.98)
+  );
+  color:#fff;
+  border:1px solid rgba(245,248,255,0.20);
+  border-radius:999px;
+  font-size:13px;
+  line-height:1;
+  font-weight:600;
+  letter-spacing:0.2px;
+  transform-origin:center;
+  animation: badgePulse 2.4s ease-in-out infinite;
+  box-shadow:
+    0 0 6px rgba(255, 60, 60, 0.35),
+    0 0 12px rgba(255, 40, 40, 0.15);
+  z-index:2;
+}
+.badge.badge-dot{
+  min-width:12px;
+  width:12px;
+  height:12px;
+  padding:0;
+  border-radius:999px;
+  line-height:12px;
+  animation:none;
+}
+@media (prefers-reduced-motion: reduce){
+  .app,
+  .icon{
+    transition: opacity .12s ease, filter .12s ease, border-color .12s ease, box-shadow .12s ease, background .12s ease !important;
+    will-change:auto;
+  }
+  .app:hover,
+  .app:active,
+  .app:hover .icon,
+  .app:active .icon{
+    transform:none !important;
+  }
+  .badge, .app.app-pop-in{ animation:none !important; }
+}
+
+.icon .todo-dot-home{
+  position:absolute;
+  top:7px;
+  right:7px;
+  z-index:3;
+  pointer-events:none;
+}
+.icon .todo-dot-home[hidden]{ display:none !important; }
+
+.icon .needs-player-dot-home{
+  position:absolute;
+  top:7px;
+  right:7px;
+  z-index:4;
+  pointer-events:none;
+}
+.icon .needs-player-dot-home[hidden]{ display:none !important; }
+
+.icon .unfinished-dot-home{
+  position:absolute;
+  top:7px;
+  left:7px;
+  z-index:4;
+  pointer-events:none;
+  width:9px;
+  height:9px;
+  border-radius:999px;
+  background:rgba(82,240,160,0.96);
+  box-shadow:
+    0 0 0 1px rgba(20,56,40,0.72),
+    0 0 9px rgba(82,240,160,0.52);
+}
+.icon .unfinished-dot-home[hidden]{ display:none !important; }
+
+#app-messages .icon .todo-dot-home{
+  right:29px;
+}
+
+/* ===== HAK icon stays B/W but matte ===== */
+.icon-hak{
+  background: rgba(2,2,2,0.92);
+  border:1px solid rgba(245,248,255,0.36);
+  box-shadow:
+    0 16px 40px rgba(0,0,0,0.72),
+    0 0 14px rgba(245,248,255,0.12);
+}
+.icon-hak::before{
+  opacity:.55;
+  background:
+    repeating-linear-gradient(
+      to bottom,
+      rgba(255,255,255,0.00) 0px,
+      rgba(255,255,255,0.00) 3px,
+      rgba(255,255,255,0.06) 4px
+    ),
+    repeating-linear-gradient(
+      135deg,
+      rgba(255,255,255,0.03) 0px,
+      rgba(255,255,255,0.00) 2px,
+      rgba(255,255,255,0.02) 4px
+    );
+}
+.icon-hak svg{
+  stroke:#ffffff;
+  fill:none;
+  filter:drop-shadow(0 0 10px rgba(245,248,255,0.16));
+}
+/* ✅ HAK hover = just brighter, no movement */
+.app:hover .icon-hak{
+  border-color: rgba(245,248,255,0.55);
+  box-shadow:
+    0 10px 22px rgba(0,0,0,0.62),
+    0 0 10px rgba(245,248,255,0.10);
+}
+
+@keyframes hak-boost-pulse {
+  0%   { filter: brightness(1.02); }
+  50%  { filter: brightness(1.16); }
+  100% { filter: brightness(1.02); }
+}
+.app-hak.hak-glow-boost .icon-hak{
+  border-color: rgba(245,248,255,0.78);
+  box-shadow:
+    0 24px 56px rgba(0,0,0,0.84),
+    0 0 18px rgba(245,248,255,0.20);
+  animation:none;
+}
+
+@keyframes hak-rgb-glow-cycle {
+  0% {
+    filter: hue-rotate(0deg) saturate(1.28) blur(11px);
+  }
+  50% {
+    filter: hue-rotate(180deg) saturate(1.65) blur(14px);
+  }
+  100% {
+    filter: hue-rotate(360deg) saturate(1.28) blur(11px);
+  }
+}
+@keyframes hak-rgb-glow-pulse {
+  0%   { opacity: 0.42; transform: scale(0.94); }
+  50%  { opacity: 1;    transform: scale(1.10); }
+  100% { opacity: 0.42; transform: scale(0.94); }
+}
+@keyframes hak-rgb-tile-hue {
+  0%   { filter: hue-rotate(0deg) saturate(1.1); }
+  50%  { filter: hue-rotate(180deg) saturate(1.45); }
+  100% { filter: hue-rotate(360deg) saturate(1.1); }
+}
+@keyframes hak-rgb-tile-glow {
+  0% {
+    box-shadow:
+      0 26px 62px rgba(0,0,0,0.88),
+      0 0 16px rgba(255,104,118,0.26),
+      0 0 24px rgba(255,104,118,0.16);
+  }
+  50% {
+    box-shadow:
+      0 28px 66px rgba(0,0,0,0.92),
+      0 0 26px rgba(96,255,188,0.36),
+      0 0 40px rgba(92,164,255,0.32);
+  }
+  100% {
+    box-shadow:
+      0 26px 62px rgba(0,0,0,0.88),
+      0 0 16px rgba(255,104,118,0.26),
+      0 0 24px rgba(255,104,118,0.16);
+  }
+}
+.app-hak.hak-pulse-rgb{
+  animation:none;
+}
+.app-hak.hak-pulse-rgb .icon-hak{
+  border-color: rgba(255,255,255,0.94);
+  box-shadow:
+    0 18px 42px rgba(0,0,0,0.78),
+    0 0 16px rgba(255,255,255,0.18);
+  animation:none;
+}
+.app-hak.hak-pulse-rgb .icon-hak svg{
+  filter: drop-shadow(0 0 12px rgba(255,255,255,0.28));
+}
+.app-hak.hak-pulse-rgb .icon-hak::after{
+  background: conic-gradient(
+    from 0deg,
+    rgba(255,80,112,0.96),
+    rgba(84,255,186,0.96),
+    rgba(96,160,255,0.96),
+    rgba(255,80,112,0.96)
+  );
+  opacity: 1;
+  filter:none;
+  animation:none;
+}
+
+/* === Glitch HAK : keep your 3 variants unchanged === */
+@keyframes hak-mini-glitch-a {
+  0%   { transform:translate(0,0) skewX(0deg); }
+  25%  { transform:translate(-2px, 1px) skewX(-6deg); }
+  50%  { transform:translate(3px, -1px) skewX(5deg); }
+  75%  { transform:translate(-1px, 2px) skewX(-3deg); }
+  100% { transform:translate(0,0) skewX(0deg); }
+}
+@keyframes hak-mini-glitch-b {
+  0%   { transform:translate(0,0);                            clip-path:inset(0 0 0 0); }
+  20%  { transform:translate(-1px,-1px);                      clip-path:inset(0 0 55% 0); }
+  40%  { transform:translate(1px,1px);                        clip-path:inset(45% 0 0 0); }
+  60%  { transform:translate(-1px,0);                         clip-path:inset(10% 0 15% 0); }
+  80%  { transform:translate(1px,-1px);                       clip-path:inset(0 0 0 0); }
+  100% { transform:translate(0,0);                            clip-path:inset(0 0 0 0); }
+}
+@keyframes hak-mini-glitch-c {
+  0%   { transform:translate(0,0) rotate(0deg); }
+  30%  { transform:translate(1px,-1px) rotate(-2deg); }
+  60%  { transform:translate(-1px,1px) rotate(2deg); }
+  100% { transform:translate(0,0) rotate(0deg); }
+}
+.app-hak.hak-mini-glitch-a .icon-hak{ animation: hak-mini-glitch-a 0.28s steps(3,end); }
+.app-hak.hak-mini-glitch-b .icon-hak{ animation: hak-mini-glitch-b 0.26s steps(4,end); }
+.app-hak.hak-mini-glitch-c .icon-hak{ animation: hak-mini-glitch-c 0.32s steps(5,end); }
+
+/* Anim de pop quand HAK apparaît (keep) */
+@keyframes hak-unlock-pop {
+  0%   { transform: scale(0.6); opacity:0; }
+  60%  { transform: scale(1.15); opacity:1; }
+  100% { transform: scale(1);   opacity:1; }
+}
+.app-hak.hak-unlock-anim .icon{ animation: hak-unlock-pop .5s ease-out forwards; }
+
+/* =========================================
+   HAK BUBBLE — matte theme (still B/W)
+   ========================================= */
+.hak-bubble-root{
+  position:absolute;
+  inset:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  z-index:7;
+  pointer-events:none;
+  opacity:0;
+  transition:opacity .22s ease-out;
+}
+.hak-bubble-root.visible{
+  opacity:1;
+  pointer-events:auto;
+}
+.hak-bubble-backdrop{
+  position:absolute;
+  inset:0;
+  background:
+    radial-gradient(circle at center, rgba(0,0,0,0.80), rgba(0,0,0,0.94));
+  backdrop-filter:none;
+}
+
+/* bubble card */
+.hak-bubble{
+  position:relative;
+  min-width:260px;
+  max-width:420px;
+  padding:18px 20px 46px;
+  padding-left:56px;
+
+  border-radius:18px;
+  background: rgba(8,10,14,0.82);
+  border:1px solid rgba(245,248,255,0.22);
+
+  box-shadow:
+    0 22px 64px rgba(0,0,0,0.92);
+
+  color:#ffffff;
+  overflow:visible;
+}
+.hak-bubble::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  border-radius:inherit;
+  pointer-events:none;
+  opacity:.62;
+  background:
+    repeating-linear-gradient(
+      to bottom,
+      rgba(255,255,255,0.00) 0px,
+      rgba(255,255,255,0.00) 3px,
+      rgba(255,255,255,0.045) 4px
+    ),
+    repeating-linear-gradient(
+      135deg,
+      rgba(255,255,255,0.038) 0px,
+      rgba(255,255,255,0.00) 2px,
+      rgba(255,255,255,0.028) 4px
+    );
+}
+
+/* Avatar HAK */
+.hak-bubble-icon{
+  position:absolute;
+  left:-40px;
+  top:50%;
+  transform:translateY(-50%);
+  width:72px;
+  height:72px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+.hak-bubble-icon .icon-hak{
+  width:72px;
+  height:72px;
+  border-radius:20px;
+  background: rgba(2,2,2,0.92);
+  border:1px solid rgba(245,248,255,0.36);
+  box-shadow:
+    0 0 18px rgba(245,248,255,0.10),
+    0 18px 40px rgba(0,0,0,0.80);
+}
+.hak-bubble-icon .icon-hak svg{
+  stroke:#ffffff;
+  filter:drop-shadow(0 0 12px rgba(245,248,255,0.16));
+}
+
+/* Texte */
+.hak-bubble-body{ display:flex; flex-direction:column; gap:6px; }
+.hak-bubble-title{
+  font-size:0.78rem;
+  letter-spacing:0.20em;
+  text-transform:uppercase;
+  color:#ffffff;
+  opacity:0.95;
+}
+.hak-bubble-text{
+  font-size:0.92rem;
+  line-height:1.55;
+  color:rgba(240,245,255,0.92);
+  text-shadow:0 0 12px rgba(0,0,0,0.75);
+}
+
+/* NEXT / END button */
+.hak-bubble-next{
+  position:absolute;
+  right:18px;
+  bottom:10px;
+
+  min-width:70px;
+  height:28px;
+  padding:0 12px;
+  border-radius:999px;
+
+  border:1px solid rgba(245,248,255,0.20);
+  background: rgba(6,7,10,0.55);
+
+  box-shadow: 0 10px 22px rgba(0,0,0,0.55);
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  color:#ffffff;
+  font-size:0.74rem;
+  text-transform:uppercase;
+  letter-spacing:0.16em;
+  cursor:pointer;
+
+  transition:
+    transform .14s ease,
+    border-color .18s ease,
+    background .18s ease;
+  overflow:hidden;
+}
+
+@media (pointer: coarse){
+  .hak-bubble-next{
+    min-width:108px;
+    min-height:44px;
+    height:44px;
+    padding:0 18px;
+    font-size:0.78rem;
+  }
+}
+.hak-bubble-next::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  opacity:.70;
+  background:
+    repeating-linear-gradient(
+      to bottom,
+      rgba(255,255,255,0.00) 0px,
+      rgba(255,255,255,0.00) 3px,
+      rgba(255,255,255,0.045) 4px
+    ),
+    repeating-linear-gradient(
+      135deg,
+      rgba(255,255,255,0.038) 0px,
+      rgba(255,255,255,0.00) 2px,
+      rgba(255,255,255,0.028) 4px
+    );
+}
+.hak-bubble-next::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  border-radius:inherit;
+  padding:0;
+  background: rgba(245,248,255,0.20);
+  opacity:0;
+  filter:none;
+  pointer-events:none;
+}
+
+/* ✅ keep button hover as-is? (you asked specifically home hitboxes; leaving this intact)
+   If you also want this button to be “no glitch” tell me and I’ll match it too. */
+.hak-bubble-next:hover{
+  background: rgba(8,10,14,0.62);
+  border-color: rgba(245,248,255,0.44);
+  transform:translateY(-1px);
+  animation:none;
+  box-shadow:
+    0 12px 24px rgba(0,0,0,0.64);
+}
+.hak-bubble-next:hover::after{
+  opacity:1;
+  animation:none;
+}
+.hak-bubble-next:active{
+  transform:scale(0.985);
+  border-color: rgba(245,248,255,0.74);
+}
+
+/* Glitch bulle (keep) */
+@keyframes hak-bubble-glitch {
+  0%   { transform:translate(0,0);                  clip-path:inset(0 0 0 0); }
+  15%  { transform:translate(-2px,1px);             clip-path:inset(0 0 60% 0); }
+  30%  { transform:translate(2px,-1px);             clip-path:inset(40% 0 0 0); }
+  45%  { transform:translate(-1px,2px);             clip-path:inset(10% 0 15% 0); }
+  60%  { transform:translate(1px,-2px);             clip-path:inset(0 0 0 0); }
+  100% { transform:translate(0,0);                  clip-path:inset(0 0 0 0); }
+}
+.hak-bubble.hak-bubble-glitch{ animation: hak-bubble-glitch 0.32s steps(4,end); }
+</style>
+<link rel="stylesheet" href="assets/styles/theme.css">
+
+
+<div class="home" data-scene>
+  <!-- Drop the future animated MP4 here; the image background above stays as fallback. -->
+
+  <!-- ✅ Compatibility (if some existing JS still updates these ids) -->
+  <div style="display:none">
+    <span id="clock">00:00</span>
+    <span id="battery-level">72%</span>
+  </div>
+
+  <div class="home-shell">
+    <section class="home-top" id="home-top-grid">
+      <div class="home-row-static" id="home-row-static"></div>
+      <div class="home-dynamic-wrap">
+        <div class="home-dynamic-grid" id="home-dynamic-grid"></div>
+      </div>
+    </section>
+
+    <section class="home-dock" id="home-dock"></section>
+  </div>
+
+  <!-- HAK Bubble -->
+  <div class="hak-bubble-root" id="hak-bubble">
+    <div class="hak-bubble-backdrop"></div>
+    <div class="hak-bubble">
+      <div class="hak-bubble-icon">
+        <div class="icon icon-hak">
+          <svg viewBox="0 0 24 24">
+            <path d="M3 21l4-4M3 17l4 4M11 3l4 4M15 3l-4 4"/>
+            <path d="M14 10l7 7M21 10l-7 7"/>
+          </svg>
+        </div>
+      </div>
+      <div class="hak-bubble-body">
+        <div class="hak-bubble-title" id="hak-bubble-title">HAK//OS</div>
+        <div class="hak-bubble-text" id="hak-bubble-text"></div>
+      </div>
+      <button class="hak-bubble-next" type="button" aria-label="Next">
+        <span id="hak-bubble-next-label">( next )</span>
+      </button>
+    </div>
+  </div>
+
+</div>
+
+
+<script>
+(() => {
+  const Game = (window.Game ||= {});
+  const homeRoot = document.querySelector(".home[data-scene]");
+  const applyWallpaper = () => Game.wallpaper?.applyTo?.(homeRoot);
+  applyWallpaper();
+  Promise.resolve(Game.wallpaper?.validateStored?.()).then(applyWallpaper).catch(applyWallpaper);
+  window.addEventListener("wallpaper:changed", applyWallpaper);
+
+  // =========================================
+  // Cleanup previous Home instance
+  // =========================================
+  if (window.__home_cleanup) {
+    try { window.__home_cleanup(); } catch {}
+  }
+
+  const STATE = {
+    clockListener: null,
+    hakMiniGlitchTimer: null,
+    hakPulseTimers: [],
+    arrivalGlitchTimer: null,
+    patreonPromptTimer: null,
+    badgeListener: null,
+    badgesUpdatedListener: null,
+    todoChangedListener: null,
+    todoBusListener: null,
+    guidedChangedListener: null,
+    guidedBusListener: null,
+    conversationsChangedListener: null,
+    hakPhotoListener: null,
+    hakVisibilityListener: null,
+    messagesCanonicalUnsubscribe: null,
+    hakCanonicalUnsubscribe: null,
+    visibilityChangeListener: null,
+    mountedListener: null,
+    didInitOnceThisMount: false,
+    pendingChainGuard: false,
+    hakBubbleCleanup: null
+  };
+
+  window.__home_cleanup = () => {
+    try { if (STATE.clockListener) window.removeEventListener("gameTime:changed", STATE.clockListener); } catch {}
+    try { if (STATE.hakMiniGlitchTimer) clearInterval(STATE.hakMiniGlitchTimer); } catch {}
+    try { if (STATE.arrivalGlitchTimer) clearTimeout(STATE.arrivalGlitchTimer); } catch {}
+    try { if (STATE.patreonPromptTimer) clearTimeout(STATE.patreonPromptTimer); } catch {}
+    try { if (STATE.badgeListener) window.removeEventListener("app:badge-changed", STATE.badgeListener); } catch {}
+    try { if (STATE.badgesUpdatedListener) window.removeEventListener("game:badges-updated", STATE.badgesUpdatedListener); } catch {}
+    try { if (STATE.todoChangedListener) window.removeEventListener("todos:changed", STATE.todoChangedListener); } catch {}
+    try { if (STATE.todoBusListener && window.StoryBus?.off) window.StoryBus.off("todos:changed", STATE.todoBusListener); } catch {}
+    try { if (STATE.guidedChangedListener) window.removeEventListener("guided:cues-changed", STATE.guidedChangedListener); } catch {}
+    try { if (STATE.guidedBusListener && window.StoryBus?.off) window.StoryBus.off("guided:cues-changed", STATE.guidedBusListener); } catch {}
+    try { if (STATE.conversationsChangedListener) window.removeEventListener("conversations:changed", STATE.conversationsChangedListener); } catch {}
+    try { if (STATE.hakPhotoListener) window.removeEventListener("hak:photo", STATE.hakPhotoListener); } catch {}
+    try { if (STATE.hakVisibilityListener) window.removeEventListener("hak:visibility-changed", STATE.hakVisibilityListener); } catch {}
+    try { if (typeof STATE.messagesCanonicalUnsubscribe === "function") STATE.messagesCanonicalUnsubscribe(); } catch {}
+    try { if (typeof STATE.hakCanonicalUnsubscribe === "function") STATE.hakCanonicalUnsubscribe(); } catch {}
+    try { if (STATE.visibilityChangeListener) document.removeEventListener("visibilitychange", STATE.visibilityChangeListener); } catch {}
+    try { if (STATE.mountedListener) window.removeEventListener("scene:mounted", STATE.mountedListener); } catch {}
+    try { window.removeEventListener("wallpaper:changed", applyWallpaper); } catch {}
+    try { if (typeof STATE.hakBubbleCleanup === "function") STATE.hakBubbleCleanup(); } catch {}
+    try { document.body.classList.remove("glitch-arrive"); } catch {}
+
+    STATE.clockListener = null;
+    STATE.hakMiniGlitchTimer = null;
+    if (Array.isArray(STATE.hakPulseTimers)) {
+      STATE.hakPulseTimers.forEach((timer) => {
+        try { clearTimeout(timer); } catch {}
+      });
+    }
+    STATE.hakPulseTimers = [];
+    STATE.arrivalGlitchTimer = null;
+    STATE.patreonPromptTimer = null;
+    STATE.badgeListener = null;
+    STATE.badgesUpdatedListener = null;
+    STATE.todoChangedListener = null;
+    STATE.todoBusListener = null;
+    STATE.guidedChangedListener = null;
+    STATE.guidedBusListener = null;
+    STATE.conversationsChangedListener = null;
+    STATE.hakPhotoListener = null;
+    STATE.hakVisibilityListener = null;
+    STATE.messagesCanonicalUnsubscribe = null;
+    STATE.hakCanonicalUnsubscribe = null;
+    STATE.visibilityChangeListener = null;
+    STATE.mountedListener = null;
+    STATE.didInitOnceThisMount = false;
+    STATE.pendingChainGuard = false;
+    STATE.hakBubbleCleanup = null;
+  };
+
+  // =========================================
+  // Helpers
+  // =========================================
+  const BADGE_KEY = "app_badges_v1";
+  const PENDING_OUTBOUND_KEY = "pending_outbound_v1";
+  const ONLYFUN_BADGE_FLAG_KEY = "app_badge_onlyfun";
+  const CHAIN_KEY = "pending_chain_story_v1";
+  const PENDING_LOCK_KEY = "pending_story_lock_v1";
+  const PENDING_LOCK_TTL = 5000;
+  const HOME_POP_APP_KEY = "home_pop_app_v1";
+  const PATREON_CODE_PROMPT_SEEN_KEY = "patreon_code_prompt_seen_v1";
+  const PATREON_CODE_PROMPT_DELAY_MS = 280;
+  const canonicalId = (raw) =>
+    String(raw || "").trim().toLowerCase().replace(/\s+/g, "_");
+  const tr = (key, source) => {
+    try { return window.Game?.i18n?.ui?.(key, source) || source; } catch { return source; }
+  };
+
+  function safeJsonParse(raw, fallback) {
+    try { return JSON.parse(raw); } catch { return fallback; }
+  }
+
+  function safeGetLS(k){ try { return localStorage.getItem(k); } catch { return null; } }
+  function safeSetLS(k,v){ try { localStorage.setItem(k,v); } catch {} }
+  function safeRemLS(k){ try { localStorage.removeItem(k); } catch {} }
+
+  function isExplicitHomeNavigationRecent() {
+    try {
+      if (window.Game && typeof window.Game.isExplicitHomeNavigationRecent === "function") {
+        return !!window.Game.isExplicitHomeNavigationRecent();
+      }
+    } catch {}
+    const raw = safeGetLS("__explicit_home_nav_v1");
+    if (!raw) return false;
+    const parsed = safeJsonParse(raw, null);
+    const at = Number(parsed?.at || 0);
+    return !!(at && Date.now() - at < 3500);
+  }
+
+  function clearPatreonPromptTimer() {
+    if (!STATE.patreonPromptTimer) return;
+    try { clearTimeout(STATE.patreonPromptTimer); } catch {}
+    STATE.patreonPromptTimer = null;
+  }
+
+  function hasSeenPatreonCodePrompt() {
+    return safeGetLS(PATREON_CODE_PROMPT_SEEN_KEY) === "1";
+  }
+
+  function shouldAutoOpenPatreonCodePrompt() {
+    // Home should stay interactive unless the player explicitly opens the prompt.
+    // Patreon code entry is still available from Settings and locked HAK targets.
+    void hasSeenPatreonCodePrompt;
+    return false;
+  }
+
+  function maybeSchedulePatreonCodePrompt() {
+    clearPatreonPromptTimer();
+    if (!shouldAutoOpenPatreonCodePrompt()) return;
+
+    STATE.patreonPromptTimer = setTimeout(() => {
+      STATE.patreonPromptTimer = null;
+
+      const root = document.querySelector(".home[data-scene]");
+      if (!root || !root.isConnected) return;
+      if (!shouldAutoOpenPatreonCodePrompt()) return;
+
+      try {
+        const opened = window.Game?.openPatreonCodeModal?.({
+          source: "home_auto",
+          title: "Patreon Code",
+          subtitle: "Enter your Patreon code to unlock premium content"
+        });
+        if (opened === false) return;
+        safeSetLS(PATREON_CODE_PROMPT_SEEN_KEY, "1");
+      } catch {}
+    }, PATREON_CODE_PROMPT_DELAY_MS);
+  }
+
+  function setBadge(key, value, opts = {}) {
+    const el = document.getElementById("badge-" + key);
+    if (!el) return;
+    const dot = !!opts.dot;
+    if (dot) {
+      el.textContent = "";
+      el.classList.add("badge-dot");
+      el.style.display = "inline-flex";
+      return;
+    }
+    el.classList.remove("badge-dot");
+    const n = Number(value || 0);
+    if (n > 0) {
+      el.textContent = n > 99 ? "99+" : String(n);
+      el.style.display = "inline-flex";
+    } else {
+      el.textContent = "";
+      el.style.display = "none";
+    }
+  }
+
+  function readBadges() {
+    const raw = safeGetLS(BADGE_KEY);
+    if (!raw) return {};
+    const data = safeJsonParse(raw, {});
+    return data && typeof data === "object" ? data : {};
+  }
+
+  function isOnlyfunPromptBadgeOn() {
+    return safeGetLS(ONLYFUN_BADGE_FLAG_KEY) === "1";
+  }
+
+  function applyBadge(app, value) {
+    if (app === "messages") {
+      const canonicalTotal = window.GameStateEngine?.getMessagesUnreadTotal?.();
+      if (Number.isFinite(Number(canonicalTotal))) value = Math.max(0, Number(canonicalTotal));
+    }
+    if (app === "onlyfun" && isOnlyfunPromptBadgeOn()) {
+      setBadge("onlyfun", 0, { dot: true });
+      return;
+    }
+    setBadge(app, value);
+  }
+
+  function clearOnlyfunBadgePrompt() {
+    safeRemLS(ONLYFUN_BADGE_FLAG_KEY);
+
+    const badges = readBadges();
+    if (Object.prototype.hasOwnProperty.call(badges, "onlyfun")) {
+      delete badges.onlyfun;
+      safeSetLS(BADGE_KEY, JSON.stringify(badges));
+    }
+
+    try { window.dispatchEvent(new CustomEvent("app:badge-changed", { detail: { app: "onlyfun", value: 0 } })); } catch {}
+    try { window.dispatchEvent(new CustomEvent("game:badges-updated", { detail: { app: "onlyfun", value: 0 } })); } catch {}
+  }
+
+  function getMeetGreetUnreadCount() {
+    if (window.MeetAndGreetSystem && typeof window.MeetAndGreetSystem.getState === "function") {
+      const state = window.MeetAndGreetSystem.getState();
+      return state.unlocked ? Number(state.badge || 0) || 0 : 0;
+    }
+    if (safeGetLS("feature_meetandgreet_unlocked") !== "1" && safeGetLS("meetandgreet_unlocked_v1") !== "1") return 0;
+    return Math.max(0, Number(safeGetLS("meetandgreet_badge_v1") || 0) || 0);
+  }
+
+  function refreshBadges() {
+    const b = readBadges();
+    const canonicalMessagesUnread = window.GameStateEngine?.getMessagesUnreadTotal?.();
+    const canonicalOnlyfunUnseen = window.GameStateEngine?.getOnlyfunUnseenTotal?.();
+    applyBadge("messages", Number.isFinite(Number(canonicalMessagesUnread)) ? canonicalMessagesUnread : (b.messages || 0));
+    applyBadge("snapgram", b.snapgram || 0);
+    applyBadge("onlyfun", Number.isFinite(Number(canonicalOnlyfunUnseen)) ? canonicalOnlyfunUnseen : (b.onlyfun || 0));
+    applyBadge("meetandgreet", getMeetGreetUnreadCount());
+    const hakProjection = getHakActionableState();
+    applyBadge("hak", Number(hakProjection.badgeCount || 0));
+  }
+
+  function resolveTodoDotClass(color) {
+    if (typeof Game.getTodoDotClass === "function") {
+      return Game.getTodoDotClass(color);
+    }
+    return "todo-dot--rainbow";
+  }
+
+  function readPendingOutbound() {
+    try {
+      if (typeof Game.getPendingOutbound === "function") {
+        const fromGame = Game.getPendingOutbound();
+        if (fromGame && typeof fromGame === "object") return fromGame;
+      }
+    } catch {}
+    const raw = safeGetLS(PENDING_OUTBOUND_KEY);
+    const parsed = raw ? safeJsonParse(raw, null) : null;
+    return (parsed && typeof parsed === "object") ? parsed : null;
+  }
+
+  function refreshMessagesTodoDot() {
+    const dot = document.getElementById("todo-dot-app-messages");
+    if (!dot) return;
+
+    const todo = (typeof Game.getOpenTodoForApp === "function")
+      ? Game.getOpenTodoForApp("messages")
+      : null;
+
+    if (!todo) {
+      dot.hidden = true;
+      dot.className = "todo-dot todo-dot-home todo-dot--rainbow";
+      return;
+    }
+
+    if (todo) {
+      dot.className = `todo-dot todo-dot-home ${resolveTodoDotClass(todo.color)}`;
+    }
+    dot.hidden = false;
+  }
+
+  function hasPendingOutboundCue() {
+    const pending = readPendingOutbound();
+    const downloads = window.GameStateEngine?.getPendingConversationDownloads?.() || [];
+    const hasDownload = downloads.some(cue => Game.shouldHideCharacterFromUI?.(cue.contactId) !== true);
+    return !!(pending && String(pending.contactId || "").trim()) || !!Game.getRestoredConversationCue?.() || hasDownload;
+  }
+
+  function updateMessagesNeedsDot() {
+    const dot = document.querySelector("#app-messages .needs-player-dot-home");
+    if (!dot) return;
+    dot.hidden = !hasPendingOutboundCue();
+  }
+
+  function normalizeConversationUnfinishedState(rawValue) {
+    const raw = (rawValue && typeof rawValue === "object") ? rawValue : null;
+    if (!raw) return null;
+    const active = raw.active === true || Number(raw.active || 0) === 1;
+    if (!active) return null;
+    return {
+      active: 1,
+      at: Number(raw.at || Date.now()) || Date.now()
+    };
+  }
+
+  function readConversationStore() {
+    const raw = safeGetLS("conversations");
+    const parsed = raw ? safeJsonParse(raw, {}) : {};
+    return (parsed && typeof parsed === "object") ? parsed : {};
+  }
+
+  function hasAnyUnfinishedConversationCue() {
+    try {
+      if (typeof Game.hasAnyConversationUnfinished === "function") {
+        return Game.hasAnyConversationUnfinished() === true;
+      }
+    } catch {}
+    const store = readConversationStore();
+    for (const id of Object.keys(store || {})) {
+      if (normalizeConversationUnfinishedState(store[id]?.unfinished)) return true;
+    }
+    return false;
+  }
+
+  function updateMessagesUnfinishedDot() {
+    const dot = document.getElementById("unfinished-dot-app-messages");
+    if (!dot) return;
+    dot.hidden = !hasAnyUnfinishedConversationCue();
+  }
+
+  function updateClock() {
+    const clockEl = document.getElementById("clock");
+    if (!clockEl) return;
+    const time = window.GameStateEngine?.getGameTime?.();
+    clockEl.textContent = window.GameTimeService?.formatTime?.(time) || "--:--";
+  }
+
+  function isTruthyGlitch(v){
+    return v === 1 || v === "1" || v === true || v === "true";
+  }
+
+  function readSceneQuery(){
+    try {
+      const q = window.Game?.lastQuery;
+      if (q && typeof q === "object") return q;
+    } catch {}
+    try {
+      const sp = new URLSearchParams(location.search);
+      return { glitch: sp.get("glitch"), from: sp.get("from") };
+    } catch {}
+    return {};
+  }
+function playArrivalGlitchIfNeeded(){
+  const q = readSceneQuery();
+  if (!isTruthyGlitch(q.glitch)) {
+    try { document.body.classList.remove("glitch-arrive"); } catch {}
+    return;
+  }
+
+  // ✅ Consume the glitch flag so it won't replay on next Home mounts
+  try {
+    if (window.Game && Game.lastQuery && typeof Game.lastQuery === "object") {
+      delete Game.lastQuery.glitch;
+      delete Game.lastQuery.from;
+    }
+  } catch {}
+
+  try { document.body.classList.add("glitch-arrive"); } catch {}
+
+  if (STATE.arrivalGlitchTimer) {
+    try { clearTimeout(STATE.arrivalGlitchTimer); } catch {}
+  }
+  STATE.arrivalGlitchTimer = setTimeout(() => {
+    try { document.body.classList.remove("glitch-arrive"); } catch {}
+    STATE.arrivalGlitchTimer = null;
+  }, 620);
+}
+  // =========================================
+  // Pending chain story (after timecard + goHome)
+  // =========================================
+  function takePendingChain() {
+    return null;
+  }
+
+  function takePendingTimeCardDispatch() {
+    return null;
+  }
+
+  function tryRunPendingTimeCardDispatchFallback() {
+    const state = window.GameStateEngine && window.GameStateEngine.getState();
+    if (!state || !state.execution.lease) return false;
+    // ConvoRuntime.resume does not exist anywhere in scripts/convo-runtime.js
+    // (confirmed: grepped its entire window.ConvoRuntime={...} export list) --
+    // this was a silent no-op (optional chaining on an undefined method), so
+    // this fallback never actually kicked a stalled lease/pending dispatch
+    // forward. Game.resumePendingStory is the real, already-shipped entry
+    // point for "re-process whatever pending_story_v1 currently holds".
+    queueMicrotask(() => window.Game?.resumePendingStory?.({ source: "home_resume" }));
+    return true;
+  }
+
+  function tryRunPendingChain() {
+    if (isExplicitHomeNavigationRecent()) return false;
+    if (STATE.pendingChainGuard) return false;
+    STATE.pendingChainGuard = true;
+    try {
+      const pendingRaw = window.Game && typeof window.Game.readPendingStory === "function" ? window.Game.readPendingStory() : null;
+      const pendingKind = String(pendingRaw?.kind || "").trim().toLowerCase();
+      const pendingVia = String(
+        pendingRaw?.via ||
+        pendingRaw?.reason ||
+        pendingRaw?.opts?.__chainSource ||
+        ""
+      ).trim().toLowerCase();
+      const isDispatch = pendingKind === "dispatch";
+      const isSpecialDispatch =
+        pendingVia === "time_card" ||
+        pendingVia === "next_day" ||
+        pendingVia === "glitch_eject" ||
+        pendingVia === "boot" ||
+        pendingRaw?.timelineReplayChain === true ||
+        pendingRaw?.opts?.timelineReplayChain === true;
+
+      if (isDispatch) {
+        if (window.Game && typeof window.Game.resumePendingStory === "function") {
+          const resumed = !!window.Game.resumePendingStory({ source: "home_pending_chain" });
+          if (resumed) return true;
+        }
+
+        // Fallback for a queued dispatch that Home should revive.
+        const item = takePendingChain();
+        if (item) {
+          if (window.Game && typeof window.Game.queueStoryStart === "function") {
+            window.Game.queueStoryStart(String(item.path), {
+              from: String(item.from || "").trim(),
+              reason: String(item.via || "home_pending_chain").trim(),
+              via: String(item.via || "home_pending_chain").trim(),
+              startWhenScene: "home"
+            });
+            safeRemLS(CHAIN_KEY);
+            if (typeof window.Game.resumePendingStory === "function") {
+              return !!window.Game.resumePendingStory({ source: "home_pending_chain_fallback" });
+            }
+            return true;
+          }
+
+          if (window.Game && typeof window.Game.queuePendingStoryStart === "function") {
+            window.Game.queuePendingStoryStart(String(item.path), {
+              from: String(item.from || "").trim(),
+              reason: String(item.via || "home_pending_chain").trim(),
+              via: String(item.via || "home_pending_chain").trim(),
+              force: true,
+              startWhenScene: "home"
+            });
+            safeRemLS(CHAIN_KEY);
+            if (typeof window.Game.resumePendingStory === "function") {
+              return !!window.Game.resumePendingStory({ source: "home_pending_chain_fallback" });
+            }
+            return true;
+          }
+        }
+      }
+
+      if (!isSpecialDispatch) return false;
+
+      if (window.Game && typeof window.Game.resumePendingStory === "function") {
+        const resumed = !!window.Game.resumePendingStory({ source: "home_pending_chain" });
+        if (resumed) return true;
+      }
+
+      // Fallback for time-card chains if dispatcher did not run.
+      if (tryRunPendingTimeCardDispatchFallback()) return true;
+
+      const item = takePendingChain();
+      if (!item) return false;
+
+      if (window.Game && typeof window.Game.queueStoryStart === "function") {
+        window.Game.queueStoryStart(String(item.path), {
+          from: String(item.from || "").trim(),
+          reason: String(item.via || "home_legacy_chain").trim(),
+          via: String(item.via || "home_legacy_chain").trim(),
+          startWhenScene: "home"
+        });
+        safeRemLS(CHAIN_KEY);
+        if (typeof window.Game.resumePendingStory === "function") {
+          return !!window.Game.resumePendingStory({ source: "home_legacy_chain" });
+        }
+        return true;
+      }
+
+      if (window.Game && typeof window.Game.queuePendingStoryStart === "function") {
+        window.Game.queuePendingStoryStart(String(item.path), {
+          from: String(item.from || "").trim(),
+          reason: String(item.via || "home_legacy_chain").trim(),
+          via: String(item.via || "home_legacy_chain").trim(),
+          force: true,
+          startWhenScene: "home"
+        });
+        safeRemLS(CHAIN_KEY);
+        if (typeof window.Game.resumePendingStory === "function") {
+          return !!window.Game.resumePendingStory({ source: "home_legacy_chain" });
+        }
+        return true;
+      }
+
+      if (window.Game && typeof window.Game.startStory === "function") {
+        window.Game.startStory(String(item.path), {});
+        safeRemLS(CHAIN_KEY);
+        return true;
+      }
+
+      return false;
+    } catch {
+      return false;
+    } finally {
+      STATE.pendingChainGuard = false;
+    }
+  }
+
+  // =========================================
+  // HAK icon only
+  // - Visible when reveal flag is on
+  // - Revealed only once its actual functionality can be opened
+  // =========================================
+  const HAK_UNLOCK_KEY = "feature_hak_unlocked";
+  const HAK_VISIBLE_KEY = "feature_hak_visible";
+  const ONLYFUN_UNLOCK_KEY = "feature_onlyfun_unlocked";
+  const MEETGREET_UNLOCK_KEY = "feature_meetandgreet_unlocked";
+  const HAK_APP_OPEN_KEY = "feature_hak_open";
+  const HAK_OPENABLE_KEY = "feature_hak_openable";
+  const HAK_UNLOCK_ANIM_KEY = "feature_hak_unlocked_anim";
+  const HAK_GLOW_BOOST_KEY = "hak_app_glow_boost";
+  const HAK_OPEN_PROMPT_KEY = "hak_open_prompt_v1";
+  const HAK_OPEN_PROMPT_PENDING_KEY = "hak_open_prompt_pending_v1";
+  const HAK_OPEN_PROMPT_TEXT_KEY = "hak_open_prompt_text_v1";
+  const HAK_TUTORIAL_REQUIRED_KEY = "hak_tutorial_required";
+  const HAK_TUTORIAL_DONE_KEY = "hak_app_tutorial_done";
+  const CONTINUATION_TRACE_KEY = "qa_continuation_transaction_trace_v1";
+
+  function traceHomeContinuationState(event) {
+    if (window.__QA_HOME_CONTINUATION_TRACE !== true) return;
+    try {
+      const rows = safeJsonParse(safeGetLS(CONTINUATION_TRACE_KEY) || "", []);
+      const list = Array.isArray(rows) ? rows : [];
+      const prior = [...list].reverse().find((row) => row && (row.targetPath || row?.detail?.targetPath));
+      const targetPath = String(prior?.targetPath || prior?.detail?.targetPath || "").trim();
+      const targetContactId = String(prior?.targetContactId || prior?.detail?.targetContactId || "").trim().toLowerCase();
+      const chainKey = String(prior?.detail?.chainKey || "").trim();
+      const conversations = safeJsonParse(safeGetLS("conversations") || "", {});
+      list.push({
+        at: Date.now(),
+        page: "home",
+        event: String(event || ""),
+        targetPath,
+        targetContactId,
+        ownership: {
+          chainFired: chainKey ? String(safeGetLS(chainKey) || "") : "",
+          pendingStory: safeJsonParse(safeGetLS("pending_story_v1") || "", null),
+          pendingChain: safeJsonParse(safeGetLS("pending_chain_story_v1") || "", null),
+          storyRuntime: safeJsonParse(safeGetLS("story_runtime_v1") || "", null),
+          targetStory: targetContactId ? String(safeGetLS("conv_story_" + targetContactId) || "") : "",
+          targetProgress: targetContactId ? String(safeGetLS("conv_progress_" + targetContactId) || "") : "",
+          targetUnread: targetContactId ? Number(conversations?.[targetContactId]?.unread || 0) : 0,
+          appBadges: safeJsonParse(safeGetLS("app_badges_v1") || "", {})
+        }
+      });
+      safeSetLS(CONTINUATION_TRACE_KEY, JSON.stringify(list.slice(-160)));
+    } catch {}
+  }
+
+  if (window.__QA_HOME_CONTINUATION_TRACE === true) {
+    traceHomeContinuationState("home_script_init");
+    for (const delay of [0, 50, 100, 180, 240, 500]) {
+      setTimeout(() => traceHomeContinuationState(`home_${delay}ms`), delay);
+    }
+  }
+
+  const HAK_GLITCH_MODES = ["hak-mini-glitch-a", "hak-mini-glitch-b", "hak-mini-glitch-c"];
+
+  // Home app registry:
+  // - static row stays fixed at top
+  // - dynamic row is for unlockable apps (future-safe list)
+  // - dock stays pinned at bottom
+  const APP_REGISTRY = {
+    messages: { id: "messages", label: "Messages", i18nKey: "home.messages", scene: "messages", className: "app-messages", iconClass: "messages", badge: "messages" },
+    snapgram: { id: "snapgram", label: "SnapGram", i18nKey: "home.snapgram", scene: "snapgram", className: "app-snapgram", badge: "snapgram" },
+    pictures: { id: "pictures", label: "Gallery", i18nKey: "home.gallery", scene: "pictures", className: "app-gallery" },
+    cardvault: { id: "cardvault", label: "Card Vault", i18nKey: "home.cardvault", scene: "cardvault", className: "app-cardvault" },
+    story: { id: "story", label: "Story", i18nKey: "home.story", scene: "story", className: "app-story" },
+    calendar: { id: "calendar", label: "Calendar", i18nKey: "home.calendar", scene: "calendar", className: "app-calendar" },
+    achievements: { id: "achievements", label: "Achievements", i18nKey: "home.achievements", scene: "achievements", className: "app-achievements" },
+    onlyfun: { id: "onlyfun", label: "OnlyFun", i18nKey: "home.onlyfun", scene: "onlyfun", className: "app-onlyfun", badge: "onlyfun", featureFlag: ONLYFUN_UNLOCK_KEY },
+    meetandgreet: { id: "meetandgreet", label: "MeetAndGreet", scene: "meetandgreet", className: "app-meetandgreet", badge: "meetandgreet", featureFlag: MEETGREET_UNLOCK_KEY },
+    hak: { id: "hak", label: "Hak", i18nKey: "home.hak", scene: "hak", className: "app-hak", iconClass: "icon-hak", badge: "hak", featureFlag: HAK_VISIBLE_KEY },
+    save: { id: "save", label: "Save", i18nKey: "home.save", scene: "save", className: "app-save" },
+    settings: { id: "settings", label: "Settings", i18nKey: "home.settings", scene: "settings", className: "app-settings", iconClass: "settings" },
+    patreon: { id: "patreon", label: "Patreon", i18nKey: "home.patreon", className: "app-patreon", externalUrl: "https://www.patreon.com/cw/FreNchTR" },
+    subscribestar: { id: "subscribestar", label: "SubscribeStar", i18nKey: "home.subscribestar", className: "app-subscribestar", externalUrl: "https://subscribestar.art/frenchtr" }
+  };
+
+  const HOME_STATIC_ROW_IDS = ["messages", "snapgram", "pictures"];
+  const HOME_DYNAMIC_SLOT_IDS = ["cardvault", "story", "calendar", "achievements", "onlyfun", "meetandgreet", "hak"];
+  const HOME_DOCK_IDS = ["save", "settings", "patreon", "subscribestar"];
+
+  function isHomeAppVisible(app) {
+    if (app?.id === "onlyfun") {
+      try {
+        const engine = window.GameStateEngine;
+        const unlocked = engine?.getOnlyfunUnlocked?.();
+        if (unlocked === true) return true;
+        if (typeof unlocked !== "boolean" && engine?.getState?.()?.onlyfun?.unlocked === true) return true;
+      } catch {}
+      return safeGetLS(ONLYFUN_UNLOCK_KEY) === "1";
+    }
+    if (app?.id === "meetandgreet") {
+      const state = window.MeetAndGreetSystem?.getState?.(false);
+      if (state) return state.unlocked === true;
+      try {
+        const engine = window.GameStateEngine;
+        const unlockedApps = typeof engine?.getWorldAppUnlocks === "function" ? engine.getWorldAppUnlocks() : engine?.getState?.()?.world?.appUnlocks;
+        if (Array.isArray(unlockedApps)) return unlockedApps.includes("meetandgreet");
+      } catch {}
+      return safeGetLS(MEETGREET_UNLOCK_KEY) === "1";
+    }
+    if (app?.id === "hak") {
+      try {
+        const hak = window.GameStateEngine?.getHakProjectionState?.()?.hak;
+        if (hak) return hak.visible === true && hak.openable === true;
+      } catch {}
+      if (!canOpenHakApp()) return false;
+      const visible = safeGetLS(HAK_VISIBLE_KEY);
+      if (visible === "1") return true;
+      if (visible === "0") return false;
+      return safeGetLS(HAK_UNLOCK_KEY) === "1";
+    }
+    if (!app?.featureFlag) return true;
+    return safeGetLS(app.featureFlag) === "1";
+  }
+
+  function collectApps(ids, opts = {}) {
+    const respectVisibility = opts.respectVisibility !== false;
+    const out = [];
+    ids.forEach((id) => {
+      const app = APP_REGISTRY[id];
+      if (!app) return;
+      if (respectVisibility && !isHomeAppVisible(app)) return;
+      out.push(app);
+    });
+    return out;
+  }
+
+  function homeIconMarkup(appId) {
+    if (appId === "messages") {
+      return `
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M6.5 4h11A3.5 3.5 0 0 1 21 7.5v7a3.5 3.5 0 0 1-3.5 3.5H9l-6 3V7.5A3.5 3.5 0 0 1 6.5 4Z"/>
+          <g fill="currentColor" stroke="none">
+            <circle cx="8" cy="11" r=".9"/><circle cx="12" cy="11" r=".9"/><circle cx="16" cy="11" r=".9"/>
+          </g>
+        </svg>
+      `;
+    }
+
+    if (appId === "snapgram") {
+      return `
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <rect x="3.5" y="3.5" width="17" height="17" rx="4.5"/>
+          <circle cx="12" cy="12" r="4.1"/>
+          <circle cx="17.4" cy="6.6" r=".85" fill="currentColor" stroke="none"/>
+        </svg>
+      `;
+    }
+
+    if (appId === "onlyfun") {
+      return `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 3.2 2.65 5.65 6.2.9-4.45 4.35 1.05 6.15L12 17.35l-5.45 2.9 1.05-6.15-4.45-4.35 6.2-.9L12 3.2Z"/></svg>`;
+    }
+
+    if (appId === "cardvault") {
+      return `
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M5.5 17.5a2 2 0 0 1-2-2v-10a2 2 0 0 1 2-2H15"/>
+          <rect x="8" y="5.5" width="12.5" height="15" rx="2"/>
+          <path d="m14.25 9 3 3.5-3 3.5-3-3.5 3-3.5Z"/>
+        </svg>
+      `;
+    }
+
+    if (appId === "meetandgreet") {
+      return `
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <circle cx="8" cy="8" r="2.7"/>
+          <path d="M3 19v-1a5 5 0 0 1 10 0v1M16 5.3a2.7 2.7 0 0 1 0 5.4M16 13a5 5 0 0 1 5 5v1"/>
+        </svg>
+      `;
+    }
+
+    if (appId === "hak") {
+      return `
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="m12 3 8 3v5c0 4.5-3.3 7.7-8 10-4.7-2.3-8-5.5-8-10V6l8-3Z"/>
+          <path d="m8 9 3 3-3 3M13.5 15H16"/>
+        </svg>
+      `;
+    }
+
+    if (appId === "pictures") {
+      return `
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M17 3.5H5.5A2.5 2.5 0 0 0 3 6v11"/>
+          <rect x="6" y="6.5" width="15" height="14" rx="2"/>
+          <path d="m6 16 4-4 4.5 4.5 2.5-3 4 4"/>
+          <circle cx="16.5" cy="10.5" r="1" fill="currentColor" stroke="none"/>
+        </svg>
+      `;
+    }
+
+    if (appId === "calendar") {
+      return `<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="5" width="17" height="16" rx="2.5"/><path d="M7.5 3v4M16.5 3v4M3.5 10h17M14 14.5h3M7 18h3M14 18h3"/><rect x="7" y="13" width="3" height="3" rx=".6" fill="currentColor" stroke="none"/></svg>`;
+    }
+
+    if (appId === "story") {
+      return `
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M5.5 8v7a3.5 3.5 0 0 0 3.5 3.5h7M5.5 10.5H16"/>
+          <rect x="3" y="3" width="5" height="5" rx="1.3"/>
+          <rect x="16" y="8" width="5" height="5" rx="1.3"/>
+          <rect x="16" y="16" width="5" height="5" rx="1.3"/>
+        </svg>
+      `;
+    }
+
+    if (appId === "achievements") {
+      return `
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M7 3.5h10v5a5 5 0 0 1-10 0v-5Z"/>
+          <path d="M7 5.5H3.5v2a4 4 0 0 0 4 4M17 5.5h3.5v2a4 4 0 0 1-4 4M12 13.5v4M9.5 17.5h5M8 20.5h8"/>
+        </svg>
+      `;
+    }
+
+    if (appId === "save") {
+      return `
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M5.5 3.5h11l4 4v11a2 2 0 0 1-2 2h-13a2 2 0 0 1-2-2v-13a2 2 0 0 1 2-2Z"/>
+          <path d="M7.5 3.5V9h8V3.5M7.5 20.5V14a1 1 0 0 1 1-1h7a1 1 0 0 1 1 1v6.5"/>
+        </svg>
+      `;
+    }
+
+    if (appId === "settings") {
+      return `
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M10 3.5h4l.5 2.2 1.7 1 2.2-.7 2 3.5-1.7 1.5v2l1.7 1.5-2 3.5-2.2-.7-1.7 1-.5 2.2h-4l-.5-2.2-1.7-1-2.2.7-2-3.5 1.7-1.5v-2L3.6 9.5l2-3.5 2.2.7 1.7-1 .5-2.2Z"/>
+          <circle cx="12" cy="12" r="3.1"/>
+        </svg>
+      `;
+    }
+
+    if (appId === "subscribestar") {
+      return `
+        <svg class="filled" viewBox="0 0 24 24">
+          <circle cx="12" cy="12" r="8.2" fill="rgba(68,229,255,0.24)"/>
+          <path fill="var(--subscribestar-cyan)" d="M12 3.7l2 5 5.3.4-4.1 3.4 1.3 5.2L12 14.9 7.5 17.7l1.3-5.2-4.1-3.4 5.3-.4z"/>
+          <path fill="var(--subscribestar-pink)" d="M13.3 8.1l1.2 2.7 2.9.3-2.2 1.9.7 2.9-2.6-1.6z" opacity=".86"/>
+        </svg>
+      `;
+    }
+
+    return `
+      <svg class="filled" viewBox="0 0 24 24">
+        <rect x="5" y="4" width="4" height="16" rx="1.2" fill="var(--patreon)"/>
+        <circle cx="15" cy="11" r="6" fill="var(--patreon)"/>
+      </svg>
+    `;
+  }
+
+  function createHomeAppButton(app) {
+    const btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = `app ${app.className || ("app-" + app.id)}`;
+    btn.dataset.appId = app.id;
+    btn.dataset.app = app.id;
+    btn.id = `app-${app.id}`;
+
+    btn.addEventListener("click", () => {
+      if (app.externalUrl) {
+        if (window.Game && typeof window.Game.openExternalUrl === "function") {
+          window.Game.openExternalUrl(app.externalUrl);
+        } else {
+          window.open(app.externalUrl, "_blank", "noopener,noreferrer");
+        }
+        return;
+      }
+      if (app.id === "hak" && !canOpenHakApp()) {
+        try { window.showToast?.("HAK is locked."); } catch {}
+        return;
+      }
+      if (app.id === "onlyfun") {
+        clearOnlyfunBadgePrompt();
+      }
+      if (app.scene && typeof window.navigateToScene === "function") {
+        window.navigateToScene(app.scene);
+      }
+    });
+
+    const icon = document.createElement("div");
+    icon.className = `icon ${app.iconClass || ""}`.trim();
+    icon.setAttribute("aria-hidden", "true");
+    icon.innerHTML = homeIconMarkup(app.id);
+
+    if (app.badge) {
+      const badge = document.createElement("span");
+      badge.className = "badge";
+      badge.id = `badge-${app.badge}`;
+      icon.appendChild(badge);
+    }
+
+    if (app.id === "messages") {
+      const unfinishedDot = document.createElement("span");
+      unfinishedDot.className = "unfinished-dot-home";
+      unfinishedDot.id = "unfinished-dot-app-messages";
+      unfinishedDot.hidden = true;
+      unfinishedDot.setAttribute("aria-hidden", "true");
+      unfinishedDot.title = "Conversation to continue";
+      icon.appendChild(unfinishedDot);
+
+      const needsDot = document.createElement("span");
+      needsDot.className = "todo-dot todo-dot--rainbow needs-player-dot-home";
+      needsDot.hidden = true;
+      needsDot.setAttribute("aria-hidden", "true");
+      icon.appendChild(needsDot);
+
+      const todoDot = document.createElement("span");
+      todoDot.className = "todo-dot todo-dot-home todo-dot--rainbow";
+      todoDot.id = "todo-dot-app-messages";
+      todoDot.hidden = true;
+      todoDot.setAttribute("aria-hidden", "true");
+      icon.appendChild(todoDot);
+    }
+
+    const label = document.createElement("span");
+    if (app.i18nKey) label.setAttribute("data-i18n", app.i18nKey);
+    label.textContent = app.i18nKey ? tr(app.i18nKey, app.label || app.id) : (app.label || app.id);
+
+    btn.appendChild(icon);
+    btn.appendChild(label);
+    return btn;
+  }
+
+  function renderAppGroup(rootId, apps) {
+    const root = document.getElementById(rootId);
+    if (!root) return;
+    root.innerHTML = "";
+    apps.forEach((app) => root.appendChild(createHomeAppButton(app)));
+  }
+
+  function renderHomeAppsFromSlots() {
+    renderAppGroup("home-row-static", collectApps(HOME_STATIC_ROW_IDS, { respectVisibility: false }));
+    renderAppGroup("home-dynamic-grid", collectApps(HOME_DYNAMIC_SLOT_IDS, { respectVisibility: true }));
+    renderAppGroup("home-dock", collectApps(HOME_DOCK_IDS, { respectVisibility: false }));
+    try { window.Game?.i18n?.applyTo?.(document.querySelector(".home") || document); } catch {}
+  }
+
+  function playPopAppSignalIfNeeded() {
+    const popId = canonicalId(safeGetLS(HOME_POP_APP_KEY) || "");
+    if (!popId) return;
+    safeRemLS(HOME_POP_APP_KEY);
+
+    const target = document.querySelector(`.app[data-app-id="${popId}"]`);
+    if (!target) return;
+    target.classList.add("app-pop-pending");
+
+    requestAnimationFrame(() => {
+      setTimeout(() => {
+        if (!target.isConnected) return;
+        target.classList.remove("app-pop-pending");
+        target.classList.remove("app-pop-in");
+        void target.offsetWidth;
+        target.classList.add("app-pop-in");
+        setTimeout(() => {
+          if (!target.isConnected) return;
+          target.classList.remove("app-pop-in");
+        }, 360);
+      }, 170);
+    });
+  }
+
+  function canOpenHakApp() {
+    return (
+      safeGetLS(HAK_OPENABLE_KEY) === "1" ||
+      safeGetLS(HAK_APP_OPEN_KEY) === "1"
+    );
+  }
+
+  function shouldBoostHakGlow() {
+    if (safeGetLS(HAK_GLOW_BOOST_KEY) !== "1") return false;
+    if (safeGetLS(HAK_TUTORIAL_DONE_KEY) === "1") return false;
+    return safeGetLS(HAK_TUTORIAL_REQUIRED_KEY) === "1";
+  }
+
+  function shouldPulseHakPrompt() {
+    if (safeGetLS(HAK_TUTORIAL_DONE_KEY) === "1") return false;
+
+    const flag = safeGetLS(HAK_OPEN_PROMPT_KEY);
+    if (flag === "1") return true;
+    if (flag === "0") return false;
+
+    // Legacy fallback for existing saves.
+    return safeGetLS(HAK_OPEN_PROMPT_PENDING_KEY) === "1";
+  }
+
+  function getHakActionableState() {
+    try {
+      const engine = window.GameStateEngine;
+      const state = engine?.getHakProjectionState?.() || engine?.getState?.();
+      if (state && window.HakActionableState?.project) return window.HakActionableState.project(state);
+    } catch {}
+    return { requiresAttention: shouldPulseHakPrompt(), badgeCount: 0, reasons: {} };
+  }
+
+  function findHakAppTile() {
+    let tile = document.querySelector('.app[data-app="hak"], .app[data-app-id="hak"], .app-hak');
+    if (tile) return tile;
+
+    const appButtons = document.querySelectorAll(".app");
+    for (const node of appButtons) {
+      const labelNode = node.querySelector("span:last-child");
+      const label = String(labelNode?.textContent || node.textContent || "").trim().toLowerCase();
+      if (label === "hak") return node;
+    }
+    return null;
+  }
+
+  function clearHakPulseClass() {
+    const nodes = document.querySelectorAll('.app-hak, .app[data-app="hak"], .app[data-app-id="hak"]');
+    nodes.forEach((node) => node.classList.remove("hak-pulse-rgb"));
+  }
+
+  function applyHakPulseIfNeeded() {
+    const tile = findHakAppTile();
+    if (!tile) return false;
+    const shouldPulse = getHakActionableState().requiresAttention === true;
+    tile.classList.toggle("hak-pulse-rgb", shouldPulse);
+    return shouldPulse;
+  }
+
+  function scheduleHakPulseSync() {
+    if (Array.isArray(STATE.hakPulseTimers)) {
+      STATE.hakPulseTimers.forEach((timer) => {
+        try { clearTimeout(timer); } catch {}
+      });
+    }
+    STATE.hakPulseTimers = [];
+
+    [70, 190, 420].forEach((delay) => {
+      const timer = setTimeout(() => {
+        const scene = String(window.Game?.currentScene || "").toLowerCase();
+        if (scene !== "home") return;
+        applyHakVisibility();
+        applyHakPulseIfNeeded();
+      }, delay);
+      STATE.hakPulseTimers.push(timer);
+    });
+  }
+
+  function hideHakBubble() {
+    if (typeof STATE.hakBubbleCleanup === "function") {
+      try { STATE.hakBubbleCleanup(); } catch {}
+      STATE.hakBubbleCleanup = null;
+    }
+    const root = document.getElementById("hak-bubble");
+    if (root) root.classList.remove("visible");
+  }
+
+  function maybeShowHakOpenPrompt() {
+    if (safeGetLS(HAK_OPEN_PROMPT_PENDING_KEY) !== "1") {
+      hideHakBubble();
+      return;
+    }
+
+    if (safeGetLS(HAK_TUTORIAL_REQUIRED_KEY) !== "1" || safeGetLS(HAK_TUTORIAL_DONE_KEY) === "1") {
+      safeRemLS(HAK_OPEN_PROMPT_PENDING_KEY);
+      hideHakBubble();
+      return;
+    }
+
+    if (!canOpenHakApp()) return;
+
+    const root = document.getElementById("hak-bubble");
+    const textEl = document.getElementById("hak-bubble-text");
+    const titleEl = document.getElementById("hak-bubble-title");
+    const nextLabelEl = document.getElementById("hak-bubble-next-label");
+    const nextBtn = root ? root.querySelector(".hak-bubble-next") : null;
+    const backdrop = root ? root.querySelector(".hak-bubble-backdrop") : null;
+
+    if (!root || !textEl || !nextBtn) {
+      safeRemLS(HAK_OPEN_PROMPT_PENDING_KEY);
+      return;
+    }
+
+    hideHakBubble();
+
+    if (titleEl) titleEl.textContent = "HAK//OS";
+    textEl.textContent = String(safeGetLS(HAK_OPEN_PROMPT_TEXT_KEY) || "Open the app");
+    if (nextLabelEl) nextLabelEl.textContent = "( end )";
+
+    let closed = false;
+    const close = () => {
+      if (closed) return;
+      closed = true;
+      root.classList.remove("visible");
+      safeRemLS(HAK_OPEN_PROMPT_PENDING_KEY);
+      if (typeof STATE.hakBubbleCleanup === "function") {
+        try { STATE.hakBubbleCleanup(); } catch {}
+      }
+      STATE.hakBubbleCleanup = null;
+    };
+
+    const onBtn = (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      close();
+    };
+    const onBackdrop = (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      close();
+    };
+    const onKey = (e) => {
+      const k = e.key || "";
+      if (k !== "Enter" && k !== "Escape" && k !== " " && k !== "Spacebar") return;
+      e.preventDefault();
+      e.stopPropagation();
+      close();
+    };
+
+    nextBtn.addEventListener("click", onBtn);
+    if (backdrop) backdrop.addEventListener("click", onBackdrop);
+    window.addEventListener("keydown", onKey, true);
+    STATE.hakBubbleCleanup = () => {
+      try { nextBtn.removeEventListener("click", onBtn); } catch {}
+      try { if (backdrop) backdrop.removeEventListener("click", onBackdrop); } catch {}
+      try { window.removeEventListener("keydown", onKey, true); } catch {}
+    };
+
+    root.classList.add("visible");
+  }
+
+  function startHakMiniGlitchLoop(hakApp) {
+    if (!hakApp) return;
+    if (!getHakActionableState().requiresAttention) {
+      if (STATE.hakMiniGlitchTimer) clearInterval(STATE.hakMiniGlitchTimer);
+      STATE.hakMiniGlitchTimer = null;
+      HAK_GLITCH_MODES.forEach((cls) => hakApp.classList.remove(cls));
+      return;
+    }
+    if (STATE.hakMiniGlitchTimer) return;
+
+    STATE.hakMiniGlitchTimer = setInterval(() => {
+      if (!document.body.contains(hakApp)) return;
+      if (!getHakActionableState().requiresAttention) {
+        startHakMiniGlitchLoop(hakApp);
+        return;
+      }
+
+      HAK_GLITCH_MODES.forEach((cls) => hakApp.classList.remove(cls));
+      const cls = HAK_GLITCH_MODES[Math.floor(Math.random() * HAK_GLITCH_MODES.length)];
+      hakApp.classList.add(cls);
+      setTimeout(() => hakApp.classList.remove(cls), 340);
+    }, 3000);
+  }
+
+  function applyHakVisibility() {
+    let hakApp = findHakAppTile();
+    const homeRoot = document.querySelector(".home");
+    const visible = isHomeAppVisible(APP_REGISTRY.hak);
+
+    if (!hakApp && visible) {
+      renderHomeAppsFromSlots();
+      refreshBadges();
+      refreshMessagesTodoDot();
+      updateMessagesNeedsDot();
+      updateMessagesUnfinishedDot();
+      hakApp = findHakAppTile();
+    }
+    if (!hakApp) return;
+
+    const animate  = safeGetLS(HAK_UNLOCK_ANIM_KEY) === "1";
+
+    const canOpen = canOpenHakApp();
+
+    if (!visible) {
+      clearHakPulseClass();
+      hakApp.remove();
+      renderHomeAppsFromSlots();
+      return;
+    }
+
+    hakApp.style.opacity = "1";
+    hakApp.style.pointerEvents = "auto";
+    hakApp.disabled = false;
+    hakApp.classList.toggle("hak-locked", !canOpen);
+    hakApp.classList.toggle("hak-glow-boost", shouldBoostHakGlow());
+    applyHakPulseIfNeeded();
+
+    startHakMiniGlitchLoop(hakApp);
+
+    if (animate) {
+      hakApp.classList.add("hak-unlock-anim");
+      if (homeRoot) {
+        homeRoot.classList.add("home-hak-glitch");
+        setTimeout(() => homeRoot.classList.remove("home-hak-glitch"), 2000);
+      }
+      setTimeout(() => hakApp.classList.remove("hak-unlock-anim"), 900);
+      safeRemLS(HAK_UNLOCK_ANIM_KEY);
+    }
+  }
+
+  // =========================================
+  // Boot first story (universal)
+  // =========================================
+  const BOOT_KEY = "conv_boot_done";
+
+  function shouldSkipBootBecauseLoad() {
+    try {
+      const bootFromSave = localStorage.getItem("__boot_from_save");
+      if (bootFromSave) return true;
+    } catch {}
+    return false;
+  }
+
+  function isFreshGameForBoot() {
+    try {
+      if (localStorage.getItem(BOOT_KEY) === "1") return false;
+      if (localStorage.getItem("story_prologue_done") === "1") return false;
+      if (window.Game && typeof window.Game.readPendingStory === "function" ? window.Game.readPendingStory() : localStorage.getItem("pending_story_v1")) return false;
+
+      // don't boot if a chained story is pending
+      if (localStorage.getItem(CHAIN_KEY)) return false;
+
+      // conv_done_* is only ever bulk-written by scripts/start-from-entry.js
+      // to simulate prior-day completions -- canonically, that means
+      // progression.onceKeys is non-empty. Checking that directly (rather
+      // than scanning localStorage for conv_done_* keys) is the canonical
+      // equivalent: any once-key marked done, whether via Start From or real
+      // play, means this is not a truly fresh game.
+      const canonical = window.GameStateEngine?.getState?.();
+      if (canonical && Array.isArray(canonical.progression?.onceKeys) && canonical.progression.onceKeys.length > 0) return false;
+      for (let i = 0; i < localStorage.length; i++) {
+        const k = localStorage.key(i);
+        if (!k) continue;
+        if (k.startsWith("conv_done_") && localStorage.getItem(k) === "1") return false;
+      }
+    } catch {}
+    return true;
+  }
+
+  function bootFirstConversationOnce() {
+    // Visiting Home is navigation, not consent to start a new campaign.
+    // Splash initializes the campaign after confirming Mason's appearance.
+    const canonical = window.GameStateEngine?.getState?.();
+    if (!canonical || canonical.initialization?.mode !== "FRESH_NEW_GAME") return;
+    if (canonical.initialization?.status !== "READY_IDLE" || canonical.execution?.lease || canonical.execution?.activeStoryId) return;
+    const selectedVariant = String(safeGetLS("character_variant_mason") || "").trim().toLowerCase();
+    if (selectedVariant !== "male" && selectedVariant !== "female") return;
+    if (shouldSkipBootBecauseLoad()) return;
+    if (!isFreshGameForBoot()) return;
+    if (!window.Game || typeof window.Game.startStory !== "function") return;
+
+    const bootPath = "./story/DAY1/DAY1_00_LANDLADY_INTRO.json";
+    try { localStorage.setItem(BOOT_KEY, "1"); } catch {}
+    try {
+      safeSetLS(CHAIN_KEY, JSON.stringify({ path: bootPath, at: Date.now(), via: "boot" }));
+      if (typeof Game.queueStoryStart === "function") {
+        Game.queueStoryStart(bootPath, { reason: "boot", via: "boot", startWhenScene: "home" });
+        Game.resumePendingStory?.({ source: "home_boot" });
+        return;
+      }
+      if (typeof Game.queuePendingStoryStart === "function") {
+        Game.queuePendingStoryStart(bootPath, { reason: "boot", via: "boot", force: true, startWhenScene: "home" });
+        Game.resumePendingStory?.({ source: "home_boot" });
+        return;
+      }
+      Game.startStory(bootPath);
+    } catch {}
+  }
+
+  // =========================================
+  // initHome
+  // =========================================
+  function initHome() {
+    const root = document.querySelector(".home[data-scene]");
+    if (!root) return;
+
+    if (STATE.didInitOnceThisMount) return;
+    STATE.didInitOnceThisMount = true;
+    playArrivalGlitchIfNeeded();
+
+    if (STATE.clockListener) { window.removeEventListener("gameTime:changed", STATE.clockListener); STATE.clockListener = null; }
+    if (STATE.hakMiniGlitchTimer) { clearInterval(STATE.hakMiniGlitchTimer); STATE.hakMiniGlitchTimer = null; }
+    if (STATE.badgeListener) { window.removeEventListener("app:badge-changed", STATE.badgeListener); STATE.badgeListener = null; }
+    if (STATE.badgesUpdatedListener) { window.removeEventListener("game:badges-updated", STATE.badgesUpdatedListener); STATE.badgesUpdatedListener = null; }
+    if (STATE.conversationsChangedListener) { window.removeEventListener("conversations:changed", STATE.conversationsChangedListener); STATE.conversationsChangedListener = null; }
+    if (STATE.hakPhotoListener) { window.removeEventListener("hak:photo", STATE.hakPhotoListener); STATE.hakPhotoListener = null; }
+    if (STATE.hakVisibilityListener) { window.removeEventListener("hak:visibility-changed", STATE.hakVisibilityListener); STATE.hakVisibilityListener = null; }
+    if (typeof STATE.hakCanonicalUnsubscribe === "function") { try { STATE.hakCanonicalUnsubscribe(); } catch {} STATE.hakCanonicalUnsubscribe = null; }
+
+    updateClock();
+    STATE.clockListener = updateClock;
+    window.addEventListener("gameTime:changed", STATE.clockListener);
+
+    renderHomeAppsFromSlots();
+    refreshBadges();
+    refreshMessagesTodoDot();
+    updateMessagesNeedsDot();
+    updateMessagesUnfinishedDot();
+    playPopAppSignalIfNeeded();
+
+    // existing badge event
+    STATE.badgeListener = (ev) => {
+      const d = ev?.detail || {};
+      const app = d.app;
+      const value = d.value || 0;
+      if (!app) return;
+      if (app === "messages" || app === "snapgram" || app === "onlyfun" || app === "meetandgreet" || app === "hak") {
+        applyBadge(app, app === "hak" ? getHakActionableState().badgeCount : value);
+        if (app === "hak") applyHakVisibility();
+      }
+    };
+    window.addEventListener("app:badge-changed", STATE.badgeListener);
+
+    // convo-runtime emits this one when bumping badges
+    STATE.badgesUpdatedListener = (ev) => {
+      const d = ev?.detail || {};
+      const app = d.app;
+      const value = d.value || 0;
+      if (!app) return;
+      if (app === "messages" || app === "snapgram" || app === "onlyfun" || app === "meetandgreet" || app === "hak") {
+        applyBadge(app, app === "hak" ? getHakActionableState().badgeCount : value);
+        if (app === "hak") applyHakVisibility();
+      }
+    };
+    window.addEventListener("game:badges-updated", STATE.badgesUpdatedListener);
+
+    // Canonical unread is sufficient even when no conversation cache row has
+    // existed yet. This also updates an already-mounted Home on the first
+    // event for a newly introduced contact.
+    try {
+      STATE.messagesCanonicalUnsubscribe = window.GameStateEngine?.subscribe?.(() => {
+        if (String(window.Game?.currentScene || "").toLowerCase() !== "home") return;
+        const total = window.GameStateEngine?.getMessagesUnreadTotal?.();
+        if (Number.isFinite(Number(total))) applyBadge("messages", total);
+        updateMessagesNeedsDot();
+        const onlyfunUnseen = window.GameStateEngine?.getOnlyfunUnseenTotal?.();
+        if (Number.isFinite(Number(onlyfunUnseen))) applyBadge("onlyfun", onlyfunUnseen);
+      }) || null;
+    } catch { STATE.messagesCanonicalUnsubscribe = null; }
+
+    STATE.todoChangedListener = () => {
+      refreshMessagesTodoDot();
+    };
+    window.addEventListener("todos:changed", STATE.todoChangedListener);
+
+    STATE.todoBusListener = () => {
+      refreshMessagesTodoDot();
+    };
+    try { window.StoryBus?.on?.("todos:changed", STATE.todoBusListener); } catch {}
+
+    STATE.guidedChangedListener = () => {
+      refreshMessagesTodoDot();
+    };
+    window.addEventListener("guided:cues-changed", STATE.guidedChangedListener);
+
+    STATE.guidedBusListener = () => {
+      refreshMessagesTodoDot();
+    };
+    try { window.StoryBus?.on?.("guided:cues-changed", STATE.guidedBusListener); } catch {}
+
+    STATE.conversationsChangedListener = () => {
+      updateMessagesNeedsDot();
+      updateMessagesUnfinishedDot();
+    };
+    window.addEventListener("conversations:changed", STATE.conversationsChangedListener);
+
+    // sync icon state if HAK data changes while Home is mounted
+    STATE.hakPhotoListener = () => { applyHakVisibility(); };
+    window.addEventListener("hak:photo", STATE.hakPhotoListener);
+    STATE.hakVisibilityListener = () => {
+      applyHakVisibility();
+      applyHakPulseIfNeeded();
+      playPopAppSignalIfNeeded();
+      maybeShowHakOpenPrompt();
+    };
+    window.addEventListener("hak:visibility-changed", STATE.hakVisibilityListener);
+
+    // Canonical HAK mutations can occur while Home stays mounted (skill
+    // purchase, evidence acknowledgement, or StoryInterpreter entering a
+    // hak_watchlist input boundary). Re-project from the engine event seam
+    // so badge and attention classes change immediately without a remount.
+    try {
+      STATE.hakCanonicalUnsubscribe = window.GameStateEngine?.subscribe?.(() => {
+        if (String(window.Game?.currentScene || "").toLowerCase() !== "home") return;
+        const projection = getHakActionableState();
+        applyBadge("hak", projection.badgeCount);
+        applyHakVisibility();
+      }) || null;
+    } catch { STATE.hakCanonicalUnsubscribe = null; }
+
+    STATE.visibilityChangeListener = () => {
+      if (document.hidden) return;
+      const scene = String(window.Game?.currentScene || "").toLowerCase();
+      if (scene !== "home") return;
+      applyHakVisibility();
+      applyHakPulseIfNeeded();
+      maybeShowHakOpenPrompt();
+      scheduleHakPulseSync();
+    };
+    document.addEventListener("visibilitychange", STATE.visibilityChangeListener);
+
+    // apply lock/unlock rules
+    applyHakVisibility();
+    applyHakPulseIfNeeded();
+    maybeShowHakOpenPrompt();
+    scheduleHakPulseSync();
+    maybeSchedulePatreonCodePrompt();
+
+    // Run chained story FIRST if exists (after NEXT DAY goHome)
+    const didRunChain = tryRunPendingChain();
+    if (didRunChain) return;
+
+    bootFirstConversationOnce();
+  }
+
+  setTimeout(initHome, 0);
+
+  STATE.mountedListener = (e) => {
+    const name = (e?.detail?.name || e?.detail?.id || e?.detail?.scene || "").toLowerCase();
+    if (name !== "home") return;
+
+    STATE.didInitOnceThisMount = false;
+    setTimeout(initHome, 0);
+  };
+  window.addEventListener("scene:mounted", STATE.mountedListener);
+})();
+</script>

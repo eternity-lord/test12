@@ -1,0 +1,45 @@
+{
+  "onceKey": "d10_02_lena_evening_love_v1",
+  "contactId": "lena",
+  "requireOnceKey": "d10_01_lena_afternoon_park_love_v1",
+  "steps": [
+    {"type":"notify","delay":1300,"fromId":"lena","fromName":"{{name:lena}}","avatar":"assets/avatars/lena.jpg","text":"Home safe 🌙","target":"conversation"},
+    {"type":"message","delay":900,"from":"player","text":"Good"},
+    {"type":"message","delay":900,"from":"player","text":"How was it?"},
+    {"type":"message","delay":900,"from":"lena","text":"Really nice actually"},
+    {"type":"message","delay":900,"from":"lena","text":"I think I definitely got a little sunburned 😭"},
+    {"type":"message","delay":900,"from":"player","text":"So you got cute and slightly toasted?"},
+    {"type":"message","delay":900,"from":"lena","text":"Excuse me"},
+    {"type":"message","delay":900,"from":"lena","text":"Very slightly toasted 😌"},
+    {"type":"message","delay":900,"from":"lena","text":"But it was worth it"},
+    {"type":"message","delay":900,"from":"lena","text":"Now I really want to go back there with you"},
+    {"type":"message","delay":900,"from":"player","text":"What about next Saturday? And I make you dinner after the date"},
+    {"type":"message","delay":900,"from":"lena","text":"I'd love that"},
+    {"type":"message","delay":900,"from":"lena","text":"I'd be really happy if we do that"},
+    {"type":"message","delay":900,"from":"player","text":"Then it's a plan"},
+    {"type":"message","delay":900,"from":"lena","text":"Good 😌"},
+    {"type":"message","delay":900,"from":"lena","text":"Now tell me about your day"},
+    {"type":"message","delay":900,"from":"player","text":"Nothing too wild"},
+    {"type":"message","delay":900,"from":"player","text":"I moved around a bit like I said I would"},
+    {"type":"message","delay":900,"from":"player","text":"And then I played for a while with {{name:aiden}}"},
+    {"type":"message","delay":900,"from":"lena","text":"Look at you"},
+    {"type":"message","delay":900,"from":"lena","text":"Rehab and social life in the same day"},
+    {"type":"message","delay":900,"from":"player","text":"I'm basically thriving"},
+    {"type":"message","delay":900,"from":"lena","text":"Let's not get carried away 😌"},
+    {"type":"message","delay":900,"from":"lena","text":"Still"},
+    {"type":"message","delay":900,"from":"lena","text":"I'm really glad you moved around today"},
+    {"type":"message","delay":900,"from":"lena","text":"And I'm glad you had a decent Sunday"},
+    {"type":"message","delay":900,"from":"player","text":"Me too"},
+    {"type":"message","delay":900,"from":"player","text":"And you should go to bed soon"},
+    {"type":"message","delay":900,"from":"player","text":"I don't want you exhausted tomorrow"},
+    {"type":"message","delay":900,"from":"lena","text":"Fine"},
+    {"type":"message","delay":900,"from":"lena","text":"I'm going to wash up and get in bed"},
+    {"type":"message","delay":900,"from":"lena","text":"Goodnight, handsome ❤️"},
+    {"type":"message","delay":900,"from":"player","text":"Goodnight, pretty girl"},
+    {"type":"if","condition":"active_character:hailey","then":[
+      {"type":"time_card","text":"DAY 11","goHome":true,"startStory":"story/DAY10/love/DAY10_02_HAILEY_EVENING_LOVE.json","startDelayMs":200}
+    ],"else":[
+      {"type":"time_card","text":"DAY 11","goHome":true,"startStory":"story/DAY11/DAY11_00_AIDEN_SHARED.json","startDelayMs":200}
+    ]}
+  ]
+}

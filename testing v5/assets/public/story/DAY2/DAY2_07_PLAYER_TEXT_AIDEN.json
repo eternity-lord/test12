@@ -1,0 +1,25 @@
+{
+  "onceKey": "d2_07_player_text_aiden_v1",
+  "contactId": "aiden",
+  "onCompleteStartStory": "story/DAY2/DAY2_08_PLAYER_WARNS_HAILEY.json",
+  "steps": [
+    {"type":"message","delay":900,"from":"player","fromName":"Player","text":"Bro you busy ?"},
+    {"type":"message","delay":900,"from":"player","text":"I need a favor"},
+    {"type":"message","delay":900,"from":"player","text":"Can you drive {{name:hailey}} to rugby in like an hour ?"},
+    {"type":"message","delay":900,"from":"player","text":"{{name:mason}} isn’t answering"},
+    {"type":"notify","delay":1200,"fromId":"aiden","fromName":"{{name:aiden}}","avatar":"assets/avatars/aiden.jpg","text":"Yooo 😴","target":"conversation"},
+    {"type":"message","delay":900,"from":"aiden","fromName":"{{name:aiden}}","text":"Yeah I got you"},
+    {"type":"message","delay":900,"from":"aiden","text":"Let me throw something on and I’m coming"},
+    {"type":"message","delay":900,"from":"aiden","text":"You’re lucky, I literally just woke up 😏"},
+    {"type":"message","delay":950,"from":"aiden","text":"Where’s {{name:mason}}"},
+    {"type":"message","delay":900,"from":"player","text":"Ghosting me"},
+    {"type":"message","delay":950,"from":"aiden","text":"Of course {{mason:he}} is"},
+    {"type":"message","delay":950,"from":"aiden","text":"Alright"},
+    {"type":"message","delay":900,"from":"aiden","text":"Text {{mason:her}} I’ll be there in forty"},
+    {"type":"message","delay":900,"from":"player","text":"You’re a lifesaver"},
+    {"type":"message","delay":950,"from":"aiden","text":"Anything for you my love ❤️"},
+    {"type":"message","delay":900,"from":"player","text":"Screw you "},
+    {"type":"note","text":"Now I need to warn {{name:hailey}} to hurry up and get ready.","presentation":"player_thought","speaker":"player"},
+    {"type":"outbound_task","contactId":"hailey","story":"story/DAY2/DAY2_08_PLAYER_WARNS_HAILEY.json","prompt":"Hurry up and get ready","episodeOnceKey":"d2_08_player_warns_hailey_v1","cueKind":"rainbow","goHome":true}
+  ]
+}

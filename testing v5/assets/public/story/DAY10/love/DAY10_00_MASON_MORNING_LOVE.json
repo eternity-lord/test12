@@ -1,0 +1,28 @@
+{
+  "onceKey": "d10_03_mason_morning_love_v1",
+  "contactId": "mason",
+  "requireOnceKey": "d9_08_mason_evening_love_v1",
+  "onCompleteStartStory": "story/DAY10/love/DAY10_01_MASON_AFTERNOON_LOVE.json",
+  "route": "love",
+  "routeLock": "route_mason_locked_v1:love",
+  "steps": [
+    {"type":"notify","delay":1200,"fromId":"mason","fromName":"{{name:mason}}","avatar":"assets/avatars/male_mason.jpg","text":"Hey, wake up","target":"conversation"},
+    {"type":"message","delay":850,"from":"mason","text":"I'm ready"},
+    {"type":"image","from":"mason","image":"assets/pictures/Conversation/male_mason/mason_training_morning_2.jpg"},
+    {"type":"message","delay":850,"from":"mason","text":"And this time we're doing a real session"},
+    {"type":"message","delay":850,"from":"mason","text":"No twenty-minute treasure hunt for the mat"},
+    {"type":"message","delay":850,"from":"player","text":"Alright, alright"},
+    {"type":"message","delay":850,"from":"player","text":"I'm getting ready"},
+    {"type":"message","delay":850,"from":"player","text":"I'll be there in a minute"},
+    {"type":"message","delay":850,"from":"mason","text":"Did you eat breakfast?"},
+    {"type":"message","delay":850,"from":"player","text":"Yeah, I did"},
+    {"type":"message","delay":850,"from":"player","text":"Did you?"},
+    {"type":"message","delay":850,"from":"mason","text":"Yes"},
+    {"type":"message","delay":850,"from":"mason","text":"Not too much"},
+    {"type":"message","delay":850,"from":"mason","text":"I'm not cleaning the floor if you throw up"},
+    {"type":"message","delay":850,"from":"player","text":"Good to know you care"},
+    {"type":"message","delay":850,"from":"mason","text":"I care about the floor"},
+    {"type":"message","delay":850,"from":"mason","text":"Now hurry up"},
+    {"type":"start_story","goHome":true,"startStory":"story/DAY10/love/DAY10_01_MASON_AFTERNOON_LOVE.json","startDelayMs":200}
+  ]
+}

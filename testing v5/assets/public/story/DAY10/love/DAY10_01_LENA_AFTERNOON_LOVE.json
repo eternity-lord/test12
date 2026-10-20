@@ -1,0 +1,50 @@
+{
+  "onceKey": "d10_01_lena_afternoon_park_love_v1",
+  "contactId": "lena",
+  "requireOnceKey": "d10_00_lena_morning_love_v1",
+  "steps": [
+    {"type":"notify","delay":1300,"fromId":"lena","fromName":"{{name:lena}}","avatar":"assets/avatars/lena.jpg","text":"Park update 🌿","target":"conversation"},
+    {"type":"message","delay":900,"from":"lena","text":"Okay that's was the best idea"},
+    {"type":"message","delay":900,"from":"lena","text":"The weather is actually really nice today"},
+    {"type":"image","delay":900,"from":"lena","image":"assets/pictures/Conversation/lena_day10_park_1.jpg"},
+    {"type":"message","delay":900,"from":"player","text":"Okay yeah that looks peaceful"},
+    {"type":"message","delay":900,"from":"lena","text":"Mhm 😌"},
+    {"type":"message","delay":900,"from":"lena","text":"My family is walking a little ahead of me right now"},
+    {"type":"message","delay":900,"from":"lena","text":"So I have one minute to bother you"},
+    {"type":"message","delay":900,"from":"player","text":"Only one?"},
+    {"type":"message","delay":900,"from":"lena","text":"Maybe two if you're lucky 🤍"},
+    {"type":"image","delay":900,"from":"lena","image":"assets/pictures/Conversation/lena_day10_park_2.jpg"},
+    {"type":"message","delay":900,"from":"player","text":"That park date preview is unfair"},
+    {"type":"message","delay":900,"from":"lena","text":"Preview?"},
+    {"type":"message","delay":900,"from":"player","text":"Yeah"},
+    {"type":"message","delay":900,"from":"player","text":"You, me, better weather, less family"},
+    {"type":"message","delay":900,"from":"lena","text":"Oh?"},
+    {"type":"message","delay":900,"from":"lena","text":"So you've already planned the upgraded version 😌"},
+    {"type":"message","delay":900,"from":"player","text":"Obviously"},
+    {"type":"message","delay":900,"from":"lena","text":"Good"},
+    {"type":"message","delay":900,"from":"lena","text":"Because I'd say yes"},
+    {"type":"message","delay":900,"from":"player","text":"That was easier than expected"},
+    {"type":"message","delay":900,"from":"lena","text":"Don't get used to it"},
+    {"type":"message","delay":900,"from":"lena","text":"Also"},
+    {"type":"image","delay":900,"from":"lena","image":"assets/pictures/Conversation/lena_day10_park_selfie_1.jpg"},
+    {"type":"message","delay":900,"from":"lena","text":"This is your reward for doing your rehab today"},
+    {"type":"message","delay":900,"from":"player","text":"This is a very strong reward system"},
+    {"type":"message","delay":900,"from":"lena","text":"It can be improved if needed 😇"},
+    {"type":"message","delay":900,"from":"player","text":"You're dangerous"},
+    {"type":"message","delay":900,"from":"lena","text":"A little"},
+    {"type":"message","delay":900,"from":"player","text":"I still owe you proof that I actually walked"},
+    {"type":"message","delay":900,"from":"lena","text":"Yes you do"},
+    {"type":"message","delay":900,"from":"lena","text":"I want my proof later"},
+    {"type":"message","delay":900,"from":"player","text":"Bossy"},
+    {"type":"message","delay":900,"from":"lena","text":"Only with you ❤️"},
+    {"type":"message","delay":900,"from":"lena","text":"Okay I should go before they notice I'm smiling at my phone like an idiot"},
+    {"type":"message","delay":900,"from":"player","text":"Too late probably"},
+    {"type":"message","delay":900,"from":"lena","text":"Rude"},
+    {"type":"message","delay":900,"from":"lena","text":"Text me later, handsome 🤍"},
+    {"type":"if","condition":"active_character:hailey","then":[
+      {"type":"start_story","goHome":true,"startStory":"story/DAY10/DAY10_HAILEY_AFTERNOON.json"}
+    ],"else":[
+      {"type":"start_story","goHome":true,"startStory":"story/DAY10/love/DAY10_02_LENA_EVENING_LOVE.json"}
+    ]}
+  ]
+}

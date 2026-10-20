@@ -1,0 +1,49 @@
+{
+  "onceKey": "d13_02_hailey_evening_nts_v1",
+  "contactId": "hailey",
+  "requireOnceKey": "d13_02_lena_after_visit_nts_v1|d13_01_tutor_attention_pattern_nts_v1",
+  "steps": [
+    {"type":"notify","delay":800,"fromId":"hailey","fromName":"{{name:hailey}}","avatar":"assets/avatars/hailey.jpg","text":"Finaly free 😌","target":"conversation"},
+    {"type":"message","delay":900,"from":"player","text":"So how did it go with Ethan?"},
+    {"type":"message","delay":900,"from":"hailey","text":"Straight to the interrogation?😇"},
+    {"type":"message","delay":900,"from":"player","text":"I want to know if you're actually studying"},
+    {"type":"message","delay":900,"from":"hailey","text":"I am"},
+    {"type":"message","delay":900,"from":"hailey","text":"Annoyingly enough, it's working very well"},
+    {"type":"message","delay":900,"from":"player","text":"Are you managing to focus?"},
+    {"type":"message","delay":900,"from":"hailey","text":"Better than before"},
+    {"type":"message","delay":900,"from":"player","text":"That's real progress"},
+    {"type":"message","delay":900,"from":"player","text":"And the quiz?"},
+    {"type":"message","delay":900,"from":"hailey","text":"Passed 😌"},
+    {"type":"message","delay":900,"from":"player","text":"Good"},
+    {"type":"message","delay":900,"from":"player","text":"What reward did you ask for this time?"},
+    {"type":"message","delay":900,"from":"hailey","text":"A hug"},
+    {"type":"message","delay":900,"from":"player","text":"Of course"},
+    {"type":"message","delay":900,"from":"hailey","text":"What?"},
+    {"type":"message","delay":900,"from":"hailey","text":"I earned it"},
+    {"type":"message","delay":900,"from":"player","text":"You're really enjoying those rewards"},
+    {"type":"message","delay":900,"from":"hailey","text":"Obviously"},
+    {"type":"message","delay":900,"from":"hailey","text":"If I'm going to suffer through quizzes, I deserve benefits"},
+    {"type":"message","delay":900,"from":"player","text":"That's not how studying usually works"},
+    {"type":"message","delay":900,"from":"hailey","text":"Then studying was badly designed"},
+    {"type":"message","delay":900,"from":"player","text":"You're impossible"},
+    {"type":"message","delay":900,"from":"hailey","text":"And still passing my quizzes"},
+    {"type":"message","delay":900,"from":"player","text":"Fair point"},
+    {"type":"message","delay":900,"from":"hailey","text":"Anyway"},
+    {"type":"message","delay":900,"from":"hailey","text":"I'm putting a movie on downstairs"},
+    {"type":"image","delay":900,"from":"hailey","image":"assets/pictures/Conversation/hailey_day13_movie.jpg"},
+    {"type":"message","delay":900,"from":"hailey","text":"Hurry up and come watch it with me"},
+    {"type":"message","delay":900,"from":"hailey","text":"At the speed you move, it'll be over before you get down here 😭"},
+    {"type":"message","delay":900,"from":"player","text":"Very funny"},
+    {"type":"message","delay":900,"from":"hailey","text":"I'm serious"},
+    {"type":"message","delay":900,"from":"hailey","text":"Start moving, grandpa"},
+    {"type":"message","delay":900,"from":"player","text":"I'm coming"},
+    {"type":"message","delay":900,"from":"hailey","text":"Good"},
+    {"type":"message","delay":900,"from":"hailey","text":"I'll save you a spot"},
+    {"type":"set_flag","key":"hailey_nts_tutor_attraction_admitted_v1","value":"1","onceKey":"d13_hailey_nts_tutor_attraction_admitted_once_v1"},
+    {"type":"if","condition":"active_character:lena","then":[
+      {"type":"start_story","goHome":true,"startStory":"story/DAY13/nts/DAY13_03_HAK_HEARTSPIKE_NTS.json","startDelayMs":200}
+    ],"else":[
+      {"type":"time_card","text":"DAY 14","goHome":true,"startStory":"story/DAY14/nts/DAY14_00_HAILEY_MORNING_NTS.json","startDelayMs":200}
+    ]}
+  ]
+}

@@ -1,0 +1,54 @@
+{
+  "onceKey": "d9_04_hailey_afternoon_love_v1",
+  "contactId": "hailey",
+  "requireOnceKey": "d9_00_lena_late_morning_v1|d9_01_hailey_morning_love_v1",
+  "steps": [
+    {"type":"notify","delay":1200,"fromId":"hailey","fromName":"{{name:hailey}}","avatar":"assets/avatars/hailey.jpg","text":"Study prisoner reporting in 😭","target":"conversation"},
+    {"type":"message","delay":850,"from":"hailey","text":"I am at my desk"},
+    {"type":"message","delay":850,"from":"hailey","text":"Against my will"},
+    {"type":"message","delay":850,"from":"hailey","text":"Look at this tragic face"},
+    {"type":"image","delay":900,"from":"hailey","image":"assets/pictures/Conversation/hailey_at_desk.jpg"},
+    {"type":"message","delay":900,"from":"player","text":"You look ready to negotiate"},
+    {"type":"message","delay":850,"from":"hailey","text":"Correct 😇"},
+    {"type":"message","delay":850,"from":"hailey","text":"One worksheet for one compliment"},
+    {"type":"message","delay":850,"from":"hailey","text":"Fair economy"},
+    {"type":"message","delay":900,"from":"player","text":"Do the first question"},
+    {"type":"message","delay":900,"from":"player","text":"Then we discuss compliments"},
+    {"type":"message","delay":850,"from":"hailey","text":"Cruel"},
+    {"type":"message","delay":850,"from":"hailey","text":"I hate this 😭"},
+    {"type":"message","delay":900,"from":"player","text":"Show me the question"},
+    {"type":"message","delay":850,"from":"hailey","text":"Okay wait"},
+    {"type":"note","text":"{{name:hailey}} is showing you the question on her computer"},
+    {"type":"message","delay":850,"from":"hailey","text":"The teacher said compare the two examples"},
+    {"type":"message","delay":850,"from":"hailey","text":"My brain said no thanks 💅"},
+    {"type":"message","delay":900,"from":"player","text":"Start with what changes between them"},
+    {"type":"message","delay":900,"from":"player","text":"Then write why it matters"},
+    {"type":"message","delay":850,"from":"hailey","text":"..."},
+    {"type":"message","delay":850,"from":"hailey","text":"Wait"},
+    {"type":"message","delay":850,"from":"hailey","text":"That actually makes sense"},
+    {"type":"message","delay":850,"from":"hailey","text":"Annoying"},
+    {"type":"message","delay":900,"from":"player","text":"Because it worked?"},
+    {"type":"message","delay":850,"from":"hailey","text":"Because YOU worked"},
+    {"type":"message","delay":850,"from":"player","text":"Rude 😭"},
+    {"type":"message","delay":850,"from":"hailey","text":"Okay I wrote the first answer"},
+    {"type":"message","delay":850,"from":"hailey","text":"Compliment time"},
+    {"type":"message","delay":850,"from":"hailey","text":"Do not be cheap"},
+    {"type":"message","delay":900,"from":"player","text":"You focused and you did it well"},
+    {"type":"message","delay":850,"from":"hailey","text":"Oh"},
+    {"type":"message","delay":850,"from":"hailey","text":"What is that?"},
+    {"type":"message","delay":850,"from":"hailey","text":"You call that a compliment??"},
+    {"type":"message","delay":850,"from":"hailey","text":"You need to do better than that 😤"},
+    {"type":"message","delay":900,"from":"player","text":"I will try next time 😇"},
+    {"type":"message","delay":850,"from":"hailey","text":"You better 😤"},
+    {"type":"message","delay":850,"from":"hailey","text":"I have to get ready before the party eats my evening 😇"},
+    {"type":"if","condition":"active_character:mason","then":[
+      {"type":"start_story","goHome":true,"startStory":"story/DAY9/DAY9_MASON_AFTERNOON.json","startDelayMs":200}
+    ],"else":[
+      {"type":"if","condition":"active_character:evelyn","then":[
+        {"type":"start_story","goHome":true,"startStory":"story/DAY9/DAY9_EVELYN_AFTERNOON.json","startDelayMs":200}
+      ],"else":[
+        {"type":"start_story","goHome":true,"startStory":"story/DAY9/DAY9_LENA_EVENING.json","startDelayMs":200}
+      ]}
+    ]}
+  ]
+}

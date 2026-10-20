@@ -1,0 +1,48 @@
+{
+  "onceKey": "d9_01_lena_afternoon_ntr_v1",
+  "contactId": "lena",
+  "requireOnceKey": "d9_00_lena_late_morning_ntr_v1",
+  "steps": [
+    {"type":"notify","delay":1300,"fromId":"lena","fromName":"{{name:lena}}","avatar":"assets/avatars/lena.jpg","text":"Small break 😮‍💨","target":"conversation"},
+    {"type":"message","delay":900,"from":"lena","text":"I'm on my break"},
+    {"type":"message","delay":900,"from":"player","text":"Busy?"},
+    {"type":"message","delay":900,"from":"lena","text":"A little"},
+    {"type":"message","delay":900,"from":"lena","text":"Not terrible, just enough to make time feel slow"},
+    {"type":"message","delay":900,"from":"player","text":"Sounds fun"},
+    {"type":"message","delay":900,"from":"lena","text":"Extremely fun 😭"},
+    {"type":"message","delay":900,"from":"lena","text":"I'm basically living my dream right now"},
+    {"type":"message","delay":900,"from":"player","text":"Very convincing"},
+    {"type":"message","delay":900,"from":"lena","text":"Thank you, I practiced that lie"},
+    {"type":"message","delay":900,"from":"lena","text":"How's your leg today?"},
+    {"type":"message","delay":900,"from":"player","text":"Pretty good actually"},
+    {"type":"message","delay":900,"from":"lena","text":"That's good"},
+    {"type":"message","delay":900,"from":"lena","text":"Are you actually resting it?"},
+    {"type":"message","delay":900,"from":"player","text":"Mostly"},
+    {"type":"message","delay":900,"from":"lena","text":"Mostly is not a medical term"},
+    {"type":"message","delay":900,"from":"player","text":"It should be"},
+    {"type":"message","delay":900,"from":"lena","text":"No"},
+    {"type":"message","delay":900,"from":"lena","text":"Absolutely not 😌"},
+    {"type":"message","delay":900,"from":"player","text":"You're strict today"},
+    {"type":"message","delay":900,"from":"lena","text":"Someone has to be"},
+    {"type":"message","delay":900,"from":"lena","text":"Especially when you act like you're fine"},
+    {"type":"message","delay":900,"from":"player","text":"I'm not acting that much"},
+    {"type":"message","delay":900,"from":"lena","text":"That sentence is suspicious too"},
+    {"type":"message","delay":900,"from":"player","text":"You don't trust me at all"},
+    {"type":"message","delay":900,"from":"lena","text":"I trust you"},
+    {"type":"message","delay":900,"from":"lena","text":"I just don't trust your survival instincts"},
+    {"type":"message","delay":900,"from":"player","text":"Fair"},
+    {"type":"message","delay":900,"from":"lena","text":"Just take it easy until I finish"},
+    {"type":"message","delay":900,"from":"player","text":"Yes ma'am"},
+    {"type":"message","delay":900,"from":"lena","text":"Good answer ❤️"},
+    {"type":"message","delay":900,"from":"lena","text":"Okay, my break is almost over"},
+    {"type":"message","delay":900,"from":"lena","text":"I need to go act useful again"},
+    {"type":"message","delay":900,"from":"player","text":"You are useful"},
+    {"type":"message","delay":900,"from":"lena","text":"Tell my manager that"},
+    {"type":"message","delay":900,"from":"lena","text":"I'll text you after my shift 😌"},
+    {"type":"if","condition":"active_character:hailey","then":[
+      {"type":"start_story","goHome":true,"startStory":"story/DAY9/DAY9_HAILEY_EVENING.json"}
+    ],"else":[
+      {"type":"start_story","goHome":true,"startStory":"story/DAY9/ntr/DAY9_11_LENA_NIGHT_NTR.json"}
+    ]}
+  ]
+}

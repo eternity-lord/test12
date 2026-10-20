@@ -1,0 +1,6 @@
+{
+  "onceKey": "demo_end_v1",
+  "steps": [
+    { "type":"dev_message","delay":3000,"title":"DEVELOPER","text":"Hey.\n\nYou’ve reached the end of the demo.\n\nThank you for playing iNTeRcepted.\n\nIf you want to support the project, get new episodes, and access exclusive content, you can subscribe to my Patreon.\n\nYour support genuinely helps me keep building this game.\n\nSee you in the next chapter.","button":"( CONTINUE )","goHome":true }
+  ]
+}

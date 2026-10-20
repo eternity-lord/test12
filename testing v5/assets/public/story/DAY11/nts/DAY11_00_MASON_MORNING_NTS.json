@@ -1,0 +1,32 @@
+{
+  "onceKey": "d11_03_mason_morning_nts_v1",
+  "contactId": "mason",
+  "requireOnceKey": "d10_05_mason_evening_nts_v1",
+  "onCompleteStartStory": "story/DAY11/nts/DAY11_01_MASON_AFTERNOON_NTS.json",
+  "route": "nts",
+  "routeLock": "route_mason_locked_v1:nts",
+  "steps": [
+    {"type":"notify","delay":1200,"fromId":"mason","fromName":"{{name:mason}}","avatar":"assets/avatars/male_mason.jpg","text":"Hey, how are you feeling this morning?","target":"conversation"},
+    {"type":"message","delay":850,"from":"player","text":"I'm good"},
+    {"type":"message","delay":850,"from":"player","text":"Why?"},
+    {"type":"message","delay":850,"from":"mason","text":"Because you made so much noise in your room this morning that you woke me up"},
+    {"type":"message","delay":850,"from":"player","text":"Sorry princess"},
+    {"type":"message","delay":850,"from":"player","text":"I didn't know you needed your beauty sleep"},
+    {"type":"message","delay":850,"from":"mason","text":"You should be more worried about yours"},
+    {"type":"message","delay":850,"from":"mason","text":"Your face needs all the help it can get"},
+    {"type":"message","delay":850,"from":"player","text":"I hope your whole body is sore today"},
+    {"type":"message","delay":850,"from":"mason","text":"It already is"},
+    {"type":"message","delay":850,"from":"player","text":"Perfect"},
+    {"type":"message","delay":850,"from":"player","text":"I'll book another coaching session for you today"},
+    {"type":"message","delay":850,"from":"mason","text":"No fucking way"},
+    {"type":"message","delay":850,"from":"mason","text":"Everything hurts"},
+    {"type":"message","delay":850,"from":"mason","text":"You need to give me at least one day to recover"},
+    {"type":"message","delay":850,"from":"player","text":"Then you better shut up and let me make noise as much as i want"},
+    {"type":"message","delay":850,"from":"mason","text":"Alright alright"},
+    {"type":"message","delay":850,"from":"mason","text":"How about we play a game together and call it even?"},
+    {"type":"message","delay":850,"from":"player","text":"Maybe"},
+    {"type":"message","delay":850,"from":"mason","text":"Come on"},
+    {"type":"message","delay":850,"from":"mason","text":"I'll even let you lose with dignity"},
+    {"type":"start_story","goHome":true,"startStory":"story/DAY11/nts/DAY11_01_MASON_AFTERNOON_NTS.json","startDelayMs":200}
+  ]
+}

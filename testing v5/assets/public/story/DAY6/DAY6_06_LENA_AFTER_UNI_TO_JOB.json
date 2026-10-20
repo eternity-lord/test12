@@ -1,0 +1,20 @@
+{
+  "onceKey": "d6_00_lena_after_uni_to_job_v1",
+  "contactId": "lena",
+  "onCompleteStartStory": "story/DAY6/DAY6_07_LENA_WORK_BREAK.json",
+  "steps": [
+    {"type":"notify","delay":1200,"fromId":"lena","fromName":"{{name:lena}}","avatar":"assets/avatars/lena.jpg","text":"Done with uni 😮‍💨","target":"conversation"},
+    {"type":"message","delay":900,"from":"lena","text":"I barely survived that last class"},
+    {"type":"message","delay":900,"from":"player","text":"That bad?"},
+    {"type":"message","delay":900,"from":"lena","text":"My brain checked out halfway through"},
+    {"type":"message","delay":900,"from":"lena","text":"And now I'm on my way to work"},
+    {"type":"message","delay":900,"from":"player","text":"No rest for you today"},
+    {"type":"message","delay":900,"from":"lena","text":"Not today 😭"},
+    {"type":"message","delay":900,"from":"lena","text":"Wish me luck"},
+    {"type":"message","delay":900,"from":"player","text":"Good luck love"},
+    {"type":"message","delay":900,"from":"player","text":"Don't overdo it"},
+    {"type":"message","delay":900,"from":"lena","text":"I'll try 😌"},
+    {"type":"message","delay":900,"from":"lena","text":"I'll text you on my break 💕"},
+    {"type":"note","text":"1 hour later"}
+  ]
+}

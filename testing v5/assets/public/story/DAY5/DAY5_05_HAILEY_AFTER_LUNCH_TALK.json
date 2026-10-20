@@ -1,0 +1,33 @@
+{
+  "onceKey": "d5_04_hailey_after_lunch_talk_v1",
+  "contactId": "hailey",
+  "onCompleteStartStory": "story/DAY5/DAY5_06_MASON_STORE_OR_FOOD_RUN.json",
+  "steps": [
+    {"type":"notify","delay":1200,"fromId":"hailey","fromName":"{{name:hailey}}","avatar":"assets/avatars/hailey.jpg","text":"Busy? 😌","target":"conversation"},
+    {"type":"message","delay":900,"from":"hailey","text":"Do you have five minutes or are you pretending to be very important?"},
+    {"type":"message","delay":900,"from":"player","text":"I can make time for the small people"},
+    {"type":"message","delay":900,"from":"hailey","text":"Bad answer 😌"},
+    {"type":"message","delay":900,"from":"hailey","text":"I was just wondering something"},
+    {"type":"message","delay":900,"from":"hailey","text":"Do you fall for people fast or do you act difficult first?"},
+    {"type":"message","delay":900,"from":"player","text":"That depends on the person"},
+    {"type":"message","delay":900,"from":"player","text":"Why? Are you planning on jumping from the roof onto someone? 😌"},
+    {"type":"message","delay":900,"from":"hailey","text":"Asshole 🖕"},
+    {"type":"message","delay":900,"from":"hailey","text":"😂"},
+    {"type":"message","delay":900,"from":"player","text":"What brought this on?"},
+    {"type":"message","delay":900,"from":"hailey","text":"A girl in class is losing her mind over some guy she barely knows"},
+    {"type":"message","delay":900,"from":"hailey","text":"So now everyone is doing that whole crush autopsy 😭"},
+    {"type":"message","delay":900,"from":"player","text":"And you joined in?"},
+    {"type":"message","delay":900,"from":"hailey","text":"Only a little 😇"},
+    {"type":"message","delay":900,"from":"hailey","text":"I said people like confidence and good timing"},
+    {"type":"message","delay":900,"from":"player","text":"That's not bad advice"},
+    {"type":"message","delay":900,"from":"hailey","text":"I know, what would your advice be?"},
+    {"type":"message","delay":900,"from":"player","text":"Just be yourself, be funny, be kind, be honest, that's probably all"},
+    {"type":"message","delay":900,"from":"hailey","text":"So all I need is a sparkling personality? 😌"},
+    {"type":"message","delay":900,"from":"player","text":"Not exactly what I said"},
+    {"type":"message","delay":900,"from":"hailey","text":"That sounds exactly like me 😌"},
+    {"type":"message","delay":900,"from":"hailey","text":"Okay, that's enough emotional labor for your afternoon 😇"},
+    {"type":"message","delay":900,"from":"hailey","text":"Thanks for answering seriously 🤍"},
+    {"type":"message","delay":900,"from":"player","text":"You're welcome"},
+    {"type":"message","delay":900,"from":"player","text":"If you need more help for your monologue, I'm here 😌"}
+  ]
+}

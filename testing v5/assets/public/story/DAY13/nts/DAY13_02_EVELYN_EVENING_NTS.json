@@ -1,0 +1,91 @@
+{
+  "onceKey": "d13_02_evelyn_evening_nts_v1",
+  "contactId": "evelyn",
+  "requireOnceKey": "d13_01_evelyn_afternoon_nts_v1",
+  "steps": [
+    {"type":"notify","delay":1200,"fromId":"evelyn","fromName":"{{name:evelyn}}","avatar":"assets/avatars/evelyn.jpg","text":"I'm back home, but I got completely soaked by the rain 😅","target":"conversation"},
+    {"type":"message","delay":850,"from":"player","text":"How did it go?"},
+    {"type":"message","delay":850,"from":"evelyn","text":"It was okay"},
+    {"type":"message","delay":850,"from":"evelyn","text":"But it started raining, so I'm completely drenched"},
+    {"type":"image","delay":1200,"from":"evelyn","image":"assets/pictures/Conversation/evelyn_rain.jpg"},
+    {"type":"meetandgreet_photo_add","galleryOwnerId":"evelyn","profileId":"noah","photoId":"noah_rain_01","image":"assets/pictures/meetandgreet/noah_rain_01.jpg","day":"Day 13"},
+    {"type":"meetandgreet_comment_add","profileId":"noah","photoId":"noah_rain_01","commentId":"noah_rain_01","text":"Sorry the rain ended things early. I still liked the walk more than I expected.","fromName":"Noah"},
+    {"type":"meetandgreet_notify","text":"Additional Noah date content unlocked.","profileId":"noah","onceKey":"meetandgreet_d13_noah_update_v1"},
+    {"type":"message","delay":850,"from":"player","text":"Go take a shower quickly"},
+    {"type":"message","delay":850,"from":"player","text":"I don't want you catching a cold"},
+    {"type":"message","delay":850,"from":"evelyn","text":"I will 😊"},
+    {"type":"message","delay":850,"from":"evelyn","text":"Give me a little bit"},
+    {"type":"note","text":"30 MINUTES LATER"},
+    {"type":"message","delay":850,"from":"evelyn","text":"Can I talk to you about something?"},
+    {"type":"message","delay":850,"from":"player","text":"Of course"},
+    {"type":"message","delay":850,"from":"player","text":"What's on your mind?"},
+    {"type":"message","delay":850,"from":"evelyn","text":"First..."},
+    {"type":"message","delay":850,"from":"evelyn","text":"What do you think about this job?"},
+    {"type":"message","delay":850,"from":"player","text":"Honestly?"},
+    {"type":"message","delay":850,"from":"player","text":"As long as you're comfortable with it, I'm really happy to do this work with you"},
+    {"type":"message","delay":850,"from":"evelyn","text":"That is really kind of you ❤️"},
+    {"type":"message","delay":850,"from":"evelyn","text":"Thank you"},
+    {"type":"message","delay":850,"from":"evelyn","text":"But don't you find it strange?"},
+    {"type":"message","delay":850,"from":"evelyn","text":"Sending me to spend time with strangers and knowing everything that happens?"},
+    {"type":"message","delay":850,"from":"player","text":"No"},
+    {"type":"message","delay":850,"from":"player","text":"Actually, I prefer it this way"},
+    {"type":"message","delay":850,"from":"player","text":"I can keep an eye on everything and make sure you're safe"},
+    {"type":"message","delay":850,"from":"player","text":"And honestly, I feel like it brings us closer too"},
+    {"type":"message","delay":850,"from":"player","text":"I'm really happy to share all of this with you"},
+    {"type":"message","delay":850,"from":"evelyn","text":"That touches me more than you think..."},
+    {"type":"message","delay":850,"from":"evelyn","text":"Which is why I want to be honest with you"},
+    {"type":"message","delay":850,"from":"evelyn","text":"He kissed me at the end of the date"},
+    {"type":"message","delay":850,"from":"evelyn","text":"I didn't really know what to do"},
+    {"type":"message","delay":850,"from":"evelyn","text":"Then it started raining and I just ran home"},
+    {"type":"message","delay":850,"from":"evelyn","text":"That's why I was soaked when I got back"},
+    {"type":"message","delay":850,"from":"player","text":"Are you okay?"},
+    {"type":"message","delay":850,"from":"player","text":"Did he force you?"},
+    {"type":"message","delay":850,"from":"evelyn","text":"No, not at all"},
+    {"type":"message","delay":850,"from":"evelyn","text":"I'm okay"},
+    {"type":"message","delay":850,"from":"player","text":"Then how do you feel about it?"},
+    {"type":"message","delay":850,"from":"player","text":"Did you hate it?"},
+    {"type":"message","delay":850,"from":"player","text":"Do you want me to warn him or put a note on his account?"},
+    {"type":"message","delay":850,"from":"evelyn","text":"No..."},
+    {"type":"message","delay":850,"from":"evelyn","text":"I actually liked it"},
+    {"type":"message","delay":850,"from":"evelyn","text":"That's what makes me feel guilty"},
+    {"type":"message","delay":850,"from":"evelyn","text":"Because of you"},
+    {"type":"message","delay":850,"from":"player","text":"You don't have to feel guilty"},
+    {"type":"message","delay":850,"from":"player","text":"You're an adult"},
+    {"type":"message","delay":850,"from":"player","text":"You deserve to have your own life as a woman too"},
+    {"type":"message","delay":850,"from":"evelyn","text":"Are you really sure it's okay? 🥺"},
+    {"type":"message","delay":850,"from":"player","text":"Yes"},
+    {"type":"message","delay":850,"from":"player","text":"I'm sure"},
+    {"type":"message","delay":850,"from":"player","text":"I promise"},
+    {"type":"message","delay":850,"from":"evelyn","text":"That makes me feel relieved 😌"},
+    {"type":"message","delay":850,"from":"evelyn","text":"It doesn't mean it will happen every time"},
+    {"type":"message","delay":850,"from":"evelyn","text":"But I already feel less guilty about it"},
+    {"type":"message","delay":850,"from":"evelyn","text":"You're really sure it doesn't bother you?"},
+    {"type":"message","delay":850,"from":"player","text":"No"},
+    {"type":"message","delay":850,"from":"player","text":"Actually, I want you to tell me whenever something like that happens"},
+    {"type":"message","delay":850,"from":"player","text":"I need to know because I have to charge the client extra when things go further than planned haha"},
+    {"type":"message","delay":850,"from":"evelyn","text":"So you really want me to tell you everything?"},
+    {"type":"message","delay":850,"from":"player","text":"Yes"},
+    {"type":"message","delay":850,"from":"player","text":"It's better that way"},
+    {"type":"message","delay":850,"from":"evelyn","text":"Alright ❤️"},
+    {"type":"message","delay":850,"from":"evelyn","text":"Then I'll tell you everything that happens from now on"},
+    {"type":"if","condition":"all:active_character:hailey|!once:d13_03_hak_heartspike_nts_v1","then":[
+      {"type":"if","condition":"route_lena_locked_v1:ntr","then":[
+        {"type":"start_story","goHome":true,"startStory":"story/DAY13/DAY13_LENA_AFTERNOON.json"}
+      ],"else":[
+        {"type":"if","condition":"route_lena_locked_v1:nts","then":[
+          {"type":"start_story","goHome":true,"startStory":"story/DAY13/DAY13_LENA_AFTERNOON.json"}
+        ],"else":[
+          {"type":"start_story","goHome":true,"startStory":"story/DAY13/DAY13_LENA_AFTERNOON.json"}
+        ]}
+      ]}
+    ],"else":[
+      {"type":"if","condition":"active_character:mason","then":[
+        {"type":"time_card","text":"DAY 14","goHome":true,"startStory":"story/DAY14/nts/DAY14_00_MASON_MORNING_NTS.json","startDelayMs":200}
+      ],"else":[
+        {"type":"time_card","text":"DAY 14","goHome":true,"startStory":"story/DAY14/nts/DAY14_00_EVELYN_MORNING_NTS.json","startDelayMs":200}
+      ],"__masonNextDayPatched":true}
+    ]}
+  ],
+  "route": "nts",
+  "routeLock": "route_evelyn_locked_v1:nts"
+}

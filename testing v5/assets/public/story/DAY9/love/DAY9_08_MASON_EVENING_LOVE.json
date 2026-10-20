@@ -1,0 +1,39 @@
+{
+  "onceKey": "d9_08_mason_evening_love_v1",
+  "contactId": "mason",
+  "requireOnceKey": "d9_06_mason_afternoon_love_v1",
+  "route": "love",
+  "routeLock": "route_mason_locked_v1:love",
+  "steps": [
+    {"type":"notify","delay":1200,"fromId":"mason","fromName":"{{name:mason}}","avatar":"assets/avatars/male_mason.jpg","text":"Bad news","target":"conversation"},
+    {"type":"message","delay":850,"from":"player","text":"What happened?"},
+    {"type":"message","delay":850,"from":"mason","text":"The game won't be ready tonight"},
+    {"type":"message","delay":850,"from":"mason","text":"It's downloading like it has somewhere better to be"},
+    {"type":"message","delay":850,"from":"player","text":"That's fine"},
+    {"type":"message","delay":850,"from":"player","text":"At least we'll sleep early"},
+    {"type":"message","delay":850,"from":"player","text":"Fresh for tomorrow's workout"},
+    {"type":"message","delay":850,"from":"mason","text":"Annoying, but not wrong"},
+    {"type":"message","delay":850,"from":"mason","text":"How's your leg?"},
+    {"type":"message","delay":850,"from":"mason","text":"Still okay after this morning?"},
+    {"type":"message","delay":850,"from":"player","text":"Yeah, it's okay"},
+    {"type":"message","delay":850,"from":"player","text":"Honestly, I hope I can get the cast off soon"},
+    {"type":"message","delay":850,"from":"player","text":"So no worries"},
+    {"type":"message","delay":850,"from":"mason","text":"Good"},
+    {"type":"message","delay":850,"from":"mason","text":"But don't get stupid with it"},
+    {"type":"message","delay":850,"from":"player","text":"I won't"},
+    {"type":"message","delay":850,"from":"mason","text":"Sure"},
+    {"type":"message","delay":850,"from":"mason","text":"That's exactly what someone stupid would say"},
+    {"type":"message","delay":850,"from":"player","text":"Good night to you too"},
+    {"type":"message","delay":850,"from":"mason","text":"See you tomorrow"},
+    {"type":"message","delay":850,"from":"mason","text":"Don't go to bed too late"},
+    {"type":"if","condition":"all:active_character:lena,route_lena_locked_v1:nts,not once:d9_02_lena_evening_nts_v1","then":[
+      {"type":"start_story","goHome":true,"startStory":"story/DAY9/DAY9_LENA_NIGHT.json","startDelayMs":200}
+    ],"else":[
+      {"type":"if","condition":"all:active_character:lena,route_lena_locked_v1:ntr,not once:d9_02_lena_evening_ntr_v1","then":[
+        {"type":"start_story","goHome":true,"startStory":"story/DAY9/DAY9_LENA_NIGHT.json","startDelayMs":200}
+      ],"else":[
+        {"type":"time_card","text":"DAY 10","goHome":true,"startStory":"story/DAY10/love/DAY10_00_MASON_MORNING_LOVE.json","startDelayMs":200}
+      ]}
+    ]}
+  ]
+}

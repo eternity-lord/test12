@@ -1,0 +1,31 @@
+{
+  "onceKey": "d6_02_mason_evelyn_check_leg_v1",
+  "contactId": "mason",
+  "requireOnceKey": "d5_06_mason_fitness_account_v1",
+  "onCompleteStartStory": "story/DAY6/DAY6_04_LENA_LUNCH_AIDEN_CHARM.json",
+  "steps": [
+    {"type":"notify","delay":1200,"fromId":"mason","fromName":"{{name:mason}}","avatar":"assets/avatars/male_mason.jpg","text":"Yo","target":"conversation"},
+    {"type":"message","delay":900,"from":"mason","text":"{{name:evelyn}} sent me"},
+    {"type":"message","delay":900,"from":"mason","text":"Said I should check if you actually ate"},
+    {"type":"message","delay":900,"from":"mason","text":"And if you need anything brought up"},
+    {"type":"message","delay":900,"from":"player","text":"Coffee would help ☕"},
+    {"type":"message","delay":900,"from":"mason","text":"Yeah obviously"},
+    {"type":"message","delay":900,"from":"mason","text":"I need one too"},
+    {"type":"message","delay":900,"from":"mason","text":"I'll bring one up"},
+    {"type":"message","delay":900,"from":"mason","text":"But eat something too"},
+    {"type":"message","delay":900,"from":"player","text":"Thank you 🙂"},
+    {"type":"message","delay":900,"from":"player","text":"How's work?"},
+    {"type":"message","delay":900,"from":"mason","text":"Good"},
+    {"type":"message","delay":900,"from":"mason","text":"Part-time is nice"},
+    {"type":"message","delay":900,"from":"mason","text":"I get a lot of time for myself"},
+    {"type":"message","delay":900,"from":"mason","text":"And sorry I can't help much around the house"},
+    {"type":"message","delay":900,"from":"mason","text":"I really need to save money for next year"},
+    {"type":"message","delay":900,"from":"player","text":"I know"},
+    {"type":"message","delay":900,"from":"player","text":"Don't worry"},
+    {"type":"message","delay":900,"from":"player","text":"I'll figure something out"},
+    {"type":"message","delay":900,"from":"mason","text":"Thanks"},
+    {"type":"note","text":"2 MINUTES LATER"},
+    {"type":"message","delay":900,"from":"mason","text":"And you were right"},
+    {"type":"message","delay":900,"from":"mason","text":"It's good when we talk sometimes"}
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "onceKey": "d7_09_hailey_asks_player_to_warn_mason_v1",
+  "contactId": "hailey",
+  "onCompleteStartStory": "story/DAY7/DAY7_10_MASON_COACH_FOLLOWUP.json",
+  "steps": [
+    {"type":"notify","delay":1200,"fromId":"hailey","fromName":"{{name:hailey}}","avatar":"assets/avatars/hailey.jpg","text":"Need rescue 😭","target":"conversation"},
+    {"type":"message","delay":900,"from":"hailey","text":"Can you warn {{name:mason}} for me? 😭"},
+    {"type":"message","delay":900,"from":"hailey","text":"My extra class is dragging and I need {{mason:him}} to come pick me up after"},
+    {"type":"message","delay":900,"from":"player","text":"You want me to text {{mason:him}} now?"},
+    {"type":"message","delay":900,"from":"hailey","text":"Yes please 😇"},
+    {"type":"image","image":"assets/pictures/Conversation/hailey_please.jpg"},
+    {"type":"message","delay":900,"from":"hailey","text":"If I do it, {{mason:he}}'ll act like I personally invented traffic 😌"},
+    {"type":"message","delay":900,"from":"player","text":"I'll warn {{mason:him}}"},
+    {"type":"message","delay":900,"from":"hailey","text":"You're the best 🤍"},
+    {"type":"message","delay":900,"from":"hailey","text":"Don't let it go to your head 😌"}
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "onceKey": "d4_06_mason_gym_late_return_v1",
+  "contactId": "mason",
+  "requireOnceKey": "d4_03_mason_stuff_console_v1",
+  "onCompleteStartStory": "story/DAY5/DAY5_00_PLAYER_TEXT_EVELYN_RECAP.json",
+  "steps": [
+    {"type":"notify","delay":1200,"fromId":"mason","fromName":"{{name:mason}}","avatar":"assets/avatars/male_mason.jpg","text":"Back later","target":"conversation"},
+    {"type":"message","delay":900,"from":"mason","text":"Stopped at the gym on the way back"},
+    {"type":"message","delay":900,"from":"mason","text":"A couple idiots there tried to waste my time"},
+    {"type":"message","delay":900,"from":"player","text":"Everything okay?"},
+    {"type":"message","delay":900,"from":"mason","text":"Yeah"},
+    {"type":"message","delay":900,"from":"mason","text":"Just annoyed"},
+    {"type":"message","delay":900,"from":"mason","text":"Didn't want you wondering where I was"},
+    {"type":"message","delay":900,"from":"player","text":"Thanks for telling me"},
+    {"type":"message","delay":900,"from":"mason","text":"Yeah, goodnight"},
+    {"type":"message","delay":900,"from":"player","text":"Goodnight"},
+    {"type":"time_card","text":"DAY 5","goHome":true}
+  ]
+}

@@ -1,0 +1,60 @@
+{
+  "onceKey": "d14_02_hailey_evening_ntr_v1",
+  "contactId": "hailey",
+  "requireOnceKey": "d14_02_lena_evening_ntr_v1|d14_01_hailey_afternoon_ntr_v1",
+  "steps": [
+    {"type":"notify","delay":1200,"fromId":"hailey","fromName":"{{name:hailey}}","avatar":"assets/avatars/hailey.jpg","text":"Please let me sleep 😭","target":"conversation"},
+    {"type":"message","delay":850,"from":"hailey","text":"I am finally home"},
+    {"type":"message","delay":850,"from":"hailey","text":"My brain is dead"},
+    {"type":"message","delay":850,"from":"hailey","text":"My legs are dead"},
+    {"type":"message","delay":850,"from":"hailey","text":"Everything is dead 😭"},
+    {"type":"message","delay":900,"from":"player","text":"You survived the whole day!"},
+    {"type":"message","delay":850,"from":"hailey","text":"Barely"},
+    {"type":"message","delay":900,"from":"player","text":"You can be proud"},
+    {"type":"message","delay":850,"from":"hailey","text":"Professor called it a serious effort"},
+    {"type":"message","delay":850,"from":"hailey","text":"Which sounds boring"},
+    {"type":"message","delay":850,"from":"hailey","text":"But it made me want to cry for some reason"},
+    {"type":"message","delay":900,"from":"player","text":"Because you worked hard"},
+    {"type":"message","delay":850,"from":"hailey","text":"Then he told me to eat properly"},
+    {"type":"message","delay":850,"from":"hailey","text":"Very bossy 😌"},
+    {"type":"message","delay":900,"from":"player","text":"I can bring food"},
+    {"type":"message","delay":850,"from":"hailey","text":"Really?"},
+    {"type":"message","delay":900,"from":"player","text":"Slowly, but I can"},
+    {"type":"message","delay":850,"from":"hailey","text":"You do not have to"},
+    {"type":"message","delay":900,"from":"player","text":"I know"},
+    {"type":"note","text":"LATER, AFTER YOU BROUGHT FOOD TO {{name:hailey}} IN HER ROOM"},
+    {"type":"message","delay":850,"from":"player","text":"Food delivery completed"},
+    {"type":"message","delay":850,"from":"hailey","text":"You saw me at my weakest"},
+    {"type":"message","delay":900,"from":"player","text":"You ate like you had been abandoned in the wilderness"},
+    {"type":"message","delay":850,"from":"hailey","text":"LIES"},
+    {"type":"message","delay":850,"from":"hailey","text":"I ate with elegance 😌"},
+    {"type":"image","delay":900,"from":"player","galleryOwnerId":"hailey","image":"assets/pictures/Conversation/hailey_eating_in_bed.jpg"},
+    {"type":"message","delay":850,"from":"hailey","text":"EXCUSE ME"},
+    {"type":"message","delay":850,"from":"hailey","text":"Did you take evidence of me being alive"},
+    {"type":"message","delay":900,"from":"player","text":"Yes"},
+    {"type":"message","delay":850,"from":"hailey","text":"Paparazzi menace 😭"},
+    {"type":"message","delay":850,"from":"hailey","text":"Also"},
+    {"type":"message","delay":850,"from":"hailey","text":"Professor texted to ask if I got home okay"},
+    {"type":"message","delay":900,"from":"player","text":"He has your number?"},
+    {"type":"message","delay":850,"from":"hailey","text":"I gave it to him when he dropped me home last time"},
+    {"type":"message","delay":850,"from":"hailey","text":"Just in case"},
+    {"type":"message","delay":850,"from":"hailey","text":"Do not make it a thing"},
+    {"type":"hak_overlay","title":"HAK//NOTICE","messages":["Late-night welfare check received from academic authority","Parallel emotional support channels active","Subject response latency to {{name:player}} increased after professor contact","Archiving nighttime activity fragment",{"kind":"thought","speaker":"player","text":"I'm glad someone checked on her, but I don't like feeling pushed to the edge of her evening."}]},
+    {"type":"message","delay":900,"from":"player","text":"You're right, sorry"},
+    {"type":"message","delay":900,"from":"player","text":"Tomorrow you can finally rest and go shopping"},
+    {"type":"message","delay":850,"from":"hailey","text":"Tomorrow I am sleeping for ten years"},
+    {"type":"message","delay":850,"from":"hailey","text":"And shopping with professor money!!!!"},
+    {"type":"message","delay":900,"from":"player","text":"That is the spirit"},
+    {"type":"message","delay":850,"from":"hailey","text":"Good night 🤍"},
+    {"type":"message","delay":900,"from":"player","text":"Good night"},
+    {"type":"if","condition":"all:active_character:mason,not once:d14_06_mason_evening_ntr_v1","then":[
+      {"type":"start_story","goHome":true,"startStory":"story/DAY14/DAY14_MASON_EVENING.json","startDelayMs":200}
+    ],"else":[
+      {"type":"if","condition":"all:active_character:evelyn,not once:d14_02_evelyn_evening_ntr_v1","then":[
+        {"type":"start_story","goHome":true,"startStory":"story/DAY14/DAY14_EVELYN_EVENING.json","startDelayMs":200}
+      ],"else":[
+        {"type":"start_story","goHome":true,"startStory":"story/DAY14/DAY14_LENA_NIGHT.json","startDelayMs":200}
+      ]}
+    ]}
+  ]
+}

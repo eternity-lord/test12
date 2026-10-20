@@ -1,0 +1,31 @@
+{
+  "onceKey": "d12_00_hailey_morning_ntr_v1",
+  "contactId": "hailey",
+  "requireOnceKey": "d12_00_lena_morning_ntr_v1|d11_02_hailey_evening_ntr_v1",
+  "onCompleteStartStory": "story/DAY12/ntr/DAY12_01_HAILEY_AFTERNOON_NTR.json",
+  "steps": [
+    {"type":"notify","delay":1200,"fromId":"hailey","fromName":"{{name:hailey}}","avatar":"assets/avatars/hailey.jpg","text":"Morning 😇","target":"conversation"},
+    {"type":"message","delay":850,"from":"hailey","text":"Are you alive"},
+    {"type":"message","delay":850,"from":"hailey","text":"Is the leg behaving"},
+    {"type":"message","delay":900,"from":"player","text":"Good morning. Mostly yeah 😔"},
+    {"type":"message","delay":850,"from":"hailey","text":"Good"},
+    {"type":"message","delay":850,"from":"hailey","text":"I need everyone functional"},
+    {"type":"message","delay":850,"from":"hailey","text":"Two classes today"},
+    {"type":"message","delay":850,"from":"hailey","text":"One break"},
+    {"type":"message","delay":850,"from":"hailey","text":"And probably professor rescue after the second one"},
+    {"type":"message","delay":900,"from":"player","text":"Probably?"},
+    {"type":"message","delay":850,"from":"hailey","text":"He said to come by if the second class exposes my tragic gaps"},
+    {"type":"message","delay":850,"from":"player","text":"I'm sure his words were nicer"},
+    {"type":"message","delay":850,"from":"hailey","text":"My translation is accurate 😭"},
+    {"type":"message","delay":900,"from":"player","text":"You are relying on him a lot"},
+    {"type":"message","delay":850,"from":"hailey","text":"I am relying on passing"},
+    {"type":"message","delay":850,"from":"hailey","text":"He just happens to know how to make my brain behave"},
+    {"type":"message","delay":850,"from":"hailey","text":"Temporarily"},
+    {"type":"message","delay":900,"from":"player","text":"No excuses then"},
+    {"type":"message","delay":850,"from":"hailey","text":"That is the problem"},
+    {"type":"message","delay":850,"from":"hailey","text":"Now I have no excuse to fail"},
+    {"type":"message","delay":850,"from":"hailey","text":"Very inconvenient emotional situation"},
+    {"type":"message","delay":850,"from":"hailey","text":"Fine, I am going"},
+    {"type":"message","delay":850,"from":"hailey","text":"If I learn anything against my will, I am blaming both of you 💅"}
+  ]
+}

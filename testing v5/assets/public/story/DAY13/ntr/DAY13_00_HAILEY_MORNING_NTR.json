@@ -1,0 +1,68 @@
+{
+  "onceKey": "d13_00_hailey_morning_ntr_v1",
+  "contactId": "hailey",
+  "requireOnceKey": "d13_00_lena_morning_ntr_v1|d12_02_hailey_evening_ntr_v1",
+  "steps": [
+    {"type":"notify","delay":1200,"fromId":"hailey","fromName":"{{name:hailey}}","avatar":"assets/avatars/hailey.jpg","text":"Study is killing me 😭","target":"conversation"},
+    {"type":"message","delay":850,"from":"hailey","text":"My brain is swollen"},
+    {"type":"message","delay":850,"from":"hailey","text":"Probably illegal"},
+    {"type":"message","delay":850,"from":"hailey","text":"Huge morning today 😔"},
+    {"type":"message","delay":850,"from":"hailey","text":"Afternoon free though"},
+    {"type":"message","delay":850,"from":"hailey","text":"Which means shopping should legally happen"},
+    {"type":"message","delay":900,"from":"player","text":"That's not a good idea"},
+    {"type":"note","text":"15 MINUTES LATER"},
+    {"type":"message","delay":850,"from":"hailey","text":"That is exactly what my professor said 😭"},
+    {"type":"message","delay":850,"from":"hailey","text":"He literally told me I am not allowed to go shopping today"},
+    {"type":"message","delay":850,"from":"hailey","text":"He heard me talk about it whith my friends"},
+    {"type":"message","delay":850,"from":"hailey","text":"Apparently I have to come revise with him after class instead"},
+    {"type":"message","delay":900,"from":"player","text":"Seriously?"},
+    {"type":"message","delay":850,"from":"hailey","text":"Yes 😔"},
+    {"type":"message","delay":850,"from":"hailey","text":"But then he made a deal with me"},
+    {"type":"message","delay":850,"from":"hailey","text":"If I do well on the quiz tomorrow, he will personally take me shopping himself"},
+    {"type":"message","delay":900,"from":"player","text":"He said that?"},
+    {"type":"message","delay":850,"from":"hailey","text":"YES 😭"},
+    {"type":"message","delay":850,"from":"hailey","text":"He said I need motivation"},
+    {"type":"message","delay":850,"from":"hailey","text":"And that he heard shopping is apparently my natural habitat"},
+    {"type":"message","delay":850,"from":"hailey","text":"Which is rude but accurate 😔"},
+    {"type":"image","delay":900,"from":"hailey","image":"assets/pictures/Conversation/hailey_cute_please.jpg"},
+    {"type":"message","delay":850,"from":"hailey","text":"Look at this face"},
+    {"type":"message","delay":850,"from":"hailey","text":"Does this look like someone built for revision suffering?"},
+    {"type":"message","delay":900,"from":"player","text":"Looks like someone trying to negotiate her way out of studying"},
+    {"type":"message","delay":850,"from":"hailey","text":"Correct 😌"},
+    {"type":"message","delay":850,"from":"hailey","text":"But honestly the shopping promise is kind of motivating me"},
+    {"type":"message","delay":850,"from":"hailey","text":"I hate that it is working"},
+    {"type":"hak_hint","kind":"ntr","text":"Reward-based attention from an authority figure is strengthening emotional attachment patterns.","onceKey":"d13_hailey_ntr_reward_structure_hint_once_v1"},
+    {"type":"choice","key":"d13_00_hailey_professor_reward_choice_v1","prompt":"","options":[{"id":"ask_details","text":"Ask why he wants to take her shopping","goto":"ask_details"},{"id":"support_quiz","text":"Focus on helping her survive the quiz","goto":"support_quiz"}]},
+    {"type":"label","name":"ask_details"},
+    {"type":"message","delay":900,"from":"player","text":"Why does he want to take you shopping himself?"},
+    {"type":"message","delay":850,"from":"hailey","text":"Because apparently stressed students need rewards"},
+    {"type":"message","delay":850,"from":"hailey","text":"And because he thinks I work better when I have motivation"},
+    {"type":"message","delay":850,"from":"hailey","text":"You are making this sound way more dramatic than it is 😭"},
+    {"type":"goto","label":"end"},
+    {"type":"label","name":"support_quiz"},
+    {"type":"message","delay":900,"from":"player","text":"Survive the quiz first. Shopping after."},
+    {"type":"message","delay":850,"from":"hailey","text":"See 😌"},
+    {"type":"message","delay":850,"from":"hailey","text":"You and him are bullying me together now"},
+    {"type":"label","name":"end"},
+    {"type":"message","delay":850,"from":"player","text":"Fine"},
+    {"type":"message","delay":850,"from":"hailey","text":"If I become the smartest girl alive, somebody defenetly owes me clothes 😌"},
+    {"type":"message","delay":850,"from":"hailey","text":"Now let me survive this horrible morning first 😭"},
+    {"type":"if","condition":"active_character:evelyn","then":[
+      {"type":"if","condition":"route_evelyn_locked_v1:love","then":[
+        {"type":"start_story","goHome":true,"startStory":"story/DAY13/DAY13_EVELYN_MORNING.json"}
+      ],"else":[
+        {"type":"if","condition":"route_evelyn_locked_v1:nts","then":[
+          {"type":"start_story","goHome":true,"startStory":"story/DAY13/DAY13_EVELYN_MORNING.json"}
+        ],"else":[
+          {"type":"if","condition":"route_evelyn_locked_v1:ntr","then":[
+            {"type":"start_story","goHome":true,"startStory":"story/DAY13/DAY13_EVELYN_MORNING.json"}
+          ],"else":[
+            {"type":"start_story","goHome":true,"startStory":"story/DAY13/DAY13_EVELYN_MORNING.json"}
+          ]}
+        ]}
+      ]}
+    ],"else":[
+      {"type":"start_story","goHome":true,"startStory":"story/DAY13/DAY13_LENA_AFTERNOON.json"}
+    ]}
+  ]
+}

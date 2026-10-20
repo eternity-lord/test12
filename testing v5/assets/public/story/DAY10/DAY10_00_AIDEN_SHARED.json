@@ -1,0 +1,80 @@
+{
+  "onceKey": "d10_00_aiden_shared_v1",
+  "contactId": "aiden",
+  "requireOnceKey": "d9_01_lena_evening_love_v1|d9_02_lena_evening_nts_v1|d9_02_lena_evening_ntr_v1",
+  "steps": [
+    {"type":"notify","delay":900,"fromId":"aiden","fromName":"{{name:aiden}}","avatar":"assets/avatars/aiden.jpg","text":"Hey","target":"conversation"},
+    {"type":"message","delay":700,"from":"aiden","text":"You alive or still in bed"},
+    {"type":"message","delay":700,"from":"player","text":"Both"},
+    {"type":"message","delay":700,"from":"aiden","text":"How you feeling today"},
+    {"type":"message","delay":700,"from":"player","text":"I'm good, just waking up"},
+    {"type":"message","delay":700,"from":"aiden","text":"Not bad"},
+    {"type":"message","delay":700,"from":"player","text":"What about you"},
+    {"type":"message","delay":700,"from":"aiden","text":"I'm taking a break from training for a couple days"},
+    {"type":"message","delay":700,"from":"player","text":"What happened"},
+    {"type":"message","delay":700,"from":"aiden","text":"Nothing serious"},
+    {"type":"message","delay":700,"from":"aiden","text":"Just pushed a bit too hard, something felt off so I'm not risking it"},
+    {"type":"message","delay":700,"from":"aiden","text":"Mom would kill me if I made it worse 😅"},
+    {"type":"message","delay":700,"from":"player","text":"I bet she would 😅"},
+    {"type":"message","delay":700,"from":"player","text":"So you're stuck doing nothing after class"},
+    {"type":"message","delay":700,"from":"aiden","text":"Pretty much"},
+    {"type":"message","delay":700,"from":"aiden","text":"Which means I got time to carry you in games if you're free"},
+    {"type":"message","delay":700,"from":"player","text":"Carry me huh"},
+    {"type":"message","delay":700,"from":"aiden","text":"Of course"},
+    {"type":"message","delay":700,"from":"aiden","text":"Anyway, hit me up later if you're on"},
+    {"type":"message","delay":700,"from":"player","text":"Always on"},
+    {"type":"if","condition":"active_character:mason","then":[
+      {"type":"if","condition":"route_mason_locked_v1:nts_coach","then":[
+        {"type":"start_story","goHome":true,"startStory":"story/DAY10/nts/DAY10_00_MASON_MORNING_NTS.json","startDelayMs":200}
+      ],"else":[
+        {"type":"if","condition":"route_mason_locked_v1:ntr","then":[
+          {"type":"start_story","goHome":true,"startStory":"story/DAY10/ntr/DAY10_00_MASON_MORNING_NTR.json","startDelayMs":200}
+        ],"else":[
+          {"type":"if","condition":"route_mason_locked_v1:nts","then":[
+            {"type":"start_story","goHome":true,"startStory":"story/DAY10/nts/DAY10_00_MASON_MORNING_NTS.json","startDelayMs":200}
+          ],"else":[
+            {"type":"start_story","goHome":true,"startStory":"story/DAY10/love/DAY10_00_MASON_MORNING_LOVE.json","startDelayMs":200}
+          ]}
+        ]}
+      ]}
+    ],"else":[
+      {"type":"if","condition":"active_character:lena","then":[
+        {"type":"if","condition":"route_lena_locked_v1:ntr","then":[
+          {"type":"start_story","goHome":true,"startStory":"story/DAY10/ntr/DAY10_00_LENA_MORNING_NTR.json","startDelayMs":200}
+        ],"else":[
+          {"type":"if","condition":"route_lena_locked_v1:nts","then":[
+            {"type":"start_story","goHome":true,"startStory":"story/DAY10/nts/DAY10_00_LENA_MORNING_NTS.json","startDelayMs":200}
+          ],"else":[
+            {"type":"start_story","goHome":true,"startStory":"story/DAY10/love/DAY10_00_LENA_MORNING_LOVE.json","startDelayMs":200}
+          ]}
+        ]}
+      ],"else":[
+        {"type":"if","condition":"active_character:hailey","then":[
+          {"type":"if","condition":"route_hailey_locked_v1:ntr","then":[
+            {"type":"start_story","goHome":true,"startStory":"story/DAY10/ntr/DAY10_00_HAILEY_MORNING_NTR.json","startDelayMs":200}
+          ],"else":[
+            {"type":"if","condition":"route_hailey_locked_v1:nts","then":[
+              {"type":"start_story","goHome":true,"startStory":"story/DAY10/nts/DAY10_00_HAILEY_MORNING_NTS.json","startDelayMs":200}
+            ],"else":[
+              {"type":"start_story","goHome":true,"startStory":"story/DAY10/love/DAY10_00_HAILEY_MORNING_LOVE.json","startDelayMs":200}
+            ]}
+          ]}
+        ],"else":[
+          {"type":"if","condition":"active_character:evelyn","then":[
+            {"type":"if","condition":"route_evelyn_locked_v1:ntr","then":[
+              {"type":"start_story","goHome":true,"startStory":"story/DAY10/ntr/DAY10_00_EVELYN_MORNING_NTR.json","startDelayMs":200}
+            ],"else":[
+              {"type":"if","condition":"route_evelyn_locked_v1:nts","then":[
+                {"type":"start_story","goHome":true,"startStory":"story/DAY10/nts/DAY10_00_EVELYN_MORNING_NTS.json","startDelayMs":200}
+              ],"else":[
+                {"type":"start_story","goHome":true,"startStory":"story/DAY10/love/DAY10_00_EVELYN_MORNING_LOVE.json","startDelayMs":200}
+              ]}
+            ]}
+          ],"else":[
+            {"type":"start_story","goHome":true,"startStory":"story/DEV/DAY9_END_CHAPTER.json","startDelayMs":200}
+          ]}
+        ]}
+      ]}
+    ],"__masonPatched":true}
+  ]
+}

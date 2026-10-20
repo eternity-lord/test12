@@ -1,0 +1,50 @@
+{
+  "onceKey": "d13_02_lena_after_visit_love_v1",
+  "contactId": "lena",
+  "requireOnceKey": "d13_01_lena_afternoon_love_v1",
+  "steps": [
+    {"type":"notify","delay":1300,"fromId":"lena","fromName":"{{name:lena}}","avatar":"assets/avatars/lena.jpg","text":"Home safe 🤍","target":"conversation"},
+    {"type":"message","delay":900,"from":"player","text":"You got home okay?"},
+    {"type":"message","delay":900,"from":"lena","text":"I just got back"},
+    {"type":"message","delay":900,"from":"lena","text":"And I already miss you a little"},
+    {"type":"message","delay":900,"from":"player","text":"Only a little?"},
+    {"type":"message","delay":900,"from":"lena","text":"Don't make me worse 😌"},
+    {"type":"message","delay":900,"from":"player","text":"Did you have a good time?"},
+    {"type":"message","delay":900,"from":"lena","text":"I loved it"},
+    {"type":"message","delay":900,"from":"lena","text":"Really"},
+    {"type":"message","delay":900,"from":"lena","text":"And seeing you move more easily made me so happy"},
+    {"type":"message","delay":900,"from":"lena","text":"It made everything feel more real"},
+    {"type":"message","delay":900,"from":"player","text":"Yeah"},
+    {"type":"message","delay":900,"from":"player","text":"It felt really good having you here"},
+    {"type":"message","delay":900,"from":"lena","text":"Good ❤️"},
+    {"type":"message","delay":900,"from":"lena","text":"Because I don't want today to be a one time thing"},
+    {"type":"message","delay":900,"from":"player","text":"It won't be"},
+    {"type":"message","delay":900,"from":"lena","text":"Promise?"},
+    {"type":"message","delay":900,"from":"player","text":"Promise"},
+    {"type":"message","delay":900,"from":"lena","text":"Okay"},
+    {"type":"message","delay":900,"from":"lena","text":"Then I'm happy 😌"},
+    {"type":"message","delay":900,"from":"player","text":"And... thank you for earlier"},
+    {"type":"message","delay":900,"from":"lena","text":"For?"},
+    {"type":"message","delay":900,"from":"player","text":"For the intense part"},
+    {"type":"message","delay":900,"from":"player","text":"I really hope you liked it too"},
+    {"type":"message","delay":900,"from":"lena","text":"I did"},
+    {"type":"message","delay":900,"from":"lena","text":"A lot, actually"},
+    {"type":"message","delay":900,"from":"lena","text":"Talking together about what I like before"},
+    {"type":"message","delay":900,"from":"lena","text":"And moving forward while making your partner feel good too"},
+    {"type":"message","delay":900,"from":"lena","text":"That worked really, really well for me ❤️"},
+    {"type":"message","delay":900,"from":"player","text":"That makes me very happy to hear"},
+    {"type":"message","delay":900,"from":"lena","text":"Good"},
+    {"type":"message","delay":900,"from":"lena","text":"Because I want more of that with you"},
+    {"type":"message","delay":900,"from":"player","text":"Me too"},
+    {"type":"message","delay":900,"from":"lena","text":"Okay"},
+    {"type":"message","delay":900,"from":"lena","text":"Now I need to calm down a little before bed 😭"},
+    {"type":"message","delay":900,"from":"player","text":"Same problem here"},
+    {"type":"message","delay":900,"from":"lena","text":"Goodnight, handsome 🤍"},
+    {"type":"message","delay":900,"from":"player","text":"Goodnight, pretty girl"},
+    {"type":"if","condition":"active_character:hailey","then":[
+      {"type":"start_story","goHome":true,"startStory":"story/DAY13/DAY13_HAILEY_EVENING.json"}
+    ],"else":[
+      {"type":"start_story","goHome":true,"startStory":"story/DAY13/love/DAY13_03_HAK_HEARTSPIKE_LOVE.json"}
+    ]}
+  ]
+}

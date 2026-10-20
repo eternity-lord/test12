@@ -1,0 +1,18 @@
+{
+  "onceKey": "d2_06_player_text_mason_v1",
+  "contactId": "mason",
+  "onCompleteStartStory": "story/DAY2/DAY2_07_PLAYER_TEXT_AIDEN.json",
+  "steps": [
+    {"type":"message","delay":800,"from":"player","fromName":"Player","text":"Hey"},
+    {"type":"message","delay":800,"from":"player","fromName":"Player","text":"You up?"},
+    {"type":"message","delay":900,"from":"player","text":"Can you drive {{name:hailey}} to rugby in like an hour"},
+    {"type":"message","delay":900,"from":"player","text":"She asked me to convince you, and you know i can't"},
+    {"type":"note","text":"2 MINUTES LATER"},
+    {"type":"message","delay":1200,"from":"player","text":"I’m serious"},
+    {"type":"note","text":"4 MINUTES LATER"},
+    {"type":"message","delay":1500,"from":"player","text":"Hello ???"},
+    {"type":"note","text":"That fucker!","presentation":"player_thought","speaker":"player"},
+    {"type":"note","text":"Fuck it, i will try with {{name:aiden}}.","presentation":"player_thought","speaker":"player"},
+    {"type":"outbound_task","contactId":"aiden","story":"story/DAY2/DAY2_07_PLAYER_TEXT_AIDEN.json","prompt":"Bro you busy ?","episodeOnceKey":"d2_07_player_text_aiden_v1","cueKind":"rainbow","goHome":true}
+  ]
+}

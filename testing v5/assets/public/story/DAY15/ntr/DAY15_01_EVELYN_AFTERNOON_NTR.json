@@ -1,0 +1,46 @@
+{
+  "onceKey": "d15_01_evelyn_afternoon_ntr_v1",
+  "contactId": "evelyn",
+  "requireOnceKey": "d15_00_evelyn_morning_ntr_v1",
+  "steps": [
+    {"type":"notify","delay":1200,"fromId":"evelyn","fromName":"{{name:evelyn}}","avatar":"assets/avatars/evelyn.jpg","text":"Can I ask you something?","target":"conversation"},
+    {"type":"message","delay":850,"from":"player","text":"Of course"},
+    {"type":"message","delay":850,"from":"player","text":"Is everything okay?"},
+    {"type":"message","delay":850,"from":"evelyn","text":"Yes and no"},
+    {"type":"message","delay":850,"from":"evelyn","text":"I need advice"},
+    {"type":"message","delay":850,"from":"evelyn","text":"What would you do if you were in a delicate situation with someone"},
+    {"type":"message","delay":850,"from":"evelyn","text":"But the lives of the people around you depended on that person?"},
+    {"type":"message","delay":850,"from":"player","text":"That's a difficult question"},
+    {"type":"message","delay":850,"from":"player","text":"I don't think there's a right or wrong answer"},
+    {"type":"message","delay":850,"from":"player","text":"But you should choose what matters most to you"},
+    {"type":"message","delay":850,"from":"player","text":"If the people around you are what matters most"},
+    {"type":"message","delay":850,"from":"player","text":"Then you do what you have to do to make sure they're okay"},
+    {"type":"message","delay":850,"from":"evelyn","text":"..."},
+    {"type":"message","delay":850,"from":"evelyn","text":"I see"},
+    {"type":"message","delay":850,"from":"evelyn","text":"I'll think about that"},
+    {"type":"message","delay":850,"from":"evelyn","text":"I'm going to get ready for work"},
+    {"type":"message","delay":850,"from":"player","text":"Already?"},
+    {"type":"message","delay":850,"from":"evelyn","text":"Yeah"},
+    {"type":"message","delay":850,"from":"evelyn","text":"Tonight is going to be a big night"},
+    {"type":"message","delay":850,"from":"evelyn","text":"I'm not even sure I'll get a real break"},
+    {"type":"message","delay":850,"from":"evelyn","text":"So I'm going in a little earlier to prepare everything"},
+    {"type":"message","delay":850,"from":"player","text":"I understand"},
+    {"type":"message","delay":850,"from":"player","text":"But don't put too much pressure on yourself"},
+    {"type":"message","delay":850,"from":"evelyn","text":"I'll be okay"},
+    {"type":"if","condition":"active_character:mason","then":[
+      {"type":"start_story","goHome":true,"startStory":"story/DEV/DAY15_ROUTER_MASON_EVENING.json"}
+    ],"else":[
+      {"type":"if","condition":"active_character:lena","then":[
+        {"type":"start_story","goHome":true,"startStory":"story/DAY15/DAY15_02_LENA_EVENING.json"}
+      ],"else":[
+        {"type":"if","condition":"active_character:hailey","then":[
+          {"type":"start_story","goHome":true,"startStory":"story/DAY15/DAY15_02_HAILEY_EVENING.json"}
+        ],"else":[
+          {"type":"start_story","goHome":true,"startStory":"story/DAY15/DAY15_02_EVELYN_EVENING.json"}
+        ]}
+      ]}
+    ]}
+  ],
+  "route": "ntr",
+  "routeLock": "route_evelyn_locked_v1:ntr"
+}

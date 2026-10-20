@@ -1,0 +1,60 @@
+{
+  "id": "day17_00_hailey_morning_nts",
+  "onceKey": "d17_00_hailey_morning_nts_v1",
+  "day": 17,
+  "slot": "morning",
+  "route": "nts",
+  "routeLock": "route_hailey_locked_v1:nts",
+  "contactId": "hailey",
+  "requireOnceKey": "d16_01_hailey_afternoon_nts_v1",
+  "requireCondition": "all:active_character:hailey,route_hailey_locked_v1:nts",
+  "onCompleteStartStory": "story/DAY17/nts/DAY17_01_HAILEY_AFTERNOON_NTS.json",
+  "steps": [
+    {"type":"notify","delay":800,"fromId":"hailey","fromName":"{{name:hailey}}","avatar":"assets/avatars/hailey.jpg","text":"Morning 😌","target":"conversation"},
+    {"type":"message","delay":900,"from":"hailey","text":"Good morning"},
+    {"type":"message","delay":900,"from":"player","text":"Morning"},
+    {"type":"message","delay":900,"from":"player","text":"So, how's the future graduate feeling today?"},
+
+    {"type":"if","condition":"hailey_nts_post15_path:ethan","then":[
+      {"type":"message","delay":900,"from":"hailey","text":"I'm not completely sure about the diploma yet"},
+      {"type":"message","delay":900,"from":"hailey","text":"But I'm going to keep pushing until the end"},
+      {"type":"message","delay":900,"from":"player","text":"I'm actually impressed"},
+      {"type":"message","delay":900,"from":"player","text":"I didn't think studying with Ethan would give you this much motivation"},
+      {"type":"message","delay":900,"from":"hailey","text":"Well…"},
+      {"type":"message","delay":900,"from":"hailey","text":"The carrot at the end of the stick is very motivating 😌"},
+      {"type":"message","delay":900,"from":"player","text":"Of course it is"},
+      {"type":"message","delay":900,"from":"player","text":"You're not even trying to hide it anymore"},
+      {"type":"message","delay":900,"from":"hailey","text":"Why would I?"},
+      {"type":"message","delay":900,"from":"hailey","text":"It works 😇"},
+      {"type":"message","delay":900,"from":"player","text":"You're unbelievable"},
+      {"type":"message","delay":900,"from":"hailey","text":"And yet you're the one who suggested I keep him"}
+    ],"else":[
+      {"type":"message","delay":900,"from":"hailey","text":"I can't wait to finally have my diploma in my hands"},
+      {"type":"message","delay":900,"from":"hailey","text":"But right now…"},
+      {"type":"message","delay":900,"from":"hailey","text":"I mostly want my summer body"},
+      {"type":"message","delay":900,"from":"player","text":"That comment yesterday really got to you, huh?"},
+      {"type":"message","delay":900,"from":"hailey","text":"A little"},
+      {"type":"message","delay":900,"from":"hailey","text":"I want to look good in a bikini this summer"},
+      {"type":"message","delay":900,"from":"hailey","text":"So I need to start now"},
+      {"type":"message","delay":900,"from":"hailey","text":"I already talked to {{name:aiden}}"},
+      {"type":"message","delay":900,"from":"hailey","text":"We have a session planned today"},
+      {"type":"message","delay":900,"from":"player","text":"I know"},
+      {"type":"message","delay":900,"from":"hailey","text":"You do?"},
+      {"type":"message","delay":900,"from":"player","text":"He texted me yesterday"},
+      {"type":"message","delay":900,"from":"hailey","text":"Where is it happening?"},
+      {"type":"message","delay":900,"from":"player","text":"In his private gym"},
+      {"type":"message","delay":900,"from":"hailey","text":"…"},
+      {"type":"message","delay":900,"from":"hailey","text":"I forgot he was rich 😭"},
+      {"type":"message","delay":900,"from":"player","text":"Easy to forget when he's always in sportswear"},
+      {"type":"message","delay":900,"from":"hailey","text":"True"}
+    ]},
+
+    {"type":"message","delay":900,"from":"player","text":"Anyway"},
+    {"type":"message","delay":900,"from":"player","text":"I made breakfast"},
+    {"type":"message","delay":900,"from":"player","text":"You can come down whenever you want"},
+    {"type":"message","delay":900,"from":"hailey","text":"Oh?"},
+    {"type":"message","delay":900,"from":"hailey","text":"You're being nice this morning"},
+    {"type":"message","delay":900,"from":"player","text":"Don't get used to it"},
+    {"type":"message","delay":900,"from":"hailey","text":"Too late, I'm already coming 😌"}
+  ]
+}

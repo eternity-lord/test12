@@ -1,0 +1,50 @@
+{
+  "onceKey": "d15_00_hailey_morning_ntr_v1",
+  "contactId": "hailey",
+  "requireOnceKey": "d15_00_lena_morning_ntr_v1|d14_02_hailey_evening_ntr_v1",
+  "steps": [
+    {"type":"notify","delay":1200,"fromId":"hailey","fromName":"{{name:hailey}}","avatar":"assets/avatars/hailey.jpg","text":"Morning 😇","target":"conversation"},
+    {"type":"message","delay":850,"from":"player","text":"Good morning"},
+    {"type":"message","delay":850,"from":"hailey","text":"I am not going to class"},
+    {"type":"message","delay":850,"from":"hailey","text":"Before you judge me"},
+    {"type":"message","delay":850,"from":"hailey","text":"Only two morning classes"},
+    {"type":"message","delay":850,"from":"hailey","text":"And my body has resigned"},
+    {"type":"message","delay":900,"from":"player","text":"After yesterday, rest is fair"},
+    {"type":"message","delay":850,"from":"hailey","text":"Thank you 😌"},
+    {"type":"message","delay":850,"from":"hailey","text":"And just like that I will be full of energy for shopping"},
+    {"type":"message","delay":900,"from":"player","text":"Of course your only concern is shopping"},
+    {"type":"message","delay":850,"from":"hailey","text":"Professor said the same 😭"},
+    {"type":"message","delay":900,"from":"player","text":"You told him you were skipping?"},
+    {"type":"message","delay":850,"from":"hailey","text":"He asked if I slept well"},
+    {"type":"message","delay":850,"from":"hailey","text":"I said no because I was too excited about shopping"},
+    {"type":"message","delay":850,"from":"hailey","text":"He said resting is important, especially after a big exam"},
+    {"type":"message","delay":850,"from":"hailey","text":"Which was annoyingly nice"},
+    {"type":"image","delay":900,"from":"hailey","image":"assets/pictures/Conversation/hailey_bed_upside_down.jpg"},
+    {"type":"message","delay":850,"from":"hailey","text":"Which is why I will be resting until shopping time"},
+    {"type":"message","delay":900,"from":"player","text":"What can I say, you deserve it"},
+    {"type":"message","delay":850,"from":"player","text":"For surviving the past few days"},
+    {"type":"message","delay":850,"from":"hailey","text":"Yeeeeeees 😌"},
+    {"type":"message","delay":850,"from":"hailey","text":"I am a survivor, and shopping is my reward"},
+    {"type":"message","delay":900,"from":"player","text":"Don't bankrupt your professor with too many clothes"},
+    {"type":"message","delay":850,"from":"hailey","text":"Can't promise anything 😇"},
+    {"type":"message","delay":850,"from":"hailey","text":"Academic recovery is important"},
+    {"type":"message","delay":850,"from":"hailey","text":"And fashion recovery is sacred 😇"},
+    {"type":"if","condition":"active_character:evelyn","then":[
+      {"type":"if","condition":"route_evelyn_locked_v1:love","then":[
+        {"type":"start_story","goHome":true,"startStory":"story/DAY15/DAY15_EVELYN_MORNING.json"}
+      ],"else":[
+        {"type":"if","condition":"route_evelyn_locked_v1:nts","then":[
+          {"type":"start_story","goHome":true,"startStory":"story/DAY15/DAY15_EVELYN_MORNING.json"}
+        ],"else":[
+          {"type":"if","condition":"route_evelyn_locked_v1:ntr","then":[
+            {"type":"start_story","goHome":true,"startStory":"story/DAY15/DAY15_EVELYN_MORNING.json"}
+          ],"else":[
+            {"type":"start_story","goHome":true,"startStory":"story/DAY15/DAY15_EVELYN_MORNING.json"}
+          ]}
+        ]}
+      ]}
+    ],"else":[
+      {"type":"start_story","goHome":true,"startStory":"story/DAY15/ntr/DAY15_01_HAILEY_AFTERNOON_NTR.json"}
+    ]}
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "onceKey": "d11_01_hailey_afternoon_love_v1",
+  "contactId": "hailey",
+  "requireOnceKey": "d11_00_hailey_morning_love_v1",
+  "onCompleteStartStory": "story/DAY11/DAY11_MASON_AFTERNOON.json",
+  "steps": [
+    {"type":"notify","delay":1200,"fromId":"hailey","fromName":"{{name:hailey}}","avatar":"assets/avatars/hailey.jpg","text":"Break update 😇","target":"conversation"},
+    {"type":"message","delay":850,"from":"hailey","text":"I survived"},
+    {"type":"message","delay":850,"from":"hailey","text":"Mostly"},
+    {"type":"message","delay":850,"from":"hailey","text":"One question looked angry"},
+    {"type":"message","delay":850,"from":"hailey","text":"Like actually angry at me"},
+    {"type":"message","delay":900,"from":"player","text":"What did you do?"},
+    {"type":"message","delay":850,"from":"hailey","text":"Read it twice"},
+    {"type":"message","delay":850,"from":"hailey","text":"Like you said"},
+    {"type":"message","delay":850,"from":"hailey","text":"Then guessed with confidence 💅"},
+    {"type":"message","delay":900,"from":"player","text":"That is half a strategy"},
+    {"type":"message","delay":850,"from":"hailey","text":"It is progress 😌"},
+    {"type":"image","delay":900,"from":"hailey","image":"assets/pictures/Conversation/hailey_tired_face.jpg"},
+    {"type":"message","delay":850,"from":"hailey","text":"This is my after-class brain fried face"},
+    {"type":"message","delay":900,"from":"player","text":"Wow, quite the face!"},
+    {"type":"message","delay":850,"from":"hailey","text":"Do not be so harsh 😔"},
+    {"type":"message","delay":850,"from":"hailey","text":"Well, I need to go recover from this trauma now"},
+    {"type":"message","delay":850,"from":"player","text":"Maybe a walk outside will help"},
+    {"type":"message","delay":850,"from":"hailey","text":"You are right"},
+    {"type":"message","delay":850,"from":"hailey","text":"I will go for a walk before the next test"},
+    {"type":"message","delay":850,"from":"hailey","text":"I will be back after the test!"},
+    {"type":"message","delay":900,"from":"player","text":"Okay, enjoy the walk!"},
+    {"type":"message","delay":850,"from":"hailey","text":"I will try to enjoy it 😌"},
+    {"type":"message","delay":850,"from":"hailey","text":"I am not sure if I can enjoy anything right now, but I will try 😌"}
+  ]
+}

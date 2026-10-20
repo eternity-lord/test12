@@ -1,0 +1,31 @@
+{
+  "onceKey": "d1_03_evelyn_followup_v1",
+  "contactId": "evelyn",
+  "onCompleteStartStory": "story/DAY1/DAY1_04_LENA_INTRO.json",
+  "steps": [
+    {"type":"message","delay":1400,"from":"evelyn","fromName":"{{name:evelyn}}","text":"Hey"},
+    {"type":"message","delay":900,"from":"evelyn","text":"Quick check-in"},
+    {"type":"message","delay":900,"from":"evelyn","text":"Did you drink any water yet"},
+    {"type":"choice","key":"d1_evelyn_water_choice_v1","prompt":"","options":[{"id":"yes","text":"Yeah a little","goto":"branch_yes"},{"id":"no","text":"Not yet I forgot","goto":"branch_no"}]},
+    {"type":"label","name":"branch_yes"},
+    {"type":"message","delay":900,"from":"evelyn","text":"Good"},
+    {"type":"message","delay":900,"from":"evelyn","text":"Keep doing that"},
+    {"type":"goto","label":"join_after_water"},
+    {"type":"label","name":"branch_no"},
+    {"type":"message","delay":900,"from":"evelyn","text":"Alright"},
+    {"type":"message","delay":900,"from":"evelyn","text":"Do it now"},
+    {"type":"message","delay":900,"from":"evelyn","text":"Not a debate"},
+    {"type":"goto","label":"join_after_water"},
+    {"type":"label","name":"join_after_water"},
+    {"type":"message","delay":900,"from":"evelyn","text":"Also"},
+    {"type":"message","delay":900,"from":"evelyn","text":"{{name:lena}}’s been worried about you"},
+    {"type":"message","delay":900,"from":"evelyn","text":"Sometimes it’s hard to talk"},
+    {"type":"message","delay":900,"from":"evelyn","text":"But you should at least respond to her texts"},
+    {"type":"message","delay":900,"from":"player","text":"I’m fine"},
+    {"type":"message","delay":900,"from":"evelyn","text":"You don’t have to prove it to me"},
+    {"type":"instagram_post","onceKey":"ig_hailey_post_day1_v1","authorId":"hailey","authorName":"Hailey","avatar":"assets/avatars/hailey.jpg","image":"assets/pictures/Snapgram/hailey_post_day1.jpg","caption":"Slaying ✨","likes":48,"time":"JUST NOW"},
+    {"type":"message","delay":900,"from":"evelyn","text":"Just don’t shut everyone out"},
+    {"type":"message","delay":900,"from":"evelyn","text":"She cares about you"},
+    {"type":"note","text":"1 MINUTE LATER"}
+  ]
+}

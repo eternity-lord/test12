@@ -1,0 +1,28 @@
+{
+  "onceKey": "d10_00_evelyn_morning_nts_v1",
+  "contactId": "evelyn",
+  "requireOnceKey": "d9_02_evelyn_evening_nts_v1",
+  "onCompleteStartStory": "story/DAY10/nts/DAY10_01_EVELYN_AFTERNOON_NTS.json",
+  "steps": [
+    {"type":"notify","delay":1200,"fromId":"evelyn","fromName":"{{name:evelyn}}","avatar":"assets/avatars/evelyn.jpg","text":"Good morning 😌","target":"conversation"},
+    {"type":"message","delay":850,"from":"evelyn","text":"Did you sleep well?"},
+    {"type":"message","delay":850,"from":"player","text":"I think so 😌"},
+    {"type":"message","delay":850,"from":"player","text":"What about you?"},
+    {"type":"message","delay":850,"from":"evelyn","text":"Pretty well actually"},
+    {"type":"message","delay":850,"from":"evelyn","text":"Not having to work is quite wonderful"},
+    {"type":"message","delay":850,"from":"evelyn","text":"Breakfast is ready"},
+    {"type":"image","delay":850,"from":"evelyn","image":"assets/pictures/Conversation/evelyn_day10_breakfast.jpg"},
+    {"type":"message","delay":850,"from":"evelyn","text":"I made pancakes, your favorite 😌"},
+    {"type":"message","delay":850,"from":"player","text":"You really are spoiling me"},
+    {"type":"message","delay":850,"from":"evelyn","text":"Maybe a little"},
+    {"type":"message","delay":850,"from":"player","text":"I appreciate it though"},
+    {"type":"message","delay":850,"from":"evelyn","text":"I'm glad to hear that 😌"},
+    {"type":"message","delay":850,"from":"evelyn","text":"Take your time"},
+    {"type":"message","delay":850,"from":"evelyn","text":"I'm still finishing the pancakes anyway 😌"},
+    {"type":"message","delay":850,"from":"player","text":"Thank you"},
+    {"type":"message","delay":850,"from":"evelyn","text":"See you downstairs"},
+    {"type":"start_story","goHome":true,"startStory":"story/DAY10/nts/DAY10_01_EVELYN_AFTERNOON_NTS.json"}
+  ],
+  "route": "nts",
+  "routeLock": "route_evelyn_locked_v1:nts"
+}

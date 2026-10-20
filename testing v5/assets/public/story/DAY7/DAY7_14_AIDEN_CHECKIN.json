@@ -1,0 +1,17 @@
+{
+  "onceKey": "d7_13_aiden_checkin_v1",
+  "contactId": "aiden",
+  "onCompleteStartStory": "story/DAY7/DAY7_15_PLAYER_TEXT_EVELYN_NO_REPLY.json",
+  "steps": [
+    {"type":"notify","delay":1200,"fromId":"aiden","fromName":"{{name:aiden}}","avatar":"assets/avatars/aiden.jpg","text":"All good there?","target":"conversation"},
+    {"type":"message","delay":900,"from":"aiden","fromName":"{{name:aiden}}","text":"How is the house chaos level tonight?"},
+    {"type":"message","delay":900,"from":"player","text":"Medium chaos"},
+    {"type":"message","delay":900,"from":"aiden","text":"So basically normal"},
+    {"type":"message","delay":900,"from":"player","text":"Want to play ?"},
+    {"type":"message","delay":900,"from":"aiden","text":"Do you really need to ask?"},
+    {"type":"message","delay":900,"from":"aiden","text":"Also I still owe you a clean win in co-op"},
+    {"type":"message","delay":900,"from":"player","text":"You mean I carry you again?"},
+    {"type":"message","delay":900,"from":"aiden","text":"Keep talking and I mute your mic"},
+    {"type":"message","delay":900,"from":"aiden","text":"Message me when your ready"}
+  ]
+}

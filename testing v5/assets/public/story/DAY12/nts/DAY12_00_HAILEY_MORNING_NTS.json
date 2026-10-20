@@ -1,0 +1,46 @@
+{
+  "onceKey": "d12_00_hailey_morning_nts_v1",
+  "contactId": "hailey",
+  "requireOnceKey": "d12_00_lena_morning_nts_v1|d11_02_hailey_evening_nts_v1",
+  "steps": [
+    {"type":"notify","delay":800,"fromId":"hailey","fromName":"{{name:hailey}}","avatar":"assets/avatars/hailey.jpg","text":"Goooood morning!","target":"conversation"},
+    {"type":"message","delay":900,"from":"player","text":"Morning to you too"},
+    {"type":"message","delay":900,"from":"hailey","text":"How are you feeling today?"},
+    {"type":"message","delay":900,"from":"player","text":"Not too bad"},
+    {"type":"message","delay":900,"from":"player","text":"The leg is getting better every week"},
+    {"type":"message","delay":900,"from":"player","text":"And you ?"},
+    {"type":"message","delay":900,"from":"hailey","text":"Good 😊"},
+    {"type":"message","delay":900,"from":"hailey","text":"When do you see the doctor again?"},
+    {"type":"message","delay":900,"from":"player","text":"This Friday"},
+    {"type":"message","delay":900,"from":"player","text":"Hopefully he'll finally get rid of the cast"},
+    {"type":"message","delay":900,"from":"hailey","text":"About time"},
+    {"type":"message","delay":900,"from":"hailey","text":"You're starting to look like part of the furniture"},
+    {"type":"message","delay":900,"from":"player","text":"Thanks"},
+    {"type":"message","delay":900,"from":"hailey","text":"You're welcome 😌"},
+    {"type":"message","delay":900,"from":"hailey","text":"Anyway"},
+    {"type":"message","delay":900,"from":"hailey","text":"{{name:evelyn}} made breakfast this morning"},
+    {"type":"message","delay":900,"from":"hailey","text":"And it looks amazing"},
+    {"type":"photo","delay":900,"from":"hailey","image":"assets/pictures/Conversation/day12_breakfast.jpg"},
+    {"type":"message","delay":900,"from":"hailey","text":"Look at this"},
+    {"type":"message","delay":900,"from":"hailey","text":"You should come eat with us"},
+    {"type":"message","delay":900,"from":"player","text":"That's tempting"},
+    {"type":"message","delay":900,"from":"hailey","text":"Better hurry then"},
+    {"type":"message","delay":900,"from":"hailey","text":"Even if you have to crawl all the way here 😭"},
+    {"type":"message","delay":900,"from":"hailey","text":"Otherwise I'm eating everything"},
+    {"type":"message","delay":900,"from":"player","text":"I can solve that problem"},
+    {"type":"message","delay":900,"from":"hailey","text":"Oh?"},
+    {"type":"message","delay":900,"from":"player","text":"I'll ask your private {{name:tutor}} to give you extra exercises today"},
+    {"type":"message","delay":900,"from":"player","text":"That should keep your funny ideas out of my breakfast"},
+    {"type":"message","delay":900,"from":"hailey","text":"Traitor 😭"},
+    {"type":"message","delay":900,"from":"hailey","text":"You're abusing your authority"},
+    {"type":"message","delay":900,"from":"player","text":"I'm protecting the pancakes"},
+    {"type":"message","delay":900,"from":"hailey","text":"The pancakes belong to me now"},
+    {"type":"message","delay":900,"from":"player","text":"We'll see about that"},
+    {"type":"message","delay":900,"from":"hailey","text":"Good luck for that 😊"},
+    {"type":"if","condition":"all:active_character:evelyn|!once:d12_00_evelyn_morning_nts_v1","then":[
+      {"type":"start_story","goHome":true,"startStory":"story/DAY12/DAY12_EVELYN_MORNING.json"}
+    ],"else":[
+      {"type":"start_story","goHome":true,"startStory":"story/DAY12/nts/DAY12_01_HAILEY_AFTERNOON_NTS.json"}
+    ]}
+  ]
+}

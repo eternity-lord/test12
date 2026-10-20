@@ -1,0 +1,25 @@
+{
+  "onceKey": "d3_04_hailey_rugby_thanks_v1",
+  "contactId": "hailey",
+  "onCompleteStartStory": "story/DAY3/DAY3_06_LENA_DOOR.json",
+  "steps": [
+    {"type":"notify","delay":1200,"fromId":"hailey","fromName":"{{name:hailey}}","avatar":"assets/avatars/hailey.jpg","text":"Hey loser 😌","target":"conversation"},
+    {"type":"message","delay":900,"from":"hailey","text":"Thanks for dealing with my rugby mess yesterday 🏉"},
+    {"type":"message","delay":900,"from":"hailey","text":"I know I kind of dropped it on you like a little menace 😇"},
+    {"type":"message","delay":900,"from":"player","text":"Kind of?"},
+    {"type":"message","delay":900,"from":"player","text":"You made it sound like a house emergency"},
+    {"type":"message","delay":900,"from":"hailey","text":"It was a house emergency 😌"},
+    {"type":"message","delay":900,"from":"hailey","text":"A sporty glamorous emergency 💅🏉"},
+    {"type":"message","delay":900,"from":"player","text":"That sounds fake"},
+    {"type":"message","delay":900,"from":"hailey","text":"Rude 😭"},
+    {"type":"message","delay":900,"from":"hailey","text":"Still"},
+    {"type":"message","delay":900,"from":"hailey","text":"You helped, so thank you 🤍"},
+    {"type":"message","delay":900,"from":"hailey","text":"I owe you one 😌"},
+    {"type":"message","delay":900,"from":"player","text":"I'm keeping that in writing 😤"},
+    {"type":"message","delay":900,"from":"player","text":"In my '{{name:hailey}} owes me one' book"},
+    {"type":"message","delay":900,"from":"hailey","text":"It doesn't exist 😇"},
+    {"type":"message","delay":900,"from":"hailey","text":"Right?"},
+    {"type":"message","delay":900,"from":"hailey","text":"Right ???"},
+    {"type":"message","delay":900,"from":"hailey","text":"Hellooo ????"}
+  ]
+}

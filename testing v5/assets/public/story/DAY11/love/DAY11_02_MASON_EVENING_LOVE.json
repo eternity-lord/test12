@@ -1,0 +1,47 @@
+{
+  "onceKey": "d11_05_mason_evening_love_v1",
+  "contactId": "mason",
+  "requireOnceKey": "d11_04_mason_afternoon_love_v1",
+  "route": "love",
+  "routeLock": "route_mason_locked_v1:love",
+  "steps": [
+    {"type":"notify","delay":1200,"fromId":"mason","fromName":"{{name:mason}}","avatar":"assets/avatars/male_mason.jpg","text":"We're playing tomorrow","target":"conversation"},
+    {"type":"message","delay":850,"from":"mason","text":"My arms still hurt"},
+    {"type":"message","delay":850,"from":"mason","text":"And my hands are not much better"},
+    {"type":"message","delay":850,"from":"player","text":"Same here"},
+    {"type":"message","delay":850,"from":"player","text":"I think the controller would finish us tonight"},
+    {"type":"message","delay":850,"from":"mason","text":"Exactly"},
+    {"type":"message","delay":850,"from":"player","text":"I'm going to finish my anime and sleep"},
+    {"type":"image","from":"mason","image":"assets/pictures/Conversation/male_mason/mason_evening_anime.jpg"},
+    {"type":"message","delay":850,"from":"mason","text":"Doing the same"},
+    {"type":"message","delay":850,"from":"mason","text":"If I can lift the blanket without dying"},
+    {"type":"message","delay":850,"from":"player","text":"Careful"},
+    {"type":"message","delay":850,"from":"player","text":"That might count as a workout"},
+    {"type":"message","delay":850,"from":"mason","text":"Don't make me regret thanking you earlier"},
+    {"type":"message","delay":850,"from":"player","text":"Too late"},
+    {"type":"message","delay":850,"from":"player","text":"Good night"},
+    {"type":"message","delay":850,"from":"mason","text":"Night"},
+    {"type":"message","delay":850,"from":"mason","text":"Don't stay up too late"},
+    {"type":"if","condition":"all:active_character:evelyn,!once:d11_02_evelyn_evening_love_v1,!once:d11_02_evelyn_evening_nts_v1,!once:d11_02_evelyn_evening_ntr_v1","then":[
+      {"type":"if","condition":"route_evelyn_locked_v1:ntr","then":[
+        {"type":"start_story","goHome":true,"startStory":"story/DAY11/DAY11_EVELYN_EVENING.json","startDelayMs":200}
+      ],"else":[
+        {"type":"if","condition":"route_evelyn_locked_v1:nts","then":[
+          {"type":"start_story","goHome":true,"startStory":"story/DAY11/DAY11_EVELYN_EVENING.json","startDelayMs":200}
+        ],"else":[
+          {"type":"start_story","goHome":true,"startStory":"story/DAY11/DAY11_EVELYN_EVENING.json","startDelayMs":200}
+        ]}
+      ]}
+    ],"else":[
+      {"type":"if","condition":"all:active_character:lena,not once:d11_02_lena_night_love_v1","then":[
+        {"type":"start_story","goHome":true,"startStory":"story/DAY11/DAY11_LENA_NIGHT.json","startDelayMs":200}
+      ],"else":[
+        {"type":"if","condition":"all:active_character:hailey,not once:d11_02_hailey_evening_love_v1","then":[
+          {"type":"start_story","goHome":true,"startStory":"story/DAY11/DAY11_HAILEY_EVENING.json","startDelayMs":200}
+        ],"else":[
+          {"type":"time_card","text":"DAY 12","goHome":true,"startStory":"story/DAY12/love/DAY12_00_MASON_MORNING_LOVE.json","startDelayMs":200}
+        ]}
+      ]}
+    ]}
+  ]
+}

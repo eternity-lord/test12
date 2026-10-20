@@ -1,0 +1,9 @@
+{"id":"day15_router_hailey_evening","onceKey":"d15_dev_router_hailey_evening_v1","contactId":"tutor","steps":[{"type":"if","condition":"route_hailey_locked_v1:ntr","then":[
+      {"type":"start_story","startStory":"story/DAY15/ntr/DAY15_02_HAILEY_EVENING_NTR.json","contactId":"hailey"}
+    ],"else":[
+      {"type":"if","condition":"route_hailey_locked_v1:nts","then":[
+        {"type":"start_story","startStory":"story/DAY15/nts/DAY15_02_HAILEY_EVENING_NTS.json","contactId":"hailey"}
+      ],"else":[
+        {"type":"start_story","startStory":"story/DAY15/love/DAY15_02_HAILEY_EVENING_LOVE.json","contactId":"hailey"}
+      ]}
+    ]}]}

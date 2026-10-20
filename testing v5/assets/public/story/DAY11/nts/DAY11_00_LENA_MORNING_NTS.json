@@ -1,0 +1,42 @@
+{
+  "onceKey": "d11_00_lena_morning_nts_v1",
+  "contactId": "lena",
+  "requireOnceKey": "d10_02_lena_evening_nts_v1",
+  "steps": [
+    {"type":"notify","delay":1300,"fromId":"lena","fromName":"{{name:lena}}","avatar":"assets/avatars/lena.jpg","text":"Morning ☀️","target":"conversation"},
+    {"type":"message","delay":900,"from":"lena","text":"Did you sleep well?"},
+    {"type":"message","delay":900,"from":"player","text":"Pretty good"},
+    {"type":"message","delay":900,"from":"player","text":"You?"},
+    {"type":"message","delay":900,"from":"lena","text":"Yeah"},
+    {"type":"message","delay":900,"from":"lena","text":"Better than expected"},
+    {"type":"message","delay":900,"from":"lena","text":"I didn't even wake up during the night for once 😌"},
+    {"type":"message","delay":900,"from":"player","text":"That's a win"},
+    {"type":"message","delay":900,"from":"lena","text":"Definitely"},
+    {"type":"message","delay":900,"from":"lena","text":"I feel a lot more awake today"},
+    {"type":"message","delay":900,"from":"player","text":"More energy?"},
+    {"type":"message","delay":900,"from":"lena","text":"A little"},
+    {"type":"message","delay":900,"from":"lena","text":"Enough to function like a normal human"},
+    {"type":"message","delay":900,"from":"player","text":"That's all we need"},
+    {"type":"message","delay":900,"from":"lena","text":"Exactly 😌"},
+    {"type":"message","delay":900,"from":"lena","text":"I have classes this morning"},
+    {"type":"message","delay":900,"from":"player","text":"Motivated?"},
+    {"type":"message","delay":900,"from":"lena","text":"Let's not get carried away"},
+    {"type":"message","delay":900,"from":"lena","text":"But I'll survive"},
+    {"type":"message","delay":900,"from":"player","text":"That's the spirit"},
+    {"type":"message","delay":900,"from":"lena","text":"I thought about what you said the other day"},
+    {"type":"message","delay":900,"from":"player","text":"Oh?"},
+    {"type":"message","delay":900,"from":"lena","text":"Don't worry"},
+    {"type":"message","delay":900,"from":"lena","text":"Not in a bad way"},
+    {"type":"message","delay":900,"from":"lena","text":"Just... thinking"},
+    {"type":"message","delay":900,"from":"lena","text":"Anyway"},
+    {"type":"message","delay":900,"from":"lena","text":"I need to get ready or I'm going to be late 😭"},
+    {"type":"message","delay":900,"from":"lena","text":"I'll text you later"},
+    {"type":"message","delay":900,"from":"lena","text":"Have a good morning ❤️"},
+    {"type":"message","delay":900,"from":"player","text":"Ah.."},
+    {"type":"if","condition":"active_character:hailey","then":[
+      {"type":"start_story","goHome":true,"startStory":"story/DAY11/DAY11_HAILEY_MORNING.json"}
+    ],"else":[
+      {"type":"start_story","goHome":true,"startStory":"story/DAY11/nts/DAY11_02_LENA_EVENING_NTS.json"}
+    ]}
+  ]
+}

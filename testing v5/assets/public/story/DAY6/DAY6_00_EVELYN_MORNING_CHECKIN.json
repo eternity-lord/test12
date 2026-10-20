@@ -1,0 +1,27 @@
+{
+  "onceKey": "d6_00_evelyn_morning_checkin_v1",
+  "contactId": "evelyn",
+  "onCompleteStartStory": "story/DAY6/DAY6_01_LENA_MORNING.json",
+  "steps": [
+    {"type":"notify","delay":1200,"fromId":"evelyn","fromName":"{{name:evelyn}}","avatar":"assets/avatars/evelyn.jpg","text":"Morning","target":"conversation"},
+    {"type":"message","delay":900,"from":"evelyn","text":"How are you this morning?"},
+    {"type":"message","delay":900,"from":"player","text":"I'm okay"},
+    {"type":"message","delay":900,"from":"player","text":"My leg doesn't hurt today"},
+    {"type":"message","delay":900,"from":"evelyn","text":"That is very good news"},
+    {"type":"message","delay":900,"from":"player","text":"And you, how was work?"},
+    {"type":"message","delay":900,"from":"evelyn","text":"Busy"},
+    {"type":"message","delay":900,"from":"evelyn","text":"We had more people than expected"},
+    {"type":"message","delay":900,"from":"evelyn","text":"But manageable"},
+    {"type":"message","delay":900,"from":"player","text":"And the manager?"},
+    {"type":"message","delay":900,"from":"evelyn","text":"He looked at me strangely a few times"},
+    {"type":"message","delay":900,"from":"evelyn","text":"But nothing special"},
+    {"type":"message","delay":900,"from":"evelyn","text":"It was still quite a long day"},
+    {"type":"message","delay":900,"from":"evelyn","text":"I slept as soon as I got home"},
+    {"type":"message","delay":900,"from":"player","text":"You deserved it"},
+    {"type":"message","delay":900,"from":"evelyn","text":"I will make breakfast in a few minutes"},
+    {"type":"message","delay":900,"from":"evelyn","text":"Tell me if you want it brought to you"},
+    {"type":"message","delay":900,"from":"player","text":"Don't worry take your time, {{name:hailey}} already made me breakfast, just rest"},
+    {"type":"message","delay":900,"from":"evelyn","text":"Oh okay"},
+    {"type":"message","delay":900,"from":"evelyn","text":"Thank you to both of you"}
+  ]
+}

@@ -1,0 +1,86 @@
+{
+  "onceKey": "d14_00_aiden_shared_v1",
+  "contactId": "aiden",
+  "requireOnceKey": "d13_03_hak_heartspike_love_v1|d13_03_hak_heartspike_nts_v1|d13_03_hak_heartspike_ntr_v1",
+  "steps": [
+    {"type":"notify","delay":900,"fromId":"aiden","fromName":"{{name:aiden}}","avatar":"assets/avatars/aiden.jpg","text":"Important news","target":"conversation"},
+    {"type":"message","delay":700,"from":"aiden","text":"I have good news and bad news"},
+    {"type":"message","delay":700,"from":"player","text":"Good news first"},
+    {"type":"message","delay":700,"from":"aiden","text":"Training is back"},
+    {"type":"message","delay":700,"from":"aiden","text":"No pain, no weird feeling, everything felt clean"},
+    {"type":"message","delay":700,"from":"player","text":"That's actually great"},
+    {"type":"message","delay":700,"from":"aiden","text":"Yeah, I missed it more than I thought"},
+    {"type":"message","delay":700,"from":"player","text":"And the bad news"},
+    {"type":"message","delay":700,"from":"aiden","text":"Our game got an update"},
+    {"type":"message","delay":700,"from":"player","text":"How is that bad news"},
+    {"type":"message","delay":700,"from":"aiden","text":"Because now I have no time to do anything else"},
+    {"type":"message","delay":700,"from":"aiden","text":"Train, eat, play, sleep"},
+    {"type":"message","delay":700,"from":"aiden","text":"That is my entire personality now"},
+    {"type":"message","delay":700,"from":"player","text":"Sounds healthy"},
+    {"type":"message","delay":700,"from":"aiden","text":"Extremely"},
+    {"type":"message","delay":700,"from":"aiden","text":"And I hope you are ready too"},
+    {"type":"message","delay":700,"from":"player","text":"For what"},
+    {"type":"message","delay":700,"from":"aiden","text":"To lose sleep with me"},
+    {"type":"message","delay":700,"from":"player","text":"Tempting"},
+    {"type":"message","delay":700,"from":"aiden","text":"Do not act like you have better plans"},
+    {"type":"message","delay":700,"from":"player","text":"I might, i have to train for a marathon"},
+    {"type":"message","delay":700,"from":"aiden","text":"I hope it itches under your cast"},
+    {"type":"message","delay":700,"from":"player","text":"No please don't !"},
+    {"type":"message","delay":700,"from":"player","text":"Ill play with you!"},
+    {"type":"message","delay":700,"from":"aiden","text":"Patch notes wait for no one"},
+    {"type":"message","delay":700,"from":"player","text":"Yes sir!"},
+    {"type":"if","condition":"active_character:mason","then":[
+      {"type":"if","condition":"route_mason_locked_v1:nts_coach","then":[
+        {"type":"start_story","goHome":true,"startStory":"story/DAY14/nts/DAY14_00_MASON_MORNING_NTS.json","startDelayMs":200}
+      ],"else":[
+        {"type":"if","condition":"route_mason_locked_v1:ntr","then":[
+          {"type":"start_story","goHome":true,"startStory":"story/DAY14/ntr/DAY14_00_MASON_MORNING_NTR.json","startDelayMs":200}
+        ],"else":[
+          {"type":"if","condition":"route_mason_locked_v1:nts","then":[
+            {"type":"start_story","goHome":true,"startStory":"story/DAY14/nts/DAY14_00_MASON_MORNING_NTS.json","startDelayMs":200}
+          ],"else":[
+            {"type":"start_story","goHome":true,"startStory":"story/DAY14/love/DAY14_00_MASON_MORNING_LOVE.json","startDelayMs":200}
+          ]}
+        ]}
+      ]}
+    ],"else":[
+      {"type":"if","condition":"active_character:lena","then":[
+        {"type":"if","condition":"route_lena_locked_v1:ntr","then":[
+          {"type":"start_story","goHome":true,"startStory":"story/DAY14/ntr/DAY14_00_LENA_MORNING_NTR.json","startDelayMs":200}
+        ],"else":[
+          {"type":"if","condition":"route_lena_locked_v1:nts","then":[
+            {"type":"start_story","goHome":true,"startStory":"story/DAY14/nts/DAY14_00_LENA_MORNING_NTS.json","startDelayMs":200}
+          ],"else":[
+            {"type":"start_story","goHome":true,"startStory":"story/DAY14/love/DAY14_00_LENA_MORNING_LOVE.json","startDelayMs":200}
+          ]}
+        ]}
+      ],"else":[
+        {"type":"if","condition":"active_character:hailey","then":[
+          {"type":"if","condition":"route_hailey_locked_v1:ntr","then":[
+            {"type":"start_story","goHome":true,"startStory":"story/DAY14/ntr/DAY14_00_HAILEY_MORNING_NTR.json","startDelayMs":200}
+          ],"else":[
+            {"type":"if","condition":"route_hailey_locked_v1:nts","then":[
+              {"type":"start_story","goHome":true,"startStory":"story/DAY14/nts/DAY14_00_HAILEY_MORNING_NTS.json","startDelayMs":200}
+            ],"else":[
+              {"type":"start_story","goHome":true,"startStory":"story/DAY14/love/DAY14_00_HAILEY_MORNING_LOVE.json","startDelayMs":200}
+            ]}
+          ]}
+        ],"else":[
+          {"type":"if","condition":"active_character:evelyn","then":[
+            {"type":"if","condition":"route_evelyn_locked_v1:ntr","then":[
+              {"type":"start_story","goHome":true,"startStory":"story/DAY14/ntr/DAY14_00_EVELYN_MORNING_NTR.json","startDelayMs":200}
+            ],"else":[
+              {"type":"if","condition":"route_evelyn_locked_v1:nts","then":[
+                {"type":"start_story","goHome":true,"startStory":"story/DAY14/nts/DAY14_00_EVELYN_MORNING_NTS.json","startDelayMs":200}
+              ],"else":[
+                {"type":"start_story","goHome":true,"startStory":"story/DAY14/love/DAY14_00_EVELYN_MORNING_LOVE.json","startDelayMs":200}
+              ]}
+            ]}
+          ],"else":[
+            {"type":"start_story","goHome":true,"startStory":"story/DEV/DAY9_END_CHAPTER.json","startDelayMs":200}
+          ]}
+        ]}
+      ]}
+    ],"__masonPatched":true}
+  ]
+}

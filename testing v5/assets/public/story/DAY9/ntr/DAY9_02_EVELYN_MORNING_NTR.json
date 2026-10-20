@@ -1,0 +1,60 @@
+{
+  "onceKey": "d9_00_evelyn_morning_ntr_v1",
+  "contactId": "evelyn",
+  "requireOnceKey": "d8_route_day9_ntr_locked_v1",
+  "steps": [
+    {"type":"notify","delay":1200,"fromId":"evelyn","fromName":"{{name:evelyn}}","avatar":"assets/avatars/evelyn.jpg","text":"Morning","target":"conversation"},
+    {"type":"message","delay":900,"from":"player","text":"Morning, so how did it go at the bar last night?"},
+    {"type":"message","delay":900,"from":"evelyn","text":"It was okay"},
+    {"type":"message","delay":900,"from":"evelyn","text":"I kept my head down and did my work"},
+    {"type":"message","delay":900,"from":"evelyn","text":"But the manager watched everything like a hawk, quit annoying "},
+    {"type":"message","delay":900,"from":"player","text":"It is going to be fine"},
+    {"type":"message","delay":900,"from":"player","text":"You just have to endure him for a bit and he will leave you alone"},
+    {"type":"message","delay":900,"from":"evelyn","text":"Yes you're right"},
+    {"type":"message","delay":900,"from":"evelyn","text":"At least I enjoy working with my colleagues"},
+    {"type":"message","delay":900,"from":"evelyn","text":"Oh also, that bastard said he might bring new dress code rules soon"},
+    {"type":"message","delay":900,"from":"evelyn","text":"New outfits or something like that"},
+    {"type":"message","delay":900,"from":"evelyn","text":"I feel like it will be somthing stupid and i don't want to change outfit anyway"},
+    {"type":"message","delay":900,"from":"evelyn","text":"What should I do if he pushes that on me?"},
+    {"type":"hak_hint","kind":"ntr","text":"Your reply here can have effect in the near future"},
+    {"type":"choice","key":"d9_evelyn_dresscode_advice_v1","prompt":"","options":[{"id":"wait_outfits","text":"Wait to see the outfits, then talk to him if you do not like them","goto":"branch_wait_outfits","points":{"ntr":2}},{"id":"trust_manager","text":"Trust him, even if he is annoying he does run the bar well right?","goto":"branch_trust_manager","points":{"ntr":3}}]},
+    {"type":"label","name":"branch_wait_outfits"},
+    {"type":"message","delay":900,"from":"player","text":"If it is not okay, tell him calmly and set a boundary"},
+    {"type":"message","delay":900,"from":"evelyn","text":"So I do not refuse before I even know what it is"},
+    {"type":"message","delay":900,"from":"player","text":"Exactly"},
+    {"type":"message","delay":900,"from":"evelyn","text":"Alright"},
+    {"type":"message","delay":900,"from":"evelyn","text":"You're right maybe im making a big fuse for nothing"},
+    {"type":"goto","label":"join_after_advice"},
+    {"type":"label","name":"branch_trust_manager"},
+    {"type":"message","delay":900,"from":"player","text":"Try to trust him on the work side"},
+    {"type":"message","delay":900,"from":"player","text":"He is annoying, but the bar is still running, so he is doing something right"},
+    {"type":"message","delay":900,"from":"evelyn","text":"You really think so?"},
+    {"type":"message","delay":900,"from":"player","text":"Yes"},
+    {"type":"message","delay":900,"from":"player","text":"Just stay calm and do not assume the worst too early"},
+    {"type":"message","delay":900,"from":"evelyn","text":"Okay"},
+    {"type":"message","delay":900,"from":"evelyn","text":"I will try to give him the benefit of the doubt"},
+    {"type":"goto","label":"join_after_advice"},
+    {"type":"label","name":"join_after_advice"},
+    {"type":"message","delay":900,"from":"player","text":"Either way, don't worry about him that much, just work normally"},
+    {"type":"message","delay":900,"from":"player","text":"Have a good time with your colleagues too"},
+    {"type":"message","delay":900,"from":"player","text":"And text me the moment something feels wrong"},
+    {"type":"message","delay":900,"from":"evelyn","text":"I will"},
+    {"type":"message","delay":900,"from":"evelyn","text":"Thank you for being in my corner"},
+    {"type":"message","delay":900,"from":"player","text":"It's normal don't worry"},
+    {"type":"if","condition":"active_character:lena","then":[
+      {"type":"if","condition":"route_lena_locked_v1:nts","then":[
+        {"type":"start_story","goHome":true,"startStory":"story/DAY9/DAY9_LENA_LATE_MORNING.json"}
+      ],"else":[
+        {"type":"if","condition":"route_lena_locked_v1:ntr","then":[
+          {"type":"start_story","goHome":true,"startStory":"story/DAY9/DAY9_LENA_LATE_MORNING.json"}
+        ],"else":[
+          {"type":"start_story","goHome":true,"startStory":"story/DAY9/DAY9_LENA_LATE_MORNING.json"}
+        ]}
+      ]}
+    ],"else":[
+      {"type":"start_story","goHome":true,"startStory":"story/DAY9/ntr/DAY9_07_EVELYN_AFTERNOON_NTR.json"}
+    ]}
+  ],
+  "route": "ntr",
+  "routeLock": "route_evelyn_locked_v1:ntr"
+}

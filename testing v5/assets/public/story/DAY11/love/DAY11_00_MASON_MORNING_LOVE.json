@@ -1,0 +1,27 @@
+{
+  "onceKey": "d11_03_mason_morning_love_v1",
+  "contactId": "mason",
+  "requireOnceKey": "d10_05_mason_evening_love_v1",
+  "onCompleteStartStory": "story/DAY11/DAY11_LENA_MORNING.json",
+  "route": "love",
+  "routeLock": "route_mason_locked_v1:love",
+  "steps": [
+    {"type":"notify","delay":1200,"fromId":"mason","fromName":"{{name:mason}}","avatar":"assets/avatars/male_mason.jpg","text":"Help","target":"conversation"},
+    {"type":"message","delay":850,"from":"mason","text":"I hurt everywhere"},
+    {"type":"message","delay":850,"from":"mason","text":"I can't move"},
+    {"type":"message","delay":850,"from":"player","text":"Same"},
+    {"type":"message","delay":850,"from":"player","text":"I think we went too hard yesterday"},
+    {"type":"message","delay":850,"from":"mason","text":"You think?"},
+    {"type":"message","delay":850,"from":"mason","text":"My legs are filing a complaint"},
+    {"type":"message","delay":850,"from":"player","text":"We should rest today"},
+    {"type":"message","delay":850,"from":"mason","text":"For once, you said something smart"},
+    {"type":"message","delay":850,"from":"mason","text":"I completely agree"},
+    {"type":"message","delay":850,"from":"mason","text":"And luckily, I'm not working today"},
+    {"type":"message","delay":850,"from":"player","text":"Perfect"},
+    {"type":"message","delay":850,"from":"mason","text":"I'm going back to sleep"},
+    {"type":"message","delay":850,"from":"player","text":"Same here"},
+    {"type":"message","delay":850,"from":"mason","text":"Good"},
+    {"type":"message","delay":850,"from":"mason","text":"Don't die"},
+    {"type":"start_story","goHome":true,"startStory":"story/DAY11/DAY11_LENA_MORNING.json","startDelayMs":200}
+  ]
+}

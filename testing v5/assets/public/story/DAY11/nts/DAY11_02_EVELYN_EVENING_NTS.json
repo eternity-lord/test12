@@ -1,0 +1,66 @@
+{
+  "onceKey": "d11_02_evelyn_evening_nts_v1",
+  "contactId": "evelyn",
+  "requireOnceKey": "d11_01_evelyn_afternoon_nts_v1",
+  "steps": [
+    {"type":"notify","delay":1200,"fromId":"evelyn","fromName":"{{name:evelyn}}","avatar":"assets/avatars/evelyn.jpg","text":"I just finished and I'm heading home 😊","target":"conversation"},
+    {"type":"image","delay":1200,"from":"evelyn","image":"assets/pictures/Conversation/evelyn_resting_couch.jpg"},
+    {"type":"message","delay":850,"from":"player","text":"How was it?"},
+    {"type":"message","delay":850,"from":"evelyn","text":"Honestly?"},
+    {"type":"message","delay":850,"from":"evelyn","text":"It was much more pleasant than I expected"},
+    {"type":"message","delay":850,"from":"evelyn","text":"You picked a really good person"},
+    {"type":"message","delay":850,"from":"evelyn","text":"We spent most of the time talking"},
+    {"type":"message","delay":850,"from":"evelyn","text":"And in the end I agreed to stay for two hours instead of one"},
+    {"type":"message","delay":850,"from":"player","text":"I'm glad everything went well"},
+    {"type":"message","delay":850,"from":"player","text":"You sounded really nervous this morning"},
+    {"type":"message","delay":850,"from":"evelyn","text":"I was"},
+    {"type":"message","delay":850,"from":"evelyn","text":"But after a few minutes it felt completely natural"},
+    {"type":"message","delay":850,"from":"evelyn","text":"He was polite and easy to talk to"},
+    {"type":"message","delay":850,"from":"player","text":"That's exactly what I was hoping for"},
+    {"type":"message","delay":850,"from":"evelyn","text":"If that's what the job is like every day, I think I'll be very happy"},
+    {"type":"message","delay":850,"from":"player","text":"Remember, you're the one who decides where things go"},
+    {"type":"message","delay":850,"from":"player","text":"You can take things at whatever pace you want"},
+    {"type":"message","delay":850,"from":"player","text":"And you'll probably get to meet a lot of interesting people"},
+    {"type":"message","delay":850,"from":"evelyn","text":"I think that's part of what I enjoyed"},
+    {"type":"message","delay":850,"from":"evelyn","text":"It felt good to have some interaction outside the house again"},
+    {"type":"message","delay":850,"from":"evelyn","text":"And to take a little time for myself"},
+    {"type":"message","delay":850,"from":"evelyn","text":"I didn't realize how much I missed that"},
+    {"type":"message","delay":850,"from":"player","text":"Then it sounds like a success to me"},
+    {"type":"message","delay":850,"from":"evelyn","text":"I think so too 😊"},
+    {"type":"message","delay":850,"from":"evelyn","text":"Thank you for helping me take the first step"},
+    {"type":"message","delay":850,"from":"player","text":"Anytime"},
+    {"type":"meetandgreet_photo_add","galleryOwnerId":"evelyn","profileId":"laurent","photoId":"laurent_coffee_01","image":"assets/pictures/meetandgreet/laurent_coffee_01.jpg","day":"Day 11"},
+    {"type":"meetandgreet_comment_add","profileId":"laurent","photoId":"laurent_coffee_01","commentId":"laurent_coffee_01","text":"Thank you for the coffee. I enjoyed how calm the conversation felt.","fromName":"Laurent"},
+    {"type":"if","condition":"active_character:lena","then":[
+      {"type":"if","condition":"route_lena_locked_v1:ntr","then":[
+        {"type":"start_story","goHome":true,"startStory":"story/DAY11/DAY11_LENA_EVENING.json","startDelayMs":200}
+      ],"else":[
+        {"type":"if","condition":"route_lena_locked_v1:nts","then":[
+          {"type":"start_story","goHome":true,"startStory":"story/DAY11/DAY11_LENA_EVENING.json","startDelayMs":200}
+        ],"else":[
+          {"type":"start_story","goHome":true,"startStory":"story/DAY11/DAY11_LENA_EVENING.json","startDelayMs":200}
+        ]}
+      ]}
+    ],"else":[
+      {"type":"if","condition":"active_character:hailey","then":[
+        {"type":"if","condition":"route_hailey_locked_v1:ntr","then":[
+          {"type":"start_story","goHome":true,"startStory":"story/DAY11/DAY11_HAILEY_EVENING.json","startDelayMs":200}
+        ],"else":[
+          {"type":"if","condition":"route_hailey_locked_v1:nts","then":[
+            {"type":"start_story","goHome":true,"startStory":"story/DAY11/DAY11_HAILEY_EVENING.json","startDelayMs":200}
+          ],"else":[
+            {"type":"start_story","goHome":true,"startStory":"story/DAY11/DAY11_HAILEY_EVENING.json","startDelayMs":200}
+          ]}
+        ]}
+      ],"else":[
+        {"type":"if","condition":"active_character:mason","then":[
+          {"type":"time_card","text":"DAY 12","goHome":true,"startStory":"story/DAY12/love/DAY12_00_MASON_MORNING_LOVE.json","startDelayMs":200}
+        ],"else":[
+          {"type":"time_card","text":"DAY 12","goHome":true,"startStory":"story/DAY12/nts/DAY12_00_EVELYN_MORNING_NTS.json","startDelayMs":200}
+        ]}
+      ]}
+    ]}
+  ],
+  "route": "nts",
+  "routeLock": "route_evelyn_locked_v1:nts"
+}

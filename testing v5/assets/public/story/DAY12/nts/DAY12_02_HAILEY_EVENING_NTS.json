@@ -1,0 +1,61 @@
+{
+  "onceKey": "d12_02_hailey_evening_nts_v1",
+  "contactId": "hailey",
+  "requireOnceKey": "d12_01_lena_evening_nts_v1|d12_01_hailey_afternoon_nts_v1",
+  "steps": [
+    {"type":"notify","delay":800,"fromId":"hailey","fromName":"{{name:hailey}}","avatar":"assets/avatars/hailey.jpg","text":"Doooone","target":"conversation"},
+    {"type":"message","delay":700,"from":"player","text":"So how did it go with your professor tonight?"},
+    {"type":"message","delay":950,"from":"hailey","text":"Umm it went well I guess 😌"},
+    {"type":"message","delay":900,"from":"player","text":"You guess?"},
+    {"type":"message","delay":800,"from":"hailey","text":"..."},
+    {"type":"message","delay":900,"from":"player","text":"What happened?"},
+    {"type":"message","delay":1100,"from":"hailey","text":"Okay fine"},
+    {"type":"message","delay":950,"from":"hailey","text":"I was a little shy at first"},
+    {"type":"message","delay":1000,"from":"hailey","text":"But then I decided to take advantage"},
+    {"type":"message","delay":1100,"from":"hailey","text":"How can I not flirt with a professor who's so hot? 😇"},
+    {"type":"message","delay":950,"from":"hailey","text":"I figured if I’m gonna pass this exam"},
+    {"type":"message","delay":1000,"from":"hailey","text":"I might as well get something extra out of it"},
+    {"type":"message","delay":1050,"from":"hailey","text":"And by the end of the session I just sat on his lap"},
+    {"type":"message","delay":900,"from":"player","text":"You did what?"},
+    {"type":"message","delay":850,"from":"player","text":"Damn you’re really getting bold huh"},
+    {"type":"message","delay":950,"from":"hailey","text":"Does it bother you that I flirt with my professor that much 😌"},
+    {"type":"message","delay":900,"from":"player","text":"You’re all grown up now"},
+    {"type":"message","delay":950,"from":"player","text":"And you’ve got a lot of guts"},
+    {"type":"message","delay":900,"from":"player","text":"For not much sometimes"},
+    {"type":"message","delay":850,"from":"hailey","text":"Heyy 😭"},
+    {"type":"message","delay":1000,"from":"hailey","text":"I’m a woman now"},
+    {"type":"message","delay":950,"from":"hailey","text":"A proper femme fatale"},
+    {"type":"message","delay":1000,"from":"hailey","text":"I can shock you if I want to 😇"},
+    {"type":"message","delay":900,"from":"player","text":"Oh yeah"},
+    {"type":"message","delay":850,"from":"player","text":"Go on then shock me"},
+    {"type":"message","delay":1100,"from":"hailey","text":"Maybe later"},
+    {"type":"message","delay":950,"from":"hailey","text":"When you’re not being annoying 😌"},
+    {"type":"message","delay":900,"from":"player","text":"I’m not being annoying"},
+    {"type":"message","delay":900,"from":"player","text":"I just want to know how your session went"},
+    {"type":"message","delay":900,"from":"hailey","text":"It went very well"},
+    {"type":"message","delay":900,"from":"hailey","text":"I passed the quiz"},
+    {"type":"message","delay":900,"from":"hailey","text":"And i got my reward 😌"},
+    {"type":"message","delay":900,"from":"player","text":"Well that’s good news at least"},
+    {"type":"message","delay":900,"from":"hailey","text":"I know right"},
+    {"type":"message","delay":900,"from":"hailey","text":"It’s nice to have some fun after all the studying I’ve been doing lately 😌"},
+    {"type":"message","delay":900,"from":"hailey","text":"Anyway sleep time !"},
+    {"type":"message","delay":900,"from":"hailey","text":"I know don't worry"},
+    {"type":"message","delay":900,"from":"hailey","text":"Anyway sleep time !"},
+    {"type":"message","delay":900,"from":"hailey","text":"See you tomorrow!"},
+    {"type":"message","delay":900,"from":"hailey","text":"Good night!"},
+    {"type":"snapgram_post","onceKey":"sg_hailey_nts_d12_study_v1","authorId":"hailey","authorName":"{{name:hailey}}","avatar":"assets/avatars/hailey.jpg","image":"assets/pictures/Snapgram/hailey_tutor_sitting.jpg","caption":"Late night study session 📚💋","likes":0,"time":"JUST NOW"},
+    {"type":"if","condition":"all:active_character:evelyn|!once:d12_00_evelyn_morning_nts_v1","then":[
+      {"type":"start_story","goHome":true,"startStory":"story/DAY12/DAY12_EVELYN_MORNING.json","startDelayMs":200}
+    ],"else":[
+      {"type":"if","condition":"active_character:mason","then":[
+        {"type":"time_card","text":"DAY 13","goHome":true,"startStory":"story/DAY13/nts/DAY13_00_MASON_MORNING_NTS.json","startDelayMs":200}
+      ],"else":[
+        {"type":"if","condition":"active_character:lena","then":[
+          {"type":"time_card","text":"DAY 13","goHome":true,"startStory":"story/DAY13/DAY13_00_AIDEN_SHARED.json","startDelayMs":200}
+        ],"else":[
+          {"type":"time_card","text":"DAY 13","goHome":true,"startStory":"story/DAY13/nts/DAY13_00_HAILEY_MORNING_NTS.json","startDelayMs":200}
+        ]}
+      ],"__masonNextDayPatched":true}
+    ]}
+  ]
+}

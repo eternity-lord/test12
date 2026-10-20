@@ -1,0 +1,51 @@
+{
+  "onceKey": "d15_02_evelyn_evening_ntr_v1",
+  "contactId": "evelyn",
+  "requireOnceKey": "d15_01_evelyn_afternoon_ntr_v1",
+  "steps": [
+    {"type":"notify","delay":1200,"fromId":"evelyn","fromName":"{{name:evelyn}}","avatar":"assets/avatars/evelyn.jpg","text":"I'm leaving for work now","target":"conversation"},
+    {"type":"message","delay":850,"from":"evelyn","text":"Everything is ready in the kitchen if you need anything"},
+    {"type":"message","delay":850,"from":"player","text":"Thank you for still taking care of me"},
+    {"type":"message","delay":850,"from":"player","text":"You really don't have to do all this"},
+    {"type":"message","delay":850,"from":"evelyn","text":"I know"},
+    {"type":"message","delay":850,"from":"evelyn","text":"I just want to take care of the people around me"},
+    {"type":"message","delay":850,"from":"player","text":"I appreciate it anyway"},
+    {"type":"message","delay":850,"from":"player","text":"But make sure you take care of yourself too"},
+    {"type":"message","delay":850,"from":"evelyn","text":"I'll manage 😊"},
+    {"type":"message","delay":850,"from":"evelyn","text":"Remember, tonight is going to be really busy"},
+    {"type":"message","delay":850,"from":"evelyn","text":"I might not even get a break"},
+    {"type":"message","delay":850,"from":"player","text":"Try to take one anyway"},
+    {"type":"message","delay":850,"from":"player","text":"But if you really can't, then at least be careful and take care of yourself"},
+    {"type":"message","delay":850,"from":"evelyn","text":"I will"},
+    {"type":"message","delay":850,"from":"evelyn","text":"See you tomorrow ❤️"},
+    {"type":"message","delay":850,"from":"player","text":"See you tomorrow"},
+    {"type":"note","delay":1200,"text":"9 HOURS LATER"},
+    {"type":"hak_overlay","title":"HAK//NOTICE","messages":["High emotional-response event detected","Alcohol exposure and elevated excitement levels observed","Behavioral inhibition appears reduced","Multiple interaction markers exceeded expected thresholds",{"kind":"thought","speaker":"player","text":"I hope she's all right. Those numbers don't tell me what she actually wants."}]},
+    {"type":"hak_add_evidence","kind":"ntr","route":"ntr","profileId":"evelyn","profile":{"name":"{{name:evelyn}}","avatar":"assets/avatars/evelyn.jpg","kind":"ntr","route":"ntr"},"evidences":[{"id":"evelyn_ntr_d15_evidence_1","kind":"ntr","route":"ntr","src":"assets/pictures/evidence/evelyn_d15_comment.jpg","url":"assets/pictures/evidence/evelyn_d15_comment.jpg","thumb":"assets/pictures/evidence/evelyn_d15_comment.jpg","title":"Busy Night","text":"HAK archived footage from a high-energy shift showing unusually elevated emotional engagement during service","time":"NIGHT"}]},
+    {"type":"onlyfun_post","onceKey":"of_evelyn_d15_comment_v1","creatorId":"static_muse","image":"assets/pictures/evidence/evelyn_d15_comment.jpg","text":"She's finally feeling it","likes":1672,"requiresSub":true,"notify":true},
+    {"type":"note","text":"{{name:evelyn}} DAY 15 UPDATE END"},
+    {"type":"if","condition":"!d15_cast_removal_summary_seen_v1","then":[
+      {"type":"note","delay":1200,"text":"DAY 15 — After examining your leg, the doctor removed your cast. You can move more freely now, but your leg still needs rest."},
+      {"type":"set_flag","key":"d15_cast_removal_summary_seen_v1","value":true}
+    ]},
+    {"type":"if","condition":"all:active_character:hailey,route_hailey_locked_v1:ntr","then":[
+      {"type":"time_card","text":"DAY 16","day":16,"goHome":true,"startStory":"story/DAY16/ntr/DAY16_00_HAILEY_MORNING_NTR.json","contactId":"hailey","startDelayMs":200}
+    ],"else":[
+      {"type":"if","condition":"all:active_character:lena,route_lena_locked_v1:nts","then":[
+        {"type":"time_card","text":"DAY 16","day":16,"goHome":true,"startStory":"story/DAY16/nts/DAY16_00_LENA_MORNING_NTS.json","contactId":"lena","startDelayMs":200}
+      ],"else":[
+        {"type":"if","condition":"all:active_character:lena,route_lena_locked_v1:ntr","then":[
+          {"type":"time_card","text":"DAY 16","day":16,"goHome":true,"startStory":"story/DAY16/ntr/DAY16_00_LENA_MORNING_NTR.json","contactId":"lena","startDelayMs":200}
+        ],"else":[
+          {"type":"if","condition":"all:active_character:lena,route_lena_locked_v1:love","then":[
+            {"type":"time_card","text":"DAY 16","day":16,"goHome":true,"startStory":"story/DAY16/love/DAY16_00_LENA_MORNING_LOVE.json","contactId":"lena","startDelayMs":200}
+          ],"else":[
+            {"type":"dev_message","delay":1200,"title":"DEVELOPER","text":"Hey.\n\nYou've reached the end of the available content for this character for now.\n\nThank you for playing iNTeRcepted.\n\nIf you want to support the project, get new episodes, and access exclusive content, you can subscribe to my Patreon.\n\nYour support genuinely helps me keep building this game.\n\nSee you in the next chapter.","button":"( CONTINUE )","goHome":true}
+          ]}
+        ]}
+      ]}
+    ]}
+  ],
+  "route": "ntr",
+  "routeLock": "route_evelyn_locked_v1:ntr"
+}

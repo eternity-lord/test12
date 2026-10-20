@@ -1,0 +1,17 @@
+{
+  "onceKey": "d8_00_lena_home_early_night_v1",
+  "contactId": "lena",
+  "onCompleteStartStory": "story/DAY8/DAY8_10_MASON_NEEDS_ANSWER.json",
+  "steps": [
+    {"type":"notify","delay":1200,"fromId":"lena","fromName":"{{name:lena}}","avatar":"assets/avatars/lena.jpg","text":"Home 😮‍💨","target":"conversation"},
+    {"type":"message","delay":900,"from":"lena","text":"I'm wiped out"},
+    {"type":"message","delay":900,"from":"lena","text":"At least today was my last day before the weekend"},
+    {"type":"message","delay":900,"from":"player","text":"What happened?"},
+    {"type":"message","delay":900,"from":"lena","text":"I'll tell you everything later"},
+    {"type":"message","delay":900,"from":"lena","text":"I need to breathe first"},
+    {"type":"message","delay":900,"from":"lena","text":"Take a shower, eat, all that"},
+    {"type":"message","delay":900,"from":"player","text":"Okay"},
+    {"type":"message","delay":900,"from":"player","text":"Take your time"},
+    {"type":"message","delay":900,"from":"lena","text":"Thank you"}
+  ]
+}

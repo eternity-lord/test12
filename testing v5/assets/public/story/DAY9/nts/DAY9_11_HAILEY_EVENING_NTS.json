@@ -1,0 +1,41 @@
+{
+  "onceKey": "d9_05_hailey_evening_nts_v1",
+  "contactId": "hailey",
+  "requireOnceKey": "d9_01_lena_afternoon_nts_v1|d9_04_tutor_search_nts_v1|d9_04_hailey_afternoon_nts_v1",
+  "steps": [
+    {"type":"notify","delay":900,"fromId":"hailey","fromName":"{{name:hailey}}","avatar":"assets/avatars/hailey.jpg","text":"SOOOOO👀","target":"conversation"},
+    {"type":"message","delay":900,"from":"hailey","text":"Did you find someone?"},
+    {"type":"message","delay":900,"from":"player","text":"Actually yes"},
+    {"type":"message","delay":900,"from":"player","text":"I talked to him this afternoon"},
+    {"type":"message","delay":900,"from":"hailey","text":"Him?"},
+    {"type":"message","delay":900,"from":"player","text":"His name is Ethan"},
+    {"type":"message","delay":900,"from":"player","text":"He seems professional"},
+    {"type":"message","delay":900,"from":"player","text":"And he knows how to work with students preparing for exams"},
+    {"type":"message","delay":900,"from":"hailey","text":"So you're saying my academic rescue mission is officially happening 😭"},
+    {"type":"message","delay":900,"from":"player","text":"Looks that way"},
+    {"type":"message","delay":900,"from":"hailey","text":"I was hoping you'd forget about it"},
+    {"type":"message","delay":900,"from":"player","text":"Not a chance"},
+    {"type":"message","delay":900,"from":"hailey","text":"Worth trying"},
+    {"type":"message","delay":900,"from":"hailey","text":"When do I meet him?"},
+    {"type":"message","delay":900,"from":"player","text":"Tomorrow afternoon"},
+    {"type":"message","delay":900,"from":"player","text":"Just a first meeting"},
+    {"type":"message","delay":900,"from":"player","text":"He wants to see where you're at and what needs work"},
+    {"type":"message","delay":900,"from":"hailey","text":"Translation:"},
+    {"type":"message","delay":900,"from":"player","text":"He's going to discover how cooked you are 😔"},
+    {"type":"message","delay":900,"from":"player","text":"Probably"},
+    {"type":"message","delay":900,"from":"hailey","text":"You're enjoying this way too much"},
+    {"type":"message","delay":900,"from":"player","text":"Maybe a little"},
+    {"type":"message","delay":900,"from":"hailey","text":"Mean"},
+    {"type":"message","delay":900,"from":"hailey","text":"Alright, tutor tomorrow, party tonight 😌"},
+    {"type":"message","delay":900,"from":"hailey","text":"I'll try to make a good first impression tomorrow 😊"},
+    {"type":"message","delay":900,"from":"player","text":"That's all I'm asking"},
+    {"type":"message","delay":900,"from":"hailey","text":"I'm heading to the party with the girls now. Goodnight, coach"},
+    {"type":"message","delay":900,"from":"player","text":"Have fun at the party, and get home safe"},
+    {"type":"set_flag","key":"hailey_nts_day9_tutor_setup_complete_v1","value":"1","onceKey":"d9_hailey_nts_day9_tutor_setup_complete_once_v1"},
+    {"type":"if","condition":"active_character:lena","then":[
+      {"type":"start_story","goHome":true,"startStory":"story/DAY9/DAY9_LENA_NIGHT.json"}
+    ],"else":[
+      {"type":"time_card","text":"DAY 10","goHome":true,"startStory":"story/DAY10/nts/DAY10_00_HAILEY_MORNING_NTS.json","startDelayMs":200}
+    ]}
+  ]
+}

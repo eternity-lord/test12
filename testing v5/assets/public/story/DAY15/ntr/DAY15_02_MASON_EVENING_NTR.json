@@ -1,0 +1,44 @@
+{
+  "onceKey": "d15_05_mason_evening_ntr_v1",
+  "contactId": "mason",
+  "requireOnceKey": "d15_04_mason_afternoon_ntr_v1",
+  "onCompleteStartStory": "story/DEV/DAY9_END_CHAPTER.json",
+  "route": "ntr",
+  "routeLock": "route_mason_locked_v1:ntr",
+  "steps": [
+    {"type":"message","delay":850,"from":"player","text":"I'll leave the back door unlocked for you"},
+    {"type":"message","delay":850,"from":"player","text":"Use it if you come home late"},
+    {"type":"message","delay":850,"from":"player","text":"I put oil on my windowsill"},
+    {"type":"message","delay":850,"from":"player","text":"So don't even think about climbing through the window"},
+    {"type":"message","delay":850,"from":"mason","text":"You did what?"},
+    {"type":"message","delay":850,"from":"player","text":"Just taking precautions"},
+    {"type":"message","delay":850,"from":"mason","text":"You're going to break my neck before the gym idiots ever get the chance"},
+    {"type":"message","delay":850,"from":"player","text":"Then use the door like a normal person"},
+    {"type":"message","delay":850,"from":"mason","text":"Being normal sounds exhausting"},
+    {"type":"message","delay":850,"from":"player","text":"See you tomorrow"},
+    {"type":"message","delay":850,"from":"player","text":"Have fun with your imaginary friends"},
+    {"type":"message","delay":850,"from":"mason","text":"They're still more believable than yours"},
+    {"type":"message","delay":850,"from":"player","text":"Keep talking"},
+    {"type":"message","delay":850,"from":"mason","text":"Sleep well, grandpa"},
+    {"type":"note","text":"3 HOURS LATER"},
+    {"type":"hak_overlay","title":"HAK//ALERT","messages":["Unexpected intimate contact detected","{{name:mason}} is being kissed by an unidentified gym contact","No immediate rejection observed","High-priority evidence captured",{"kind":"thought","speaker":"player","text":"That alert stings, but it doesn't tell me what {{name:mason}} wanted."}]},
+    {"type":"hak_add_evidence","kind":"ntr","route":"ntr","profileId":"mason","profile":{"name":"{{name:mason}}","avatar":"assets/avatars/male_mason.jpg","kind":"ntr","route":"ntr"},"evidences":[{"id":"d15_mason_first_kiss_ntr_v1","kind":"ntr","route":"ntr","src":"assets/pictures/evidence/mason_male/mason_getting_kissed.jpg","url":"assets/pictures/evidence/mason_male/mason_getting_kissed.jpg","type":"image","characterId":"mason","contactId":"mason","title":"Unexpected Kiss","text":"{{name:mason}} is seen being kissed during the late-night meeting after leaving the gym."}],"notifyTitle":"HAK","notifyText":"1 new evidence received","target":"hak/evidence"},
+    {"type":"if","condition":"all:!d15_cast_removal_summary_seen_v1,!active_character:evelyn","then":[
+      {"type":"note","delay":1200,"text":"DAY 15 — After examining your leg, the doctor removed your cast. You can move more freely now, but your leg still needs rest."},
+      {"type":"set_flag","key":"d15_cast_removal_summary_seen_v1","value":true}
+    ]},
+    {"type":"if","condition":"active_character:lena","then":[
+      {"type":"start_story","goHome":true,"startStory":"story/DAY15/DAY15_02_LENA_EVENING.json","startDelayMs":200}
+    ],"else":[
+      {"type":"if","condition":"active_character:hailey","then":[
+        {"type":"start_story","goHome":true,"startStory":"story/DAY15/DAY15_02_HAILEY_EVENING.json","startDelayMs":200}
+      ],"else":[
+        {"type":"if","condition":"active_character:evelyn","then":[
+          {"type":"start_story","goHome":true,"startStory":"story/DAY15/DAY15_02_EVELYN_EVENING.json","startDelayMs":200}
+        ],"else":[
+          {"type":"dev_message","delay":1200,"title":"DEVELOPER","text":"Hey.\n\nYou've reached the end of the available content for this character for now.\n\nThank you for playing iNTeRcepted.\n\nIf you want to support the project, get new episodes, and access exclusive content, you can subscribe to my Patreon.\n\nYour support genuinely helps me keep building this game.\n\nSee you in the next chapter.","button":"( CONTINUE )","goHome":true}
+        ]}
+      ]}
+    ]}
+  ]
+}

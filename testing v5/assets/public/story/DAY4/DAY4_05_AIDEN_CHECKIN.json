@@ -1,0 +1,22 @@
+{
+  "onceKey": "d4_04_aiden_checkin_v1",
+  "contactId": "aiden",
+  "onCompleteStartStory": "story/DAY4/DAY4_06_EVELYN_16H_GOING_TO_WORK.json",
+  "steps": [
+    {"type":"notify","delay":1200,"fromId":"aiden","fromName":"{{name:aiden}}","avatar":"assets/avatars/aiden.jpg","text":"Gym time","target":"conversation"},
+    {"type":"message","delay":900,"from":"aiden","fromName":"{{name:aiden}}","text":"Before you roast me, yes my hair looks stupid"},
+    {"type":"image","delay":900,"from":"aiden","image":"assets/pictures/Conversation/aiden_gym_selfie_day4.jpg"},
+    {"type":"message","delay":900,"from":"player","text":"Not bad actually"},
+    {"type":"message","delay":900,"from":"aiden","text":"Say that louder, I need motivation"},
+    {"type":"message","delay":900,"from":"aiden","text":"How is your leg today?"},
+    {"type":"message","delay":900,"from":"player","text":"Better than last week"},
+    {"type":"message","delay":900,"from":"player","text":"Still stiff sometimes"},
+    {"type":"message","delay":900,"from":"aiden","text":"Good progress then"},
+    {"type":"message","delay":900,"from":"aiden","text":"Do your rehab and stop trying to be a hero"},
+    {"type":"message","delay":900,"from":"player","text":"Bossy much?"},
+    {"type":"message","delay":900,"from":"aiden","text":"So what"},
+    {"type":"message","delay":900,"from":"aiden","text":"I can carry ranked later if you are up for it"},
+    {"type":"message","delay":900,"from":"player","text":"You carry? sure"},
+    {"type":"message","delay":900,"from":"aiden","text":"Keep laughing, I am dropping 30 tonight"}
+  ]
+}

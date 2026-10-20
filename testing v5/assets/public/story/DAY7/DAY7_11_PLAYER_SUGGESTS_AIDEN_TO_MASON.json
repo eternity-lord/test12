@@ -1,0 +1,20 @@
+{
+  "onceKey": "d7_09_player_suggests_aiden_to_mason_v1",
+  "contactId": "mason",
+  "requireOnceKey": "d7_08_mason_coach_followup_v1",
+  "onCompleteStartStory": "story/DAY7/DAY7_12_ONLYFUN_POST_EVELYN_22H.json",
+  "steps": [
+    {"type":"message","delay":900,"from":"player","text":"I might know someone who could help"},
+    {"type":"message","delay":900,"from":"mason","text":"Name"},
+    {"type":"message","delay":900,"from":"player","text":"{{name:aiden}}"},
+    {"type":"message","delay":900,"from":"player","text":"He knows trainers and too many people in general"},
+    {"type":"message","delay":900,"from":"mason","text":"I know"},
+    {"type":"message","delay":900,"from":"mason","text":"That's the problem"},
+    {"type":"message","delay":900,"from":"player","text":"He could still point you to someone solid"},
+    {"type":"message","delay":900,"from":"mason","text":"Maybe"},
+    {"type":"message","delay":900,"from":"mason","text":"If he keeps it useful and short"},
+    {"type":"message","delay":900,"from":"player","text":"So that's not a no"},
+    {"type":"message","delay":900,"from":"mason","text":"It's not a yes either"},
+    {"type":"message","delay":900,"from":"mason","text":"Just find out if he has something real"}
+  ]
+}

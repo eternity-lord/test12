@@ -1,0 +1,2369 @@
+<!-- scenes/pictures.html -->
+<style>
+:root{
+  /* ✅ Theme copied from OnlyFun (tokens + background treatment) */
+  --fg:#f0f5ff;
+  --muted:rgba(240,245,255,0.68);
+
+  --btn-bg: rgba(6,7,10,0.46);
+  --btn-bg-hover: rgba(8,10,14,0.60);
+
+  --edge: rgba(245,248,255,0.20);
+  --edge-strong: rgba(245,248,255,0.44);
+
+  --glow-soft: rgba(112,220,255,0.12);
+  --glow-strong: rgba(112,220,255,0.18);
+
+  --accent-a: rgba(112,220,255,0.55);
+  --accent-b: rgba(255,166,92,0.45);
+
+  --line: rgba(245,248,255,0.14);
+  --card2: rgba(6,7,10,0.46);
+
+  --status-h:var(--phone-statusbar-h, 24px);
+
+  /* ✅ desktop gallery width (centered), tiles stay fixed */
+  --gallery-maxw: 1100px;
+
+  /* ✅ “phone-like” tile size (fixed) for desktop layout */
+  --tile-w: 210px;
+}
+
+/* ===== Wrapper (keeps Pictures layout/scroll) ===== */
+.wrap{
+  height:100%;
+  padding:calc(var(--status-h) + 16px)
+    max(16px, env(safe-area-inset-right, 0px))
+    max(16px, env(safe-area-inset-bottom, 0px))
+    max(16px, env(safe-area-inset-left, 0px));
+  position:relative;
+  z-index:0;
+
+  color:var(--fg);
+  display:flex;
+  flex-direction:column;
+  font-family:var(--ui-font);
+
+  overflow:auto;
+
+  /* ✅ allow wider on desktop (so grid can expand) */
+  max-width: var(--gallery-maxw);
+  margin: 0 auto;
+}
+
+/* ✅ background fixed like OnlyFun/Pictures baseline */
+.wrap::after{
+  content:"";
+  position:fixed;
+  top:-18px; left:-18px; right:-18px; bottom:-18px;
+  z-index:-3;
+  pointer-events:none;
+
+  background: var(--phone-wallpaper-image) center/cover no-repeat;
+  filter: blur(12px) saturate(0.55) brightness(0.62) contrast(1.06);
+  transform: scale(1.06);
+  opacity:1;
+}
+
+/* ✅ matte wash + subtle scanlines/grain (OnlyFun) */
+.wrap::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  z-index:-2;
+  pointer-events:none;
+
+  background:
+    radial-gradient(circle at top, rgba(18,26,46,0.18), rgba(3,5,16,0.42)),
+    linear-gradient(180deg,
+      rgba(6,9,22,0.12) 0%,
+      rgba(6,9,22,0.22) 45%,
+      rgba(6,9,22,0.32) 100%
+    ),
+    repeating-linear-gradient(
+      to bottom,
+      rgba(255,255,255,0.00) 0px,
+      rgba(255,255,255,0.00) 3px,
+      rgba(255,255,255,0.035) 4px
+    ),
+    repeating-linear-gradient(
+      135deg,
+      rgba(255,255,255,0.024) 0px,
+      rgba(255,255,255,0.00) 2px,
+      rgba(255,255,255,0.018) 4px
+    );
+  opacity:.95;
+}
+
+/* ===== Title ===== */
+.wrap h2{
+  margin:0 0 12px 0;
+  text-align:center;
+  font-size:18px;
+  font-weight:900;
+  letter-spacing:0.16em;
+  text-transform:uppercase;
+  color:rgba(240,245,255,0.92);
+  text-shadow:0 2px 12px rgba(0,0,0,0.65);
+  position:relative;
+}
+.wrap h2::after{
+  content:"";
+  display:block;
+  width:120px;
+  height:1px;
+  margin:12px auto 0;
+  background: linear-gradient(90deg, transparent, rgba(245,248,255,0.35), transparent);
+}
+
+/* ===== Filter Bar ===== */
+.filters{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:8px;
+  margin:0 0 14px 0;
+  width:100%;
+  min-width:0;
+}
+
+.filter-btn{
+  border:1px solid rgba(245,248,255,0.22);
+  border-radius:999px;
+  background:rgba(6,7,10,0.42);
+  color:rgba(240,245,255,0.86);
+  font-size:12px;
+  line-height:1;
+  font-weight:700;
+  letter-spacing:.02em;
+  padding:8px 12px;
+  cursor:pointer;
+  transition:border-color .2s ease, box-shadow .2s ease, color .2s ease, background .2s ease;
+  display:inline-flex;
+  align-items:center;
+  gap:7px;
+  max-width:100%;
+  min-width:0;
+  white-space:normal;
+  text-align:center;
+  overflow-wrap:anywhere;
+}
+.filter-btn > span{min-width:0;max-width:100%}
+.gallery-filter-avatar{
+  width:24px;
+  height:24px;
+  flex:0 0 24px;
+  border-radius:50%;
+  object-fit:cover;
+  border:1px solid rgba(245,248,255,.32);
+  background:rgba(255,255,255,.08);
+}
+
+.filter-btn:hover{
+  border-color:rgba(245,248,255,0.42);
+  color:rgba(240,245,255,0.96);
+}
+
+.filter-btn.is-active{
+  border-color:rgba(112,220,255,0.68);
+  color:rgba(240,245,255,0.98);
+  background:rgba(6,7,10,0.62);
+  box-shadow:
+    0 0 0 1px rgba(112,220,255,0.26),
+    0 0 16px rgba(112,220,255,0.16);
+}
+
+.gallery-unlock-row{
+  display:flex;
+  justify-content:center;
+  margin:0 0 14px;
+}
+.gallery-unlock-btn{
+  border:1px solid rgba(255,188,102,0.42);
+  border-radius:999px;
+  background:rgba(6,7,10,0.58);
+  color:rgba(255,244,224,0.96);
+  font-size:12px;
+  line-height:1;
+  font-weight:800;
+  letter-spacing:.02em;
+  padding:9px 13px;
+  cursor:pointer;
+  box-shadow:0 0 18px rgba(255,188,102,0.08);
+}
+.gallery-unlock-btn:hover{
+  border-color:rgba(255,220,158,0.7);
+  filter:brightness(1.06);
+}
+.gallery-unlock-btn[hidden]{
+  display:none !important;
+}
+
+.gallery-tools{display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap;margin:0 0 14px;font-size:12px}
+.gallery-sort-label{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:8px;min-width:0;max-width:100%}
+.gallery-tools select,.gallery-hints-toggle{color:var(--fg);background:rgba(6,7,10,.58);border:1px solid var(--edge);border-radius:10px;padding:9px 12px;font:inherit;font-size:12px;min-height:36px;min-width:0;max-width:100%;cursor:pointer}
+.gallery-tools select:hover,.gallery-hints-toggle:hover{background:rgba(6,7,10,.66);border-color:var(--edge-strong)}
+.gallery-tools option{background:#080a0e;color:var(--fg)}
+.gallery-tools option:checked{background:#232a31}
+.gallery-hints-toggle[aria-expanded="true"]{border-color:rgba(112,220,255,.7)}
+.gallery-hints{flex:none;margin:0 0 16px;padding:12px;border:1px solid var(--edge);border-radius:14px;background:rgba(6,7,10,.66)}
+.gallery-hints[hidden]{display:none!important}
+.gallery-hints-intro,.gallery-hints-count{margin:0 0 10px;font-size:12px;line-height:1.5;color:var(--muted)}
+.gallery-hints-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:10px;max-height:390px;overflow:auto;overscroll-behavior:contain}
+.gallery-hint{padding:11px;border-radius:10px;border:1px solid var(--line);background:rgba(255,255,255,.035);overflow-wrap:anywhere;font-size:12px;line-height:1.5}
+.gallery-hint-title{margin:0 0 7px;font-size:12px;color:#e5f4ff}
+.gallery-hint-source + .gallery-hint-source{border-top:1px solid var(--line);margin-top:8px;padding-top:8px}
+.gallery-hint-source p{margin:2px 0}
+.gallery-hint-choice{color:var(--muted)}
+.gallery-hint-alternative{margin:8px 0;color:#91d4ea;font-size:11px}
+.gallery-filter-note{margin:0 0 12px;text-align:center;color:var(--muted);font-size:11px;line-height:1.5}
+.gallery-filter-note[hidden]{display:none!important}
+.gallery-photo-label{position:absolute;left:0;right:0;bottom:0;z-index:2;padding:20px 10px 10px;background:linear-gradient(transparent,rgba(0,0,0,.9));color:#fff;font-size:12px;line-height:1.4;font-weight:700;pointer-events:none;overflow-wrap:anywhere}
+.card:focus-visible{outline:2px solid #8bddf5;outline-offset:3px}
+
+/* ===== Grid ===== */
+/* ✅ Desktop: fixed tile size, fills left->right, wraps when no space */
+.grid{
+  display:grid;
+  gap:12px;
+
+  grid-template-columns: repeat(auto-fill, minmax(var(--tile-w), var(--tile-w)));
+  justify-content:center;
+}
+
+/* ===== Card (RECTANGLE) ===== */
+.card{
+  position:relative;
+  aspect-ratio:4 / 5;
+  border-radius:12px;
+  overflow:hidden;
+
+  background:var(--card2);
+  border:1px solid var(--edge);
+
+  cursor:pointer;
+  transition: border-color .25s ease, box-shadow .25s ease, transform .25s ease, filter .25s ease;
+}
+
+.card img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+.card .mediaThumbMount,
+.card .media-thumb{
+  width:100%;
+  height:100%;
+}
+
+/* ===== Hover glow ===== */
+.card:hover{
+  border-color:var(--edge-strong);
+  box-shadow:
+    0 0 0 1px rgba(255,255,255,0.25),
+    0 0 18px var(--glow-soft);
+  transform:translateY(-1px);
+  filter:brightness(1.04);
+}
+
+/* ===== Empty ===== */
+.empty{
+  margin-top:24px;
+  text-align:center;
+  color:var(--muted);
+  font-size:14px;
+}
+
+/* ===== Lightbox ===== */
+.lightbox{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.88);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  z-index:999;
+}
+.lightbox.show{ display:flex; }
+
+.lightbox img{
+  max-width:92vw;
+  max-height:92vh;
+  border-radius:14px;
+  box-shadow:0 20px 60px rgba(0,0,0,.65);
+  cursor:pointer; /* ✅ click the photo to close */
+  user-select:none;
+}
+
+/* Close button */
+.lightbox .close{
+  position:absolute;
+  top:14px;
+  right:16px;
+  font-size:22px;
+  cursor:pointer;
+  padding:8px 10px;
+  border-radius:12px;
+
+  background: rgba(6,7,10,0.40);
+  border:1px solid rgba(245,248,255,0.20);
+  box-shadow: 0 0 0 1px rgba(255,255,255,0.10), 0 10px 26px rgba(0,0,0,0.45);
+  backdrop-filter: blur(10px);
+}
+.lightbox .close:hover{
+  border-color: rgba(245,248,255,0.36);
+}
+
+/* ✅ Navigation arrows (new aesthetic) */
+.lb-nav{
+  position:absolute;
+  top:50%;
+  transform:translateY(-50%);
+  width:54px;
+  height:54px;
+  border-radius:16px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  background:
+    radial-gradient(circle at 30% 25%, rgba(112,220,255,0.18), rgba(6,7,10,0.32) 65%),
+    rgba(6,7,10,0.42);
+  border:1px solid rgba(245,248,255,0.22);
+
+  box-shadow:
+    0 0 0 1px rgba(255,255,255,0.10),
+    0 18px 38px rgba(0,0,0,0.55),
+    0 0 22px rgba(112,220,255,0.16);
+
+  color: rgba(240,245,255,0.95);
+  cursor:pointer;
+
+  transition: transform .16s ease, border-color .16s ease, filter .16s ease, box-shadow .16s ease;
+  user-select:none;
+
+  backdrop-filter: blur(10px);
+}
+
+.lb-nav:hover{
+  border-color: rgba(245,248,255,0.40);
+  filter: brightness(1.10);
+  transform:translateY(-50%) scale(1.04);
+  box-shadow:
+    0 0 0 1px rgba(255,255,255,0.12),
+    0 22px 46px rgba(0,0,0,0.58),
+    0 0 30px rgba(112,220,255,0.22);
+}
+
+/* nice big chevrons */
+.lb-nav span{
+  font-size:30px;
+  line-height:1;
+  transform: translateY(-1px);
+  text-shadow: 0 2px 18px rgba(0,0,0,0.55);
+}
+
+.lb-prev{ left: 18px; }
+.lb-next{ right: 18px; }
+
+.lb-nav[disabled]{
+  opacity:0.35;
+  pointer-events:none;
+}
+
+/* =========================================
+   PHONE: portrait mode = full width (no side margins)
+   IMPORTANT: use aspect-ratio instead of max-width pixels,
+   because Electron "phone" window can be >520px wide.
+   ========================================= */
+@media (max-aspect-ratio: 10/16){
+  .wrap{
+    max-width: none;        /* full width */
+    margin: 0;
+    padding-left:max(10px, env(safe-area-inset-left, 0px));
+    padding-right:max(10px, env(safe-area-inset-right, 0px));
+  }
+  .grid{
+    /* ✅ phone layout: 2 columns that fill the width */
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    justify-content: stretch;
+  }
+}
+
+/* Optional: very narrow phones */
+@media (max-width: 360px){
+  .wrap{
+    padding-left:max(8px, env(safe-area-inset-left, 0px));
+    padding-right:max(8px, env(safe-area-inset-right, 0px));
+  }
+  .filters{gap:6px}
+  .filter-btn{font-size:11px;padding:8px 10px}
+  .grid{ gap:10px; }
+}
+</style>
+<link rel="stylesheet" href="assets/styles/theme.css">
+
+<div class="wrap" data-scene="pictures">
+  <h2 data-i18n="gallery.title">Gallery</h2>
+  <div class="gallery-unlock-row">
+    <button id="gallery-unlock-full" class="gallery-unlock-btn" type="button" data-i18n="gallery.unlock_full">Unlock full gallery</button>
+  </div>
+  <div id="filters" class="filters" role="tablist" aria-label="Filter gallery by character"></div>
+  <div class="gallery-tools">
+    <label class="gallery-sort-label"><span data-i18n="gallery.sort.label">Sort</span><select id="gallery-sort" aria-label="Sort gallery" data-i18n-aria-label="gallery.sort.aria"><option value="number_asc" data-i18n="gallery.sort.number_asc">Photo number (ascending)</option><option value="number_desc" data-i18n="gallery.sort.number_desc">Photo number (descending)</option><option value="newest" data-i18n="gallery.sort.newest">First discovery (newest first)</option><option value="oldest" data-i18n="gallery.sort.oldest">First discovery (oldest first)</option></select></label>
+    <label class="gallery-sort-label"><span data-i18n="gallery.route.label">Route</span><select id="gallery-route" aria-label="Filter gallery by route" data-i18n-aria-label="gallery.route.aria"><option value="all" data-i18n="gallery.route.all">All routes</option><option value="love" data-i18n="gallery.route.love">Love</option><option value="ntr" data-i18n="gallery.route.ntr">NTR</option><option value="nts" data-i18n="gallery.route.nts">NTS</option><option value="shared" data-i18n="gallery.route.shared">Shared</option></select></label>
+    <button id="gallery-hints-toggle" class="gallery-hints-toggle" type="button" aria-expanded="false" aria-controls="gallery-hints" data-i18n="gallery.hints.toggle">Unlock hints</button>
+  </div>
+  <p id="gallery-route-note" class="gallery-filter-note" data-i18n="gallery.route.note" hidden>Route filters also include shared photos.</p>
+  <p id="gallery-sort-note" class="gallery-filter-note" data-i18n="gallery.sort.discovery_note" hidden>Photos without a recorded discovery date appear last, in photo number order.</p>
+  <section id="gallery-hints" class="gallery-hints" hidden>
+    <p class="gallery-hints-intro" data-i18n="gallery.hints.intro">Hints show days, routes and choices for missing photos. Photos stay hidden until you discover them.</p>
+    <p id="gallery-hints-count" class="gallery-hints-count" aria-live="polite"></p>
+    <div id="gallery-hints-list" class="gallery-hints-list"></div>
+  </section>
+  <div id="grid" class="grid"></div>
+  <div id="empty" class="empty" hidden>
+    No photos yet. They will appear here automatically.
+  </div>
+</div>
+
+<div id="lightbox" class="lightbox" aria-hidden="true">
+  <button id="lb-prev" class="lb-nav lb-prev" aria-label="Previous photo"><span>‹</span></button>
+  <button id="lb-next" class="lb-nav lb-next" aria-label="Next photo"><span>›</span></button>
+  <span class="close" aria-label="Close">✕</span>
+  <img id="lightbox-img" alt="">
+</div>
+
+<script>
+(() => {
+  if (window.__gallerySceneCleanup) {
+    try { window.__gallerySceneCleanup(); } catch {}
+  }
+  const GALLERY_CLEANUPS = [];
+  function galleryOn(target, type, fn, opts) {
+    if (!target || !type || typeof fn !== "function" || typeof target.addEventListener !== "function") return;
+    target.addEventListener(type, fn, opts);
+    GALLERY_CLEANUPS.push(() => {
+      try { target.removeEventListener(type, fn, opts); } catch {}
+    });
+  }
+  const isAndroidLite = (() => {
+    try {
+      return !!(
+        window.Game?.isAndroidWebView ||
+        document.documentElement.classList.contains("android-webview") ||
+        document.documentElement.classList.contains("platform-android")
+      );
+    } catch {
+      return false;
+    }
+  })();
+  const KEY = "gallery_photos";
+  const GALLERY_FULL_UNLOCK_KEY = "gallery_full_unlock_v1";
+  const STORY_MANIFEST_PATH = "story/story_manifest.json";
+  const GALLERY_ELIGIBILITY_REGISTRY_PATH = "story/gallery_eligibility_registry.json";
+  const FILTER_ALL_ID = "all";
+  const FILTER_VIDEOS_ID = "videos";
+  const FILTER_RANDOM_ID = "random";
+  const FILTER_MASON_MALE_ID = "mason_male";
+  const FILTER_MASON_FEMALE_ID = "mason_female";
+  const GENERIC_FILTER_IDS = new Set(["all", "unknown", "snapgram", "story", "post", "ig", "msg", "onlyfun"]);
+  const MASON_VARIANT_KEY = "character_variant_mason";
+  const MASON_FILTER_IDS = new Set([FILTER_MASON_MALE_ID, FILTER_MASON_FEMALE_ID]);
+  const ONLYFUN_CREATOR_CATEGORY_IDS = new Set(["static_muse", "neon_rose", "velvet_sin", "alphamana"]);
+  const OWNER_ID_ALIASES = Object.freeze({
+    staticmuse: "static_muse",
+    sexminator: "static_muse",
+    neonrose: "neon_rose",
+    velvet: "velvet_sin",
+    velvetsin: "velvet_sin",
+    alpha_mana: "alphamana",
+    alpha: "alphamana"
+  });
+  const FILTER_LABELS = Object.freeze({
+    [FILTER_ALL_ID]: "All",
+    [FILTER_VIDEOS_ID]: "Videos",
+    lena: "Lena",
+    hailey: "Hailey",
+    evelyn: "Evelyn",
+    [FILTER_MASON_MALE_ID]: "Mason Male",
+    [FILTER_MASON_FEMALE_ID]: "Mason Female",
+    mason: "Mason",
+    neon_rose: "Neon Rose",
+    [FILTER_RANDOM_ID]: "Random",
+    static_muse: "Sexminator",
+    tutor: "Tutor",
+    velvet_sin: "Velvet Sin",
+    alphamana: "AlphaMana",
+    aiden: "Aiden",
+    mc: "MC"
+  });
+  const FILTER_ORDER = Object.freeze([
+    "lena",
+    "hailey",
+    "evelyn",
+    FILTER_MASON_MALE_ID,
+    FILTER_MASON_FEMALE_ID,
+    "neon_rose",
+    FILTER_RANDOM_ID,
+    "static_muse",
+    "tutor",
+    "velvet_sin",
+    "alphamana",
+    "aiden",
+    "mc"
+  ]);
+  const ONLYFUN_UNLOCK_KEY = "feature_onlyfun_unlocked";
+  const ONLYFUN_SUBSCRIPTIONS_KEY = "onlyfun_subscriptions_v1";
+  const ONLYFUN_SUBSCRIPTIONS_PUBLIC_KEY = "onlyfun_subscriptions";
+  const ONLYFUN_POSTS_KEY = "onlyfun_posts_v1";
+  const ONLYFUN_CREATOR_FILES = [
+    "assets/onlyfun/creators/neon_rose.json",
+    "assets/onlyfun/creators/velvet_sin.json",
+    "assets/onlyfun/creators/static_muse.json",
+    "assets/onlyfun/creators/alphamana.json"
+  ];
+  const ONLYFUN_SUB_ALIAS_TO_CREATOR = {
+    velvet: "velvet_sin",
+    neonrose: "neon_rose",
+    staticmuse: "static_muse",
+    sexminator: "static_muse"
+  };
+
+  const filters = document.getElementById("filters");
+  const unlockFullBtn = document.getElementById("gallery-unlock-full");
+  const grid = document.getElementById("grid");
+  const empty = document.getElementById("empty");
+  const sortSelect = document.getElementById("gallery-sort");
+  const routeSelect = document.getElementById("gallery-route");
+  const routeNote = document.getElementById("gallery-route-note");
+  const sortNote = document.getElementById("gallery-sort-note");
+  const hintsToggle = document.getElementById("gallery-hints-toggle");
+  const hintsPanel = document.getElementById("gallery-hints");
+  const hintsList = document.getElementById("gallery-hints-list");
+  const hintsCount = document.getElementById("gallery-hints-count");
+  let sortMode = window.GalleryHints?.getSort?.() || "newest";
+  let selectedRoute = "all";
+  let photoSlots = new Map();
+  sortSelect.value = sortMode;
+
+  const lb = document.getElementById("lightbox");
+  const lbImg = document.getElementById("lightbox-img");
+  const closeBtn = lb.querySelector(".close");
+  const prevBtn = document.getElementById("lb-prev");
+  const nextBtn = document.getElementById("lb-next");
+
+  let photos = [];
+  let visiblePhotos = [];
+  let selectedFilter = FILTER_ALL_ID;
+  let filterDefs = [{ id: FILTER_ALL_ID, label: "All", discovered: 0, total: null }];
+  let totalsByOwner = new Map();
+  let totalLabelsByOwner = new Map();
+  let allAvailablePhotos = [];
+  let totalAllCount = 0;
+  let totalsLoaded = false;
+  let totalsPromise = null;
+  let currentIndex = -1;
+  let galleryStorageMigrated = false;
+  let gallerySceneActive = true;
+  let galleryBootstrapPromise = null;
+  let galleryBootstrapReady = false;
+  let galleryRenderFrame = 0;
+
+  function yieldGalleryWork(index) {
+    if (!isAndroidLite || (index % 5) !== 0) return Promise.resolve();
+    return new Promise((resolve) => setTimeout(resolve, 0));
+  }
+
+  const canonicalId = (raw) =>
+    String(raw || "").trim().toLowerCase().replace(/\s+/g, "_").replace(/[^a-z0-9_:-]/g, "");
+
+  function canonicalCategoryId(raw) {
+    const id = canonicalId(raw);
+    if (id === "player") return "mc";
+    if (!id || GENERIC_FILTER_IDS.has(id)) return "";
+    return OWNER_ID_ALIASES[id] || OWNER_ID_ALIASES[id.replace(/_/g, "")] || id;
+  }
+
+  function trUi(key, source) {
+    const fallback = String(source || "").trim();
+    try {
+      if (window.Game?.i18n?.t) return window.Game.i18n.t(String(key).startsWith("ui.") ? key : `ui.${key}`, fallback);
+    } catch {}
+    return fallback;
+  }
+
+  function filterLabel(filterId, fallback = "") {
+    const id = canonicalCategoryId(filterId) || String(filterId || "").trim();
+    const source = String(FILTER_LABELS[id] || fallback || prettyNameFromId(id)).trim();
+    return trUi(`ui.gallery.filter.${id || "unknown"}`, source);
+  }
+
+  function normalizeMasonVariant(value) {
+    const v = String(value || "").trim().toLowerCase();
+    return v === "female" ? "female" : "male";
+  }
+
+  function savedMasonVariant() {
+    // Canonical state is already initialized before a scene is mounted. Read
+    // it synchronously for the first projection; the compatibility mirror is
+    // downstream state and can still contain the previous/default Male value
+    // during save restoration or New Update initialization.
+    try {
+      const canonical = window.MasonVariantService?.get?.() || window.GameStateEngine?.getState?.()?.world?.masonVariant;
+      if (canonical) return normalizeMasonVariant(canonical);
+    } catch {}
+    try { return normalizeMasonVariant(localStorage.getItem(MASON_VARIANT_KEY) || "male"); } catch {}
+    return "male";
+  }
+
+  function defaultMasonFilterId() {
+    return savedMasonVariant() === "female" ? FILTER_MASON_FEMALE_ID : FILTER_MASON_MALE_ID;
+  }
+
+  function normalizeEvidenceKind(rawKind) {
+    const kind = canonicalId(rawKind || "");
+    return (kind === "love" || kind === "nts" || kind === "ntr") ? kind : "";
+  }
+
+  function evidenceAccessSkillForKind(kind) {
+    const k = normalizeEvidenceKind(kind);
+    if (k === "love") return "love_evidence_access";
+    if (k === "nts") return "nts_evidence_access";
+    if (k === "ntr") return "ntr_evidence_access";
+    return "";
+  }
+
+  function hasHakEvidenceAccess(kind) {
+    const skillId = evidenceAccessSkillForKind(kind);
+    if (!skillId) return false;
+    try {
+      if (typeof window.Game?.hasSkill === "function") {
+        return window.Game.hasSkill(skillId) === true;
+      }
+    } catch {}
+    const store = readJsonFromStorage("hak_skills_v1", {});
+    const unlocked = (store && typeof store === "object" && store.unlocked && typeof store.unlocked === "object") ? store.unlocked : {};
+    return !!unlocked[skillId];
+  }
+
+  function isHakEvidenceGalleryPhoto(photo) {
+    const src = String(photo?.src || photo?.source || photo?.app || "").trim().toLowerCase();
+    return src === "hak" || src.startsWith("hak:");
+  }
+
+  function evidenceKindForGalleryPhoto(photo) {
+    return normalizeEvidenceKind(photo?.kind || photo?.route || photo?.evidenceKind || "");
+  }
+
+  function isHakEvidenceLocked(photo) {
+    if (!isHakEvidenceGalleryPhoto(photo)) return false;
+    // Access earned on a previous route survives replacing story progress.
+    if (photo?.evidenceAccessGranted === true) return false;
+    if (hasFullGalleryUnlock()) return false;
+    if (canonicalId(photo?.access?.type || "") === "skill") {
+      let skillId = String(photo.access.skillId || photo.access.id || "").trim();
+      if (skillId === "hak_audio_transcription_v1") {
+        const branch = evidenceKindForGalleryPhoto(photo);
+        skillId = branch ? `${branch}_audio_transcription_v1` : "";
+      }
+      if (!skillId) return true;
+      try {
+        if (typeof window.Game?.hasSkill === "function") return window.Game.hasSkill(skillId) !== true;
+        if (typeof window.GameStateEngine?.hasActiveHakSkill === "function") return window.GameStateEngine.hasActiveHakSkill(skillId) !== true;
+      } catch { return true; }
+      const store = readJsonFromStorage("hak_skills_v1", {});
+      return !store?.unlocked?.[skillId];
+    }
+    const kind = evidenceKindForGalleryPhoto(photo);
+    if (!kind) return true;
+    return !hasHakEvidenceAccess(kind);
+  }
+
+  function lockedEvidenceMessage(kind) {
+    const route = normalizeEvidenceKind(kind).toUpperCase();
+    return route
+      ? `Evidence access locked. Unlock the ${route} Evidence skill to view this.`
+      : "Evidence access locked. Missing evidence route metadata.";
+  }
+
+  const readJsonFromStorage = (key, fallback) => {
+    try {
+      const raw = localStorage.getItem(key);
+      if (!raw) return fallback;
+      const parsed = JSON.parse(raw);
+      return parsed == null ? fallback : parsed;
+    } catch {
+      return fallback;
+    }
+  };
+
+  function hasFullGalleryUnlock() {
+    try {
+      const engine = window.GameStateEngine;
+      if (typeof engine?.hasFullGalleryUnlock === "function") return engine.hasFullGalleryUnlock();
+      return engine?.getGalleryState?.()?.fullUnlock === true;
+    } catch {}
+    try { return localStorage.getItem(GALLERY_FULL_UNLOCK_KEY) === "1"; } catch { return false; }
+  }
+
+  function setFullGalleryUnlock(source = "gallery") {
+    try {
+      const engine=window.GameStateEngine,state=engine?.getState?.();
+      if(state?.gallery&&!state.gallery.fullUnlock)engine.dispatch({type:"SET_GALLERY_FULL_UNLOCK",commandId:`gallery-full-unlock:${String(source||"gallery")}`,expectedRevision:state.revision,payload:{enabled:true,source}});
+      else if(!state?.gallery)localStorage.setItem(GALLERY_FULL_UNLOCK_KEY, "1");
+    } catch { try { localStorage.setItem(GALLERY_FULL_UNLOCK_KEY, "1"); } catch {} }
+    try {
+      window.dispatchEvent(new CustomEvent("gallery:full-unlock-changed", {
+        detail: { unlocked: hasFullGalleryUnlock(), source: String(source || "gallery").trim() || "gallery" }
+      }));
+    } catch {}
+  }
+
+  function prettyNameFromId(id) {
+    const clean = canonicalId(id).replace(/[_-]+/g, " ").trim();
+    if (!clean) return "";
+    return clean.replace(/\b([a-z])/g, (m) => m.toUpperCase());
+  }
+
+  function ownerIdFromSource(src) {
+    const raw = String(src || "").trim();
+    if (!raw) return "";
+    const lower = raw.toLowerCase();
+
+    if (lower.startsWith("msg:")) {
+      const id = canonicalCategoryId(lower.slice(4));
+      return GENERIC_FILTER_IDS.has(id) ? "" : id;
+    }
+    if (lower.startsWith("snapgram:")) {
+      const id = canonicalCategoryId(lower.slice(9));
+      return GENERIC_FILTER_IDS.has(id) ? "" : id;
+    }
+    if (lower.startsWith("onlyfun:")) {
+      const id = canonicalCategoryId(lower.slice(8));
+      return GENERIC_FILTER_IDS.has(id) ? "" : id;
+    }
+    if (lower.startsWith("hak:")) {
+      const id = canonicalCategoryId(lower.slice(4));
+      return GENERIC_FILTER_IDS.has(id) ? "" : id;
+    }
+
+    const plain = canonicalCategoryId(lower);
+    return GENERIC_FILTER_IDS.has(plain) ? "" : plain;
+  }
+
+  function resolveVariantGalleryUrl(url, ownerId = "") {
+    const raw = String(url || "").trim();
+    if (!raw) return "";
+    try {
+      if (window.Game && typeof window.Game.resolveCharacterVariantImage === "function") {
+        const resolved = String(window.Game.resolveCharacterVariantImage(raw, ownerId) || "").trim();
+        if (resolved) return resolved;
+      }
+    } catch {}
+    return raw;
+  }
+
+  function resolveVariantGalleryUrlForFilter(url, ownerId = "", filterId = "") {
+    const raw = String(url || "").trim();
+    if (!raw) return "";
+    const categoryId = canonicalCategoryId(ownerId);
+    const fid = String(filterId || "").trim();
+    if (categoryId === "mason" && MASON_FILTER_IDS.has(fid)) {
+      const variant = fid === FILTER_MASON_FEMALE_ID ? "female" : "male";
+      try {
+        if (window.Game && typeof window.Game.resolveCharacterVariantImageForVariant === "function") {
+          const resolved = String(window.Game.resolveCharacterVariantImageForVariant(raw, "mason", variant) || "").trim();
+          if (resolved) return resolved;
+        }
+      } catch {}
+      return raw
+        .replace(/assets\/pictures\/Conversation\/(?:male_mason|female_mason)\//i, `assets/pictures/Conversation/${variant}_mason/`)
+        .replace(/assets\/pictures\/Conversation\/mason\//i, `assets/pictures/Conversation/${variant}_mason/`);
+    }
+    return resolveVariantGalleryUrl(raw, categoryId);
+  }
+
+  function canonicalOwnerId(raw) {
+    const id = canonicalCategoryId(raw);
+    return (!id || GENERIC_FILTER_IDS.has(id)) ? "" : id;
+  }
+
+  function isPlaceholderOwnerLabel(raw) {
+    const token = canonicalId(raw).replace(/_/g, "");
+    return !token || token === "unknown" || token === "unk" || token === "placeholder";
+  }
+
+  function resolveOwnerLabel(ownerId, fallback = "") {
+    const explicit = String(fallback || "").trim();
+    if (explicit && !isPlaceholderOwnerLabel(explicit)) return explicit;
+    const id = canonicalOwnerId(ownerId);
+    if (!id) return "";
+    if (FILTER_LABELS[id]) return filterLabel(id, FILTER_LABELS[id]);
+    try {
+      if (window.Game && typeof window.Game.tpl === "function") {
+        const resolved = String(window.Game.tpl(`{{name:${id}}}`) || "").trim();
+        if (resolved && resolved !== `{{name:${id}}}`) return resolved;
+      }
+    } catch {}
+    return prettyNameFromId(id);
+  }
+
+  function resolveOwnerMeta(photo) {
+    const onlyfunCreator = canonicalOwnerId(photo?.creatorId || photo?.creator || photo?.authorId || "");
+    const sourceOwner = ownerIdFromSource(photo?.src);
+    const inferredOnlyfun = inferOnlyfunOwnerFromImage(photo?.url || photo?.image || photo?.photo || "");
+    const explicitOwner = canonicalOwnerId(photo?.ownerId || photo?.owner || photo?.characterId || photo?.contactId || "");
+    const ownerId =
+      (ONLYFUN_CREATOR_CATEGORY_IDS.has(onlyfunCreator) ? onlyfunCreator : "") ||
+      (ONLYFUN_CREATOR_CATEGORY_IDS.has(sourceOwner) ? sourceOwner : "") ||
+      explicitOwner ||
+      inferredOnlyfun ||
+      sourceOwner;
+    if (!ownerId || GENERIC_FILTER_IDS.has(ownerId)) return { ownerId: "", ownerName: "" };
+
+    const ownerName = resolveOwnerLabel(ownerId, String(photo?.ownerName || photo?.characterName || photo?.contactName || "").trim());
+    return { ownerId, ownerName };
+  }
+
+  function withResolvedOwner(photo) {
+    const ownerMeta = resolveOwnerMeta(photo);
+    const ownerIds = [ownerMeta.ownerId || ""];
+    if (Array.isArray(photo?.__extraOwnerIds)) {
+      photo.__extraOwnerIds.forEach((id) => {
+        const clean = canonicalOwnerId(id);
+        if (clean && !ownerIds.includes(clean)) ownerIds.push(clean);
+      });
+    }
+    const filterIds = [];
+    ownerIds.forEach((ownerId) => {
+      if (ownerId === "mason") {
+        const rawUrl = normalizeOnlyfunPath(photo?.__rawUrl || photo?.url || photo?.image || photo?.photo || "");
+        const isEntitlementProjection = String(photo?.src || "").toLowerCase().startsWith("gallery_full");
+        const mediaVariant = window.MasonVariantService?.classifyMediaVariant?.(rawUrl) || "NOT_MASON_VARIANT";
+        if (mediaVariant === "INVALID_CONFLICT") throw new Error(`Invalid conflicting Mason media path: ${rawUrl}`);
+        if (isEntitlementProjection || mediaVariant === "NOT_MASON_VARIANT") {
+          // A genuinely shared asset (or non-earned full-Gallery projection)
+          // is available in both presentation filters. Variant media earned
+          // from story is restricted to the exact path that was viewed.
+          filterIds.push(FILTER_MASON_MALE_ID, FILTER_MASON_FEMALE_ID);
+        } else {
+          // The stored authored path identifies the logical paired slot, not
+          // a second independently-owned gender unlock. Canonical Mason
+          // variant decides which mutually-exclusive filter owns it now.
+          filterIds.push(defaultMasonFilterId());
+        }
+      } else {
+        filterIds.push(ownerId || FILTER_RANDOM_ID);
+      }
+    });
+    const primaryFilterId = filterIds.includes(defaultMasonFilterId()) ? defaultMasonFilterId() : filterIds[0];
+    return {
+      ...photo,
+      __rawUrl: String(photo?.__rawUrl || photo?.url || photo?.image || photo?.photo || "").trim(),
+      __ownerId: ownerMeta.ownerId,
+      __ownerName: ownerMeta.ownerName,
+      __primaryFilterId: primaryFilterId,
+      __galleryFilterIds: filterIds,
+      __filterLabel: ownerMeta.ownerId ? resolveOwnerLabel(ownerMeta.ownerId, ownerMeta.ownerName) : filterLabel(FILTER_RANDOM_ID, "Random")
+    };
+  }
+
+  function normalizeOnlyfunPath(rawUrl) {
+    return String(rawUrl || "")
+      .trim()
+      .toLowerCase()
+      .replace(/\\/g, "/")
+      .split("#")[0]
+      .split("?")[0];
+  }
+
+  function isDefaultAvatarPath(rawUrl) {
+    const url = normalizeOnlyfunPath(rawUrl);
+    if (!url) return false;
+    const normalized = "/" + url.replace(/^\/+/, "");
+    return normalized.endsWith("/assets/avatars/default.jpg");
+  }
+
+  function isOnlyfunAvatarPath(rawUrl) {
+    const url = normalizeOnlyfunPath(rawUrl);
+    if (!url) return false;
+    const normalized = "/" + url.replace(/^\/+/, "");
+    return (
+      normalized.endsWith("/assets/avatars/default.jpg") ||
+      normalized.includes("/pictures/onlyfun/avatars/") ||
+      normalized.includes("/onlyfun/avatars/")
+    );
+  }
+
+  function isGalleryExcludedImagePath(rawUrl) {
+    return isDefaultAvatarPath(rawUrl) || isOnlyfunAvatarPath(rawUrl);
+  }
+
+  function inferOnlyfunOwnerFromOnceKey(rawOnceKey) {
+    const onceKey = canonicalId(rawOnceKey);
+    if (!onceKey) return "";
+    const match = onceKey.match(/(?:^|_)of_([a-z0-9]+)(?:_|$)/i);
+    return canonicalOwnerId(match ? match[1] : "");
+  }
+
+  function inferOnlyfunOwnerFromImage(rawUrl) {
+    const url = normalizeOnlyfunPath(rawUrl);
+    if (!url) return "";
+    const filename = (url.split("/").pop() || "").toLowerCase();
+    if (url.includes("/onlyfun/posts/") || url.includes("/pictures/onlyfun/posts/")) {
+      if (
+        filename.includes("sexminator") ||
+        filename === "random_day10.jpg" ||
+        filename === "random_day12.jpg" ||
+        filename.startsWith("evelynbaroutfit") ||
+        filename.startsWith("evelyn_d") ||
+        filename.startsWith("evelyn_tits")
+      ) {
+        return "static_muse";
+      }
+      if (filename.startsWith("neonrose")) return "neon_rose";
+      if (filename.startsWith("velvet")) return "velvet_sin";
+      if (filename.startsWith("alphamana")) return "alphamana";
+    }
+    const known = ["evelyn", "hailey", "lena", "mason", "aiden", "player"];
+    for (const token of known) {
+      if (filename.includes(token)) return canonicalOwnerId(token);
+    }
+    return "";
+  }
+
+  function resolveOnlyfunOwnerMeta(raw = {}, fallbackCreatorId = "", fallbackCreatorName = "") {
+    const creatorId = canonicalOwnerId(
+      raw?.creatorId ||
+      raw?.creator ||
+      raw?.authorId ||
+      fallbackCreatorId ||
+      ""
+    );
+    if (ONLYFUN_CREATOR_CATEGORY_IDS.has(creatorId)) {
+      return {
+        ownerId: creatorId,
+        ownerName: filterLabel(creatorId, String(raw?.creatorDisplayName || raw?.creatorName || fallbackCreatorName || FILTER_LABELS[creatorId] || "").trim())
+      };
+    }
+
+    const inferredFromImage = inferOnlyfunOwnerFromImage(raw?.image || raw?.url || raw?.photo || "");
+    if (ONLYFUN_CREATOR_CATEGORY_IDS.has(inferredFromImage)) {
+      return {
+        ownerId: inferredFromImage,
+        ownerName: filterLabel(inferredFromImage, FILTER_LABELS[inferredFromImage] || "")
+      };
+    }
+
+    const explicitOwner = canonicalOwnerId(
+      raw?.ownerId ||
+      raw?.owner ||
+      raw?.characterId ||
+      raw?.contactId ||
+      ""
+    );
+    if (explicitOwner) {
+      return {
+        ownerId: explicitOwner,
+        ownerName: resolveOwnerLabel(
+          explicitOwner,
+          String(raw?.ownerName || raw?.characterName || raw?.contactName || "").trim()
+        )
+      };
+    }
+
+    const inferredFromOnce = inferOnlyfunOwnerFromOnceKey(raw?.onceKey || raw?.id || "");
+    if (inferredFromOnce) {
+      return {
+        ownerId: inferredFromOnce,
+        ownerName: resolveOwnerLabel(inferredFromOnce, "")
+      };
+    }
+
+    if (inferredFromImage) {
+      return {
+        ownerId: inferredFromImage,
+        ownerName: resolveOwnerLabel(inferredFromImage, "")
+      };
+    }
+
+    if (!creatorId) return { ownerId: "", ownerName: "" };
+    return {
+      ownerId: creatorId,
+      ownerName: resolveOwnerLabel(
+        creatorId,
+        String(raw?.creatorDisplayName || raw?.creatorName || fallbackCreatorName || "").trim()
+      )
+    };
+  }
+
+  function collectOnlyfunImageCandidates(rawStep = {}) {
+    const urls = new Set();
+    const pushUrl = (rawUrl) => {
+      const url = String(rawUrl || "").trim();
+      if (!url || isGalleryExcludedImagePath(url)) return;
+      urls.add(url);
+    };
+
+    pushUrl(rawStep?.image || rawStep?.url || rawStep?.photo || rawStep?.src || "");
+
+    const mapCfg =
+      (rawStep?.imageVariant && typeof rawStep.imageVariant === "object") ? rawStep.imageVariant :
+      ((rawStep?.imageFromChoice && typeof rawStep.imageFromChoice === "object") ? rawStep.imageFromChoice :
+      ((rawStep?.imageByChoice && typeof rawStep.imageByChoice === "object") ? rawStep.imageByChoice : null));
+
+    if (mapCfg) {
+      pushUrl(mapCfg?.fallback || mapCfg?.default || "");
+      const mapObj =
+        (mapCfg?.map && typeof mapCfg.map === "object") ? mapCfg.map :
+        ((mapCfg?.images && typeof mapCfg.images === "object") ? mapCfg.images : null);
+      if (mapObj) {
+        Object.values(mapObj).forEach((value) => pushUrl(value));
+      }
+    }
+
+    return Array.from(urls);
+  }
+
+  function normalizeStoryPath(rawPath) {
+    const path = String(rawPath || "").trim().replace(/\\/g, "/").replace(/^\.\//, "");
+    if (!path) return "";
+    if (/^https?:\/\//i.test(path)) return "";
+    if (path.startsWith("story/")) return path;
+    if (path.endsWith(".json")) return `story/${path.replace(/^\/+/, "")}`;
+    return "";
+  }
+
+  async function loadStoryPaths() {
+    if (window.__galleryStoryPathsPromiseV1) return window.__galleryStoryPathsPromiseV1;
+    window.__galleryStoryPathsPromiseV1 = (async () => {
+    let entries = [];
+    try {
+      if (window.ConvoRuntime && typeof window.ConvoRuntime.loadStoryManifest === "function") {
+        const manifest = await window.ConvoRuntime.loadStoryManifest();
+        entries = Array.isArray(manifest?.sortedEntries)
+          ? manifest.sortedEntries
+          : (Array.isArray(manifest?.entries) ? manifest.entries : []);
+      }
+    } catch {}
+
+    if (!entries.length) {
+      const res = await fetch(STORY_MANIFEST_PATH, { cache: "no-store" });
+      if (!res || !res.ok) throw new Error(`Failed to load ${STORY_MANIFEST_PATH}`);
+      const raw = await res.json();
+      entries = Array.isArray(raw) ? raw : [];
+    }
+
+    const seen = new Set();
+    const out = [];
+    for (const entry of entries) {
+      const path = normalizeStoryPath(entry?.path || "");
+      if (!path || seen.has(path)) continue;
+      seen.add(path);
+      out.push(path);
+    }
+    return out;
+    })();
+    return window.__galleryStoryPathsPromiseV1;
+  }
+
+  async function loadStoryJson(path) {
+    const cache = window.__galleryStoryJsonPromiseCacheV1 ||= new Map();
+    if (!cache.has(path)) {
+      cache.set(path, (async () => {
+        const res = await fetch(path, { cache: "no-store" });
+        if (!res || !res.ok) throw new Error(`Failed to load ${path}`);
+        return res.json();
+      })());
+    }
+    return cache.get(path);
+  }
+
+  async function loadOnlyfunCreatorJson(path) {
+    const res = await fetch(path, { cache: "no-store" });
+    if (!res || !res.ok) throw new Error(`Failed to load ${path}`);
+    return res.json();
+  }
+
+  function walkStoryStepsWithContext(steps, context, visitor) {
+    const arr = Array.isArray(steps) ? steps : [];
+    let lastSpeaker = canonicalId(context?.lastSpeaker || context?.storyOwnerId || "");
+    const storyOwnerId = canonicalId(context?.storyOwnerId || "");
+
+    for (const step of arr) {
+      if (!step || typeof step !== "object") continue;
+      const type = String(step.type || "").trim().toLowerCase();
+
+      if (type === "if") {
+        walkStoryStepsWithContext(step.then, { storyOwnerId, lastSpeaker }, visitor);
+        walkStoryStepsWithContext(step.else, { storyOwnerId, lastSpeaker }, visitor);
+        continue;
+      }
+
+      visitor(step, { storyOwnerId, lastSpeaker });
+
+      const explicit = canonicalId(step.from || step.fromId || "");
+      let speaker = "";
+      if (type === "send_to_continue") {
+        speaker = "player";
+      } else if (explicit) {
+        speaker = explicit;
+      } else if (type === "message") {
+        speaker = storyOwnerId;
+      } else if (type === "image" || type === "photo") {
+        speaker = canonicalId(lastSpeaker || storyOwnerId);
+      } else {
+        speaker = canonicalId(lastSpeaker || storyOwnerId);
+      }
+
+      if (speaker) lastSpeaker = speaker;
+    }
+  }
+
+  function inferStoryOwnerId(storyJson, storyPath = "") {
+    try {
+      if (window.ConvoRuntime && typeof window.ConvoRuntime.getStoryOwnerId === "function") {
+        const fromRuntime = window.ConvoRuntime.getStoryOwnerId(storyJson || {}, { storyPath });
+        const runtimeOwner = canonicalOwnerId(fromRuntime);
+        if (runtimeOwner) return runtimeOwner;
+      }
+    } catch {}
+
+    const direct = canonicalOwnerId(
+      storyJson?.contactId ||
+      storyJson?.contact ||
+      storyJson?.conversationId ||
+      storyJson?.characterId ||
+      storyJson?.ownerCharacterId ||
+      ""
+    );
+    if (direct) return direct;
+
+    const file = String(storyPath || "").split("/").pop() || "";
+    const match = file.match(/^day\d+_\d+_([a-z0-9]+)(?:_|\.json)/i);
+    return canonicalOwnerId(match ? match[1] : "");
+  }
+
+  function addTotalPhoto(mapByUrl, url, ownerId = "", ownerName = "") {
+    const cleanOwnerId = canonicalOwnerId(ownerId);
+    const rawUrl = String(url || "").trim();
+    const photoUrl = resolveVariantGalleryUrl(rawUrl, cleanOwnerId);
+    if (!photoUrl) return;
+    if (isGalleryExcludedImagePath(photoUrl)) return;
+
+    const cleanOwnerName = cleanOwnerId ? resolveOwnerLabel(cleanOwnerId, ownerName) : "";
+    const prev = mapByUrl.get(photoUrl);
+    if (!prev) {
+      mapByUrl.set(photoUrl, {
+        __rawUrl: rawUrl,
+        url: photoUrl,
+        ownerId: cleanOwnerId,
+        ownerName: cleanOwnerName,
+        __extraOwnerIds: []
+      });
+      return;
+    }
+
+    if (!prev.ownerId && cleanOwnerId) {
+      prev.ownerId = cleanOwnerId;
+      prev.ownerName = cleanOwnerName;
+      return;
+    }
+    if (prev.ownerId && cleanOwnerId && prev.ownerId !== cleanOwnerId) {
+      const extras = Array.isArray(prev.__extraOwnerIds) ? prev.__extraOwnerIds : [];
+      if (!extras.includes(cleanOwnerId)) extras.push(cleanOwnerId);
+      prev.__extraOwnerIds = extras;
+      return;
+    }
+    if (!prev.__rawUrl && rawUrl) prev.__rawUrl = rawUrl;
+    if (prev.ownerId === cleanOwnerId && !prev.ownerName && cleanOwnerName) {
+      prev.ownerName = cleanOwnerName;
+    }
+  }
+
+  function readOnlyfunSubscriptionsMap() {
+    const out = {};
+    const privateRoot = readJsonFromStorage(ONLYFUN_SUBSCRIPTIONS_KEY, {});
+    const privateSubs = (privateRoot && typeof privateRoot.subs === "object") ? privateRoot.subs : {};
+    Object.keys(privateSubs).forEach((key) => {
+      const id = canonicalId(key);
+      if (!id) return;
+      out[id] = !!privateSubs[key] || !!out[id];
+    });
+
+    const publicRoot = readJsonFromStorage(ONLYFUN_SUBSCRIPTIONS_PUBLIC_KEY, {});
+    const publicSubs = (publicRoot && typeof publicRoot.subs === "object")
+      ? publicRoot.subs
+      : ((publicRoot && typeof publicRoot === "object") ? publicRoot : {});
+    Object.keys(publicSubs).forEach((key) => {
+      const alias = canonicalId(key).replace(/_/g, "");
+      if (!alias) return;
+      const mapped = canonicalId(ONLYFUN_SUB_ALIAS_TO_CREATOR[alias] || alias);
+      if (!mapped) return;
+      out[mapped] = !!publicSubs[key] || !!out[mapped];
+    });
+    return out;
+  }
+
+  function readOnlyfunPostsFromStorage() {
+    const root = readJsonFromStorage(ONLYFUN_POSTS_KEY, {});
+    const posts = Array.isArray(root?.posts) ? root.posts : [];
+    return posts.filter((post) => post && typeof post === "object");
+  }
+
+  function isOnlyfunPostUnlockedForPlayer(post, subscriptionsMap) {
+    const creatorId = canonicalId(post?.creatorId || post?.creator || post?.authorId || "");
+    const requiresSub = post?.requiresSub !== false;
+    if (!requiresSub) return true;
+    if (!creatorId) return false;
+    return !!subscriptionsMap[creatorId];
+  }
+
+  function readDiscoveredOnlyfunPhotos() {
+    if (String(localStorage.getItem(ONLYFUN_UNLOCK_KEY) || "") !== "1") return [];
+
+    const posts = readOnlyfunPostsFromStorage();
+    if (!posts.length) return [];
+    const subscriptionsMap = readOnlyfunSubscriptionsMap();
+    const out = [];
+
+    posts.forEach((post, idx) => {
+      if (!isOnlyfunPostUnlockedForPlayer(post, subscriptionsMap)) return;
+      const image = String(post?.image || post?.url || post?.photo || "").trim();
+      if (!image || isGalleryExcludedImagePath(image)) return;
+
+      const owner = resolveOnlyfunOwnerMeta(post, post?.creatorId || "", post?.creatorDisplayName || "");
+      const idToken = canonicalId(post?.id || post?.onceKey || `idx_${idx}_${image}`);
+      out.push({
+        id: `of_${idToken || `idx_${idx}`}`,
+        url: image,
+        w: 0,
+        h: 0,
+        at: window.GalleryHints?.discoveryTime?.(post) || Number(post?.at || post?.createdAt || 0) || 1,
+        src: owner.ownerId ? `onlyfun:${owner.ownerId}` : `onlyfun:${canonicalId(post?.creatorId || "post") || "post"}`,
+        ownerId: owner.ownerId,
+        ownerName: owner.ownerName
+      });
+    });
+
+    return out;
+  }
+
+  // OnlyFun media reached the collection ONLY as a live projection of the
+  // OnlyFun legacy stores (feature_onlyfun_unlocked / onlyfun_posts_v1 /
+  // onlyfun_subscriptions_v1). A progression replacement deliberately resets
+  // those keys (start-from-entry.js EXACT_RESET_KEYS), so every post the
+  // player had already unlocked silently disappeared from the Gallery on the
+  // next "Start From" -- reported live by a real tester after "Start From
+  // Day 16 NTS" from a finished LOVE playthrough, and measured here: 8 posts
+  // present before, absent after, while the canonical owned map held zero
+  // OnlyFun rows to preserve.
+  //
+  // The engine already guarantees the right contract for canonically owned
+  // media ("Earned Gallery media belongs to the profile: rewinding the story
+  // must not erase discoveries" -- game-state-engine.js's
+  // galleryForProgressionReplacement/mergeEarnedGallery). So commit unlocked
+  // OnlyFun posts as owned media instead of re-deriving them every render,
+  // exactly the way MeetAndGreetSystem.reconcileGalleryPhotos() already does
+  // for its own earned photos. Runs at Gallery bootstrap (the same seam), so
+  // media unlocked in this playthrough is durable from the first time the
+  // player opens their collection.
+  function reconcileDiscoveredOnlyfunGalleryMedia() {
+    const results = [];
+    try {
+      if (typeof window.GalleryStore?.upsert !== "function") return results;
+      readDiscoveredOnlyfunPhotos().forEach((photo) => {
+        const url = String(photo?.url || "").trim();
+        if (!url) return;
+        // Deliberately no canonicalOwner flag: the same image can already be
+        // owned through another app with its own authoritative owner, and
+        // this reconciliation proves access, not ownership.
+        results.push(window.GalleryStore.upsert({
+          id: photo.id,
+          url,
+          ownerId: photo.ownerId || "",
+          ownerName: photo.ownerName || "",
+          src: photo.src,
+          at: photo.at,
+          addedAt: photo.at
+        }));
+      });
+    } catch (err) {
+      try { console.warn("[gallery] unable to reconcile OnlyFun media", err); } catch {}
+    }
+    return results;
+  }
+
+  function dedupeAndMergePhotosByUrl(list) {
+    const byUrl = new Map();
+
+    const mergePhoto = (rawPhoto) => {
+      const ownerId = canonicalOwnerId(rawPhoto?.ownerId || rawPhoto?.owner || rawPhoto?.characterId || rawPhoto?.contactId || ownerIdFromSource(rawPhoto?.src || ""));
+      const rawUrl = String(rawPhoto?.__rawUrl || rawPhoto?.url || rawPhoto?.image || rawPhoto?.photo || "").trim();
+      const isEntitlementProjection = String(rawPhoto?.src || "").toLowerCase().startsWith("gallery_full");
+      // Resolve every recognized Mason-containing slot for presentation,
+      // independently of Gallery owner. Durable ownership stays unchanged.
+      const url = resolveVariantGalleryUrl(rawUrl, ownerId);
+      if (!url) return;
+      if (isGalleryExcludedImagePath(url)) return;
+      const key = window.GalleryStore && typeof window.GalleryStore.imageKeyFromEntry === "function"
+        ? window.GalleryStore.imageKeyFromEntry({ ...rawPhoto, url })
+        : url;
+      const next = { ...rawPhoto, __rawUrl: rawUrl, url };
+      next.at = window.GalleryHints?.discoveryTime?.(rawPhoto) || Number(rawPhoto?.at || 0) || 0;
+      if (!String(next.ownerId || "").trim() && ownerId) next.ownerId = ownerId;
+      const prev = byUrl.get(key);
+      if (!prev) {
+        byUrl.set(key, next);
+        return;
+      }
+
+      const prevOwner = canonicalOwnerId(prev.ownerId || prev.owner || prev.characterId || prev.contactId || "");
+      const nextOwner = canonicalOwnerId(next.ownerId || next.owner || next.characterId || next.contactId || "");
+      const extraOwners = new Set(Array.isArray(prev.__extraOwnerIds) ? prev.__extraOwnerIds.map(canonicalOwnerId).filter(Boolean) : []);
+      if (Array.isArray(next.__extraOwnerIds)) {
+        next.__extraOwnerIds.map(canonicalOwnerId).filter(Boolean).forEach((id) => extraOwners.add(id));
+      }
+
+      const merged = { ...prev };
+      if (next.evidenceAccessGranted === true) merged.evidenceAccessGranted = true;
+      if (!prevOwner && nextOwner) {
+        merged.ownerId = nextOwner;
+      } else if (prevOwner && nextOwner && prevOwner !== nextOwner) {
+        extraOwners.add(nextOwner);
+      }
+      if (!String(prev.ownerName || "").trim() && String(next.ownerName || "").trim()) {
+        merged.ownerName = String(next.ownerName || "").trim();
+      }
+
+      const prevAt = Number(prev.at || 0) || 0;
+      const nextAt = Number(next.at || 0) || 0;
+      const previousIsEntitlement = String(prev.src || "").toLowerCase().startsWith("gallery_full");
+      // Completion repairs use 1 for an unknown historical date. A dated
+      // receipt is stronger evidence than that placeholder, in either order.
+      if (!isEntitlementProjection && nextAt > 0 &&
+          (previousIsEntitlement || prevAt <= 0 || (nextAt > 1 && (prevAt <= 1 || nextAt < prevAt)))) {
+        merged.at = nextAt;
+      }
+      if (!String(prev.src || "").trim() && String(next.src || "").trim()) {
+        merged.src = String(next.src || "").trim();
+      }
+      if (!String(prev.id || "").trim() && String(next.id || "").trim()) {
+        merged.id = String(next.id || "").trim();
+      }
+      if (!String(prev.__rawUrl || "").trim() && rawUrl) {
+        merged.__rawUrl = rawUrl;
+      }
+      if (extraOwners.size) {
+        merged.__extraOwnerIds = Array.from(extraOwners).filter((id) => id && id !== canonicalOwnerId(merged.ownerId || ""));
+      }
+      ["kind", "route", "source", "app", "onceKey", "type", "mediaType", "title", "label", "thumb", "thumbnail", "thumbnailSrc", "preview", "previewSrc", "poster"].forEach((keyName) => {
+        if (!String(merged?.[keyName] ?? "").trim() && String(next?.[keyName] ?? "").trim()) {
+          merged[keyName] = next[keyName];
+        }
+      });
+
+      byUrl.set(key, merged);
+    };
+
+    (Array.isArray(list) ? list : []).forEach(mergePhoto);
+    return Array.from(byUrl.values()).sort((a, b) => (Number(b?.at || 0) || 0) - (Number(a?.at || 0) || 0));
+  }
+
+  async function computeGalleryTotalsFromContent(options = {}) {
+    // Release builds ship the exact scanner output. Reading one small registry
+    // keeps the first Gallery open interactive instead of fetching and parsing
+    // the entire story corpus (hundreds of JSON files) before final counts.
+    // The corpus scanner below remains the fail-safe for development/stale
+    // packages, and QA validates registry parity against that scanner.
+    try {
+      if (options?.forceScan === true) throw Object.assign(new Error("forced content scan"), { code: "FORCE_GALLERY_CONTENT_SCAN" });
+      const response = await fetch(GALLERY_ELIGIBILITY_REGISTRY_PATH, { cache: "no-store" });
+      if (response?.ok) {
+        const registry = await response.json();
+        const items = Array.isArray(registry?.items) ? registry.items : [];
+        const declaredTotal = Math.max(0, Number(registry?.total || 0) || 0);
+        if (registry?.schemaVersion === 1 && items.length > 0 && declaredTotal === items.length) {
+          return { all: declaredTotal, items };
+        }
+      }
+    } catch (error) {
+      if (error?.code !== "FORCE_GALLERY_CONTENT_SCAN") {
+        try { console.warn("[gallery] eligibility registry unavailable; scanning content", error); } catch {}
+      }
+    }
+
+    const storyPaths = await loadStoryPaths();
+    const mapByUrl = new Map();
+
+    // Fetch the corpus concurrently, but keep traversal in manifest order so
+    // canonical owner precedence remains deterministic. The former serial
+    // fetch loop was the dominant cost of a cold Gallery open.
+    const storyRows = new Array(storyPaths.length);
+    let nextStoryIndex = 0;
+    const workerCount = Math.min(isAndroidLite ? 4 : 12, storyPaths.length);
+    await Promise.all(Array.from({ length: workerCount }, async () => {
+      while (nextStoryIndex < storyPaths.length) {
+        const index = nextStoryIndex++;
+        try { storyRows[index] = await loadStoryJson(storyPaths[index]); }
+        catch { storyRows[index] = null; }
+      }
+    }));
+
+    let workIndex = 0;
+    for (let storyIndex = 0; storyIndex < storyPaths.length; storyIndex += 1) {
+      await yieldGalleryWork(++workIndex);
+      const storyPath = storyPaths[storyIndex];
+      const storyJson = storyRows[storyIndex];
+      if (!storyJson) continue;
+
+      const storyOwnerId = inferStoryOwnerId(storyJson, storyPath);
+      walkStoryStepsWithContext(storyJson?.steps, { storyOwnerId, lastSpeaker: storyOwnerId }, (step, ctx) => {
+        const type = String(step?.type || "").trim().toLowerCase();
+
+        if (type === "image" || type === "photo") {
+          const url = String(step?.image || step?.src || step?.url || "").trim();
+          if (!url) return;
+
+          const explicitSpeaker = canonicalId(step?.from || step?.fromId || "");
+          const contextOwner = canonicalId(ctx?.storyOwnerId || storyOwnerId || "");
+          const inheritedSpeaker = canonicalId(ctx?.lastSpeaker || contextOwner || "");
+          const declaredOwner = canonicalOwnerId(step?.galleryOwnerId || step?.ownerId || "");
+          const knownMasonSubjectMedia = new Set([
+            "assets/pictures/Conversation/male_mason/mason_doing_crunch.jpg",
+            "assets/pictures/Conversation/male_mason/mason_jump_fail.jpg",
+            "assets/pictures/Conversation/male_mason/mason_yoga.jpg"
+          ].map(normalizeOnlyfunPath)).has(normalizeOnlyfunPath(url));
+          const speaker = declaredOwner || (explicitSpeaker === "player"
+            ? (knownMasonSubjectMedia ? "mason" : "mc")
+            : ((!explicitSpeaker && inheritedSpeaker === "player") ? contextOwner : (explicitSpeaker || inheritedSpeaker)));
+          if (!speaker) return;
+
+          addTotalPhoto(
+            mapByUrl,
+            url,
+            canonicalOwnerId(speaker),
+            String(step?.fromName || step?.name || "").trim()
+          );
+          return;
+        }
+
+        if (type === "instagram_post" || type === "snapgram_post" || type === "story" || type === "instagram_story") {
+          const url = String(step?.image || step?.photo || step?.url || "").trim();
+          if (!url) return;
+
+          const ownerRaw = canonicalId(
+            step?.authorId ||
+            step?.fromId ||
+            step?.contactId ||
+            step?.user ||
+            step?.authorName ||
+            ""
+          );
+          addTotalPhoto(
+            mapByUrl,
+            url,
+            canonicalOwnerId(ownerRaw),
+            String(step?.authorName || step?.user || step?.fromName || "").trim()
+          );
+          return;
+        }
+
+        if (type === "meetandgreet_photo_add") {
+          const url = String(step?.image || step?.url || step?.src || step?.photo || "").trim();
+          const owner = canonicalOwnerId(step?.galleryOwnerId || step?.ownerId || step?.profileId || "");
+          if (url && owner) addTotalPhoto(mapByUrl, url, owner, "");
+          return;
+        }
+
+        if (type === "gallery_add") {
+          const url = String(step?.photo?.url || step?.url || step?.src || "").trim();
+          if (!url) return;
+
+          const ownerRaw = canonicalId(
+            step?.photo?.ownerId ||
+            step?.ownerId ||
+            step?.photo?.characterId ||
+            step?.characterId ||
+            step?.photo?.contactId ||
+            step?.contactId ||
+            step?.fromId ||
+            step?.from ||
+            ""
+          );
+          addTotalPhoto(
+            mapByUrl,
+            url,
+            canonicalOwnerId(ownerRaw),
+            String(
+              step?.photo?.ownerName ||
+              step?.ownerName ||
+              step?.photo?.characterName ||
+              step?.characterName ||
+              step?.photo?.contactName ||
+              step?.contactName ||
+              step?.fromName ||
+              step?.name ||
+              ""
+            ).trim()
+          );
+          return;
+        }
+
+        if (type === "hak_add_evidence") {
+          const profileOwner = canonicalOwnerId(
+            step?.profileId ||
+            step?.characterId ||
+            step?.contactId ||
+            step?.targetId ||
+            step?.profile?.id ||
+            ""
+          );
+          const ownerName = String(
+            step?.profile?.name ||
+            step?.profileName ||
+            step?.characterName ||
+            step?.contactName ||
+            step?.name ||
+            ""
+          ).trim();
+          const evidences = Array.isArray(step?.evidences)
+            ? step.evidences
+            : (Array.isArray(step?.items) ? step.items : []);
+          evidences.forEach((evidence) => {
+            const url = String(evidence?.url || evidence?.src || evidence?.image || "").trim();
+            if (!url) return;
+            const evidenceOwner = canonicalOwnerId(
+              evidence?.characterId ||
+              evidence?.contactId ||
+              evidence?.ownerId ||
+              evidence?.targetId ||
+              profileOwner ||
+              ""
+            );
+            addTotalPhoto(
+              mapByUrl,
+              url,
+              evidenceOwner,
+              String(evidence?.characterName || evidence?.contactName || evidence?.ownerName || ownerName || "").trim()
+            );
+          });
+          return;
+        }
+
+        if (type === "onlyfun_post") {
+          const ownerMeta = resolveOnlyfunOwnerMeta(step, step?.creatorId || step?.creator || step?.authorId || "", step?.creatorDisplayName || "");
+          const onlyfunUrls = collectOnlyfunImageCandidates(step);
+          onlyfunUrls.forEach((url) => {
+            addTotalPhoto(mapByUrl, url, ownerMeta.ownerId, ownerMeta.ownerName);
+          });
+        }
+      });
+    }
+
+    for (const creatorPath of ONLYFUN_CREATOR_FILES) {
+      await yieldGalleryWork(++workIndex);
+      let creatorJson = null;
+      try {
+        creatorJson = await loadOnlyfunCreatorJson(creatorPath);
+      } catch {
+        continue;
+      }
+
+      const creatorId = canonicalOwnerId(
+        creatorJson?.id ||
+        creatorJson?.creatorId ||
+        ""
+      );
+      const creatorName = String(creatorJson?.displayName || creatorJson?.name || "").trim();
+      const seedPosts = Array.isArray(creatorJson?.seedPosts)
+        ? creatorJson.seedPosts
+        : (Array.isArray(creatorJson?.posts) ? creatorJson.posts : []);
+
+      seedPosts.forEach((post) => {
+        const url = String(post?.image || post?.url || post?.photo || "").trim();
+        if (!url || isGalleryExcludedImagePath(url)) return;
+        const ownerMeta = resolveOnlyfunOwnerMeta(post, creatorId, creatorName);
+        addTotalPhoto(mapByUrl, url, ownerMeta.ownerId, ownerMeta.ownerName);
+      });
+    }
+
+    const byOwner = new Map();
+    const labels = new Map();
+    for (const row of mapByUrl.values()) {
+      const ids = [canonicalOwnerId(row.ownerId), ...(Array.isArray(row.__extraOwnerIds) ? row.__extraOwnerIds.map(canonicalOwnerId) : [])]
+        .filter(Boolean);
+      ids.forEach((ownerId) => {
+        byOwner.set(ownerId, (byOwner.get(ownerId) || 0) + 1);
+        if (!labels.has(ownerId)) {
+          labels.set(ownerId, resolveOwnerLabel(ownerId, row.ownerName || ""));
+        }
+      });
+    }
+
+    return {
+      all: mapByUrl.size,
+      byOwner,
+      labels,
+      items: Array.from(mapByUrl.values())
+    };
+  }
+
+  // Gallery and the All Photos achievement intentionally describe the same
+  // collection. Publish this scanner as their single canonical eligibility
+  // provider; GalleryStore owns normalization, IDs, and earned intersection.
+  window.GalleryStore?.registerCanonicalEligibilityProvider?.(computeGalleryTotalsFromContent);
+  window.__qaScanGalleryEligibilityFromContent = () => computeGalleryTotalsFromContent({ forceScan: true });
+
+  async function ensureTotalsLoaded() {
+    if (totalsLoaded) return;
+    if (!totalsPromise) {
+      totalsPromise = window.GalleryStore?.getCanonicalEligibility?.() || computeGalleryTotalsFromContent();
+    }
+    try {
+      const totals = await totalsPromise;
+      totalAllCount = Math.max(0, Number(totals?.total ?? totals?.all ?? 0) || 0);
+      totalsByOwner = new Map();
+      totalLabelsByOwner = totals?.labels instanceof Map ? totals.labels : new Map();
+      allAvailablePhotos = Array.isArray(totals?.items) ? totals.items : [];
+      // Rebuild category totals from the normalized registry items themselves.
+      // Scanner-side maps describe the pre-dedupe corpus and are not an
+      // authority for the post-dedupe Gallery projection.
+      allAvailablePhotos.map((row) => withResolvedOwner(row)).forEach((row) => {
+        const ids = Array.isArray(row?.__galleryFilterIds) ? row.__galleryFilterIds : [];
+        new Set(ids.map((id) => MASON_FILTER_IDS.has(id) ? "mason" : id).filter(Boolean)).forEach((ownerId) => {
+          totalsByOwner.set(ownerId, (totalsByOwner.get(ownerId) || 0) + 1);
+        });
+      });
+    } catch (err) {
+      try { console.warn("[gallery] unable to compute totals", err); } catch {}
+      totalAllCount = 0;
+      totalsByOwner = new Map();
+      totalLabelsByOwner = new Map();
+      allAvailablePhotos = [];
+    } finally {
+      totalsLoaded = true;
+    }
+  }
+
+  // Canonical-first: window.Game.onceDone checks progression.onceKeys (set by
+  // every real COMPLETE_STORY dispatch) before falling back to the legacy
+  // once_/__once:/conv_done_ keys this function used to check exclusively --
+  // gallery/media unlock for a story completed through normal gameplay was
+  // otherwise invisible here, since real completions never wrote those
+  // legacy keys in the first place (only scripts/start-from-entry.js's
+  // bulk-completion simulation does).
+  function isStoryCompletionProven(onceKey) {
+    const key = canonicalId(onceKey);
+    if (!key) return false;
+    if (window.Game && typeof window.Game.onceDone === "function" && window.Game.onceDone(key) === true) return true;
+    try {
+      return localStorage.getItem(`once_${key}`) === "1" ||
+        localStorage.getItem(`__once:${key}`) === "1" ||
+        localStorage.getItem(`conv_done_${key}`) === "1";
+    } catch { return false; }
+  }
+
+  async function reconcileCompletedPlayerMedia() {
+    if (!window.GalleryStore?.upsert) return { inserted: 0, repaired: 0, eligible: 0 };
+    // A virgin playthrough has no completed stories, so there is nothing to
+    // reconcile. Avoid loading the complete story corpus a second time before
+    // first paint.
+    try {
+      const state = window.GameStateEngine?.getProgressionIdentity?.();
+      const onceKeys = state?.onceKeys;
+      if (Array.isArray(onceKeys) && onceKeys.length === 0) return { inserted: 0, repaired: 0, eligible: 0 };
+      const fingerprint = `${String(state?.playthroughId || "")}|${(Array.isArray(onceKeys) ? onceKeys : []).map(canonicalId).sort().join("|")}`;
+      const previous = window.__galleryCompletedMediaReconciliationV1;
+      if (previous?.fingerprint === fingerprint) return previous.report;
+    } catch {}
+    const storyPaths = await loadStoryPaths();
+    const report = { inserted: 0, repaired: 0, eligible: 0 };
+    for (const storyPath of storyPaths) {
+      let storyJson = null;
+      try { storyJson = await loadStoryJson(storyPath); } catch { continue; }
+      const onceKey = String(storyJson?.onceKey || "").trim();
+      if (!isStoryCompletionProven(onceKey)) continue;
+      // Only direct sequential steps are repaired from completion. Conditional
+      // branches need their own viewed-step receipt to avoid speculative unlocks.
+      (Array.isArray(storyJson?.steps) ? storyJson.steps : []).forEach((step, stepIndex) => {
+        const type = String(step?.type || "").trim().toLowerCase();
+        if (type !== "image" && type !== "photo") return;
+        if (canonicalId(step?.from || step?.fromId || "") !== "player") return;
+        const url = String(step?.image || step?.src || step?.url || "").trim();
+        if (!url || isGalleryExcludedImagePath(url)) return;
+        const declaredOwner = canonicalOwnerId(step?.galleryOwnerId || step?.ownerId || "");
+        const knownMasonSubjectMedia = /\/(?:mason_doing_crunch|mason_jump_fail|mason_yoga)\.jpg(?:[?#].*)?$/i.test(url);
+        const ownerId = declaredOwner || (knownMasonSubjectMedia ? "mason" : "mc");
+        report.eligible += 1;
+        const result = window.GalleryStore.upsert({
+          id: `story_media_${canonicalId(onceKey || storyPath)}_${stepIndex}`,
+          url,
+          at: 1,
+          src: `msg:${ownerId}`,
+          ownerId,
+          ownerName: filterLabel(ownerId, ownerId === "mc" ? "MC" : "Mason"),
+          canonicalOwner: true,
+          onceKey,
+          storyPath,
+          stepIndex,
+          route: String(storyJson?.route || "").trim(),
+          repairSource: "completed_story_player_media_v1"
+        }, { emit: false });
+        if (result?.inserted) report.inserted += 1;
+        else if (result?.changed) report.repaired += 1;
+      });
+    }
+    try {
+      const state = window.GameStateEngine?.getProgressionIdentity?.();
+      const onceKeys = state?.onceKeys;
+      const fingerprint = `${String(state?.playthroughId || "")}|${(Array.isArray(onceKeys) ? onceKeys : []).map(canonicalId).sort().join("|")}`;
+      window.__galleryCompletedMediaReconciliationV1 = { fingerprint, report: { ...report } };
+    } catch {}
+    try { window.dispatchEvent(new CustomEvent("gallery:player-media-reconciled", { detail: report })); } catch {}
+    return report;
+  }
+
+  function projectEarnedGalleryOwner(candidate, registry) {
+    const registryOwner = canonicalOwnerId(registry?.ownerId);
+    const eligibleOwners = new Set([registryOwner, ...(Array.isArray(registry?.__extraOwnerIds) ? registry.__extraOwnerIds.map(canonicalOwnerId) : [])].filter(Boolean));
+    const candidateOwner = canonicalOwnerId(candidate?.ownerId || candidate?.owner || candidate?.characterId || candidate?.contactId || ownerIdFromSource(candidate?.src));
+    const earnedOwners = [candidateOwner, ...(Array.isArray(candidate?.__extraOwnerIds) ? candidate.__extraOwnerIds.map(canonicalOwnerId) : [])];
+    const owners = Array.from(new Set(earnedOwners.filter((id) => id && eligibleOwners.has(id))));
+    // Preserve canonical repair of old/unknown ownership, without granting
+    // every other contact that can send this image in a different story.
+    if (!owners.length && registryOwner) owners.push(registryOwner);
+    const ownerId = owners[0] || "";
+    const ownerName = ownerId === registryOwner ? registry?.ownerName : (ownerId === candidateOwner ? candidate?.ownerName : "");
+    return { ownerId, ownerName: resolveOwnerLabel(ownerId, ownerName || ""), __extraOwnerIds: owners.slice(1) };
+  }
+
+  const load = () => {
+    try {
+      if (!galleryStorageMigrated && window.GalleryStore && typeof window.GalleryStore.migrateStorage === "function") {
+        window.GalleryStore.migrateStorage({ includeLegacy: true });
+        galleryStorageMigrated = true;
+      }
+      const list = window.GalleryStore?.read?.(KEY) || readJsonFromStorage(KEY, []);
+      // Extra categories are a projection, never an acquisition receipt.
+      // Rebuild them below from independently earned rows of the same image.
+      const fromGalleryStorage = Array.isArray(list) ? list.map((row) => ({ ...row, __extraOwnerIds: [] })) : [];
+      const discoveredOnlyfun = readDiscoveredOnlyfunPhotos();
+      const fullUnlockPhotos = hasFullGalleryUnlock() ? allAvailablePhotos.map((row) => ({
+        id: `full_${canonicalId(row?.url || "")}`,
+        __rawUrl: String(row?.__rawUrl || row?.url || "").trim(),
+        __extraOwnerIds: Array.isArray(row?.__extraOwnerIds) ? row.__extraOwnerIds.slice() : [],
+        url: String(row?.url || "").trim(),
+        w: 0,
+        h: 0,
+        at: 1,
+        src: row?.ownerId ? `gallery_full:${row.ownerId}` : "gallery_full",
+        ownerId: row?.ownerId || "",
+        ownerName: row?.ownerName || ""
+      })) : [];
+      const merged = dedupeAndMergePhotosByUrl([
+        ...fromGalleryStorage,
+        ...discoveredOnlyfun,
+        ...fullUnlockPhotos
+      ]);
+      const candidates = merged
+        .filter((p) => p && typeof p === "object" && String(p.url || "").trim())
+        .filter((p) => !isHakEvidenceLocked(p));
+      if (!totalsLoaded) return candidates.map((p) => withResolvedOwner({ ...p, url: String(p.url || "").trim() }));
+
+      // Project access onto the same unique canonical registry used by the
+      // denominator. An earned legacy alias or opposite Mason variant may
+      // prove access to a canonical slot, but it must never create a second
+      // card or bring stale owner/category metadata into the projection.
+      const normalizePath = (row) => window.GalleryStore?.normalizeImagePath?.(row?.url || "") || "";
+      const slotKey = (row) => window.GalleryStore?.canonicalSlotKey?.(row) || normalizePath(row);
+      const registryByPath = new Map();
+      const registryBySlot = new Map();
+      allAvailablePhotos.forEach((row) => {
+        const path = normalizePath(row);
+        const slot = slotKey(row);
+        if (path && !registryByPath.has(path)) registryByPath.set(path, row);
+        if (slot && !registryBySlot.has(slot)) registryBySlot.set(slot, row);
+      });
+      const accessibleByRegistryPath = new Map();
+      candidates.forEach((candidate) => {
+        const registry = registryByPath.get(normalizePath(candidate)) || registryBySlot.get(slotKey(candidate));
+        if (!registry) return;
+        const registryPath = normalizePath(registry);
+        if (!registryPath || accessibleByRegistryPath.has(registryPath)) return;
+        accessibleByRegistryPath.set(registryPath, {
+          ...candidate,
+          ...projectEarnedGalleryOwner(candidate, registry),
+          __rawUrl: String(candidate.__rawUrl || candidate.url || registry.__rawUrl || registry.url || "").trim()
+        });
+      });
+      // Keep the canonical projection deterministic; the UI applies the
+      // selected discovery order without rewriting this collection.
+      return Array.from(registryByPath.keys())
+        .map((path) => accessibleByRegistryPath.get(path)).filter(Boolean)
+        .map((p) => withResolvedOwner({ ...p, url: String(p.url || "").trim() }));
+    }
+    catch (err) { try { console.warn("[gallery] unable to load discoveries", err); } catch {} return []; }
+  };
+
+  function buildFilterDefs(list) {
+    const discoveredByFilter = new Map();
+    const discoveredLabels = new Map();
+    for (const p of list) {
+      const ids = Array.isArray(p?.__galleryFilterIds) && p.__galleryFilterIds.length
+        ? p.__galleryFilterIds
+        : [p?.__ownerId || FILTER_RANDOM_ID];
+      ids.forEach((rawId) => {
+        const filterId = String(rawId || FILTER_RANDOM_ID).trim() || FILTER_RANDOM_ID;
+        discoveredByFilter.set(filterId, (discoveredByFilter.get(filterId) || 0) + 1);
+        if (!discoveredLabels.has(filterId)) {
+          discoveredLabels.set(filterId, filterLabel(filterId, String(p?.__filterLabel || p?.__ownerName || "").trim()));
+        }
+      });
+    }
+
+    const filterIdsSet = new Set(discoveredByFilter.keys());
+    filterIdsSet.add(FILTER_RANDOM_ID);
+    // Variant tabs are a semantic pair. As soon as either Mason variant is
+    // relevant, expose both counters on the first paint so background totals
+    // enrichment cannot appear to "repair" the selected gender later.
+    if (filterIdsSet.has(FILTER_MASON_MALE_ID) || filterIdsSet.has(FILTER_MASON_FEMALE_ID)) {
+      filterIdsSet.add(FILTER_MASON_MALE_ID);
+      filterIdsSet.add(FILTER_MASON_FEMALE_ID);
+    }
+    if (totalsLoaded) {
+      totalsByOwner.forEach((_count, ownerId) => {
+        if (ownerId === "mason") {
+          filterIdsSet.add(FILTER_MASON_MALE_ID);
+          filterIdsSet.add(FILTER_MASON_FEMALE_ID);
+        } else {
+          filterIdsSet.add(ownerId || FILTER_RANDOM_ID);
+        }
+      });
+    }
+
+    const defs = [{
+      id: FILTER_ALL_ID,
+      label: filterLabel(FILTER_ALL_ID, "All"),
+      discovered: list.length,
+      total: totalsLoaded ? totalAllCount : null
+    }, {
+      id: FILTER_VIDEOS_ID,
+      label: filterLabel(FILTER_VIDEOS_ID, "Videos"),
+      discovered: list.filter(isGalleryVideo).length,
+      total: totalsLoaded ? allAvailablePhotos.filter(isGalleryVideo).length : null
+    }];
+
+    const orderIndex = (id) => {
+      const idx = FILTER_ORDER.indexOf(id);
+      return idx >= 0 ? idx : 999;
+    };
+    const filterIds = Array.from(filterIdsSet).sort((a, b) => {
+      const ai = orderIndex(a);
+      const bi = orderIndex(b);
+      if (ai !== bi) return ai - bi;
+      const an = String(discoveredLabels.get(a) || filterLabel(a, totalLabelsByOwner.get(a) || "") || a).toLowerCase();
+      const bn = String(discoveredLabels.get(b) || filterLabel(b, totalLabelsByOwner.get(b) || "") || b).toLowerCase();
+      return an.localeCompare(bn);
+    });
+
+    filterIds.forEach((filterId) => {
+      const discovered = Number(discoveredByFilter.get(filterId) || 0) || 0;
+      const totalOwnerId = MASON_FILTER_IDS.has(filterId) ? "mason" : (filterId === FILTER_RANDOM_ID ? "" : filterId);
+      const total = totalsLoaded
+        ? (filterId === FILTER_RANDOM_ID ? discovered : (Number(totalsByOwner.get(totalOwnerId) || 0) || 0))
+        : null;
+      defs.push({
+        id: filterId,
+        label: discoveredLabels.get(filterId) || filterLabel(filterId, totalLabelsByOwner.get(totalOwnerId) || ""),
+        discovered,
+        total
+      });
+    });
+
+    return defs;
+  }
+
+  function formatProgress(discovered, total) {
+    const d = Math.max(0, Number(discovered || 0) || 0);
+    if (total == null) return `${d}`;
+    const t = Math.max(0, Number(total || 0) || 0);
+    return `${d}/${t}`;
+  }
+
+  function renderFilters() {
+    filters.innerHTML = "";
+    filterDefs.forEach((f) => {
+      const btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "filter-btn gallery-filter-btn" + (selectedFilter === f.id ? " is-active" : "");
+      btn.dataset.filter = f.id;
+      btn.dataset.filterId = f.id;
+      btn.dataset.galleryFilterId = f.id;
+      btn.setAttribute("role", "tab");
+      btn.setAttribute("aria-selected", selectedFilter === f.id ? "true" : "false");
+      btn.setAttribute(
+        "aria-label",
+        `${f.label}: ${Math.max(0, Number(f.discovered || 0) || 0)} discovered out of ${f.total == null ? "unknown" : Math.max(0, Number(f.total || 0) || 0)}`
+      );
+      const avatarOwnerId = MASON_FILTER_IDS.has(f.id) ? "mason" : canonicalOwnerId(f.id);
+      const specialAvatarPaths = {
+        neon_rose:"assets/pictures/OnlyFun/avatars/NeonRose.png",
+        velvet_sin:"assets/pictures/OnlyFun/avatars/Velvet.png",
+        alphamana:"assets/pictures/OnlyFun/avatars/alphamana_avatar.jpg",
+        static_muse:"assets/pictures/OnlyFun/avatars/Sexminator.jpg",
+        tutor:"assets/avatars/tutor.jpg"
+      };
+      const rawAvatar = f.id === FILTER_MASON_FEMALE_ID
+        ? "assets/avatars/female_mason.jpg"
+        : (f.id === FILTER_MASON_MALE_ID
+          ? "assets/avatars/male_mason.jpg"
+          : (specialAvatarPaths[f.id] || (["hailey","lena","evelyn","aiden"].includes(avatarOwnerId) ? `assets/avatars/${avatarOwnerId}.jpg` : "")));
+      if (avatarOwnerId && rawAvatar && f.id !== FILTER_ALL_ID && f.id !== FILTER_RANDOM_ID) {
+        const avatar = document.createElement("img");
+        avatar.className = "gallery-filter-avatar";
+        avatar.alt = "";
+        // Gallery filter tabs are a navigation aid for browsing already-
+        // unlocked photo categories, not the Messages/Conversation "the
+        // contact sent you a photo" reveal -- explicitly opts out of that
+        // progression gate rather than inheriting it by accident.
+        const logical = !MASON_FILTER_IDS.has(f.id) && window.ProtectedMediaResolver?.avatarPath
+          ? window.ProtectedMediaResolver.avatarPath(avatarOwnerId, rawAvatar, { skipProgressionGate: true })
+          : rawAvatar;
+        if (window.ProtectedMediaResolver?.applyImage) {
+          void window.ProtectedMediaResolver.applyImage(avatar, logical, {
+            assetType:"avatar", surface:"gallery_character_avatar", profileId:f.id
+          });
+        } else avatar.src = logical;
+        btn.appendChild(avatar);
+      }
+      const label = document.createElement("span");
+      label.textContent = `${f.label} (${formatProgress(f.discovered, f.total)})`;
+      btn.appendChild(label);
+      btn.onclick = () => {
+        if (selectedFilter === f.id) return;
+        selectedFilter = f.id;
+        close();
+        render();
+      };
+      filters.appendChild(btn);
+    });
+  }
+
+  function getFilterLabel(filterId) {
+    const def = filterDefs.find((f) => f.id === filterId);
+    return def ? def.label : "this character";
+  }
+
+  function getFilterDef(filterId) {
+    return filterDefs.find((f) => f.id === filterId) || null;
+  }
+
+  function galleryText(key, fallback, values = {}) {
+    return trUi(key, fallback).replace(/\{(\w+)\}/g, (match, key) => values[key] == null ? match : values[key]);
+  }
+
+  function hintName(id, fallback = "") {
+    if (!id) return "";
+    if (["lena", "hailey", "evelyn", "mason", "aiden", "tutor", "mc"].includes(id)) {
+      try {
+        const token = `{{name:${id}}}`, resolved = String(window.Game?.tpl?.(token) || "").trim();
+        if (resolved && resolved !== token) return resolved;
+      } catch {}
+    }
+    const safeFallback = /\{\{/.test(fallback) ? "" : fallback;
+    return resolveOwnerLabel(id, safeFallback || FILTER_LABELS[id] || prettyNameFromId(id));
+  }
+
+  function photoSlot(photo) {
+    return photoSlots.get(window.GalleryHints?.sourceKey?.(photo.__rawUrl || photo.url));
+  }
+
+  function photoLabel(photo) {
+    const slot = photoSlot(photo);
+    if (!slot) return String(photo.title || photo.label || "Gallery media");
+    const owner = slot.photo;
+    return galleryText("gallery.hints.photo", "Photo {number} · {name}", { number: slot.number, name: hintName(owner.__ownerId || owner.ownerId, owner.ownerName || "") });
+  }
+
+  function isGalleryVideo(photo) {
+    const type = String(photo?.mediaType || photo?.type || "").trim().toLowerCase();
+    if (type === "video" || type.startsWith("video/")) return true;
+    const url = String(photo?.__rawUrl || photo?.url || photo?.image || photo?.photo || "").trim().split(/[?#]/)[0];
+    return /\.(?:mp4|webm|ogg|ogv|mov|m4v)$/i.test(url);
+  }
+
+  function matchesCharacter(photo, filterId, registry = false) {
+    if (filterId === FILTER_ALL_ID) return true;
+    if (filterId === FILTER_VIDEOS_ID) return isGalleryVideo(photo);
+    const ids = photo.__galleryFilterIds || [photo.__ownerId || FILTER_RANDOM_ID];
+    return ids.includes(filterId) || (registry && MASON_FILTER_IDS.has(filterId) && ids.some(id => MASON_FILTER_IDS.has(id)));
+  }
+
+  function matchesRoute(photo) {
+    return window.GalleryHints?.matchesRoute?.(photo, selectedRoute) !== false;
+  }
+
+  function thumbnailOptionsForPhoto(photo) {
+    const p = (photo && typeof photo === "object") ? photo : {};
+    return {
+      alt: photoLabel(p),
+      type: p.mediaType || p.type || "",
+      fullSrc: p.url || "",
+      src: p.url || "",
+      url: p.url || "",
+      thumb: p.thumb || p.thumbnail || p.thumbnailSrc || "",
+      preview: p.preview || p.previewSrc || "",
+      poster: p.poster || "",
+      candidates: [
+        p.thumb || p.thumbnail || p.thumbnailSrc || "",
+        p.preview || p.previewSrc || "",
+        p.poster || "",
+        p.url || ""
+      ].filter(Boolean)
+    };
+  }
+
+  function displayPhotoForFilter(photo, filterId) {
+    const p = (photo && typeof photo === "object") ? photo : {};
+    const ownerId = String(p.__ownerId || p.ownerId || p.owner || p.characterId || p.contactId || "").trim();
+    const rawUrl = String(p.__rawUrl || p.url || p.image || p.photo || "").trim();
+    const isEntitlementProjection = String(p.src || "").toLowerCase().startsWith("gallery_full");
+    const url = MASON_FILTER_IDS.has(filterId) && isEntitlementProjection
+      ? resolveVariantGalleryUrlForFilter(rawUrl, "mason", filterId)
+      : resolveVariantGalleryUrl(rawUrl, ownerId);
+    return { ...p, url: url || p.url || rawUrl };
+  }
+
+  function render(){
+    if (!gallerySceneActive || !galleryBootstrapReady) return;
+    photos = load();
+    photos = window.GalleryHints?.projectDiscoveries?.(photos, window.GameStateEngine?.getGalleryState?.() || {}) || photos;
+    photoSlots = new Map(allAvailablePhotos.map((photo, index) => [window.GalleryHints?.sourceKey?.(photo.__rawUrl || photo.url), { number: index + 1, photo: withResolvedOwner(photo) }]));
+    if (unlockFullBtn) unlockFullBtn.hidden = hasFullGalleryUnlock();
+    filterDefs = buildFilterDefs(photos);
+    if (selectedRoute !== "all") {
+      const routePhotos = photos.filter(matchesRoute), routeRegistry = Array.from(photoSlots.values()).map(slot => slot.photo).filter(matchesRoute);
+      filterDefs = filterDefs.map(def => ({ ...def, discovered: routePhotos.filter(photo => matchesCharacter(photo, def.id)).length, total: routeRegistry.filter(photo => matchesCharacter(photo, def.id, true)).length }));
+    }
+    if (selectedFilter === "mason") selectedFilter = defaultMasonFilterId();
+    if (!filterDefs.some((f) => f.id === selectedFilter)) {
+      selectedFilter = FILTER_ALL_ID;
+    }
+    renderFilters();
+
+    visiblePhotos = photos.filter(p => matchesCharacter(p, selectedFilter) && matchesRoute(p)).map((p) => displayPhotoForFilter(p, selectedFilter));
+    visiblePhotos = window.GalleryHints?.sortPhotos?.(visiblePhotos, sortMode, allAvailablePhotos) || visiblePhotos;
+    routeNote.hidden = !["love", "ntr", "nts"].includes(selectedRoute);
+    sortNote.hidden = !["newest", "oldest"].includes(sortMode) || !visiblePhotos.some(photo => !window.GalleryHints?.discoveryTime?.(photo));
+    renderHints();
+
+    grid.innerHTML = "";
+
+    if (!visiblePhotos.length){
+      empty.hidden = false;
+      const def = getFilterDef(selectedFilter);
+      if (!photos.length) {
+        empty.textContent = "No photos yet. They will appear here automatically.";
+      } else if (selectedFilter === FILTER_ALL_ID) {
+        const progress = def ? formatProgress(def.discovered, def.total) : "0/0";
+        empty.textContent = `No photos unlocked yet (${progress}).`;
+      } else if (def && def.total != null && def.total > 0) {
+        empty.textContent = `No photos for ${getFilterLabel(selectedFilter)} yet (${formatProgress(def.discovered, def.total)}).`;
+      } else {
+        empty.textContent = `No photos for ${getFilterLabel(selectedFilter)} yet.`;
+      }
+      return;
+    }
+    empty.hidden = true;
+    empty.textContent = "No photos yet. They will appear here automatically.";
+
+    visiblePhotos.forEach((p, idx) => {
+      const card = document.createElement("div");
+      card.className = "card";
+      card.dataset.slot = String(photoSlot(p)?.number || "");
+      card.setAttribute("role", "button");
+      card.tabIndex = 0;
+      card.setAttribute("aria-label", photoLabel(p));
+      const mount = document.createElement("div");
+      mount.className = "mediaThumbMount";
+      mount.dataset.mediaSrc = p.url;
+      card.appendChild(mount);
+      const label = document.createElement("span");
+      label.className = "gallery-photo-label";
+      label.textContent = photoLabel(p);
+      card.appendChild(label);
+      grid.appendChild(card);
+      if (window.MediaViewer && typeof window.MediaViewer.mountThumbnail === "function") {
+        window.MediaViewer.mountThumbnail(mount, p.url, { ...thumbnailOptionsForPhoto(p), surfaceOwner: "pictures", loading: visiblePhotos.length <= 20 ? "eager" : "lazy", skipPrepared: true, resolveRuntimeAsset: true });
+      } else {
+        const img = document.createElement("img");
+        img.loading = "lazy";
+        img.decoding = "async";
+        const thumb = String(p.thumb || p.thumbnail || p.thumbnailSrc || p.preview || p.previewSrc || p.poster || "").trim();
+        if (thumb) {
+          img.onerror = () => {
+            img.onerror = null;
+            img.src = p.url;
+          };
+        }
+        img.src = thumb || p.url;
+        img.alt = photoLabel(p);
+        mount.appendChild(img);
+      }
+      card.onclick = () => openIndex(idx);
+      card.onkeydown = event => {
+        if (event.key === "Enter" || event.key === " ") {
+          event.preventDefault();
+          void openIndex(idx);
+        }
+      };
+    });
+  }
+
+  function renderHints() {
+    if (hintsPanel.hidden) return;
+    hintsList.replaceChildren();
+    const service = window.GalleryHints;
+    const text = galleryText;
+    // Only metadata is rendered. Never pass a locked asset to a media
+    // resolver, thumbnail, image element, or acquisition API here.
+    const owned = new Set(photos.map(photo => service?.sourceKey?.(photo.__rawUrl || photo.url)));
+    const missing = hasFullGalleryUnlock() ? [] : allAvailablePhotos.map((photo, index) => ({ photo: withResolvedOwner(photo), index })).filter(({ photo }) => {
+      if (owned.has(service?.sourceKey?.(photo.__rawUrl || photo.url))) return false;
+      // Eligibility declares one shared Mason slot for its presentation
+      // variants. Both filters use that slot's authored prerequisites.
+      return matchesCharacter(photo, selectedFilter, true) && matchesRoute(photo);
+    });
+    hintsCount.textContent = missing.length ? text("gallery.hints.count", "{count} missing photos in this filter", { count: missing.length }) : text("gallery.hints.complete", "All photos in this filter are discovered.");
+    missing.forEach(({ photo, index }) => {
+      const card = document.createElement("article");
+      card.className = "gallery-hint";
+      card.dataset.slot = String(index + 1);
+      const title = document.createElement("h3");
+      title.className = "gallery-hint-title";
+      title.textContent = photoLabel(photo);
+      card.appendChild(title);
+      const sources = service?.sources?.(photo, selectedRoute) || [];
+      if (!sources.length) {
+        const line = document.createElement("p");
+        line.textContent = text("gallery.hints.continue", "Continue this character's story and check their received posts.");
+        card.appendChild(line);
+      }
+      sources.forEach((source, sourceIndex) => {
+        if (sourceIndex > 0) {
+          const alternative = document.createElement("p");
+          alternative.className = "gallery-hint-alternative";
+          alternative.textContent = text("gallery.hints.or", "or");
+          card.appendChild(alternative);
+        }
+        const block = document.createElement("div");
+        block.className = "gallery-hint-source";
+        service.describe(source, { translate: trUi, name: hintName }).forEach((value, lineIndex) => {
+          const line = document.createElement("p");
+          if (lineIndex > 0) line.className = "gallery-hint-choice";
+          line.textContent = value;
+          block.appendChild(line);
+        });
+        card.appendChild(block);
+      });
+      hintsList.appendChild(card);
+    });
+  }
+
+  function updateNav(){
+    const ok = visiblePhotos.length > 1;
+    prevBtn.disabled = !ok;
+    nextBtn.disabled = !ok;
+  }
+
+  async function openIndex(idx){
+    if (!visiblePhotos.length) return;
+    currentIndex = ((idx % visiblePhotos.length) + visiblePhotos.length) % visiblePhotos.length;
+    const currentPhoto = visiblePhotos[currentIndex] || {};
+    if (isHakEvidenceLocked(currentPhoto)) {
+      try { window.showToast?.(lockedEvidenceMessage(evidenceKindForGalleryPhoto(currentPhoto))); } catch {}
+      close();
+      render();
+      return;
+    }
+    try {
+      const engine=window.GameStateEngine,state=engine?.getState?.(),mediaId=String(currentPhoto.mediaId||currentPhoto.id||"").trim();
+      if(mediaId&&state?.gallery?.owned?.[mediaId]&&!state.gallery.viewed?.[mediaId])engine.dispatch({type:"MARK_GALLERY_MEDIA_VIEWED",commandId:`gallery-view:${mediaId}`,expectedRevision:state.revision,payload:{mediaId}});
+    } catch {}
+    const currentUrl = visiblePhotos[currentIndex]?.url || "";
+    const mediaItems = visiblePhotos.map((item) => ({
+      src: item?.url || "",
+      title: photoLabel(item),
+      type: item?.mediaType || item?.type || "",
+      ...thumbnailOptionsForPhoto(item)
+    })).filter((item) => item.src);
+    if (window.MediaViewer && typeof window.MediaViewer.open === "function") {
+      try {
+        const explicitType = String(currentPhoto.mediaType || currentPhoto.type || "").trim();
+        let resolvedType = explicitType;
+        if (!resolvedType && typeof window.MediaViewer.detectMediaType === "function") {
+          const info = await window.MediaViewer.detectMediaType(currentUrl);
+          resolvedType = info && info.type ? info.type : "";
+        }
+        const opened = window.MediaViewer.open(currentUrl, {
+          ...thumbnailOptionsForPhoto(currentPhoto),
+          title: photoLabel(currentPhoto),
+          type: resolvedType,
+          items: mediaItems,
+          index: currentIndex
+        });
+        if (opened) return;
+      } catch {}
+    }
+    const fallbackUrl = String(visiblePhotos[currentIndex]?.url || "").trim();
+    if (fallbackUrl) lbImg.src = fallbackUrl;
+    else lbImg.removeAttribute("src");
+    lbImg.alt = photoLabel(currentPhoto);
+    lb.classList.add("show");
+    lb.setAttribute("aria-hidden", "false");
+    updateNav();
+  }
+
+  function go(delta){
+    if (!visiblePhotos.length) return;
+    openIndex(currentIndex + delta);
+  }
+
+  function close(){
+    lb.classList.remove("show");
+    lb.setAttribute("aria-hidden", "true");
+    lbImg.removeAttribute("src");
+    currentIndex = -1;
+  }
+
+  closeBtn.onclick = (e) => { e.stopPropagation(); close(); };
+
+  /* ✅ Click the photo closes it */
+  lbImg.onclick = (e) => { e.stopPropagation(); close(); };
+
+  /* ✅ Click background closes */
+  lb.onclick = (e) => { if (e.target === lb) close(); };
+
+  /* ✅ Arrows */
+  prevBtn.onclick = (e) => { e.stopPropagation(); go(-1); };
+  nextBtn.onclick = (e) => { e.stopPropagation(); go(+1); };
+
+  /* ✅ Keyboard */
+  galleryOn(window, "keydown", (e) => {
+    if (!lb.classList.contains("show")) return;
+    if (e.key === "Escape") close();
+    if (e.key === "ArrowLeft") go(-1);
+    if (e.key === "ArrowRight") go(+1);
+  });
+
+  function scheduleGalleryRender() {
+    if (!gallerySceneActive || !galleryBootstrapReady || galleryRenderFrame) return;
+    galleryRenderFrame = requestAnimationFrame(() => {
+      galleryRenderFrame = 0;
+      if (gallerySceneActive && galleryBootstrapReady) render();
+    });
+  }
+
+  galleryOn(window, "gallery:add", scheduleGalleryRender);
+  sortSelect.addEventListener("change", () => {
+    sortMode = window.GalleryHints?.setSort?.(sortSelect.value) || sortSelect.value;
+    close();
+    render();
+  });
+  routeSelect.addEventListener("change", () => {
+    selectedRoute = routeSelect.value;
+    close();
+    render();
+  });
+  hintsToggle.addEventListener("click", () => {
+    hintsPanel.hidden = !hintsPanel.hidden;
+    hintsToggle.setAttribute("aria-expanded", String(!hintsPanel.hidden));
+    renderHints();
+  });
+  galleryOn(window, "gallery:full-unlock-changed", render);
+  unlockFullBtn?.addEventListener("click", () => {
+    try {
+      const opened = window.Game?.openPatreonCodeModal?.({
+        title: "Gallery Unlock",
+        subtitle: "Enter your gallery unlock code to unlock every available gallery image on this device.",
+        context: "gallery",
+        source: "gallery",
+        onSuccess: () => {
+          void ensureTotalsLoaded().then(render);
+        }
+      });
+      if (!opened) window.showToast?.("Patreon code unavailable.");
+    } catch {
+      try { window.showToast?.("Patreon code unavailable."); } catch {}
+    }
+  });
+  galleryOn(window, "hak:skillsChanged", scheduleGalleryRender);
+  galleryOn(document, "scene:mounted", e => {
+    const sceneName = String(e.detail?.scene || e.detail?.name || "").toLowerCase();
+    if (sceneName === "pictures") {
+      void bootstrapGallery();
+    }
+  });
+
+  function revealAuthoritativeGallery() {
+    if (!gallerySceneActive) return;
+    filters.hidden = false;
+    grid.hidden = false;
+  }
+
+  function bootstrapGallery() {
+    if (galleryBootstrapPromise) return galleryBootstrapPromise;
+    // The shipped eligibility registry is the small semantic authority for
+    // counts, slots, ownership and Mason variants. It must be loaded before
+    // the first meaningful paint; rendering once with totalsLoaded=false and
+    // again after reconciliation produced two visibly different Galleries.
+    // Thumbnail decoding remains progressive/lazy and is not awaited here.
+    galleryBootstrapPromise = (async () => {
+      const startedAt = performance.now();
+      await window.Game?.reconcileCanonicalHakEvidenceGallery?.();
+      if (!gallerySceneActive) return false;
+      await window.Game?.reconcileCanonicalStoryMediaGallery?.();
+      await window.MeetAndGreetSystem?.reconcileGalleryPhotos?.();
+      if (!gallerySceneActive) return false;
+      reconcileDiscoveredOnlyfunGalleryMedia();
+      if (!gallerySceneActive) return false;
+      await ensureTotalsLoaded();
+      if (!gallerySceneActive) return false;
+      galleryBootstrapReady = true;
+      render();
+      revealAuthoritativeGallery();
+      const firstSemanticAt = performance.now();
+      // Earned media is persisted at commit time. The full completed-story
+      // repair scan is an explicit migration/audit tool, not Gallery startup
+      // work: its GalleryStore.upsert events caused a second semantic state
+      // several seconds after first paint on progressed profiles.
+      window.__gallerySemanticBootstrapV1 = { startedAt, firstSemanticAt, semanticReadyMs: firstSemanticAt - startedAt, registryItems: allAvailablePhotos.length, reconciliation: "committed-media-events", settledAt: firstSemanticAt };
+      return true;
+    })().catch((err) => {
+      if (!gallerySceneActive) return false;
+      try { console.warn("[gallery] authoritative bootstrap failed", err); } catch {}
+      galleryBootstrapReady = true;
+      render();
+      revealAuthoritativeGallery();
+      return false;
+    });
+    return galleryBootstrapPromise;
+  }
+
+  window.__gallerySceneCleanup = function () {
+    gallerySceneActive = false;
+    if (galleryRenderFrame) cancelAnimationFrame(galleryRenderFrame);
+    galleryRenderFrame = 0;
+    try { close(); } catch {}
+    while (GALLERY_CLEANUPS.length) {
+      try { GALLERY_CLEANUPS.pop()(); } catch {}
+    }
+    try { window.Game?.closeMediaViewer?.(); } catch {}
+  };
+
+  void bootstrapGallery();
+})();
+</script>

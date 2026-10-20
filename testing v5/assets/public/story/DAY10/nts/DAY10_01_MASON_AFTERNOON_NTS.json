@@ -1,0 +1,50 @@
+{
+  "onceKey": "d10_04_mason_afternoon_nts_v1",
+  "contactId": "mason",
+  "requireOnceKey": "d10_03_mason_morning_nts_v1",
+  "onCompleteStartStory": "story/DAY10/nts/DAY10_02_MASON_EVENING_NTS.json",
+  "route": "nts",
+  "routeLock": "route_mason_locked_v1:nts",
+  "steps": [
+    {"type":"if","condition":"choice:d9_mason_nts_coach_identity_v1:chris","then":[
+      {"type":"message","delay":850,"from":"player","text":"Chris will be there in an hour"},
+      {"type":"message","delay":850,"from":"mason","text":"Good thing I just finished work"},
+      {"type":"message","delay":850,"from":"player","text":"I'm not stupid"},
+      {"type":"message","delay":850,"from":"player","text":"I booked the session right after you got home on purpose"},
+      {"type":"message","delay":850,"from":"mason","text":"Wow"},
+      {"type":"message","delay":850,"from":"mason","text":"You managed to use your brain while lying in bed all day"},
+      {"type":"message","delay":850,"from":"player","text":"Careful or I'll move it to six in the morning"},
+      {"type":"message","delay":850,"from":"mason","text":"Alright alright"},
+      {"type":"message","delay":850,"from":"mason","text":"Thanks"},
+      {"type":"note","text":"1 H 15 LATER"},
+      {"type":"message","delay":850,"from":"mason","text":"Chris is fucking insane"},
+      {"type":"message","delay":850,"from":"player","text":"Already crying? 😂"},
+      {"type":"message","delay":850,"from":"mason","text":"Shut up"},
+      {"type":"image","image":"assets/pictures/Conversation/male_mason/mason_training_morning_3.jpg"},
+      {"type":"message","delay":850,"from":"mason","text":"I'm already exhausted and we only warmed up"},
+      {"type":"message","delay":850,"from":"player","text":"Looks like the muscles aren't arriving as fast as you thought"},
+      {"type":"message","delay":850,"from":"mason","text":"At least I can still walk"},
+      {"type":"message","delay":850,"from":"mason","text":"Can't say the same for you"}
+    ],"else":[
+      {"type":"message","delay":850,"from":"player","text":"{{name:aiden}} will be there in an hour"},
+      {"type":"message","delay":850,"from":"mason","text":"Good thing I just finished work"},
+      {"type":"message","delay":850,"from":"player","text":"I'm not stupid"},
+      {"type":"message","delay":850,"from":"player","text":"I booked the session right after you got home on purpose"},
+      {"type":"message","delay":850,"from":"mason","text":"Of course you planned everything with your best friend"},
+      {"type":"message","delay":850,"from":"mason","text":"You two probably spent all morning talking about me"},
+      {"type":"message","delay":850,"from":"player","text":"You're not interesting enough for that"},
+      {"type":"message","delay":850,"from":"mason","text":"Sure"},
+      {"type":"message","delay":850,"from":"mason","text":"Thanks anyway"},
+      {"type":"note","text":"1 H 15 LATER"},
+      {"type":"message","delay":850,"from":"mason","text":"{{name:aiden}} is fucking insane"},
+      {"type":"message","delay":850,"from":"player","text":"Already crying? 😂"},
+      {"type":"message","delay":850,"from":"mason","text":"Shut up"},
+      {"type":"image","image":"assets/pictures/Conversation/male_mason/mason_training_morning_2.jpg"},
+      {"type":"message","delay":850,"from":"mason","text":"I'm already exhausted and we only warmed up"},
+      {"type":"message","delay":850,"from":"player","text":"Looks like the muscles aren't arriving as fast as you thought"},
+      {"type":"message","delay":850,"from":"mason","text":"At least {{name:aiden}} says I have potential"},
+      {"type":"message","delay":850,"from":"mason","text":"All you have is two useless legs"}
+    ]},
+    {"type":"start_story","goHome":true,"startStory":"story/DAY10/nts/DAY10_02_MASON_EVENING_NTS.json","startDelayMs":200}
+  ]
+}

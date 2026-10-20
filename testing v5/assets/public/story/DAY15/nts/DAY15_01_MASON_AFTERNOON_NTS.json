@@ -1,0 +1,42 @@
+{
+  "onceKey": "d15_04_mason_afternoon_nts_v1",
+  "contactId": "mason",
+  "requireOnceKey": "d15_03_mason_morning_nts_v1",
+  "onCompleteStartStory": "story/DAY15/nts/DAY15_02_MASON_EVENING_NTS.json",
+  "route": "nts",
+  "routeLock": "route_mason_locked_v1:nts",
+  "steps": [
+    {"type":"if","condition":"choice:d9_mason_nts_coach_identity_v1:chris","then":[
+      {"type":"notify","delay":1200,"fromId":"mason","fromName":"{{name:mason}}","avatar":"assets/avatars/male_mason.jpg","text":"A swimming pool? Seriously?","target":"conversation"},
+      {"type":"message","delay":850,"from":"player","text":"A little water will do you good"},
+      {"type":"message","delay":850,"from":"mason","text":"You do remember I can barely swim, right?"},
+      {"type":"message","delay":850,"from":"player","text":"Don't worry"},
+      {"type":"message","delay":850,"from":"player","text":"Chris is a really good swimmer"},
+      {"type":"image","image":"assets/pictures/Conversation/male_mason/mason_ass_swimsuit.jpg"},
+      {"type":"message","delay":850,"from":"mason","text":"And what the fuck is this swimsuit you prepared for me?"},
+      {"type":"message","delay":850,"from":"player","text":"Unfortunately, that's the only one I could find"},
+      {"type":"message","delay":850,"from":"mason","text":"I'm going to haunt you forever for this"},
+      {"type":"message","delay":850,"from":"player","text":"And with that great ass of yours, you'll float no matter what so don't worry"},
+      {"type":"message","delay":850,"from":"mason","text":"You really had to bring that up again"},
+      {"type":"message","delay":850,"from":"mason","text":"I'm going to kill you"},
+      {"type":"message","delay":850,"from":"player","text":"Good luck catching me from the deep end 😂"},
+      {"type":"message","delay":850,"from":"player","text":"Have fun"}
+    ],"else":[
+      {"type":"notify","delay":1200,"fromId":"mason","fromName":"{{name:mason}}","avatar":"assets/avatars/male_mason.jpg","text":"A swimming pool? Seriously?","target":"conversation"},
+      {"type":"message","delay":850,"from":"player","text":"A little water will do you good"},
+      {"type":"message","delay":850,"from":"mason","text":"You do remember I can barely swim, right?"},
+      {"type":"message","delay":850,"from":"player","text":"Don't worry"},
+      {"type":"message","delay":850,"from":"player","text":"{{name:aiden}} is a really good swimmer"},
+      {"type":"image","image":"assets/pictures/Conversation/male_mason/mason_ass_swimsuit.jpg"},
+      {"type":"message","delay":850,"from":"mason","text":"And what the fuck is this swimsuit you prepared for me?"},
+      {"type":"message","delay":850,"from":"player","text":"Unfortunately, that's the only one I could find"},
+      {"type":"message","delay":850,"from":"mason","text":"I'm going to haunt you forever for this"},
+      {"type":"message","delay":850,"from":"player","text":"And with that great ass of yours, you'll float no matter what so don't worry"},
+      {"type":"message","delay":850,"from":"mason","text":"You and your best friend are never letting that go, are you?"},
+      {"type":"message","delay":850,"from":"mason","text":"I'm going to kill you"},
+      {"type":"message","delay":850,"from":"player","text":"Good luck catching me from the deep end 😂"},
+      {"type":"message","delay":850,"from":"player","text":"Have fun"}
+    ]},
+    {"type":"start_story","goHome":true,"startStory":"story/DAY15/nts/DAY15_02_MASON_EVENING_NTS.json","startDelayMs":200}
+  ]
+}

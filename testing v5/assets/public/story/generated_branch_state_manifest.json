@@ -1,0 +1,531 @@
+{
+  "generatedAt": "2026-10-15T11:24:43.662Z",
+  "version": 1,
+  "dependencies": [
+    {
+      "id": "d8_05_hailey_outfit_choice",
+      "kind": "choice",
+      "createdDay": 8,
+      "character": "hailey",
+      "routes": [
+        "love",
+        "ntr",
+        "nts"
+      ],
+      "values": [
+        "cute",
+        "bold",
+        "older"
+      ],
+      "canonicalDefault": "older",
+      "defaultRationale": "The original dialogue's explicit final branch is the third outfit (older/dramatic). Direct entries use that documented branch unless historicalChoices supplies the player's value.",
+      "storyOnceKey": "d8_05_hailey_shopping_advice_v1",
+      "sourceStory": "story/DAY8/DAY8_06_HAILEY_SHOPPING_ADVICE.json",
+      "storageKey": "choices_log_v1",
+      "ledgerImpact": {},
+      "routeLockImpact": false,
+      "characterActiveImpact": false,
+      "genderImpact": false,
+      "premiumImpact": false,
+      "dependsWhen": {
+        "minDay": 9,
+        "activeCharacter": "hailey"
+      },
+      "resolution": {
+        "type": "configured_or_default"
+      },
+      "restore": {
+        "start_from": true,
+        "new_update": true,
+        "timeline": "preserve",
+        "save_load": "preserve"
+      },
+      "sourceStoryId": "story/DAY8/DAY8_06_HAILEY_SHOPPING_ADVICE.json",
+      "sourceStepKey": "24",
+      "laterJson": [
+        "story/DAY9/love/DAY9_09_HAILEY_EVENING_LOVE.json",
+        "story/DAY9/ntr/DAY9_10_HAILEY_EVENING_NTR.json"
+      ],
+      "laterMedia": [
+        "assets/pictures/Conversation/hailey_bold_outfit.jpg",
+        "assets/pictures/Conversation/hailey_cute_outfit.jpg",
+        "assets/pictures/Conversation/hailey_dramatic_outfit.jpg"
+      ],
+      "laterNotifications": [
+        "story/DAY9/love/DAY9_09_HAILEY_EVENING_LOVE.json",
+        "story/DAY9/ntr/DAY9_10_HAILEY_EVENING_NTR.json"
+      ],
+      "laterHakEvidence": []
+    },
+    {
+      "id": "d9_mason_nts_coach_identity_v1",
+      "kind": "choice",
+      "createdDay": 9,
+      "character": "mason",
+      "routes": [
+        "nts"
+      ],
+      "values": [
+        "aiden",
+        "chris"
+      ],
+      "storyOnceKey": "d9_07_mason_afternoon_nts_v1",
+      "sourceStory": "story/DAY9/nts/DAY9_06_MASON_AFTERNOON_NTS.json",
+      "storageKey": "choices_log_v1",
+      "ledgerImpact": {
+        "nts": 1
+      },
+      "routeLockImpact": false,
+      "characterActiveImpact": false,
+      "genderImpact": false,
+      "premiumImpact": false,
+      "dependsWhen": {
+        "minDay": 10,
+        "activeCharacter": "mason",
+        "route": "nts"
+      },
+      "resolution": {
+        "type": "aiden_active",
+        "trueValue": "aiden",
+        "falseValue": "chris"
+      },
+      "restore": {
+        "start_from": true,
+        "new_update": true,
+        "timeline": "preserve",
+        "save_load": "preserve"
+      },
+      "sourceStoryId": "story/DAY9/nts/DAY9_06_MASON_AFTERNOON_NTS.json",
+      "sourceStepKey": "3",
+      "laterJson": [
+        "story/DAY10/nts/DAY10_00_MASON_MORNING_NTS.json",
+        "story/DAY10/nts/DAY10_01_MASON_AFTERNOON_NTS.json",
+        "story/DAY12/nts/DAY12_00_MASON_MORNING_NTS.json",
+        "story/DAY13/nts/DAY13_00_MASON_MORNING_NTS.json",
+        "story/DAY13/nts/DAY13_01_MASON_AFTERNOON_NTS.json",
+        "story/DAY14/nts/DAY14_00_MASON_MORNING_NTS.json",
+        "story/DAY14/nts/DAY14_01_MASON_AFTERNOON_NTS.json",
+        "story/DAY14/nts/DAY14_02_MASON_EVENING_NTS.json",
+        "story/DAY15/nts/DAY15_00_MASON_MORNING_NTS.json",
+        "story/DAY15/nts/DAY15_01_MASON_AFTERNOON_NTS.json",
+        "story/DAY15/nts/DAY15_02_MASON_EVENING_NTS.json"
+      ],
+      "laterMedia": [
+        "assets/pictures/Conversation/male_mason/mason_ass_swimsuit.jpg",
+        "assets/pictures/Conversation/male_mason/mason_doing_crunch.jpg",
+        "assets/pictures/Conversation/male_mason/mason_drinking.jpg",
+        "assets/pictures/Conversation/male_mason/mason_drinking_aiden.jpg",
+        "assets/pictures/Conversation/male_mason/mason_gropping_pool.jpg",
+        "assets/pictures/Conversation/male_mason/mason_gropping_pool_aiden.jpg",
+        "assets/pictures/Conversation/male_mason/mason_outside_run.jpg",
+        "assets/pictures/Conversation/male_mason/mason_training_morning_2.jpg",
+        "assets/pictures/Conversation/male_mason/mason_training_morning_3.jpg",
+        "assets/pictures/Conversation/male_mason/mason_training_morning_4.jpg",
+        "assets/pictures/evidence/mason_male/mason_ass_slapped.jpg"
+      ],
+      "laterNotifications": [
+        "story/DAY10/nts/DAY10_00_MASON_MORNING_NTS.json",
+        "story/DAY13/nts/DAY13_01_MASON_AFTERNOON_NTS.json",
+        "story/DAY14/nts/DAY14_00_MASON_MORNING_NTS.json",
+        "story/DAY14/nts/DAY14_01_MASON_AFTERNOON_NTS.json",
+        "story/DAY14/nts/DAY14_02_MASON_EVENING_NTS.json",
+        "story/DAY15/nts/DAY15_01_MASON_AFTERNOON_NTS.json"
+      ],
+      "laterHakEvidence": [
+        "story/DAY14/nts/DAY14_02_MASON_EVENING_NTS.json",
+        "story/DAY15/nts/DAY15_02_MASON_EVENING_NTS.json"
+      ]
+    },
+    {
+      "id": "d14_mason_day15_activity_choice",
+      "kind": "choice",
+      "createdDay": 14,
+      "character": "mason",
+      "routes": [
+        "love"
+      ],
+      "values": [
+        "pool",
+        "yoga"
+      ],
+      "canonicalDefault": "yoga",
+      "defaultRationale": "The original dialogue's explicit else branch is yoga. Direct entries use this documented branch unless historicalChoices supplies the player's value.",
+      "storyOnceKey": "d14_05_mason_afternoon_love_v1",
+      "sourceStory": "story/DAY14/love/DAY14_01_MASON_AFTERNOON_LOVE.json",
+      "storageKey": "choices_log_v1",
+      "ledgerImpact": {
+        "love": 1
+      },
+      "routeLockImpact": false,
+      "characterActiveImpact": false,
+      "genderImpact": false,
+      "premiumImpact": false,
+      "dependsWhen": {
+        "minDay": 15,
+        "activeCharacter": "mason",
+        "route": "love"
+      },
+      "resolution": {
+        "type": "configured_or_default"
+      },
+      "restore": {
+        "start_from": true,
+        "new_update": false,
+        "timeline": "preserve",
+        "save_load": "preserve"
+      },
+      "sourceStoryId": "story/DAY14/love/DAY14_01_MASON_AFTERNOON_LOVE.json",
+      "sourceStepKey": "16",
+      "laterJson": [
+        "story/DAY15/love/DAY15_00_MASON_MORNING_LOVE.json",
+        "story/DAY15/love/DAY15_01_MASON_AFTERNOON_LOVE.json"
+      ],
+      "laterMedia": [
+        "assets/pictures/Conversation/male_mason/mason_jump_fail.jpg",
+        "assets/pictures/Conversation/male_mason/mason_yoga.jpg"
+      ],
+      "laterNotifications": [
+        "story/DAY15/love/DAY15_01_MASON_AFTERNOON_LOVE.json"
+      ],
+      "laterHakEvidence": []
+    },
+    {
+      "kind": "choice",
+      "storageKey": "choices_log_v1",
+      "routeLockImpact": false,
+      "characterActiveImpact": false,
+      "genderImpact": false,
+      "premiumImpact": false,
+      "defaultRationale": "Direct entries use the first authored outfit unless an explicit historical choice is supplied.",
+      "id": "d2_lena_outfit_choice_v1",
+      "createdDay": 2,
+      "character": "lena",
+      "routes": [],
+      "values": [
+        "outfit1",
+        "outfit2",
+        "outfit3"
+      ],
+      "canonicalDefault": "outfit1",
+      "storyOnceKey": "d2_12_lena_night_v1",
+      "sourceStory": "story/DAY2/DAY2_12_LENA_NIGHT.json",
+      "sourceStoryId": "story/DAY2/DAY2_12_LENA_NIGHT.json",
+      "sourceStepKey": "39",
+      "ledgerImpact": {},
+      "dependsWhen": {
+        "minDay": 3,
+        "activeCharacter": "lena"
+      },
+      "resolution": {
+        "type": "configured_or_default"
+      },
+      "restore": {
+        "start_from": true,
+        "new_update": true,
+        "timeline": "preserve",
+        "save_load": "preserve"
+      },
+      "laterJson": [
+        "story/DAY3/DAY3_01_LENA_TICKETS.json"
+      ],
+      "laterMedia": [
+        "assets/pictures/Conversation/lena_outfit1.jpg",
+        "assets/pictures/Conversation/lena_outfit2.jpg",
+        "assets/pictures/Conversation/lena_outfit3.jpg"
+      ],
+      "laterNotifications": [
+        "story/DAY3/DAY3_01_LENA_TICKETS.json"
+      ],
+      "laterHakEvidence": []
+    },
+    {
+      "kind": "choice",
+      "storageKey": "choices_log_v1",
+      "routeLockImpact": false,
+      "characterActiveImpact": false,
+      "genderImpact": false,
+      "premiumImpact": false,
+      "defaultRationale": "Direct entries use the first authored disclosure branch unless an explicit historical choice is supplied.",
+      "id": "d14_nts_want_to_know_choice",
+      "createdDay": 14,
+      "character": "lena",
+      "routes": [
+        "nts"
+      ],
+      "values": [
+        "know_and_receive",
+        "know_only",
+        "not_know_right_away"
+      ],
+      "canonicalDefault": "know_and_receive",
+      "storyOnceKey": "d14_03_lena_night_nts_v1",
+      "sourceStory": "story/DAY14/nts/DAY14_03_LENA_NIGHT.NTS.json",
+      "sourceStoryId": "story/DAY14/nts/DAY14_03_LENA_NIGHT.NTS.json",
+      "sourceStepKey": "38",
+      "ledgerImpact": {
+        "nts": 2
+      },
+      "ledgerImpactByValue": {
+        "know_and_receive": {
+          "nts": 2
+        },
+        "know_only": {
+          "nts": 1
+        },
+        "not_know_right_away": {
+          "nts": 2
+        }
+      },
+      "dependsWhen": {
+        "minDay": 15,
+        "activeCharacter": "lena",
+        "route": "nts"
+      },
+      "resolution": {
+        "type": "configured_or_default"
+      },
+      "restore": {
+        "start_from": true,
+        "new_update": true,
+        "timeline": "preserve",
+        "save_load": "preserve"
+      },
+      "laterJson": [
+        "story/DAY16/nts/DAY16_02_LENA_EVENING_NTS.json",
+        "story/DAY17/nts/DAY17_01_LENA_AFTERNOON_NTS.json",
+        "story/DAY17/nts/DAY17_02_LENA_EVENING_NTS.json",
+        "story/DAY18/nts/DAY18_00_LENA_MORNING_NTS.json",
+        "story/DAY18/nts/DAY18_01_LENA_AFTERNOON_NTS.json",
+        "story/DAY18/nts/DAY18_02_LENA_EVENING_NTS.json",
+        "story/DAY19/nts/DAY19_01_LENA_EVENING_NTS.json",
+        "story/DAY19/nts/DAY19_02_LENA_NIGHT_NTS.json",
+        "story/DAY20/nts/DAY20_01_LENA_EVENING_NTS.json"
+      ],
+      "laterMedia": [],
+      "laterNotifications": [
+        "story/DAY16/nts/DAY16_02_LENA_EVENING_NTS.json",
+        "story/DAY17/nts/DAY17_01_LENA_AFTERNOON_NTS.json",
+        "story/DAY17/nts/DAY17_02_LENA_EVENING_NTS.json",
+        "story/DAY18/nts/DAY18_00_LENA_MORNING_NTS.json",
+        "story/DAY18/nts/DAY18_01_LENA_AFTERNOON_NTS.json",
+        "story/DAY18/nts/DAY18_02_LENA_EVENING_NTS.json",
+        "story/DAY19/nts/DAY19_01_LENA_EVENING_NTS.json",
+        "story/DAY19/nts/DAY19_02_LENA_NIGHT_NTS.json",
+        "story/DAY20/nts/DAY20_01_LENA_EVENING_NTS.json"
+      ],
+      "laterHakEvidence": [
+        "story/DAY17/nts/DAY17_01_LENA_AFTERNOON_NTS.json",
+        "story/DAY18/nts/DAY18_01_LENA_AFTERNOON_NTS.json",
+        "story/DAY19/nts/DAY19_01_LENA_EVENING_NTS.json",
+        "story/DAY19/nts/DAY19_02_LENA_NIGHT_NTS.json",
+        "story/DAY20/nts/DAY20_01_LENA_EVENING_NTS.json"
+      ]
+    },
+    {
+      "kind": "choice",
+      "storageKey": "choices_log_v1",
+      "routeLockImpact": false,
+      "characterActiveImpact": false,
+      "genderImpact": false,
+      "premiumImpact": false,
+      "defaultRationale": "Direct entries use the authored random-guy branch, which remains valid when Aiden is inactive, unless an explicit historical choice is supplied.",
+      "id": "d15_nts_target_choice",
+      "createdDay": 15,
+      "character": "lena",
+      "routes": [
+        "nts"
+      ],
+      "values": [
+        "random_guy",
+        "aiden"
+      ],
+      "canonicalDefault": "random_guy",
+      "storyOnceKey": "d15_01_lena_afternoon_nts_v1",
+      "sourceStory": "story/DAY15/nts/DAY15_02_LENA_EVENING_NTS.json",
+      "sourceStoryId": "story/DAY15/nts/DAY15_02_LENA_EVENING_NTS.json",
+      "sourceStepKey": "44",
+      "ledgerImpact": {
+        "nts": 2
+      },
+      "dependsWhen": {
+        "minDay": 16,
+        "activeCharacter": "lena",
+        "route": "nts"
+      },
+      "resolution": {
+        "type": "configured_or_default"
+      },
+      "restore": {
+        "start_from": true,
+        "new_update": true,
+        "timeline": "preserve",
+        "save_load": "preserve"
+      },
+      "laterJson": [
+        "story/DAY16/nts/DAY16_01_LENA_AFTERNOON_NTS.json",
+        "story/DAY16/nts/DAY16_02_LENA_EVENING_NTS.json",
+        "story/DAY17/nts/DAY17_00_LENA_MORNING_NTS.json",
+        "story/DAY17/nts/DAY17_01_LENA_AFTERNOON_NTS.json",
+        "story/DAY17/nts/DAY17_02_LENA_EVENING_NTS.json",
+        "story/DAY18/nts/DAY18_00_LENA_MORNING_NTS.json",
+        "story/DAY18/nts/DAY18_01_LENA_AFTERNOON_NTS.json",
+        "story/DAY18/nts/DAY18_02_LENA_EVENING_NTS.json",
+        "story/DAY19/nts/DAY19_00_LENA_MORNING_NTS.json",
+        "story/DAY19/nts/DAY19_01_LENA_EVENING_NTS.json",
+        "story/DAY19/nts/DAY19_02_LENA_NIGHT_NTS.json",
+        "story/DAY20/nts/DAY20_00_LENA_MORNING_NTS.json",
+        "story/DAY20/nts/DAY20_01_LENA_EVENING_NTS.json"
+      ],
+      "laterMedia": [],
+      "laterNotifications": [
+        "story/DAY16/nts/DAY16_01_LENA_AFTERNOON_NTS.json",
+        "story/DAY16/nts/DAY16_02_LENA_EVENING_NTS.json",
+        "story/DAY17/nts/DAY17_00_LENA_MORNING_NTS.json",
+        "story/DAY17/nts/DAY17_01_LENA_AFTERNOON_NTS.json",
+        "story/DAY17/nts/DAY17_02_LENA_EVENING_NTS.json",
+        "story/DAY18/nts/DAY18_00_LENA_MORNING_NTS.json",
+        "story/DAY18/nts/DAY18_01_LENA_AFTERNOON_NTS.json",
+        "story/DAY18/nts/DAY18_02_LENA_EVENING_NTS.json",
+        "story/DAY19/nts/DAY19_00_LENA_MORNING_NTS.json",
+        "story/DAY19/nts/DAY19_01_LENA_EVENING_NTS.json",
+        "story/DAY19/nts/DAY19_02_LENA_NIGHT_NTS.json",
+        "story/DAY20/nts/DAY20_00_LENA_MORNING_NTS.json",
+        "story/DAY20/nts/DAY20_01_LENA_EVENING_NTS.json"
+      ],
+      "laterHakEvidence": [
+        "story/DAY16/nts/DAY16_01_LENA_AFTERNOON_NTS.json",
+        "story/DAY17/nts/DAY17_01_LENA_AFTERNOON_NTS.json",
+        "story/DAY18/nts/DAY18_01_LENA_AFTERNOON_NTS.json",
+        "story/DAY19/nts/DAY19_01_LENA_EVENING_NTS.json",
+        "story/DAY19/nts/DAY19_02_LENA_NIGHT_NTS.json",
+        "story/DAY20/nts/DAY20_01_LENA_EVENING_NTS.json"
+      ]
+    },
+    {
+      "kind": "choice",
+      "storageKey": "choices_log_v1",
+      "routeLockImpact": false,
+      "characterActiveImpact": false,
+      "genderImpact": false,
+      "premiumImpact": false,
+      "defaultRationale": "Direct entries use the authored talk-afterward branch unless an explicit historical choice is supplied.",
+      "id": "d16_lena_nts_information_scope_v1",
+      "createdDay": 16,
+      "character": "lena",
+      "routes": [
+        "nts"
+      ],
+      "values": [
+        "surprise_within_limits",
+        "talk_afterward"
+      ],
+      "canonicalDefault": "talk_afterward",
+      "storyOnceKey": "d16_02_lena_evening_nts_v1",
+      "sourceStory": "story/DAY16/nts/DAY16_02_LENA_EVENING_NTS.json",
+      "sourceStoryId": "d16_02_lena_evening_nts",
+      "sourceStepKey": "65",
+      "ledgerImpact": {},
+      "dependsWhen": {
+        "minDay": 17,
+        "activeCharacter": "lena",
+        "route": "nts"
+      },
+      "resolution": {
+        "type": "configured_or_default"
+      },
+      "restore": {
+        "start_from": true,
+        "new_update": true,
+        "timeline": "preserve",
+        "save_load": "preserve"
+      },
+      "laterJson": [
+        "story/DAY17/nts/DAY17_01_LENA_AFTERNOON_NTS.json",
+        "story/DAY17/nts/DAY17_02_LENA_EVENING_NTS.json",
+        "story/DAY18/nts/DAY18_00_LENA_MORNING_NTS.json",
+        "story/DAY18/nts/DAY18_01_LENA_AFTERNOON_NTS.json",
+        "story/DAY18/nts/DAY18_02_LENA_EVENING_NTS.json",
+        "story/DAY19/nts/DAY19_02_LENA_NIGHT_NTS.json",
+        "story/DAY20/nts/DAY20_01_LENA_EVENING_NTS.json"
+      ],
+      "laterMedia": [],
+      "laterNotifications": [
+        "story/DAY17/nts/DAY17_01_LENA_AFTERNOON_NTS.json",
+        "story/DAY17/nts/DAY17_02_LENA_EVENING_NTS.json",
+        "story/DAY18/nts/DAY18_00_LENA_MORNING_NTS.json",
+        "story/DAY18/nts/DAY18_01_LENA_AFTERNOON_NTS.json",
+        "story/DAY18/nts/DAY18_02_LENA_EVENING_NTS.json",
+        "story/DAY19/nts/DAY19_02_LENA_NIGHT_NTS.json",
+        "story/DAY20/nts/DAY20_01_LENA_EVENING_NTS.json"
+      ],
+      "laterHakEvidence": [
+        "story/DAY17/nts/DAY17_01_LENA_AFTERNOON_NTS.json",
+        "story/DAY18/nts/DAY18_01_LENA_AFTERNOON_NTS.json",
+        "story/DAY19/nts/DAY19_02_LENA_NIGHT_NTS.json",
+        "story/DAY20/nts/DAY20_01_LENA_EVENING_NTS.json"
+      ]
+    },
+    {
+      "kind": "choice",
+      "storageKey": "choices_log_v1",
+      "routeLockImpact": false,
+      "characterActiveImpact": false,
+      "genderImpact": false,
+      "premiumImpact": false,
+      "defaultRationale": "Direct entries use the first authored reaction unless an explicit historical choice is supplied.",
+      "id": "d17_lena_nts_first_date_reaction_v1",
+      "createdDay": 17,
+      "character": "lena",
+      "routes": [
+        "nts"
+      ],
+      "values": [
+        "excited",
+        "nervous_but_willing"
+      ],
+      "canonicalDefault": "excited",
+      "storyOnceKey": "d17_02_lena_evening_nts_v1",
+      "sourceStory": "story/DAY17/nts/DAY17_02_LENA_EVENING_NTS.json",
+      "sourceStoryId": "d17_02_lena_evening_nts",
+      "sourceStepKey": "74",
+      "ledgerImpact": {
+        "nts": 2
+      },
+      "dependsWhen": {
+        "minDay": 18,
+        "activeCharacter": "lena",
+        "route": "nts"
+      },
+      "resolution": {
+        "type": "configured_or_default"
+      },
+      "restore": {
+        "start_from": true,
+        "new_update": true,
+        "timeline": "preserve",
+        "save_load": "preserve"
+      },
+      "laterJson": [
+        "story/DAY18/nts/DAY18_00_LENA_MORNING_NTS.json",
+        "story/DAY18/nts/DAY18_02_LENA_EVENING_NTS.json",
+        "story/DAY19/nts/DAY19_00_LENA_MORNING_NTS.json",
+        "story/DAY19/nts/DAY19_02_LENA_NIGHT_NTS.json",
+        "story/DAY20/nts/DAY20_00_LENA_MORNING_NTS.json",
+        "story/DAY20/nts/DAY20_01_LENA_EVENING_NTS.json"
+      ],
+      "laterMedia": [],
+      "laterNotifications": [
+        "story/DAY18/nts/DAY18_00_LENA_MORNING_NTS.json",
+        "story/DAY18/nts/DAY18_02_LENA_EVENING_NTS.json",
+        "story/DAY19/nts/DAY19_00_LENA_MORNING_NTS.json",
+        "story/DAY19/nts/DAY19_02_LENA_NIGHT_NTS.json",
+        "story/DAY20/nts/DAY20_00_LENA_MORNING_NTS.json",
+        "story/DAY20/nts/DAY20_01_LENA_EVENING_NTS.json"
+      ],
+      "laterHakEvidence": [
+        "story/DAY19/nts/DAY19_02_LENA_NIGHT_NTS.json",
+        "story/DAY20/nts/DAY20_01_LENA_EVENING_NTS.json"
+      ]
+    }
+  ]
+}

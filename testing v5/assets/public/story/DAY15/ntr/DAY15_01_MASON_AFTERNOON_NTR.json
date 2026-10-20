@@ -1,0 +1,31 @@
+{
+  "onceKey": "d15_04_mason_afternoon_ntr_v1",
+  "contactId": "mason",
+  "requireOnceKey": "d15_03_mason_morning_ntr_v1",
+  "onCompleteStartStory": "story/DAY15/ntr/DAY15_02_MASON_EVENING_NTR.json",
+  "route": "ntr",
+  "routeLock": "route_mason_locked_v1:ntr",
+  "steps": [
+    {"type":"notify","delay":1200,"fromId":"mason","fromName":"{{name:mason}}","avatar":"assets/avatars/male_mason.jpg","text":"Yo","target":"conversation"},
+    {"type":"image","from":"mason","image":"assets/pictures/Conversation/male_mason/mason_work_leftover.jpg"},
+    {"type":"message","delay":850,"from":"mason","text":"Your leftovers saved my lunch today"},
+    {"type":"message","delay":850,"from":"mason","text":"Not bad 😌"},
+    {"type":"message","delay":850,"from":"player","text":"You're welcome"},
+    {"type":"message","delay":850,"from":"player","text":"How was work?"},
+    {"type":"message","delay":850,"from":"mason","text":"Pretty good actually"},
+    {"type":"message","delay":850,"from":"mason","text":"They even talked to me about a promotion"},
+    {"type":"message","delay":850,"from":"player","text":"Seriously?"},
+    {"type":"message","delay":850,"from":"player","text":"Congrats"},
+    {"type":"message","delay":850,"from":"player","text":"Looks like they're desperate"},
+    {"type":"message","delay":850,"from":"mason","text":"Jealous?"},
+    {"type":"message","delay":850,"from":"mason","text":"Some of us are actually competent"},
+    {"type":"message","delay":850,"from":"player","text":"Keep dreaming, manager"},
+    {"type":"message","delay":850,"from":"mason","text":"I'll remember that when you're asking me for favors"},
+    {"type":"message","delay":850,"from":"player","text":"Do we let the front door unlocked tonight?"},
+    {"type":"message","delay":850,"from":"mason","text":"Yeah"},
+    {"type":"message","delay":850,"from":"mason","text":"Otherwise I'll just climb through your window"},
+    {"type":"message","delay":850,"from":"player","text":"See you tonight then"},
+    {"type":"message","delay":850,"from":"mason","text":"Asshole"},
+    {"type":"start_story","goHome":true,"startStory":"story/DAY15/ntr/DAY15_02_MASON_EVENING_NTR.json","startDelayMs":200}
+  ]
+}

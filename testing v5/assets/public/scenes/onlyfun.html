@@ -1,0 +1,829 @@
+<!-- scenes/onlyfun.html -->
+<style>
+:root{
+  --fg:#f0f5ff;
+  --muted:rgba(240,245,255,0.68);
+  --line:rgba(245,248,255,0.16);
+  --edge:rgba(245,248,255,0.20);
+  --edge-strong:rgba(245,248,255,0.44);
+  --status-h:32px;
+  --onlyfun-maxw:520px;
+  --onlyfun-side-pad:14px;
+}
+
+#scene-root:has(.onlyfun[data-scene="onlyfun"]){
+  width:100%;
+  height:100%;
+  max-width:none;
+}
+
+.onlyfun{
+  height:100%;
+  min-height:100%;
+  width:100%;
+  max-width:none;
+  margin:0;
+  padding:calc(var(--status-h) + 6px) 0 12px;
+  position:relative;
+  z-index:0;
+  overflow-x:hidden;
+
+  color:var(--fg);
+  font-family:var(--ui-font);
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+  background:transparent;
+}
+
+/* Fullscreen blurred HOME wallpaper baseline */
+.onlyfun::before{
+  content:"";
+  position:fixed;
+  inset:-2px;
+  width:100vw;
+  height:100vh;
+  z-index:-2;
+  pointer-events:none;
+  background:var(--phone-wallpaper-image) center / cover no-repeat;
+  filter:blur(24px) saturate(0.55) brightness(0.26) contrast(1.08);
+  transform:scale(1.12);
+  opacity:1;
+}
+
+.onlyfun::after{
+  content:"";
+  position:fixed;
+  inset:-2px;
+  width:100vw;
+  height:100vh;
+  z-index:-1;
+  pointer-events:none;
+  opacity:1;
+  background:
+    radial-gradient(circle at 50% 6%, rgba(24,24,26,0.34), rgba(4,4,6,0.84)),
+    linear-gradient(180deg, rgba(2,2,4,0.72) 0%, rgba(0,0,0,0.92) 100%),
+    repeating-linear-gradient(
+      to bottom,
+      rgba(255,255,255,0.00) 0px,
+      rgba(255,255,255,0.00) 3px,
+      rgba(255,255,255,0.024) 4px
+    ),
+    repeating-linear-gradient(
+      135deg,
+      rgba(255,255,255,0.014) 0px,
+      rgba(255,255,255,0.00) 2px,
+      rgba(255,255,255,0.010) 4px
+    );
+}
+
+/* LOGIN: same Home background but darker / more uniform */
+.onlyfun:has(#onlyfun-login-view:not([hidden]))::before{
+  filter:blur(28px) saturate(0.42) brightness(0.14) contrast(1.12);
+}
+.onlyfun:has(#onlyfun-login-view:not([hidden]))::after{
+  background:
+    radial-gradient(circle at 50% 6%, rgba(8,8,10,0.30), rgba(0,0,0,0.92)),
+    linear-gradient(180deg, rgba(0,0,0,0.82) 0%, rgba(0,0,0,0.96) 100%),
+    repeating-linear-gradient(
+      to bottom,
+      rgba(255,255,255,0.00) 0px,
+      rgba(255,255,255,0.00) 3px,
+      rgba(255,255,255,0.020) 4px
+    ),
+    repeating-linear-gradient(
+      135deg,
+      rgba(255,255,255,0.012) 0px,
+      rgba(255,255,255,0.00) 2px,
+      rgba(255,255,255,0.008) 4px
+    );
+}
+
+.onlyfun-head,
+.onlyfun-shell,
+.onlyfun-login{
+  width:min(var(--onlyfun-maxw), calc(100% - (var(--onlyfun-side-pad) * 2)));
+  margin-inline:auto;
+}
+
+.onlyfun > *{
+  position:relative;
+  z-index:2;
+}
+
+.onlyfun:has(#onlyfun-login-view:not([hidden])){
+  gap:0;
+}
+
+.onlyfun:has(#onlyfun-login-view:not([hidden])) .onlyfun-head{
+  display:none;
+}
+
+/* =========================
+   Header
+   ========================= */
+.onlyfun-head{
+  position:sticky;
+  top:0;
+  z-index:4;
+  display:grid;
+  grid-template-rows:auto auto;
+  row-gap:2px;
+  padding:10px 10px 9px;
+  min-height:62px;
+  border-radius:14px;
+  border:1px solid rgba(245,248,255,0.14);
+  background:rgba(6,7,10,0.62);
+  box-shadow:
+    inset 0 0 0 1px rgba(245,248,255,0.05),
+    0 14px 30px rgba(0,0,0,0.6);
+}
+
+.onlyfun-head-row{
+  display:grid;
+  grid-template-columns:34px minmax(0,1fr) minmax(0,45%);
+  column-gap:6px;
+  align-items:center;
+  min-height:40px;
+}
+
+.onlyfun-head h2{
+  grid-column:2;
+  margin:0;
+  text-align:left;
+  font-size:14px;
+  font-weight:900;
+  letter-spacing:0.17em;
+  text-transform:uppercase;
+  color:rgba(240,245,255,0.92);
+  text-shadow:0 2px 12px rgba(0,0,0,0.66);
+}
+
+.of-icon-btn,
+.of-icon-ghost{
+  width:34px;
+  height:34px;
+  justify-self:center;
+}
+
+/* default: hidden unless profile (hard lock) */
+#onlyfun-back-btn{ display:none !important; }
+.onlyfun[data-view="profile"] #onlyfun-back-btn{
+  display:grid !important;
+}
+.of-icon-btn{
+  grid-column:1;
+  width:34px;
+  height:34px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  padding:0;
+  border:1px solid rgba(245,248,255,0.22);
+  border-radius:12px;
+  background:rgba(245,248,255,0.07);
+  color:rgba(240,245,255,0.9);
+  cursor:pointer;
+
+  align-self:center;
+  justify-self:center;
+
+  margin-top:0;
+  transform:none;
+}
+
+.of-back-icon{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  width:100%;
+  height:100%;
+  margin:0;
+  padding:0;
+
+  font-size:22px;
+  font-weight:800;
+  line-height:1;
+
+  position:relative;
+  top:-3px;                /* lift the arrow inside the square */
+}
+
+.of-icon-ghost{
+  grid-column:3;
+  display:block;
+}
+
+.of-icon-btn:hover{
+  border-color:rgba(245,248,255,0.42);
+  background:rgba(245,248,255,0.12);
+}
+
+
+.onlyfun-subtitle{
+  margin:0;
+  min-height:12px;
+  padding:0 4px;
+  text-align:center;
+  font-size:9px;
+  letter-spacing:0.1em;
+  text-transform:uppercase;
+  color:rgba(240,245,255,0.64);
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+
+.onlyfun-view[hidden]{
+  display:none !important;
+}
+
+/* =========================
+   Login (full-bleed, no panel artifacts)
+   ========================= */
+.onlyfun-login{
+  flex:1;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  /* full-bleed */
+  width:100%;
+  max-width:none;
+  margin:0;
+  padding:10px 14px 12px;
+
+  position:relative;
+  min-height:0;
+  overflow:auto;
+  background:transparent;
+}
+
+.onlyfun:has(#onlyfun-login-view:not([hidden])) .onlyfun-login{
+  padding:10px 14px 12px;
+}
+
+/* removed .onlyfun-login::before to avoid rectangles */
+
+.onlyfun-login > *{
+  position:relative;
+  z-index:1;
+}
+
+.login-card{
+  width:min(390px, calc(100% - 2px));
+  flex-shrink:0;
+  margin-block:auto;
+  border-radius:18px;
+  padding:20px;
+  border:1px solid var(--line);
+  background:rgba(8,10,14,0.9);
+  box-shadow:
+    inset 0 0 0 1px rgba(245,248,255,0.06),
+    0 20px 46px rgba(0,0,0,0.7);
+}
+
+.login-tag{
+  display:inline-block;
+  margin:0 0 10px;
+  padding:4px 10px;
+  border-radius:999px;
+  border:1px solid rgba(245,248,255,0.2);
+  font-size:10px;
+  letter-spacing:0.12em;
+  text-transform:uppercase;
+  color:rgba(240,245,255,0.85);
+  background:rgba(245,248,255,0.06);
+}
+
+.login-copy{
+  margin:0 0 16px;
+  font-size:14px;
+  line-height:1.5;
+  color:rgba(240,245,255,0.78);
+}
+
+.onlyfun-nametag-label{ display:block; margin-bottom:8px; font-size:13px; font-weight:700; }
+#onlyfun-nametag-input{ box-sizing:border-box; width:100%; min-width:0; padding:12px; border:1px solid var(--edge); border-radius:12px; background:rgba(245,248,255,.06); color:var(--fg); font:inherit; font-size:16px; }
+#onlyfun-nametag-input:focus-visible{ outline:2px solid #79cfff; outline-offset:2px; }
+.onlyfun-nametag-hint{ margin:8px 0 18px; color:rgba(240,245,255,.68); font-size:12px; line-height:1.5; }
+#onlyfun-nametag-edit{ grid-column:3; justify-self:end; max-width:100%; }
+.onlyfun:not([data-view="profile"]) .onlyfun-head-row{ grid-template-columns:minmax(0,1fr) minmax(0,50%); }
+.onlyfun:not([data-view="profile"]) .onlyfun-head h2{ grid-column:1; padding-inline-start:6px; }
+.onlyfun:not([data-view="profile"]) #onlyfun-nametag-edit{ grid-column:2; }
+
+.login-btn{
+  width:100%;
+  min-height:46px;
+  border-radius:13px;
+  border:1px solid var(--edge);
+  background:rgba(245,248,255,0.09);
+  color:var(--fg);
+  font-weight:900;
+  font-size:14px;
+  letter-spacing:0.06em;
+  text-transform:uppercase;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  cursor:pointer;
+  box-shadow:0 14px 28px rgba(0,0,0,0.5);
+}
+
+.login-btn:hover{
+  border-color:var(--edge-strong);
+  background:rgba(245,248,255,0.13);
+}
+
+.login-btn:disabled{
+  opacity:0.86;
+  cursor:default;
+}
+
+.login-spinner{
+  width:14px;
+  height:14px;
+  border:2px solid rgba(240,245,255,0.24);
+  border-top-color:rgba(240,245,255,0.95);
+  border-radius:50%;
+  animation:onlyfun-spin .8s linear infinite;
+}
+
+.login-status{
+  margin:12px 0 0;
+  min-height:18px;
+  text-align:center;
+  font-size:11px;
+  letter-spacing:0.12em;
+  text-transform:uppercase;
+  color:rgba(240,245,255,0.72);
+}
+
+@keyframes onlyfun-spin{
+  to { transform:rotate(360deg); }
+}
+
+/* =========================
+   Shell
+   ========================= */
+.onlyfun-shell{
+  flex:1;
+  min-height:0;
+  border-radius:16px;
+  border:1px solid var(--line);
+  background:rgba(8,10,14,0.74);
+  box-shadow:
+    inset 0 0 0 1px rgba(245,248,255,0.05),
+    0 18px 44px rgba(0,0,0,0.58);
+  display:flex;
+  flex-direction:column;
+  overflow:hidden;
+}
+
+/* Keep a tall creator introduction from pushing all posts below short screens. */
+#onlyfun-profile-view{ overflow-y:auto; }
+#onlyfun-profile-view .profile-card{ flex-shrink:0; }
+#onlyfun-profile-view .profile-posts{ flex:0 0 auto; overflow:visible; }
+
+.creator-strip{
+  display:flex;
+  gap:12px;
+  overflow-x:auto;
+  padding:12px;
+  border-bottom:1px solid rgba(245,248,255,0.12);
+  scrollbar-width:none;
+}
+
+.creator-strip::-webkit-scrollbar{
+  display:none;
+}
+
+.creator-bubble{
+  flex:0 0 auto;
+  width:74px;
+  border:0;
+  background:transparent;
+  color:var(--muted);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:6px;
+  cursor:pointer;
+  position:relative;
+}
+
+.creator-ring{
+  width:62px;
+  height:62px;
+  border-radius:999px;
+  padding:2px;
+  border:1px solid rgba(245,248,255,0.18);
+  background:
+    radial-gradient(closest-side, rgba(6,7,10,0.88) 79%, transparent 80% 100%),
+    conic-gradient(rgba(112,220,255,0.95), rgba(255,166,92,0.82), rgba(112,220,255,0.95));
+  box-shadow:0 0 12px rgba(112,220,255,0.24);
+}
+
+.creator-ring img{
+  width:100%;
+  height:100%;
+  border-radius:999px;
+  object-fit:cover;
+  background:#020617;
+}
+
+.creator-bubble-name{
+  width:100%;
+  font-size:11px;
+  letter-spacing:0.04em;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  text-align:center;
+}
+
+.creator-bubble[data-subscribed="1"] .creator-ring{
+  box-shadow:0 0 18px rgba(112,220,255,0.3), 0 0 24px rgba(255,166,92,0.14);
+  border-color:rgba(245,248,255,0.34);
+}
+
+.creator-bubble[data-required="1"] .creator-ring{
+  border-color:rgba(255,194,94,0.92);
+  box-shadow:
+    0 0 18px rgba(255,194,94,0.42),
+    0 0 30px rgba(255,194,94,0.24),
+    0 0 48px rgba(112,220,255,0.2);
+  animation:onlyfun-required-pulse 1.05s ease-in-out infinite;
+}
+
+.creator-bubble[data-required="1"] .creator-bubble-name{
+  color:rgba(255,233,196,0.98);
+  font-weight:800;
+}
+
+.creator-badge{
+  position:absolute;
+  top:-2px;
+  right:-4px;
+  padding:2px 6px;
+  border-radius:999px;
+  font-size:9px;
+  font-weight:800;
+  letter-spacing:0.08em;
+  text-transform:uppercase;
+  color:#fff5e4;
+  border:1px solid rgba(255,224,166,0.7);
+  background:rgba(138,58,12,0.92);
+  box-shadow:0 0 16px rgba(255,166,92,0.28);
+}
+
+@keyframes onlyfun-required-pulse{
+  0%, 100%{
+    transform:scale(1);
+    filter:brightness(1);
+  }
+  50%{
+    transform:scale(1.045);
+    filter:brightness(1.12);
+  }
+}
+
+.onlyfun-feed,
+.profile-posts{
+  flex:1;
+  min-height:0;
+  overflow:auto;
+  padding:12px;
+  display:grid;
+  gap:12px;
+}
+
+.feed-empty,
+.feed-post,
+.profile-card,
+.profile-post-card{
+  border-radius:14px;
+  border:1px solid rgba(245,248,255,0.16);
+  background:rgba(245,248,255,0.05);
+  box-shadow:0 14px 28px rgba(0,0,0,0.46);
+}
+
+.feed-empty{
+  padding:16px;
+  text-align:center;
+}
+
+.feed-empty h3,
+.feed-post h3{
+  margin:0 0 6px;
+  font-size:12px;
+  letter-spacing:0.1em;
+  text-transform:uppercase;
+}
+
+.feed-empty p,
+.feed-post p,
+.profile-bio,
+.profile-meta{
+  margin:0;
+  font-size:13px;
+  line-height:1.5;
+  color:rgba(240,245,255,0.78);
+}
+
+.feed-post-header{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding:10px 12px;
+  border-bottom:1px solid rgba(245,248,255,0.1);
+}
+
+.feed-post-header img{
+  width:34px;
+  height:34px;
+  border-radius:999px;
+  object-fit:cover;
+  border:1px solid rgba(245,248,255,0.22);
+}
+
+.feed-post-title{
+  display:flex;
+  flex-direction:column;
+  gap:2px;
+  min-width:0;
+}
+
+.feed-post-title strong{
+  font-size:13px;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+
+.feed-post-title span{
+  font-size:10px;
+  letter-spacing:0.12em;
+  text-transform:uppercase;
+  color:rgba(240,245,255,0.66);
+}
+.feed-post-media{
+  position:relative;
+  background:#020617;
+  aspect-ratio:4 / 5;
+  overflow:hidden;
+}
+
+.feed-post-media img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+  cursor:default;              /* no magnifier */
+}
+
+.feed-post-caption{
+  padding:10px 12px 12px;
+}
+
+/* =========================
+   Profile
+   ========================= */
+.profile-card{
+  margin:12px 12px 0;
+  padding:14px;
+  display:grid;
+  grid-template-columns:68px 1fr;
+  gap:12px;
+}
+
+.profile-avatar{
+  width:68px;
+  height:68px;
+  border-radius:999px;
+  object-fit:cover;
+  border:1px solid rgba(245,248,255,0.25);
+  box-shadow:0 0 16px rgba(112,220,255,0.18);
+}
+
+.profile-main{
+  min-width:0;
+  display:grid;
+  gap:8px;
+}
+
+.profile-main h3{
+  margin:0;
+  font-size:14px;
+  letter-spacing:0.08em;
+  text-transform:uppercase;
+}
+
+.profile-sub-btn{
+  width:100%;
+  min-height:38px;
+  border-radius:10px;
+  border:1px solid rgba(245,248,255,0.26);
+  background:rgba(245,248,255,0.09);
+  color:var(--fg);
+  font-size:12px;
+  font-weight:800;
+  letter-spacing:0.08em;
+  text-transform:uppercase;
+  cursor:pointer;
+}
+
+.profile-sub-btn:hover{
+  border-color:rgba(245,248,255,0.44);
+  background:rgba(245,248,255,0.14);
+}
+
+.profile-sub-btn.is-on{
+  cursor:default;
+  border-color:rgba(112,220,255,0.46);
+  background:rgba(112,220,255,0.15);
+}
+
+.profile-posts{
+  padding-top:10px;
+}
+
+.profile-post-card{
+  position:relative;
+  overflow:visible;
+  background:rgba(2,6,14,0.92);
+}
+
+.profile-post-card img{
+  width:100%;
+  height:auto;
+  max-height:none;
+  object-fit:contain;
+  display:block;
+  box-sizing:border-box;
+  border-radius:13px 13px 0 0;
+  background:#020617;
+  padding:8px;
+  cursor:zoom-in;
+}
+
+.profile-post-caption{
+  padding:9px 10px 10px;
+  font-size:12px;
+  color:rgba(240,245,255,0.76);
+}
+
+/* =========================
+   Lightbox (clean dark blur)
+   ========================= */
+.onlyfun-lightbox{
+  position:fixed;
+  inset:0;
+  z-index:30;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  padding:22px 16px;
+
+  background:rgba(0,0,0,0.88);   /* pure black, no blue */
+  backdrop-filter:blur(6px);     /* dark blur */
+  -webkit-backdrop-filter:blur(6px);
+
+  cursor:default;
+}
+
+.onlyfun-lightbox[hidden]{
+  display:none !important;
+}
+
+.onlyfun-lightbox img{
+  width:min(100%, 560px);
+  max-height:calc(100vh - 52px);
+
+  border-radius:14px;
+  border:1px solid rgba(255,255,255,0.12);
+
+  box-shadow:
+    0 20px 60px rgba(0,0,0,0.75);  /* neutral shadow */
+
+  object-fit:contain;
+  background:transparent;         /* no blue background behind the image */
+
+  cursor:default;
+}
+
+
+/* =========================
+   Toast
+   ========================= */
+.onlyfun-toast{
+  position:absolute;
+  left:50%;
+  bottom:12px;
+  transform:translateX(-50%);
+  min-width:180px;
+  padding:8px 12px;
+  border-radius:999px;
+  border:1px solid rgba(245,248,255,0.22);
+  background:rgba(6,7,10,0.86);
+  color:rgba(240,245,255,0.9);
+  text-align:center;
+  font-size:11px;
+  letter-spacing:0.12em;
+  text-transform:uppercase;
+  box-shadow:0 12px 28px rgba(0,0,0,0.55);
+}
+
+@media (max-width:360px){
+  :root{ --onlyfun-side-pad:10px; }
+
+  .login-card,
+  .onlyfun-shell{
+    border-radius:14px;
+  }
+}
+
+@media (min-width:900px) and (min-height:650px){
+  :root{ --onlyfun-maxw:760px; }
+
+  .onlyfun{
+    --onlyfun-side-pad:18px;
+    padding-bottom:16px;
+  }
+
+  .onlyfun-feed,
+  .profile-posts{
+    padding:18px;
+    gap:16px;
+  }
+}
+
+@media (max-aspect-ratio:10/16){
+  .onlyfun{
+    max-width:none;
+    margin:0;
+  }
+}
+
+</style>
+<link rel="stylesheet" href="assets/styles/theme.css">
+
+<div class="onlyfun" data-scene="onlyfun">
+  <header class="onlyfun-head">
+    <div class="onlyfun-head-row">
+      <button id="onlyfun-back-btn" class="of-icon-btn" type="button" hidden aria-label="Back to home feed"><span class="of-back-icon" aria-hidden="true">&#8249;</span></button>
+      <h2 data-i18n="onlyfun.title">OnlyFun</h2>
+      <button id="onlyfun-nametag-edit" class="social-nametag-button" type="button" hidden></button>
+    </div>
+    <p class="onlyfun-subtitle" id="onlyfun-subtitle" data-i18n="onlyfun.subtitle">Private creator feed</p>
+  </header>
+
+  <section class="onlyfun-view onlyfun-login" id="onlyfun-login-view" hidden>
+    <form class="login-card" id="onlyfun-login-form">
+      <div class="login-tag" data-i18n="onlyfun.access_gate">NexaLink Access Gate</div>
+      <p class="login-copy" data-i18n="onlyfun.login_copy">OnlyFun needs a quick connect before you can browse creators.</p>
+      <label class="onlyfun-nametag-label" for="onlyfun-nametag-input" data-i18n="player.nametag_label">Your nametag</label>
+      <input id="onlyfun-nametag-input" type="text" maxlength="48" dir="auto" autocomplete="off" autocapitalize="off" spellcheck="false" aria-describedby="onlyfun-nametag-hint">
+      <p class="onlyfun-nametag-hint" id="onlyfun-nametag-hint" data-i18n="player.nametag_description">This name appears on your OnlyFun and Snapgram comments. You can change it anytime.</p>
+      <button type="submit" class="login-btn" id="onlyfun-login-btn">
+        <span id="onlyfun-login-spinner" class="login-spinner" hidden aria-hidden="true"></span>
+        <span id="onlyfun-login-label" data-i18n="onlyfun.connect">Connect with NexaID</span>
+      </button>
+      <p class="login-status" id="onlyfun-login-status" role="status"></p>
+    </form>
+  </section>
+
+  <section class="onlyfun-view onlyfun-shell" id="onlyfun-home-view" hidden>
+    <div class="creator-strip" id="onlyfun-creator-strip"></div>
+    <div class="onlyfun-feed" id="onlyfun-feed"></div>
+  </section>
+
+  <section class="onlyfun-view onlyfun-shell" id="onlyfun-profile-view" hidden>
+    <article class="profile-card">
+      <img id="onlyfun-profile-avatar" class="profile-avatar" alt="Creator avatar">
+      <div class="profile-main">
+        <h3 id="onlyfun-profile-name">Creator</h3>
+        <p id="onlyfun-profile-bio" class="profile-bio"></p>
+        <p id="onlyfun-profile-meta" class="profile-meta"></p>
+        <button type="button" id="onlyfun-subscribe-btn" class="profile-sub-btn" data-i18n="onlyfun.subscribe">Subscribe</button>
+      </div>
+    </article>
+
+    <div class="profile-posts" id="onlyfun-profile-posts"></div>
+  </section>
+
+  <div class="onlyfun-lightbox" id="onlyfun-lightbox" hidden aria-hidden="true">
+    <img id="onlyfun-lightbox-image" alt="Expanded post image">
+  </div>
+
+  <div class="onlyfun-toast" id="onlyfun-toast" hidden></div>
+</div>
+
+<script src="scripts/onlyfun-scene.js?v=2026-08-29-root-scoped-ui-v2"></script>
+

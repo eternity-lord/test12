@@ -1,0 +1,25 @@
+{
+  "onceKey": "d4_06_hailey_bus_delay_food_v1",
+  "contactId": "hailey",
+  "onCompleteStartStory": "story/DAY4/DAY4_08_LENA_EVENING.json",
+  "steps": [
+    {"type":"notify","delay":1200,"fromId":"hailey","fromName":"{{name:hailey}}","avatar":"assets/avatars/hailey.jpg","text":"Hellooo 😭","target":"conversation"},
+    {"type":"message","delay":900,"from":"hailey","text":"I missed my bus 😭"},
+    {"type":"image","image":"assets/pictures/Conversation/hailey_missed_bus.jpg"},
+    {"type":"message","delay":900,"from":"player","text":"How no, what about your limousine?"},
+    {"type":"message","delay":900,"from":"hailey","text":"Don't you dare make fun of me 😒"},
+    {"type":"message","delay":900,"from":"player","text":"I would never 😌"},
+    {"type":"message","delay":900,"from":"hailey","text":"Since you're broken and no one is home"},
+    {"type":"message","delay":900,"from":"hailey","text":"I'm coming back with a friend instead"},
+    {"type":"message","delay":900,"from":"hailey","text":"Which means your food is getting delivered to your room a little later than planned 😇"},
+    {"type":"message","delay":900,"from":"player","text":"You say that like I'm about to file a complaint"},
+    {"type":"message","delay":900,"from":"hailey","text":"You look like the kind of person who would file a very sad complaint from bed 😌"},
+    {"type":"message","delay":900,"from":"player","text":"You're right, I will"},
+    {"type":"message","delay":900,"from":"player","text":"A very bad one if it's really late, so hurry 😌"},
+    {"type":"message","delay":900,"from":"hailey","text":"Yes of course 😇"},
+    {"type":"message","delay":900,"from":"hailey","text":"Let me just buy some rat poison on the way home"},
+    {"type":"message","delay":900,"from":"player","text":"We have rats at home?"},
+    {"type":"message","delay":900,"from":"hailey","text":"Just a big one 😌"},
+    {"type":"message","delay":900,"from":"hailey","text":"Don't starve before I get there mister rat🤍"}
+  ]
+}

@@ -1,0 +1,54 @@
+{
+  "onceKey": "d11_00_hailey_morning_nts_v1",
+  "contactId": "hailey",
+  "requireOnceKey": "d11_00_lena_morning_nts_v1|d10_02_hailey_evening_nts_v1",
+  "steps": [
+    {"type":"notify","delay":800,"fromId":"hailey","fromName":"{{name:hailey}}","avatar":"assets/avatars/hailey.jpg","text":"Morning survival check 😴","target":"conversation"},
+    {"type":"message","delay":900,"from":"player","text":"Morning"},
+    {"type":"message","delay":900,"from":"hailey","text":"I'm officially on my way to school"},
+    {"type":"message","delay":900,"from":"player","text":"Already suffering?"},
+    {"type":"message","delay":900,"from":"hailey","text":"Emotionally yes"},
+    {"type":"message","delay":900,"from":"hailey","text":"Physically also yes"},
+    {"type":"message","delay":900,"from":"player","text":"That's just called being awake"},
+    {"type":"message","delay":900,"from":"hailey","text":"I hate how accurate that is 😭"},
+    {"type":"message","delay":900,"from":"player","text":"Ready for another study session later?"},
+    {"type":"message","delay":900,"from":"hailey","text":"Define ready"},
+    {"type":"message","delay":900,"from":"player","text":"Mentally prepared to suffer for your grades"},
+    {"type":"message","delay":900,"from":"hailey","text":"Then no"},
+    {"type":"message","delay":900,"from":"hailey","text":"But definitely ready to see my handsome {{name:tutor}} 😌"},
+    {"type":"message","delay":900,"from":"player","text":"And of course you're not thinking about your studies"},
+    {"type":"message","delay":900,"from":"player","text":"He's still coming to make you study, you know"},
+    {"type":"message","delay":900,"from":"hailey","text":"I know, I know!"},
+    {"type":"message","delay":900,"from":"hailey","text":"You always ruin the fun"},
+    {"type":"message","delay":900,"from":"hailey","text":"Ethan said he wants to review the weak points he noticed yesterday"},
+    {"type":"message","delay":900,"from":"player","text":"That's good"},
+    {"type":"message","delay":900,"from":"hailey","text":"Good for my future maybe"},
+    {"type":"message","delay":900,"from":"hailey","text":"Bad for my peace"},
+    {"type":"message","delay":900,"from":"player","text":"Your peace was never going to survive exam season"},
+    {"type":"message","delay":900,"from":"hailey","text":"That's... true"},
+    {"type":"message","delay":900,"from":"hailey","text":"Anyway"},
+    {"type":"message","delay":900,"from":"hailey","text":"School outfit check before I disappear into class"},
+    {"type":"photo","delay":900,"from":"hailey","image":"assets/pictures/Conversation/hailey_outfit_check.jpg"},
+    {"type":"message","delay":900,"from":"player","text":"You look ready enough"},
+    {"type":"message","delay":900,"from":"hailey","text":"That's the nicest fake compliment I've heard today 😊"},
+    {"type":"message","delay":900,"from":"player","text":"Go survive class"},
+    {"type":"message","delay":900,"from":"hailey","text":"Trying my best"},
+    {"type":"if","condition":"active_character:evelyn","then":[
+      {"type":"if","condition":"route_evelyn_locked_v1:love","then":[
+        {"type":"start_story","goHome":true,"startStory":"story/DAY11/DAY11_EVELYN_MORNING.json"}
+      ],"else":[
+        {"type":"if","condition":"route_evelyn_locked_v1:nts","then":[
+          {"type":"start_story","goHome":true,"startStory":"story/DAY11/DAY11_EVELYN_MORNING.json"}
+        ],"else":[
+          {"type":"if","condition":"route_evelyn_locked_v1:ntr","then":[
+            {"type":"start_story","goHome":true,"startStory":"story/DAY11/DAY11_EVELYN_MORNING.json"}
+          ],"else":[
+            {"type":"start_story","goHome":true,"startStory":"story/DAY11/DAY11_EVELYN_MORNING.json"}
+          ]}
+        ]}
+      ]}
+    ],"else":[
+      {"type":"start_story","goHome":true,"startStory":"story/DAY11/nts/DAY11_01_HAILEY_AFTERNOON_NTS.json"}
+    ]}
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "onceKey": "d2_02_evelyn_check_v2",
+  "contactId": "evelyn",
+  "onCompleteStartStory": "story/DAY2/DAY2_03_LENA_BREAK.json",
+  "steps": [
+    {"type":"notify","delay":1500,"fromId":"evelyn","fromName":"{{name:evelyn}}","avatar":"assets/avatars/evelyn.jpg","text":"Good morning sweetheart","target":"conversation"},
+    {"type":"message","delay":900,"from":"player","text":"Good morning"},
+    {"type":"message","delay":950,"from":"evelyn","text":"Did you sleep properly?"},
+    {"type":"message","delay":900,"from":"player","text":"More or less"},
+    {"type":"message","delay":950,"from":"evelyn","text":"Any pain anywhere?"},
+    {"type":"message","delay":900,"from":"player","text":"Except for my whole body no"},
+    {"type":"message","delay":950,"from":"evelyn","text":"Be patient, a few more days and it should start improving"},
+    {"type":"message","delay":900,"from":"player","text":"I know, thank you for caring so much"},
+    {"type":"message","delay":950,"from":"evelyn","text":"It’s normal it’s my responsibility"},
+    {"type":"message","delay":950,"from":"evelyn","text":"By the way I might have some concerning news"},
+    {"type":"message","delay":900,"from":"player","text":"You sound serious"},
+    {"type":"message","delay":1100,"from":"evelyn","text":"I received a call earlier"},
+    {"type":"message","delay":950,"from":"evelyn","text":"It’s about the financial support situation"},
+    {"type":"message","delay":900,"from":"player","text":"Is something wrong?"},
+    {"type":"message","delay":1100,"from":"evelyn","text":"I’m not sure yet"},
+    {"type":"message","delay":950,"from":"evelyn","text":"They are reviewing the case"},
+    {"type":"message","delay":950,"from":"evelyn","text":"There might be some changes"},
+    {"type":"message","delay":900,"from":"player","text":"What kind of changes?"},
+    {"type":"message","delay":1100,"from":"evelyn","text":"I don’t want to speculate"},
+    {"type":"message","delay":1000,"from":"evelyn","text":"I’ll know more later today"},
+    {"type":"message","delay":900,"from":"player","text":"You don’t have to handle everything alone"},
+    {"type":"message","delay":1100,"from":"evelyn","text":"I know"},
+    {"type":"message","delay":950,"from":"evelyn","text":"We’ll talk about it properly tonight"},
+    {"type":"message","delay":950,"from":"evelyn","text":"For now just focus on your day"},
+    {"type":"message","delay":900,"from":"player","text":"Alright"},
+    {"type":"note","text":"3 HOURS LATER"}
+  ]
+}

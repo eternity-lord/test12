@@ -1,0 +1,41 @@
+{
+  "onceKey": "d13_00_lena_morning_nts_v1",
+  "contactId": "lena",
+  "requireOnceKey": "d12_01_lena_evening_nts_v1",
+  "steps": [
+    {"type":"notify","delay":1300,"fromId":"lena","fromName":"{{name:lena}}","avatar":"assets/avatars/lena.jpg","text":"Good morning ☀️","target":"conversation"},
+    {"type":"image","delay":900,"from":"lena","image":"assets/pictures/Conversation/lena_day13_morning.jpg"},
+    {"type":"message","delay":900,"from":"lena","text":"A beautiful day is starting 😌"},
+    {"type":"message","delay":900,"from":"player","text":"Okay wow"},
+    {"type":"message","delay":900,"from":"player","text":"You can't just send that first thing in the morning"},
+    {"type":"message","delay":900,"from":"lena","text":"Why not? 🤍"},
+    {"type":"message","delay":900,"from":"player","text":"Because now I'm distracted already"},
+    {"type":"message","delay":900,"from":"lena","text":"Sounds like a you problem 😌"},
+    {"type":"message","delay":900,"from":"player","text":"Cruel"},
+    {"type":"message","delay":900,"from":"lena","text":"A little"},
+    {"type":"message","delay":900,"from":"lena","text":"But I wanted to make you smile before class"},
+    {"type":"message","delay":900,"from":"player","text":"Mission accomplished"},
+    {"type":"message","delay":900,"from":"lena","text":"Good ❤️"},
+    {"type":"message","delay":900,"from":"lena","text":"Normally I finish at noon today"},
+    {"type":"message","delay":900,"from":"lena","text":"And my afternoon is free"},
+    {"type":"message","delay":900,"from":"lena","text":"So I can come see you later 😌"},
+    {"type":"message","delay":900,"from":"player","text":"Now that's very good news"},
+    {"type":"message","delay":900,"from":"lena","text":"I thought you might like that"},
+    {"type":"message","delay":900,"from":"player","text":"A little too much maybe"},
+    {"type":"message","delay":900,"from":"lena","text":"Good"},
+    {"type":"message","delay":900,"from":"lena","text":"I missed you yesterday"},
+    {"type":"message","delay":900,"from":"player","text":"I missed you too"},
+    {"type":"message","delay":900,"from":"lena","text":"Then you'll survive one more morning without me"},
+    {"type":"message","delay":900,"from":"player","text":"Barely"},
+    {"type":"message","delay":900,"from":"lena","text":"Poor thing 😌"},
+    {"type":"message","delay":900,"from":"player","text":"Come save me this afternoon then"},
+    {"type":"message","delay":900,"from":"lena","text":"That's the plan"},
+    {"type":"message","delay":900,"from":"player","text":"Good luck this morning"},
+    {"type":"message","delay":900,"from":"lena","text":"Thank you, handsome 🤍"},
+    {"type":"if","condition":"active_character:hailey","then":[
+      {"type":"start_story","goHome":true,"startStory":"story/DAY13/DAY13_HAILEY_MORNING.json"}
+    ],"else":[
+      {"type":"start_story","goHome":true,"startStory":"story/DAY13/nts/DAY13_01_LENA_AFTERNOON_NTS.json"}
+    ]}
+  ]
+}

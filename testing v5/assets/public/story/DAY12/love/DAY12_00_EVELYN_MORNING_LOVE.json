@@ -1,0 +1,28 @@
+{
+  "onceKey": "d12_00_evelyn_morning_love_v1",
+  "contactId": "evelyn",
+  "requireOnceKey": "d11_02_evelyn_evening_love_v1",
+  "onCompleteStartStory": "story/DAY12/love/DAY12_01_EVELYN_AFTERNOON_LOVE.json",
+  "steps": [
+    {"type":"notify","delay":1200,"fromId":"evelyn","fromName":"{{name:evelyn}}","avatar":"assets/avatars/evelyn.jpg","text":"Morning 😊","target":"conversation"},
+    {"type":"message","delay":850,"from":"evelyn","text":"Are you awake?"},
+    {"type":"message","delay":850,"from":"evelyn","text":"It is almost 9 AM"},
+    {"type":"message","delay":850,"from":"evelyn","text":"You need to be ready in case work starts"},
+    {"type":"note","delay":1000,"text":"5 MINUTES LATER"},
+    {"type":"message","delay":850,"from":"player","text":"Thank you"},
+    {"type":"message","delay":850,"from":"player","text":"I fell asleep again"},
+    {"type":"message","delay":850,"from":"evelyn","text":"I thought so"},
+    {"type":"message","delay":850,"from":"evelyn","text":"I still did not see any light in your room when I walked past"},
+    {"type":"message","delay":850,"from":"evelyn","text":"I will come upstairs and drop off your clean clothes"},
+    {"type":"message","delay":850,"from":"evelyn","text":"And if you want anything special for lunch, tell me"},
+    {"type":"message","delay":850,"from":"evelyn","text":"I can make it for you"},
+    {"type":"message","delay":850,"from":"player","text":"I am okay for now"},
+    {"type":"message","delay":850,"from":"player","text":"Thank you"},
+    {"type":"message","delay":850,"from":"player","text":"I will message you if I need anything"},
+    {"type":"message","delay":850,"from":"evelyn","text":"Good"},
+    {"type":"message","delay":850,"from":"evelyn","text":"I will bring the clothes up in a minute"},
+    {"type":"start_story","goHome":true,"startStory":"story/DAY12/love/DAY12_01_EVELYN_AFTERNOON_LOVE.json"}
+  ],
+  "route": "love",
+  "routeLock": "route_evelyn_locked_v1:love"
+}

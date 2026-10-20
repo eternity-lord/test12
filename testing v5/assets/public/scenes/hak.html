@@ -1,0 +1,4448 @@
+<!-- scenes/hak.html -->
+<style>
+:root{
+  /* ===== SAME THEME AS PICTURES (matte + scanlines + soft accents) ===== */
+  --fg:#f0f5ff;
+  --muted:rgba(240,245,255,0.68);
+
+  --btn-bg: rgba(6,7,10,0.46);
+  --btn-bg-hover: rgba(8,10,14,0.60);
+
+  --edge: rgba(245,248,255,0.20);
+  --edge-strong: rgba(245,248,255,0.44);
+
+  --glow-soft: rgba(112,220,255,0.12);
+  --glow-strong: rgba(112,220,255,0.18);
+
+  --accent-a: rgba(112,220,255,0.55);
+  --accent-b: rgba(255,166,92,0.45);
+
+  --line: rgba(245,248,255,0.14);
+  --card2: rgba(6,7,10,0.46);
+
+  --status-h:32px;
+
+  /* ✅ nav globale (Back/Home/Save) */
+  --nav-h:64px;
+  --safe-bottom: calc(var(--nav-h) + 14px);
+
+  /* ✅ Branch colors */
+  --c-nts: rgba(112,220,255,0.95);
+  --c-ntr: rgba(255,92,92,0.95);
+  --c-love: rgba(255,120,210,0.95);
+
+  --c-nts-soft: rgba(112,220,255,0.18);
+  --c-ntr-soft: rgba(255,92,92,0.18);
+  --c-love-soft: rgba(255,120,210,0.18);
+}
+
+/* ===== Scene wrapper (same behavior as pictures) ===== */
+.wrap{
+  height:100%;
+  padding:calc(var(--status-h) + 10px) 14px var(--safe-bottom);
+  position:relative;
+  z-index:0;
+
+  color:var(--fg);
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+
+  font-family:var(--ui-font);
+
+  overflow-y:auto;
+  overflow-x:hidden;
+  scrollbar-width:none;
+  -ms-overflow-style:none;
+}
+.wrap::-webkit-scrollbar{ width:0; height:0; }
+
+/* ✅ IMPORTANT FIX (same as pictures): background follows when you scroll */
+.wrap::after{
+  content:"";
+  position:fixed;
+  top:-18px; left:-18px; right:-18px; bottom:-18px;
+  z-index:-3;
+  pointer-events:none;
+
+  background: var(--phone-wallpaper-image) center/cover no-repeat;
+  filter: blur(8px) saturate(0.52) brightness(0.58) contrast(1.02);
+  transform: translateZ(0) scale(1.045);
+  backface-visibility:hidden;
+  opacity:1;
+}
+
+/* matte wash + subtle scanlines/grain (fixed) */
+.wrap::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  z-index:-2;
+  pointer-events:none;
+
+  background:
+    radial-gradient(ellipse at 50% -12%, rgba(30,38,60,0.18), rgba(3,5,16,0) 74%),
+    linear-gradient(180deg, rgba(6,9,22,0.20) 0%, rgba(6,9,22,0.38) 100%);
+  opacity:.92;
+  transform:translateZ(0);
+  backface-visibility:hidden;
+}
+
+/* ===== Top header ===== */
+.top{
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:12px;
+}
+
+.hak-help{
+  width:36px;
+  min-height:36px;
+  flex:0 0 auto;
+  padding:0;
+  border:1px solid var(--edge);
+  border-radius:50%;
+  background:var(--btn-bg);
+  color:var(--fg);
+  font:900 18px var(--ui-font);
+  cursor:pointer;
+}
+.hak-help:hover{background:var(--btn-bg-hover);border-color:var(--edge-strong)}
+.hak-help:focus-visible{outline:2px solid var(--fg);outline-offset:3px}
+.hak-help:disabled{opacity:.4;cursor:default}
+
+/* ===== Title (match pictures) ===== */
+h2{
+  margin:0;
+  text-align:left;
+  font-size:18px;
+  font-weight:900;
+  letter-spacing:0.16em;
+  text-transform:uppercase;
+  color:rgba(240,245,255,0.92);
+  text-shadow:0 2px 12px rgba(0,0,0,0.65);
+}
+
+.sub{
+  margin:6px 0 0;
+  color:rgba(240,245,255,0.64);
+  font-size:12px;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+}
+
+/* =========================
+   Tabs (Evidence / Skills)
+   ========================= */
+.tabs{
+  display:flex;
+  gap:10px;
+  margin-top:8px;
+  width:100%;
+  align-items:stretch;
+}
+
+.tabbtn{
+  flex:0 0 auto;
+  min-width:132px;
+  border:1px solid rgba(245,248,255,0.18);
+  background: rgba(6,7,10,0.46);
+  color: rgba(240,245,255,0.86);
+  padding:10px 14px;
+  border-radius:14px;
+  cursor:pointer;
+  user-select:none;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  font-weight:900;
+  font-size:12px;
+  position:relative;
+  overflow:hidden;
+  box-shadow: 0 10px 22px rgba(0,0,0,0.42);
+  transition: filter .18s ease, border-color .18s ease, background .18s ease;
+  white-space:nowrap;
+}
+
+.tabbtn::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  opacity:.62;
+  background:
+    repeating-linear-gradient(
+      to bottom,
+      rgba(255,255,255,0.00) 0px,
+      rgba(255,255,255,0.00) 3px,
+      rgba(255,255,255,0.045) 4px
+    ),
+    repeating-linear-gradient(
+      135deg,
+      rgba(255,255,255,0.030) 0px,
+      rgba(255,255,255,0.00) 2px,
+      rgba(255,255,255,0.022) 4px
+    );
+}
+
+.tabbtn:hover{
+  filter:brightness(1.07);
+  border-color: rgba(245,248,255,0.42);
+  background: rgba(8,10,14,0.58);
+}
+
+.tabbtn.active{
+  border-color: rgba(245,248,255,0.62);
+  background: rgba(8,10,14,0.66);
+  box-shadow:
+    inset 0 0 0 1px rgba(245,248,255,0.16),
+    0 10px 22px rgba(0,0,0,0.46),
+    0 0 10px rgba(245,248,255,0.08);
+}
+
+/* Panels */
+.panel{ display:none; }
+.panel.show{ display:block; }
+
+/* =========================
+   Points Box — REAL top-right
+   =========================
+   ✅ IMPORTANT:
+   - fixed => vraiment en haut à droite
+   - removed from layout => ne casse pas le header
+   - z-index élevé => toujours au-dessus
+*/
+.pointsBox{
+  position:fixed;
+  top:calc(var(--status-h) + 10px);
+  right:14px;
+  z-index:200;
+
+  padding:10px 12px;
+  border-radius:16px;
+  border:1px solid rgba(245,248,255,0.22);
+
+  background:
+    radial-gradient(circle at 18% 22%, rgba(112,220,255,0.10), rgba(0,0,0,0) 55%),
+    radial-gradient(circle at 82% 42%, rgba(255,120,210,0.08), rgba(0,0,0,0) 58%),
+    rgba(6,7,10,0.52);
+
+  box-shadow:
+    0 10px 22px rgba(0,0,0,0.44),
+    inset 0 0 0 1px rgba(245,248,255,0.10);
+
+  min-width:180px;
+}
+
+/* ✅ laisse de la place en haut à droite (pour que le texte/tabs ne passent pas dessous) */
+.top{
+  padding-right:210px;
+}
+
+/* points UI content */
+.pointsLabel{
+  font-size:10px;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color: rgba(240,245,255,0.62);
+  margin:0 0 6px;
+  font-weight:900;
+}
+.pointsRows{ display:flex; flex-direction:column; gap:6px; }
+.pRow{ display:flex; align-items:center; justify-content:space-between; gap:10px; }
+.pLeft{ display:flex; align-items:center; gap:8px; min-width:0; }
+.pDot{
+  width:10px; height:10px;
+  border-radius:999px;
+  box-shadow: 0 0 0 4px rgba(255,255,255,0.06);
+  flex:0 0 auto;
+}
+.pDot.nts{  background: var(--c-nts);  box-shadow: 0 0 0 4px var(--c-nts-soft), 0 0 18px rgba(112,220,255,0.20); }
+.pDot.ntr{  background: var(--c-ntr);  box-shadow: 0 0 0 4px var(--c-ntr-soft), 0 0 18px rgba(255,92,92,0.18); }
+.pDot.love{ background: var(--c-love); box-shadow: 0 0 0 4px var(--c-love-soft),0 0 18px rgba(255,120,210,0.18); }
+.pLabel{
+  font-size:10px;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color: rgba(240,245,255,0.70);
+  font-weight:900;
+  white-space:nowrap;
+}
+.pVal{
+  font-size:14px;
+  font-weight:900;
+  letter-spacing:.06em;
+  color: rgba(240,245,255,0.92);
+}
+
+/* ✅ petits écrans: évite chevauchement */
+@media (max-width: 520px){
+  .top{ padding-right:0; }
+  .pointsBox{
+    position:static;
+    min-width:0;
+    width:100%;
+    transform:none;
+    box-sizing:border-box;
+  }
+  .pointsRows{ flex-direction:row; gap:14px; }
+  .pRow{ flex:1; min-width:0; }
+}
+
+/* =========================
+   Evidence list
+   ========================= */
+.list{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+  overflow:visible;
+}
+
+.empty{
+  flex:1;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding:0 12px;
+  color:rgba(240,245,255,0.68);
+  font-size:14px;
+  line-height:1.45;
+  text-shadow:0 2px 12px rgba(0,0,0,0.55);
+}
+
+.evidenceBackBtn{
+  align-self:flex-start;
+  border:1px solid rgba(245,248,255,0.22);
+  background:rgba(6,7,10,0.46);
+  color:rgba(240,245,255,0.90);
+  border-radius:12px;
+  padding:7px 11px;
+  font-size:12px;
+  font-weight:800;
+  letter-spacing:.06em;
+  text-transform:uppercase;
+  cursor:pointer;
+}
+.evidenceBackBtn:hover{
+  border-color:rgba(245,248,255,0.42);
+}
+
+.evidenceProfileTitle{
+  font-size:12px;
+  font-weight:900;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  color:rgba(240,245,255,0.82);
+  padding:0 2px 2px;
+}
+
+/* ===== Card ===== */
+.card{
+  position:relative;
+  display:grid;
+  grid-template-columns:72px 1fr;
+  gap:12px;
+  align-items:center;
+  padding:10px;
+
+  border-radius:16px;
+  cursor:pointer;
+  user-select:none;
+
+  background: rgba(6,7,10,0.55);
+  border:1px solid rgba(245,248,255,0.26);
+
+  box-shadow:
+    inset 0 0 0 1px rgba(245,248,255,0.08),
+    0 10px 22px rgba(0,0,0,0.48);
+
+  transform:none;
+
+  transition:
+    filter .18s ease,
+    box-shadow .18s ease,
+    border-color .18s ease,
+    background .18s ease;
+  overflow:hidden;
+}
+
+.card::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  opacity:.60;
+  background:
+    repeating-linear-gradient(
+      to bottom,
+      rgba(255,255,255,0.00) 0px,
+      rgba(255,255,255,0.00) 3px,
+      rgba(255,255,255,0.040) 4px
+    ),
+    repeating-linear-gradient(
+      135deg,
+      rgba(255,255,255,0.030) 0px,
+      rgba(255,255,255,0.00) 2px,
+      rgba(255,255,255,0.022) 4px
+    );
+}
+
+.card::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  border-radius:inherit;
+  padding:0;
+  background: rgba(245,248,255,0.26);
+  opacity:0;
+  filter:none;
+  pointer-events:none;
+  transition: opacity .18s ease, filter .18s ease;
+}
+
+.card:hover{
+  filter:brightness(1.06);
+  border-color: rgba(245,248,255,0.52);
+  box-shadow:
+    inset 0 0 0 1px rgba(245,248,255,0.16),
+    0 10px 22px rgba(0,0,0,0.48),
+    0 0 10px rgba(245,248,255,0.08);
+  background: rgba(8,10,14,0.60);
+}
+.card:hover::after{
+  opacity:1;
+  filter:none;
+}
+.card:active{
+  filter:brightness(1.10);
+  border-color: rgba(245,248,255,0.70);
+  box-shadow:
+    inset 0 0 0 1px rgba(245,248,255,0.22),
+    0 10px 22px rgba(0,0,0,0.48),
+    0 0 10px rgba(245,248,255,0.10);
+}
+.card.locked{
+  border-color:rgba(245,248,255,0.18);
+  filter:saturate(0.72) brightness(0.84);
+}
+.card.locked:hover{
+  border-color:rgba(245,248,255,0.30);
+  filter:saturate(0.78) brightness(0.90);
+}
+.card.locked .thumb img,
+.card.locked .mediaThumbMount{
+  opacity:.38;
+  filter:blur(2px) grayscale(.55);
+}
+.lockedThumb{
+  position:absolute;
+  inset:0;
+  z-index:3;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding:8px;
+  color:rgba(240,245,255,0.88);
+  background:
+    repeating-linear-gradient(
+      135deg,
+      rgba(245,248,255,0.08) 0,
+      rgba(245,248,255,0.08) 1px,
+      rgba(0,0,0,0.0) 1px,
+      rgba(0,0,0,0.0) 8px
+    ),
+    rgba(4,6,10,0.72);
+  font-size:10px;
+  font-weight:900;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+}
+.badge.lockedBadge{
+  border-color:rgba(245,248,255,0.28);
+  color:rgba(240,245,255,0.76);
+}
+
+/* ===== Thumb ===== */
+.thumb{
+  width:72px; height:72px;
+  border-radius:14px;
+  overflow:hidden;
+
+  background: rgba(6,7,10,0.55);
+  border:1px solid rgba(245,248,255,0.18);
+
+  box-shadow: 0 12px 26px rgba(0,0,0,0.55);
+  position:relative;
+  flex:0 0 auto;
+}
+.thumb::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  opacity:.55;
+  background:
+    repeating-linear-gradient(
+      to bottom,
+      rgba(255,255,255,0.00) 0px,
+      rgba(255,255,255,0.00) 3px,
+      rgba(255,255,255,0.040) 4px
+    ),
+    repeating-linear-gradient(
+      135deg,
+      rgba(255,255,255,0.030) 0px,
+      rgba(255,255,255,0.00) 2px,
+      rgba(255,255,255,0.022) 4px
+    );
+}
+.thumb img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+  position:relative;
+  z-index:1;
+}
+.thumb .mediaThumbMount,
+.thumb .media-thumb{
+  width:100%;
+  height:100%;
+  position:relative;
+  z-index:1;
+}
+.thumb .media-thumb video{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+}
+.thumb .media-thumb-label{
+  font-size:9px;
+  letter-spacing:.12em;
+}
+
+.meta{ min-width:0; display:flex; flex-direction:column; gap:6px; }
+.row{ display:flex; align-items:center; justify-content:space-between; gap:10px; min-width:0; }
+
+.title{
+  font-size:13px;
+  font-weight:900;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  color:rgba(240,245,255,0.92);
+  text-shadow:0 2px 12px rgba(0,0,0,0.55);
+}
+
+.badge{
+  font-size:11px;
+  padding:3px 8px;
+  border-radius:999px;
+  border:1px solid rgba(245,248,255,0.20);
+  background: rgba(6,7,10,0.46);
+  color:rgba(240,245,255,0.88);
+  flex:0 0 auto;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  box-shadow: 0 12px 26px rgba(0,0,0,0.45);
+}
+
+.desc{
+  color:rgba(240,245,255,0.68);
+  font-size:12px;
+  line-height:1.35;
+
+  display:-webkit-box;
+  -webkit-line-clamp:2;
+  -webkit-box-orient:vertical;
+
+  line-clamp:2;
+  box-orient:vertical;
+
+  overflow:hidden;
+  text-shadow:0 2px 12px rgba(0,0,0,0.45);
+}
+
+.unseenDot{
+  position:absolute;
+  top:8px; left:8px;
+  width:10px; height:10px;
+  border-radius:999px;
+  background: rgba(112,220,255,0.85);
+  box-shadow:
+    0 0 0 4px rgba(112,220,255,0.14),
+    0 0 18px rgba(112,220,255,0.16);
+  z-index:2;
+}
+
+.card.unread{
+  border-color:rgba(112,220,255,0.56);
+  box-shadow:
+    0 12px 26px rgba(0,0,0,0.46),
+    0 0 0 1px rgba(112,220,255,0.22),
+    0 0 20px rgba(112,220,255,0.16);
+}
+
+.badge.newBadge{
+  border-color:rgba(112,220,255,0.58);
+  background:rgba(112,220,255,0.18);
+  color:rgba(230,249,255,0.98);
+}
+
+/* =========================
+   Skills UI — FIX OVERLAP
+   ========================= */
+
+/* ✅ make skills panel a real flex column that fills remaining space */
+#hak-panel-skills.panel.show{
+  display:flex;
+  flex-direction:column;
+  flex:1;
+  min-height:0;
+}
+
+/* header inside skills */
+.skillsTop{
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:12px;
+  margin-top:2px;
+  flex:0 0 auto;
+
+  /* ✅ reserve space so texts don't go under pointsBox */
+  padding-right:210px;
+}
+@media (max-width:520px){
+  .skillsTop{ padding-right:0; flex-direction:column; gap:10px; margin-bottom:10px; }
+}
+
+/* tree + bottom sheet container */
+.treeShell{
+  flex:1 1 auto;
+  min-height:0;
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+}
+
+/* Skill tree box */
+.treeWrap{
+  width:100%;
+  border-radius:18px;
+  border:1px solid rgba(245,248,255,0.16);
+  background: rgba(6,7,10,0.38);
+  box-shadow: 0 12px 24px rgba(0,0,0,0.48);
+  overflow:hidden;
+  position:relative;
+
+  flex:1 1 auto;
+  min-height:320px;
+
+  /* ✅ “game-like” camera */
+  user-select:none;
+  touch-action:none;
+  cursor:grab;
+}
+.treeWrap.dragging{ cursor:grabbing; }
+
+/* vignette + glow soft */
+.treeWrap::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  opacity:.62;
+  background:
+    radial-gradient(ellipse at 50% 0%, rgba(112,220,255,0.10), rgba(0,0,0,0) 70%),
+    linear-gradient(180deg, rgba(255,255,255,0.035), rgba(0,0,0,0.30));
+}
+
+.treeSvg{
+  width:100%;
+  height:100%;
+  display:block;
+  position:relative;
+  z-index:1;
+}
+
+/* ✅ tiny HUD hint (optional but nice) */
+.treeHud{
+  position:absolute;
+  left:12px;
+  bottom:12px;
+  z-index:3;
+  padding:8px 10px;
+  border-radius:12px;
+  border:1px solid rgba(245,248,255,0.14);
+  background: rgba(6,7,10,0.46);
+  color: rgba(240,245,255,0.72);
+  font-size:11px;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  box-shadow: 0 16px 40px rgba(0,0,0,0.55);
+  pointer-events:none;
+}
+/* Connector styling (premium dual stroke) */
+.tLink{
+  fill:none;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+  vector-effect: non-scaling-stroke;
+  transition: stroke-opacity .24s ease, stroke-width .24s ease;
+}
+.tLink.unlockedLink,
+.tLink.edge-active{
+  stroke-opacity: .92 !important;
+}
+.tLink.edge-just-unlocked{
+  animation: edgeCoreUnlock .82s ease-out 1;
+}
+@keyframes edgeCoreUnlock{
+  0% { stroke-opacity:.32; }
+  45% { stroke-opacity:1; }
+  100% { stroke-opacity:.92; }
+}
+.tLinkGlow{
+  fill:none;
+  stroke:#fff;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+  vector-effect: non-scaling-stroke;
+  opacity:.16;
+  stroke-opacity:.16;
+  stroke-width:14;
+  filter:url(#linkBlur);
+  transition: opacity .28s ease, stroke-opacity .28s ease, stroke-width .28s ease;
+}
+.tLinkGlow.on{
+  opacity:.46;
+  stroke-opacity:.44;
+}
+.tLinkGlow.edge-just-unlocked{
+  animation: edgeUnlockFlash .72s ease-out 1;
+}
+@keyframes edgeUnlockFlash{
+  0% { opacity:.26; stroke-opacity:.24; }
+  45% { opacity:.78; stroke-opacity:.76; }
+  100% { opacity:.46; stroke-opacity:.44; }
+}
+
+/* Nodes */
+.tNode{
+  cursor:default;
+  transform-box: fill-box;
+  transform-origin: center;
+  transition: transform .18s ease, filter .18s ease;
+}
+.tNode.skillNode{ cursor:pointer; }
+.tNode.placeholderNode{ cursor:default; }
+.tNode.skillNode:hover,
+.tNode.selected{
+  transform: scale(1.06);
+}
+
+.tDrop{
+  fill: rgba(0,0,0,0.44);
+  opacity:.68;
+  filter:url(#shadowSoft);
+}
+.tHalo{
+  fill:none;
+  stroke-width:8;
+  opacity:.24;
+  filter:url(#glowStrong);
+}
+.tRing{
+  fill: rgba(10,14,22,0.66);
+  stroke-width:6;
+  opacity:.90;
+}
+.tPlate{
+  fill: rgba(10,14,22,0.78);
+  stroke: rgba(245,248,255,0.18);
+  stroke-width: 1.2;
+}
+.tSpec{
+  fill: rgba(255,255,255,0.28);
+  opacity:.52;
+}
+.tCoreDot{
+  fill: rgba(245,248,255,0.55);
+  opacity:.58;
+}
+.tCore{
+  fill: rgba(6,7,10,0.60);
+  stroke: rgba(245,248,255,0.22);
+  stroke-width: 10;
+  filter: url(#glowSoft);
+}
+.tLabel{
+  font-size: 22px;
+  font-weight: 900;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  fill: rgba(240,245,255,0.86);
+  text-anchor: middle;
+  dominant-baseline: middle;
+}
+.tNodeValue{
+  font-size: 28px;
+  font-weight: 900;
+  letter-spacing: 0;
+  fill: rgba(240,245,255,0.98);
+  text-anchor: middle;
+  dominant-baseline: middle;
+}
+.tSkillLogo{
+  pointer-events:none;
+  opacity:.88;
+  image-rendering:auto;
+}
+.tNodeState{
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: .12em;
+  fill: rgba(240,245,255,0.78);
+  text-anchor: middle;
+  dominant-baseline: middle;
+}
+
+.branch-cyan .tRing,
+.branch-cyan .tHalo{ stroke: rgba(112,220,255,0.76); }
+.branch-red .tRing,
+.branch-red .tHalo{ stroke: rgba(255,92,92,0.76); }
+.branch-pink .tRing,
+.branch-pink .tHalo{ stroke: rgba(255,120,210,0.76); }
+
+.tNode.locked{ opacity:.92; }
+.tNode.available .tRing,
+.tNode.unlocked .tRing,
+.tNode.selected .tRing{ opacity:1; }
+.tNode.available .tHalo{ opacity:.42; }
+.tNode.unlocked .tHalo{ opacity:.56; }
+.tNode.selected .tHalo{ opacity:.72; }
+.starter-skill-node .node-cost,
+.starter-skill-node .node-status,
+.starter-skill-node .locked-label,
+.starter-skill-node .unlocked-label,
+.starter-skill-node .node-text,
+.starter-skill-node .cost,
+.starter-skill-node .status,
+.starter-skill-node .tNodeValue,
+.starter-skill-node .tNodeState{
+  display:none !important;
+  visibility:hidden !important;
+  opacity:0 !important;
+}
+.starter-skill-node .skill-logo,
+.starter-skill-node .tSkillLogo{
+  pointer-events:none;
+  user-select:none;
+  image-rendering:auto;
+  transform: translateZ(0);
+  transform-box: fill-box;
+  transform-origin: center;
+  backface-visibility: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+.starter-skill-node{
+  contain: layout paint;
+}
+.starter-skill-node .node-inner,
+.starter-skill-node .inner,
+.starter-skill-node .node-core,
+.starter-skill-node .core,
+.starter-skill-node .tPlate{
+  background: rgba(0,0,0,0.18) !important;
+  fill: rgba(0,0,0,0.18) !important;
+  stroke: rgba(245,248,255,0.10) !important;
+  box-shadow: none !important;
+  filter: none !important;
+}
+.starter-skill-node .node-inner::before,
+.starter-skill-node .node-inner::after,
+.starter-skill-node .inner::before,
+.starter-skill-node .inner::after,
+.starter-skill-node .node-core::before,
+.starter-skill-node .node-core::after,
+.starter-skill-node .core::before,
+.starter-skill-node .core::after{
+  content: none !important;
+  display: none !important;
+  opacity: 0 !important;
+}
+.starter-skill-node .dot,
+.starter-skill-node .node-dot,
+.starter-skill-node .center-dot,
+.starter-skill-node .core-dot,
+.starter-skill-node .inner-dot,
+.starter-skill-node .tSpec,
+.starter-skill-node .tCoreDot{
+  display: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+}
+.starter-skill-node.locked .skill-logo,
+.starter-skill-node.locked .tSkillLogo{
+  opacity:.45;
+  filter: saturate(0.9) brightness(0.85);
+}
+.starter-skill-node.unlocked .skill-logo,
+.starter-skill-node.unlocked .tSkillLogo{
+  opacity:1;
+  filter:none;
+}
+.tNode:not(.starter-skill-node) .qmark{
+  font-weight:800;
+  font-size:22px;
+  line-height:1;
+  opacity:.95;
+  transform: translateY(-1px);
+  text-shadow: 0 0 10px rgba(255,255,255,0.12);
+  pointer-events:none;
+  user-select:none;
+}
+.tNode .node-cost,
+.tNode .node-status,
+.tNode .locked-label,
+.tNode .unlocked-label,
+.tNode .status,
+.tNode .cost{
+  display:none !important;
+  visibility:hidden !important;
+  opacity:0 !important;
+}
+
+.tNode.placeholderNode .tRing,
+.tNode.placeholderNode .tHalo{
+  stroke-width:5;
+  opacity:.34;
+}
+.tNode.placeholderNode .tPlate{
+  fill: rgba(8,10,16,0.84);
+  stroke: rgba(245,248,255,0.11);
+}
+.tNode.placeholderNode .tNodeValue{ fill: rgba(240,245,255,0.78); }
+.tNode.placeholderNode .tNodeState{ fill: rgba(240,245,255,0.52); }
+.tBranchLabel{
+  font-size:24px;
+  font-weight:800;
+  letter-spacing:.14em;
+  text-anchor:middle;
+  pointer-events:none;
+}
+.tBranchLabel.branch-red{ fill:var(--c-ntr); }
+.tBranchLabel.branch-cyan{ fill:var(--c-nts); }
+.tBranchLabel.branch-pink{ fill:var(--c-love); }
+.tLockedGlyph{ display:none; fill:none; stroke:rgba(240,245,255,.76); stroke-width:3; stroke-linecap:round; stroke-linejoin:round; pointer-events:none; }
+.tNode.placeholderNode .tLockedGlyph{ display:block; }
+/* Keep the unknown marker as a fallback; the lock supplies its visual treatment. */
+.tNode.placeholderNode [data-role="unrevealed-value"]{ opacity:0; }
+/* Compact technical markers: the skill glyph is the focus, without an orb. */
+.treeSvg .tDrop,.treeSvg .tHalo{ display:none; }
+.treeSvg .tRing,.treeSvg .tPlate,.treeSvg .tCore{ fill:none !important; stroke:none !important; filter:none !important; }
+.tFrame{ fill:none; stroke-width:2; stroke-linecap:round; stroke-linejoin:round; opacity:.38; }
+.branch-red .tFrame{ stroke:var(--c-ntr); }
+.branch-cyan .tFrame{ stroke:var(--c-nts); }
+.branch-pink .tFrame{ stroke:var(--c-love); }
+.tNode.available .tFrame{ opacity:.84; stroke-width:2.6; }
+.tNode.unlocked .tFrame{ opacity:1; stroke-width:3; }
+.tNode.selected .tFrame{ stroke:rgba(245,248,255,.94); opacity:1; stroke-width:3; }
+.tNode.placeholderNode .tFrame{ opacity:.27; }
+.tRootFrame{ fill:rgba(6,7,10,.55); stroke:rgba(245,248,255,.38); stroke-width:2; }
+.treeSvg .tLinkGlow{ display:none; }
+
+@keyframes nodeUnlockBurst{
+  0%{
+    transform: scale(0.92);
+    filter: brightness(0.92);
+  }
+  33%{
+    transform: scale(1.06);
+    filter: brightness(1.22) drop-shadow(0 0 14px rgba(245,248,255,0.42));
+  }
+  100%{
+    transform: scale(1);
+    filter: brightness(1);
+  }
+}
+.tNode.is-just-unlocked{
+  animation: nodeUnlockBurst .9s cubic-bezier(.2,.8,.25,1) 1;
+}
+
+/* Info panel (bottom sheet) — stays in flow (NO overlay) */
+.skillInfo{
+  position:relative;
+  padding:12px;
+  border-radius:18px 18px 0 0;
+  border:1px solid rgba(245,248,255,0.16);
+  background: rgba(6,7,10,0.72);
+  box-shadow:0 -10px 24px rgba(0,0,0,0.50);
+  overflow:hidden;
+
+  flex:0 0 auto;
+}
+
+.skillInfo::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  opacity:.48;
+  background:
+    radial-gradient(ellipse at 28% -8%, rgba(112,220,255,0.12), rgba(0,0,0,0) 72%),
+    linear-gradient(180deg, rgba(255,255,255,0.035), transparent 58%);
+}
+.skillInfo > *{ position:relative; z-index:1; }
+
+.skillInfoTop{
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:12px;
+}
+
+.skillInfoName{
+  font-size:13px;
+  font-weight:900;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  color:rgba(240,245,255,0.92);
+  text-shadow:0 2px 12px rgba(0,0,0,0.55);
+}
+
+.skillInfoBranch{
+  margin-top:6px;
+  font-size:11px;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  color:rgba(240,245,255,0.62);
+}
+
+.skillInfoCost{
+  font-size:11px;
+  padding:3px 8px;
+  border-radius:999px;
+  border:1px solid rgba(245,248,255,0.20);
+  background: rgba(6,7,10,0.46);
+  color:rgba(240,245,255,0.86);
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  flex:0 0 auto;
+}
+.skillInfoCost.branch-nts{
+  border-color: rgba(112,220,255,0.62);
+  color: rgba(152,231,255,0.96);
+}
+.skillInfoCost.branch-ntr{
+  border-color: rgba(255,92,92,0.62);
+  color: rgba(255,162,162,0.96);
+}
+.skillInfoCost.branch-love{
+  border-color: rgba(255,120,210,0.62);
+  color: rgba(255,188,231,0.96);
+}
+
+.skillInfoDesc{
+  margin-top:8px;
+  color:rgba(255,216,140,0.96);
+  font-size:12px;
+  line-height:1.35;
+  text-shadow:
+    0 0 10px rgba(255,184,84,0.32),
+    0 2px 12px rgba(0,0,0,0.45);
+}
+.skillInfoReq{
+  margin-top:8px;
+  color:rgba(240,245,255,0.56);
+  font-size:11px;
+  letter-spacing:.06em;
+}
+
+.skillInfoActions{
+  display:flex;
+  gap:10px;
+  margin-top:10px;
+}
+.skillInfoBtn{
+  flex:1;
+  border:1px solid rgba(245,248,255,0.18);
+  background: rgba(8,10,14,0.60);
+  color:rgba(240,245,255,0.90);
+  padding:10px 12px;
+  border-radius:14px;
+  cursor:pointer;
+  font-weight:900;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  font-size:11px;
+  transition: filter .18s ease, border-color .18s ease, background .18s ease;
+}
+.skillInfoBtn:hover{
+  filter:brightness(1.08);
+  border-color: rgba(245,248,255,0.44);
+  background: rgba(8,10,14,0.70);
+}
+.skillInfoBtn[disabled]{ opacity:.45; cursor:not-allowed; }
+.skillInfoBtn.ghost{ background: rgba(6,7,10,0.46); }
+
+/* ===== Viewer (match pictures lightbox vibe) ===== */
+.viewer{
+  position:fixed;
+  inset:0;
+  background:transparent;
+  display:none;
+  flex-direction:column;
+  z-index:50;
+}
+.viewer.show{ display:flex; }
+
+.vBackdrop{
+  position:absolute;
+  inset:0;
+  background:
+    radial-gradient(circle at center, rgba(0,0,0,0.66), rgba(0,0,0,0.92));
+  backdrop-filter: blur(10px);
+  z-index:0;
+}
+
+.vTop{
+  position:relative;
+  z-index:2;
+  padding:calc(var(--status-h) + 10px) 14px 10px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  background: linear-gradient(180deg, rgba(0,0,0,.65), rgba(0,0,0,0));
+}
+
+.vTitle{
+  font-size:13px;
+  font-weight:900;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  margin:0;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  color:rgba(240,245,255,0.92);
+  text-shadow:0 2px 12px rgba(0,0,0,0.65);
+}
+
+.vBtn{
+  border:1px solid rgba(245,248,255,0.18);
+  background: rgba(6,7,10,0.55);
+  color:var(--fg);
+  padding:8px 10px;
+  border-radius:12px;
+  cursor:pointer;
+
+  box-shadow: 0 16px 40px rgba(0,0,0,0.62);
+  transition: filter .18s ease, border-color .18s ease, background .18s ease;
+  overflow:hidden;
+  position:relative;
+}
+.vBtn::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  opacity:.70;
+  background:
+    repeating-linear-gradient(
+      to bottom,
+      rgba(255,255,255,0.00) 0px,
+      rgba(255,255,255,0.00) 3px,
+      rgba(255,255,255,0.045) 4px
+    ),
+    repeating-linear-gradient(
+      135deg,
+      rgba(255,255,255,0.038) 0px,
+      rgba(255,255,255,0.00) 2px,
+      rgba(255,255,255,0.028) 4px
+    );
+}
+.vBtn:hover{
+  filter:brightness(1.08);
+  border-color: rgba(245,248,255,0.44);
+  background: rgba(8,10,14,0.62);
+}
+.vBtn:active{ transform:scale(.98); }
+
+.vBody{
+  position:relative;
+  z-index:2;
+  flex:1;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:12px;
+}
+
+.vImg,
+.vVideo{
+  max-width:100%;
+  max-height:100%;
+  border-radius:18px;
+  border:1px solid rgba(245,248,255,0.18);
+  box-shadow:
+    0 0 40px rgba(0,0,0,0.9),
+    0 0 30px rgba(112,220,255,0.12),
+    0 0 26px rgba(255,166,92,0.06);
+  background:#000;
+}
+.vVideo{ width:min(100%, 980px); height:auto; }
+
+.vFoot{
+  position:relative;
+  z-index:2;
+  padding:12px 14px 16px;
+  color:rgba(240,245,255,0.68);
+  font-size:12px;
+  line-height:1.4;
+  background:linear-gradient(180deg, rgba(0,0,0,0), rgba(0,0,0,.62));
+  text-shadow:0 2px 12px rgba(0,0,0,0.55);
+}
+.vTime{
+  color:rgba(240,245,255,0.78);
+  font-size:11px;
+  margin-bottom:6px;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+}
+#hak-vtext.has-player-thought{
+  max-height:30vh;
+  overflow:auto;
+  white-space:pre-wrap;
+  overflow-wrap:anywhere;
+  font-size:14px;
+  color:rgba(240,245,255,0.94);
+}
+
+/* =========================
+   Animations
+   ========================= */
+@keyframes treeEnter{
+  0%   { opacity:0; transform: translateY(10px) scale(0.985); filter: blur(2px); }
+  100% { opacity:1; transform: translateY(0) scale(1); filter: blur(0); }
+}
+.treeWrap.tree-enter{
+  animation: treeEnter .32s ease-out 1;
+}
+
+@keyframes unlockFlash{
+  0%   { filter: brightness(1) saturate(1); }
+  45%  { filter: brightness(1.25) saturate(1.25); }
+  100% { filter: brightness(1) saturate(1); }
+}
+.treeWrap.unlock-flash{
+  animation: unlockFlash .35s ease-out 1;
+}
+
+@keyframes branchGlitch{
+  0%   { transform: translate(0,0); filter: none; }
+  18%  { transform: translate(1px,0); filter: saturate(1.25) brightness(1.15); }
+  36%  { transform: translate(-1px,1px); }
+  54%  { transform: translate(1px,-1px); }
+  72%  { transform: translate(0,1px); }
+  100% { transform: translate(0,0); filter: none; }
+}
+
+@keyframes branchTint{
+  0%   { opacity:0; transform: scale(1); }
+  25%  { opacity:.85; transform: scale(1.02); }
+  100% { opacity:0; transform: scale(1.06); }
+}
+
+.treeWrap::after{
+  content:"";
+  position:absolute;
+  inset:-2px;
+  border-radius:18px;
+  pointer-events:none;
+  opacity:0;
+  z-index:2;
+  background: radial-gradient(circle at 50% 65%, rgba(255,255,255,0.0), rgba(255,255,255,0.0) 55%);
+  mix-blend-mode: screen;
+}
+
+.treeWrap.branch-glitch{
+  animation: branchGlitch .22s steps(2,end) 1;
+}
+
+.treeWrap.burst-nts::after{
+  background:
+    radial-gradient(circle at 50% 65%, rgba(112,220,255,0.36), rgba(112,220,255,0.0) 60%);
+  animation: branchTint .26s ease-out 1;
+}
+
+.treeWrap.burst-ntr::after{
+  background:
+    radial-gradient(circle at 50% 65%, rgba(255,92,92,0.34), rgba(255,92,92,0.0) 60%);
+  animation: branchTint .26s ease-out 1;
+}
+
+.treeWrap.burst-love::after{
+  background:
+    radial-gradient(circle at 50% 65%, rgba(255,120,210,0.34), rgba(255,120,210,0.0) 60%);
+  animation: branchTint .26s ease-out 1;
+}
+/* Tutorial corner guide */
+.hak-guide{
+  position:fixed;
+  z-index:9999;
+  width:min(340px, calc(100vw - 32px));
+  max-height:calc(100dvh - var(--status-h) - var(--safe-bottom) - 32px);
+  box-sizing:border-box;
+  display:flex;
+  flex-direction:column;
+  padding:12px 14px 14px;
+  border-radius:16px;
+  border:1px solid rgba(245,248,255,0.42);
+  background: linear-gradient(145deg, rgba(0,0,0,0.90), rgba(16,16,16,0.86));
+  box-shadow:
+    0 20px 50px rgba(0,0,0,0.82),
+    0 0 16px rgba(255,255,255,0.15);
+  color:#fff;
+  backdrop-filter: blur(6px);
+  opacity:0;
+  transform:translateY(12px) scale(0.98);
+  pointer-events:none;
+  transition: opacity .22s ease-out, transform .22s cubic-bezier(.2,.8,.25,1);
+  will-change: opacity, transform;
+}
+.hak-guide.show{
+  opacity:1;
+  transform:translateY(0) scale(1);
+  pointer-events:auto;
+}
+.hak-guide.pos-bl{
+  left:16px;
+  bottom:84px;
+}
+.hak-guide.pos-br{
+  right:12px;
+  bottom:calc(var(--safe-bottom) + 10px);
+}
+.hak-guide.pos-tl{
+  left:12px;
+  top:calc(var(--status-h) + 8px);
+}
+.hak-guide.pos-tr{
+  right:12px;
+  top:calc(var(--status-h) + 8px);
+}
+.hak-guide-title{
+  flex:0 0 auto;
+  font-size:11px;
+  font-weight:900;
+  letter-spacing:0.18em;
+  text-transform:uppercase;
+  color:rgba(255,255,255,0.94);
+  margin:0 0 8px;
+}
+.hak-guide-text{
+  min-height:0;
+  overflow-y:auto;
+  font-size:13px;
+  line-height:1.45;
+  color:rgba(240,245,255,0.94);
+  text-shadow: 0 0 8px rgba(0,0,0,0.64);
+}
+.hak-guide-text p{margin:0 0 8px}
+.hak-guide-text p:last-child{margin-bottom:0}
+.hak-guide-actions{display:flex;flex:0 0 auto;justify-content:flex-end;gap:8px;margin-top:12px}
+.hak-guide-next{
+  min-height:30px;
+  padding:0 14px;
+  border-radius:999px;
+  border:1px solid rgba(245,248,255,0.60);
+  background:rgba(0,0,0,0.46);
+  color:#fff;
+  font-size:11px;
+  font-weight:900;
+  letter-spacing:0.16em;
+  text-transform:uppercase;
+  cursor:pointer;
+  box-shadow: 0 0 10px rgba(255,255,255,0.10);
+}
+.hak-guide-next:hover{
+  filter:brightness(1.08);
+  box-shadow: 0 0 14px rgba(255,255,255,0.20);
+}
+
+.wrap.hak-tutorial-lock .tabbtn,
+.wrap.hak-tutorial-lock .card,
+.wrap.hak-tutorial-lock #hak-treewrap,
+.wrap.hak-tutorial-lock .skillInfoBtn,
+.wrap.hak-tutorial-lock .viewer{
+  pointer-events:none !important;
+}
+
+</style>
+<link rel="stylesheet" href="assets/styles/theme.css">
+
+<div class="wrap" data-scene>
+  <div class="top">
+    <div>
+      <h2>HAK</h2>
+      <p id="hak-sub" class="sub" data-i18n="hak.evidence_locker">Evidence locker</p>
+
+      <div class="tabs">
+        <button id="hak-tab-evidence" class="tabbtn active" type="button" data-i18n="hak.evidence">Evidence</button>
+        <button id="hak-tab-skills" class="tabbtn" type="button" data-i18n="hak.skills">Skills</button>
+      </div>
+    </div>
+    <button id="hak-help" class="hak-help" type="button" aria-label="Replay HAK tutorial" title="Replay HAK tutorial" data-i18n-aria-label="hak.tutorial_help" data-i18n-title="hak.tutorial_help" disabled>?</button>
+  </div>
+
+  <!-- =======================
+       PANEL: EVIDENCE
+       ======================= -->
+  <div id="hak-panel-evidence" class="panel show">
+    <div id="hak-empty" class="empty" style="display:none;">
+      No evidence has been deposited yet.<br>
+      Return later.
+    </div>
+
+    <div id="hak-list" class="list"></div>
+  </div>
+
+  <!-- =======================
+       PANEL: SKILLS
+       ======================= -->
+  <div id="hak-panel-skills" class="panel">
+    <div class="skillsTop">
+      <div>
+        <p class="sub" style="margin-top:0;" data-i18n="hak.skill_tree">Skill tree</p>
+        <p class="desc" style="margin-top:0;" data-i18n="hak.skill_tree_description">
+          Spend NTS, NTR, and LOVE points to unlock skills that reveal new information and guide your choices. Skills never block core story events.
+        </p>
+      </div>
+
+      <!-- ✅ 3 currencies -->
+      <div class="pointsBox">
+        <p class="pointsLabel" data-i18n="hak.available_points">Available points</p>
+
+        <div class="pointsRows">
+          <div class="pRow">
+            <div class="pLeft">
+              <span class="pDot nts"></span>
+              <span class="pLabel">NTS</span>
+            </div>
+            <span id="hak-points-nts" class="pVal">0</span>
+          </div>
+
+          <div class="pRow">
+            <div class="pLeft">
+              <span class="pDot ntr"></span>
+              <span class="pLabel">NTR</span>
+            </div>
+            <span id="hak-points-ntr" class="pVal">0</span>
+          </div>
+
+          <div class="pRow">
+            <div class="pLeft">
+              <span class="pDot love"></span>
+              <span class="pLabel">LOVE</span>
+            </div>
+            <span id="hak-points-love" class="pVal">0</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="treeShell">
+      <div id="hak-treewrap" class="treeWrap" aria-label="Skill tree">
+       <svg id="hak-tree" class="treeSvg" viewBox="0 0 1000 1100" preserveAspectRatio="xMidYMid meet"></svg>
+       <div class="treeHud">Wheel: zoom • Drag: move</div>
+      </div>
+
+      <div id="hak-skillinfo" class="skillInfo" style="display:none;">
+        <div class="skillInfoTop">
+          <div>
+            <div id="hak-skillinfo-name" class="skillInfoName">SKILL</div>
+            <div id="hak-skillinfo-branch" class="skillInfoBranch">BRANCH</div>
+          </div>
+          <div id="hak-skillinfo-cost" class="skillInfoCost">COST: 0</div>
+        </div>
+
+        <div id="hak-skillinfo-desc" class="skillInfoDesc">Description…</div>
+        <div id="hak-skillinfo-req" class="skillInfoReq">State: Locked</div>
+
+        <div class="skillInfoActions">
+          <button id="hak-skillinfo-unlock" class="skillInfoBtn" type="button" data-no-sfx="1" disabled data-i18n="hak.unlock">Unlock</button>
+          <button id="hak-skillinfo-close" class="skillInfoBtn ghost" type="button" data-i18n="common.close">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Viewer -->
+  <div id="hak-viewer" class="viewer" aria-hidden="true">
+    <div class="vBackdrop" id="hak-vbackdrop"></div>
+
+    <div class="vTop">
+      <p id="hak-vtitle" class="vTitle" data-i18n="hak.evidence">EVIDENCE</p>
+      <button id="hak-close" class="vBtn" data-i18n="common.close">Close</button>
+    </div>
+
+    <div class="vBody">
+      <img id="hak-vimg" class="vImg" alt="Evidence">
+      <video id="hak-vvideo" class="vVideo" preload="metadata" playsinline controls hidden></video>
+    </div>
+
+    <div class="vFoot">
+      <div id="hak-vtime" class="vTime"></div>
+      <div id="hak-vtext"></div>
+    </div>
+  </div>
+
+  <div id="hak-guide" class="hak-guide pos-bl" aria-hidden="true" role="dialog" aria-labelledby="hak-guide-title" aria-describedby="hak-guide-text">
+    <div id="hak-guide-title" class="hak-guide-title">HAK</div>
+    <div id="hak-guide-text" class="hak-guide-text"></div>
+    <div class="hak-guide-actions">
+      <button id="hak-guide-close" class="hak-guide-next" type="button" data-i18n="common.close" hidden>Close</button>
+      <button id="hak-guide-next" class="hak-guide-next" type="button">( next )</button>
+    </div>
+  </div>
+</div>
+<script>
+(function(){
+  try { if (typeof window.__hak_cleanup === "function") window.__hak_cleanup(); } catch {}
+  const HAK_SCENE_CLEANUPS = [];
+  function hakOn(target, type, fn, opts) {
+    if (!target || !type || typeof fn !== "function" || typeof target.addEventListener !== "function") return;
+    target.addEventListener(type, fn, opts);
+    HAK_SCENE_CLEANUPS.push(() => {
+      try { target.removeEventListener(type, fn, opts); } catch {}
+    });
+  }
+  const HAK_PHOTOS_KEY = "hak_photos_v1";
+  const HAK_EVIDENCE_KEY = "hak_evidence_v1";
+  const HAK_EVIDENCE_SEEN_KEY = "hak_evidence_seen_v1";
+  const BADGE_KEY = "app_badges_v1";
+
+  // Skills + points storage
+  const SKILLS_KEY = "hak_skills_v1";            // { unlocked: { [skillId]: { at } } }
+  const ROUTE_POINTS_KEY = "route_points_v1";    // {nts,ntr,love}
+  const ROUTE_POINT_MAX = Object.freeze({ nts: 16, ntr: 16, love: 16 });
+  const HAK_TREE_BOOT_KEY = "hak_tree_booted_v1";
+  const HAK_LAST_UNLOCK_KEY = "hak_last_unlock_v1";
+  const HAK_LAST_UNLOCK_TTL_MS = 2000;
+  const HAK_LAST_UNLOCK_ANIM_MS = 1200;
+  const HAK_EDGE_UNLOCK_ANIM_MS = 900;
+  const SKILL_NTR_PASSIVE_INSIGHT = "ntr_passive_insight_v1";
+  const SKILL_LOVE_RISK_WARNING = "love_risk_warning_v1";
+  const SKILL_NTS_OPPORTUNITY_INDICATOR = "nts_opportunity_indicator_v1";
+  const SKILL_NTR_ROUTE_REVEAL_V2 = "ntr_route_reveal_v2";
+  const SKILL_NTS_ROUTE_REVEAL_V2 = "nts_route_reveal_v2";
+  const SKILL_LOVE_ROUTE_REVEAL_V2 = "love_route_reveal_v2";
+  const SKILL_NTR_EVIDENCE_ACCESS = "ntr_evidence_access";
+  const SKILL_NTS_EVIDENCE_ACCESS = "nts_evidence_access";
+  const SKILL_LOVE_EVIDENCE_ACCESS = "love_evidence_access";
+  const SKILL_NTR_AUDIO_TRANSCRIPTION = "ntr_audio_transcription_v1";
+  const SKILL_NTS_AUDIO_TRANSCRIPTION = "nts_audio_transcription_v1";
+  const SKILL_LOVE_AUDIO_TRANSCRIPTION = "love_audio_transcription_v1";
+  const HAK_SKILL_PARENT_BY_SKILL = Object.freeze({
+    [SKILL_NTR_ROUTE_REVEAL_V2]: SKILL_NTR_PASSIVE_INSIGHT,
+    [SKILL_NTS_ROUTE_REVEAL_V2]: SKILL_NTS_OPPORTUNITY_INDICATOR,
+    [SKILL_LOVE_ROUTE_REVEAL_V2]: SKILL_LOVE_RISK_WARNING,
+    [SKILL_NTR_EVIDENCE_ACCESS]: SKILL_NTR_ROUTE_REVEAL_V2,
+    [SKILL_NTS_EVIDENCE_ACCESS]: SKILL_NTS_ROUTE_REVEAL_V2,
+    [SKILL_LOVE_EVIDENCE_ACCESS]: SKILL_LOVE_ROUTE_REVEAL_V2,
+    [SKILL_NTR_AUDIO_TRANSCRIPTION]: SKILL_NTR_EVIDENCE_ACCESS,
+    [SKILL_NTS_AUDIO_TRANSCRIPTION]: SKILL_NTS_EVIDENCE_ACCESS,
+    [SKILL_LOVE_AUDIO_TRANSCRIPTION]: SKILL_LOVE_EVIDENCE_ACCESS
+  });
+  const HAK_TUTORIAL_REQUIRED_KEY = "hak_tutorial_required";
+  const HAK_TUTORIAL_DONE_KEY = "hak_app_tutorial_done";
+  const HAK_TUTORIAL_STATE_KEY = "hak_app_tutorial_state_v1";
+  const HAK_TUTORIAL_ONCE_KEY = "d3_hak_app_tutorial_v1";
+  const HAK_TUTORIAL_RESUME_TARGET_KEY = "hak_tutorial_resume_target_v1";
+  const HAK_GLOW_BOOST_KEY = "hak_app_glow_boost";
+  const HAK_OPEN_PROMPT_KEY = "hak_open_prompt_v1";
+  const HAK_OPEN_PROMPT_PENDING_KEY = "hak_open_prompt_pending_v1";
+
+  // -------------------------
+  // Safe helpers
+  // -------------------------
+  function safeJsonParse(raw, fallback){ try { return JSON.parse(raw); } catch { return fallback; } }
+  function safeGetLS(k){ try { return localStorage.getItem(k); } catch { return null; } }
+  function safeSetLS(k,v){ try { return localStorage.setItem(k,v); } catch {} }
+  function safeRemoveLS(k){ try { return localStorage.removeItem(k); } catch {} }
+  let canonicalHakReadCache = null;
+  function readCanonicalHakState(){
+    const engine = window.GameStateEngine;
+    if (!engine) return null;
+    const revision = engine.getRevision?.();
+    const lifetime = JSON.stringify(engine.getRuntimeLifecycleIdentity?.() || null);
+    if (revision != null && canonicalHakReadCache?.engine === engine &&
+        canonicalHakReadCache.revision === revision && canonicalHakReadCache.lifetime === lifetime) return canonicalHakReadCache.hak;
+    const hak = typeof engine.getHakState === "function" ? engine.getHakState() : engine.getState?.()?.hak;
+    canonicalHakReadCache = revision == null ? null : { engine, revision, lifetime, hak };
+    return hak || null;
+  }
+  function readLastUnlockState(){
+    const parsed = safeJsonParse(safeGetLS(HAK_LAST_UNLOCK_KEY), null);
+    const skillId = String(parsed?.skillId || parsed?.id || "").trim();
+    const at = Number(parsed?.at || 0);
+    if (!skillId || !Number.isFinite(at) || at <= 0) return null;
+    return { skillId, at: Math.floor(at) };
+  }
+  function writeLastUnlockState(skillId){
+    const sid = String(skillId || "").trim();
+    if (!sid) return;
+    safeSetLS(HAK_LAST_UNLOCK_KEY, JSON.stringify({ skillId: sid, at: Date.now() }));
+  }
+  function clearLastUnlockState(){
+    safeRemoveLS(HAK_LAST_UNLOCK_KEY);
+  }
+
+  function escapeHtml(s){
+    return String(s ?? "")
+      .replace(/&/g,"&amp;")
+      .replace(/</g,"&lt;")
+      .replace(/>/g,"&gt;")
+      .replace(/"/g,"&quot;")
+      .replace(/'/g,"&#39;");
+  }
+
+  function fail(where, err){
+    try { console.error("[HAK]", where, err); } catch {}
+    try { window.showToast && window.showToast(`HAK error: ${where}`); } catch {}
+  }
+
+  function canonicalId(raw){
+    return String(raw || "").trim().toLowerCase().replace(/\s+/g, "_");
+  }
+
+  function prettyHakName(rawKey){
+    const key = canonicalId(rawKey || "");
+    if (!key) return "Unknown";
+    return key.split("_").filter(Boolean).map((part) => part[0].toUpperCase() + part.slice(1)).join(" ") || "Unknown";
+  }
+
+  // HAK also renders data persisted by older builds. Resolve templates at the
+  // UI boundary so legacy {{NAME:*}} values cannot leak to any HAK surface.
+  function resolveHakDisplayText(raw, fallbackId = ""){
+    const source = String(raw ?? "").trim();
+    let resolved = source;
+    try {
+      if (window.Game && typeof window.Game.tpl === "function") {
+        resolved = String(window.Game.tpl(source) ?? source);
+      }
+    } catch {}
+    resolved = resolved.replace(/\{\{\s*name:([^}]+)\s*\}\}/gi, (_match, keyRaw) => {
+      const key = canonicalId(keyRaw || fallbackId || "");
+      if (!key) return "Unknown";
+      try {
+        if (window.Game && typeof window.Game.resolveDisplayName === "function") {
+          const displayName = String(window.Game.resolveDisplayName(key, "") || "").trim();
+          if (displayName && !/\{\{[^}]+\}\}/.test(displayName)) return displayName;
+        }
+      } catch {}
+      return prettyHakName(key);
+    });
+    if (/\{\{[^}]+\}\}/.test(resolved)) {
+      const fallback = canonicalId(fallbackId || "");
+      return fallback ? prettyHakName(fallback) : resolved.replace(/\{\{[^}]+\}\}/g, "Unknown");
+    }
+    return resolved || (fallbackId ? prettyHakName(fallbackId) : "");
+  }
+
+  function normalizeRoutePointsObj(obj) {
+    const src = (obj && typeof obj === "object") ? obj : {};
+    const out = {};
+    ["nts", "ntr", "love"].forEach((key) => {
+      const max = Math.max(0, Number(ROUTE_POINT_MAX[key] || 0) || 0);
+      const value = Math.max(0, Math.floor(Number(src[key] || 0) || 0));
+      out[key] = max > 0 ? Math.min(max, value) : value;
+    });
+    return out;
+  }
+
+  function tutorialOnceStorageKey() {
+    const token = canonicalId(HAK_TUTORIAL_ONCE_KEY);
+    return token ? ("once_" + token) : "";
+  }
+
+  function hasCompletedHakTutorial() {
+    try {
+      const hak = readCanonicalHakState();
+      if (hak) return hak.tutorial?.completed === true;
+    } catch {}
+    if (safeGetLS(HAK_TUTORIAL_DONE_KEY) === "1") return true;
+    const onceStorage = tutorialOnceStorageKey();
+    if (!onceStorage) return false;
+    return safeGetLS(onceStorage) === "1";
+  }
+
+  function markHakTutorialDone() {
+    const engine = window.GameStateEngine;
+    if (engine) {
+      const identity = engine.getRuntimeLifecycleIdentity?.();
+      engine.dispatch({ type: "SET_HAK_TUTORIAL", commandId: `hak-tutorial-complete:${identity?.playthroughId || "playthrough"}`, expectedRevision: engine.getRevision(), payload: { tutorial: { completed: true, required: false, state: "done", resumeTarget: null }, openable: true, visible: true } });
+    }
+    const onceStorage = tutorialOnceStorageKey();
+    if (onceStorage && engine) {
+      engine.dispatch({ type: "MARK_ONCE", commandId: `hak-tutorial-once:${HAK_TUTORIAL_ONCE_KEY}`, expectedRevision: engine.getRevision(), payload: { key: HAK_TUTORIAL_ONCE_KEY } });
+    }
+
+    safeRemoveLS(HAK_GLOW_BOOST_KEY);
+    safeSetLS(HAK_OPEN_PROMPT_KEY, "0");
+    safeSetLS(HAK_OPEN_PROMPT_PENDING_KEY, "0");
+  }
+
+  function readPendingStoryForTutorialResume() {
+    const raw = safeGetLS("pending_story_v1");
+    const parsed = raw ? safeJsonParse(raw, null) : null;
+    if (!parsed || typeof parsed !== "object") return null;
+    if (String(parsed.kind || "resume") !== "resume") return null;
+    if (String(parsed.reason || "") !== "hak_tutorial_required") return null;
+    const contactId = canonicalId(parsed.contactId || parsed.contact || parsed.id || "");
+    if (!contactId) return null;
+    return {
+      contactId,
+      path: String(parsed.path || "").trim(),
+      index: Number.isFinite(Number(parsed.index)) ? Math.max(0, Math.floor(Number(parsed.index))) : 0,
+      opts: (parsed.opts && typeof parsed.opts === "object") ? { ...parsed.opts } : {}
+    };
+  }
+
+  function readHakTutorialResumeTarget() {
+    try {
+      const target = readCanonicalHakState()?.tutorial?.resumeTarget;
+      if (target && typeof target === "object") {
+        const contactId = canonicalId(target.contactId || target.contact || target.id || "");
+        const path = String(target.path || "").trim();
+        if (contactId && path) return { contactId, path };
+      }
+    } catch {}
+    const raw = safeGetLS(HAK_TUTORIAL_RESUME_TARGET_KEY);
+    const parsed = raw ? safeJsonParse(raw, null) : null;
+    if (!parsed || typeof parsed !== "object") return null;
+    const contactId = canonicalId(parsed.contactId || parsed.contact || parsed.id || "");
+    const path = String(parsed.path || "").trim();
+    if (!contactId || !path) return null;
+    return { contactId, path };
+  }
+
+  function clearHakTutorialResumeTarget() {
+    try {
+      const engine = window.GameStateEngine;
+      if (!engine) return;
+      const revision = engine.getRevision();
+      engine.dispatch({ type: "SET_HAK_TUTORIAL", commandId: `hak-tutorial-clear-resume:${revision}`, expectedRevision: revision, payload: { tutorial: { resumeTarget: null } } });
+    } catch {}
+  }
+
+  function consumeCompletedHakTutorialResumeOwnership(target = null) {
+    try {
+      const engine = window.GameStateEngine;
+      const pending = engine?.getPendingStory ? engine.getPendingStory() : engine?.getState?.()?.progression?.pendingStory;
+      const targetPath = String(target?.path || "").replace(/\\/g, "/").toLowerCase();
+      const pendingPath = String(pending?.path || pending?.storyPath || "").replace(/\\/g, "/").toLowerCase();
+      const targetContact = canonicalId(target?.contactId || "");
+      const pendingContact = canonicalId(pending?.contactId || "");
+      const ownsPending = pending && String(pending.reason || "") === "hak_tutorial_required" && (!targetPath || pendingPath === targetPath) && (!targetContact || pendingContact === targetContact);
+      if (ownsPending) {
+        const revision = engine.getRevision();
+        engine.dispatch({ type: "CLEAR_PENDING_STORY", commandId: `hak-tutorial-clear-completed-pending:${revision}`, expectedRevision: revision, payload: {} });
+      }
+    } catch {}
+    clearHakTutorialResumeTarget();
+  }
+
+  function restorePendingStoryForHakTutorial(target) {
+    if (!target || !target.contactId || !target.path) return null;
+    return { kind: "canonical_resume", path: String(target.path), contactId: String(target.contactId) };
+  }
+
+  function clearHakOpenPromptSignal() {
+    safeSetLS(HAK_OPEN_PROMPT_KEY, "0");
+    safeSetLS(HAK_OPEN_PROMPT_PENDING_KEY, "0");
+    safeRemoveLS(HAK_GLOW_BOOST_KEY);
+  }
+
+  function readHakTutorialState() {
+    try {
+      const canonical = canonicalId(readCanonicalHakState()?.tutorial?.state || "");
+      if (canonical === "skills" || canonical === "done") return canonical;
+      if (canonical === "evidence") return "evidence";
+    } catch {}
+    const token = canonicalId(safeGetLS(HAK_TUTORIAL_STATE_KEY) || "");
+    if (token === "skills" || token === "done") return token;
+    return "evidence";
+  }
+
+  function isHakTutorialRequired() {
+    try { return readCanonicalHakState()?.tutorial?.required === true; } catch {}
+    return safeGetLS(HAK_TUTORIAL_REQUIRED_KEY) === "1";
+  }
+
+  function writeHakTutorialState(nextState) {
+    const token = canonicalId(nextState || "");
+    const normalized = (token === "skills" || token === "done") ? token : "evidence";
+    const engine = window.GameStateEngine;
+    if (engine) {
+      const revision = engine.getRevision();
+      engine.dispatch({ type: "SET_HAK_TUTORIAL", commandId: `hak-tutorial-state:${normalized}:${revision}`, expectedRevision: revision, payload: { tutorial: { state: normalized } } });
+    }
+    return normalized;
+  }
+
+  const HAK_TUTORIAL_STEP_META = {
+    points: {
+      tab: "evidence",
+      pos: "pos-bl",
+      title: "HAK//ORIENTATION POINTS",
+      lines: [
+        "Decision imprint detected.",
+        "Orientation points generated from your response.",
+        "These points are not moral judgments.",
+        "They are leverage.",
+        "You can invest points to unlock interventions.",
+        "Interventions change what you can see and what you can influence.",
+        "Core events will not be removed.",
+        "Events can be reduced, amplified, or reframed.",
+        "Skill tree access will be available now."
+      ],
+      nextLabel: "( next )"
+    },
+    evidence: {
+      tab: "evidence",
+      pos: "pos-bl",
+      text: "Evidence stores captured anomalies and proof you can revisit any time.",
+      nextLabel: "( next )"
+    },
+    skills: {
+      tab: "skills",
+      pos: "pos-bl",
+      text: "Skills spends LOVE, NTS, and NTR points to unlock interventions that change your leverage.",
+      nextLabel: "( finish )"
+    }
+  };
+  const HAK_GUIDE_POS_CLASSES = ["pos-bl", "pos-br", "pos-tl", "pos-tr"];
+  let hakTutorialRunning = false;
+  let hakTutorialReplay = null;
+  let hakTutorialInputGuard = null;
+  let hakGuideShowTimer = null;
+  let hakGuideTransitionCleanup = null;
+  let hakGuideGeneration = 0;
+
+  function openHakTutorialReplay() {
+    if (hakTutorialReplay || hakTutorialRunning || window.Game?._hakOverlayOpen || isHakTutorialRequired() || !hasCompletedHakTutorial()) return;
+    hakTutorialReplay = { step: "points", tab: panelSkills?.classList.contains("show") ? "skills" : "evidence", lastFocus: document.activeElement };
+    showHakGuideStep("points");
+  }
+
+  function closeHakTutorialReplay() {
+    if (!hakTutorialReplay) return false;
+    const previous = hakTutorialReplay;
+    hakTutorialReplay = null;
+    hideHakGuide();
+    setTab(previous.tab);
+    try { previous.lastFocus?.focus?.({ preventScroll: true }); } catch {}
+    return true;
+  }
+
+  function handleHakTutorialBack() {
+    if (String(window.Game?.currentScene || "").toLowerCase() !== "hak") return false;
+    return closeHakTutorialReplay();
+  }
+
+  function isHakTutorialActionHitTestable() {
+    const guide = document.getElementById("hak-guide");
+    const action = document.getElementById("hak-guide-next");
+    if (!guide || !action || !guide.isConnected || !action.isConnected) return false;
+    if (guide.getAttribute("aria-hidden") === "true" || action.disabled) return false;
+    const style = getComputedStyle(action);
+    const guideStyle = getComputedStyle(guide);
+    const rect = action.getBoundingClientRect();
+    if (!(rect.width > 0 && rect.height > 0)) return false;
+    if (style.display === "none" || style.visibility === "hidden" || Number(style.opacity || 1) <= 0.1) return false;
+    if (guideStyle.display === "none" || guideStyle.visibility === "hidden" || Number(guideStyle.opacity || 1) <= 0.1) return false;
+    if (style.pointerEvents === "none" || guideStyle.pointerEvents === "none") return false;
+    const x = Math.max(0, Math.min(innerWidth - 1, rect.left + rect.width / 2));
+    const y = Math.max(0, Math.min(innerHeight - 1, rect.top + rect.height / 2));
+    if (x < rect.left || x > rect.right || y < rect.top || y > rect.bottom) return false;
+    const top = document.elementFromPoint(x, y);
+    return !!top && (top === action || action.contains(top));
+  }
+
+  function cancelHakGuideTransition() {
+    if (hakGuideShowTimer) {
+      try { clearTimeout(hakGuideShowTimer); } catch {}
+      hakGuideShowTimer = null;
+    }
+    if (hakGuideTransitionCleanup) {
+      try { hakGuideTransitionCleanup(); } catch {}
+      hakGuideTransitionCleanup = null;
+    }
+  }
+
+  function hideHakGuide() {
+    const guide = document.getElementById("hak-guide");
+    const wrap = document.querySelector(".wrap[data-scene]");
+    hakGuideGeneration += 1;
+    cancelHakGuideTransition();
+    if (guide) {
+      guide.classList.remove("show", ...HAK_GUIDE_POS_CLASSES);
+      guide.setAttribute("aria-hidden", "true");
+    }
+    const closeBtn = document.getElementById("hak-guide-close");
+    if (closeBtn) closeBtn.hidden = true;
+    if (wrap) wrap.classList.remove("hak-tutorial-lock");
+
+    if (hakTutorialInputGuard) {
+      try { document.removeEventListener("click", hakTutorialInputGuard, true); } catch {}
+      try { document.removeEventListener("pointerdown", hakTutorialInputGuard, true); } catch {}
+      try { document.removeEventListener("mousedown", hakTutorialInputGuard, true); } catch {}
+      try { document.removeEventListener("touchstart", hakTutorialInputGuard, true); } catch {}
+      try { document.removeEventListener("contextmenu", hakTutorialInputGuard, true); } catch {}
+      try { window.removeEventListener("keydown", hakTutorialInputGuard, true); } catch {}
+      hakTutorialInputGuard = null;
+    }
+    hakTutorialRunning = false;
+  }
+
+  function lockHakTutorialInputs() {
+    const guide = document.getElementById("hak-guide");
+    const wrap = document.querySelector(".wrap[data-scene]");
+    if (!guide || !wrap) return;
+
+    if (!isHakTutorialActionHitTestable()) {
+      hideHakGuide();
+      try { console.error("[HAK] tutorial guard invariant: no visible hit-testable owner"); } catch {}
+      return false;
+    }
+
+    wrap.classList.add("hak-tutorial-lock");
+    if (hakTutorialInputGuard) return;
+
+    hakTutorialInputGuard = (event) => {
+      if (!hakTutorialRunning) return;
+      const t = event?.target;
+      if (t && guide.contains(t)) return;
+      if (hakTutorialReplay && t?.closest?.("#nav-back, #nav-home")) return;
+      if (event?.type === "keydown") {
+        const k = String(event.key || "");
+        if (k === "Tab") return;
+      }
+      try { event.preventDefault(); } catch {}
+      try { event.stopPropagation(); } catch {}
+    };
+
+    document.addEventListener("click", hakTutorialInputGuard, true);
+    document.addEventListener("pointerdown", hakTutorialInputGuard, true);
+    document.addEventListener("mousedown", hakTutorialInputGuard, true);
+    document.addEventListener("touchstart", hakTutorialInputGuard, true);
+    document.addEventListener("contextmenu", hakTutorialInputGuard, true);
+    window.addEventListener("keydown", hakTutorialInputGuard, true);
+    return true;
+  }
+
+  function showHakGuideStep(stepName) {
+    const guide = document.getElementById("hak-guide");
+    const textEl = document.getElementById("hak-guide-text");
+    const titleEl = document.getElementById("hak-guide-title");
+    const closeBtn = document.getElementById("hak-guide-close");
+    const nextBtn = document.getElementById("hak-guide-next");
+    const meta = HAK_TUTORIAL_STEP_META[stepName] || HAK_TUTORIAL_STEP_META.evidence;
+    if (!guide || !textEl || !nextBtn) return;
+
+    if (meta.tab === "skills") {
+      try { setTab("skills"); } catch {}
+    } else {
+      try { setTab("evidence"); } catch {}
+    }
+    try { closeViewer(); } catch {}
+
+    // Release the previous owner before hiding it. Guard ownership is only
+    // established again after the replacement action is actually hit-testable.
+    hideHakGuide();
+    const generation = ++hakGuideGeneration;
+    guide.classList.remove(...HAK_GUIDE_POS_CLASSES);
+    guide.classList.add(meta.pos);
+    const sourceText = source => window.Game?.i18n?.sourceText?.(source) || source;
+    if (titleEl) titleEl.textContent = sourceText(meta.title || "HAK");
+    textEl.replaceChildren();
+    if (meta.lines) {
+      meta.lines.forEach(line => {
+        const paragraph = document.createElement("p");
+        paragraph.textContent = sourceText(line);
+        textEl.appendChild(paragraph);
+      });
+    } else textEl.textContent = sourceText(String(meta.text || ""));
+    textEl.scrollTop = 0;
+    if (closeBtn) closeBtn.hidden = !hakTutorialReplay;
+    const nextLabel = hakTutorialReplay && stepName === "skills" ? "Close" : String(meta.nextLabel || "( next )");
+    nextBtn.textContent = sourceText(nextLabel);
+    guide.classList.remove("show");
+    guide.setAttribute("aria-hidden", "true");
+
+    // Re-reading a tutorial never owns the persisted onboarding or story resume.
+    if (hakTutorialReplay) hakTutorialReplay.step = stepName;
+    else writeHakTutorialState(stepName);
+    // Force the hidden style to be committed, then begin the CSS transition.
+    // The transition has an explicit completion event and bounded recovery.
+    void guide.offsetWidth;
+    guide.classList.add("show");
+    guide.setAttribute("aria-hidden", "false");
+
+    // Live-confirmed root cause (feature4-hak-tutorial-guide-hittest-abandon):
+    // isHakTutorialActionHitTestable() can transiently fail (a notification
+    // toast or other overlay briefly covering the next-button's screen
+    // position at the exact instant this fires, or one more paint cycle
+    // still needed after the CSS transition) -- the OLD behavior treated
+    // ANY single failed hit-test as permanent and unrecoverable: it hid the
+    // guide and returned, leaving hakTutorialRunning=false forever with
+    // pending_story_v1 STILL stuck at reason:"hak_tutorial_required" and no
+    // code path left anywhere that ever calls finishHakAppTutorial() again.
+    // The player is then permanently stuck on the hak scene -- confirmed
+    // live (console: "[HAK] tutorial guide failed to acquire a visible
+    // owner", scene never left "hak", pending never cleared). One bounded
+    // retry (not an unconditional wait -- see the DO NOT PATCH WITH
+    // setTimeout directive: this retries the SAME real condition check, it
+    // does not just wait longer and hope) covers a genuinely transient
+    // single-frame miss; if it STILL cannot show the guide, the tutorial
+    // overlay is a nice-to-have onboarding aid, not something worth
+    // permanently blocking progression over -- finish the tutorial state
+    // machine (mark done, resume the pending story, navigate home) the same
+    // way a real completed "( finish )" click would, just without the
+    // player having seen this step's guide overlay.
+    const commitVisibleOwner = (retriesLeft) => {
+      if (generation !== hakGuideGeneration) return;
+      cancelHakGuideTransition();
+      if (!isHakTutorialActionHitTestable()) {
+        if (retriesLeft > 0) {
+          hakGuideShowTimer = setTimeout(() => commitVisibleOwner(retriesLeft - 1), 150);
+          return;
+        }
+        hideHakGuide();
+        try { console.error("[HAK] tutorial guide failed to acquire a visible owner -- finishing tutorial without showing this step"); } catch {}
+        finishHakAppTutorial();
+        return;
+      }
+      hakTutorialRunning = true;
+      lockHakTutorialInputs();
+      if (hakTutorialReplay) {
+        try { nextBtn.focus({ preventScroll: true }); } catch {}
+      }
+    };
+    const onTransitionEnd = (event) => {
+      if (event.target === guide && (event.propertyName === "opacity" || !event.propertyName)) commitVisibleOwner(1);
+    };
+    guide.addEventListener("transitionend", onTransitionEnd);
+    hakGuideTransitionCleanup = () => guide.removeEventListener("transitionend", onTransitionEnd);
+    hakGuideShowTimer = setTimeout(() => commitVisibleOwner(1), 400);
+  }
+
+  function finishHakAppTutorial() {
+    if (hakTutorialReplay) { closeHakTutorialReplay(); return; }
+    // Capture continuation ownership before markHakTutorialDone() commits the
+    // completed tutorial state (which intentionally clears resumeTarget).
+    // Reading it afterward made every genuine finish lose its destination.
+    const resumeTarget = readHakTutorialResumeTarget();
+    markHakTutorialDone();
+    hideHakGuide();
+    const pending = restorePendingStoryForHakTutorial(resumeTarget);
+    clearHakTutorialResumeTarget();
+    // ConvoRuntime.resume does not exist anywhere in scripts/convo-runtime.js
+    // (confirmed: grepped its entire window.ConvoRuntime={...} export list) --
+    // this call was always a silent no-op (optional chaining on an undefined
+    // method), so pending_story_v1's "hak_tutorial_required" resume entry was
+    // NEVER actually processed here, no matter how correctly the durable
+    // hak_tutorial_resume_target_v1 record was populated upstream. The real,
+    // already-shipped, already-used-elsewhere entry point for exactly this
+    // ("re-process whatever pending_story_v1 currently holds") is
+    // Game.resumePendingStory (scripts/convo-runtime.js) -- same call shape
+    // conversation.html's own on-complete chain handoff already uses
+    // elsewhere ((window.Game ||= {}).resumePendingStory?.({source:...})).
+    if (pending?.path) {
+      Promise.resolve(window.Game?.resumePendingStory?.({ source: "hak_tutorial" })).catch(() => {});
+    }
+    try { window.navigateToScene?.("home", { from: "hak_tutorial" }); } catch {}
+  }
+
+  function handleHakGuideNext(event) {
+    try {
+      event?.preventDefault?.();
+      event?.stopPropagation?.();
+    } catch {}
+
+    const current = hakTutorialReplay?.step || readHakTutorialState();
+    if (current === "points") {
+      showHakGuideStep("evidence");
+      return;
+    }
+    if (current === "evidence") {
+      showHakGuideStep("skills");
+      return;
+    }
+    finishHakAppTutorial();
+  }
+
+  function maybeStartHakAppTutorial() {
+    if (hakTutorialReplay) return;
+    const helpBtn = document.getElementById("hak-help");
+    if (helpBtn) helpBtn.disabled = isHakTutorialRequired() || !hasCompletedHakTutorial();
+    clearHakOpenPromptSignal();
+
+    const nextBtn = document.getElementById("hak-guide-next");
+    if (nextBtn && !nextBtn.dataset.boundNext) {
+      nextBtn.dataset.boundNext = "1";
+      nextBtn.addEventListener("click", handleHakGuideNext);
+    }
+
+    // A durable resume target is the canonical ownership record for an
+    // interrupted story. Reload/startup cleanup may remove transient prompt
+    // flags, but it must not orphan that target or suppress the required UI.
+    const durableResumeTarget = readHakTutorialResumeTarget();
+    if (!isHakTutorialRequired() && durableResumeTarget && !hasCompletedHakTutorial()) {
+      const engine = window.GameStateEngine;
+      if (engine) {
+        const revision = engine.getRevision();
+        engine.dispatch({ type: "SET_HAK_TUTORIAL", commandId: `hak-tutorial-reconcile-required:${revision}`, expectedRevision: revision, payload: { tutorial: { required: true, completed: false, state: "evidence" } } });
+      }
+      writeHakTutorialState("evidence");
+    }
+
+    if (hasCompletedHakTutorial()) {
+      markHakTutorialDone();
+      hideHakGuide();
+      // A finished tutorial can leave durable ownership behind after a crash
+      // or an older build. Never revive that story: release only the matching
+      // HAK resume record and let the canonical scheduler own progression.
+      consumeCompletedHakTutorialResumeOwnership(durableResumeTarget);
+      return;
+    }
+
+    if (!isHakTutorialRequired()) {
+      hideHakGuide();
+      return;
+    }
+
+    const current = readHakTutorialState();
+    if (current === "skills") {
+      showHakGuideStep("skills");
+      return;
+    }
+    showHakGuideStep("evidence");
+  }
+
+  /* one-time migration: old array format -> new object shape */
+  (function migrateHakSkillsStoreOnce(){
+    const booted = safeGetLS(HAK_TREE_BOOT_KEY);
+    if (booted) return;
+
+    const raw = safeGetLS(SKILLS_KEY);
+    const parsed = raw ? safeJsonParse(raw, null) : null;
+
+    // Legacy skill-shape import is owned by GameStateEngine initialization;
+    // this flag only prevents obsolete renderer migration work from rerunning.
+    void parsed;
+    safeSetLS(HAK_TREE_BOOT_KEY, "1");
+  })();
+
+  // -------------------------
+  // Evidence
+  // -------------------------
+  function getEvidenceStore(){
+    try {
+      const canonical = readCanonicalHakState()?.evidenceProfiles;
+      if (canonical && typeof canonical === "object" && !Array.isArray(canonical)) return JSON.parse(JSON.stringify(canonical));
+    } catch {}
+    const parsed = safeJsonParse(safeGetLS(HAK_EVIDENCE_KEY), {});
+    if (Array.isArray(parsed)) return { __flat: { evidences: parsed } };
+    if (!parsed || typeof parsed !== "object") return {};
+    if (Array.isArray(parsed.evidences)) return { __flat: { evidences: parsed.evidences, profile: parsed.profile || {} } };
+    return parsed;
+  }
+
+  function setEvidenceStore(store){
+    void store;
+    throw new Error("HAK evidence is canonical; renderer writes are disabled");
+  }
+
+  function readEvidenceSeenMap(){
+    try {
+      const canonical = readCanonicalHakState()?.evidenceSeen;
+      if (canonical && typeof canonical === "object" && !Array.isArray(canonical)) return { ...canonical };
+    } catch {}
+    const parsed = safeJsonParse(safeGetLS(HAK_EVIDENCE_SEEN_KEY), {});
+    if (!parsed || typeof parsed !== "object" || Array.isArray(parsed)) return {};
+    const out = {};
+    Object.keys(parsed).forEach((key) => {
+      const id = String(key || "").trim();
+      if (!id) return;
+      out[id] = parsed[key] === true;
+    });
+    return out;
+  }
+
+  function writeEvidenceSeenMap(map){
+    void map;
+    throw new Error("HAK evidence acknowledgements are canonical; renderer writes are disabled");
+  }
+
+  function isEvidenceItemSeen(item){
+    const id = String(item?.id || "").trim();
+    if (!id) return true;
+    try {
+      if (typeof window.GameStateEngine?.hasSeenHakEvidence === "function") return window.GameStateEngine.hasSeenHakEvidence(id) === true;
+    } catch {}
+    return readEvidenceSeenMap()[id] === true;
+  }
+
+  function markEvidenceItemSeen(evidenceId){
+    const id = String(evidenceId || "").trim();
+    if (!id) return false;
+    if (isEvidenceItemSeen({ id })) return false;
+    const engine = window.GameStateEngine;
+    if (!engine) return false;
+    const committed = engine.dispatch({
+      type: "MARK_HAK_EVIDENCE_SEEN",
+      commandId: `hak-evidence-seen:${id}`,
+      expectedRevision: engine.getRevision(),
+      payload: { evidenceId: id }
+    });
+    if (!committed.ok && committed.status !== "DUPLICATE_COMMAND") return false;
+    try { window.dispatchEvent(new CustomEvent("hak:seen", { detail:{ id } })); } catch {}
+    return true;
+  }
+
+  function isHiddenEvidenceOwner(rawId){
+    const id = canonicalId(rawId || "");
+    if (!id) return false;
+    try {
+      if (window.Game && typeof window.Game.shouldHideCharacterFromUI === "function") {
+        return window.Game.shouldHideCharacterFromUI(id) === true;
+      }
+    } catch {}
+    return false;
+  }
+
+  function canonicalEvidenceRouteForOwner(rawOwnerId){
+    const ownerId = canonicalId(rawOwnerId || "");
+    if (!ownerId) return "";
+    let route = "";
+    try { route = String(window.CharacterRoutes?.get?.(ownerId, { persistInherited: false }) || ""); } catch {}
+    if (!route) route = String(safeGetLS(`route_${ownerId}_locked_v1`) || "");
+    route = canonicalId(route);
+    if (route === "nts1" || route === "nts_coach") return "nts";
+    return normalizeEvidenceKind(route);
+  }
+
+  function isEvidenceRouteEligible(item, profile, rawOwnerId){
+    const evidenceRoute = evidenceKindForItem(item, profile);
+    // Missing route metadata remains route-neutral/legacy and retains the
+    // existing locked-metadata behavior. Explicit route evidence must match
+    // the owner's canonical story route to exist in this run.
+    if (!evidenceRoute) return true;
+    const currentRoute = canonicalEvidenceRouteForOwner(rawOwnerId);
+    return !currentRoute || currentRoute === evidenceRoute;
+  }
+
+  function normalizeEvidenceStoreForCurrentRoutes(){
+    const store = getEvidenceStore();
+    const removedIds = [];
+    Object.keys(store).forEach((rawProfileId) => {
+      const row = store[rawProfileId];
+      if (!row || typeof row !== "object" || !Array.isArray(row.evidences)) return;
+      const profileId = canonicalId(rawProfileId);
+      const profile = row.profile && typeof row.profile === "object" ? { ...row, profile: row.profile } : row;
+      row.evidences = row.evidences.filter((item) => {
+        const ownerId = canonicalId(item?.characterId || item?.contactId || item?.ownerId || profileId);
+        const keep = isEvidenceRouteEligible(item, profile, ownerId || profileId);
+        if (!keep && item?.id) removedIds.push(String(item.id));
+        return keep;
+      });
+      if (!row.evidences.length) delete store[rawProfileId];
+    });
+    if (removedIds.length) {
+      setEvidenceStore(store);
+      const seen = readEvidenceSeenMap();
+      removedIds.forEach((id) => { delete seen[id]; });
+      writeEvidenceSeenMap(seen);
+      try { window.dispatchEvent(new CustomEvent("hak:evidence-route-normalized", { detail: { removedIds, source: "hak_scene_boot" } })); } catch {}
+    }
+    return { removedIds };
+  }
+
+  function showHiddenEvidenceMessage(){
+    const message = "Evidence is unavailable.";
+    try { window.showToast?.(message); } catch {}
+    try { window.dispatchEvent(new CustomEvent("hak:evidence-hidden-message", { detail: { message } })); } catch {}
+    return message;
+  }
+
+  function normalizeEvidenceProfiles(){
+    const store = getEvidenceStore();
+    const profiles = [];
+    const bucketFlatEvidence = (rawEvidence, fallbackProfileId = "") => {
+      const profileId = canonicalId(
+        rawEvidence?.profileId ||
+        rawEvidence?.targetId ||
+        rawEvidence?.contactId ||
+        rawEvidence?.characterId ||
+        rawEvidence?.ownerId ||
+        fallbackProfileId ||
+        "evidence"
+      );
+      if (!profileId) return;
+      if (isHiddenEvidenceOwner(profileId)) return;
+      if (!store[profileId] || typeof store[profileId] !== "object" || Array.isArray(store[profileId])) {
+        store[profileId] = { profile: { name: profileId }, evidences: [] };
+      }
+      if (!Array.isArray(store[profileId].evidences)) store[profileId].evidences = [];
+      store[profileId].evidences.push(rawEvidence);
+    };
+
+    Object.keys(store).forEach((rawKey) => {
+      const row = store[rawKey];
+      if (rawKey === "__flat" && row && typeof row === "object" && Array.isArray(row.evidences)) {
+        row.evidences.forEach((item) => bucketFlatEvidence(item, ""));
+        delete store[rawKey];
+        return;
+      }
+      if (!row || typeof row !== "object" || Array.isArray(row)) {
+        bucketFlatEvidence(row, rawKey);
+        delete store[rawKey];
+        return;
+      }
+      if (row.id && (row.url || row.src || row.image)) {
+        bucketFlatEvidence(row, rawKey);
+        delete store[rawKey];
+        return;
+      }
+      const flat = Array.isArray(row.evidence) ? row.evidence : null;
+      if (flat && !Array.isArray(row.evidences)) row.evidences = flat;
+    });
+
+    Object.keys(store).forEach((rawProfileId) => {
+      const profileId = canonicalId(rawProfileId);
+      if (!profileId) return;
+      if (isHiddenEvidenceOwner(profileId)) return;
+
+      const row = (store[rawProfileId] && typeof store[rawProfileId] === "object") ? store[rawProfileId] : {};
+      const profileRaw = (row.profile && typeof row.profile === "object") ? row.profile : {};
+      const evidencesRaw = Array.isArray(row.evidences) ? row.evidences : [];
+      const seenEvidenceIds = new Set();
+      const evidences = [];
+
+      evidencesRaw.forEach((rawEvidence, rawIndex) => {
+        const id = String(rawEvidence?.id || "").trim();
+        const url = String(rawEvidence?.url || rawEvidence?.image || rawEvidence?.src || "").trim();
+        if (!id || !url || seenEvidenceIds.has(id)) return;
+        const ownerId = canonicalId(
+          rawEvidence?.profileId ||
+          rawEvidence?.targetId ||
+          rawEvidence?.contactId ||
+          rawEvidence?.characterId ||
+          rawEvidence?.ownerId ||
+          profileId
+        );
+        if (ownerId && isHiddenEvidenceOwner(ownerId)) return;
+        if (!isEvidenceRouteEligible(rawEvidence, row, ownerId || profileId)) return;
+        seenEvidenceIds.add(id);
+        const rawTs = Number(rawEvidence?.timestamp ?? rawEvidence?.at ?? Date.now());
+        const timestamp = Number.isFinite(rawTs) && rawTs > 0 ? Math.floor(rawTs) : Date.now();
+        const item = {
+          id,
+          url,
+          src: String(rawEvidence?.src || url).trim() || url,
+          type: String(rawEvidence?.type || mediaTypeFromUrl(url) || "").trim(),
+          kind: normalizeEvidenceKind(rawEvidence?.kind || rawEvidence?.route || row?.kind || row?.route || profileRaw?.kind || profileRaw?.route || ""),
+          route: normalizeEvidenceKind(rawEvidence?.route || rawEvidence?.kind || row?.route || row?.kind || profileRaw?.route || profileRaw?.kind || ""),
+          label: resolveHakDisplayText(rawEvidence?.label || rawEvidence?.title || "", ownerId || profileId),
+          title: resolveHakDisplayText(rawEvidence?.title || rawEvidence?.label || "", ownerId || profileId),
+          timestamp,
+          access: (rawEvidence?.access && typeof rawEvidence.access === "object") ? { ...rawEvidence.access } : undefined
+        };
+        try { Object.defineProperty(item, "__displayOrder", { value: rawIndex, enumerable: false }); } catch {}
+        evidences.push(item);
+      });
+
+      evidences.sort((a, b) => {
+        const byTime = (Number(b?.timestamp || 0) || 0) - (Number(a?.timestamp || 0) || 0);
+        if (byTime) return byTime;
+        return (Number(b?.__displayOrder || 0) || 0) - (Number(a?.__displayOrder || 0) || 0);
+      });
+      if (!evidences.length) return;
+
+      const profileName = resolveHakDisplayText(profileRaw.name || `{{name:${profileId}}}`, profileId) || prettyHakName(profileId);
+      const fallbackAvatar = `assets/avatars/${profileId}.jpg`;
+      let profileAvatar = String(profileRaw.avatar || "").trim() || fallbackAvatar;
+      try {
+        if (window.Game && typeof window.Game.resolveCharacterVariantAvatar === "function") {
+          profileAvatar = String(window.Game.resolveCharacterVariantAvatar(profileId, profileAvatar) || profileAvatar).trim() || profileAvatar;
+        }
+      } catch {}
+
+      profiles.push({
+        profileId,
+        profileName,
+        profileAvatar,
+        kind: normalizeEvidenceKind(row?.kind || row?.route || profileRaw?.kind || profileRaw?.route || ""),
+        route: normalizeEvidenceKind(row?.route || row?.kind || profileRaw?.route || profileRaw?.kind || ""),
+        evidences
+      });
+    });
+
+    profiles.sort((a, b) => {
+      const ta = Number(a?.evidences?.[0]?.timestamp || 0) || 0;
+      const tb = Number(b?.evidences?.[0]?.timestamp || 0) || 0;
+      return tb - ta;
+    });
+
+    return profiles;
+  }
+
+  function getPhotos(){
+    try {
+      const canonical = readCanonicalHakState()?.photos;
+      if (Array.isArray(canonical)) return JSON.parse(JSON.stringify(canonical));
+    } catch {}
+    const arr = safeJsonParse(safeGetLS(HAK_PHOTOS_KEY), []);
+    return Array.isArray(arr) ? arr : [];
+  }
+  function setPhotos(arr){
+    void arr;
+    throw new Error("HAK photos are canonical; renderer writes are disabled");
+  }
+
+  function computeUnseen(arr){
+    if (!Array.isArray(arr)) return 0;
+    return arr.reduce((n,p)=> n + (p && !p.seen ? 1 : 0), 0);
+  }
+
+  function setHakBadgeToUnseen(unseen){
+    const raw = safeGetLS(BADGE_KEY);
+    const parsedBadges = safeJsonParse(raw, {});
+    const badges = (parsedBadges && typeof parsedBadges === "object" && !Array.isArray(parsedBadges)) ? parsedBadges : {};
+    const next = Math.max(0, Number(unseen || 0) || 0);
+    if (next) badges.hak = next;
+    else delete badges.hak;
+    safeSetLS(BADGE_KEY, JSON.stringify(badges));
+    try {
+      window.dispatchEvent(new CustomEvent("game:badges-updated", { detail:{ app:"hak", value: next } }));
+    } catch {}
+  }
+
+  function formatTime(ts){
+    try{
+      const d = new Date(ts);
+      return d.toLocaleString(undefined, {
+        year:"numeric", month:"short", day:"2-digit",
+        hour:"2-digit", minute:"2-digit"
+      });
+    }catch{ return ""; }
+  }
+
+  const VIDEO_MEDIA_EXT_RE = /\.(mp4|webm|ogg|ogv|mov)(?:[?#].*)?$/i;
+  const IMAGE_MEDIA_EXT_RE = /\.(jpe?g|png|webp|gif)(?:[?#].*)?$/i;
+
+  function mediaTypeFromUrl(url){
+    const clean = String(url || "").trim().split("#")[0].split("?")[0];
+    if (VIDEO_MEDIA_EXT_RE.test(clean)) return "video";
+    if (IMAGE_MEDIA_EXT_RE.test(clean)) return "image";
+    return "";
+  }
+
+  function normalizeEvidenceKind(rawKind){
+    const k = canonicalId(rawKind || "");
+    return (k === "love" || k === "nts" || k === "ntr") ? k : "";
+  }
+
+  function evidenceKindForItem(item, profile){
+    return [
+      item?.kind, item?.route, profile?.kind, profile?.route,
+      profile?.profile?.kind, profile?.profile?.route
+    ].map(normalizeEvidenceKind).find(Boolean) || "";
+  }
+
+  function requiredHakEvidenceSkillId(kind){
+    const k = normalizeEvidenceKind(kind);
+    if (k === "love") return SKILL_LOVE_EVIDENCE_ACCESS;
+    if (k === "nts") return SKILL_NTS_EVIDENCE_ACCESS;
+    if (k === "ntr") return SKILL_NTR_EVIDENCE_ACCESS;
+    return "";
+  }
+
+  function hasHakEvidenceAccess(kind){
+    const skillId = requiredHakEvidenceSkillId(kind);
+    if (!skillId) return false;
+    try {
+      if (typeof window.Game?.hasSkill === "function") {
+        return window.Game.hasSkill(skillId) === true;
+      }
+    } catch {}
+    return getUnlockedSkills().includes(skillId);
+  }
+
+  function isHakEvidenceLocked(item, profile){
+    const access = item?.access;
+    if (access && canonicalId(access.type) === "skill") {
+      const skillId = String(access.skillId || access.id || "").trim();
+      return !skillId || !getUnlockedSkills().includes(skillId);
+    }
+    const kind = evidenceKindForItem(item, profile);
+    if (!kind) return true;
+    return !hasHakEvidenceAccess(kind);
+  }
+
+  function lockedEvidenceMessage(kind){
+    const route = normalizeEvidenceKind(kind).toUpperCase();
+    return route
+      ? `Evidence access locked. Unlock the ${route} Evidence skill to view this.`
+      : "Evidence access locked. Missing evidence route metadata.";
+  }
+
+  function showHakEvidenceLockedMessage(kind){
+    const message = lockedEvidenceMessage(kind);
+    try { window.showToast?.(message); } catch {}
+    try { window.dispatchEvent(new CustomEvent("hak:evidence-locked-message", { detail: { message, kind: normalizeEvidenceKind(kind) } })); } catch {}
+    return message;
+  }
+
+  function lockedEvidenceThumbHtml(kind){
+    const route = normalizeEvidenceKind(kind).toUpperCase();
+    return `<div class="lockedThumb">${escapeHtml(route ? `${route} LOCKED` : "LOCKED")}</div>`;
+  }
+
+  function isVideoMedia(url){
+    return mediaTypeFromUrl(url) === "video";
+  }
+
+  function mediaThumbHtml(url, alt){
+    const type = mediaTypeFromUrl(url);
+    return `<div class="mediaThumbMount" data-media-src="${escapeHtml(url || "")}" data-media-alt="${escapeHtml(alt || "Evidence")}" data-media-type="${escapeHtml(type)}"></div>`;
+  }
+
+  function renderFallbackMediaThumbnail(el, url, alt){
+    if (!el) return;
+    const type = mediaTypeFromUrl(url);
+    el.dataset.mediaType = type || "unknown";
+    if (type === "video") {
+      el.innerHTML = `<div class="media-thumb media-thumb-video"><video muted preload="metadata" playsinline src="${escapeHtml(url || "")}" aria-hidden="true"></video><span class="media-thumb-label">Video</span></div>`;
+      const video = el.querySelector("video");
+      video?.addEventListener?.("loadedmetadata", () => {
+        try { if (video.duration > 0.18) video.currentTime = 0.08; } catch {}
+        try { video.parentElement?.classList?.add("has-preview"); } catch {}
+      }, { once:true });
+      return;
+    }
+    el.innerHTML = `<div class="media-thumb media-thumb-image"><img alt="${escapeHtml(alt || "Evidence")}"></div>`;
+    const img = el.querySelector("img");
+    if (window.ProtectedMediaResolver?.applyImage) {
+      void window.ProtectedMediaResolver.applyImage(img, url, { assetType:"hak_evidence", surface:"hak_evidence_thumbnail" });
+    } else if (img) img.src = url || "";
+  }
+
+  function hydrateMediaThumbnails(root = listEl){
+    if (!root) return;
+    root.querySelectorAll("[data-media-src]").forEach((el) => {
+      if (el.dataset.mediaMounted === "1") return;
+      el.dataset.mediaMounted = "1";
+      const src = el.getAttribute("data-media-src") || "";
+      const alt = el.getAttribute("data-media-alt") || "Evidence";
+      const type = el.getAttribute("data-media-type") || mediaTypeFromUrl(src);
+      if (window.MediaViewer && typeof window.MediaViewer.mountThumbnail === "function") {
+        window.MediaViewer.mountThumbnail(el, src, { alt, type, surfaceOwner: "hak" });
+        return;
+      }
+      renderFallbackMediaThumbnail(el, src, alt);
+    });
+  }
+
+  const listEl  = document.getElementById("hak-list");
+  const emptyEl = document.getElementById("hak-empty");
+
+  const viewer   = document.getElementById("hak-viewer");
+  const vTitle   = document.getElementById("hak-vtitle");
+  const vImg     = document.getElementById("hak-vimg");
+  const vVideo   = document.getElementById("hak-vvideo");
+  const vTime    = document.getElementById("hak-vtime");
+  const vText    = document.getElementById("hak-vtext");
+  const closeBtn = document.getElementById("hak-close");
+
+  let photos = [];
+  let evidenceProfiles = [];
+  let activeProfileId = "";
+  let activeProfileEvidences = [];
+  let hakViewerRequestId = 0;
+  let hakSceneActive = true;
+
+  function renderLegacyEvidence(){
+    activeProfileId = "";
+    activeProfileEvidences = [];
+    photos = getPhotos();
+
+    if (!photos.length){
+      if (emptyEl) emptyEl.style.display = "flex";
+      if (listEl) listEl.innerHTML = "";
+      setHakBadgeToUnseen(0);
+      return;
+    }
+
+    if (emptyEl) emptyEl.style.display = "none";
+    setHakBadgeToUnseen(computeUnseen(photos));
+    if (!listEl) return;
+
+    listEl.innerHTML = photos.map(p=>{
+      const id = escapeHtml(p?.id || "");
+      const titleRaw = (p?.title || "EVIDENCE");
+      const title = escapeHtml(String(titleRaw).toUpperCase());
+      const text = escapeHtml(p?.text || "");
+      const img = String(p?.image || "");
+      const dot = p?.seen ? "" : `<span class="unseenDot"></span>`;
+      const badge = p?.seen ? "SEEN" : "NEW";
+      const time = p?.at ? formatTime(p.at) : "";
+      const desc = text || escapeHtml(time || "Tap to open.");
+
+      return `
+        <div class="card" data-id="${id}">
+          <div class="thumb">
+            ${dot}
+            ${mediaThumbHtml(img, title)}
+          </div>
+          <div class="meta">
+            <div class="row">
+              <div class="title">${title}</div>
+              <div class="badge">${badge}</div>
+            </div>
+            <div class="desc">${desc}</div>
+          </div>
+        </div>
+      `;
+    }).join("");
+    hydrateMediaThumbnails();
+  }
+
+  function renderEvidenceProfiles(){
+    evidenceProfiles = normalizeEvidenceProfiles();
+    activeProfileId = "";
+    activeProfileEvidences = [];
+
+    if (!evidenceProfiles.length) {
+      renderLegacyEvidence();
+      return;
+    }
+
+    if (emptyEl) emptyEl.style.display = "none";
+    if (!listEl) return;
+    const unreadTotal = evidenceProfiles.reduce((total, profile) => {
+      return total + (Array.isArray(profile?.evidences) ? profile.evidences : [])
+        .reduce((count, item) => count + (!isHakEvidenceLocked(item, profile) && !isEvidenceItemSeen(item) ? 1 : 0), 0);
+    }, 0);
+    setHakBadgeToUnseen(unreadTotal);
+
+    listEl.innerHTML = evidenceProfiles.map((profile) => {
+      const latestTs = Number(profile?.evidences?.[0]?.timestamp || 0) || 0;
+      const count = Number(profile?.evidences?.length || 0) || 0;
+      const lockedCount = (Array.isArray(profile?.evidences) ? profile.evidences : [])
+        .reduce((n, item) => n + (isHakEvidenceLocked(item, profile) ? 1 : 0), 0);
+      const unreadCount = (Array.isArray(profile?.evidences) ? profile.evidences : [])
+        .reduce((n, item) => n + (!isHakEvidenceLocked(item, profile) && !isEvidenceItemSeen(item) ? 1 : 0), 0);
+      const allLocked = count > 0 && lockedCount >= count;
+      const anyLocked = lockedCount > 0;
+      const label = allLocked ? "LOCKED" : (unreadCount > 0 ? `${unreadCount} NEW` : (anyLocked ? `${count - lockedCount}/${count} OPEN` : (count === 1 ? "1 evidence" : `${count} evidences`)));
+      const cardCls = allLocked ? "card locked" : (unreadCount > 0 ? "card unread" : (anyLocked ? "card partialLocked" : "card"));
+      const kind = evidenceKindForItem(profile?.evidences?.[0] || {}, profile);
+
+      return `
+        <div class="${cardCls}" data-profile-id="${escapeHtml(profile.profileId)}" data-evidence-kind="${escapeHtml(kind)}" data-evidence-locked="${allLocked ? "1" : "0"}">
+          <div class="thumb">
+            <img alt="${escapeHtml(profile.profileName)}">
+            ${unreadCount > 0 ? `<span class="unseenDot"></span>` : ""}
+            ${allLocked ? lockedEvidenceThumbHtml(kind) : ""}
+          </div>
+          <div class="meta">
+            <div class="row">
+              <div class="title">${escapeHtml(profile.profileName)}</div>
+              <div class="badge ${allLocked ? "lockedBadge" : (unreadCount > 0 ? "newBadge" : "")}">${escapeHtml(label)}</div>
+            </div>
+            <div class="desc">${escapeHtml(allLocked ? lockedEvidenceMessage(kind) : (latestTs ? `Latest: ${formatTime(latestTs)}` : "Tap to open profile."))}</div>
+          </div>
+        </div>
+      `;
+    }).join("");
+    listEl.querySelectorAll("[data-profile-id]").forEach((card) => {
+      const profile = evidenceProfiles.find((row) => canonicalId(row?.profileId) === canonicalId(card.getAttribute("data-profile-id")));
+      const img = card.querySelector(".thumb img");
+      if (!profile || !img) return;
+      // HAK is illicit surveillance intel, not the Messages/Conversation
+      // "the contact sent you a photo" reveal -- its own per-evidence lock
+      // (isHakEvidenceLocked/allLocked above) already governs what this
+      // surface shows, so it explicitly opts out of the Messages-contact-
+      // avatar progression gate rather than inheriting it by accident.
+      const logical = window.ProtectedMediaResolver?.avatarPath
+        ? window.ProtectedMediaResolver.avatarPath(profile.profileId, profile.profileAvatar, { skipProgressionGate: true })
+        : profile.profileAvatar;
+      if (window.ProtectedMediaResolver?.applyImage) {
+        void window.ProtectedMediaResolver.applyImage(img, logical, { assetType:"avatar", surface:"hak_profile_avatar", profileId:profile.profileId });
+      } else img.src = logical;
+    });
+    bindEvidenceProfileCards();
+  }
+
+  function bindEvidenceProfileCards(){
+    if (!listEl) return;
+    listEl.querySelectorAll("[data-profile-id]").forEach((card) => {
+      if (card.dataset.boundProfileClick === "1") return;
+      card.dataset.boundProfileClick = "1";
+      card.addEventListener("click", (event) => {
+        event.preventDefault();
+        event.stopPropagation();
+        if (card.getAttribute("data-evidence-locked") === "1") {
+          showHakEvidenceLockedMessage(card.getAttribute("data-evidence-kind") || "");
+        }
+        openEvidenceProfile(card.getAttribute("data-profile-id"));
+      });
+    });
+  }
+
+  function bindEvidenceDetailCards(){
+    if (!listEl) return;
+    listEl.querySelectorAll("[data-evidence-id]").forEach((card) => {
+      if (card.dataset.boundEvidenceClick === "1") return;
+      card.dataset.boundEvidenceClick = "1";
+      card.addEventListener("click", (event) => {
+        event.preventDefault();
+        event.stopPropagation();
+        openProfileEvidenceViewer(card.getAttribute("data-evidence-id"));
+      });
+    });
+  }
+
+  function openEvidenceProfile(profileId){
+    const pid = canonicalId(profileId);
+    if (!pid) return;
+    if (isHiddenEvidenceOwner(pid)) {
+      showHiddenEvidenceMessage();
+      return;
+    }
+    const profile = evidenceProfiles.find((row) => canonicalId(row?.profileId) === pid);
+    if (!profile) return;
+    activeProfileId = pid;
+    activeProfileEvidences = Array.isArray(profile.evidences) ? profile.evidences.slice() : [];
+
+    if (emptyEl) emptyEl.style.display = "none";
+    if (!listEl) return;
+
+    const profileName = String(profile.profileName || pid).trim() || pid;
+    const count = Number(activeProfileEvidences.length || 0) || 0;
+    const label = count === 1 ? "1 evidence" : `${count} evidences`;
+
+    const cards = activeProfileEvidences.map((item) => {
+      const id = escapeHtml(item?.id || "");
+      const url = escapeHtml(item?.url || "");
+      const ts = Number(item?.timestamp || 0) || 0;
+      const title = String(item?.title || item?.label || item?.id || "EVIDENCE").toUpperCase();
+      const kind = evidenceKindForItem(item, profile);
+      const locked = isHakEvidenceLocked(item, profile);
+      const unread = !locked && !isEvidenceItemSeen(item);
+      return `
+        <div class="card ${locked ? "locked" : (unread ? "unread" : "")}" data-evidence-id="${id}" data-evidence-kind="${escapeHtml(kind)}" data-evidence-locked="${locked ? "1" : "0"}">
+          <div class="thumb">
+            ${unread ? `<span class="unseenDot"></span>` : ""}
+            ${locked ? lockedEvidenceThumbHtml(kind) : mediaThumbHtml(url, `${profileName} evidence`)}
+          </div>
+          <div class="meta">
+            <div class="row">
+              <div class="title">${escapeHtml(title)}</div>
+              <div class="badge ${locked ? "lockedBadge" : (unread ? "newBadge" : "")}">${locked ? "LOCKED" : (unread ? "NEW" : "OPEN")}</div>
+            </div>
+            <div class="desc">${escapeHtml(locked ? lockedEvidenceMessage(kind) : (ts ? formatTime(ts) : "Tap to open."))}</div>
+          </div>
+        </div>
+      `;
+    }).join("");
+
+    listEl.innerHTML = `
+      <button class="evidenceBackBtn" data-action="profile-back" type="button">Back to profiles</button>
+      <div class="evidenceProfileTitle">${escapeHtml(profileName)} // ${escapeHtml(label)}</div>
+      ${cards}
+    `;
+    hydrateMediaThumbnails();
+    bindEvidenceDetailCards();
+  }
+
+  function renderEvidence(){
+    renderEvidenceProfiles();
+  }
+
+  function readHakOpenIntent(){
+    const query = (window.Game && window.Game.lastQuery && typeof window.Game.lastQuery === "object")
+      ? window.Game.lastQuery
+      : {};
+    const tab = canonicalId(query.tab || query.target || "");
+    const profileId = canonicalId(query.profileId || query.profile || "");
+    const evidenceId = String(query.evidenceId || "").trim();
+    const evidenceIds = Array.isArray(query.evidenceIds)
+      ? query.evidenceIds.map((row) => String(row || "").trim()).filter(Boolean)
+      : [];
+    const wantsEvidence = tab === "evidence" || tab === "hak_evidence" || tab === "hak/evidence" || tab === "hakevidence" || !!profileId || !!evidenceId || evidenceIds.length > 0;
+    if (!wantsEvidence) return null;
+    return { profileId, evidenceId, evidenceIds };
+  }
+
+  function applyHakOpenIntent(){
+    const intent = readHakOpenIntent();
+    if (!intent) return false;
+    setTab("evidence");
+    if (intent.profileId) {
+      openEvidenceProfile(intent.profileId);
+      return true;
+    }
+    const firstEvidenceId = intent.evidenceId || intent.evidenceIds[0] || "";
+    if (firstEvidenceId) {
+      const profile = evidenceProfiles.find((row) => {
+        return (Array.isArray(row?.evidences) ? row.evidences : []).some((item) => String(item?.id || "") === firstEvidenceId);
+      });
+      if (profile?.profileId) openEvidenceProfile(profile.profileId);
+      else showHiddenEvidenceMessage();
+      return !!profile;
+    }
+    return true;
+  }
+
+  function acquiredEvidencePlayerThought(item, profileId){
+    const eid = String(item?.id || "").trim();
+    const engine = window.GameStateEngine;
+    const thoughts = window.HakEvidenceThoughts;
+    if (!eid || typeof engine?.getHakEvidenceThoughtState !== "function" || typeof thoughts?.forEvidence !== "function") return "";
+    try {
+      const state = engine.getHakEvidenceThoughtState(eid);
+      const sources = thoughts.forEvidence(state, item, profileId);
+      if (!Array.isArray(sources)) return "";
+      return sources.filter(source => typeof source === "string" && source.trim()).map(source => {
+        const localized = window.Game?.i18n?.sourceText?.(source) || source;
+        return resolveHakDisplayText(localized, profileId);
+      }).filter(Boolean).join("\n\n");
+    } catch { return ""; }
+  }
+
+  function hakEvidenceMediaKey(item){
+    const src = String(item?.url || item?.image || item?.src || "").trim();
+    return window.GalleryStore?.normalizeImagePath?.(src) || src.replace(/\\/g, "/").split(/[?#]/)[0].replace(/^\.\//, "").toLowerCase();
+  }
+
+  function captureHakViewerRequest(profileId){
+    const engine = window.GameStateEngine;
+    return {
+      id: ++hakViewerRequestId,
+      profileId: canonicalId(profileId),
+      engine,
+      lifetime: JSON.stringify(engine?.getRuntimeLifecycleIdentity?.() || null)
+    };
+  }
+
+  function isHakViewerRequestCurrent(request){
+    return hakSceneActive && request.id === hakViewerRequestId &&
+      canonicalId(window.Game?.currentScene) === "hak" && listEl?.isConnected !== false &&
+      canonicalId(activeProfileId) === request.profileId && window.GameStateEngine === request.engine &&
+      JSON.stringify(request.engine?.getRuntimeLifecycleIdentity?.() || null) === request.lifetime;
+  }
+
+  async function acquiredHakEvidenceGalleryTitle(item, profileId, profileName, fallbackTitle){
+    try {
+      const store = window.GalleryStore;
+      const eligibility = await store?.getCanonicalEligibility?.();
+      const rows = eligibility?.items;
+      if (!Array.isArray(rows)) return fallbackTitle;
+      const mediaKey = hakEvidenceMediaKey(item);
+      let index = rows.findIndex(row => hakEvidenceMediaKey(row) === mediaKey);
+      if (index < 0 && typeof store.canonicalSlotKey === "function") {
+        const slot = store.canonicalSlotKey({ url: item?.url || item?.image || item?.src, ownerId: profileId });
+        if (slot) index = rows.findIndex(row => store.canonicalSlotKey(row) === slot);
+      }
+      if (index < 0) return fallbackTitle;
+      const row = rows[index];
+      const ownerId = canonicalId(profileId || row.ownerId || row.characterId || row.contactId);
+      const name = resolveHakDisplayText(profileName || row.ownerName || (ownerId ? `{{name:${ownerId}}}` : "EVIDENCE"), ownerId);
+      const pattern = window.Game?.i18n?.ui?.("gallery.hints.photo", "Photo {number} · {name}") || "Photo {number} · {name}";
+      return String(pattern).replace(/\{(number|name)\}/g, (_match, key) => key === "number" ? String(index + 1) : name);
+    } catch { return fallbackTitle; }
+  }
+
+  async function openLegacyViewer(id){
+    const idx = photos.findIndex(p => p && String(p.id) === String(id));
+    if (idx < 0) return;
+    const p = photos[idx];
+    const profileId = canonicalId(p?.profileId || p?.contactId || p?.characterId || p?.ownerId);
+    const kind = evidenceKindForItem(p);
+    if (isHiddenEvidenceOwner(profileId)) { showHiddenEvidenceMessage(); closeViewer(); return; }
+    if ((kind || canonicalId(p?.access?.type) === "skill") && isHakEvidenceLocked(p)) {
+      showHakEvidenceLockedMessage(kind); closeViewer(); return;
+    }
+    const request = captureHakViewerRequest(activeProfileId);
+    const mediaKey = hakEvidenceMediaKey(p);
+    const fallbackTitle = String(p?.title || "EVIDENCE");
+    const title = await acquiredHakEvidenceGalleryTitle(p, profileId, p?.ownerName || p?.characterName || "", fallbackTitle);
+    if (!isHakViewerRequestCurrent(request)) return;
+    const current = getPhotos().find(row => String(row?.id || "") === String(id));
+    if (!current || hakEvidenceMediaKey(current) !== mediaKey || isHiddenEvidenceOwner(profileId) ||
+        ((evidenceKindForItem(current) || canonicalId(current?.access?.type) === "skill") && isHakEvidenceLocked(current))) return;
+    const playerThought = acquiredEvidencePlayerThought(current, profileId);
+
+    if (p && !p.seen){
+      markEvidenceItemSeen(String(p.id || ""));
+      photos = getPhotos();
+      setHakBadgeToUnseen(computeUnseen(photos));
+      renderEvidence();
+
+      try {
+        window.dispatchEvent(new CustomEvent("hak:seen", { detail:{ id: String(p?.id || "") } }));
+      } catch {}
+    }
+
+    const src = String(p?.image || "");
+    const mediaType = mediaTypeFromUrl(src);
+    if (window.MediaViewer && typeof window.MediaViewer.open === "function") {
+      window.MediaViewer.open(src, { title, type: mediaType, playerThought });
+      return;
+    }
+
+    if (vTitle) vTitle.textContent = title.toUpperCase();
+    openHakFallbackMedia(src);
+    if (vTime) vTime.textContent = p?.at ? formatTime(p.at) : "";
+    if (vText) {
+      vText.classList.toggle("has-player-thought", !!playerThought);
+      vText.setAttribute("translate", playerThought ? "no" : "yes");
+      const label = window.PlayerThoughts?.label?.() || window.Game?.i18n?.ui?.("player.inner_thoughts", "Inner thoughts") || "Inner thoughts";
+      vText.textContent = [String(p?.text || ""), playerThought ? `${label}\n${playerThought}` : ""].filter(Boolean).join("\n\n");
+    }
+
+    if (viewer){
+      viewer.classList.add("show");
+      viewer.setAttribute("aria-hidden","false");
+    }
+  }
+
+  async function openProfileEvidenceViewer(evidenceId){
+    const eid = String(evidenceId || "").trim();
+    if (!eid) return;
+    const item = activeProfileEvidences.find((row) => String(row?.id || "") === eid);
+    if (!item) {
+      showHiddenEvidenceMessage();
+      closeViewer();
+      try { window.MediaViewer?.close?.(); } catch {}
+      return;
+    }
+
+    const profile = evidenceProfiles.find((row) => canonicalId(row?.profileId) === canonicalId(activeProfileId));
+    if (isHiddenEvidenceOwner(profile?.profileId || activeProfileId)) {
+      showHiddenEvidenceMessage();
+      closeViewer();
+      try { window.MediaViewer?.close?.(); } catch {}
+      return;
+    }
+    const kind = evidenceKindForItem(item, profile);
+    if (isHakEvidenceLocked(item, profile)) {
+      showHakEvidenceLockedMessage(kind);
+      closeViewer();
+      try { window.MediaViewer?.close?.(); } catch {}
+      return;
+    }
+    const profileName = String(profile?.profileName || activeProfileId || "EVIDENCE").trim() || "EVIDENCE";
+    const profileId = canonicalId(profile?.profileId || activeProfileId);
+    const request = captureHakViewerRequest(profileId);
+    const mediaKey = hakEvidenceMediaKey(item);
+    const title = await acquiredHakEvidenceGalleryTitle(item, profileId, profileName, `${profileName} evidence`);
+    if (!isHakViewerRequestCurrent(request)) return;
+    const currentProfile = normalizeEvidenceProfiles().find(row => canonicalId(row?.profileId) === profileId);
+    const currentItem = currentProfile?.evidences?.find(row => String(row?.id || "") === eid);
+    if (!currentItem || hakEvidenceMediaKey(currentItem) !== mediaKey || isHiddenEvidenceOwner(profileId) ||
+        isHakEvidenceLocked(currentItem, currentProfile)) return;
+    const src = String(item?.url || "");
+    const mediaType = mediaTypeFromUrl(src);
+    // Revisit the delivered acquisition reaction without replaying its story.
+    const playerThought = acquiredEvidencePlayerThought(item, canonicalId(profile?.profileId || activeProfileId));
+    if (window.MediaViewer && typeof window.MediaViewer.open === "function") {
+      window.MediaViewer.open(src, { title, type: mediaType, playerThought });
+      const didMarkSeen = markEvidenceItemSeen(eid);
+      if (didMarkSeen) {
+        evidenceProfiles = normalizeEvidenceProfiles();
+        setHakBadgeToUnseen(evidenceProfiles.reduce((total, row) => total + (Array.isArray(row?.evidences) ? row.evidences : [])
+          .reduce((count, evidence) => count + (!isHakEvidenceLocked(evidence, row) && !isEvidenceItemSeen(evidence) ? 1 : 0), 0), 0));
+        const refreshedProfile = evidenceProfiles.find((row) => canonicalId(row?.profileId) === canonicalId(activeProfileId));
+        activeProfileEvidences = Array.isArray(refreshedProfile?.evidences) ? refreshedProfile.evidences.slice() : activeProfileEvidences;
+        try { setTimeout(() => openEvidenceProfile(activeProfileId), 0); } catch {}
+      }
+      return;
+    }
+
+    const didMarkSeen = markEvidenceItemSeen(eid);
+    if (didMarkSeen) {
+      evidenceProfiles = normalizeEvidenceProfiles();
+      setHakBadgeToUnseen(evidenceProfiles.reduce((total, row) => total + (Array.isArray(row?.evidences) ? row.evidences : [])
+        .reduce((count, evidence) => count + (!isHakEvidenceLocked(evidence, row) && !isEvidenceItemSeen(evidence) ? 1 : 0), 0), 0));
+      const refreshedProfile = evidenceProfiles.find((row) => canonicalId(row?.profileId) === canonicalId(activeProfileId));
+      activeProfileEvidences = Array.isArray(refreshedProfile?.evidences) ? refreshedProfile.evidences.slice() : activeProfileEvidences;
+      try { openEvidenceProfile(activeProfileId); } catch {}
+    }
+
+    if (vTitle) vTitle.textContent = title === `${profileName} evidence` ? `${profileName.toUpperCase()} // EVIDENCE` : title.toUpperCase();
+    openHakFallbackMedia(src);
+    if (vTime) vTime.textContent = item?.timestamp ? formatTime(item.timestamp) : "";
+    if (vText) {
+      vText.classList.toggle("has-player-thought", !!playerThought);
+      vText.setAttribute("translate", playerThought ? "no" : "yes");
+      const label = window.PlayerThoughts?.label?.() || window.Game?.i18n?.ui?.("player.inner_thoughts", "Inner thoughts") || "Inner thoughts";
+      vText.textContent = playerThought ? `${label}\n${playerThought}` : String(item?.id || "");
+    }
+
+    if (viewer){
+      viewer.classList.add("show");
+      viewer.setAttribute("aria-hidden","false");
+    }
+  }
+
+  function closeViewer(){
+    hakViewerRequestId++;
+    if (vVideo) {
+      try { vVideo.pause(); } catch {}
+      try { vVideo.removeAttribute("src"); vVideo.load(); } catch {}
+      vVideo.hidden = true;
+    }
+    if (vImg) {
+      vImg.hidden = false;
+      vImg.removeAttribute("src");
+    }
+    if (!viewer) return;
+    viewer.classList.remove("show");
+    viewer.classList.remove("is-video", "is-image");
+    viewer.setAttribute("aria-hidden","true");
+  }
+
+  function openHakFallbackMedia(src){
+    const isVideo = isVideoMedia(src);
+    if (viewer) {
+      viewer.classList.toggle("is-video", isVideo);
+      viewer.classList.toggle("is-image", !isVideo);
+    }
+    if (vVideo) {
+      try { vVideo.pause(); } catch {}
+      vVideo.hidden = !isVideo;
+      if (isVideo) {
+        vVideo.src = String(src || "");
+        try { vVideo.load(); } catch {}
+      } else {
+        try { vVideo.removeAttribute("src"); vVideo.load(); } catch {}
+      }
+    }
+    if (vImg) {
+      vImg.hidden = isVideo;
+      if (isVideo) vImg.removeAttribute("src");
+      else vImg.src = String(src || "");
+    }
+  }
+
+  if (listEl){
+    listEl.addEventListener("click", (e)=>{
+      const backBtn = e.target.closest("[data-action='profile-back']");
+      if (backBtn) {
+        renderEvidenceProfiles();
+        return;
+      }
+
+      const profileCard = e.target.closest("[data-profile-id]");
+      if (profileCard) {
+        if (profileCard.getAttribute("data-evidence-locked") === "1") {
+          showHakEvidenceLockedMessage(profileCard.getAttribute("data-evidence-kind") || "");
+        }
+        openEvidenceProfile(profileCard.getAttribute("data-profile-id"));
+        return;
+      }
+
+      const detailCard = e.target.closest("[data-evidence-id]");
+      if (detailCard) {
+        openProfileEvidenceViewer(detailCard.getAttribute("data-evidence-id"));
+        return;
+      }
+
+      const legacyCard = e.target.closest(".card[data-id]");
+      if (!legacyCard) return;
+      openLegacyViewer(legacyCard.getAttribute("data-id"));
+    });
+  }
+  if (closeBtn) closeBtn.addEventListener("click", closeViewer);
+// ✅ NEW: click on the opened evidence image closes the viewer (same as Pictures)
+if (vImg) {
+  vImg.addEventListener("click", (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    closeViewer();
+  });
+}
+
+  hakOn(window, "keydown", (e)=>{
+    if (e.key === "Escape" && viewer && viewer.classList.contains("show")) closeViewer();
+  });
+
+  // -------------------------
+  // Tabs
+  // -------------------------
+  const subEl = document.getElementById("hak-sub");
+  const tabEvidence = document.getElementById("hak-tab-evidence");
+  const tabSkills   = document.getElementById("hak-tab-skills");
+  const panelEvidence = document.getElementById("hak-panel-evidence");
+  const panelSkills   = document.getElementById("hak-panel-skills");
+
+  function setTab(name){
+    const canTabs = !!(tabEvidence && tabSkills && panelEvidence && panelSkills);
+
+    if (!canTabs){
+      if (subEl) subEl.textContent = "Evidence locker";
+      renderEvidence();
+      return;
+    }
+
+    const isEvidence = (name === "evidence");
+
+    tabEvidence.classList.toggle("active", isEvidence);
+    tabSkills.classList.toggle("active", !isEvidence);
+
+    panelEvidence.classList.toggle("show", isEvidence);
+    panelSkills.classList.toggle("show", !isEvidence);
+
+    if (subEl) subEl.textContent = isEvidence ? "Evidence locker" : "Skill tree";
+    if (!isEvidence) closeViewer();
+
+    if (isEvidence) renderEvidence();
+    else{
+      try { renderSkills(); } catch(e){ fail("renderSkills()", e); }
+
+      const tw = document.getElementById("hak-treewrap");
+      if (tw){
+        tw.classList.remove("tree-enter");
+        void tw.offsetWidth;
+        tw.classList.add("tree-enter");
+      }
+    }
+  }
+
+  if (tabEvidence) tabEvidence.addEventListener("click", ()=> setTab("evidence"));
+  if (tabSkills) tabSkills.addEventListener("click", ()=> setTab("skills"));
+  window.setHakTab = function setHakTabPublic(tabName) {
+    const next = (canonicalId(tabName) === "skills") ? "skills" : "evidence";
+    setTab(next);
+  };
+
+  // -------------------------
+  // Skills (TREE SVG) — 3 currencies
+  // -------------------------
+  const pointsNtsEl  = document.getElementById("hak-points-nts");
+  const pointsNtrEl  = document.getElementById("hak-points-ntr");
+  const pointsLoveEl = document.getElementById("hak-points-love");
+
+  const treeSvg = document.getElementById("hak-tree");
+  const infoBox = document.getElementById("hak-skillinfo");
+  const infoName = document.getElementById("hak-skillinfo-name");
+  const infoBranch = document.getElementById("hak-skillinfo-branch");
+  const infoCost = document.getElementById("hak-skillinfo-cost");
+  const infoDesc = document.getElementById("hak-skillinfo-desc");
+  const infoReq = document.getElementById("hak-skillinfo-req");
+  const infoUnlock = document.getElementById("hak-skillinfo-unlock");
+  const infoClose = document.getElementById("hak-skillinfo-close");
+
+  let selectedSkillId = null;
+  let builtTree = false;
+  let lastUnlockClearTimer = null;
+  let lastUnlockClearId = "";
+
+  let treeWorld = null;
+  let panzoomBooted = false;
+
+  let cam = {
+    scale: 1,
+    tx: 0,
+    ty: 0,
+    min: 0.65,
+    max: 2.6
+  };
+
+  const BRANCH = {
+    global: { key:"global", label:"CORE HAK / UTILITY", cls:"branch-global" },
+    nts:  { key:"nts",  label:"NTS / OPPORTUNITY", cls:"branch-cyan" },
+    ntr:  { key:"ntr",  label:"NTR / INSIGHT", cls:"branch-red" },
+    love: { key:"love", label:"LOVE / RISK", cls:"branch-pink" }
+  };
+
+  const SKILL_DEFS = {
+    [SKILL_NTR_PASSIVE_INSIGHT]: {
+      name: "Passive Insight",
+      desc: "Unlocks NTR hint bubbles before choices when risk signals are detected.",
+      requires: []
+    },
+    [SKILL_LOVE_RISK_WARNING]: {
+      name: "Risk Warning",
+      desc: "Unlocks LOVE hint bubbles that flag emotionally risky replies before choices.",
+      requires: []
+    },
+    [SKILL_NTS_OPPORTUNITY_INDICATOR]: {
+      name: "Opportunity Indicator",
+      desc: "Unlocks NTS hint bubbles that point out tactical opportunity windows before choices.",
+      requires: []
+    },
+    [SKILL_NTR_ROUTE_REVEAL_V2]: {
+      name: "NTR Target Lock",
+      desc: "Highlights the exact NTR-aligned choice with a red pulse outline during route choices.",
+      requires: [SKILL_NTR_PASSIVE_INSIGHT]
+    },
+    [SKILL_NTS_ROUTE_REVEAL_V2]: {
+      name: "NTS Target Lock",
+      desc: "Highlights the exact NTS-aligned choice with a blue pulse outline during route choices.",
+      requires: [SKILL_NTS_OPPORTUNITY_INDICATOR]
+    },
+    [SKILL_LOVE_ROUTE_REVEAL_V2]: {
+      name: "LOVE Target Lock",
+      desc: "Highlights the exact LOVE-aligned choice with a pink pulse outline during route choices.",
+      requires: [SKILL_LOVE_RISK_WARNING]
+    },
+    [SKILL_NTR_EVIDENCE_ACCESS]: {
+      name: "Evidence Access",
+      desc: "Unlocks NTR evidence archived by HAK.",
+      requires: [SKILL_NTR_ROUTE_REVEAL_V2]
+    },
+    [SKILL_NTS_EVIDENCE_ACCESS]: {
+      name: "Evidence Access",
+      desc: "Unlocks NTS evidence archived by HAK.",
+      requires: [SKILL_NTS_ROUTE_REVEAL_V2]
+    },
+    [SKILL_LOVE_EVIDENCE_ACCESS]: {
+      name: "Evidence Access",
+      desc: "Unlocks LOVE evidence archived by HAK.",
+      requires: [SKILL_LOVE_ROUTE_REVEAL_V2]
+    },
+    [SKILL_NTR_AUDIO_TRANSCRIPTION]: {
+      name: "Live Transcription",
+      desc: "Converts NTR-route intercepted speech into readable HAK transcripts.", requires: [SKILL_NTR_EVIDENCE_ACCESS]
+    },
+    [SKILL_NTS_AUDIO_TRANSCRIPTION]: {
+      name: "Live Transcription", desc: "Converts NTS-route intercepted speech into readable HAK transcripts.", requires: [SKILL_NTS_EVIDENCE_ACCESS]
+    },
+    [SKILL_LOVE_AUDIO_TRANSCRIPTION]: {
+      name: "Live Transcription", desc: "Converts LOVE-route intercepted speech into readable HAK transcripts.", requires: [SKILL_LOVE_EVIDENCE_ACCESS]
+    }
+  };
+  const STARTER_SKILL_ICONS_BY_SKILL_ID = {
+    [SKILL_NTR_PASSIVE_INSIGHT]: "assets/ui/skills/passive_insight.svg",
+    [SKILL_NTS_OPPORTUNITY_INDICATOR]: "assets/ui/skills/opportunity_indicator.svg",
+    [SKILL_LOVE_RISK_WARNING]: "assets/ui/skills/risk_warning.svg",
+    [SKILL_NTR_ROUTE_REVEAL_V2]: "assets/ui/skills/ntr_target_lock.svg",
+    [SKILL_NTS_ROUTE_REVEAL_V2]: "assets/ui/skills/nts_target_lock.svg",
+    [SKILL_LOVE_ROUTE_REVEAL_V2]: "assets/ui/skills/love_target_lock.svg",
+    [SKILL_NTR_EVIDENCE_ACCESS]: "assets/ui/skills/ntr_evidence_search.svg",
+    [SKILL_NTS_EVIDENCE_ACCESS]: "assets/ui/skills/evidence_search.svg",
+    [SKILL_LOVE_EVIDENCE_ACCESS]: "assets/ui/skills/love_evidence_search.svg",
+    [SKILL_NTR_AUDIO_TRANSCRIPTION]: "assets/ui/skills/ntr_audio_transcription.svg",
+    [SKILL_NTS_AUDIO_TRANSCRIPTION]: "assets/ui/skills/audio_transcription.svg",
+    [SKILL_LOVE_AUDIO_TRANSCRIPTION]: "assets/ui/skills/love_audio_transcription.svg"
+  };
+
+  const TREE_LAYOUT = {
+    viewWidth: 1000,
+    viewHeight: 1000,
+    rootId: "hak_root",
+    nodes: [
+      { id:"hak_root", type:"root", branch:null, x:50, y:91, r:54, label:"HAK", edges:["ntr_l1","nts_l1","love_l1"] },
+
+      { id:"ntr_l1", type:"skill", branch:"ntr", skillId:SKILL_NTR_PASSIVE_INSIGHT, cost:2, x:34, y:76, edges:["ntr_l2"] },
+      { id:"ntr_l2", type:"skill", branch:"ntr", skillId:SKILL_NTR_ROUTE_REVEAL_V2, cost:2, x:25, y:61, edges:["ntr_l3"] },
+      { id:"ntr_l3", type:"skill", branch:"ntr", skillId:SKILL_NTR_EVIDENCE_ACCESS, cost:4, x:17, y:46, edges:["ntr_l4"] },
+      { id:"ntr_l4", type:"skill", branch:"ntr", skillId:SKILL_NTR_AUDIO_TRANSCRIPTION, cost:4, x:11, y:31, edges:["ntr_future"] },
+      { id:"ntr_future", type:"placeholder", branch:"ntr", x:8, y:16, edges:[] },
+
+      { id:"nts_l1", type:"skill", branch:"nts", skillId:SKILL_NTS_OPPORTUNITY_INDICATOR, cost:2, x:50, y:76, edges:["nts_l2"] },
+      { id:"nts_l2", type:"skill", branch:"nts", skillId:SKILL_NTS_ROUTE_REVEAL_V2, cost:2, x:50, y:61, edges:["nts_l3"] },
+      { id:"nts_l3", type:"skill", branch:"nts", skillId:SKILL_NTS_EVIDENCE_ACCESS, cost:4, x:50, y:46, edges:["nts_l4"] },
+      { id:"nts_l4", type:"skill", branch:"nts", skillId:SKILL_NTS_AUDIO_TRANSCRIPTION, cost:4, x:50, y:31, edges:["nts_future"] },
+      { id:"nts_future", type:"placeholder", branch:"nts", x:50, y:16, edges:[] },
+
+      { id:"love_l1", type:"skill", branch:"love", skillId:SKILL_LOVE_RISK_WARNING, cost:2, x:66, y:76, edges:["love_l2"] },
+      { id:"love_l2", type:"skill", branch:"love", skillId:SKILL_LOVE_ROUTE_REVEAL_V2, cost:2, x:75, y:61, edges:["love_l3"] },
+      { id:"love_l3", type:"skill", branch:"love", skillId:SKILL_LOVE_EVIDENCE_ACCESS, cost:4, x:83, y:46, edges:["love_l4"] },
+      { id:"love_l4", type:"skill", branch:"love", skillId:SKILL_LOVE_AUDIO_TRANSCRIPTION, cost:4, x:89, y:31, edges:["love_future"] },
+      { id:"love_future", type:"placeholder", branch:"love", x:92, y:16, edges:[] }
+    ]
+  };
+
+  const BRANCH_X_ZONES = {
+    ntr: { min: 4, max: 36, center: 20 },
+    nts: { min: 40, max: 60, center: 50 },
+    love: { min: 64, max: 98, center: 80 }
+  };
+  function clampValue(v, min, max){
+    const n = Number(v);
+    if (!Number.isFinite(n)) return min;
+    if (n < min) return min;
+    if (n > max) return max;
+    return n;
+  }
+  function clampBranchX(branchKey, xPct){
+    const zone = BRANCH_X_ZONES[String(branchKey || "").toLowerCase()];
+    if (!zone) return clampValue(xPct, 0, 100);
+    return clampValue(xPct, zone.min, zone.max);
+  }
+
+  const TREE_NODES = (Array.isArray(TREE_LAYOUT.nodes) ? TREE_LAYOUT.nodes : []).map((node) => ({
+    ...node,
+    id: String(node?.id || "").trim(),
+    branch: node?.branch ? String(node.branch).toLowerCase() : null,
+    x: clampBranchX(node?.branch, Number(node?.x || 0)),
+    y: clampValue(Number(node?.y || 0), 0, 100),
+    edges: Array.isArray(node?.edges) ? node.edges.map((edgeId) => String(edgeId || "").trim()).filter(Boolean) : []
+  })).filter((node) => !!node.id);
+  const TREE_NODES_BY_ID = new Map(TREE_NODES.map((node) => [node.id, node]));
+
+  function nodeRadius(node){
+    if (!node) return 40;
+    if (node.type === "root") return Math.max(44, Number(node.r || 54) || 54);
+    return node.type === "skill" ? 50 : 29;
+  }
+  function worldFromPercent(node){
+    const w = Math.max(1, Number(TREE_LAYOUT.viewWidth || 1000) || 1000);
+    const h = Math.max(1, Number(TREE_LAYOUT.viewHeight || 1100) || 1100);
+    return {
+      x: (Math.max(0, Math.min(100, Number(node?.x || 0) || 0)) / 100) * w,
+      y: (Math.max(0, Math.min(100, Number(node?.y || 0) || 0)) / 100) * h,
+      r: nodeRadius(node)
+    };
+  }
+
+  const POS = {};
+  TREE_NODES.forEach((node) => { POS[node.id] = worldFromPercent(node); });
+
+  function edgeIdFromNodes(fromId, toId){
+    const clean = (v) => String(v || "").trim().toLowerCase().replace(/[^a-z0-9_]+/g, "_");
+    return `edge_${clean(fromId)}_${clean(toId)}`;
+  }
+  const TREE_EDGES = [];
+  TREE_NODES.forEach((fromNode) => {
+    fromNode.edges.forEach((toNodeId) => {
+      const toNode = TREE_NODES_BY_ID.get(String(toNodeId || ""));
+      if (!toNode) return;
+      TREE_EDGES.push({
+        id: edgeIdFromNodes(fromNode.id, toNode.id),
+        from: fromNode.id,
+        to: toNode.id,
+        branch: (toNode.branch || fromNode.branch || "nts")
+      });
+    });
+  });
+  const TREE_EDGES_BY_FROM = new Map();
+  TREE_EDGES.forEach((edge) => {
+    const key = String(edge?.from || "");
+    if (!TREE_EDGES_BY_FROM.has(key)) TREE_EDGES_BY_FROM.set(key, []);
+    TREE_EDGES_BY_FROM.get(key).push(edge);
+  });
+  function edgeKeyFromTo(fromId, toId){
+    return `${String(fromId || "")}->${String(toId || "")}`;
+  }
+  function buildEdgeLaneOffsets(){
+    const lane = new Map();
+    TREE_EDGES_BY_FROM.forEach((list, fromId) => {
+      if (!Array.isArray(list) || !list.length) return;
+      if (list.length === 1) {
+        lane.set(edgeKeyFromTo(fromId, list[0].to), 0);
+        return;
+      }
+      const sorted = list.slice().sort((a, b) => {
+        const ax = Number(POS[String(a?.to || "")]?.x || 0);
+        const bx = Number(POS[String(b?.to || "")]?.x || 0);
+        if (ax !== bx) return ax - bx;
+        return String(a?.to || "").localeCompare(String(b?.to || ""));
+      });
+      if (sorted.length === 2) {
+        lane.set(edgeKeyFromTo(fromId, sorted[0].to), -12);
+        lane.set(edgeKeyFromTo(fromId, sorted[1].to), 12);
+        return;
+      }
+      const center = (sorted.length - 1) / 2;
+      sorted.forEach((edge, idx) => {
+        const spread = clampValue((idx - center) * 10, -24, 24);
+        lane.set(edgeKeyFromTo(fromId, edge.to), spread);
+      });
+    });
+    return lane;
+  }
+  const TREE_EDGE_LANE = buildEdgeLaneOffsets();
+
+  const SKILLS = TREE_NODES
+    .filter((node) => node.type === "skill" && node.skillId)
+    .map((node) => {
+      const sid = String(node.skillId || "").trim();
+      const def = SKILL_DEFS[sid] || {};
+      return {
+        id: sid,
+        branch: node.branch,
+        name: String(def.name || "Skill"),
+        desc: String(def.desc || ""),
+        cost: Math.max(0, Math.floor(Number(node.cost || 0) || 0)),
+        requires: Array.isArray(def.requires) ? def.requires.map((req) => String(req || "").trim()).filter(Boolean) : []
+      };
+    });
+  const SKILLS_BY_ID = new Map(SKILLS.map((skill) => [String(skill.id), skill]));
+  const SKILL_NODE_ID_BY_SKILL_ID = new Map(
+    TREE_NODES
+      .filter((node) => node.type === "skill" && !!node.skillId)
+      .map((node) => [String(node.skillId), String(node.id)])
+  );
+
+  function findSkill(id){
+    return SKILLS_BY_ID.get(String(id || "")) || null;
+  }
+
+  function backfillHakSkillParents(unlocked){
+    const map = (unlocked && typeof unlocked === "object") ? unlocked : {};
+    Object.keys(HAK_SKILL_PARENT_BY_SKILL).forEach((childId) => {
+      const parentId = HAK_SKILL_PARENT_BY_SKILL[childId];
+      if (!map[childId] || !parentId || map[parentId]) return;
+      const at = Number(map[childId]?.at || 0) || Date.now();
+      map[parentId] = { at: Math.max(1, Math.floor(at)) };
+    });
+  }
+
+  function normalizeSkillsStore(raw){
+    if (!raw || typeof raw !== "object") return { unlocked: {} };
+    if (Array.isArray(raw)) {
+      const unlocked = {};
+      raw.map((x) => String(x || "").trim()).filter(Boolean).forEach((id) => {
+        unlocked[id] = { at: Date.now() };
+      });
+      backfillHakSkillParents(unlocked);
+      return { unlocked };
+    }
+
+    const unlockedIn = (raw.unlocked && typeof raw.unlocked === "object") ? raw.unlocked : {};
+    const unlocked = {};
+    Object.keys(unlockedIn).forEach((id) => {
+      const sid = String(id || "").trim();
+      if (!sid) return;
+      const at = Number(unlockedIn[id]?.at || 0) || Date.now();
+      unlocked[sid] = { at: Math.max(1, Math.floor(at)) };
+    });
+    backfillHakSkillParents(unlocked);
+    return { unlocked };
+  }
+
+  function readSkillsStore(){
+    try {
+      const engine = window.GameStateEngine;
+      const canonical = typeof engine?.getHakSkillsState === "function" ? engine.getHakSkillsState() : readCanonicalHakState()?.skills;
+      if (canonical && typeof canonical === "object") return normalizeSkillsStore(canonical);
+    } catch {}
+    try {
+      if (typeof window.Game?.getHakSkillsStore === "function") {
+        return normalizeSkillsStore(window.Game.getHakSkillsStore());
+      }
+    } catch {}
+
+    const parsed = safeJsonParse(safeGetLS(SKILLS_KEY), null);
+    return normalizeSkillsStore(parsed);
+  }
+
+  function isHakSkillAvailable(skillId){
+    return window.GameStateEngine?.isHakSkillAvailable?.(skillId) !== false;
+  }
+
+  function getUnlockedSkills(){
+    return Object.keys(readSkillsStore().unlocked || {}).filter(isHakSkillAvailable);
+  }
+
+  function getRoutePointsObj(){
+    try {
+      const canonical = readCanonicalHakState()?.routePoints;
+      if (canonical && typeof canonical === "object") return normalizeRoutePointsObj(canonical);
+    } catch {}
+    try {
+      if (typeof window.Game?.getRoutePoints === "function") {
+        return normalizeRoutePointsObj(window.Game.getRoutePoints());
+      }
+    } catch {}
+
+    const raw = safeGetLS(ROUTE_POINTS_KEY);
+    const obj = safeJsonParse(raw, {});
+    const normalized = normalizeRoutePointsObj(obj);
+    return normalized;
+  }
+
+  function getAvailableByBranch(){
+    const pts = getRoutePointsObj();
+    return {
+      nts:  Math.max(0, Number(pts.nts) || 0),
+      ntr:  Math.max(0, Number(pts.ntr) || 0),
+      love: Math.max(0, Number(pts.love) || 0),
+    };
+  }
+
+  function getAvailableForBranch(branchKey){
+    const avail = getAvailableByBranch();
+    return Math.max(0, Number(avail[branchKey]) || 0);
+  }
+
+  function spendBranchPoints(branchKey, amount){
+    const cost = Math.max(0, Math.floor(Number(amount || 0) || 0));
+    if (!branchKey || cost <= 0) return false;
+
+    try {
+      if (typeof window.Game?.spendPoints === "function") {
+        return window.Game.spendPoints(branchKey, cost) === true;
+      }
+    } catch {}
+
+    return false;
+  }
+
+  function unlockSkillInStore(skillId){
+    const sid = String(skillId || "").trim();
+    if (!sid) return false;
+
+    try {
+      if (typeof window.Game?.unlockSkill === "function") {
+        return window.Game.unlockSkill(sid) === true;
+      }
+    } catch {}
+
+    return false;
+  }
+
+  function requirementsMet(skillId, unlocked){
+    const s = findSkill(skillId);
+    if (!s) return false;
+    return (s.requires || []).every(req => unlocked.includes(String(req)));
+  }
+
+  function forceSvgRepaint(){
+    if (!treeSvg) return;
+    const prev = treeSvg.style.transform;
+    treeSvg.style.transform = "translateZ(0)";
+    try { treeSvg.getBoundingClientRect(); } catch {}
+    const o = treeSvg.style.opacity;
+    treeSvg.style.opacity = "0.999";
+    treeSvg.offsetHeight;
+    treeSvg.style.opacity = o || "";
+    treeSvg.style.transform = prev || "";
+  }
+
+  function ensureWorldGroup(){
+    if (!treeSvg) return null;
+
+    treeWorld = treeSvg.querySelector("#hak-treeworld");
+    if (treeWorld) return treeWorld;
+
+    const NS = "http://www.w3.org/2000/svg";
+    treeWorld = document.createElementNS(NS, "g");
+    treeWorld.setAttribute("id", "hak-treeworld");
+
+    // Move everything except defs into treeWorld (safe)
+    const toMove = [];
+    for (const ch of Array.from(treeSvg.childNodes)){
+      if (ch.nodeType === 1 && ch.tagName.toLowerCase() === "defs") continue;
+      if (ch.nodeType === 1) toMove.push(ch);
+    }
+    treeSvg.appendChild(treeWorld);
+    toMove.forEach(n => treeWorld.appendChild(n));
+
+    return treeWorld;
+  }
+
+  function buildTreeOnce(){
+    if (!treeSvg || builtTree) return;
+    builtTree = true;
+
+    const hasAny = (treeSvg.children && treeSvg.children.length);
+
+    const NS = "http://www.w3.org/2000/svg";
+    const mk = (tag, attrs={})=>{
+      const el = document.createElementNS(NS, tag);
+      for (const k of Object.keys(attrs)) el.setAttribute(k, String(attrs[k]));
+      return el;
+    };
+
+    // If already had content, just ensure world group exists (so pan/zoom can work)
+    if (hasAny){
+      ensureWorldGroup();
+      return;
+    }
+
+    // defs
+    const defs = mk("defs");
+    defs.innerHTML = `
+      <filter id="shadowSoft" x="-80%" y="-80%" width="260%" height="260%">
+        <feGaussianBlur stdDeviation="5"/>
+      </filter>
+      <filter id="linkBlur" x="-90%" y="-90%" width="280%" height="280%">
+        <feGaussianBlur stdDeviation="5"/>
+      </filter>
+      <filter id="glowSoft" x="-60%" y="-60%" width="220%" height="220%">
+        <feGaussianBlur stdDeviation="6" result="b"/>
+        <feMerge>
+          <feMergeNode in="b"/>
+          <feMergeNode in="SourceGraphic"/>
+        </feMerge>
+      </filter>
+      <filter id="glowStrong" x="-80%" y="-80%" width="260%" height="260%">
+        <feGaussianBlur stdDeviation="10" result="b"/>
+        <feMerge>
+          <feMergeNode in="b"/>
+          <feMergeNode in="SourceGraphic"/>
+        </feMerge>
+      </filter>
+    `;
+    treeSvg.appendChild(defs);
+
+    // ✅ world group (everything except defs) so we can pan/zoom safely
+    treeWorld = mk("g", { id:"hak-treeworld" });
+    treeSvg.appendChild(treeWorld);
+    const starterClipIds = new Set();
+
+    treeSvg.setAttribute("viewBox", `0 0 ${Number(TREE_LAYOUT.viewWidth || 1000)} ${Number(TREE_LAYOUT.viewHeight || 1100)}`);
+
+    function edgeBaseWidth(A, B){
+      const h = Math.max(1, Number(TREE_LAYOUT.viewHeight || 1100) || 1100);
+      const midY = (Number(A?.y || 0) + Number(B?.y || 0)) / 2;
+      const t = Math.max(0, Math.min(1, midY / h));
+      return 1.4 + (t * 1.6);
+    }
+    function edgeCurvePath(L, A, B){
+      const dx = Number(B?.x || 0) - Number(A?.x || 0);
+      const dy = Number(B?.y || 0) - Number(A?.y || 0);
+      const distance = Math.max(1, Math.hypot(dx, dy));
+      const startInset = L.from === TREE_LAYOUT.rootId ? 36 : 56;
+      const endInset = TREE_NODES_BY_ID.get(L.to)?.type === "placeholder" ? 24 : 56;
+      const x1 = Number(A?.x || 0) + dx / distance * startInset;
+      const y1 = Number(A?.y || 0) + dy / distance * startInset;
+      const x2 = Number(B?.x || 0) - dx / distance * endInset;
+      const y2 = Number(B?.y || 0) - dy / distance * endInset;
+      const branchKey = String(L?.branch || "").toLowerCase();
+      const k = clampValue(Math.abs(y2 - y1) * 0.45, 20, 140);
+
+      let c1x = x1;
+      let c1y = y1 - k;
+      let c2x = x2;
+      let c2y = y2 + (k * 0.2);
+
+      if (branchKey === "ntr"){
+        c1x -= k * 0.35;
+        c2x -= k * 0.15;
+      } else if (branchKey === "love"){
+        c1x += k * 0.35;
+        c2x += k * 0.15;
+      }
+
+      const laneOffset = Number(TREE_EDGE_LANE.get(edgeKeyFromTo(L?.from, L?.to)) || 0);
+      c1x += laneOffset;
+      c2x += laneOffset;
+
+      return `M ${x1} ${y1} C ${c1x} ${c1y} ${c2x} ${c2y} ${x2} ${y2}`;
+    }
+
+    for (const branch of ["ntr", "nts", "love"]){
+      const label = mk("text", { x:POS[`${branch}_future`].x, y:210, class:`tBranchLabel ${BRANCH[branch].cls}`, "aria-hidden":"true" });
+      label.textContent = branch.toUpperCase();
+      treeWorld.appendChild(label);
+    }
+
+    // draw links first
+    for (const L of TREE_EDGES){
+      const A = POS[L.from];
+      const B = POS[L.to];
+      if (!A || !B) continue;
+
+      const d = edgeCurvePath(L, A, B);
+      const baseWidth = edgeBaseWidth(A, B);
+
+      const g = mk("g", { class:`tLinkGroup ${BRANCH[L.branch]?.cls || ""}` });
+      g.dataset.edgeId = String(L.id || "");
+      g.dataset.from = L.from;
+      g.dataset.to = L.to;
+      g.dataset.branch = L.branch;
+      g.dataset.baseWidth = String(baseWidth.toFixed(2));
+
+      const glow = mk("path", { d, class:"tLinkGlow" });
+      glow.dataset.role = "glow";
+
+      const main = mk("path", { d, class:"tLink" });
+      main.dataset.role = "main";
+
+      const branchStroke = (L.branch === "nts")  ? "rgba(112,220,255,0.92)"
+                         : (L.branch === "ntr")  ? "rgba(255,92,92,0.90)"
+                         :                        "rgba(255,120,210,0.90)";
+
+      main.setAttribute("stroke", branchStroke);
+      main.setAttribute("stroke-opacity", "0.25");
+      main.setAttribute("stroke-width", String(Math.max(1.5, baseWidth - 0.2).toFixed(2)));
+
+      glow.setAttribute("stroke", branchStroke);
+      glow.setAttribute("stroke-width", String((baseWidth + 4.2).toFixed(2)));
+      glow.setAttribute("stroke-opacity", "0.16");
+
+      g.appendChild(glow);
+      g.appendChild(main);
+      treeWorld.appendChild(g);
+    }
+
+    // core once
+    const rootNode = TREE_NODES_BY_ID.get(String(TREE_LAYOUT.rootId || "hak_root"));
+    const rootPos = POS[String(rootNode?.id || "hak_root")] || { x:500, y:935, r:54 };
+    const gCore = mk("g", { class:"tNode coreNode", "data-node":String(rootNode?.id || "hak_root") });
+    const coreCircle = mk("circle", { cx:rootPos.x, cy:rootPos.y, r:rootPos.r, class:"tCore" });
+    const coreLabel = mk("text", { x:rootPos.x, y:rootPos.y, class:"tLabel" });
+    coreLabel.textContent = String(rootNode?.label || "HAK");
+    gCore.appendChild(coreCircle);
+    gCore.appendChild(mk("rect", { x:rootPos.x-46, y:rootPos.y-26, width:92, height:52, rx:5, class:"tRootFrame" }));
+    gCore.appendChild(coreLabel);
+    treeWorld.appendChild(gCore);
+
+    // nodes
+    for (const node of TREE_NODES){
+      if (node.type === "root") continue;
+
+      const p = POS[node.id];
+      if (!p) continue;
+
+      const isSkillNode = node.type === "skill" && !!node.skillId;
+      const skillId = isSkillNode ? String(node.skillId || "") : "";
+      const starterLogoHref = skillId ? String(STARTER_SKILL_ICONS_BY_SKILL_ID[skillId] || "") : "";
+      const isStarterSkillNode = isSkillNode && !!starterLogoHref;
+      const branchCls = BRANCH[node.branch]?.cls || "";
+      const g = mk("g", {
+        class: `tNode ${branchCls} ${isSkillNode ? "skillNode" : "placeholderNode"} ${isStarterSkillNode ? "starter-skill-node" : ""}`,
+        "data-node": node.id
+      });
+
+      if (isSkillNode){
+        const skill = findSkill(node.skillId);
+        g.setAttribute("data-skill", String(node.skillId));
+        g.setAttribute("aria-label", `${skill?.name || "Skill"} (${String(node.branch || "").toUpperCase()}) - ${skill?.desc || ""} - COST ${Number(node.cost || 0)}`);
+        if (isStarterSkillNode){
+          g.setAttribute("data-skill-icon", starterLogoHref);
+        }
+      } else {
+        g.setAttribute("data-placeholder", "1");
+        g.setAttribute("aria-label", `Unknown ${String(node.branch || "").toUpperCase()} skill slot`);
+      }
+
+      const drop = mk("ellipse", { cx:p.x, cy:(p.y + (p.r * 0.68)), rx:(p.r * 0.78), ry:(p.r * 0.34), class:"tDrop" });
+      const halo = mk("circle", { cx:p.x, cy:p.y, r:(p.r + 3), class:"tHalo" });
+      const ring = mk("circle", { cx:p.x, cy:p.y, r:p.r, class:"tRing" });
+      const plate = mk("circle", { cx:p.x, cy:p.y, r:(p.r - 6), class:"tPlate" });
+      const showStarterLogo = isStarterSkillNode;
+
+      let valueText = null;
+      let starterLogo = null;
+      if (showStarterLogo){
+        const innerRadius = Math.max(8, p.r - 6);
+        const logoSize = Math.max(20, (innerRadius * 2) * 0.84);
+        const logoCenterY = p.y;
+        const clipId = `starter_clip_${String(node.id || "").replace(/[^a-zA-Z0-9_-]+/g, "_")}`;
+        if (!starterClipIds.has(clipId)){
+          const clip = mk("clipPath", { id:clipId });
+          const clipCircle = mk("circle", { cx:p.x, cy:p.y, r:innerRadius });
+          clip.appendChild(clipCircle);
+          defs.appendChild(clip);
+          starterClipIds.add(clipId);
+        }
+        starterLogo = mk("image", {
+          x: (p.x - (logoSize / 2)),
+          y: (logoCenterY - (logoSize / 2)),
+          width: logoSize,
+          height: logoSize,
+          class: "tSkillLogo skill-logo",
+          "data-role": "value-logo",
+          preserveAspectRatio: "xMidYMid meet",
+          "clip-path": `url(#${clipId})`
+        });
+        starterLogo.setAttribute("href", starterLogoHref);
+        starterLogo.setAttributeNS("http://www.w3.org/1999/xlink", "href", starterLogoHref);
+        starterLogo.setAttribute("aria-hidden", "true");
+      } else {
+        valueText = mk("text", { x:p.x, y:p.y, class:"tNodeValue qmark", "data-role":"value" });
+        valueText.textContent = "?";
+      }
+
+      if (isSkillNode) g.appendChild(mk("circle", { cx:p.x, cy:p.y, r:p.r + 26, fill:"transparent", "pointer-events":"all", "aria-hidden":"true", class:"tHit" }));
+      g.appendChild(drop);
+      g.appendChild(halo);
+      g.appendChild(ring);
+      g.appendChild(plate);
+      const markerSize = isSkillNode ? 40 : 17;
+      const markerArm = isSkillNode ? 12 : 6;
+      g.appendChild(mk("path", {
+        class:"tFrame", "aria-hidden":"true",
+        d:`M ${p.x-markerSize} ${p.y-markerSize+markerArm} v ${-markerArm} h ${markerArm} M ${p.x+markerSize-markerArm} ${p.y-markerSize} h ${markerArm} v ${markerArm} M ${p.x+markerSize} ${p.y+markerSize-markerArm} v ${markerArm} h ${-markerArm} M ${p.x-markerSize+markerArm} ${p.y+markerSize} h ${-markerArm} v ${-markerArm}`
+      }));
+      if (starterLogo) g.appendChild(starterLogo);
+      if (valueText) g.appendChild(valueText);
+      if (isSkillNode){
+        const unrevealed = mk("text", { x:p.x, y:p.y, class:"tNodeValue qmark", "data-role":"unrevealed-value" });
+        unrevealed.textContent = "?";
+        unrevealed.style.display = "none";
+        g.appendChild(unrevealed);
+        g.appendChild(mk("path", {
+          class:"tLockedGlyph", "aria-hidden":"true",
+          d:`M ${p.x-13} ${p.y-4} v -11 a 13 13 0 0 1 26 0 v 11 M ${p.x-18} ${p.y-4} h 36 v 29 h -36 z M ${p.x} ${p.y+7} v 7`
+        }));
+      }
+      if (!isSkillNode){
+        const title = mk("title");
+        title.textContent = "Coming later";
+        g.appendChild(title);
+      }
+      treeWorld.appendChild(g);
+    }
+
+    // click select
+    treeSvg.addEventListener("click", (e)=>{
+      const node = e.target.closest(".tNode");
+      if (!node) return;
+      const id = node.getAttribute("data-skill");
+      if (!id || id === "core") return;
+      selectSkill(id);
+    });
+  }
+
+  function updateTreeVisual(){
+    if (!treeSvg) return;
+
+    const now = Date.now();
+    const lastUnlock = readLastUnlockState();
+    const justUnlockAge = lastUnlock ? (now - Number(lastUnlock.at || 0)) : Infinity;
+    const justUnlockedSkillId = (lastUnlock && justUnlockAge >= 0 && justUnlockAge < HAK_LAST_UNLOCK_TTL_MS)
+      ? String(lastUnlock.skillId)
+      : "";
+    if (lastUnlock && !justUnlockedSkillId){
+      clearLastUnlockState();
+    }
+    if (justUnlockedSkillId){
+      const samePending = (lastUnlockClearTimer && lastUnlockClearId === justUnlockedSkillId);
+      if (!samePending){
+        if (lastUnlockClearTimer){
+          clearTimeout(lastUnlockClearTimer);
+          lastUnlockClearTimer = null;
+        }
+        lastUnlockClearId = justUnlockedSkillId;
+        const delay = Math.max(80, HAK_LAST_UNLOCK_ANIM_MS - Math.max(0, justUnlockAge));
+        lastUnlockClearTimer = setTimeout(() => {
+          const cur = readLastUnlockState();
+          if (cur && String(cur.skillId || "") === justUnlockedSkillId) clearLastUnlockState();
+          lastUnlockClearTimer = null;
+          lastUnlockClearId = "";
+          try { updateTreeVisual(); } catch {}
+        }, delay);
+      }
+    }
+    const justUnlockedNodeId = justUnlockedSkillId
+      ? String(SKILL_NODE_ID_BY_SKILL_ID.get(justUnlockedSkillId) || "")
+      : "";
+
+    const unlocked = getUnlockedSkills();
+    const unlockedSet = new Set(unlocked.map((id) => String(id)));
+    const availBy = getAvailableByBranch();
+    const rootId = String(TREE_LAYOUT.rootId || "hak_root");
+    const isNodeUnlockedById = (nodeId) => {
+      const nid = String(nodeId || "").trim();
+      if (!nid) return false;
+      const node = TREE_NODES_BY_ID.get(nid);
+      if (!node) return false;
+      if (nid === rootId || node.type === "root") return true;
+      if (node.type === "skill") {
+        const sid = String(node.skillId || "").trim();
+        return !!sid && unlockedSet.has(sid);
+      }
+      return false;
+    };
+    let justUnlockedEdgeId = "";
+    if (justUnlockedNodeId && justUnlockAge <= HAK_EDGE_UNLOCK_ANIM_MS){
+      const parentEdge = TREE_EDGES.find((edge) => String(edge?.to || "") === justUnlockedNodeId) || null;
+      if (parentEdge && isNodeUnlockedById(parentEdge.from) && isNodeUnlockedById(parentEdge.to)) {
+        justUnlockedEdgeId = String(parentEdge.id || "");
+      }
+    }
+
+    // nodes
+    const nodes = treeSvg.querySelectorAll(".tNode[data-skill]");
+    nodes.forEach(n=>{
+      const id = n.getAttribute("data-skill");
+      if (!id || id === "core") return;
+
+      const s = findSkill(id);
+      if (!s) return;
+
+      const revealed = isHakSkillAvailable(id);
+      const logo = n.querySelector('[data-role="value-logo"]');
+      const unknown = n.querySelector('[data-role="unrevealed-value"]');
+      if (logo) logo.style.display = revealed ? "" : "none";
+      if (unknown) unknown.style.display = revealed ? "none" : "";
+      n.classList.toggle("placeholderNode", !revealed);
+      n.classList.toggle("skillNode", revealed);
+      n.classList.toggle("starter-skill-node", revealed && !!STARTER_SKILL_ICONS_BY_SKILL_ID[id]);
+      if (revealed){
+        n.removeAttribute("data-placeholder");
+        n.setAttribute("aria-label", `${s.name || "Skill"} (${String(s.branch || "").toUpperCase()}) - ${s.desc || ""} - COST ${Number(s.cost || 0)}`);
+        if (STARTER_SKILL_ICONS_BY_SKILL_ID[id]) n.setAttribute("data-skill-icon", STARTER_SKILL_ICONS_BY_SKILL_ID[id]);
+      } else {
+        n.setAttribute("data-placeholder", "1");
+        n.removeAttribute("data-skill-icon");
+        n.setAttribute("aria-label", `Unknown ${String(s.branch || "").toUpperCase()} skill slot`);
+      }
+      const isUnlocked = revealed && unlocked.includes(String(id));
+      const reqOk = requirementsMet(id, unlocked);
+      const available = s.branch === "global" ? Math.max(availBy.nts, availBy.ntr, availBy.love) : (Number(availBy[s.branch])||0);
+      const canBuy = (revealed && !isUnlocked && reqOk && available >= (Number(s.cost)||0));
+      const isSelected = (revealed && String(selectedSkillId||"") === String(id));
+      const isJustUnlocked = isUnlocked && String(id) === justUnlockedSkillId;
+
+      n.classList.toggle("unlocked", isUnlocked);
+      n.classList.toggle("available", canBuy);
+      n.classList.toggle("locked", !isUnlocked && !canBuy);
+      n.classList.toggle("selected", isSelected);
+      n.classList.toggle("is-just-unlocked", isJustUnlocked);
+
+      const ring = n.querySelector(".tRing");
+      const halo = n.querySelector(".tHalo");
+      if (ring){
+        ring.removeAttribute("filter");
+        ring.style.opacity = "";
+
+        if (isSelected){
+          ring.setAttribute("filter", "url(#glowStrong)");
+          ring.style.opacity = "1";
+        } else if (isUnlocked){
+          ring.setAttribute("filter", "url(#glowStrong)");
+          ring.style.opacity = "1";
+        } else if (canBuy){
+          ring.setAttribute("filter", "url(#glowSoft)");
+          ring.style.opacity = "1";
+        } else {
+          ring.style.opacity = n.classList.contains("placeholderNode") ? "0.46" : "0.66";
+        }
+      }
+      if (halo){
+        halo.style.opacity = isSelected ? "0.72" : (isUnlocked ? "0.56" : (canBuy ? "0.42" : (n.classList.contains("placeholderNode") ? "0.30" : "0.24")));
+        halo.setAttribute("stroke-width", isSelected ? "10" : "8");
+      }
+
+    });
+
+    // links
+    const groups = treeSvg.querySelectorAll(".tLinkGroup");
+    groups.forEach(g=>{
+      const edgeId = String(g.dataset.edgeId || "");
+      const fromId = String(g.dataset.from || "");
+      const toId = String(g.dataset.to || "");
+      const fromUnlocked = isNodeUnlockedById(fromId);
+      const toUnlocked = isNodeUnlockedById(toId);
+      const isActive = fromUnlocked && toUnlocked;
+      const isEdgeJustUnlocked = !!edgeId && edgeId === justUnlockedEdgeId && isActive;
+
+      const main = g.querySelector('.tLink[data-role="main"], .tLink');
+      const glow = g.querySelector('.tLinkGlow[data-role="glow"], .tLinkGlow');
+      const baseWidth = Math.max(1.6, Number(g.dataset.baseWidth || 3.8) || 3.8);
+
+      if (main){
+        const br = g.dataset.branch || "";
+        const branchStroke = (br === "nts")  ? "rgba(112,220,255,0.92)"
+                           : (br === "ntr")  ? "rgba(255,92,92,0.90)"
+                           :                  "rgba(255,120,210,0.90)";
+        main.setAttribute("stroke", branchStroke);
+
+        if (isActive){
+          main.setAttribute("stroke-opacity", "0.94");
+          main.setAttribute("stroke-width", String((baseWidth + 1.0).toFixed(2)));
+          main.classList.add("edge-active");
+          main.classList.add("unlockedLink");
+        } else {
+          main.setAttribute("stroke-opacity", "0.25");
+          main.setAttribute("stroke-width", String(Math.max(1.5, baseWidth - 0.2).toFixed(2)));
+          main.classList.remove("edge-active");
+          main.classList.remove("unlockedLink");
+        }
+        main.classList.toggle("edge-just-unlocked", isEdgeJustUnlocked);
+      }
+      if (glow){
+        if (isActive){
+          glow.setAttribute("stroke-width", String((baseWidth + 7.0).toFixed(2)));
+          glow.classList.add("on");
+          glow.setAttribute("stroke-opacity", "0.72");
+        } else {
+          glow.setAttribute("stroke-width", String((baseWidth + 4.2).toFixed(2)));
+          glow.classList.remove("on");
+          glow.setAttribute("stroke-opacity", "0.16");
+        }
+        glow.classList.toggle("edge-just-unlocked", isEdgeJustUnlocked);
+      }
+    });
+
+    forceSvgRepaint();
+  }
+
+  function selectSkill(id){
+    if (!isHakSkillAvailable(id)){
+      selectedSkillId = null;
+      if (infoBox) infoBox.style.display = "none";
+      return;
+    }
+    const s = findSkill(id);
+    if (!s) return;
+
+    selectedSkillId = String(id);
+
+    const unlocked = getUnlockedSkills();
+    const availBy = getAvailableByBranch();
+
+    const isUnlocked = unlocked.includes(String(id));
+    const reqOk = requirementsMet(id, unlocked);
+    const availableForBranch = s.branch === "global" ? Math.max(availBy.nts, availBy.ntr, availBy.love) : Math.max(0, Number(availBy[s.branch]) || 0);
+    const canBuy = (!isUnlocked && reqOk && availableForBranch >= (Number(s.cost)||0));
+    const branchLabel = String(s.branch || "").toUpperCase();
+
+    if (infoBox) infoBox.style.display = "block";
+    if (infoName) infoName.textContent = String(s.name || "SKILL").toUpperCase();
+    if (infoBranch) infoBranch.textContent = BRANCH[s.branch]?.label || String(s.branch || "").toUpperCase();
+    if (infoCost) {
+      infoCost.className = `skillInfoCost branch-${String(s.branch || "").toLowerCase()}`;
+      infoCost.textContent = s.branch === "global" ? `COST: ${Number(s.cost||0)} ANY ROUTE` : `COST: ${Number(s.cost||0)} ${branchLabel}`;
+    }
+    if (infoDesc) infoDesc.textContent = String(s.desc || "");
+
+    if (infoReq) {
+      if (isUnlocked) infoReq.textContent = "State: Unlocked";
+      else if (!reqOk) infoReq.textContent = "State: Locked";
+      else if (canBuy) infoReq.textContent = "State: Ready to unlock";
+      else infoReq.textContent = `State: Locked (${branchLabel} ${availableForBranch}/${Number(s.cost||0)})`;
+    }
+
+    if (infoUnlock){
+      infoUnlock.disabled = !canBuy;
+      infoUnlock.textContent = isUnlocked
+        ? "UNLOCKED"
+        : (canBuy ? "UNLOCK" : (reqOk ? `NOT ENOUGH ${branchLabel} POINTS` : "LOCKED"));
+    }
+
+    updateTreeVisual();
+  }
+
+  function unlockSkill(id){
+    const sid = String(id);
+    if (!isHakSkillAvailable(sid)) return;
+    const unlocked = getUnlockedSkills();
+    if (unlocked.includes(sid)) return;
+
+    const s = findSkill(sid);
+    if (!s) return;
+
+    const reqOk = requirementsMet(sid, unlocked);
+    if (!reqOk) return;
+
+    const balances = getAvailableByBranch();
+    const paymentBranch = s.branch === "global" ? ["nts","ntr","love"].find((key) => balances[key] >= (Number(s.cost)||0)) : s.branch;
+    const avail = paymentBranch ? Number(balances[paymentBranch] || 0) : 0;
+    if (avail < (Number(s.cost)||0)) {
+      selectSkill(sid);
+      return;
+    }
+
+    const engine = window.GameStateEngine;
+    if (!engine) return;
+    const state = engine.getState();
+    const playthroughToken = `${String(state.playthrough?.id || "profile")}:${Math.max(1, Number(state.playthrough?.generation) || 1)}`;
+    // New Update replaces the skill allocation while retaining the playthrough.
+    // Its stable initialization token gives the new allocation its own receipts
+    // and remains unchanged when the player saves or loads that allocation.
+    const initializationToken = String(state.initialization?.token || "");
+    const purchaseToken = initializationToken ? `${playthroughToken}:${initializationToken}` : playthroughToken;
+    const operationId = `hak-skill:${purchaseToken}:${sid}`;
+    const pointsBefore = Math.max(0, Number(state.hak?.routePoints?.[paymentBranch] || 0));
+    const committed = engine.dispatch({
+      type: "UNLOCK_HAK_SKILL",
+      commandId: `hak-skill-unlock:${purchaseToken}:${sid}`,
+      expectedRevision: state.revision,
+      payload: {
+        operationId,
+        skillId: sid,
+        branch: s.branch,
+        paymentBranch,
+        cost: Number(s.cost) || 0,
+        requires: Array.isArray(s.requires) ? s.requires.slice() : []
+      }
+    });
+    const after = engine.getState();
+    const unlockedEntry = after.hak?.skills?.unlocked?.[sid] || null;
+    const pointsAfter = Math.max(0, Number(after.hak?.routePoints?.[paymentBranch] || 0));
+    const receipt = after.hak?.receipts?.[operationId] || null;
+    const exactDeduction = pointsAfter === Math.max(0, pointsBefore - (Number(s.cost) || 0));
+    const canonicalCommitProven = committed?.ok === true && !!unlockedEntry && !!receipt && exactDeduction && Number(after.revision) > Number(state.revision);
+    if (!canonicalCommitProven) {
+      selectSkill(sid);
+      renderSkills();
+      return;
+    }
+
+    try {
+      window.Game?.audio?.play?.("skill_unlock", { category: "sfx", cooldownKey: "hak_skill_unlock" });
+    } catch {}
+
+    writeLastUnlockState(sid);
+    updateTreeVisual();
+
+    try {
+      window.dispatchEvent(new CustomEvent("hak:skill-unlocked", { detail:{ id: sid } }));
+    } catch {}
+
+    try { window.showToast && window.showToast(`Skill unlocked: ${s.name}`); } catch {}
+
+    selectSkill(sid);
+    renderSkills();
+    showFirstHakSkillSpendThought();
+  }
+
+  let hakSkillSpendThoughtCleanup = null;
+  function firstHakSkillSpendThought(skillId) {
+    const source = window.HakSkillDefinitions?.byId?.get(skillId)?.thought;
+    if (!source) return null;
+    const text = window.Game?.i18n?.ui?.(`hak.skill_spend_thought_${skillId}`, source) || source;
+    return { kind: "thought", speaker: "player", text };
+  }
+
+  function showFirstHakSkillSpendThought() {
+    const engine = window.GameStateEngine;
+    const game = window.Game;
+    if (!engine || typeof game?.showHakOverlay !== "function" || game._hakOverlayOpen || hakSkillSpendThoughtCleanup) return false;
+    const owner = document.getElementById("hak-treewrap");
+    if (!owner?.isConnected) return false;
+    const thoughts = readCanonicalHakState()?.tutorial?.skillSpendThoughts;
+    const pending = thoughts?.pending?.[0];
+    if (!pending?.operationId || thoughts.shown?.[pending.skillId] === true || !(Number(pending.cost) > 0)) return false;
+    const thought = firstHakSkillSpendThought(pending.skillId);
+    if (!thought) return false;
+    const lifecycle = JSON.stringify(engine.getRuntimeLifecycleIdentity?.() || {});
+    const retire = () => {
+      window.removeEventListener("hak:overlay-closed", close, true);
+      if (hakSkillSpendThoughtCleanup === retire) hakSkillSpendThoughtCleanup = null;
+    };
+    const close = () => {
+      retire();
+      if (!owner.isConnected || engine !== window.GameStateEngine || lifecycle !== JSON.stringify(engine.getRuntimeLifecycleIdentity?.() || {})) return;
+      if (readCanonicalHakState()?.tutorial?.skillSpendThoughts?.pending?.[0]?.operationId !== pending.operationId) return;
+      const identity = engine.getRuntimeLifecycleIdentity?.();
+      const result = engine.dispatch({ type: "ACK_HAK_SKILL_SPEND_THOUGHT", commandId: `hak-skill-spend-thought:${identity?.playthroughId}:${identity?.playthroughGeneration}:${pending.operationId}`,
+        expectedRevision: engine.getRevision(), payload: { operationId: pending.operationId, skillId: pending.skillId } });
+      if (result.ok) setTimeout(() => {
+        if (owner.isConnected && engine === window.GameStateEngine && lifecycle === JSON.stringify(engine.getRuntimeLifecycleIdentity?.() || {})) showFirstHakSkillSpendThought();
+      }, 0);
+    };
+    hakSkillSpendThoughtCleanup = retire;
+    window.addEventListener("hak:overlay-closed", close, true);
+    HAK_SCENE_CLEANUPS.push(retire);
+    try { game.showHakOverlay({ title: "HAK", messages: [thought] }); }
+    catch { retire(); return false; }
+    return true;
+  }
+
+  function renderSkills(){
+    buildTreeOnce();
+    initPanZoom();
+
+    const availBy = getAvailableByBranch();
+    if (pointsNtsEl)  pointsNtsEl.textContent  = String(availBy.nts);
+    if (pointsNtrEl)  pointsNtrEl.textContent  = String(availBy.ntr);
+    if (pointsLoveEl) pointsLoveEl.textContent = String(availBy.love);
+
+    updateTreeVisual();
+
+    if (selectedSkillId && (!findSkill(selectedSkillId) || !isHakSkillAvailable(selectedSkillId))){
+      selectedSkillId = null;
+      if (infoBox) infoBox.style.display = "none";
+    }
+  }
+
+  if (infoUnlock){
+    infoUnlock.addEventListener("click", ()=>{
+      if (!selectedSkillId) return;
+      unlockSkill(selectedSkillId);
+    });
+  }
+  if (infoClose){
+    infoClose.addEventListener("click", ()=>{
+      selectedSkillId = null;
+      if (infoBox) infoBox.style.display = "none";
+      updateTreeVisual();
+    });
+  }
+
+  function applyCam(){
+    if (!treeWorld) return;
+    treeWorld.setAttribute("transform", `translate(${cam.tx} ${cam.ty}) scale(${cam.scale})`);
+  }
+
+  function svgPointFromClient(clientX, clientY){
+    if (!treeSvg) return { x:0, y:0 };
+    const pt = treeSvg.createSVGPoint();
+    pt.x = clientX; pt.y = clientY;
+    const m = treeSvg.getScreenCTM();
+    if (!m) return { x:0, y:0 };
+    const inv = m.inverse();
+    const p = pt.matrixTransform(inv);
+    return { x:p.x, y:p.y };
+  }
+
+  function zoomAt(clientX, clientY, delta){
+    const old = cam.scale;
+    const next = Math.min(cam.max, Math.max(cam.min, old * (delta > 0 ? 0.92 : 1.08)));
+    if (Math.abs(next - old) < 0.0001) return;
+
+    const f = svgPointFromClient(clientX, clientY);
+
+    cam.tx = f.x - (f.x - cam.tx) * (next / old);
+    cam.ty = f.y - (f.y - cam.ty) * (next / old);
+    cam.scale = next;
+
+    applyCam();
+  }
+
+  function centerOnCoreOnce(){
+    if (!treeSvg) return;
+    ensureWorldGroup();
+
+    const rootId = String(TREE_LAYOUT.rootId || "hak_root");
+    const target = POS[rootId] || { x:500, y:935 };
+    const vw = Math.max(1, Number(TREE_LAYOUT.viewWidth || 1000) || 1000);
+    const vh = Math.max(1, Number(TREE_LAYOUT.viewHeight || 1100) || 1100);
+    cam.scale = 1;
+    cam.tx = (vw * 0.50) - target.x;
+    cam.ty = (vh * 0.80) - target.y;
+    applyCam();
+  }
+
+  function initPanZoom(){
+    if (panzoomBooted) return;
+    const wrap = document.getElementById("hak-treewrap");
+    if (!wrap || !treeSvg) return;
+
+    panzoomBooted = true;
+
+    ensureWorldGroup();
+    centerOnCoreOnce();
+    applyCam(); // ✅ guarantee
+
+    // ✅ wheel zoom (prevent page scroll)
+    wrap.addEventListener("wheel", (e)=>{
+      e.preventDefault();
+      zoomAt(e.clientX, e.clientY, e.deltaY);
+    }, { passive:false });
+
+    // ✅ drag pan (mouse) + robust click separation
+    let dragging = false;
+    let sx = 0, sy = 0;
+    let stx = 0, sty = 0;
+    let didDrag = false;
+    let panStart = null;
+
+    wrap.addEventListener("mousedown", (e)=>{
+      if (e.button !== 0) return;
+      dragging = true;
+      didDrag = false;
+      sx = e.clientX; sy = e.clientY;
+      stx = cam.tx; sty = cam.ty;
+      panStart = svgPointFromClient(e.clientX, e.clientY);
+      wrap.classList.add("dragging");
+    });
+
+    hakOn(window, "mousemove", (e)=>{
+      if (!dragging) return;
+      const dx = e.clientX - sx;
+      const dy = e.clientY - sy;
+      if (Math.abs(dx) + Math.abs(dy) > 3) didDrag = true;
+
+      // Camera translation uses SVG coordinates, independent of zoom and viewport size.
+      const point = svgPointFromClient(e.clientX, e.clientY);
+      cam.tx = stx + point.x - panStart.x;
+      cam.ty = sty + point.y - panStart.y;
+      applyCam();
+    });
+
+    hakOn(window, "mouseup", ()=>{
+      if (!dragging) return;
+      dragging = false;
+      wrap.classList.remove("dragging");
+    });
+
+    // ✅ swallow click only if we really dragged
+    treeSvg.addEventListener("click", (e)=>{
+      if (!didDrag) return;
+      e.stopPropagation();
+      e.preventDefault();
+      didDrag = false;
+    }, true);
+
+    // ✅ touch: one-finger pan + pinch zoom
+    let tMode = 0; // 0 none, 1 pan, 2 pinch
+    let t0 = null;
+    let tStart = null;
+    let pinchStart = { dist:0, scale:1, mid:{x:0,y:0} };
+
+    function dist(a,b){
+      const dx = b.clientX - a.clientX;
+      const dy = b.clientY - a.clientY;
+      return Math.hypot(dx,dy);
+    }
+    function mid(a,b){
+      return { x:(a.clientX+b.clientX)/2, y:(a.clientY+b.clientY)/2 };
+    }
+
+    wrap.addEventListener("touchstart", (e)=>{
+      if (e.touches.length === 1){
+        tMode = 1;
+        t0 = e.touches[0];
+        tStart = { tx:cam.tx, ty:cam.ty, point:svgPointFromClient(t0.clientX, t0.clientY) };
+      } else if (e.touches.length === 2){
+        tMode = 2;
+        const a = e.touches[0], b = e.touches[1];
+        pinchStart.dist = dist(a,b);
+        pinchStart.scale = cam.scale;
+        pinchStart.mid = mid(a,b);
+      }
+    }, { passive:true });
+
+    wrap.addEventListener("touchmove", (e)=>{
+      if (tMode === 1 && e.touches.length === 1){
+        const t = e.touches[0];
+        const point = svgPointFromClient(t.clientX, t.clientY);
+        cam.tx = tStart.tx + point.x - tStart.point.x;
+        cam.ty = tStart.ty + point.y - tStart.point.y;
+        applyCam();
+      } else if (tMode === 2 && e.touches.length === 2){
+        e.preventDefault();
+        const a = e.touches[0], b = e.touches[1];
+        const d = dist(a,b);
+        const m = mid(a,b);
+        const ratio = (pinchStart.dist > 0) ? (d / pinchStart.dist) : 1;
+
+        const next = Math.min(cam.max, Math.max(cam.min, pinchStart.scale * ratio));
+        const delta = (next / cam.scale);
+        const f = svgPointFromClient(m.x, m.y);
+
+        cam.tx = f.x - (f.x - cam.tx) * delta;
+        cam.ty = f.y - (f.y - cam.ty) * delta;
+        cam.scale = next;
+        applyCam();
+      }
+    }, { passive:false });
+
+    wrap.addEventListener("touchend", ()=>{
+      tMode = 0;
+      t0 = null;
+      tStart = null;
+    }, { passive:true });
+  }
+
+  // -------------------------
+  // Boot
+  // -------------------------
+  let hakTutorialRefreshTimer = null;
+  window.__hak_cleanup = () => {
+    hakSceneActive = false;
+    while (HAK_SCENE_CLEANUPS.length) {
+      const cleanup = HAK_SCENE_CLEANUPS.pop();
+      try { cleanup(); } catch {}
+    }
+    if (hakTutorialRefreshTimer) {
+      try { clearTimeout(hakTutorialRefreshTimer); } catch {}
+      hakTutorialRefreshTimer = null;
+    }
+    try { hideHakGuide(); } catch {}
+    hakTutorialReplay = null;
+    if (window.Game?.handleSceneBack === handleHakTutorialBack) window.Game.handleSceneBack = null;
+    try { closeViewer(); } catch {}
+  };
+  function scheduleHakTutorialRefresh() {
+    if (hakTutorialRefreshTimer) {
+      try { clearTimeout(hakTutorialRefreshTimer); } catch {}
+      hakTutorialRefreshTimer = null;
+    }
+    hakTutorialRefreshTimer = setTimeout(() => {
+      hakTutorialRefreshTimer = null;
+      if (hakTutorialReplay) return;
+      try { maybeStartHakAppTutorial(); } catch(e){ fail("maybeStartHakAppTutorial()", e); }
+      try { showFirstHakSkillSpendThought(); } catch(e){ fail("showFirstHakSkillSpendThought()", e); }
+    }, 90);
+  }
+
+  hakOn(document.getElementById("hak-help"), "click", openHakTutorialReplay);
+  hakOn(document.getElementById("hak-guide-close"), "click", closeHakTutorialReplay);
+  hakOn(window, "keydown", event => {
+    if (!hakTutorialReplay) return;
+    if (event.key === "Tab") {
+      const closeBtn = document.getElementById("hak-guide-close");
+      const nextBtn = document.getElementById("hak-guide-next");
+      const focus = document.activeElement;
+      if ((event.shiftKey && focus === closeBtn) || (!event.shiftKey && focus === nextBtn) || (focus !== closeBtn && focus !== nextBtn)) {
+        event.preventDefault();
+        (event.shiftKey ? nextBtn : closeBtn)?.focus?.({ preventScroll: true });
+      }
+      return;
+    }
+    if (event.key !== "Escape") return;
+    event.preventDefault();
+    event.stopPropagation();
+    closeHakTutorialReplay();
+  }, true);
+  if (window.Game) window.Game.handleSceneBack = handleHakTutorialBack;
+
+  try { if (!applyHakOpenIntent()) renderEvidence(); } catch(e){ fail("renderEvidence()", e); }
+  clearHakOpenPromptSignal();
+  scheduleHakTutorialRefresh();
+
+  // OPTIONAL: auto-refresh when returning to HAK
+  hakOn(window, "focus", ()=>{
+    try{
+      renderEvidence();
+      if (panelSkills && panelSkills.classList.contains("show")) renderSkills();
+      scheduleHakTutorialRefresh();
+    }catch(e){ fail("focus refresh", e); }
+  });
+  hakOn(window, "hak:evidence-added", ()=>{
+    try { renderEvidence(); } catch(e){ fail("hak:evidence-added refresh", e); }
+  });
+  hakOn(window, "hak:photo", ()=>{
+    try { renderEvidence(); } catch(e){ fail("hak:photo refresh", e); }
+  });
+  hakOn(window, "storage", (event)=>{
+    const key = String(event?.key || "").trim();
+    if (key !== HAK_EVIDENCE_KEY && key !== HAK_PHOTOS_KEY) return;
+    try { renderEvidence(); } catch(e){ fail("storage refresh", e); }
+  });
+  hakOn(window, "points:changed", ()=>{
+    try { if (panelSkills && panelSkills.classList.contains("show")) renderSkills(); } catch {}
+  });
+  hakOn(window, "route:points-changed", ()=>{
+    try { if (panelSkills && panelSkills.classList.contains("show")) renderSkills(); } catch {}
+  });
+  hakOn(window, "hak:skillsChanged", ()=>{
+    try { if (panelSkills && panelSkills.classList.contains("show")) renderSkills(); } catch {}
+    try { if (panelEvidence && panelEvidence.classList.contains("show")) renderEvidence(); } catch {}
+  });
+  hakOn(window, "scene:navigate-same", (event)=>{
+    const name = canonicalId(event?.detail?.name || "");
+    if (name !== "hak") return;
+    try {
+      if (!applyHakOpenIntent()) renderEvidence();
+      if (panelSkills && panelSkills.classList.contains("show")) renderSkills();
+      scheduleHakTutorialRefresh();
+    } catch(e){ fail("same-scene HAK intent", e); }
+  });
+})();
+</script>

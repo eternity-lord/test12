@@ -1,0 +1,33 @@
+{
+  "onceKey": "d5_00_lena_morning_v1",
+  "contactId": "lena",
+  "onCompleteStartStory": "story/DAY5/DAY5_02_LENA_LUNCH_AIDEN.json",
+  "steps": [
+    {"type":"notify","delay":1200,"fromId":"lena","fromName":"{{name:lena}}","avatar":"assets/avatars/lena.jpg","text":"Morning ☀️","target":"conversation"},
+    {"type":"message","delay":900,"from":"lena","text":"I slept better"},
+    {"type":"message","delay":900,"from":"lena","text":"So thank you for forcing me to go to bed early 😌"},
+    {"type":"message","delay":900,"from":"player","text":"See?"},
+    {"type":"message","delay":900,"from":"player","text":"I do have good ideas sometimes"},
+    {"type":"message","delay":900,"from":"lena","text":"Sometimes 🙄"},
+    {"type":"message","delay":900,"from":"lena","text":"But yes, this one was good"},
+    {"type":"message","delay":900,"from":"lena","text":"How's your leg this morning?"},
+    {"type":"message","delay":900,"from":"player","text":"Better I think, i can move around more"},
+    {"type":"message","delay":900,"from":"player","text":"Still annoying though"},
+    {"type":"message","delay":900,"from":"lena","text":"Better is good"},
+    {"type":"message","delay":900,"from":"lena","text":"I'll take that 😌"},
+    {"type":"message","delay":900,"from":"lena","text":"Did you sleep okay too?"},
+    {"type":"message","delay":900,"from":"player","text":"Yeah"},
+    {"type":"message","delay":900,"from":"player","text":"Would have been better with you next to me"},
+    {"type":"message","delay":900,"from":"lena","text":"Same 🥺"},
+    {"type":"message","delay":900,"from":"lena","text":"I'm getting ready now"},
+    {"type":"message","delay":900,"from":"lena","text":"Uni again 😭"},
+    {"type":"message","delay":900,"from":"player","text":"You got this"},
+    {"type":"message","delay":900,"from":"lena","text":"I'll try 😮‍💨"},
+    {"type":"message","delay":900,"from":"lena","text":"And you, eat something this morning"},
+    {"type":"message","delay":900,"from":"player","text":"Yes ma'am 😌"},
+    {"type":"message","delay":900,"from":"lena","text":"Good"},
+    {"type":"message","delay":900,"from":"lena","text":"I'll text you at lunch 💕"},
+    {"type":"message","delay":900,"from":"player","text":"Good luck ❤️"},
+    {"type":"note","text":"3 hours later"}
+  ]
+}

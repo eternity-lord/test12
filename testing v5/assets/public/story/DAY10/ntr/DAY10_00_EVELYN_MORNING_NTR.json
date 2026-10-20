@@ -1,0 +1,29 @@
+{
+  "onceKey": "d10_00_evelyn_morning_ntr_v1",
+  "contactId": "evelyn",
+  "requireOnceKey": "d9_02_evelyn_evening_ntr_v1",
+  "onCompleteStartStory": "story/DAY10/ntr/DAY10_01_EVELYN_AFTERNOON_NTR.json",
+  "steps": [
+    {"type":"notify","delay":1200,"fromId":"evelyn","fromName":"{{name:evelyn}}","avatar":"assets/avatars/evelyn.jpg","text":"Good morning 😊 Did you sleep well?","target":"conversation"},
+    {"type":"message","delay":850,"from":"player","text":"Good morning"},
+    {"type":"message","delay":850,"from":"player","text":"Yeah, I slept pretty well"},
+    {"type":"message","delay":850,"from":"player","text":"What about you?"},
+    {"type":"message","delay":850,"from":"evelyn","text":"I did too"},
+    {"type":"message","delay":850,"from":"evelyn","text":"How is your leg feeling today?"},
+    {"type":"message","delay":850,"from":"player","text":"It's doing okay"},
+    {"type":"message","delay":850,"from":"player","text":"Still annoying, but I think it's getting better"},
+    {"type":"message","delay":850,"from":"player","text":"I'm going to open the windows and air out my room"},
+    {"type":"message","delay":850,"from":"player","text":"Would you mind helping me clean it a little?"},
+    {"type":"message","delay":850,"from":"player","text":"That would be a huge help"},
+    {"type":"message","delay":850,"from":"evelyn","text":"Of course 😊"},
+    {"type":"message","delay":850,"from":"evelyn","text":"I'm just finishing breakfast"},
+    {"type":"message","delay":850,"from":"evelyn","text":"Then I'll come help you"},
+    {"type":"message","delay":850,"from":"player","text":"Thank you again"},
+    {"type":"message","delay":850,"from":"player","text":"I really appreciate it"},
+    {"type":"message","delay":850,"from":"evelyn","text":"No problem"},
+    {"type":"message","delay":850,"from":"evelyn","text":"That's what I'm here for"},
+    {"type":"start_story","goHome":true,"startStory":"story/DAY10/ntr/DAY10_01_EVELYN_AFTERNOON_NTR.json"}
+  ],
+  "route": "ntr",
+  "routeLock": "route_evelyn_locked_v1:ntr"
+}

@@ -1,0 +1,90 @@
+{
+  "onceKey": "d9_05_hailey_evening_ntr_v1",
+  "contactId": "hailey",
+  "requireOnceKey": "d9_01_lena_afternoon_ntr_v1|d9_04_hailey_afternoon_ntr_v1",
+  "steps": [
+    {"type":"notify","delay":1200,"fromId":"hailey","fromName":"{{name:hailey}}","avatar":"assets/avatars/hailey.jpg","text":"Final outfit evidence 😌","target":"conversation"},
+    {"type":"message","delay":850,"from":"hailey","text":"Okay"},
+    {"type":"message","delay":850,"from":"hailey","text":"Official party version incoming"},
+    {"type":"if","condition":"choice:d8_05_hailey_outfit_choice:cute","then":[
+      {"type":"image","delay":900,"from":"hailey","image":"assets/pictures/Conversation/hailey_cute_outfit.jpg"},
+      {"type":"message","delay":850,"from":"hailey","text":"Cute and safe, exactly like you ordered"},
+      {"type":"message","delay":850,"from":"hailey","text":"Please say I look like a responsible student who definitely revises 😌"}
+    ],"else":[
+      {"type":"if","condition":"choice:d8_05_hailey_outfit_choice:bold","then":[
+        {"type":"image","delay":900,"from":"hailey","image":"assets/pictures/Conversation/hailey_bold_outfit.jpg"},
+        {"type":"message","delay":850,"from":"hailey","text":"The bold one"},
+        {"type":"message","delay":850,"from":"hailey","text":"Your taste is still dangerous"},
+        {"type":"message","delay":850,"from":"hailey","text":"My professor said it was nice too, which was weirdly stressful 💅"}
+      ],"else":[
+        {"type":"image","delay":900,"from":"hailey","image":"assets/pictures/Conversation/hailey_dramatic_outfit.jpg"},
+        {"type":"message","delay":850,"from":"hailey","text":"The dramatic one"},
+        {"type":"message","delay":850,"from":"hailey","text":"You did this"},
+        {"type":"message","delay":850,"from":"hailey","text":"He said I look more mature than usual and now I am blaming both of you 😇"}
+      ]}
+    ]},
+    {"type":"message","delay":900,"from":"player","text":"You look really great"},
+    {"type":"message","delay":850,"from":"hailey","text":"I know"},
+    {"type":"message","delay":850,"from":"hailey","text":"Say it again though"},
+    {"type":"message","delay":900,"from":"player","text":"Do not push it"},
+    {"type":"message","delay":850,"from":"hailey","text":"Bad answer 😌"},
+    {"type":"message","delay":850,"from":"hailey","text":"Going with the girls now"},
+    {"type":"message","delay":850,"from":"hailey","text":"Not staying too late"},
+    {"type":"message","delay":850,"from":"hailey","text":"Also yes I did the worksheet before leaving"},
+    {"type":"message","delay":850,"from":"hailey","text":"Professor would probably materialize from the shadows if I skipped it"},
+    {"type":"message","delay":900,"from":"player","text":"Good"},
+    {"type":"message","delay":850,"from":"hailey","text":"You two are both impossible"},
+    {"type":"note","text":"LATER THAT NIGHT"},
+    {"type":"message","delay":850,"from":"hailey","text":"Update"},
+    {"type":"message","delay":850,"from":"hailey","text":"Music loud"},
+    {"type":"message","delay":850,"from":"hailey","text":"Snacks suspicious"},
+    {"type":"message","delay":850,"from":"hailey","text":"And I look amazing"},
+    {"type":"message","delay":900,"from":"player","text":"Perfect combo"},
+    {"type":"message","delay":850,"from":"hailey","text":"People noticed"},
+    {"type":"message","delay":850,"from":"hailey","text":"Do not be proud"},
+    {"type":"message","delay":900,"from":"player","text":"Too late"},
+    {"type":"message","delay":850,"from":"hailey","text":"Menace 😇"},
+    {"type":"message","delay":850,"from":"hailey","text":"Also"},
+    {"type":"message","delay":850,"from":"hailey","text":"I did not expect this"},
+    {"type":"message","delay":850,"from":"hailey","text":"But the party is actually at the principal's son's place 😭"},
+    {"type":"message","delay":900,"from":"player","text":"Wait, really?"},
+    {"type":"message","delay":850,"from":"hailey","text":"Yeah 😭"},
+    {"type":"message","delay":850,"from":"hailey","text":"I just crossed paths with him"},
+    {"type":"message","delay":850,"from":"hailey","text":"He only gave me a little wave"},
+    {"type":"message","delay":850,"from":"hailey","text":"But now I feel weirdly shy because of the outfit"},
+    {"type":"message","delay":900,"from":"player","text":"Why shy?"},
+    {"type":"message","delay":850,"from":"hailey","text":"Because I did not plan to be seen by him dressed like this"},
+    {"type":"message","delay":850,"from":"hailey","text":"Stop looking smug through the phone"},
+    {"type":"message","delay":900,"from":"player","text":"I said nothing 😇"},
+    {"type":"message","delay":850,"from":"hailey","text":"Your silence is suspicious 😤"},
+    {"type":"note","text":"MIDNIGHT"},
+    {"type":"message","delay":850,"from":"hailey","text":"Home"},
+    {"type":"message","delay":900,"from":"player","text":"Before sunrise?"},
+    {"type":"message","delay":850,"from":"hailey","text":"Responsible queen behavior 😌"},
+    {"type":"message","delay":850,"from":"hailey","text":"The party was actually really fun"},
+    {"type":"message","delay":850,"from":"hailey","text":"I saw a bunch of people I had not seen in forever"},
+    {"type":"message","delay":850,"from":"hailey","text":"So now my social battery is fully dead"},
+    {"type":"message","delay":900,"from":"player","text":"You survived somehow"},
+    {"type":"message","delay":850,"from":"hailey","text":"Barely"},
+    {"type":"message","delay":850,"from":"hailey","text":"Also yeah"},
+    {"type":"message","delay":850,"from":"hailey","text":"I talked a little with my professor"},
+    {"type":"message","delay":900,"from":"player","text":"About homework at midnight?"},
+    {"type":"message","delay":850,"from":"hailey","text":"Not even 😭"},
+    {"type":"message","delay":850,"from":"hailey","text":"Just normal stuff"},
+    {"type":"message","delay":850,"from":"hailey","text":"He asked if I was enjoying the party and said the outfit suited me"},
+    {"type":"message","delay":850,"from":"hailey","text":"Which was slightly stressful actually"},
+    {"type":"message","delay":900,"from":"player","text":"You are getting shy now?"},
+    {"type":"message","delay":850,"from":"hailey","text":"Shut up 😤"},
+    {"type":"message","delay":850,"from":"hailey","text":"I was not expecting to run into him there"},
+    {"type":"message","delay":900,"from":"player","text":"Sure 😌"},
+    {"type":"message","delay":850,"from":"hailey","text":"I hate you"},
+    {"type":"message","delay":850,"from":"hailey","text":"Anyway I am exhausted"},
+    {"type":"message","delay":850,"from":"hailey","text":"Goodnight loser 😇"},
+    {"type":"message","delay":900,"from":"player","text":"Goodnight troublemaker"},
+    {"type":"if","condition":"active_character:lena","then":[
+      {"type":"start_story","goHome":true,"startStory":"story/DAY9/DAY9_LENA_NIGHT.json"}
+    ],"else":[
+      {"type":"time_card","text":"DAY 10","goHome":true,"startStory":"story/DAY10/ntr/DAY10_00_HAILEY_MORNING_NTR.json","startDelayMs":200}
+    ]}
+  ]
+}

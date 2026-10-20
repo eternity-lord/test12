@@ -1,0 +1,71 @@
+{
+  "onceKey": "d9_00_mason_morning_love_v1",
+  "contactId": "mason",
+  "requireOnceKey": "d8_route_day9_mason_love_locked_v1",
+  "route": "love",
+  "routeLock": "route_mason_locked_v1:love",
+  "steps": [
+    {"type":"notify","delay":1200,"fromId":"mason","fromName":"{{name:mason}}","avatar":"assets/avatars/male_mason.jpg","text":"Morning 🙂 ","target":"conversation"},
+    {"type":"message","delay":900,"from":"mason","text":"You awake?"},
+    {"type":"message","delay":900,"from":"mason","text":"Ready for our first session?"},
+    {"type":"message","delay":900,"from":"mason","text":"Nothing crazy today"},
+    {"type":"message","delay":900,"from":"mason","text":"Your leg decides the pace, not your ego"},
+    {"type":"message","delay":900,"from":"player","text":"You sound pretty motivated 😌"},
+    {"type":"message","delay":900,"from":"mason","text":"Someone has to stop you from doing something stupid"},
+    {"type":"message","delay":900,"from":"mason","text":"Just wear something comfortable 👍"},
+    {"type":"message","delay":900,"from":"player","text":"Pretty sure I'm supposed to be the coach here 😏"},
+    {"type":"message","delay":900,"from":"mason","text":"Keep telling yourself that 😂"},
+    {"type":"message","delay":900,"from":"player","text":"I'll make sure you actually do the exercises too"},
+    {"type":"image","from":"mason","image":"assets/pictures/Conversation/male_mason/mason_training_morning_2.jpg"},
+    {"type":"message","delay":900,"from":"mason","text":"Yes coach 😌"},
+    {"type":"if","condition":"active_character:hailey","then":[
+      {"type":"if","condition":"route_hailey_locked_v1:love","then":[
+        {"type":"start_story","goHome":true,"startStory":"story/DAY9/DAY9_HAILEY_MORNING.json"}
+      ],"else":[
+        {"type":"if","condition":"route_hailey_locked_v1:nts","then":[
+          {"type":"start_story","goHome":true,"startStory":"story/DAY9/DAY9_HAILEY_MORNING.json"}
+        ],"else":[
+          {"type":"if","condition":"route_hailey_locked_v1:nts1","then":[
+            {"type":"start_story","goHome":true,"startStory":"story/DAY9/DAY9_HAILEY_MORNING.json"}
+          ],"else":[
+            {"type":"if","condition":"route_hailey_locked_v1:ntr","then":[
+              {"type":"start_story","goHome":true,"startStory":"story/DAY9/DAY9_HAILEY_MORNING.json"}
+            ],"else":[
+              {"type":"start_story","goHome":true,"startStory":"story/DAY9/DAY9_HAILEY_MORNING.json"}
+            ]}
+          ]}
+        ]}
+      ]}
+    ],"else":[
+      {"type":"if","condition":"active_character:evelyn","then":[
+        {"type":"if","condition":"route_evelyn_locked_v1:love","then":[
+          {"type":"start_story","goHome":true,"startStory":"story/DAY9/DAY9_EVELYN_MORNING.json"}
+        ],"else":[
+          {"type":"if","condition":"route_evelyn_locked_v1:nts","then":[
+            {"type":"start_story","goHome":true,"startStory":"story/DAY9/DAY9_EVELYN_MORNING.json"}
+          ],"else":[
+            {"type":"if","condition":"route_evelyn_locked_v1:ntr","then":[
+              {"type":"start_story","goHome":true,"startStory":"story/DAY9/DAY9_EVELYN_MORNING.json"}
+            ],"else":[
+              {"type":"start_story","goHome":true,"startStory":"story/DAY9/DAY9_EVELYN_MORNING.json"}
+            ]}
+          ]}
+        ]}
+      ],"else":[
+        {"type":"if","condition":"active_character:lena","then":[
+          {"type":"if","condition":"route_lena_locked_v1:nts","then":[
+            {"type":"start_story","goHome":true,"startStory":"story/DAY9/DAY9_LENA_LATE_MORNING.json"}
+          ],"else":[
+            {"type":"if","condition":"route_lena_locked_v1:ntr","then":[
+              {"type":"start_story","goHome":true,"startStory":"story/DAY9/DAY9_LENA_LATE_MORNING.json"}
+            ],"else":[
+              {"type":"start_story","goHome":true,"startStory":"story/DAY9/DAY9_LENA_LATE_MORNING.json"}
+            ]}
+          ]}
+        ],"else":[
+          {"type":"start_story","goHome":true,"startStory":"story/DAY9/love/DAY9_05_MASON_AFTERNOON_LOVE.json","startDelayMs":200}
+        ]}
+      ]}
+    ]}
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "onceKey": "d14_00_lena_morning_love_v1",
+  "contactId": "lena",
+  "requireOnceKey": "d13_03_hak_heartspike_love_v1",
+  "steps": [
+    {"type":"notify","delay":1300,"fromId":"lena","fromName":"{{name:lena}}","avatar":"assets/avatars/lena.jpg","text":"Good morning 😌","target":"conversation"},
+    {"type":"message","delay":900,"from":"lena","text":"How did you sleep?"},
+    {"type":"message","delay":900,"from":"player","text":"Pretty good"},
+    {"type":"message","delay":900,"from":"player","text":"What about you?"},
+    {"type":"message","delay":900,"from":"lena","text":"Very well actually"},
+    {"type":"message","delay":900,"from":"lena","text":"I had very nice dreams ❤️"},
+    {"type":"message","delay":900,"from":"player","text":"Oh?"},
+    {"type":"message","delay":900,"from":"player","text":"About what?"},
+    {"type":"message","delay":900,"from":"lena","text":"Secret"},
+    {"type":"message","delay":900,"from":"lena","text":"But maybe a little related to what happened at your place 😌"},
+    {"type":"message","delay":900,"from":"player","text":"Now that's unfair"},
+    {"type":"message","delay":900,"from":"lena","text":"Why?"},
+    {"type":"message","delay":900,"from":"player","text":"Because now I want details"},
+    {"type":"message","delay":900,"from":"lena","text":"Too bad"},
+    {"type":"message","delay":900,"from":"player","text":"I had nice dreams too"},
+    {"type":"message","delay":900,"from":"player","text":"But I had a hard time falling asleep first because I kept thinking about you"},
+    {"type":"message","delay":900,"from":"lena","text":"Poor baby 😌"},
+    {"type":"message","delay":900,"from":"lena","text":"You really suffer so much because of me"},
+    {"type":"message","delay":900,"from":"player","text":"It's a terrible burden"},
+    {"type":"message","delay":900,"from":"lena","text":"So dramatic"},
+    {"type":"message","delay":900,"from":"player","text":"Can I get a picture of the girl ruining my sleep before she leaves for uni?"},
+    {"type":"message","delay":900,"from":"lena","text":"Wow"},
+    {"type":"message","delay":900,"from":"lena","text":"That was smooth"},
+    {"type":"message","delay":900,"from":"lena","text":"Fine"},
+    {"type":"note","text":"2 MINUTES LATER"},
+    {"type":"image","delay":900,"from":"lena","image":"assets/pictures/Conversation/lena_day14_morning.jpg"},
+    {"type":"message","delay":900,"from":"lena","text":"There"},
+    {"type":"message","delay":900,"from":"lena","text":"Now behave while I'm in class 😌"},
+    {"type":"message","delay":900,"from":"player","text":"No promises"},
+    {"type":"message","delay":900,"from":"lena","text":"I know"},
+    {"type":"message","delay":900,"from":"player","text":"Good luck this morning"},
+    {"type":"message","delay":900,"from":"lena","text":"Thank you, handsome 🤍"},
+    {"type":"message","delay":900,"from":"lena","text":"I'll talk to you at noon"},
+    {"type":"if","condition":"active_character:hailey","then":[
+      {"type":"start_story","goHome":true,"startStory":"story/DAY14/DAY14_HAILEY_MORNING.json"}
+    ],"else":[
+      {"type":"start_story","goHome":true,"startStory":"story/DAY14/love/DAY14_01_LENA_BREAK_LOVE.json"}
+    ]}
+  ]
+}

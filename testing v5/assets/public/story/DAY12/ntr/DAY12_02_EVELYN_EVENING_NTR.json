@@ -1,0 +1,47 @@
+{
+  "onceKey": "d12_02_evelyn_evening_ntr_v1",
+  "contactId": "evelyn",
+  "requireOnceKey": "d12_01_evelyn_afternoon_ntr_v1",
+  "steps": [
+    {"type":"notify","delay":1200,"fromId":"evelyn","fromName":"{{name:evelyn}}","avatar":"assets/avatars/evelyn.jpg","text":"Hey, I'm about to leave for work","target":"conversation"},
+    {"type":"message","delay":850,"from":"evelyn","text":"Everything is ready for dinner as usual"},
+    {"type":"message","delay":850,"from":"evelyn","text":"{{name:hailey}} will bring it to your room so you don't have to move around too much"},
+    {"type":"message","delay":850,"from":"player","text":"Thank you"},
+    {"type":"message","delay":850,"from":"player","text":"And good luck tonight"},
+    {"type":"message","delay":850,"from":"evelyn","text":"Thank you 😊"},
+    {"type":"message","delay":850,"from":"player","text":"Send me a message during your break"},
+    {"type":"message","delay":850,"from":"evelyn","text":"I will"},
+    {"type":"note","delay":1200,"text":"1 H LATER"},
+    {"type":"onlyfun_post","onceKey":"of_random_seen_d12_v1","creatorId":"static_muse","image":"assets/pictures/OnlyFun/posts/random_day12.jpg","text":"I'm so good at picking the right outfit right ?","likes":881,"requiresSub":true,"notify":true},
+    {"type":"note","delay":1200,"text":"2 HOURS LATER"},
+    {"type":"message","delay":850,"from":"evelyn","text":"Hey, I'm on my break"},
+    {"type":"message","delay":850,"from":"player","text":"How is it going?"},
+    {"type":"message","delay":850,"from":"evelyn","text":"It's okay"},
+    {"type":"message","delay":850,"from":"evelyn","text":"But we got the new outfits my manager ordered"},
+    {"type":"message","delay":850,"from":"evelyn","text":"And honestly I don't like them at all"},
+    {"type":"message","delay":850,"from":"player","text":"What do the others think about them?"},
+    {"type":"message","delay":850,"from":"evelyn","text":"Most of them are pretty divided"},
+    {"type":"message","delay":850,"from":"evelyn","text":"But everyone listens to whatever the manager says"},
+    {"type":"message","delay":850,"from":"evelyn","text":"So we'll have to wear them no matter what"},
+    {"type":"message","delay":850,"from":"player","text":"Just tell yourself it's only for work"},
+    {"type":"message","delay":850,"from":"player","text":"And try to make the best of it"},
+    {"type":"message","delay":850,"from":"evelyn","text":"I'll try"},
+    {"type":"message","delay":850,"from":"player","text":"You'll be fine"},
+    {"type":"message","delay":850,"from":"player","text":"I know you can handle it"},
+    {"type":"message","delay":850,"from":"evelyn","text":"Thanks ❤️"},
+    {"type":"message","delay":850,"from":"evelyn","text":"I need to get back to work now"},
+    {"type":"message","delay":850,"from":"player","text":"Good luck"},
+    {"type":"message","delay":850,"from":"player","text":"See you tomorrow since I won't get to see you tonight"},
+    {"type":"message","delay":850,"from":"evelyn","text":"See you tomorrow 😊"},
+    {"type":"note","delay":1200,"text":"3 HOURS LATER"},
+    {"type":"hak_overlay","title":"HAK//NOTICE","messages":["Workplace anomaly detected","{{name:evelyn}} reported concerns regarding new work outfits","Repeated references to management decisions detected","Additional monitoring recommended to evaluate workplace influence patterns",{"kind":"thought","speaker":"player","text":"I don't like how much her work seems to be deciding for her."}]},
+    {"type":"hak_add_evidence","kind":"ntr","route":"ntr","profileId":"evelyn","profile":{"name":"{{name:evelyn}}","avatar":"assets/avatars/evelyn.jpg","kind":"ntr","route":"ntr"},"evidences":[{"id":"evelyn_ntr_d12_evidence_1","kind":"ntr","route":"ntr","src":"assets/pictures/evidence/evelyn_outfit_trying.jpg","url":"assets/pictures/evidence/evelyn_outfit_trying.jpg","thumb":"assets/pictures/evidence/evelyn_outfit_trying.jpg","title":"Outfit Trying","text":"HAK archived an image from a fitting session involving the new work outfits introduced by management","time":"EVENING"}]},
+    {"type":"if","condition":"active_character:mason","then":[
+      {"type":"time_card","text":"DAY 13","goHome":true,"startStory":"story/DAY13/ntr/DAY13_00_MASON_MORNING_NTR.json","startDelayMs":200}
+    ],"else":[
+      {"type":"time_card","text":"DAY 13","goHome":true,"startStory":"story/DAY13/ntr/DAY13_00_EVELYN_MORNING_NTR.json","startDelayMs":200}
+    ],"__masonNextDayPatched":true}
+  ],
+  "route": "ntr",
+  "routeLock": "route_evelyn_locked_v1:ntr"
+}

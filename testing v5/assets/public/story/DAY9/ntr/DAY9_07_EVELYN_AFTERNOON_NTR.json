@@ -1,0 +1,31 @@
+{
+  "onceKey": "d9_01_evelyn_afternoon_ntr_v1",
+  "contactId": "evelyn",
+  "requireOnceKey": "d9_00_evelyn_morning_ntr_v1",
+  "onCompleteStartStory": "story/DAY9/ntr/DAY9_08_EVELYN_EVENING_NTR.json",
+  "steps": [
+    {"type":"notify","delay":1200,"fromId":"evelyn","fromName":"{{name:evelyn}}","avatar":"assets/avatars/evelyn.jpg","text":"Good news, I don't work tonight or tomorrow night","target":"conversation"},
+    {"type":"message","delay":850,"from":"evelyn","text":"So I'll finally have some free time"},
+    {"type":"message","delay":850,"from":"evelyn","text":"I think I'm going to use it to clean the house and do some laundry"},
+    {"type":"message","delay":850,"from":"evelyn","text":"Do you have anything that needs washing too?"},
+    {"type":"message","delay":850,"from":"player","text":"Yeah, I have a few things"},
+    {"type":"message","delay":850,"from":"player","text":"But are you sure you don't need help?"},
+    {"type":"message","delay":850,"from":"evelyn","text":"No, don't worry"},
+    {"type":"message","delay":850,"from":"evelyn","text":"You need to rest until you're fully healed"},
+    {"type":"message","delay":850,"from":"player","text":"You're sure ?"},
+    {"type":"message","delay":850,"from":"evelyn","text":"Yes, I know you want to help but I can handle this"},
+    {"type":"message","delay":850,"from":"evelyn","text":"Just focus on getting better, that's the most important thing right now"},
+    {"type":"message","delay":850,"from":"player","text":"Thank you for everything you do"},
+    {"type":"message","delay":850,"from":"player","text":"I'm sorry for being such a burden right now"},
+    {"type":"message","delay":850,"from":"evelyn","text":"Don't say that"},
+    {"type":"message","delay":850,"from":"evelyn","text":"You are not a burden"},
+    {"type":"message","delay":850,"from":"evelyn","text":"And none of this is your fault"},
+    {"type":"message","delay":850,"from":"evelyn","text":"You just need time to recover, that's all"},
+    {"type":"message","delay":850,"from":"evelyn","text":"After dinner tonight, we can spend some time together if you want 😊"},
+    {"type":"message","delay":850,"from":"player","text":"I'd love that"},
+    {"type":"message","delay":850,"from":"evelyn","text":"Then we'll do that"},
+    {"type":"start_story","goHome":true,"startStory":"story/DAY9/ntr/DAY9_08_EVELYN_EVENING_NTR.json"}
+  ],
+  "route": "ntr",
+  "routeLock": "route_evelyn_locked_v1:ntr"
+}
